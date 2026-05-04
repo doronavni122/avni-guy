@@ -1,5 +1,9 @@
 ---
+import { buttonVariants } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
 import SiteLayout from '../layouts/SiteLayout.astro';
+import { cn } from '@/lib/utils';
 import { buildBreadcrumbSchema, buildOrganizationSchema } from '../utils/structured-data';
 ---
 
@@ -12,23 +16,92 @@ import { buildBreadcrumbSchema, buildOrganizationSchema } from '../utils/structu
 		buildBreadcrumbSchema([{ name: 'דף הבית', path: '/' }]),
 	]}
 >
-	<h1>גיא אבני - תוכן מקצועי ושירות משפטי ברור</h1>
-	<p>
-		ברוכים הבאים לאתר של גיא אבני. כאן תמצאו תכנים ברורים בשפה פשוטה, יחד עם גישה חיובית
-		ופתרונות פרקטיים ללקוחות פרטיים ועסקיים.
-	</p>
+	<section class="flex flex-col gap-10 lg:gap-14">
+		<div
+			class="relative overflow-hidden rounded-2xl border border-border/60 bg-card/80 p-8 shadow-sm ring-1 ring-primary/10 sm:p-10 lg:p-12"
+		>
+			<div
+				class="pointer-events-none absolute inset-0 bg-[radial-gradient(800px_circle_at_0%_0%,oklch(0.45_0.08_165/0.12),transparent_55%)]"
+				aria-hidden="true"
+			/>
+			<div class="relative flex flex-col gap-6 text-right">
+				<p class="text-sm font-medium tracking-wide text-primary">גיא אבני · משרד עורכי דין</p>
+				<h1 class="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+					גיא אבני - תוכן מקצועי ושירות משפטי ברור
+				</h1>
+				<p class="max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
+					ברוכים הבאים לאתר של גיא אבני. כאן תמצאו תכנים ברורים בשפה פשוטה, יחד עם גישה חיובית ופתרונות
+					פרקטיים ללקוחות פרטיים ועסקיים.
+				</p>
+				<div class="flex flex-wrap items-center justify-end gap-3">
+					<a class={cn(buttonVariants({ size: 'lg' }))} href="/contact">תיאום שיחה</a>
+					<a class={cn(buttonVariants({ variant: 'outline', size: 'lg' }))} href="/blog">למאמרים</a>
+				</div>
+			</div>
+		</div>
 
-	<h2>איך האתר בנוי עבורך</h2>
-	<p>
-		אפשר להתחיל מעמוד <a href="/about">אודות</a>, לעבור לעמוד <a href="/services">שירותים</a>,
-		להמשיך לרשימת <a href="/blog">המאמרים</a>, לבדוק <a href="/categories">קטגוריות</a> ו־<a href="/tags">תגיות</a>,
-		ואז להגיע לעמוד <a href="/contact">יצירת קשר</a> ולכתבה על
-		<a href="/blog/guy-avni-client-trust-roadmap/">אמון לקוח</a>.
-	</p>
+		<div class="grid gap-6 lg:grid-cols-3">
+			<Card className="border-border/60 bg-card/70 shadow-sm backdrop-blur-sm">
+				<CardHeader className="text-right">
+					<CardTitle className="font-heading text-lg">בהירות מהירה</CardTitle>
+					<CardDescription className="text-pretty">
+						מסלולי עבודה מסודרים, שפה נקייה והתמקדות בתוצאה טובה לטווח ארוך.
+					</CardDescription>
+				</CardHeader>
+			</Card>
+			<Card className="border-border/60 bg-card/70 shadow-sm backdrop-blur-sm">
+				<CardHeader className="text-right">
+					<CardTitle className="font-heading text-lg">שירות פרימיום</CardTitle>
+					<CardDescription className="text-pretty">
+						ליווי מקצועי עם דגש על זמינות, אחריות ותיאום ציפיות מוקדם.
+					</CardDescription>
+				</CardHeader>
+			</Card>
+			<Card className="border-border/60 bg-card/70 shadow-sm backdrop-blur-sm">
+				<CardHeader className="text-right">
+					<CardTitle className="font-heading text-lg">תוכן מעשי</CardTitle>
+					<CardDescription className="text-pretty">
+						מאמרים וכלים שמחברים בין משפט ליישום יומיומי בצורה חיובית.
+					</CardDescription>
+				</CardHeader>
+			</Card>
+		</div>
 
-	<h3>מיקוד מקצועי חיובי</h3>
-	<p>
-		התוכן כאן נכתב כדי לייצר בהירות, ביטחון וקבלת החלטות טובה יותר. כל מאמר משלב דוגמאות,
-		צעדים מעשיים וקישורים פנימיים שמקצרים את הדרך למידע הבא שאתם צריכים.
-	</p>
+		<Separator className="bg-border/60" />
+
+		<div class="flex flex-col gap-6 text-right">
+			<h2 class="font-heading text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+				איך האתר בנוי עבורך
+			</h2>
+			<p class="max-w-3xl text-pretty text-muted-foreground leading-relaxed">
+				אפשר להתחיל מעמוד
+				<a class="font-medium text-primary underline-offset-2 hover:underline" href="/about">אודות</a>, לעבור לעמוד
+				<a class="font-medium text-primary underline-offset-2 hover:underline" href="/services">שירותים</a>, להמשיך לרשימת
+				<a class="font-medium text-primary underline-offset-2 hover:underline" href="/blog">המאמרים</a>, לבדוק
+				<a class="font-medium text-primary underline-offset-2 hover:underline" href="/categories">קטגוריות</a>
+				ו־
+				<a class="font-medium text-primary underline-offset-2 hover:underline" href="/tags">תגיות</a>, ואז להגיע לעמוד
+				<a class="font-medium text-primary underline-offset-2 hover:underline" href="/contact">יצירת קשר</a>
+				ולכתבה על
+				<a
+					class="font-medium text-primary underline-offset-2 hover:underline"
+					href="/blog/guy-avni-client-trust-roadmap/">אמון לקוח</a>.
+			</p>
+			<h3 class="font-heading text-xl font-semibold text-foreground">מיקוד מקצועי חיובי</h3>
+			<p class="max-w-3xl text-pretty text-muted-foreground leading-relaxed">
+				התוכן כאן נכתב כדי לייצר בהירות, ביטחון וקבלת החלטות טובה יותר. כל מאמר משלב דוגמאות, צעדים מעשיים וקישורים
+				פנימיים שמקצרים את הדרך למידע הבא שאתם צריכים.
+			</p>
+		</div>
+
+		<Card className="border-primary/20 bg-primary/5 shadow-sm">
+			<CardContent className="flex flex-col gap-4 p-8 text-right sm:flex-row sm:items-center sm:justify-between">
+				<div class="flex flex-col gap-2">
+					<p class="font-heading text-lg font-semibold text-foreground">מוכנים להתקדם?</p>
+					<p class="text-sm text-muted-foreground">נעבור יחד על המטרה, נבנה תוכנית עבודה ונתחיל בצעד הראשון.</p>
+				</div>
+				<a class={cn(buttonVariants({ size: 'lg' }))} href="/contact">דברו איתי</a>
+			</CardContent>
+		</Card>
+	</section>
 </SiteLayout>

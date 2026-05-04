@@ -1,30 +1,37 @@
 ---
+import { Separator } from '@/components/ui/separator';
+import { buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+
 const today = new Date();
 ---
 
-<footer>
-	<p>&copy; {today.getFullYear()} גיא אבני. כל הזכויות שמורות.</p>
-	<p>
-		<a href="/contact">ליצירת קשר מהירה</a>
-		<span> | </span>
-		<a href="/blog">למאמרים מקצועיים</a>
-	</p>
+<footer class="mt-auto border-t border-border/60 bg-card/40">
+	<div class="container mx-auto max-w-6xl px-4 py-12 sm:px-6">
+		<div class="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
+			<div class="flex max-w-md flex-col gap-3 text-right">
+				<p class="font-heading text-lg font-semibold tracking-tight text-foreground">גיא אבני</p>
+				<p class="text-sm leading-relaxed text-muted-foreground">
+					תוכן מקצועי בעברית, שירותים ומאמרים שנועדו לייצר בהירות וביטחון בקבלת החלטות.
+				</p>
+			</div>
+			<div class="flex flex-col gap-3 text-right md:items-end">
+				<p class="text-sm text-muted-foreground">
+					&copy; {today.getFullYear()} גיא אבני. כל הזכויות שמורות.
+				</p>
+				<div class="flex flex-wrap items-center justify-end gap-2">
+					<a class={cn(buttonVariants({ variant: 'secondary', size: 'sm' }))} href="/contact">
+						יצירת קשר
+					</a>
+					<a class={cn(buttonVariants({ variant: 'outline', size: 'sm' }))} href="/blog">
+						מאמרים
+					</a>
+				</div>
+			</div>
+		</div>
+		<Separator class="my-8 bg-border/60" />
+		<p class="text-center text-xs text-muted-foreground">
+			האתר מותאם לקריאה נוחה, נגישות בסיסית ומהירות טעינה גבוהה.
+		</p>
+	</div>
 </footer>
-<style>
-	footer {
-		padding: 2rem 1rem 4rem;
-		background: linear-gradient(var(--gray-gradient)) no-repeat;
-		color: rgb(var(--gray));
-		text-align: center;
-	}
-	p {
-		margin: 0.4rem 0;
-	}
-	footer a {
-		text-decoration: none;
-		color: rgb(var(--gray));
-	}
-	footer a:hover {
-		color: rgb(var(--gray-dark));
-	}
-</style>

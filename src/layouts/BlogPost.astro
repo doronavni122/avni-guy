@@ -1,10 +1,14 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { badgeVariants } from '@/components/ui/badge';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import { SITE_URL } from '../consts';
+import { cn } from '@/lib/utils';
 import { buildBreadcrumbSchema } from '../utils/structured-data';
 
 type Props = CollectionEntry<'blog'>['data'];
@@ -14,7 +18,6 @@ const {
 	description,
 	pubDate,
 	updatedDate,
-	heroImage,
 	metaTitle,
 	metaDescription,
 	mainKeyword,
@@ -25,7 +28,7 @@ const {
 } = Astro.props;
 ---
 
-<html lang="he" dir="rtl">
+<html lang="he" dir="rtl" class="scroll-smooth">
 	<head>
 		<BaseHead
 			title={metaTitle ?? title}
@@ -52,132 +55,119 @@ const {
 				},
 			]}
 		/>
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.hero-image {
-				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-				gap: 0.8rem;
-				margin-bottom: 1rem;
-			}
-			.hero-image img {
-				width: 100%;
-				height: 170px;
-				object-fit: cover;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-			.taxonomy {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 0.4rem;
-				justify-content: center;
-				margin: 0.8rem 0;
-			}
-			.taxonomy a {
-				text-decoration: none;
-				padding: 0.2rem 0.6rem;
-				background: rgb(var(--gray-light));
-				border-radius: 999px;
-			}
-			.media-sources {
-				font-size: 0.95rem;
-				background: rgba(var(--gray-light), 0.45);
-				border-radius: 12px;
-				padding: 0.8rem;
-				margin-bottom: 1.2rem;
-			}
-		</style>
 	</head>
-
-	<body>
+	<body class="flex min-h-dvh flex-col antialiased">
 		<Header />
-		<main>
-			<article>
-				<div class="hero-image">
-					{images.map((imageItem) => (
-						<img
-							src={imageItem.src}
-							alt={imageItem.alt}
-							title={imageItem.title}
-							loading="lazy"
-							decoding="async"
-						/>
-					))}
-				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
-						</div>
-						<h1>{title}</h1>
-						<div class="taxonomy">
-							<a href={`/categories/${category}/`}>קטגוריה: {category}</a>
-							{tags.map((tag) => (
-								<a href={`/tags/${tag}/`}>#{tag}</a>
-							))}
-						</div>
-						<hr />
+		<main class="flex flex-1 flex-col">
+			<div class="container mx-auto w-full max-w-6xl flex-1 px-4 py-10 sm:px-6 sm:py-12 lg:py-16">
+				<article class="flex flex-col gap-10">
+					<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+						{
+							images.map((imageItem) => (
+								<figure class="group overflow-hidden rounded-xl ring-1 ring-border/60 shadow-sm transition-shadow hover:shadow-md">
+									<img
+										src={imageItem.src}
+										alt={imageItem.alt}
+										title={imageItem.title}
+										loading="lazy"
+										decoding="async"
+										class="aspect-[3/2] h-auto w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+									/>
+								</figure>
+							))
+						}
 					</div>
-					<section class="media-sources">
-						<strong>מקורות תמונה חינמיים:</strong>
-						<ul>
-							{images.map((imageItem) => (
-								<li>
-									<a href={imageItem.source} rel="noopener noreferrer" target="_blank">
-										{imageItem.source}
-									</a>
-								</li>
-							))}
-						</ul>
-					</section>
-					<slot />
-					<section>
-						<h2>קישורים פנימיים מומלצים</h2>
-						<ul>
-							{internalLinks.map((link) => (
-								<li>
-									<a href={link}>{link}</a>
-								</li>
-							))}
-						</ul>
-					</section>
-				</div>
-			</article>
+
+					<Card className="border-border/60 shadow-sm">
+						<CardHeader className="gap-4 text-right">
+							<div class="flex flex-col gap-2 text-sm text-muted-foreground">
+								<FormattedDate date={pubDate} />
+								{
+									updatedDate && (
+										<p class="text-xs italic">
+											עודכן לאחרונה: <FormattedDate date={updatedDate} />
+										</p>
+									)
+								}
+							</div>
+							<CardDescription className="text-xs font-medium uppercase tracking-wide text-primary">
+								{mainKeyword}
+							</CardDescription>
+							<h1 class="font-heading text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+								{title}
+							</h1>
+							<div class="flex flex-wrap items-center justify-end gap-2">
+								<a
+									href={`/categories/${category}/`}
+									class={cn(
+										badgeVariants({ variant: 'outline' }),
+										'no-underline hover:bg-muted',
+									)}
+								>
+									קטגוריה: {category}
+								</a>
+								{
+									tags.map((tag) => (
+										<a
+											href={`/tags/${tag}/`}
+											class={cn(
+												badgeVariants({ variant: 'secondary' }),
+												'no-underline hover:bg-secondary/80',
+											)}
+										>
+											#{tag}
+										</a>
+									))
+								}
+							</div>
+						</CardHeader>
+						<Separator />
+						<CardContent className="pt-6">
+							<section class="mb-8 rounded-xl border border-border/50 bg-muted/30 p-4 text-right">
+								<h2 class="mb-2 font-heading text-sm font-semibold text-foreground">מקורות תמונה חינמיים</h2>
+								<ul class="flex flex-col gap-2 text-sm text-muted-foreground">
+									{
+										images.map((imageItem) => (
+											<li>
+												<a
+													class="text-primary underline-offset-2 hover:underline"
+													href={imageItem.source}
+													rel="noopener noreferrer"
+													target="_blank"
+												>
+													{imageItem.source}
+												</a>
+											</li>
+										))
+									}
+								</ul>
+							</section>
+							<div
+								class="max-w-none space-y-4 text-right text-base leading-relaxed text-foreground [&_a]:font-medium [&_a]:text-primary [&_a]:underline-offset-2 [&_a]:hover:underline [&_h2]:mt-8 [&_h2]:font-heading [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_h3]:mt-6 [&_h3]:font-heading [&_h3]:text-xl [&_h3]:font-semibold [&_p]:text-pretty"
+							>
+								<slot />
+							</div>
+						</CardContent>
+						<CardFooter className="flex flex-col items-stretch gap-4 border-t border-border/60 bg-muted/20 p-6 text-right">
+							<h2 class="font-heading text-lg font-semibold text-foreground">קישורים פנימיים מומלצים</h2>
+							<ul class="flex flex-col gap-2 text-sm">
+								{
+									internalLinks.map((link) => (
+										<li>
+											<a
+												class="font-medium text-primary underline-offset-2 hover:underline"
+												href={link}
+											>
+												{link}
+											</a>
+										</li>
+									))
+								}
+							</ul>
+						</CardFooter>
+					</Card>
+				</article>
+			</div>
 		</main>
 		<Footer />
 	</body>

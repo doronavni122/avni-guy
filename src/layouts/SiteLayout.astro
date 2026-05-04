@@ -15,7 +15,7 @@ const { title, description, keyword, structuredData } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="he" dir="rtl">
+<html lang="he" dir="rtl" class="scroll-smooth">
 	<head>
 		<BaseHead
 			title={title}
@@ -24,10 +24,12 @@ const { title, description, keyword, structuredData } = Astro.props;
 			structuredData={structuredData}
 		/>
 	</head>
-	<body>
+	<body class="flex min-h-dvh flex-col antialiased">
 		<Header />
-		<main>
-			<slot />
+		<main class="flex flex-1 flex-col">
+			<div class="container mx-auto w-full max-w-6xl flex-1 px-4 py-10 sm:px-6 sm:py-12 lg:py-16">
+				<slot />
+			</div>
 		</main>
 		<Footer />
 	</body>

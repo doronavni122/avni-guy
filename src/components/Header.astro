@@ -1,17 +1,32 @@
 ---
 import { SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
+import { MobileNav } from '@/components/react/MobileNav';
 ---
 
-<header>
-	<nav>
-		<h2>
-			<a class="brand" href="/">
-				<img src="/logo.svg" alt="לוגו גיא אבני" width="150" height="50" loading="eager" />
-				<span>{SITE_TITLE}</span>
-			</a>
-		</h2>
-		<div class="internal-links">
+<header
+	class="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/70"
+>
+	<div class="container mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
+		<a
+			class="group flex min-w-0 items-center gap-3 text-foreground no-underline transition-opacity hover:opacity-90"
+			href="/"
+		>
+			<img
+				src="/logo.svg"
+				alt="לוגו גיא אבני"
+				width="44"
+				height="44"
+				loading="eager"
+				class="size-11 shrink-0 rounded-xl ring-1 ring-border/60 shadow-sm"
+			/>
+			<span
+				class="hidden min-w-0 truncate font-heading text-sm font-semibold tracking-tight sm:inline sm:text-base"
+			>
+				{SITE_TITLE}
+			</span>
+		</a>
+		<nav class="hidden flex-wrap items-center justify-end gap-1 md:flex" aria-label="ניווט ראשי">
 			<HeaderLink href="/">דף הבית</HeaderLink>
 			<HeaderLink href="/about">אודות</HeaderLink>
 			<HeaderLink href="/services">שירותים</HeaderLink>
@@ -19,59 +34,9 @@ import HeaderLink from './HeaderLink.astro';
 			<HeaderLink href="/categories">קטגוריות</HeaderLink>
 			<HeaderLink href="/tags">תגיות</HeaderLink>
 			<HeaderLink href="/contact">יצירת קשר</HeaderLink>
+		</nav>
+		<div class="flex shrink-0 items-center gap-2 md:hidden">
+			<MobileNav client:media="(max-width: 767px)" />
 		</div>
-	</nav>
+	</div>
 </header>
-<style>
-	header {
-		margin: 0;
-		padding: 0 1rem;
-		background: white;
-		box-shadow: 0 2px 8px rgba(var(--black), 5%);
-	}
-	h2 {
-		margin: 0;
-		font-size: 1em;
-	}
-
-	h2 a,
-	h2 a.active {
-		text-decoration: none;
-	}
-	.brand {
-		display: flex;
-		align-items: center;
-		gap: 0.6rem;
-	}
-	.brand img {
-		width: 90px;
-		height: auto;
-		border-radius: 8px;
-	}
-	nav {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 1rem;
-		flex-wrap: wrap;
-	}
-	nav a {
-		padding: 1em 0.5em;
-		color: var(--black);
-		border-bottom: 4px solid transparent;
-		text-decoration: none;
-	}
-	nav a.active {
-		text-decoration: none;
-		border-bottom-color: var(--accent);
-	}
-	.internal-links {
-		display: flex;
-		flex-wrap: wrap;
-	}
-	@media (max-width: 720px) {
-		.internal-links {
-			width: 100%;
-		}
-	}
-</style>

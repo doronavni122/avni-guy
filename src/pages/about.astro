@@ -1,4 +1,6 @@
 ---
+import { Card, CardContent } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
 import SiteLayout from '../layouts/SiteLayout.astro';
 import { buildBreadcrumbSchema } from '../utils/structured-data';
 ---
@@ -12,23 +14,59 @@ import { buildBreadcrumbSchema } from '../utils/structured-data';
 		{ name: 'אודות', path: '/about' },
 	])}
 >
-	<h1>גיא אבני עוד - ניסיון, אחריות וראייה קדימה</h1>
-	<p>
-		אני פועל מתוך אמונה ששירות משפטי צריך להיות אנושי, ברור וממוקד תוצאה. לאורך השנים בניתי תהליך
-		עבודה שמצמצם אי-ודאות ומאפשר ללקוח להתקדם בביטחון.
-	</p>
+	<section class="flex flex-col gap-10">
+		<div class="flex flex-col gap-4 text-right">
+			<p class="text-sm font-medium text-primary">גיא אבני עוד</p>
+			<h1 class="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+				גיא אבני עוד - ניסיון, אחריות וראייה קדימה
+			</h1>
+			<p class="max-w-3xl text-pretty text-lg leading-relaxed text-muted-foreground">
+				אני פועל מתוך אמונה ששירות משפטי צריך להיות אנושי, ברור וממוקד תוצאה. לאורך השנים בניתי תהליך עבודה שמצמצם
+				אי-ודאות ומאפשר ללקוח להתקדם בביטחון.
+			</p>
+		</div>
 
-	<h2>ערכי העבודה שמובילים את גיא אבני עוד</h2>
-	<p>
-		העבודה שלי נשענת על שקיפות, זמינות וחשיבה אסטרטגית. אפשר להעמיק דרך עמוד
-		<a href="/services">השירותים</a>, לקרוא את <a href="/blog">הבלוג</a>, לעיין ב־<a href="/categories">קטגוריות</a>,
-		לנווט לפי <a href="/tags">תגיות</a>, לבדוק את <a href="/">דף הבית</a>, לעבור ל־
-		<a href="/contact">יצירת קשר</a> ולקרוא על <a href="/blog/guy-avni-document-readiness-guide/">מוכנות מסמכים</a>.
-	</p>
+		<div class="grid gap-6 lg:grid-cols-2">
+			<Card className="border-border/60 bg-card/70 shadow-sm">
+				<CardContent className="flex flex-col gap-3 p-8 text-right">
+					<p class="font-heading text-lg font-semibold text-foreground">ערכים</p>
+					<p class="text-pretty text-sm leading-relaxed text-muted-foreground">
+						שקיפות, זמינות וחשיבה אסטרטגית כבסיס לכל שיחה ולכל מסמך.
+					</p>
+				</CardContent>
+			</Card>
+			<Card className="border-border/60 bg-card/70 shadow-sm">
+				<CardContent className="flex flex-col gap-3 p-8 text-right">
+					<p class="font-heading text-lg font-semibold text-foreground">דרך עבודה</p>
+					<p class="text-pretty text-sm leading-relaxed text-muted-foreground">
+						מיפוי צעדים, סיכומים ברורים ובקרה שוטפת כדי לשמור על קצב מקצועי ונעים.
+					</p>
+				</CardContent>
+			</Card>
+		</div>
 
-	<h3>למי זה מתאים</h3>
-	<p>
-		האתר מתאים למי שמחפש ליווי מקצועי בשפה פרקטית, עם דגש על תכנון מוקדם, צעדים ישימים ותוכן חיובי
-		שמחבר בין ידע משפטי לבין החלטות יומיומיות.
-	</p>
+		<Separator className="bg-border/60" />
+
+		<div class="flex flex-col gap-4 text-right">
+			<h2 class="font-heading text-2xl font-semibold tracking-tight text-foreground">ערכי העבודה שמובילים את גיא אבני עוד</h2>
+			<p class="max-w-3xl text-pretty leading-relaxed text-muted-foreground">
+				העבודה שלי נשענת על שקיפות, זמינות וחשיבה אסטרטגית. אפשר להעמיק דרך עמוד
+				<a class="font-medium text-primary underline-offset-2 hover:underline" href="/services">השירותים</a>, לקרוא את
+				<a class="font-medium text-primary underline-offset-2 hover:underline" href="/blog">הבלוג</a>, לעיין ב־
+				<a class="font-medium text-primary underline-offset-2 hover:underline" href="/categories">קטגוריות</a>, לנווט לפי
+				<a class="font-medium text-primary underline-offset-2 hover:underline" href="/tags">תגיות</a>, לבדוק את
+				<a class="font-medium text-primary underline-offset-2 hover:underline" href="/">דף הבית</a>, לעבור ל־
+				<a class="font-medium text-primary underline-offset-2 hover:underline" href="/contact">יצירת קשר</a>
+				ולקרוא על
+				<a
+					class="font-medium text-primary underline-offset-2 hover:underline"
+					href="/blog/guy-avni-document-readiness-guide/">מוכנות מסמכים</a>.
+			</p>
+			<h3 class="font-heading text-xl font-semibold text-foreground">למי זה מתאים</h3>
+			<p class="max-w-3xl text-pretty leading-relaxed text-muted-foreground">
+				האתר מתאים למי שמחפש ליווי מקצועי בשפה פרקטית, עם דגש על תכנון מוקדם, צעדים ישימים ותוכן חיובי שמחבר בין ידע משפטי
+				לבין החלטות יומיומיות.
+			</p>
+		</div>
+	</section>
 </SiteLayout>

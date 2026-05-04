@@ -1,4 +1,6 @@
 ---
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { getSortedPosts } from '../../utils/content-taxonomy';
 import { buildBreadcrumbSchema } from '../../utils/structured-data';
@@ -23,17 +25,53 @@ const posts = (await getSortedPosts()).filter((post) => post.data.tags.includes(
 		{ name: tag, path: `/tags/${tag}/` },
 	])}
 >
-	<h1>גיא אבני עוד - תגית {tag}</h1>
-	<p>
-		בעמוד תגית זה מופיעים מאמרים שמתמקדים בנושא אחיד ומסייעים להתקדמות מהירה. קישורים משלימים:
-		<a href="/blog">מאמרים</a>, <a href="/categories">קטגוריות</a>, <a href="/services">שירותים</a>,
-		<a href="/about">אודות</a>, <a href="/contact">יצירת קשר</a>, <a href="/">דף הבית</a>, ומאמר
-		<a href="/blog/guy-avni-risk-management-routine/">שגרת ניהול סיכונים</a>.
-	</p>
-	<h2>מאמרים בתגית</h2>
-	<ul>
-		{posts.map((post) => <li><a href={`/blog/${post.id}/`}>{post.data.title}</a></li>)}
-	</ul>
-	<h3>יישום מעשי</h3>
-	<p>בחרו מאמר אחד מהתגית, יישמו פעולה אחת, ואז חזרו למאמר נוסף כדי להעמיק.</p>
+	<section class="flex flex-col gap-10">
+		<div class="flex flex-col gap-4 text-right">
+			<p class="text-sm font-medium text-primary">גיא אבני עוד</p>
+			<h1 class="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+				גיא אבני עוד - תגית {tag}
+			</h1>
+			<p class="max-w-3xl text-pretty text-lg leading-relaxed text-muted-foreground">
+				בעמוד תגית זה מופיעים מאמרים שמתמקדים בנושא אחיד ומסייעים להתקדמות מהירה. קישורים משלימים:
+				<a class="font-medium text-primary underline-offset-2 hover:underline" href="/blog">מאמרים</a>,
+				<a class="font-medium text-primary underline-offset-2 hover:underline" href="/categories">קטגוריות</a>,
+				<a class="font-medium text-primary underline-offset-2 hover:underline" href="/services">שירותים</a>,
+				<a class="font-medium text-primary underline-offset-2 hover:underline" href="/about">אודות</a>,
+				<a class="font-medium text-primary underline-offset-2 hover:underline" href="/contact">יצירת קשר</a>,
+				<a class="font-medium text-primary underline-offset-2 hover:underline" href="/">דף הבית</a>
+				ומאמר
+				<a
+					class="font-medium text-primary underline-offset-2 hover:underline"
+					href="/blog/guy-avni-risk-management-routine/">שגרת ניהול סיכונים</a>.
+			</p>
+		</div>
+
+		<Separator className="bg-border/60" />
+
+		<div class="flex flex-col gap-4 text-right">
+			<h2 class="font-heading text-2xl font-semibold tracking-tight text-foreground">מאמרים בתגית</h2>
+			<h3 class="text-lg font-medium text-muted-foreground">רשימה מעודכנת</h3>
+		</div>
+
+		<div class="grid gap-4 sm:grid-cols-2">
+			{
+				posts.map((post) => (
+					<a class="group block no-underline" href={`/blog/${post.id}/`}>
+						<Card className="h-full border-border/60 bg-card/70 shadow-sm transition-all group-hover:border-primary/25 group-hover:shadow-md">
+							<CardHeader className="text-right">
+								<CardTitle className="font-heading text-base leading-snug transition-colors group-hover:text-primary">
+									{post.data.title}
+								</CardTitle>
+							</CardHeader>
+							<CardContent className="text-right text-sm text-muted-foreground">{post.data.description}</CardContent>
+						</Card>
+					</a>
+				))
+			}
+		</div>
+
+		<p class="text-right text-sm text-muted-foreground">
+			בחרו מאמר אחד מהתגית, יישמו פעולה אחת, ואז חזרו למאמר נוסף כדי להעמיק.
+		</p>
+	</section>
 </SiteLayout>
