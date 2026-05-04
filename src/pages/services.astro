@@ -1,11 +1,16 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
+import { buildBreadcrumbSchema } from '../utils/structured-data';
 ---
 
 <SiteLayout
 	title="גיא אבני משרד עורכי דין - שירותים"
 	description="עמוד שירותים של גיא אבני משרד עורכי דין: ייעוץ, ליווי מסמכים, אסטרטגיה משפטית וייצוג."
 	keyword="גיא אבני משרד עורכי דין"
+	structuredData={buildBreadcrumbSchema([
+		{ name: 'דף הבית', path: '/' },
+		{ name: 'שירותים', path: '/services' },
+	])}
 >
 	<h1>גיא אבני משרד עורכי דין - שירותים מקצועיים</h1>
 	<p>

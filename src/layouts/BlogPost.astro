@@ -5,15 +5,35 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import { buildBreadcrumbSchema } from '../utils/structured-data';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const {
+	title,
+	description,
+	pubDate,
+	updatedDate,
+	heroImage,
+	metaTitle,
+	metaDescription,
+	mainKeyword,
+} = Astro.props;
 ---
 
-<html lang="en">
+<html lang="he" dir="rtl">
 	<head>
-		<BaseHead title={title} description={description} />
+		<BaseHead
+			title={metaTitle ?? title}
+			description={metaDescription ?? description}
+			keyword={mainKeyword ?? 'גיא אבני'}
+			type="article"
+			structuredData={buildBreadcrumbSchema([
+				{ name: 'דף הבית', path: '/' },
+				{ name: 'מאמרים', path: '/blog' },
+				{ name: title, path: Astro.url.pathname },
+			])}
+		/>
 		<style>
 			main {
 				width: calc(100% - 2em);

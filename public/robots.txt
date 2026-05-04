@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://guy-avni.vercel.app/sitemap-index.xml

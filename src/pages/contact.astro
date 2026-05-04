@@ -1,11 +1,16 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
+import { buildBreadcrumbSchema } from '../utils/structured-data';
 ---
 
 <SiteLayout
 	title="אבני גיא - יצירת קשר"
 	description="עמוד יצירת קשר של אבני גיא לתיאום פגישה ראשונית, שאלות והכוונה מקצועית."
 	keyword="אבני גיא"
+	structuredData={buildBreadcrumbSchema([
+		{ name: 'דף הבית', path: '/' },
+		{ name: 'יצירת קשר', path: '/contact' },
+	])}
 >
 	<h1>אבני גיא - יצירת קשר מקצועית ונוחה</h1>
 	<p>

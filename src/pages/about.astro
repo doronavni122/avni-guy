@@ -1,11 +1,16 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
+import { buildBreadcrumbSchema } from '../utils/structured-data';
 ---
 
 <SiteLayout
 	title="גיא אבני עוד - אודות"
 	description="עמוד אודות של גיא אבני עוד עם רקע מקצועי, ערכים ודרך עבודה חיובית."
 	keyword="גיא אבני עוד"
+	structuredData={buildBreadcrumbSchema([
+		{ name: 'דף הבית', path: '/' },
+		{ name: 'אודות', path: '/about' },
+	])}
 >
 	<h1>גיא אבני עוד - ניסיון, אחריות וראייה קדימה</h1>
 	<p>

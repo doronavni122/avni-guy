@@ -8,15 +8,21 @@ interface Props {
 	title: string;
 	description: string;
 	keyword: SiteKeyword;
+	structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
 
-const { title, description, keyword } = Astro.props;
+const { title, description, keyword, structuredData } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="he" dir="rtl">
 	<head>
-		<BaseHead title={title} description={description} keyword={keyword} />
+		<BaseHead
+			title={title}
+			description={description}
+			keyword={keyword}
+			structuredData={structuredData}
+		/>
 	</head>
 	<body>
 		<Header />

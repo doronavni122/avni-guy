@@ -13,11 +13,12 @@ interface Props {
 	keyword: SiteKeyword;
 	image?: ImageMetadata;
 	type?: 'website' | 'article';
+	structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, keyword, image = FallbackImage, type = 'website' } = Astro.props;
+const { title, description, keyword, image = FallbackImage, type = 'website', structuredData } = Astro.props;
 ---
 
 <!-- Global Metadata -->
@@ -73,3 +74,9 @@ const { title, description, keyword, image = FallbackImage, type = 'website' } =
 		name: 'גיא אבני',
 	},
 })} />
+{
+	structuredData &&
+		(Array.isArray(structuredData) ? structuredData : [structuredData]).map((entry) => (
+			<script type="application/ld+json" set:html={JSON.stringify(entry)} />
+		))
+}

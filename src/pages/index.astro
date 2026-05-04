@@ -1,11 +1,16 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
+import { buildBreadcrumbSchema, buildOrganizationSchema } from '../utils/structured-data';
 ---
 
 <SiteLayout
 	title="גיא אבני - דף הבית המקצועי"
 	description="גיא אבני מציג ידע משפטי חיובי, שירותים מקצועיים ומאמרים שימושיים בעברית."
 	keyword="גיא אבני"
+	structuredData={[
+		buildOrganizationSchema(),
+		buildBreadcrumbSchema([{ name: 'דף הבית', path: '/' }]),
+	]}
 >
 	<h1>גיא אבני - תוכן מקצועי ושירות משפטי ברור</h1>
 	<p>
