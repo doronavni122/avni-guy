@@ -11,14 +11,35 @@ interface Props {
 	title: string;
 	description: string;
 	keyword: SiteKeyword;
-	image?: ImageMetadata;
+	image?: ImageMetadata | string;
 	type?: 'website' | 'article';
 	structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const siteOrigin = Astro.site ?? new URL(SITE_URL);
+const canonicalURL = new URL(Astro.url.pathname, siteOrigin);
 
-const { title, description, keyword, image = FallbackImage, type = 'website', structuredData } = Astro.props;
+const { title, description, keyword, image: imageProp, type = 'website', structuredData } = Astro.props;
+const image = imageProp ?? FallbackImage;
+
+function resolveAbsoluteOgImage(img: ImageMetadata | string): string {
+	try {
+		const base = siteOrigin;
+		if (typeof img === 'string') {
+			if (img.startsWith('http://') || img.startsWith('https://')) return img;
+			return new URL(img.startsWith('/') ? img : `/${img}`, base).toString();
+		}
+		const src = img.src;
+		if (src.startsWith('http://') || src.startsWith('https://')) return src;
+		return new URL(src, base).toString();
+	} catch (err) {
+		console.error('[BaseHead] resolveAbsoluteOgImage failed', err);
+		return new URL(FallbackImage.src, siteOrigin).toString();
+	}
+}
+
+const ogImageUrl = resolveAbsoluteOgImage(image);
+const canonicalHref = canonicalURL.toString();
 ---
 
 <!-- Global Metadata -->
@@ -41,7 +62,7 @@ const { title, description, keyword, image = FallbackImage, type = 'website', st
 <Font cssVariable="--font-atkinson" preload />
 
 <!-- Canonical URL -->
-<link rel="canonical" href={canonicalURL} />
+<link rel="canonical" href={canonicalHref} />
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>
@@ -50,19 +71,19 @@ const { title, description, keyword, image = FallbackImage, type = 'website', st
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content={type} />
-<meta property="og:url" content={Astro.url} />
+<meta property="og:url" content={canonicalHref} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image.src, Astro.url)} />
+<meta property="og:image" content={ogImageUrl} />
 <meta property="og:locale" content="he_IL" />
 <meta property="og:site_name" content={SITE_TITLE} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:url" content={canonicalHref} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image.src, Astro.url)} />
+<meta property="twitter:image" content={ogImageUrl} />
 <script type="application/ld+json" set:html={JSON.stringify({
 	'@context': 'https://schema.org',
 	'@type': 'WebSite',
