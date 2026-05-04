@@ -1,0 +1,39 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { getSortedPosts } from '../../utils/content-taxonomy';
+import { buildBreadcrumbSchema } from '../../utils/structured-data';
+
+export async function getStaticPaths() {
+	const posts = await getSortedPosts();
+	const tags = [...new Set(posts.flatMap((post) => post.data.tags))];
+	return tags.map((tag) => ({ params: { tag } }));
+}
+
+const tag = Astro.params.tag ?? '';
+const posts = (await getSortedPosts()).filter((post) => post.data.tags.includes(tag));
+---
+
+<SiteLayout
+	title={`גיא אבני עוד - תגית ${tag}`}
+	description={`עמוד תגית ${tag} באתר גיא אבני עוד עם תכנים מעשיים בעברית.`}
+	keyword="גיא אבני עוד"
+	structuredData={buildBreadcrumbSchema([
+		{ name: 'דף הבית', path: '/' },
+		{ name: 'תגיות', path: '/tags' },
+		{ name: tag, path: `/tags/${tag}/` },
+	])}
+>
+	<h1>גיא אבני עוד - תגית {tag}</h1>
+	<p>
+		בעמוד תגית זה מופיעים מאמרים שמתמקדים בנושא אחיד ומסייעים להתקדמות מהירה. קישורים משלימים:
+		<a href="/blog">מאמרים</a>, <a href="/categories">קטגוריות</a>, <a href="/services">שירותים</a>,
+		<a href="/about">אודות</a>, <a href="/contact">יצירת קשר</a>, <a href="/">דף הבית</a>, ומאמר
+		<a href="/blog/guy-avni-risk-management-routine/">שגרת ניהול סיכונים</a>.
+	</p>
+	<h2>מאמרים בתגית</h2>
+	<ul>
+		{posts.map((post) => <li><a href={`/blog/${post.id}/`}>{post.data.title}</a></li>)}
+	</ul>
+	<h3>יישום מעשי</h3>
+	<p>בחרו מאמר אחד מהתגית, יישמו פעולה אחת, ואז חזרו למאמר נוסף כדי להעמיק.</p>
+</SiteLayout>

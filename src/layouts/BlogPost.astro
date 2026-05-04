@@ -1,10 +1,10 @@
 ---
-import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import { SITE_URL } from '../consts';
 import { buildBreadcrumbSchema } from '../utils/structured-data';
 
 type Props = CollectionEntry<'blog'>['data'];
@@ -18,6 +18,10 @@ const {
 	metaTitle,
 	metaDescription,
 	mainKeyword,
+	category,
+	tags,
+	images,
+	internalLinks,
 } = Astro.props;
 ---
 
@@ -28,11 +32,25 @@ const {
 			description={metaDescription ?? description}
 			keyword={mainKeyword ?? 'גיא אבני'}
 			type="article"
-			structuredData={buildBreadcrumbSchema([
-				{ name: 'דף הבית', path: '/' },
-				{ name: 'מאמרים', path: '/blog' },
-				{ name: title, path: Astro.url.pathname },
-			])}
+			structuredData={[
+				buildBreadcrumbSchema([
+					{ name: 'דף הבית', path: '/' },
+					{ name: 'מאמרים', path: '/blog' },
+					{ name: title, path: Astro.url.pathname },
+				]),
+				{
+					'@context': 'https://schema.org',
+					'@type': 'Article',
+					headline: title,
+					description: metaDescription ?? description,
+					datePublished: pubDate.toISOString(),
+					dateModified: (updatedDate ?? pubDate).toISOString(),
+					keywords: [mainKeyword],
+					articleSection: category,
+					inLanguage: 'he',
+					url: new URL(Astro.url.pathname, SITE_URL).toString(),
+				},
+			]}
 		/>
 		<style>
 			main {
@@ -41,11 +59,15 @@ const {
 				margin: 0;
 			}
 			.hero-image {
-				width: 100%;
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+				gap: 0.8rem;
+				margin-bottom: 1rem;
 			}
 			.hero-image img {
-				display: block;
-				margin: 0 auto;
+				width: 100%;
+				height: 170px;
+				object-fit: cover;
 				border-radius: 12px;
 				box-shadow: var(--box-shadow);
 			}
@@ -72,6 +94,26 @@ const {
 			.last-updated-on {
 				font-style: italic;
 			}
+			.taxonomy {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.4rem;
+				justify-content: center;
+				margin: 0.8rem 0;
+			}
+			.taxonomy a {
+				text-decoration: none;
+				padding: 0.2rem 0.6rem;
+				background: rgb(var(--gray-light));
+				border-radius: 999px;
+			}
+			.media-sources {
+				font-size: 0.95rem;
+				background: rgba(var(--gray-light), 0.45);
+				border-radius: 12px;
+				padding: 0.8rem;
+				margin-bottom: 1.2rem;
+			}
 		</style>
 	</head>
 
@@ -80,7 +122,15 @@ const {
 		<main>
 			<article>
 				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
+					{images.map((imageItem) => (
+						<img
+							src={imageItem.src}
+							alt={imageItem.alt}
+							title={imageItem.title}
+							loading="lazy"
+							decoding="async"
+						/>
+					))}
 				</div>
 				<div class="prose">
 					<div class="title">
@@ -95,9 +145,37 @@ const {
 							}
 						</div>
 						<h1>{title}</h1>
+						<div class="taxonomy">
+							<a href={`/categories/${category}/`}>קטגוריה: {category}</a>
+							{tags.map((tag) => (
+								<a href={`/tags/${tag}/`}>#{tag}</a>
+							))}
+						</div>
 						<hr />
 					</div>
+					<section class="media-sources">
+						<strong>מקורות תמונה חינמיים:</strong>
+						<ul>
+							{images.map((imageItem) => (
+								<li>
+									<a href={imageItem.source} rel="noopener noreferrer" target="_blank">
+										{imageItem.source}
+									</a>
+								</li>
+							))}
+						</ul>
+					</section>
 					<slot />
+					<section>
+						<h2>קישורים פנימיים מומלצים</h2>
+						<ul>
+							{internalLinks.map((link) => (
+								<li>
+									<a href={link}>{link}</a>
+								</li>
+							))}
+						</ul>
+					</section>
 				</div>
 			</article>
 		</main>

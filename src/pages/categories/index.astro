@@ -1,0 +1,39 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { getCategories } from '../../utils/content-taxonomy';
+import { buildBreadcrumbSchema } from '../../utils/structured-data';
+
+const categories = await getCategories();
+---
+
+<SiteLayout
+	title="גיא אבני עורך דין - קטגוריות תוכן"
+	description="עמוד קטגוריות של גיא אבני עורך דין לניווט מהיר בין נושאים מקצועיים."
+	keyword="גיא אבני עורך דין"
+	structuredData={buildBreadcrumbSchema([
+		{ name: 'דף הבית', path: '/' },
+		{ name: 'קטגוריות', path: '/categories' },
+	])}
+>
+	<h1>גיא אבני עורך דין - קטגוריות תוכן</h1>
+	<p>
+		כאן אפשר לנווט לפי תחום עניין ולמצוא מאמרים ממוקדים במהירות. מומלץ גם לעבור ל־<a href="/blog">מאמרים</a>,
+		<a href="/tags">תגיות</a>, <a href="/services">שירותים</a>, <a href="/about">אודות</a>,
+		<a href="/contact">יצירת קשר</a>, <a href="/">דף הבית</a>, ולכתבה
+		<a href="/blog/guy-avni-legal-planning-basics/">יסודות תכנון משפטי</a>.
+	</p>
+	<h2>רשימת קטגוריות</h2>
+	<ul>
+		{
+			categories.map((category) => (
+				<li>
+					<a href={`/categories/${category}/`}>{category}</a>
+				</li>
+			))
+		}
+	</ul>
+	<h3>שיטה מומלצת לשימוש</h3>
+	<p>
+		בחרו קטגוריה אחת, קראו שני מאמרים ברצף, ואז עברו לתגיות כדי להרחיב את נקודת המבט באופן מובנה.
+	</p>
+</SiteLayout>

@@ -1,0 +1,33 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { getTags } from '../../utils/content-taxonomy';
+import { buildBreadcrumbSchema } from '../../utils/structured-data';
+
+const tags = await getTags();
+---
+
+<SiteLayout
+	title="גיא אבני משרד עורכי דין - תגיות תוכן"
+	description="עמוד תגיות של גיא אבני משרד עורכי דין להתמקדות מהירה לפי נושאים ספציפיים."
+	keyword="גיא אבני משרד עורכי דין"
+	structuredData={buildBreadcrumbSchema([
+		{ name: 'דף הבית', path: '/' },
+		{ name: 'תגיות', path: '/tags' },
+	])}
+>
+	<h1>גיא אבני משרד עורכי דין - תגיות תוכן</h1>
+	<p>
+		דף התגיות מאפשר לכם לדייק את החיפוש לפי נושאים נקודתיים. מומלץ לעבור גם על <a href="/categories">קטגוריות</a>,
+		<a href="/blog">מאמרים</a>, <a href="/services">שירותים</a>, <a href="/about">אודות</a>,
+		<a href="/contact">יצירת קשר</a>, <a href="/">דף הבית</a>, והמאמר
+		<a href="/blog/guy-avni-process-improvement-for-legal-teams/">שיפור תהליכים</a>.
+	</p>
+	<h2>כל התגיות</h2>
+	<ul>
+		{tags.map((tag) => <li><a href={`/tags/${tag}/`}>#{tag}</a></li>)}
+	</ul>
+	<h3>בחירה יעילה</h3>
+	<p>
+		בחרו שתי תגיות סמוכות לעבודה, השוו בין התכנים שלהן, וצרו לעצמכם סדר פעולות ברור להמשך.
+	</p>
+</SiteLayout>
