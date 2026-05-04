@@ -7,8 +7,10 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import Analytics from '@vercel/analytics/astro';
 import { SITE_URL } from '../consts';
 import { cn } from '@/lib/utils';
+import { labelForInternalLink } from '../utils/link-labels';
 import { buildBreadcrumbSchema } from '../utils/structured-data';
 
 type Props = CollectionEntry<'blog'>['data'];
@@ -35,6 +37,7 @@ const {
 			description={metaDescription ?? description}
 			keyword={mainKeyword ?? 'גיא אבני'}
 			type="article"
+			image={images[0]?.src}
 			structuredData={[
 				buildBreadcrumbSchema([
 					{ name: 'דף הבית', path: '/' },
@@ -52,6 +55,16 @@ const {
 					articleSection: category,
 					inLanguage: 'he',
 					url: new URL(Astro.url.pathname, SITE_URL).toString(),
+					image: images.map((item) => item.src),
+					author: {
+						'@type': 'Person',
+						name: 'גיא אבני',
+					},
+					publisher: {
+						'@type': 'Organization',
+						name: 'גיא אבני משרד עורכי דין',
+						url: SITE_URL,
+					},
 				},
 			]}
 		/>
@@ -158,7 +171,7 @@ const {
 												class="font-medium text-primary underline-offset-2 hover:underline"
 												href={link}
 											>
-												{link}
+												{labelForInternalLink(link)}
 											</a>
 										</li>
 									))
@@ -170,5 +183,6 @@ const {
 			</div>
 		</main>
 		<Footer />
+		{import.meta.env.PROD ? <Analytics /> : null}
 	</body>
 </html>
