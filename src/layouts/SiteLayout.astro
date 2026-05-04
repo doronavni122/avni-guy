@@ -2,6 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import Analytics from '@vercel/analytics/astro';
 import type { SiteKeyword } from '../consts';
 
 interface Props {
@@ -32,5 +33,6 @@ const { title, description, keyword, structuredData } = Astro.props;
 			</div>
 		</main>
 		<Footer />
+		{import.meta.env.PROD ? <Analytics /> : null}
 	</body>
 </html>
