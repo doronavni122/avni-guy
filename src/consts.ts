@@ -4,6 +4,23 @@ export const SITE_DESCRIPTION =
 
 export const SITE_URL = 'https://avni-guy.vercel.app';
 
+/** Public inbox; override in Vercel with `PUBLIC_CONTACT_EMAIL`. */
+function readContactEmail(): string {
+	try {
+		const v = import.meta.env.PUBLIC_CONTACT_EMAIL;
+		if (typeof v === 'string' && v.trim()) {
+			const t = v.trim();
+			if (t.includes('@')) return t;
+			console.error('[consts] PUBLIC_CONTACT_EMAIL invalid (missing @)', { value: t });
+		}
+	} catch (err) {
+		console.error('[consts] readContactEmail failed', err);
+	}
+	return 'office@guyavni.co.il';
+}
+
+export const SITE_CONTACT_EMAIL = readContactEmail();
+
 export const SITE_KEYWORDS = [
 	'גיא אבני',
 	'גיא אבני עוד',
