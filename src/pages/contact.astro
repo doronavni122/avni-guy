@@ -1,11 +1,13 @@
 ---
 import { buttonVariants } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import SiteLayout from '../layouts/SiteLayout.astro';
 import { cn } from '@/lib/utils';
+import { SITE_CONTACT_EMAIL } from '../consts';
 import { buildBreadcrumbSchema } from '../utils/structured-data';
+
+const mailtoHref = `mailto:${SITE_CONTACT_EMAIL}?subject=${encodeURIComponent('פנייה מהאתר')}`;
 ---
 
 <SiteLayout
@@ -44,32 +46,29 @@ import { buildBreadcrumbSchema } from '../utils/structured-data';
 				</p>
 				<h3 class="font-heading text-xl font-semibold text-foreground">ערוץ פנייה</h3>
 				<p class="text-pretty leading-relaxed text-muted-foreground">
-					לאחר העלייה לאוויר ניתן יהיה להשאיר פנייה בטופס או בערוצים שיוצגו כאן, ולקבל מענה ענייני ומכבד.
+					ניתן לפנות בדוא״ל — המענה ניתן במסגרת הזמינות המקצועית, בצורה עניינית ומכבדת.
 				</p>
 			</div>
 		</div>
 
 		<Card className="w-full max-w-lg shrink-0 border-border/60 shadow-md lg:sticky lg:top-24">
 			<CardHeader className="text-right">
-				<CardTitle className="font-heading text-xl">טופס פנייה</CardTitle>
+				<CardTitle className="font-heading text-xl">יצירת קשר</CardTitle>
 				<CardDescription className="text-pretty">
-					שדות לדוגמה לעיצוב — חיבור לשליחה יתווסף בהמשך לפי הצורך.
+					כתבו בקצרה את הנושא והמטרה — נחזור עם הצעדים הבאים המתאימים.
 				</CardDescription>
 			</CardHeader>
 			<CardContent className="flex flex-col gap-4 text-right">
-				<div class="flex flex-col gap-2">
-					<label class="text-sm font-medium text-foreground" for="contact-name">שם מלא</label>
-					<Input id="contact-name" name="name" type="text" placeholder="הזינו שם" autocomplete="name" disabled />
-				</div>
-				<div class="flex flex-col gap-2">
-					<label class="text-sm font-medium text-foreground" for="contact-email">דוא״ל</label>
-					<Input id="contact-email" name="email" type="email" placeholder="name@example.com" autocomplete="email" disabled />
-				</div>
-				<div class="flex flex-col gap-2">
-					<label class="text-sm font-medium text-foreground" for="contact-phone">טלפון</label>
-					<Input id="contact-phone" name="phone" type="tel" placeholder="05X-XXXXXXX" autocomplete="tel" disabled />
-				</div>
-				<a class={cn(buttonVariants({ className: 'w-full justify-center' }), 'no-underline')} href="mailto:contact@example.com">
+				<p class="text-sm leading-relaxed text-muted-foreground">
+					<strong class="text-foreground">דוא״ל:</strong>{' '}
+					<a class="font-medium text-primary underline-offset-2 hover:underline" href={mailtoHref}>
+						{SITE_CONTACT_EMAIL}
+					</a>
+				</p>
+				<p class="text-xs text-muted-foreground">
+					ניתן לשנות כתובת יעד בפריסה באמצעות משתנה סביבה <code class="rounded bg-muted px-1">PUBLIC_CONTACT_EMAIL</code>.
+				</p>
+				<a class={cn(buttonVariants({ className: 'w-full justify-center' }), 'no-underline')} href={mailtoHref}>
 					פתיחת דוא״ל
 				</a>
 			</CardContent>
