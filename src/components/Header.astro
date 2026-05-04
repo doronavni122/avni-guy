@@ -1,0 +1,77 @@
+---
+import { SITE_TITLE } from '../consts';
+import HeaderLink from './HeaderLink.astro';
+---
+
+<header>
+	<nav>
+		<h2>
+			<a class="brand" href="/">
+				<img src="/logo.svg" alt="לוגו גיא אבני" width="150" height="50" loading="eager" />
+				<span>{SITE_TITLE}</span>
+			</a>
+		</h2>
+		<div class="internal-links">
+			<HeaderLink href="/">דף הבית</HeaderLink>
+			<HeaderLink href="/about">אודות</HeaderLink>
+			<HeaderLink href="/services">שירותים</HeaderLink>
+			<HeaderLink href="/blog">מאמרים</HeaderLink>
+			<HeaderLink href="/categories">קטגוריות</HeaderLink>
+			<HeaderLink href="/tags">תגיות</HeaderLink>
+			<HeaderLink href="/contact">יצירת קשר</HeaderLink>
+		</div>
+	</nav>
+</header>
+<style>
+	header {
+		margin: 0;
+		padding: 0 1rem;
+		background: white;
+		box-shadow: 0 2px 8px rgba(var(--black), 5%);
+	}
+	h2 {
+		margin: 0;
+		font-size: 1em;
+	}
+
+	h2 a,
+	h2 a.active {
+		text-decoration: none;
+	}
+	.brand {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+	}
+	.brand img {
+		width: 90px;
+		height: auto;
+		border-radius: 8px;
+	}
+	nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+	nav a {
+		padding: 1em 0.5em;
+		color: var(--black);
+		border-bottom: 4px solid transparent;
+		text-decoration: none;
+	}
+	nav a.active {
+		text-decoration: none;
+		border-bottom-color: var(--accent);
+	}
+	.internal-links {
+		display: flex;
+		flex-wrap: wrap;
+	}
+	@media (max-width: 720px) {
+		.internal-links {
+			width: 100%;
+		}
+	}
+</style>

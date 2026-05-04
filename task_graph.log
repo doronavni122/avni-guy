@@ -1,0 +1,1 @@
+1. bootstrap-hebrew-astro-foundation-and-brand-assets , AGENTS.md astro.config.mjs src/consts.ts src/components/BaseHead.astro src/components/Header.astro src/components/Footer.astro src/layouts/SiteLayout.astro src/pages/index.astro src/pages/about.astro src/pages/services.astro src/pages/contact.astro src/styles/global.css public/favicon.svg public/logo.svg
