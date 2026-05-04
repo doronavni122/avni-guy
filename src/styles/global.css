@@ -146,8 +146,9 @@ pre > code {
 	all: unset;
 }
 blockquote {
-	border-left: 4px solid var(--accent);
-	padding: 0 0 0 20px;
+	border-right: 4px solid var(--accent);
+	border-left: none;
+	padding: 0 20px 0 0;
 	margin: 0;
 	font-size: 1.333em;
 }
