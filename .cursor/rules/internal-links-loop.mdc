@@ -1,0 +1,34 @@
+---
+description: Enforce a strict per-article internal-link insertion loop with paragraph-only hyperlinking and uniqueness constraints
+alwaysApply: true
+---
+
+# Internal Links Loop (Strict)
+
+Follow this loop exactly for internal-link insertion tasks.
+
+1. Create `temp_internal_links_checklist.txt` with one line per article and no extra text:
+   - Format: `- [ ] <article-path>`
+2. Pick the first unchecked article.
+3. Identify valid internal destinations from pages/articles/tags/categories for this article.
+4. Insert internal links only inside paragraph hypertext (no titles or other formatting containers).
+5. Ensure the article has at least 10 internal links.
+6. Ensure all hyperlink text values are unique within that article.
+7. Ensure every link points to a different internal path within that article.
+8. Ensure no button-based links are counted.
+9. Run local dev server and review the live article page output.
+10. Mark the article as done in checklist:
+   - Format: `- [x] <article-path>`
+11. Continue until no unchecked lines remain.
+
+Hard requirements:
+- At least 10 internal links per article.
+- Links can point only to internal pages/articles/tags/categories.
+- All links must use paragraph hypertext only.
+- No title links, heading links, or non-paragraph formatting links.
+- Buttons do not count as internal-link quota entries.
+- Hyperlink text must be unique per article.
+- Each link target path must be unique per article.
+- Preserve content schema fields and required frontmatter keys.
+- Add explicit error logging for each loop step.
+- Never modify unrelated files or unrelated schema fields.
