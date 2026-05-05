@@ -22,3 +22,4 @@
 22. append-task-graph-log-entries-nineteen-through-twenty-one , task_graph.log
 19. publish-israel-delay-delivery-legal-research-article , israel-real-estate-legal-research-delay-delivery.md src/content/blog/guy-avni-israel-real-estate-delay-delivery-research.mdx task_graph.log
 23. create-content-enhancer-loop-assets-and-refresh-first-article , .cursor/rules/content-enhancer-loop.mdc .cursor/skills/content-enhancer-loop/SKILL.md .cursor/agents/content-enhancer-loop.md temp_articles_checklist.txt temp_research_business_legal_habits.md src/content/blog/guy-avni-business-legal-habits.mdx task_graph.log
+24. unify-typography-heading-token-with-body-font-stack , src/styles/global.css
