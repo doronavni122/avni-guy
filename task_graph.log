@@ -31,3 +31,4 @@
 30. expand-homepage-with-modular-sections-guided-content-and-mobile-cta , src/pages/index.astro src/styles/global.css src/components/home/HomeMiniToc.astro src/components/home/FeaturedArticlesGrid.astro src/components/home/LatestInsightsStrip.astro src/components/home/FaqAccordion.astro temp_homepage_suggestions.txt task_graph.log
 31. add-homepage-internal-hyperlinks-for-articles-pages-categories-and-tags , src/pages/index.astro task_graph.log
 32. unify-primary-domain-canonical-and-host-redirect-foundation , src/consts.ts public/robots.txt vercel.json task_graph.log
+33. align-robots-policy-to-allow-ai-search-and-training-crawlers , public/robots.txt task_graph.log
