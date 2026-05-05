@@ -36,3 +36,4 @@
 35. add-indexnow-automation-and-webmaster-verification-meta-support , scripts/indexnow-submit.mjs src/components/BaseHead.astro package.json task_graph.log
 36. add-seo-regression-guardrails-for-canonical-host-and-robots-policy , scripts/seo-guardrails.mjs package.json task_graph.log
 37. switch-canonical-host-to-apex-avniguy-domain , src/consts.ts public/robots.txt vercel.json scripts/seo-guardrails.mjs scripts/indexnow-submit.mjs task_graph.log
+38. replace-legacy-domain-references-in-blog-image-urls-and-compliance-script , src/content/blog/*.mdx scripts/image-keyword-compliance.mjs task_graph.log
