@@ -16,11 +16,16 @@ const { items } = Astro.props;
 	class="rounded-2xl border border-border/60 bg-card/70 p-5 text-right shadow-sm sm:p-6"
 >
 	<p class="mb-3 text-sm font-semibold text-foreground">תוכן עניינים מהיר</p>
+	<div class="mb-4 flex flex-wrap justify-end gap-2">
+		<span class="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground">
+			ניווט לפי נושאים
+		</span>
+	</div>
 	<ul class="grid gap-2 sm:grid-cols-2">
 		{
 			items.map((item) => (
 				<li>
-					<a class="text-sm font-medium text-primary underline-offset-2 hover:underline" href={`#${item.id}`}>
+					<a class="text-sm font-semibold text-primary underline-offset-2 hover:underline" href={`#${item.id}`}>
 						{item.label}
 					</a>
 				</li>

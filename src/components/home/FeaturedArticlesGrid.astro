@@ -21,6 +21,14 @@ const { posts } = Astro.props;
 		<h2 id="featured-articles-title" class="font-heading text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
 			מאמרים מומלצים להתחלה בטוחה
 		</h2>
+		<div class="flex flex-wrap justify-end gap-2">
+			<span class="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground">
+				תוכן נבחר
+			</span>
+			<span class="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground">
+				קריאה פרקטית
+			</span>
+		</div>
 		<p class="max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
 			שישה מאמרים נבחרים עם זווית פרקטית, כדי שתוכלו לעבור מתיאוריה להחלטות טובות במהירות.
 			<a class="font-medium text-primary underline-offset-2 hover:underline" href="/blog">לכל המאמרים</a>.

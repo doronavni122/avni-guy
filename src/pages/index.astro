@@ -279,6 +279,14 @@ const homeImages = [
 			<h2 id="quick-start-title" class="font-heading text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
 				מסלול התחלה מהיר
 			</h2>
+			<div class="flex flex-wrap justify-end gap-2">
+				<span class="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground">
+					ניווט חכם
+				</span>
+				<span class="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground">
+					פעולות מומלצות
+				</span>
+			</div>
 			<p class="max-w-3xl text-pretty text-muted-foreground leading-relaxed">
 				רוצים להתמצא באתר בדקה? התחילו במסלול המומלץ: הכירו את
 				<a class="font-medium text-primary underline-offset-2 hover:underline" href="/about">הגישה המקצועית</a>,
@@ -293,6 +301,11 @@ const homeImages = [
 				אם תרצו יישום מיידי למצב שלכם, סיימו בעמוד
 				<a class="font-medium text-primary underline-offset-2 hover:underline" href="/contact">יצירת קשר</a>.
 			</p>
+			<ul class="max-w-3xl list-disc space-y-2 pr-5 text-sm leading-relaxed text-muted-foreground">
+				<li><strong class="text-foreground">שלב 1:</strong> הכירו את הרקע והגישה לפני כל החלטה.</li>
+				<li><strong class="text-foreground">שלב 2:</strong> מיינו נושא דרך מאמרים, קטגוריות ותגיות.</li>
+				<li><strong class="text-foreground">שלב 3:</strong> עברו ליישום מעשי עם פנייה ממוקדת.</li>
+			</ul>
 			<div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
 				{
 					quickStartLinks.map((link) => (
@@ -348,11 +361,24 @@ const homeImages = [
 			<h2 id="process-title" class="font-heading text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
 				איך התהליך עובד בפועל
 			</h2>
+			<div class="flex flex-wrap justify-end gap-2">
+				<span class="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground">
+					שיטה מודולרית
+				</span>
+				<span class="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground">
+					מדידה ושיפור
+				</span>
+			</div>
 			<p class="max-w-3xl text-pretty text-muted-foreground leading-relaxed">
 				כדי להפוך תהליך משפטי למשהו ברור ומרגיע, חשוב לעבוד בסדר קבוע: מטרה, מיפוי, תוכנית וביצוע. כך מצמצמים אי־ודאות,
 				מונעים טעויות יקרות ומתקדמים בקצב נכון לעסק או למשפחה.
 				<a class="font-medium text-primary underline-offset-2 hover:underline" href="/services">לעמוד השירותים המלא</a>.
 			</p>
+			<ul class="max-w-3xl list-disc space-y-2 pr-5 text-sm leading-relaxed text-muted-foreground">
+				<li><strong class="text-foreground">פחות אי־ודאות:</strong> כל שלב מוגדר מראש עם תוצר ברור.</li>
+				<li><strong class="text-foreground">יותר שליטה:</strong> תיעדוף נכון של משימות לפי השפעה וסיכון.</li>
+				<li><strong class="text-foreground">קצב יציב:</strong> התקדמות עקבית בלי עומס החלטות מיותר.</li>
+			</ul>
 			<div class="grid gap-4 md:grid-cols-2">
 				{
 					processSteps.map((step, index) => (
@@ -541,26 +567,55 @@ const homeImages = [
 
 			<div class="space-y-4">
 				<h3 class="font-heading text-xl font-semibold text-foreground">ייעוץ משפטי חכם מתחיל בהגדרת מטרה ברורה</h3>
+				<div class="flex flex-wrap justify-end gap-2">
+					<span class="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground">
+						אסטרטגיה
+					</span>
+					<span class="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground">
+						יעד ומיקוד
+					</span>
+				</div>
+				<h4 class="font-heading text-lg font-semibold text-foreground">שלוש שאלות פתיחה שחייבות להיות ברורות</h4>
+				<ul class="max-w-4xl list-disc space-y-2 pr-5 text-sm leading-relaxed text-muted-foreground sm:text-base">
+					<li><strong class="text-foreground">מה היעד המרכזי?</strong> איזו תוצאה מעשית נחשבת הצלחה.</li>
+					<li><strong class="text-foreground">מה המגבלות?</strong> זמן, תקציב ואילוצים תפעוליים שחייבים לכבד.</li>
+					<li><strong class="text-foreground">איזה סיכון לא מקבלים?</strong> הגבול שממנו לא ממשיכים בלי התאמה.</li>
+				</ul>
+				<h5 class="font-heading text-base font-semibold text-foreground">צעדים מומלצים להמשך</h5>
 				<p class="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
-					אחת הטעויות השכיחות בתחילת תהליך משפטי היא להיכנס לפעולה לפני שמגדירים מה רוצים להשיג. כשאין מטרה ברורה, קל מאוד
-					להתפזר בין מסמכים, עצות וסימני שאלה, ולבזבז זמן יקר על פעולות שלא משרתות את התוצאה. התחלה נכונה בנויה משלוש שאלות:
-					מהו היעד המרכזי, מהן המגבלות, ומהו הסיכון שלא מוכנים לקחת. אחרי שמגדירים את שלושתן, כל החלטה נעשית פשוטה יותר.
-					בשלב הזה מומלץ לקרוא על הגישה המקצועית בעמוד
+					אחת הטעויות השכיחות בתחילת תהליך משפטי היא להיכנס לפעולה לפני שמגדירים מה רוצים להשיג. אחרי שמבהירים את שלושת
+					היסודות, ההחלטות נעשות פשוטות, מהירות ובטוחות יותר. בשלב הזה מומלץ לקרוא על הגישה המקצועית בעמוד
 					<a class="font-medium text-primary underline-offset-2 hover:underline" href="/about">אודות</a>,
 					להבין את מסלולי העבודה בעמוד
 					<a class="font-medium text-primary underline-offset-2 hover:underline" href="/services">שירותים</a>,
 					ולבסוף לקבוע צעד ראשון מעשי דרך
 					<a class="font-medium text-primary underline-offset-2 hover:underline" href="/contact">יצירת קשר</a>.
-					השילוב הזה יוצר מעבר מהיר מתיאוריה לביצוע, עם פחות רעש ויותר ודאות לאורך הדרך.
+					השילוב הזה יוצר מעבר מהיר מתיאוריה לביצוע, עם <strong class="text-foreground">פחות רעש ויותר ודאות</strong> לאורך
+					הדרך.
 				</p>
 			</div>
 
 			<div class="space-y-4">
 				<h3 class="font-heading text-xl font-semibold text-foreground">לפני חתימה: חמש בדיקות שמונעות טעויות יקרות</h3>
+				<div class="flex flex-wrap justify-end gap-2">
+					<span class="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground">
+						חוזים
+					</span>
+					<span class="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground">
+						בדיקת סיכון
+					</span>
+				</div>
+				<h4 class="font-heading text-lg font-semibold text-foreground">צ'קליסט קצר לפני כל חתימה</h4>
+				<ol class="max-w-4xl list-decimal space-y-2 pr-5 text-sm leading-relaxed text-muted-foreground sm:text-base">
+					<li><strong class="text-foreground">הגדרת שירות/מוצר:</strong> היקף ברור שמונע פרשנות כפולה.</li>
+					<li><strong class="text-foreground">מנגנון תשלום:</strong> מועדים, תנאים וחריגים בצורה חד־משמעית.</li>
+					<li><strong class="text-foreground">אחריות וסייגים:</strong> מה כל צד מתחייב ומה מחוץ למסגרת.</li>
+					<li><strong class="text-foreground">תנאי יציאה:</strong> איך מסיימים התקשרות בלי חיכוך מיותר.</li>
+					<li><strong class="text-foreground">פתרון מחלוקות:</strong> מסלול מוסכם עוד לפני שיש מחלוקת.</li>
+				</ol>
 				<p class="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
-					לפני חתימה על חוזה, חשוב לעצור ולבדוק חמש נקודות ליבה: הגדרה מדויקת של השירות או המוצר, מנגנון תשלום חד־משמעי,
-					אחריות וסייגים, תנאי יציאה, וסעיף פתרון מחלוקות. כל סעיף כזה נראה לעיתים טכני, אבל בפועל הוא זה שקובע אם התהליך
-					יישאר בשליטה גם כשמשהו משתבש. בדיקה מוקדמת אינה נועדה להאט עסקה אלא להפוך אותה לבטוחה, הוגנת וברורה לשני הצדדים.
+					כל סעיף נראה לעיתים טכני, אבל בפועל הוא זה שקובע אם התהליך יישאר בשליטה גם כשמשהו משתבש. בדיקה מוקדמת לא נועדה
+					להאט עסקה אלא להפוך אותה ל־<strong class="text-foreground">בטוחה, הוגנת וברורה</strong> לשני הצדדים.
 					כדי להעמיק, כדאי להתחיל ברשימת
 					<a class="font-medium text-primary underline-offset-2 hover:underline" href="/blog">המאמרים</a>,
 					למקד תחום עניין דרך
@@ -573,6 +628,20 @@ const homeImages = [
 
 			<div class="space-y-4">
 				<h3 class="font-heading text-xl font-semibold text-foreground">שגרת ניהול סיכונים שמגנה על העסק לאורך זמן</h3>
+				<div class="flex flex-wrap justify-end gap-2">
+					<span class="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground">
+						ניהול סיכונים
+					</span>
+					<span class="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground">
+						שגרה חודשית
+					</span>
+				</div>
+				<h4 class="font-heading text-lg font-semibold text-foreground">מוקדי בקרה שמומלץ לעקוב אחריהם</h4>
+				<ul class="max-w-4xl list-disc space-y-2 pr-5 text-sm leading-relaxed text-muted-foreground sm:text-base">
+					<li><strong class="text-foreground">חוזים פעילים:</strong> זיהוי סעיפים שדורשים עדכון או התראה מוקדמת.</li>
+					<li><strong class="text-foreground">תקשורת לקוחות:</strong> תיעוד התחייבויות ותיאום ציפיות רציף.</li>
+					<li><strong class="text-foreground">ספקים קריטיים:</strong> בקרה על תלות תפעולית ונקודות כשל אפשריות.</li>
+				</ul>
 				<figure class="overflow-hidden rounded-xl border border-border/60 bg-background/80">
 					<img
 						src={homeImages[5].src}
@@ -585,10 +654,8 @@ const homeImages = [
 					/>
 				</figure>
 				<p class="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
-					ניהול סיכונים אפקטיבי הוא לא פעולה חד־פעמית אלא שגרה קבועה. עסקים שמתחזקים מנגנון פשוט של בדיקה חודשית, תיעוד החלטות
-					ועדכון נהלים, מצליחים לזהות בעיות מוקדם ולמנוע מהן להפוך למשבר. המפתח הוא לא לנסות לכסות הכול, אלא לבחור כמה מוקדי
-					סיכון מרכזיים ולעקוב אחריהם באופן עקבי: חוזים פעילים, תקשורת מול לקוחות, וספקים קריטיים. התחלה טובה היא קריאה ממוקדת
-					של
+					ניהול סיכונים אפקטיבי הוא לא פעולה חד־פעמית אלא שגרה קבועה. עסקים שמתחזקים בדיקה חודשית, תיעוד החלטות ועדכון נהלים,
+					מצליחים לזהות בעיות מוקדם ולמנוע מהן להפוך למשבר. התחלה טובה היא קריאה ממוקדת של
 					<a
 						class="font-medium text-primary underline-offset-2 hover:underline"
 						href="/blog/guy-avni-risk-management-routine/">שגרת ניהול סיכונים</a>,
@@ -596,16 +663,30 @@ const homeImages = [
 					<a class="font-medium text-primary underline-offset-2 hover:underline" href="/services">שירותים</a>.
 					אם תרצו לבנות שגרה מותאמת לענף, לגודל החברה וליעדים שלכם, אפשר להתקדם מיד דרך
 					<a class="font-medium text-primary underline-offset-2 hover:underline" href="/contact">יצירת קשר</a>
-					ולתכנן תוכנית עבודה מדויקת.
+					ולתכנן <strong class="text-foreground">תוכנית עבודה מדויקת</strong>.
 				</p>
 			</div>
 
 			<div class="space-y-4">
 				<h3 class="font-heading text-xl font-semibold text-foreground">איך בונים אמון לקוח ומייצרים החלטות רגועות יותר</h3>
+				<div class="flex flex-wrap justify-end gap-2">
+					<span class="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground">
+						אמון לקוח
+					</span>
+					<span class="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground">
+						תקשורת ברורה
+					</span>
+				</div>
+				<h4 class="font-heading text-lg font-semibold text-foreground">שלושה עקרונות לבניית אמון לאורך תהליך</h4>
+				<ul class="max-w-4xl list-disc space-y-2 pr-5 text-sm leading-relaxed text-muted-foreground sm:text-base">
+					<li><strong class="text-foreground">שקיפות:</strong> להסביר מה קורה עכשיו ומה צפוי בהמשך.</li>
+					<li><strong class="text-foreground">עקביות:</strong> לקיים שגרת עדכונים קצרה וקבועה.</li>
+					<li><strong class="text-foreground">סיכום בכתב:</strong> לתעד החלטות משמעותיות למעקב רציף.</li>
+				</ul>
+				<h5 class="font-heading text-base font-semibold text-foreground">איך להתחיל כבר השבוע</h5>
 				<p class="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
-					אמון לקוח נבנה כשיש שקיפות, עקביות והסבר פשוט בכל שלב. לקוחות לא מחפשים רק תשובה משפטית נכונה; הם רוצים להבין מה
-					קורה עכשיו, מה צפוי בהמשך, ואיך כל החלטה משרתת את המטרה שלהם. לכן כדאי לייצר שגרה של עדכונים קצרים, לסכם בכתב
-					החלטות משמעותיות, ולהחזיק תוכנית עבודה שמאפשרת מעקב ברור. מי שמאמץ את הכללים האלה מייצר פחות חיכוך ויותר שיתוף פעולה.
+					לקוחות לא מחפשים רק תשובה משפטית נכונה; הם רוצים להבין מה קורה עכשיו, מה צפוי בהמשך, ואיך כל החלטה משרתת את
+					המטרה שלהם. מי שמאמץ את הכללים האלה מייצר <strong class="text-foreground">פחות חיכוך ויותר שיתוף פעולה</strong>.
 					כדי להתחיל, מומלץ לעבור על המאמר
 					<a
 						class="font-medium text-primary underline-offset-2 hover:underline"
