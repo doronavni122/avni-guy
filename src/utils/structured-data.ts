@@ -22,3 +22,16 @@ export const buildBreadcrumbSchema = (items: Array<{ name: string; path: string 
 		item: new URL(item.path, SITE_URL).toString(),
 	})),
 });
+
+export const buildFaqSchema = (items: Array<{ question: string; answer: string }>) => ({
+	'@context': 'https://schema.org',
+	'@type': 'FAQPage',
+	mainEntity: items.map((item) => ({
+		'@type': 'Question',
+		name: item.question,
+		acceptedAnswer: {
+			'@type': 'Answer',
+			text: item.answer,
+		},
+	})),
+});

@@ -32,3 +32,4 @@
 31. add-homepage-internal-hyperlinks-for-articles-pages-categories-and-tags , src/pages/index.astro task_graph.log
 32. unify-primary-domain-canonical-and-host-redirect-foundation , src/consts.ts public/robots.txt vercel.json task_graph.log
 33. align-robots-policy-to-allow-ai-search-and-training-crawlers , public/robots.txt task_graph.log
+34. add-home-faq-schema-and-remove-duplicate-blog-h1-semantics , src/utils/structured-data.ts src/pages/index.astro src/layouts/BlogPost.astro task_graph.log
