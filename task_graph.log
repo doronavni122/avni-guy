@@ -29,3 +29,4 @@
 28. replace-blog-images-with-public-law-stock-and-update-branding , public/images/blog public/images/shared/og-law-fallback.jpg public/logo.svg public/favicon.svg src/components/BaseHead.astro src/content/blog/*.mdx
 29. ssot-image-keyword-rules-rename-assets-and-blog-image-descriptions , SSOT.md src/content.config.ts src/layouts/BlogPost.astro src/components/Header.astro src/components/BaseHead.astro scripts/image-keyword-compliance.mjs public/images/blog public/images/branding public/images/shared src/content/blog/*.mdx
 30. expand-homepage-with-modular-sections-guided-content-and-mobile-cta , src/pages/index.astro src/styles/global.css src/components/home/HomeMiniToc.astro src/components/home/FeaturedArticlesGrid.astro src/components/home/LatestInsightsStrip.astro src/components/home/FaqAccordion.astro temp_homepage_suggestions.txt task_graph.log
+31. add-homepage-internal-hyperlinks-for-articles-pages-categories-and-tags , src/pages/index.astro task_graph.log
