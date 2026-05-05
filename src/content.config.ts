@@ -23,6 +23,7 @@ const blog = defineCollection({
 						src: z.string().url(),
 						alt: z.string(),
 						title: z.string(),
+						description: z.string(),
 						source: z.string().url(),
 					}),
 				)

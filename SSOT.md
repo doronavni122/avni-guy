@@ -33,6 +33,10 @@ This file is the **single source of truth** for non-code expectations (workflow,
 5. **robots / sitemap**: `public/robots.txt` and generated sitemap must reference the same production host as `SITE_URL`.
 6. **Media**: Optimized images; English, keyword-oriented filenames for local assets; meaningful `alt` (and title where used).
 
+7. **Image naming and keyword alignment (mandatory)**  
+   - **Filenames** (all raster/SVG assets under `public/`, including blog images, shared OG fallbacks, and branding): each file name must **either exactly equal** or **contain as ASCII substrings** the page’s primary keyword, category slug, and tag slugs **translated to English** (use hyphenated `kebab-case`). When two assets would collide, append a **numeric suffix** (`-2`, `-3`, …) before the extension so names stay unique.  
+   - **Blog article images** (`images[]` in MDX): each entry must include **`alt`**, **`title`**, and **`description`**. All three strings must **contain the same English keyword tokens** as the filename rule above (primary keyword in English, `category`, and each `tags[]` value), plus a **numeric disambiguator** (`1`, `2`, `3`, …) matching the image index when needed for uniqueness. Hebrew prose may wrap those English tokens; do not omit the English tokens from any of the three fields.
+
 ---
 
 ## D. UI and design (premium legal redesign)

@@ -18,7 +18,7 @@ interface Props {
 const siteOrigin = Astro.site ?? new URL(SITE_URL);
 const canonicalURL = new URL(Astro.url.pathname, siteOrigin);
 
-const FALLBACK_OG_IMAGE = '/images/shared/og-law-fallback.jpg';
+const FALLBACK_OG_IMAGE = '/images/shared/guy-avni-avni-guy-law-firm-lawyer-og-law-fallback-photo-1.jpg';
 
 const { title, description, keyword, image: imageProp, type = 'website', structuredData } = Astro.props;
 const image = imageProp ?? FALLBACK_OG_IMAGE;
@@ -46,7 +46,7 @@ const canonicalHref = canonicalURL.toString();
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/svg+xml" href="/images/branding/guy-avni-avni-guy-law-firm-lawyer-brand-favicon.svg" />
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link
 	rel="alternate"
