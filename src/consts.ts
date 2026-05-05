@@ -2,7 +2,7 @@ export const SITE_TITLE = 'גיא אבני - אתר תוכן ומשפט';
 export const SITE_DESCRIPTION =
 	'אתר תוכן מקצועי בעברית של גיא אבני עם מאמרים, שירותים ותובנות מעשיות.';
 
-export const SITE_URL = 'https://avni-guy.vercel.app';
+export const SITE_URL = 'https://www.avniguy.co.il';
 
 /** Public inbox; override in Vercel with `PUBLIC_CONTACT_EMAIL`. */
 function readContactEmail(): string {

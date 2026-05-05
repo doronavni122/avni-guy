@@ -30,3 +30,8 @@
 29. ssot-image-keyword-rules-rename-assets-and-blog-image-descriptions , SSOT.md src/content.config.ts src/layouts/BlogPost.astro src/components/Header.astro src/components/BaseHead.astro scripts/image-keyword-compliance.mjs public/images/blog public/images/branding public/images/shared src/content/blog/*.mdx
 30. expand-homepage-with-modular-sections-guided-content-and-mobile-cta , src/pages/index.astro src/styles/global.css src/components/home/HomeMiniToc.astro src/components/home/FeaturedArticlesGrid.astro src/components/home/LatestInsightsStrip.astro src/components/home/FaqAccordion.astro temp_homepage_suggestions.txt task_graph.log
 31. add-homepage-internal-hyperlinks-for-articles-pages-categories-and-tags , src/pages/index.astro task_graph.log
+32. unify-primary-domain-canonical-and-host-redirect-foundation , src/consts.ts public/robots.txt vercel.json task_graph.log
+33. align-robots-policy-to-allow-ai-search-and-training-crawlers , public/robots.txt task_graph.log
+34. add-home-faq-schema-and-remove-duplicate-blog-h1-semantics , src/utils/structured-data.ts src/pages/index.astro src/layouts/BlogPost.astro task_graph.log
+35. add-indexnow-automation-and-webmaster-verification-meta-support , scripts/indexnow-submit.mjs src/components/BaseHead.astro package.json task_graph.log
+36. add-seo-regression-guardrails-for-canonical-host-and-robots-policy , scripts/seo-guardrails.mjs package.json task_graph.log
