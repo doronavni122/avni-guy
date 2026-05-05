@@ -40,3 +40,4 @@
 39. standardize-canonical-domain-back-to-www-across-config-scripts-and-content , src/consts.ts public/robots.txt vercel.json scripts/seo-guardrails.mjs scripts/indexnow-submit.mjs scripts/image-keyword-compliance.mjs src/content/blog/*.mdx task_graph.log
 40. remove-in-repo-domain-redirect-enforcement-and-keep-apex-domain-config , vercel.json src/consts.ts public/robots.txt scripts/seo-guardrails.mjs scripts/indexnow-submit.mjs scripts/image-keyword-compliance.mjs src/content/blog/*.mdx task_graph.log
 41. homepage-homeimages-unique-alt-title-primary-keyword-ssot , src/pages/index.astro task_graph.log
+42. homepage-heading-titles-creative-keyword-merge-h2-through-h5 , src/pages/index.astro src/components/home/FeaturedArticlesGrid.astro src/components/home/LatestInsightsStrip.astro src/components/home/FaqAccordion.astro task_graph.log
