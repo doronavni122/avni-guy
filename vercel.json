@@ -4,19 +4,5 @@
 	"installCommand": "pnpm install --frozen-lockfile",
 	"outputDirectory": "dist",
 	"cleanUrls": true,
-	"trailingSlash": false,
-	"redirects": [
-		{
-			"source": "/(.*)",
-			"has": [{ "type": "host", "value": "avni-guy.vercel.app" }],
-			"destination": "https://www.avniguy.co.il/$1",
-			"permanent": true
-		},
-		{
-			"source": "/(.*)",
-			"has": [{ "type": "host", "value": "avniguy.co.il" }],
-			"destination": "https://www.avniguy.co.il/$1",
-			"permanent": true
-		}
-	]
+	"trailingSlash": false
 }

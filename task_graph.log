@@ -38,3 +38,4 @@
 37. switch-canonical-host-to-apex-avniguy-domain , src/consts.ts public/robots.txt vercel.json scripts/seo-guardrails.mjs scripts/indexnow-submit.mjs task_graph.log
 38. replace-legacy-domain-references-in-blog-image-urls-and-compliance-script , src/content/blog/*.mdx scripts/image-keyword-compliance.mjs task_graph.log
 39. standardize-canonical-domain-back-to-www-across-config-scripts-and-content , src/consts.ts public/robots.txt vercel.json scripts/seo-guardrails.mjs scripts/indexnow-submit.mjs scripts/image-keyword-compliance.mjs src/content/blog/*.mdx task_graph.log
+40. remove-in-repo-domain-redirect-enforcement-and-keep-apex-domain-config , vercel.json src/consts.ts public/robots.txt scripts/seo-guardrails.mjs scripts/indexnow-submit.mjs scripts/image-keyword-compliance.mjs src/content/blog/*.mdx task_graph.log
