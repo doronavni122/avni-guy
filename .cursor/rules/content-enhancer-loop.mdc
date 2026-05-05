@@ -1,0 +1,28 @@
+---
+description: Enforce the article content enhancer loop for every blog enhancement pass
+alwaysApply: true
+---
+
+# Content Enhancer Loop (Strict)
+
+Follow this loop exactly for article enhancement tasks.
+
+1. Create `temp_articles_checklist.txt` with one line per article and no extra text:
+   - Format: `- [ ] <article-path>`
+2. Pick the first unchecked article.
+3. Improve only the article title to top-tier quality while preserving SEO keyword constraints.
+4. Perform deep research on the title subject and write findings into a temp markdown file.
+5. Translate the temp research content to Hebrew.
+6. Replace article body content using the researched Hebrew content in the same article path.
+7. Run local dev server and review the live article page output.
+8. Remove unrelated links and fix formatting mismatches.
+9. Mark the article as done in checklist:
+   - Format: `- [x] <article-path>`
+10. Continue until no unchecked lines remain.
+
+Hard requirements:
+- Preserve content schema fields and required frontmatter keys.
+- Keep a single primary keyword and ensure it appears in the article H1.
+- Keep internal links meaningful and relevant.
+- Add explicit error logging for each loop step.
+- Never modify unrelated files or unrelated schema fields.
