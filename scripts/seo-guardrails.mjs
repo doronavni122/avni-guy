@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const EXPECTED_HOST = 'https://www.avniguy.co.il';
+const EXPECTED_HOST = 'https://avniguy.co.il';
 
 function logStep(message, details) {
 	if (details !== undefined) {
