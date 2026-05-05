@@ -25,3 +25,4 @@
 24. unify-typography-heading-token-with-body-font-stack , src/styles/global.css
 25. run-content-enhancer-loop-title-upgrades-and-hebrew-body-expansions , src/content/blog/*.mdx temp_research/*.md temp_articles_checklist.txt task_graph.log
 26. create-internal-links-loop-rule-skill-and-subagent-assets , .cursor/rules/internal-links-loop.mdc .cursor/skills/internal-links-loop/SKILL.md .cursor/agents/internal-links-loop.md task_graph.log
+27. run-internal-links-loop-across-all-blog-articles , src/content/blog/*.mdx temp_internal_links_checklist.txt task_graph.log
