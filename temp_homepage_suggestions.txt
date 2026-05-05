@@ -1,0 +1,16 @@
+- [ ] Add a high-trust featured articles grid (6 cards) with clear benefit-led excerpts and links to `/blog` plus each featured article.
+- [ ] Add a "מסלול התחלה מהיר" navigation block to reduce choice friction with direct links to `/about`, `/services`, `/blog`, `/categories`, `/tags`, and `/contact`.
+- [ ] Add a 4-step "איך התהליך עובד בפועל" timeline that turns complex legal service expectations into a simple, confidence-building path to `/services`.
+- [ ] Add a conversion-focused FAQ accordion that resolves onboarding objections and routes users to `/contact`.
+- [ ] Add a "למה לעבוד עם גיא אבני" authority section with differentiators and a trust CTA to `/about`.
+- [ ] Add a "מסלולי קריאה מומלצים" component with 3 guided reading journeys and deep links to relevant blog posts.
+- [ ] Add an audience-fit section ("למי זה מתאים?") with cards for private clients, founders, and SMB owners, each linking to relevant internal destinations.
+- [ ] Add a comparison component ("לטפל לבד או עם ליווי משפטי") that clarifies risk, effort, and outcome tradeoffs and links to `/services` and `/contact`.
+- [ ] Add a latest insights strip (3 recent posts) with publish context and a strong continuation link to `/blog`.
+- [ ] Add a premium CTA band near page end with primary action to `/contact` and secondary action to `/services`.
+- [ ] Add section (~150 words): "ייעוץ משפטי חכם מתחיל בהגדרת מטרה ברורה" with internal links to `/about`, `/services`, and `/contact`.
+- [ ] Add section (~150 words): "לפני חתימה: חמש בדיקות שמונעות טעויות יקרות" with internal links to `/blog`, `/categories`, and `/tags`.
+- [ ] Add section (~150 words): "שגרת ניהול סיכונים שמגנה על העסק לאורך זמן" with internal links to `/blog/guy-avni-risk-management-routine/`, `/services`, and `/contact`.
+- [ ] Add section (~150 words): "איך בונים אמון לקוח ומייצרים החלטות רגועות יותר" with internal links to `/blog/guy-avni-client-trust-roadmap/`, `/about`, and `/contact`.
+- [ ] Add semantic section anchors plus a mini table of contents at the top to improve scanability and deep-link navigation.
+- [ ] Add a mobile sticky CTA bar (RTL) with `צור קשר` and `מאמרים` actions linking to `/contact` and `/blog`.

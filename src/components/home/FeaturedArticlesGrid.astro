@@ -1,0 +1,50 @@
+---
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import FormattedDate from '../FormattedDate.astro';
+
+interface PostPreview {
+	id: string;
+	title: string;
+	description: string;
+	pubDate: Date;
+}
+
+interface Props {
+	posts: PostPreview[];
+}
+
+const { posts } = Astro.props;
+---
+
+<section id="featured-articles" class="home-anchor-target flex flex-col gap-5 text-right" aria-labelledby="featured-articles-title">
+	<div class="flex flex-col gap-2">
+		<h2 id="featured-articles-title" class="font-heading text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+			מאמרים מומלצים להתחלה בטוחה
+		</h2>
+		<p class="max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+			שישה מאמרים נבחרים עם זווית פרקטית, כדי שתוכלו לעבור מתיאוריה להחלטות טובות במהירות.
+			<a class="font-medium text-primary underline-offset-2 hover:underline" href="/blog">לכל המאמרים</a>.
+		</p>
+	</div>
+	<div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+		{
+			posts.map((post) => (
+				<a class="group block h-full no-underline" href={`/blog/${post.id}/`}>
+					<Card className="h-full border-border/60 bg-card/70 shadow-sm transition-all group-hover:-translate-y-0.5 group-hover:border-primary/25 group-hover:shadow-md">
+						<CardHeader className="text-right">
+							<CardDescription className="text-xs text-muted-foreground">
+								<FormattedDate date={post.pubDate} />
+							</CardDescription>
+							<CardTitle className="font-heading text-base leading-snug transition-colors group-hover:text-primary">
+								{post.title}
+							</CardTitle>
+						</CardHeader>
+						<CardContent className="text-right">
+							<p class="line-clamp-3 text-sm leading-relaxed text-muted-foreground">{post.description}</p>
+						</CardContent>
+					</Card>
+				</a>
+			))
+		}
+	</div>
+</section>

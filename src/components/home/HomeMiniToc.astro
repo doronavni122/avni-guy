@@ -1,0 +1,30 @@
+---
+interface TocItem {
+	id: string;
+	label: string;
+}
+
+interface Props {
+	items: TocItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav
+	aria-label="תוכן עניינים לדף הבית"
+	class="rounded-2xl border border-border/60 bg-card/70 p-5 text-right shadow-sm sm:p-6"
+>
+	<p class="mb-3 text-sm font-semibold text-foreground">תוכן עניינים מהיר</p>
+	<ul class="grid gap-2 sm:grid-cols-2">
+		{
+			items.map((item) => (
+				<li>
+					<a class="text-sm font-medium text-primary underline-offset-2 hover:underline" href={`#${item.id}`}>
+						{item.label}
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</nav>

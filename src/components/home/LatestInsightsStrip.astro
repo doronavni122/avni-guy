@@ -1,0 +1,50 @@
+---
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import FormattedDate from '../FormattedDate.astro';
+
+interface PostPreview {
+	id: string;
+	title: string;
+	description: string;
+	pubDate: Date;
+}
+
+interface Props {
+	posts: PostPreview[];
+}
+
+const { posts } = Astro.props;
+---
+
+<section id="latest-insights" class="home-anchor-target flex flex-col gap-4 text-right" aria-labelledby="latest-insights-title">
+	<div class="flex items-end justify-between gap-4">
+		<div class="flex flex-col gap-2">
+			<h2 id="latest-insights-title" class="font-heading text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+				תובנות אחרונות מהמשרד
+			</h2>
+			<p class="text-sm text-muted-foreground">שלושה עדכונים חדשים שיעזרו לכם לשמור על בהירות ותנועה קדימה.</p>
+		</div>
+		<a class="text-sm font-semibold text-primary underline-offset-2 hover:underline" href="/blog">להמשך קריאה בבלוג</a>
+	</div>
+	<div class="grid gap-4 md:grid-cols-3">
+		{
+			posts.map((post) => (
+				<a class="group block no-underline" href={`/blog/${post.id}/`}>
+					<Card className="h-full border-border/60 bg-card/70 shadow-sm transition-all group-hover:border-primary/25 group-hover:shadow-md">
+						<CardHeader className="gap-2 text-right">
+							<p class="text-xs text-muted-foreground">
+								<FormattedDate date={post.pubDate} />
+							</p>
+							<CardTitle className="font-heading text-base leading-snug transition-colors group-hover:text-primary">
+								{post.title}
+							</CardTitle>
+						</CardHeader>
+						<CardContent className="text-right">
+							<p class="line-clamp-2 text-sm leading-relaxed text-muted-foreground">{post.description}</p>
+						</CardContent>
+					</Card>
+				</a>
+			))
+		}
+	</div>
+</section>

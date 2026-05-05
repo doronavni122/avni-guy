@@ -288,3 +288,7 @@ hr {
     @apply font-sans;
 	}
 }
+
+.home-anchor-target {
+	scroll-margin-top: 7rem;
+}
