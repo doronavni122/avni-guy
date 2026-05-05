@@ -1,5 +1,5 @@
 const INDEXNOW_ENDPOINT = 'https://api.indexnow.org/indexnow';
-const DEFAULT_SITE_URL = 'https://avniguy.co.il';
+const DEFAULT_SITE_URL = 'https://www.avniguy.co.il';
 
 function logStep(message, details) {
 	if (details !== undefined) {

@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
-const SITE_URL = 'https://avniguy.co.il';
+const SITE_URL = 'https://www.avniguy.co.il';
 const BLOG_IMG_DIR = path.join(ROOT, 'public', 'images', 'blog');
 const SHARED_IMG_DIR = path.join(ROOT, 'public', 'images', 'shared');
 const BRAND_DIR = path.join(ROOT, 'public', 'images', 'branding');
