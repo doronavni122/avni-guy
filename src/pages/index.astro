@@ -189,6 +189,44 @@ const faqItems = [
 			'מתבצעת שיחת מיקוד קצרה, אחריה מקבלים תמונת מצב, המלצה אופרטיבית ומסלול פעולה שמתאים ליכולת וליעד שלכם.',
 	},
 ];
+
+const homeImages = [
+	{
+		src: '/images/home/guy-avni-avni-guy-law-firm-lawyer-suite-man-portrait-office-photo-1.jpg',
+		alt: 'Guy Avni Avni Guy law firm lawyer suite man portrait office photo 1 - פורטרט מקצועי בחליפת עסקים במשרד',
+		title: 'Guy Avni Avni Guy law firm lawyer suite man portrait office photo 1',
+	},
+	{
+		src: '/images/home/guy-avni-avni-guy-law-firm-lawyer-office-meeting-photo-2.jpg',
+		alt: 'Guy Avni Avni Guy law firm lawyer office meeting photo 2 - פגישת עבודה מקצועית בסביבת משרד',
+		title: 'Guy Avni Avni Guy law firm lawyer office meeting photo 2',
+	},
+	{
+		src: '/images/home/guy-avni-avni-guy-law-firm-lawyer-office-team-photo-3.jpg',
+		alt: 'Guy Avni Avni Guy law firm lawyer office team photo 3 - צוות במשרד בעבודת תיאום משפטית',
+		title: 'Guy Avni Avni Guy law firm lawyer office team photo 3',
+	},
+	{
+		src: '/images/home/guy-avni-avni-guy-law-firm-lawyer-boardroom-photo-4.jpg',
+		alt: 'Guy Avni Avni Guy law firm lawyer boardroom photo 4 - חדר ישיבות מקצועי בסביבת משרד',
+		title: 'Guy Avni Avni Guy law firm lawyer boardroom photo 4',
+	},
+	{
+		src: '/images/home/guy-avni-avni-guy-law-firm-lawyer-executive-portrait-photo-5.jpg',
+		alt: 'Guy Avni Avni Guy law firm lawyer executive portrait photo 5 - פורטרט מנהל בחליפה במשרד',
+		title: 'Guy Avni Avni Guy law firm lawyer executive portrait photo 5',
+	},
+	{
+		src: '/images/home/guy-avni-avni-guy-law-firm-lawyer-office-workspace-photo-6.jpg',
+		alt: 'Guy Avni Avni Guy law firm lawyer office workspace photo 6 - סביבת עבודה משרדית לעבודה משפטית',
+		title: 'Guy Avni Avni Guy law firm lawyer office workspace photo 6',
+	},
+	{
+		src: '/images/home/guy-avni-avni-guy-law-firm-lawyer-suite-portrait-photo-7.jpg',
+		alt: 'Guy Avni Avni Guy law firm lawyer suite portrait photo 7 - פורטרט נוסף בחליפה בסביבת משרד',
+		title: 'Guy Avni Avni Guy law firm lawyer suite portrait photo 7',
+	},
+];
 ---
 
 <SiteLayout
@@ -221,6 +259,17 @@ const faqItems = [
 					<a class={cn(buttonVariants({ size: 'lg' }))} href="/contact">תיאום שיחה</a>
 					<a class={cn(buttonVariants({ variant: 'outline', size: 'lg' }))} href="/blog">למאמרים</a>
 				</div>
+				<figure class="overflow-hidden rounded-xl border border-border/60 bg-background/80">
+					<img
+						src={homeImages[0].src}
+						alt={homeImages[0].alt}
+						title={homeImages[0].title}
+						loading="eager"
+						width="1400"
+						height="900"
+						class="h-56 w-full object-cover sm:h-64"
+					/>
+				</figure>
 			</div>
 		</div>
 
@@ -253,6 +302,17 @@ const faqItems = [
 					))
 				}
 			</div>
+			<figure class="overflow-hidden rounded-xl border border-border/60 bg-background/80">
+				<img
+					src={homeImages[1].src}
+					alt={homeImages[1].alt}
+					title={homeImages[1].title}
+					loading="lazy"
+					width="1400"
+					height="900"
+					class="h-52 w-full object-cover sm:h-60"
+				/>
+			</figure>
 		</section>
 
 		<div class="grid gap-6 lg:grid-cols-3">
@@ -308,6 +368,17 @@ const faqItems = [
 					))
 				}
 			</div>
+			<figure class="overflow-hidden rounded-xl border border-border/60 bg-background/80">
+				<img
+					src={homeImages[2].src}
+					alt={homeImages[2].alt}
+					title={homeImages[2].title}
+					loading="lazy"
+					width="1400"
+					height="900"
+					class="h-52 w-full object-cover sm:h-60"
+				/>
+			</figure>
 		</section>
 
 		<FeaturedArticlesGrid posts={featuredPosts} />
@@ -341,6 +412,17 @@ const faqItems = [
 					))
 				}
 			</div>
+			<figure class="overflow-hidden rounded-xl border border-border/60 bg-background/80">
+				<img
+					src={homeImages[3].src}
+					alt={homeImages[3].alt}
+					title={homeImages[3].title}
+					loading="lazy"
+					width="1400"
+					height="900"
+					class="h-52 w-full object-cover sm:h-60"
+				/>
+			</figure>
 		</section>
 
 		<section id="authority" class="home-anchor-target flex flex-col gap-5 text-right" aria-labelledby="authority-title">
@@ -367,6 +449,17 @@ const faqItems = [
 					</CardHeader>
 				</Card>
 			</div>
+			<figure class="overflow-hidden rounded-xl border border-border/60 bg-background/80">
+				<img
+					src={homeImages[4].src}
+					alt={homeImages[4].alt}
+					title={homeImages[4].title}
+					loading="lazy"
+					width="1400"
+					height="900"
+					class="h-52 w-full object-cover sm:h-60"
+				/>
+			</figure>
 			<p class="text-sm text-muted-foreground">
 				רוצים להכיר את הרקע המקצועי והגישה המלאה?
 				<a class="font-medium text-primary underline-offset-2 hover:underline" href="/about">לעמוד אודות</a>.
@@ -480,6 +573,17 @@ const faqItems = [
 
 			<div class="space-y-4">
 				<h3 class="font-heading text-xl font-semibold text-foreground">שגרת ניהול סיכונים שמגנה על העסק לאורך זמן</h3>
+				<figure class="overflow-hidden rounded-xl border border-border/60 bg-background/80">
+					<img
+						src={homeImages[5].src}
+						alt={homeImages[5].alt}
+						title={homeImages[5].title}
+						loading="lazy"
+						width="1400"
+						height="900"
+						class="h-52 w-full object-cover sm:h-60"
+					/>
+				</figure>
 				<p class="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
 					ניהול סיכונים אפקטיבי הוא לא פעולה חד־פעמית אלא שגרה קבועה. עסקים שמתחזקים מנגנון פשוט של בדיקה חודשית, תיעוד החלטות
 					ועדכון נהלים, מצליחים לזהות בעיות מוקדם ולמנוע מהן להפוך למשבר. המפתח הוא לא לנסות לכסות הכול, אלא לבחור כמה מוקדי
@@ -564,6 +668,18 @@ const faqItems = [
 		</section>
 
 		<FaqAccordion items={faqItems} />
+
+		<figure class="home-anchor-target overflow-hidden rounded-xl border border-border/60 bg-background/80" id="home-image-final">
+			<img
+				src={homeImages[6].src}
+				alt={homeImages[6].alt}
+				title={homeImages[6].title}
+				loading="lazy"
+				width="1400"
+				height="900"
+				class="h-56 w-full object-cover sm:h-64"
+			/>
+		</figure>
 
 		<Card className="home-anchor-target border-primary/20 bg-primary/5 shadow-sm" id="premium-cta">
 			<CardContent className="flex flex-col gap-4 p-8 text-right sm:flex-row sm:items-center sm:justify-between">
