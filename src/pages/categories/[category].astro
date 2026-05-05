@@ -4,6 +4,11 @@ import { Separator } from '@/components/ui/separator';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { getSortedPosts } from '../../utils/content-taxonomy';
 import { buildBreadcrumbSchema } from '../../utils/structured-data';
+import {
+	buildCategoryMetaDescription,
+	buildCategoryPageTitle,
+	getCategoryLabel,
+} from '../../utils/taxonomy-labels';
 
 export async function getStaticPaths() {
 	const posts = await getSortedPosts();
@@ -12,24 +17,25 @@ export async function getStaticPaths() {
 }
 
 const category = Astro.params.category ?? '';
+const categoryHe = getCategoryLabel(category);
 const posts = (await getSortedPosts()).filter((post) => post.data.category === category);
 ---
 
 <SiteLayout
-	title={`אבני גיא - קטגוריה ${category}`}
-	description={`עמוד קטגוריה ${category} באתר אבני גיא עם מאמרים מקצועיים בעברית.`}
+	title={buildCategoryPageTitle(categoryHe)}
+	description={buildCategoryMetaDescription(categoryHe)}
 	keyword="אבני גיא"
 	structuredData={buildBreadcrumbSchema([
 		{ name: 'דף הבית', path: '/' },
 		{ name: 'קטגוריות', path: '/categories' },
-		{ name: category, path: `/categories/${category}/` },
+		{ name: categoryHe, path: `/categories/${category}/` },
 	])}
 >
 	<section class="flex flex-col gap-10">
 		<div class="flex flex-col gap-4 text-right">
 			<p class="text-sm font-medium text-primary">אבני גיא</p>
 			<h1 class="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-				אבני גיא - קטגוריה {category}
+				אבני גיא - קטגוריה {categoryHe}
 			</h1>
 			<p class="max-w-3xl text-pretty text-lg leading-relaxed text-muted-foreground">
 				בקטגוריה זו תמצאו תכנים פרקטיים וממוקדים. קישורים משלימים:

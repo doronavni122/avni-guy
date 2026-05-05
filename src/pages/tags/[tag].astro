@@ -4,6 +4,7 @@ import { Separator } from '@/components/ui/separator';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { getSortedPosts } from '../../utils/content-taxonomy';
 import { buildBreadcrumbSchema } from '../../utils/structured-data';
+import { buildTagMetaDescription, buildTagPageTitle, getTagLabel } from '../../utils/taxonomy-labels';
 
 export async function getStaticPaths() {
 	const posts = await getSortedPosts();
@@ -12,24 +13,25 @@ export async function getStaticPaths() {
 }
 
 const tag = Astro.params.tag ?? '';
+const tagHe = getTagLabel(tag);
 const posts = (await getSortedPosts()).filter((post) => post.data.tags.includes(tag));
 ---
 
 <SiteLayout
-	title={`גיא אבני עוד - תגית ${tag}`}
-	description={`עמוד תגית ${tag} באתר גיא אבני עוד עם תכנים מעשיים בעברית.`}
+	title={buildTagPageTitle(tagHe)}
+	description={buildTagMetaDescription(tagHe)}
 	keyword="גיא אבני עוד"
 	structuredData={buildBreadcrumbSchema([
 		{ name: 'דף הבית', path: '/' },
 		{ name: 'תגיות', path: '/tags' },
-		{ name: tag, path: `/tags/${tag}/` },
+		{ name: tagHe, path: `/tags/${tag}/` },
 	])}
 >
 	<section class="flex flex-col gap-10">
 		<div class="flex flex-col gap-4 text-right">
 			<p class="text-sm font-medium text-primary">גיא אבני עוד</p>
 			<h1 class="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-				גיא אבני עוד - תגית {tag}
+				גיא אבני עוד - תגית {tagHe}
 			</h1>
 			<p class="max-w-3xl text-pretty text-lg leading-relaxed text-muted-foreground">
 				בעמוד תגית זה מופיעים מאמרים שמתמקדים בנושא אחיד ומסייעים להתקדמות מהירה. קישורים משלימים:

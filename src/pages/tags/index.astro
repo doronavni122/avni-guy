@@ -4,13 +4,14 @@ import { Separator } from '@/components/ui/separator';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { getTags } from '../../utils/content-taxonomy';
 import { buildBreadcrumbSchema } from '../../utils/structured-data';
+import { getTagLabel } from '../../utils/taxonomy-labels';
 
 const tags = await getTags();
 ---
 
 <SiteLayout
-	title="גיא אבני משרד עורכי דין - תגיות תוכן"
-	description="עמוד תגיות של גיא אבני משרד עורכי דין להתמקדות מהירה לפי נושאים ספציפיים."
+	title="גיא אבני משרד עורכי דין | תגיות לנושאים ממוקדים"
+	description="תגיות תוכן באתר גיא אבני משרד עורכי דין, דיוק מהיר בנושא, קישורים למאמרים, קטגוריות, שירותים ואודות המשרד."
 	keyword="גיא אבני משרד עורכי דין"
 	structuredData={buildBreadcrumbSchema([
 		{ name: 'דף הבית', path: '/' },
@@ -51,7 +52,7 @@ const tags = await getTags();
 					<a class="no-underline" href={`/tags/${tag}/`}>
 						<Card className="border-border/60 bg-card/70 px-4 py-3 shadow-sm transition-all hover:border-primary/25 hover:shadow-md">
 							<CardHeader className="p-0 text-right">
-								<CardTitle className="font-heading text-sm font-semibold text-primary">#{tag}</CardTitle>
+								<CardTitle className="font-heading text-sm font-semibold text-primary">{getTagLabel(tag)}</CardTitle>
 							</CardHeader>
 						</Card>
 					</a>
