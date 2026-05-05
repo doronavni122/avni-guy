@@ -20,6 +20,12 @@ This file is the **single source of truth** for non-code expectations (workflow,
 2. **Frontmatter**: Include required SEO fields per schema (e.g. title, description, meta fields, main keyword as defined in code).
 3. **Headings**: One clear `H1` per page (from title where applicable); sensible `H2`/`H3` in body.
 4. **Internal linking**: Articles and listing pages should link to services, about, contact, blog, categories, tags, and related posts where it helps readers.
+   - For internal-link loop passes, every article must include **at least 10 internal links**.
+   - Links used for the quota must be **paragraph hypertext only** (no title/heading/formatted container links for quota).
+   - **Buttons do not count** toward the internal-link quota.
+   - Per article, hyperlink text must be **unique** (no repeated anchor text).
+   - Per article, each link must point to a **different internal path** (no duplicate destinations in the same article).
+   - Allowed targets are internal **pages, articles, tags, and categories**.
 5. **Taxonomy**: Categories/tags driven from content; listing pages under `/categories`, `/tags` and dynamic routes must stay consistent with `src/utils/content-taxonomy.ts`.
 
 ---
