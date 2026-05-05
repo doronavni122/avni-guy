@@ -22,6 +22,8 @@ const FALLBACK_OG_IMAGE = '/images/shared/guy-avni-avni-guy-law-firm-lawyer-og-l
 
 const { title, description, keyword, image: imageProp, type = 'website', structuredData } = Astro.props;
 const image = imageProp ?? FALLBACK_OG_IMAGE;
+const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
+const bingSiteVerification = import.meta.env.PUBLIC_BING_SITE_VERIFICATION;
 
 function resolveAbsoluteOgImage(img: ImageMetadata | string): string {
 	try {
@@ -59,6 +61,12 @@ const canonicalHref = canonicalURL.toString();
 <meta name="keywords" content={keyword} />
 <meta name="author" content="גיא אבני" />
 <meta name="theme-color" content="#1b4d3e" />
+{typeof googleSiteVerification === 'string' && googleSiteVerification.trim() ? (
+	<meta name="google-site-verification" content={googleSiteVerification.trim()} />
+) : null}
+{typeof bingSiteVerification === 'string' && bingSiteVerification.trim() ? (
+	<meta name="msvalidate.01" content={bingSiteVerification.trim()} />
+) : null}
 
 <Font cssVariable="--font-atkinson" preload />
 
