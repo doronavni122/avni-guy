@@ -12,6 +12,8 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: SITE_URL,
+  /** Match directory-style URLs and `@astrojs/sitemap` output (trailing slashes on paths). */
+  trailingSlash: 'always',
   integrations: [mdx(), sitemap(), react()],
 
   fonts: [
