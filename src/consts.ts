@@ -16,7 +16,7 @@ function readContactEmail(): string {
 	} catch (err) {
 		console.error('[consts] readContactEmail failed', err);
 	}
-	return 'office@guyavni.co.il';
+	return 'info@avniguy.co.il';
 }
 
 export const SITE_CONTACT_EMAIL = readContactEmail();
