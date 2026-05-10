@@ -55,6 +55,8 @@
 	--sidebar-accent-foreground: oklch(0.205 0 0);
 	--sidebar-border: oklch(0.922 0 0);
 	--sidebar-ring: oklch(0.708 0 0);
+	--link: oklch(0.42 0.19 258);
+	--link-hover: oklch(0.35 0.21 258);
 }
 body {
 	font-family: var(--font-atkinson), var(--font-sans), system-ui, sans-serif;
@@ -102,15 +104,44 @@ strong,
 b {
 	font-weight: 700;
 }
-article .prose a,
-.prose a {
-	color: var(--primary);
+/* Body text links: blue + bold; exclude shadcn buttons, badges, and card/tile anchors */
+main
+	a:not([data-slot="button"]):not([class*="group/button"]):not([class*="group/badge"]):not(
+		:has([data-slot="card"])
+	):not([class*="bg-card"]),
+article .prose
+	a:not([data-slot="button"]):not([class*="group/button"]):not([class*="group/badge"]):not(
+		:has([data-slot="card"])
+	):not([class*="bg-card"]),
+.prose
+	a:not([data-slot="button"]):not([class*="group/button"]):not([class*="group/badge"]):not(
+		:has([data-slot="card"])
+	):not([class*="bg-card"]) {
+	color: var(--link);
+	font-weight: 700;
 	text-decoration-thickness: 1px;
 	text-underline-offset: 3px;
 }
-article .prose a:hover,
-.prose a:hover {
-	color: color-mix(in oklab, var(--primary) 88%, transparent);
+main
+	a:not([data-slot="button"]):not([class*="group/button"]):not([class*="group/badge"]):not(
+		:has([data-slot="card"])
+	):not([class*="bg-card"]):hover,
+article .prose
+	a:not([data-slot="button"]):not([class*="group/button"]):not([class*="group/badge"]):not(
+		:has([data-slot="card"])
+	):not([class*="bg-card"]):hover,
+.prose
+	a:not([data-slot="button"]):not([class*="group/button"]):not([class*="group/badge"]):not(
+		:has([data-slot="card"])
+	):not([class*="bg-card"]):hover {
+	color: var(--link-hover);
+}
+
+:is(button, [data-slot="button"], [class*="group/button"]) :is(a) {
+	color: inherit;
+	font-weight: inherit;
+	text-decoration-line: inherit;
+	text-underline-offset: inherit;
 }
 p {
 	margin-bottom: 1em;
@@ -266,6 +297,8 @@ hr {
 	--sidebar-accent-foreground: oklch(0.985 0 0);
 	--sidebar-border: oklch(1 0 0 / 10%);
 	--sidebar-ring: oklch(0.556 0 0);
+	--link: oklch(0.74 0.14 252);
+	--link-hover: oklch(0.82 0.11 252);
 }
 
 /*
