@@ -1,0 +1,25 @@
+---
+description: Add one homepage (/) paragraph link with anchor גיא אבני or גיא אבני עורך דין per blog article without removing existing links
+alwaysApply: false
+---
+
+# Homepage brand internal links loop
+
+Use this loop when each blog article needs an extra **paragraph** link to the **home page** (`/`) whose anchor text is exactly **גיא אבני** or **גיא אבני עורך דין**, additive only.
+
+1. Create `temp_homepage_brand_internal_links_checklist.txt` with one line per article and no extra text:
+   - Format: `- [ ] <article-path>`
+2. Pick the first unchecked article.
+3. If the body already contains `[גיא אבני](/)` or `[גיא אבני עורך דין](/)`, mark done and skip (idempotent).
+4. Choose anchor text from `mainKeyword`: if it includes **עורך דין** or **משרד עורכי דין**, use **[גיא אבני עורך דין](/)**; otherwise use **[גיא אבני](/)**.
+5. Insert **one new paragraph** (plain prose, not a heading or list item) that includes only that link to `/`. Do **not** remove, rewrite, or replace any existing markdown links or `internalLinks` entries.
+6. If `internalLinks` is missing `"/"`, append `"/"` only (never delete or reorder existing entries).
+7. Log each step to stderr with prefix `[homepage-brand-internal-links-loop]`; on failure log `ERROR` with context.
+8. Run `pnpm build` (Node >= 22) after all articles are updated.
+9. Mark the article done: `- [x] <article-path>`.
+10. Repeat until no unchecked lines remain.
+
+Hard requirements:
+- Exactly one **new** brand homepage link per article (when not already present).
+- Paragraph-only placement (no links inside headings, list markers, or buttons).
+- Preserve all frontmatter schema fields; only additive edits to body and optional append of `"/"` to `internalLinks`.
