@@ -1,0 +1,34 @@
+# גיא אבני · משרד עורכי דין
+
+> אתר תוכן מקצועי בעברית: מאמרים, שירותים ומסלולי קריאה ללקוחות פרטיים ועסקים. התוכן הוא למידע כללי ואינו מהווה ייעוץ משפטי אישי.
+
+## דפים מרכזיים
+
+- [דף הבית](https://avniguy.co.il/): נקודת כניסה, מסלולי קריאה מומלצים ושאלות נפוצות.
+- [אודות](https://avniguy.co.il/about/): מי אנחנו והקשר המקצועי.
+- [שירותים](https://avniguy.co.il/services/): מה המשרד מספק ולמי זה מתאים.
+- [יצירת קשר](https://avniguy.co.il/contact/): תיאום שיחה והמשך תהליך.
+- [מאמרים](https://avniguy.co.il/blog/): אינדקס כל המאמרים.
+- [קטגוריות](https://avniguy.co.il/categories/): ארגון תוכן לפי נושאים.
+- [תגיות](https://avniguy.co.il/tags/): ניווט לפי תגיות.
+
+## מאמרים עומק (מדריכים מקיפים)
+
+- [איך לבחור עורך דין בישראל](https://avniguy.co.il/blog/guy-avni-choosing-lawyer-israel-comprehensive-guide/): מסגרת החלטה מעשית לפני בחירת ליווי משפטי.
+- [ייעוץ משפטי ו-General Counsel בעסקים בישראל](https://avniguy.co.il/blog/guy-avni-legal-counsel-israel-2026-guide/): תפקיד הייעוץ השוטף ומה לבקש מהליווי.
+- [סוגי עורכי דין והתמחויות בישראל](https://avniguy.co.il/blog/guy-avni-lawyer-types-israel-specialties-full-guide/): מיפוי התמחויות והתאמה לצורך.
+- [יוריסט מול עורך דין בישראל](https://avniguy.co.il/blog/guy-avni-jurist-vs-lawyer-israel-licensing-guide/): הבדלים מהותיים בהסמכה ובתחום העיסוק.
+- [מחקר: איחור במסירת דירה בישראל](https://avniguy.co.il/blog/guy-avni-israel-real-estate-delay-delivery-research/): תמונת רקע ומסגרת חשיבה לנושא נדל״ן.
+
+## מאמרים מומלצים (תהליכים ושגרה)
+
+- [מסלול קליטת לקוח חדש](https://avniguy.co.il/blog/guy-avni-client-onboarding-framework/): בניית ציפיות ותהליך עבודה ברור.
+- [ניהול סיכונים שוטף](https://avniguy.co.il/blog/guy-avni-risk-management-routine/): זיהוי וצמצום סיכונים לפני שהם מתפסקים.
+- [זרימת סקירת חוזים](https://avniguy.co.il/blog/guy-avni-contract-review-flow/): סדר בדיקה פרקטי למסמכים מהותיים.
+- [מניעת מחלוקות](https://avniguy.co.il/blog/guy-avni-dispute-prevention-method/): שפה, תיעוד והחלטות שמורידות חיכוך.
+- [תקשורת עם לקוחות](https://avniguy.co.il/blog/guy-avni-communication-strategy-for-clients/): בהירות ושגרת עדכונים תחת עומס.
+
+## Optional
+
+- [מפת אתר (Sitemap)](https://avniguy.co.il/sitemap-index.xml): רשימת כתובות לזחילה טכנית.
+- [פיד RSS](https://avniguy.co.il/rss.xml): עדכונים לפי פרסום מאמרים.

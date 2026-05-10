@@ -12,7 +12,7 @@ import { SITE_URL } from '../consts';
 import { cn } from '@/lib/utils';
 import { labelForInternalLink } from '../utils/link-labels';
 import { getTagLabel } from '../utils/taxonomy-labels';
-import { buildBreadcrumbSchema } from '../utils/structured-data';
+import { buildBlogPostingSchema, buildBreadcrumbSchema } from '../utils/structured-data';
 
 type Props = CollectionEntry<'blog'>['data'];
 
@@ -45,28 +45,18 @@ const {
 					{ name: 'מאמרים', path: '/blog' },
 					{ name: title, path: Astro.url.pathname },
 				]),
-				{
-					'@context': 'https://schema.org',
-					'@type': 'Article',
+				buildBlogPostingSchema({
 					headline: title,
 					description: metaDescription ?? description,
 					datePublished: pubDate.toISOString(),
 					dateModified: (updatedDate ?? pubDate).toISOString(),
 					keywords: [mainKeyword],
 					articleSection: category,
-					inLanguage: 'he',
-					url: new URL(Astro.url.pathname, SITE_URL).toString(),
-					image: images.map((item) => item.src),
-					author: {
-						'@type': 'Person',
-						name: 'גיא אבני',
-					},
-					publisher: {
-						'@type': 'Organization',
-						name: 'גיא אבני משרד עורכי דין',
-						url: SITE_URL,
-					},
-				},
+					canonicalUrl: new URL(Astro.url.pathname, SITE_URL).toString(),
+					imageUrls: images.map((item) => item.src),
+					authorName: 'גיא אבני',
+					authorUrl: new URL('/about/', SITE_URL).toString(),
+				}),
 			]}
 		/>
 	</head>

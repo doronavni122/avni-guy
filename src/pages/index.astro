@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Separator } from '@/components/ui/separator';
 import SiteLayout from '../layouts/SiteLayout.astro';
 import { cn } from '@/lib/utils';
-import { buildBreadcrumbSchema, buildFaqSchema, buildOrganizationSchema } from '../utils/structured-data';
+import { buildBreadcrumbSchema, buildFaqSchema } from '../utils/structured-data';
 import { getCategories, getSortedPosts, getTags } from '../utils/content-taxonomy';
 import HomeMiniToc from '../components/home/HomeMiniToc.astro';
 import FeaturedArticlesGrid from '../components/home/FeaturedArticlesGrid.astro';
@@ -247,7 +247,6 @@ const homeImages = [
 	description="גיא אבני מרכז כאן מאמרים משפטיים בעברית, שירותים לפרטיים ולעסקים, ומסלול ברור לפגישת ייעוץ ראשונה בעורך הדין."
 	keyword="גיא אבני"
 	structuredData={[
-		buildOrganizationSchema(),
 		buildBreadcrumbSchema([{ name: 'דף הבית', path: '/' }]),
 		buildFaqSchema(faqItems),
 	]}

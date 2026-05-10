@@ -36,6 +36,19 @@ function checkSourceFiles() {
 	assertIncludes(robotsContent, 'User-agent: GPTBot', 'robots missing GPTBot policy');
 	assertIncludes(robotsContent, 'User-agent: ClaudeBot', 'robots missing ClaudeBot policy');
 	assertIncludes(robotsContent, 'User-agent: PerplexityBot', 'robots missing PerplexityBot policy');
+
+	logStep('step 2.1: checking llms.txt (agent navigation map)');
+	const llmsPath = path.join(process.cwd(), 'public', 'llms.txt');
+	if (!fs.existsSync(llmsPath)) {
+		fail('public/llms.txt missing (required curated agent map)');
+		return;
+	}
+	const llmsContent = fs.readFileSync(llmsPath, 'utf8').trim();
+	if (llmsContent.length < 80) {
+		fail('public/llms.txt too short');
+		return;
+	}
+	assertIncludes(llmsContent, EXPECTED_HOST, 'llms.txt missing canonical host URLs');
 }
 
 function extractFirstLoc(xml) {
