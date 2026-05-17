@@ -7,7 +7,7 @@ export const SITE_URL = 'https://avniguy.co.il';
 /** Public inbox; override in Vercel with `PUBLIC_CONTACT_EMAIL`. */
 function readContactEmail(): string {
 	try {
-		const v = import.meta.env.PUBLIC_CONTACT_EMAIL;
+		const v = process.env.NEXT_PUBLIC_CONTACT_EMAIL;
 		if (typeof v === 'string' && v.trim()) {
 			const t = v.trim();
 			if (t.includes('@')) return t;

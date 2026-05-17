@@ -1,6 +1,7 @@
-"use client";
+'use client';
 
-import { MenuIcon } from "lucide-react";
+import Link from 'next/link';
+import { MenuIcon } from 'lucide-react';
 
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -45,7 +46,7 @@ export function MobileNav() {
 						<SheetClose
 							key={item.href}
 							className="rounded-lg px-4 py-3 text-right text-sm font-medium text-foreground transition-colors hover:bg-muted"
-							render={<a href={item.href} />}
+							render={<Link href={item.href} />}
 						>
 							{item.label}
 						</SheetClose>

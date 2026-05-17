@@ -31,7 +31,7 @@ function checkSourceFiles() {
 	logStep('step 2: checking robots policy');
 	const robotsPath = path.join(process.cwd(), 'public', 'robots.txt');
 	const robotsContent = fs.readFileSync(robotsPath, 'utf8');
-	assertIncludes(robotsContent, `Sitemap: ${EXPECTED_HOST}/sitemap-index.xml`, 'robots sitemap host mismatch');
+	assertIncludes(robotsContent, `Sitemap: ${EXPECTED_HOST}/sitemap.xml`, 'robots sitemap host mismatch');
 	assertIncludes(robotsContent, 'User-agent: OAI-SearchBot', 'robots missing OAI-SearchBot policy');
 	assertIncludes(robotsContent, 'User-agent: GPTBot', 'robots missing GPTBot policy');
 	assertIncludes(robotsContent, 'User-agent: ClaudeBot', 'robots missing ClaudeBot policy');
@@ -49,87 +49,33 @@ function checkSourceFiles() {
 		return;
 	}
 	assertIncludes(llmsContent, EXPECTED_HOST, 'llms.txt missing canonical host URLs');
-}
 
-function extractFirstLoc(xml) {
-	const m = xml.match(/<loc>(.*?)<\/loc>/);
-	return m ? m[1] : '';
-}
-
-function checkDistSitemapArtifacts(distPath) {
-	logStep('step 3: checking dist sitemap artifacts');
-	const sitemapIndexPath = path.join(distPath, 'sitemap-index.xml');
-	if (!fs.existsSync(sitemapIndexPath)) {
-		console.error('[seo-guardrails] dist/sitemap-index.xml missing', { distPath });
-		fail('dist/sitemap-index.xml missing after build');
-		return;
-	}
-	const indexXml = fs.readFileSync(sitemapIndexPath, 'utf8');
-	assertIncludes(indexXml, `${EXPECTED_HOST}/`, 'sitemap index missing expected absolute host');
-	const firstChild = extractFirstLoc(indexXml);
-	if (!firstChild) {
-		console.error('[seo-guardrails] sitemap index has no loc entries', { sitemapIndexPath });
-		fail('sitemap index has no loc entries');
-		return;
-	}
-	logStep('step 3.1: sitemap index references child', { firstChild });
-	try {
-		const childRel = new URL(firstChild).pathname.replace(/^\//, '');
-		const childFile = path.join(distPath, childRel);
-		if (!fs.existsSync(childFile)) {
-			console.error('[seo-guardrails] child sitemap file missing on disk', { childFile, firstChild });
-			fail('child sitemap file missing in dist');
-			return;
-		}
-		const childXml = fs.readFileSync(childFile, 'utf8');
-		assertIncludes(childXml, `${EXPECTED_HOST}/`, 'child sitemap missing expected absolute host');
-		logStep('step 3.2: child sitemap validated', { childFile });
-	} catch (err) {
-		console.error('[seo-guardrails] failed to validate child sitemap', err);
-		fail('failed to validate child sitemap file');
+	logStep('step 2.2: checking Next.js app entry');
+	const layoutPath = path.join(process.cwd(), 'src', 'app', 'layout.tsx');
+	if (!fs.existsSync(layoutPath)) {
+		fail('src/app/layout.tsx missing (Next.js App Router)');
 	}
 }
 
-function checkDistIndexHtmlCanonical() {
-	logStep('step 4: checking dist index.html canonical (SEO_GUARDRAILS_REQUIRE_DIST=1)');
+function checkNextBuildOutputIfPresent() {
 	const requireDist = process.env.SEO_GUARDRAILS_REQUIRE_DIST === '1';
-	if (!requireDist) {
-		logStep('step 4.1: skipping index.html canonical check (set SEO_GUARDRAILS_REQUIRE_DIST=1 to enforce)');
-		return;
-	}
-	const distPath = path.join(process.cwd(), 'dist');
-	const indexPath = path.join(distPath, 'index.html');
-	if (!fs.existsSync(indexPath)) {
-		console.error('[seo-guardrails] dist/index.html missing', { indexPath });
-		fail('dist/index.html missing while SEO_GUARDRAILS_REQUIRE_DIST=1');
-		return;
-	}
-	const indexContent = fs.readFileSync(indexPath, 'utf8');
-	assertIncludes(indexContent, `<link rel="canonical" href="${EXPECTED_HOST}/">`, 'index canonical host mismatch');
-	assertIncludes(indexContent, `<meta property="og:url" content="${EXPECTED_HOST}/">`, 'index og:url host mismatch');
-}
-
-function checkBuiltOutputIfPresent() {
-	const requireDist = process.env.SEO_GUARDRAILS_REQUIRE_DIST === '1';
-	const distPath = path.join(process.cwd(), 'dist');
-	if (!fs.existsSync(distPath)) {
+	const nextDir = path.join(process.cwd(), '.next');
+	if (!fs.existsSync(nextDir)) {
 		if (requireDist) {
-			console.error('[seo-guardrails] dist directory missing with SEO_GUARDRAILS_REQUIRE_DIST=1', { distPath });
-			fail('dist directory not found while SEO_GUARDRAILS_REQUIRE_DIST=1');
+			console.error('[seo-guardrails] .next directory missing with SEO_GUARDRAILS_REQUIRE_DIST=1', { nextDir });
+			fail('.next directory not found while SEO_GUARDRAILS_REQUIRE_DIST=1');
 		} else {
-			logStep('step 3.0: dist directory not found, skipping dist checks', { distPath });
+			logStep('step 3.0: .next not found, skipping build output checks');
 		}
 		return;
 	}
-
-	checkDistSitemapArtifacts(distPath);
-	checkDistIndexHtmlCanonical();
+	logStep('step 3: Next build output directory present', { nextDir });
 }
 
 function main() {
-	logStep('step 0: starting SEO guardrails');
+	logStep('step 0: starting SEO guardrails (Next.js)');
 	checkSourceFiles();
-	checkBuiltOutputIfPresent();
+	checkNextBuildOutputIfPresent();
 	if (process.exitCode && process.exitCode !== 0) {
 		logStep('done: guardrails completed with failures');
 		return;

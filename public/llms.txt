@@ -30,5 +30,5 @@
 
 ## Optional
 
-- [מפת אתר (Sitemap)](https://avniguy.co.il/sitemap-index.xml): רשימת כתובות לזחילה טכנית.
+- [מפת אתר (Sitemap)](https://avniguy.co.il/sitemap.xml): רשימת כתובות לזחילה טכנית.
 - [פיד RSS](https://avniguy.co.il/rss.xml): עדכונים לפי פרסום מאמרים.

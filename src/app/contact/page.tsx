@@ -1,0 +1,110 @@
+import Link from 'next/link';
+import { buttonVariants } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
+import { SiteShell } from '@/components/layout/SiteShell';
+import { cn } from '@/lib/utils';
+import { SITE_CONTACT_EMAIL } from '@/consts';
+import { buildPageMetadata } from '@/lib/metadata';
+import { buildBreadcrumbSchema } from '@/utils/structured-data';
+
+export const dynamic = 'force-static';
+
+const mailtoHref = `mailto:${SITE_CONTACT_EMAIL}?subject=${encodeURIComponent('פנייה מהאתר')}`;
+
+export const metadata = buildPageMetadata({
+	title: 'אבני גיא | יצירת קשר, תיאום שיחה ומענה מקצועי',
+	description:
+		'באבני גיא תאמו פגישה ראשונה בדואל, תקבלו מענה מקצועי, ואופן פעולה ברור להמשך העבודה המשפטית המתאימה לכם.',
+	keyword: 'אבני גיא',
+	path: '/contact/',
+});
+
+export default function ContactPage() {
+	const jsonLd = buildBreadcrumbSchema([
+		{ name: 'דף הבית', path: '/' },
+		{ name: 'יצירת קשר', path: '/contact' },
+	]);
+
+	return (
+		<SiteShell extraJsonLd={jsonLd}>
+			<section className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-14">
+				<div className="flex max-w-xl flex-col gap-4 text-right">
+					<p className="text-sm font-medium text-primary">אבני גיא</p>
+					<h1 className="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+						אבני גיא - יצירת קשר מקצועית ונוחה
+					</h1>
+					<p className="text-pretty text-lg leading-relaxed text-muted-foreground">
+						אפשר לתאם שיחה ראשונית ולהציג את התמונה המלאה. המטרה היא להבין את הצורך במהירות ולהציע מסלול עבודה ברור.
+					</p>
+					<Separator className="bg-border/60" />
+					<div className="flex flex-col gap-4">
+						<h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground">מה להכין לפני פנייה</h2>
+						<p className="text-pretty leading-relaxed text-muted-foreground">
+							כדאי להכין רקע קצר, מסמכים מרכזיים ושאלות ממוקדות. לפני פנייה מומלץ לעבור על{' '}
+							<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/services">
+								השירותים
+							</Link>
+							, לקרוא ב־{' '}
+							<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/blog">
+								בלוג
+							</Link>
+							, לבדוק{' '}
+							<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/categories">
+								קטגוריות
+							</Link>{' '}
+							ו־{' '}
+							<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/tags">
+								תגיות
+							</Link>
+							, לעיין ב־{' '}
+							<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/about">
+								אודות
+							</Link>
+							, לחזור ל־{' '}
+							<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/">
+								דף הבית
+							</Link>
+							, ולקרוא על{' '}
+							<Link
+								className="font-medium text-primary underline-offset-2 hover:underline"
+								href="/blog/guy-avni-meeting-preparation-checklist/"
+							>
+								הכנה לפגישה
+							</Link>
+							.
+						</p>
+						<h3 className="font-heading text-xl font-semibold text-foreground">ערוץ פנייה</h3>
+						<p className="text-pretty leading-relaxed text-muted-foreground">
+							ניתן לפנות בדוא״ל — המענה ניתן במסגרת הזמינות המקצועית, בצורה עניינית ומכבדת.
+						</p>
+					</div>
+				</div>
+
+				<Card className="w-full max-w-lg shrink-0 border-border/60 shadow-md lg:sticky lg:top-24">
+					<CardHeader className="text-right">
+						<CardTitle className="font-heading text-xl">יצירת קשר</CardTitle>
+						<CardDescription className="text-pretty">
+							כתבו בקצרה את הנושא והמטרה — נחזור עם הצעדים הבאים המתאימים.
+						</CardDescription>
+					</CardHeader>
+					<CardContent className="flex flex-col gap-4 text-right">
+						<p className="text-sm leading-relaxed text-muted-foreground">
+							<strong className="text-foreground">דוא״ל:</strong>{' '}
+							<a className="font-medium text-primary underline-offset-2 hover:underline" href={mailtoHref}>
+								{SITE_CONTACT_EMAIL}
+							</a>
+						</p>
+						<p className="text-xs text-muted-foreground">
+							ניתן לשנות כתובת יעד בפריסה באמצעות משתנה סביבה{' '}
+							<code className="rounded bg-muted px-1">NEXT_PUBLIC_CONTACT_EMAIL</code>.
+						</p>
+						<a className={cn(buttonVariants({ className: 'w-full justify-center' }), 'no-underline')} href={mailtoHref}>
+							פתיחת דוא״ל
+						</a>
+					</CardContent>
+				</Card>
+			</section>
+		</SiteShell>
+	);
+}

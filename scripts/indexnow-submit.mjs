@@ -109,7 +109,7 @@ async function main() {
 		let urls = explicitUrls;
 		if (urls.length === 0) {
 			const sitemapUrl =
-				process.env.INDEXNOW_SITEMAP_URL?.trim() || `${siteUrl.origin.replace(/\/$/, '')}/sitemap-index.xml`;
+				process.env.INDEXNOW_SITEMAP_URL?.trim() || `${siteUrl.origin.replace(/\/$/, '')}/sitemap.xml`;
 			urls = await loadPageUrlsFromSitemapEntry(sitemapUrl, 0);
 		}
 
