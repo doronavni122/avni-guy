@@ -187,6 +187,7 @@ export async function loadHomeData(): Promise<HomeData> {
 
 	const tocItems: TocItem[] = [
 		{ id: 'quick-start', label: 'מסלול התחלה מהיר' },
+		{ id: 'home-seo-content', label: 'מדריך תוכן מקצועי' },
 		{ id: 'process', label: 'איך התהליך עובד בפועל' },
 		{ id: 'authority', label: 'למה לעבוד עם גיא אבני' },
 		{ id: 'audience', label: 'למי זה מתאים?' },

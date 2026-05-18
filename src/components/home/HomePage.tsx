@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { FaqAccordion } from '@/components/home/FaqAccordion';
+import { HomeSeoContentSections } from '@/components/home/HomeSeoContentSections';
 import { FeaturedArticlesGrid } from '@/components/home/FeaturedArticlesGrid';
 import { HomeMiniToc } from '@/components/home/HomeMiniToc';
 import { LatestInsightsStrip } from '@/components/home/LatestInsightsStrip';
@@ -183,6 +184,8 @@ export function HomePage({
 			</div>
 
 			<Separator className="bg-border/60" />
+
+			<HomeSeoContentSections homeImages={homeImages} />
 
 			<section id="process" className="home-anchor-target flex flex-col gap-6 text-right" aria-labelledby="process-title">
 				<h2 id="process-title" className="font-heading text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
