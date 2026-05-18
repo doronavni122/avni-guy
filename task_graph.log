@@ -53,3 +53,4 @@
 52. migrate-astro-site-to-nextjs-app-router , package.json next.config.ts tsconfig.json postcss.config.mjs vercel.json src/app src/lib/content src/lib/metadata src/lib/home src/components/Header.tsx src/components/Footer.tsx src/components/layout src/components/home src/utils/content-taxonomy.ts AGENTS.md scripts/seo-guardrails.mjs public/robots.txt .gitignore task_graph.log
 53. harden-repo-ignore-files-2026 , .gitignore .cursorignore .vercelignore .dockerignore task_graph.log
 54. untrack-pnpm-store-from-git , .pnpm-store task_graph.log
+55. upgrade-next-mdx-remote-v6-vercel-security , package.json pnpm-lock.yaml task_graph.log
