@@ -1,0 +1,60 @@
+# Dependencies & package stores
+node_modules/
+.pnpm-store/
+
+# Next.js build output
+.next/
+out/
+dist/
+.astro/
+
+# Deploy & platform
+.vercel/
+.vercel/output/
+
+# Test artifacts
+coverage/
+test-results/
+playwright-report/
+blob-report/
+.playwright/
+
+# TypeScript / tooling caches
+*.tsbuildinfo
+.swc/
+.turbo/
+.cache/
+.eslintcache
+
+# Environment & secrets
+.env
+.env.*
+*.pem
+*.key
+credentials.json
+credentials*.json
+service-account*.json
+
+# Lockfiles (large; not useful for editing)
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Agent workflow scratch
+temp_*
+temp_research/
+
+# Git metadata
+.git/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS / local IDE caches (not shared .vscode/)
+.DS_Store
+.idea/
+Thumbs.db

@@ -1,0 +1,27 @@
+# Agent workflow scratch (not needed at runtime)
+temp_*
+temp_research/
+
+# Editor & AI config
+.cursor/
+.vscode/
+
+# Dev-only docs & process logs
+AGENTS.md
+SSOT.md
+task_graph.log
+
+# Git & ignore meta
+.git/
+.gitignore
+.cursorignore
+.vercelignore
+.dockerignore
+
+# Local scripts (build uses next build only)
+scripts/
+
+# Optional local env templates stay out of upload
+.env
+.env.*
+!.env.example

@@ -1,27 +1,70 @@
-# build output
-dist/
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Next.js
 .next/
 out/
-# generated types
+
+# Legacy Astro / static export
+dist/
 .astro/
 
-# dependencies
-node_modules/
+# TypeScript
+*.tsbuildinfo
 
-# logs
+# Environment (keep tracked examples)
+.env
+.env.*
+!.env.example
+!.env*.example
+
+# Vercel
+.vercel/
+.vercel/output/
+
+# Testing & E2E
+coverage/
+test-results/
+playwright-report/
+blob-report/
+.playwright/
+
+# Tooling caches
+.swc/
+.turbo/
+.cache/
+.eslintcache
+
+# Logs & debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+lerna-debug.log*
+*.log
 
+# Agent / local workflow scratch (not production source)
+temp_*
+temp_research/
 
-# environment variables
-.env
-.env.production
-
-# macOS-specific files
+# OS
 .DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
 
-# jetbrains setting folder
+# IDE (shared .vscode/ is committed intentionally)
 .idea/
-.vercel
+*.swp
+*.swo
+*~
+
+# Secrets & credentials (never commit)
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+credentials*.json
+service-account*.json

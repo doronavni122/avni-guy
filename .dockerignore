@@ -1,0 +1,70 @@
+# Dependencies & stores
+node_modules/
+.pnpm-store/
+
+# Next.js / legacy build output
+.next/
+out/
+dist/
+.astro/
+
+# Vercel local
+.vercel/
+
+# Tests & reports
+coverage/
+test-results/
+playwright-report/
+blob-report/
+.playwright/
+
+# Caches & TypeScript build info
+.swc/
+.turbo/
+.cache/
+.eslintcache
+*.tsbuildinfo
+
+# Environment (inject at runtime; keep example if present)
+.env
+.env.*
+!.env.example
+
+# Agent scratch & dev docs
+temp_*
+temp_research/
+AGENTS.md
+SSOT.md
+task_graph.log
+
+# Editor / AI / git
+.cursor/
+.vscode/
+.git/
+.gitignore
+.cursorignore
+.vercelignore
+.dockerignore
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS & IDE
+.DS_Store
+.idea/
+Thumbs.db
+
+# Secrets
+*.pem
+*.key
+credentials.json
+credentials*.json
+service-account*.json
+
+# Docker meta
+Dockerfile*
+.dockerignore
