@@ -12,10 +12,10 @@ import { buildBreadcrumbSchema } from '@/utils/structured-data';
 export const dynamic = 'force-static';
 
 export const metadata = buildPageMetadata({
-	title: 'אבני גיא עוד | מאמרים משפטיים, מעשיים ועדכניים',
+	title: 'אבני גיא עו״ד | מאמרים משפטיים, מעשיים ועדכניים',
 	description:
-		'באבני גיא עוד מאגר מאמרים משפטיים בעברית, תכנים חיוביים, מעודכנים ומקושרים למסלולי עבודה פרקטיים במשרד העורך דין.',
-	keyword: 'אבני גיא עוד',
+		'באבני גיא עו״ד מאגר מאמרים משפטיים בעברית, תכנים חיוביים, מעודכנים ומקושרים למסלולי עבודה פרקטיים במשרד העורך דין.',
+	keyword: 'אבני גיא עו״ד',
 	path: '/blog/',
 });
 
@@ -33,7 +33,7 @@ export default async function BlogIndexPage() {
 				<Separator className="bg-border/60" />
 				<div className="flex flex-col gap-4 text-right">
 					<h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground">
-						מה כדאי לקרוא השבוע — לפי סדר עדכני
+						מה כדאי לקרוא השבוע - לפי סדר עדכני
 					</h2>
 					<p className="max-w-3xl text-pretty text-muted-foreground">
 						להעמקה לפי נושא, אפשר לעבור ל־{' '}

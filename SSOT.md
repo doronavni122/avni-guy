@@ -1,4 +1,4 @@
-# SSOT — project requirements and agent handoff
+# SSOT: project requirements and agent handoff
 
 This file is the **single source of truth** for non-code expectations (workflow, SEO, content, deployment). **Code behavior** remains authoritative in source files; this document lists what must stay true across changes.
 
@@ -20,15 +20,16 @@ This file is the **single source of truth** for non-code expectations (workflow,
 2. **Frontmatter**: Include required SEO fields per schema (e.g. title, description, meta fields, main keyword as defined in code).
 3. **Headings**: Exactly one visible `H1` per page (from layout/title where applicable); sensible `H2`/`H3` in body. MDX articles must not add a second `#` title.
 4. **Main-menu heroes** (`/`, `/about/`, `/services/`, `/blog/`, `/categories/`, `/tags/`, `/contact/`): SSOT in `src/lib/seo/main-page-heroes.ts`; validated by `src/lib/seo/hero-rules.ts` and `pnpm run seo:guardrails`.
-   - Intro paragraph under H1: **130–200 Hebrew words**, includes a `SITE_KEYWORDS` phrase naturally, magazine-style (no generic index copy — see `GENERIC_HERO_BLOCKLIST` in hero-rules).
-5. **Internal linking**: Articles and listing pages should link to services, about, contact, blog, categories, tags, and related posts where it helps readers.
+   - Intro paragraph under H1: **130-200 Hebrew words**, includes a `SITE_KEYWORDS` phrase naturally, concrete copy (no generic index copy; no style-meta phrases - see `hero-rules` + `main-page-style-rules`).
+5. **Banned typography:** the Unicode em dash (U+2014) is forbidden in all `src/`, `public/`, and content files. Use `-`, `:`, or commas. Checked in `seo:guardrails`.
+6. **Internal linking**: Articles and listing pages should link to services, about, contact, blog, categories, tags, and related posts where it helps readers.
    - For internal-link loop passes, every article must include **at least 10 internal links**.
    - Links used for the quota must be **paragraph hypertext only** (no title/heading/formatted container links for quota).
    - **Buttons do not count** toward the internal-link quota.
    - Per article, hyperlink text must be **unique** (no repeated anchor text).
    - Per article, each link must point to a **different internal path** (no duplicate destinations in the same article).
    - Allowed targets are internal **pages, articles, tags, and categories**.
-6. **Taxonomy**: Categories/tags driven from content; listing pages under `/categories`, `/tags` and dynamic routes must stay consistent with `src/utils/content-taxonomy.ts`.
+7. **Taxonomy**: Categories/tags driven from content; listing pages under `/categories`, `/tags` and dynamic routes must stay consistent with `src/utils/content-taxonomy.ts`.
 
 ---
 
@@ -77,11 +78,11 @@ This file is the **single source of truth** for non-code expectations (workflow,
 
 ---
 
-## G. Handoff — notes for the next agent
+## G. Handoff: notes for the next agent
 
 **Branch / last change**
 
-- Latest traceability entry: **`task_graph.log` line 6** — `premium-legal-shadcn-redesign-with-react-islands` (commit on branch `pr5-vercel-deploy-and-production-validation` at time of writing).
+- Latest traceability entry: **`task_graph.log` line 6** - `premium-legal-shadcn-redesign-with-react-islands` (commit on branch `pr5-vercel-deploy-and-production-validation` at time of writing).
 - Redesign landed: React + Tailwind v4 + shadcn primitives, layout shell, all main templates (home, about, services, contact, blog index, `BlogPost`, categories/tags index + dynamic), `MobileNav` island, `SITE_URL` aligned with `public/robots.txt`.
 
 **Build**

@@ -4,6 +4,9 @@ import { SITE_KEYWORDS, type SiteKeyword } from '@/consts';
 export const MAIN_PAGE_INTRO_MIN_WORDS = 130;
 export const MAIN_PAGE_INTRO_MAX_WORDS = 200;
 
+/** U+2014 em dash is banned in all site copy and content (use `-`, `:`, or commas instead). */
+export const BANNED_EM_DASH = '\u2014';
+
 /** Banned generic phrases in main-page H1 or hero intro (nav-label / index boilerplate). */
 export const GENERIC_HERO_BLOCKLIST = [
 	'רשימת מאמרים',

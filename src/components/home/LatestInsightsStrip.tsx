@@ -13,7 +13,7 @@ export function LatestInsightsStrip({ posts }: LatestInsightsStripProps) {
 			<div className="flex items-end justify-between gap-4">
 				<div className="flex flex-col gap-2">
 					<h2 id="latest-insights-title" className="font-heading text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-						תובנות אחרונות מגיא אבני עורך דין — עדכונים מהמשרד
+						תובנות אחרונות מגיא אבני עורך דין - עדכונים מהמשרד
 					</h2>
 					<div className="flex flex-wrap justify-end gap-2">
 						<span className="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground">

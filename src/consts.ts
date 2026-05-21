@@ -1,4 +1,4 @@
-export const SITE_TITLE = 'גיא אבני - אתר תוכן ומשפט';
+export const SITE_TITLE = 'גיא אבני עו״ד: משפטים, כלכלה, נדלן ודין';
 export const SITE_DESCRIPTION =
 	'אתר תוכן מקצועי בעברית של גיא אבני עם מאמרים, שירותים ותובנות מעשיות.';
 
@@ -23,11 +23,11 @@ export const SITE_CONTACT_EMAIL = readContactEmail();
 
 export const SITE_KEYWORDS = [
 	'גיא אבני',
-	'גיא אבני עוד',
+	'גיא אבני עו״ד',
 	'גיא אבני עורך דין',
 	'גיא אבני משרד עורכי דין',
 	'אבני גיא',
-	'אבני גיא עוד',
+	'אבני גיא עו״ד',
 ] as const;
 
 export type SiteKeyword = (typeof SITE_KEYWORDS)[number];

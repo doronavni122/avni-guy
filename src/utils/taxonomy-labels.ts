@@ -74,14 +74,14 @@ export function getCategoryLabel(slug: string): string {
 	return label;
 }
 
-/** Meta description for /tags/[slug]/ — 14–18 words including multiword Hebrew label. */
+/** Meta description for /tags/[slug]/ - 14–18 words including multiword Hebrew label. */
 export function buildTagMetaDescription(hebrewLabel: string): string {
 	return `תכנים בעברית על ${hebrewLabel}, כלים מעשיים ליישום מיידי, ניווט נוח למאמרים נוספים ולעמוד יצירת קשר.`;
 }
 
 /** Document title for tag listing page (creative, includes brand). */
 export function buildTagPageTitle(hebrewLabel: string): string {
-	return `גיא אבני עוד | תגית: ${hebrewLabel}`;
+	return `גיא אבני עו״ד | תגית: ${hebrewLabel}`;
 }
 
 /** Meta description for /categories/[slug]/ */

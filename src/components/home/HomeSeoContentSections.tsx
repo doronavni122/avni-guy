@@ -31,10 +31,10 @@ export function HomeSeoContentSections({ homeImages }: HomeSeoContentSectionsPro
 		>
 			<div className="flex flex-col gap-3">
 				<h2 id="home-seo-content-title" className="font-heading text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-					מדריך תוכן מקצועי — גיא אבני עורך דין
+					מדריך תוכן מקצועי - גיא אבני עורך דין
 				</h2>
 				<p className="max-w-3xl text-pretty text-sm leading-relaxed text-muted-foreground sm:text-base">
-					עשרה נושאי ליבה בניסוח ברור, עם קישורים פנימיים למאמרים, קטגוריות ועמודי האתר — כדי להבין את המסלול לפני פנייה.
+					עשרה נושאי ליבה בניסוח ברור, עם קישורים פנימיים למאמרים, קטגוריות ועמודי האתר - כדי להבין את המסלול לפני פנייה.
 					הטקסטים כאן משלימים את כרטיסי המאמרים והמדריכים הקיימים בדף, ומיועדים לגולשים שמחפשים הסבר מלא בפסקה אחת לכל נושא.
 				</p>
 			</div>
@@ -77,7 +77,7 @@ function renderSectionBody(sectionId: string) {
 		case 'seo-practice-areas':
 			return (
 				<p className="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
-					משרד עורכי דין שמלווה פרטיים ועסקים צריך לחבר בין אסטרטגיה, חוזים ותקשורת ברורה — בין תביעה אזרחית, מו״מ מסחרי
+					משרד עורכי דין שמלווה פרטיים ועסקים צריך לחבר בין אסטרטגיה, חוזים ותקשורת ברורה - בין תביעה אזרחית, מו״מ מסחרי
 					וליווי שוטף של החלטות הנהלה. בעמוד{' '}
 					<Link className={linkClass} href="/services/">
 						שירותי גיא אבני
@@ -90,13 +90,13 @@ function renderSectionBody(sectionId: string) {
 					<Link className={linkClass} href="/categories/service/">
 						קטגוריית שירות
 					</Link>{' '}
-					— נקודת פתיחה טובה לפני כל פנייה לייעוץ או ייצוג.
+					 -  נקודת פתיחה טובה לפני כל פנייה לייעוץ או ייצוג.
 				</p>
 			);
 		case 'seo-israel-context':
 			return (
 				<p className="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
-					משפט ישראלי משתנה בקצב מהיר, ולכן חשוב לעבוד עם מי שמכיר דינים מקומיים, רגולציה ופרקטיקה שדה — במיוחד כשמדובר
+					משפט ישראלי משתנה בקצב מהיר, ולכן חשוב לעבוד עם מי שמכיר דינים מקומיים, רגולציה ופרקטיקה שדה - במיוחד כשמדובר
 					בחוזים, ציות וסכסוכים מול גופים מוסדיים. המדריך{' '}
 					<Link className={linkClass} href="/blog/guy-avni-legal-counsel-israel-2026-guide/">
 						ייעוץ משפטי בישראל 2026
@@ -128,17 +128,17 @@ function renderSectionBody(sectionId: string) {
 					<Link className={linkClass} href="/blog/guy-avni-legal-planning-basics/">
 						יסודות תכנון משפטי
 					</Link>{' '}
-					תמצאו סדר עדיפויות. כשמוכנים לדבר —{' '}
+					תמצאו סדר עדיפויות. כשמוכנים לדבר  - {' '}
 					<Link className={linkClass} href="/contact/">
 						תיאום ייעוץ ראשון
 					</Link>{' '}
-					— גם כשעדיין לא ברור אם נדרש ייצוג מלא.
+					 -  גם כשעדיין לא ברור אם נדרש ייצוג מלא.
 				</p>
 			);
 		case 'seo-transparency':
 			return (
 				<p className="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
-					לקוח טוב הוא לקוח שמבין מה קורה עכשיו, מה הצעד הבא ומה לא כלול בליווי — כולל לוחות זמנים, עלויות צפויות
+					לקוח טוב הוא לקוח שמבין מה קורה עכשיו, מה הצעד הבא ומה לא כלול בליווי - כולל לוחות זמנים, עלויות צפויות
 					ותוצרים בכל שלב. גישה זו מופיעה ב{' '}
 					<Link className={linkClass} href="/about/">
 						עמוד האודות של גיא אבני
@@ -155,13 +155,13 @@ function renderSectionBody(sectionId: string) {
 					<Link className={linkClass} href="/categories/communication/">
 						תקשורת
 					</Link>{' '}
-					— תחום שמזין כל הליך אזרחי או מסחרי מוצלח.
+					 -  תחום שמזין כל הליך אזרחי או מסחרי מוצלח.
 				</p>
 			);
 		case 'seo-real-estate':
 			return (
 				<p className="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
-					עסקאות נדל״ן דורשות בדיקת לוחות זמנים, אחריות מוכר ומסמכי זכויות לפני מחויבות — בין אם רוכשים דירה ראשונה
+					עסקאות נדל״ן דורשות בדיקת לוחות זמנים, אחריות מוכר ומסמכי זכויות לפני מחויבות - בין אם רוכשים דירה ראשונה
 					או משקיעים בנכס מסחרי. המחקר{' '}
 					<Link className={linkClass} href="/blog/guy-avni-israel-real-estate-delay-delivery-research/">
 						עיכוב מסירה בנדל״ן
@@ -174,13 +174,13 @@ function renderSectionBody(sectionId: string) {
 					<Link className={linkClass} href="/categories/real-estate-law/">
 						קטגוריית נדל״ן
 					</Link>{' '}
-					— לפני חתימה על כל התחייבות כספית משמעותית.
+					 -  לפני חתימה על כל התחייבות כספית משמעותית.
 				</p>
 			);
 		case 'seo-choosing-lawyer':
 			return (
 				<p className="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
-					בחירת עורך דין היא לא רק מוניטין — אלא התאמה לסוג התיק, שפה ברורה ויכולת לבנות תוכנית שמכבדת את המגבלות
+					בחירת עורך דין היא לא רק מוניטין - אלא התאמה לסוג התיק, שפה ברורה ויכולת לבנות תוכנית שמכבדת את המגבלות
 					שלכם. המדריך{' '}
 					<Link className={linkClass} href="/blog/guy-avni-choosing-lawyer-israel-comprehensive-guide/">
 						איך לבחור עורך דין בישראל
@@ -212,13 +212,13 @@ function renderSectionBody(sectionId: string) {
 					<Link className={linkClass} href="/categories/strategy/">
 						קטגוריית אסטרטגיה
 					</Link>{' '}
-					— בסיס להחלטות עסקיות ואזרחיות כאחד.
+					 -  בסיס להחלטות עסקיות ואזרחיות כאחד.
 				</p>
 			);
 		case 'seo-documents':
 			return (
 				<p className="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
-					תיק מסודר מקצר כל שלב: חוזים, התכתבויות, חשבוניות ופרוטוקולים שמספרים את הסיפור בבירור — גם בהליך אזרחי
+					תיק מסודר מקצר כל שלב: חוזים, התכתבויות, חשבוניות ופרוטוקולים שמספרים את הסיפור בבירור - גם בהליך אזרחי
 					וגם בגישור או משא ומתן. המדריך{' '}
 					<Link className={linkClass} href="/blog/guy-avni-document-readiness-guide/">
 						מוכנות מסמכים
@@ -235,7 +235,7 @@ function renderSectionBody(sectionId: string) {
 					<Link className={linkClass} href="/categories/documents/">
 						קטגוריית מסמכים
 					</Link>{' '}
-					— הכנה שמונעת עיכובים יקרים בהמשך.
+					 -  הכנה שמונעת עיכובים יקרים בהמשך.
 				</p>
 			);
 		case 'seo-counsel-vs-representation':
@@ -260,7 +260,7 @@ function renderSectionBody(sectionId: string) {
 		case 'seo-first-contact':
 			return (
 				<p className="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
-					אחרי פנייה ראשונה מתבצעת שיחת מיקוד, מיפוי מטרות והמלצה על צעדים — בלי עומס מיותר ועם סיכום ברור
+					אחרי פנייה ראשונה מתבצעת שיחת מיקוד, מיפוי מטרות והמלצה על צעדים - בלי עומס מיותר ועם סיכום ברור
 					להמשך. תהליך הקליטה מתואר ב{' '}
 					<Link className={linkClass} href="/blog/guy-avni-client-onboarding-framework/">
 						מסגרת קליטת לקוח

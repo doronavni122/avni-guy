@@ -72,7 +72,7 @@ export default function ContactPage() {
 						</p>
 						<h3 className="font-heading text-xl font-semibold text-foreground">ערוץ פנייה</h3>
 						<p className="text-pretty leading-relaxed text-muted-foreground">
-							ניתן לפנות בדוא״ל — המענה ניתן במסגרת הזמינות המקצועית, בצורה עניינית ומכבדת.
+							ניתן לפנות בדוא״ל - המענה ניתן במסגרת הזמינות המקצועית, בצורה עניינית ומכבדת.
 						</p>
 					</div>
 				</div>
@@ -81,7 +81,7 @@ export default function ContactPage() {
 					<CardHeader className="text-right">
 						<CardTitle className="font-heading text-xl">יצירת קשר</CardTitle>
 						<CardDescription className="text-pretty">
-							כתבו בקצרה את הנושא והמטרה — נחזור עם הצעדים הבאים המתאימים.
+							כתבו בקצרה את הנושא והמטרה - נחזור עם הצעדים הבאים המתאימים.
 						</CardDescription>
 					</CardHeader>
 					<CardContent className="flex flex-col gap-4 text-right">

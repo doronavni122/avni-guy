@@ -16,11 +16,11 @@ const BLOG_DIR = path.join(ROOT, 'src', 'content', 'blog');
 
 const MAIN_KEYWORD_EN_SLUG = {
 	'גיא אבני': 'guy-avni',
-	'גיא אבני עוד': 'guy-avni-more',
+	'גיא אבני עו״ד': 'guy-avni-more',
 	'גיא אבני עורך דין': 'guy-avni-lawyer',
 	'גיא אבני משרד עורכי דין': 'guy-avni-law-firm',
 	'אבני גיא': 'avni-guy',
-	'אבני גיא עוד': 'avni-guy-more',
+	'אבני גיא עו״ד': 'avni-guy-more',
 };
 
 const BRANDING_TOKENS = ['guy-avni', 'avni-guy', 'law-firm', 'lawyer'];
@@ -137,7 +137,7 @@ function buildImageCopyYaml(slug, mainKeyword, category, tags, idx, filename) {
 	const tokens = requiredTokens(mainKeyword, category, tags, idx);
 	const tokenStr = tokens.join(' ');
 	const src = `${SITE_URL}/images/blog/${filename}`;
-	const alt = `תצלום משפטי ${idx} — ${tokenStr} — Avni Guy legal content`;
+	const alt = `תצלום משפטי ${idx} - ${tokenStr} - Avni Guy legal content`;
 	const title = `${tokenStr.replace(/\s+/g, ' ')} | legal image ${idx} | ${slug}`;
 	const description = `Description ${idx} (EN keywords): ${tokens.join('; ')}. Legal stock photo for blog article ${slug}.`;
 	const esc = (s) => s.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
@@ -325,7 +325,7 @@ function patchHeaderBaseHead() {
 			`<figure class="m-0 contents">
 				<img
 					src="/images/branding/${BRAND_LOGO}"
-					alt="Guy Avni Avni Guy law firm lawyer brand logo 1 — לוגו גיא אבני"
+					alt="Guy Avni Avni Guy law firm lawyer brand logo 1 - לוגו גיא אבני"
 					title="Guy Avni Avni Guy law firm lawyer brand logo 1"
 					width="44"
 					height="44"

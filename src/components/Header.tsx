@@ -15,7 +15,7 @@ export function Header() {
 					<figure className="m-0 contents">
 						<Image
 							src="/images/branding/guy-avni-avni-guy-law-firm-lawyer-brand-logo.svg"
-							alt="Guy Avni Avni Guy law firm lawyer brand logo 1 — לוגו גיא אבני"
+							alt="Guy Avni Avni Guy law firm lawyer brand logo 1 - לוגו גיא אבני"
 							title="Guy Avni Avni Guy law firm lawyer brand logo 1"
 							width={44}
 							height={44}

@@ -12,11 +12,11 @@ export const GENERIC_HERO_BLOCKLIST = [
 
 export const SITE_KEYWORDS = [
 	'גיא אבני',
-	'גיא אבני עוד',
+	'גיא אבני עו״ד',
 	'גיא אבני עורך דין',
 	'גיא אבני משרד עורכי דין',
 	'אבני גיא',
-	'אבני גיא עוד',
+	'אבני גיא עו״ד',
 ];
 
 export function countWordsHe(text) {

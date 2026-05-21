@@ -26,8 +26,10 @@
 - **Main-menu pages** (`/`, `/about/`, `/services/`, `/blog/`, `/categories/`, `/tags/`, `/contact/`): hero copy lives in [`src/lib/seo/main-page-heroes.ts`](src/lib/seo/main-page-heroes.ts); render with [`MainPageHero`](src/components/seo/MainPageHero.tsx).
   - One intro **paragraph** directly under the H1: **130–200 words** (Hebrew word count via `countWordsHe` in [`src/lib/seo/hero-rules.ts`](src/lib/seo/hero-rules.ts)).
   - Intro must include at least one phrase from `SITE_KEYWORDS` in [`src/consts.ts`](src/consts.ts) in natural prose.
-  - **No generic/nav boilerplate** in H1 or intro (e.g. `רשימת מאמרים`, `בחירה מהירה לפי נושא`, `קטגוריות תוכן`, `תגיות תוכן`). Use magazine-style, concrete Hebrew — not index labels.
-  - Good H1: *גיא אבני — כשצריך תוכן ברור וליווי משפטי בלי רעש*. Bad H1: *קטגוריות תוכן*.
+  - **Show, don't tell:** hero copy must not describe its own tone (e.g. meta phrases like `שפה ישירה`, `מגזינית`, `בגובה העיניים`). Enforced by [`src/lib/seo/main-page-style-rules.ts`](src/lib/seo/main-page-style-rules.ts) and `seo:guardrails`.
+  - **No generic/nav boilerplate** in H1 or intro (e.g. `רשימת מאמרים`, `בחירה מהירה לפי נושא`, `קטגוריות תוכן`, `תגיות תוכן`). Use concrete Hebrew, not index labels.
+  - Good H1: *גיא אבני: כשצריך תוכן ברור וליווי משפטי בלי רעש*. Bad H1: *קטגוריות תוכן*.
+- **Banned character:** never use the Unicode em dash (U+2014) anywhere in `src/`, `public/`, or content. Use hyphen `-`, colon `:`, or commas instead. Enforced by `pnpm run seo:guardrails` (`scripts/lib/check-banned-characters.mjs`).
 - Keep canonical links correct (`trailingSlash: true` in `next.config.ts`).
 - Global JSON-LD: `Organization` + `WebSite` in `SiteShell`; per-page breadcrumbs / `BlogPosting` / `FAQPage` as appropriate.
 - Preserve `public/robots.txt`, `public/llms.txt`, `app/sitemap.ts`, `app/rss.xml/route.ts`.

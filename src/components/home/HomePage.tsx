@@ -348,7 +348,7 @@ export function HomePage({
 
 			<section id="audience" className="home-anchor-target flex flex-col gap-5 text-right" aria-labelledby="audience-title">
 				<h2 id="audience-title" className="font-heading text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-					למי גיא אבני עוד מלווה בפועל?
+					למי גיא אבני עו״ד מלווה בפועל?
 				</h2>
 				<div className="grid gap-4 md:grid-cols-3">
 					<Card className="border-border/60 bg-card/70 shadow-sm">
@@ -389,7 +389,7 @@ export function HomePage({
 
 			<section id="comparison" className="home-anchor-target flex flex-col gap-5 text-right" aria-labelledby="comparison-title">
 				<h2 id="comparison-title" className="font-heading text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-					לבד מול ליווי משפטי — הפרספקטיבה של אבני גיא עוד
+					לבד מול ליווי משפטי - הפרספקטיבה של אבני גיא עו״ד
 				</h2>
 				<div className="grid gap-4 md:grid-cols-2">
 					<Card className="border-border/60 bg-card/70 shadow-sm">
@@ -469,7 +469,7 @@ export function HomePage({
 							יעד ומיקוד
 						</span>
 					</div>
-					<h4 className="font-heading text-lg font-semibold text-foreground">שלוש שאלות פתיחה שגיא אבני עוד חוזר אליהן בכל תיק</h4>
+					<h4 className="font-heading text-lg font-semibold text-foreground">שלוש שאלות פתיחה שגיא אבני עו״ד חוזר אליהן בכל תיק</h4>
 					<ul className="max-w-4xl list-disc space-y-2 pr-5 text-sm leading-relaxed text-muted-foreground sm:text-base">
 						<li>
 							<strong className="text-foreground">מה היעד המרכזי?</strong> איזו{' '}
@@ -523,7 +523,7 @@ export function HomePage({
 				</div>
 
 				<div className="space-y-4">
-					<h3 className="font-heading text-xl font-semibold text-foreground">לפני חתימה עם גיא אבני עורך דין — חמש בדיקות שחוסכות כסף</h3>
+					<h3 className="font-heading text-xl font-semibold text-foreground">לפני חתימה עם גיא אבני עורך דין - חמש בדיקות שחוסכות כסף</h3>
 					<div className="flex flex-wrap justify-end gap-2">
 						<span className="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground">
 							חוזים
@@ -532,7 +532,7 @@ export function HomePage({
 							בדיקת סיכון
 						</span>
 					</div>
-					<h4 className="font-heading text-lg font-semibold text-foreground">צ&apos;קליסט חתימה קצר — ניסוח גיא אבני לבדיקה לפני עט</h4>
+					<h4 className="font-heading text-lg font-semibold text-foreground">צ&apos;קליסט חתימה קצר - ניסוח גיא אבני לבדיקה לפני עט</h4>
 					<ol className="max-w-4xl list-decimal space-y-2 pr-5 text-sm leading-relaxed text-muted-foreground sm:text-base">
 						<li>
 							<strong className="text-foreground">הגדרת שירות/מוצר:</strong> היקף ברור שמונע{' '}
@@ -674,7 +674,7 @@ export function HomePage({
 				</div>
 
 				<div className="space-y-4">
-					<h3 className="font-heading text-xl font-semibold text-foreground">איך בונים אמון לקוח — מתודולוגיה שמזינה את אבני גיא</h3>
+					<h3 className="font-heading text-xl font-semibold text-foreground">איך בונים אמון לקוח - מתודולוגיה שמזינה את אבני גיא</h3>
 					<div className="flex flex-wrap justify-end gap-2">
 						<span className="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground">
 							אמון לקוח
@@ -716,7 +716,7 @@ export function HomePage({
 							.
 						</li>
 					</ul>
-					<h5 className="font-heading text-base font-semibold text-foreground">להתחיל כבר השבוע עם אבני גיא עוד — בלי דחיינות</h5>
+					<h5 className="font-heading text-base font-semibold text-foreground">להתחיל כבר השבוע עם אבני גיא עו״ד - בלי דחיינות</h5>
 					<p className="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
 						לקוחות לא מחפשים רק תשובה משפטית נכונה; הם רוצים להבין מה קורה עכשיו, מה צפוי בהמשך, ואיך כל החלטה משרתת את
 						המטרה שלהם. מי שמאמץ את הכללים האלה מייצר{' '}

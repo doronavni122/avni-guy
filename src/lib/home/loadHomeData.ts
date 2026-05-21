@@ -251,37 +251,37 @@ export async function loadHomeData(): Promise<HomeData> {
 	const homeImages: HomeImage[] = [
 		{
 			src: '/images/home/guy-avni-avni-guy-law-firm-lawyer-suite-man-portrait-office-photo-1.jpg',
-			alt: `${primarySiteKeyword} — פורטרט מקצועי במשרד עורכי דין, חליפת עסקים ואווירת ליווי משפטי אמין`,
+			alt: `${primarySiteKeyword} - פורטרט מקצועי במשרד עורכי דין, חליפת עסקים ואווירת ליווי משפטי אמין`,
 			title: `${primarySiteKeyword} | פורטרט ראשי בכותרת דף הבית`,
 		},
 		{
 			src: '/images/home/guy-avni-avni-guy-law-firm-lawyer-office-meeting-photo-2.jpg',
-			alt: `${primarySiteKeyword} — פגישת ייעוץ ועבודה משפטית מול שולחן במשרד, שיחה ממוקדת ומסמכים`,
+			alt: `${primarySiteKeyword} - פגישת ייעוץ ועבודה משפטית מול שולחן במשרד, שיחה ממוקדת ומסמכים`,
 			title: `${primarySiteKeyword} | פגישת משרד במסלול התחלה מהירה`,
 		},
 		{
 			src: '/images/home/guy-avni-avni-guy-law-firm-lawyer-office-team-photo-3.jpg',
-			alt: `${primarySiteKeyword} — צוות משפטי בשיחת תיאום ליד מחשב ומסמכים, שיתוף פעולה מקצועי`,
+			alt: `${primarySiteKeyword} - צוות משפטי בשיחת תיאום ליד מחשב ומסמכים, שיתוף פעולה מקצועי`,
 			title: `${primarySiteKeyword} | צוות משפטי בחלק תהליך העבודה`,
 		},
 		{
 			src: '/images/home/guy-avni-avni-guy-law-firm-lawyer-boardroom-photo-4.jpg',
-			alt: `${primarySiteKeyword} — חדר ישיבות מקצועי לדיונים משפטיים ועסקיים, סביבת החלטות רגועה`,
+			alt: `${primarySiteKeyword} - חדר ישיבות מקצועי לדיונים משפטיים ועסקיים, סביבת החלטות רגועה`,
 			title: `${primarySiteKeyword} | חדר ישיבות במסלול קריאה מומלצת`,
 		},
 		{
 			src: '/images/home/guy-avni-avni-guy-law-firm-lawyer-executive-portrait-photo-5.jpg',
-			alt: `${primarySiteKeyword} — פורטרט מנהלי לעורך דין, ליווי לקוחות עסקיים ופרטיים בבהירות`,
+			alt: `${primarySiteKeyword} - פורטרט מנהלי לעורך דין, ליווי לקוחות עסקיים ופרטיים בבהירות`,
 			title: `${primarySiteKeyword} | פורטרט מקצועי בלמה לעבוד עם המשרד`,
 		},
 		{
 			src: '/images/home/guy-avni-avni-guy-law-firm-lawyer-office-workspace-photo-6.jpg',
-			alt: `${primarySiteKeyword} — סביבת עבודה משפטית עם מחשב וחומרים, הכנה וארגון לפני מהלך`,
+			alt: `${primarySiteKeyword} - סביבת עבודה משפטית עם מחשב וחומרים, הכנה וארגון לפני מהלך`,
 			title: `${primarySiteKeyword} | סביבת עבודה בחלק מדריכי העומק`,
 		},
 		{
 			src: '/images/home/guy-avni-avni-guy-law-firm-lawyer-suite-portrait-photo-7.jpg',
-			alt: `${primarySiteKeyword} — פורטרט רשמי בסביבת משרד עורכי דין, סיום ויזואלי לפני פנייה ללקוח`,
+			alt: `${primarySiteKeyword} - פורטרט רשמי בסביבת משרד עורכי דין, סיום ויזואלי לפני פנייה ללקוח`,
 			title: `${primarySiteKeyword} | פורטרט אחרון לפני קריאה לפעולה בדף הבית`,
 		},
 	];

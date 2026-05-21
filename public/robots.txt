@@ -1,6 +1,6 @@
 # Crawler policy (owner: allow discovery + training-related bots on public pages).
 # Google-Extended: robots token for Gemini training/grounding-related uses; does not affect Google Search ranking (Google Search Central).
-# OpenAI: GPTBot (training) and OAI-SearchBot (ChatGPT search features) are independent — adjust each intentionally (OpenAI crawler docs).
+# OpenAI: GPTBot (training) and OAI-SearchBot (ChatGPT search features) are independent - adjust each intentionally (OpenAI crawler docs).
 # robots.txt is voluntary; sensitive content still needs auth, not reliance on User-agent rules alone.
 
 User-agent: *

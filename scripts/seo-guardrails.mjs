@@ -1,8 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { MAIN_PAGE_HEROES } from '../src/lib/seo/main-page-heroes.mjs';
-import { validateAllMainPageHeroes } from './lib/seo-hero-rules.mjs';
+import { runBannedCharacterChecks } from './lib/check-banned-characters.mjs';
 import { runH1Checks } from './lib/check-page-h1.mjs';
+import { validateAllMainPageStyles } from './lib/main-page-style-rules.mjs';
+import { validateAllMainPageHeroes } from './lib/seo-hero-rules.mjs';
 
 const EXPECTED_HOST = 'https://avniguy.co.il';
 
@@ -63,9 +65,16 @@ function checkSourceFiles() {
 function checkMainPageHeroes() {
 	logStep('step 2.3: validating main-menu page heroes');
 	const heroes = Object.values(MAIN_PAGE_HEROES);
-	const result = validateAllMainPageHeroes(heroes);
-	if (!result.ok) {
-		for (const err of result.errors) {
+	const heroResult = validateAllMainPageHeroes(heroes);
+	if (!heroResult.ok) {
+		for (const err of heroResult.errors) {
+			fail(err);
+		}
+	}
+	logStep('step 2.3.1: validating main-menu hero style (show-dont-tell)');
+	const styleResult = validateAllMainPageStyles(heroes);
+	if (!styleResult.ok) {
+		for (const err of styleResult.errors) {
 			fail(err);
 		}
 	}
@@ -101,6 +110,12 @@ function main() {
 	checkSourceFiles();
 	checkMainPageHeroes();
 	checkPageH1Rules();
+	try {
+		runBannedCharacterChecks();
+	} catch (err) {
+		console.error('[seo-guardrails] runBannedCharacterChecks failed', err);
+		fail('Banned character check failed (em dash U+2014)');
+	}
 	checkNextBuildOutputIfPresent();
 	if (process.exitCode && process.exitCode !== 0) {
 		logStep('done: guardrails completed with failures');

@@ -10,10 +10,10 @@ import { buildBreadcrumbSchema } from '@/utils/structured-data';
 export const dynamic = 'force-static';
 
 export const metadata = buildPageMetadata({
-	title: 'גיא אבני עוד | ערכים, ניסיון ודרך עבודה מקצועית',
+	title: 'גיא אבני עו״ד | ערכים, ניסיון ודרך עבודה מקצועית',
 	description:
-		'גיא אבני עוד מציג כאן ערכים, ניסיון מקצועי ודרך עבודה שקופה, זמינה וממוקדת לקוח לטווח הארוך בעסקי המשרד.',
-	keyword: 'גיא אבני עוד',
+		'גיא אבני עו״ד מציג כאן ערכים, ניסיון מקצועי ודרך עבודה שקופה, זמינה וממוקדת לקוח לטווח הארוך בעסקי המשרד.',
+	keyword: 'גיא אבני עו״ד',
 	path: '/about/',
 });
 
@@ -47,7 +47,7 @@ export default function AboutPage() {
 				</div>
 				<Separator className="bg-border/60" />
 				<div className="flex flex-col gap-4 text-right">
-					<h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground">ערכי העבודה שמובילים את גיא אבני עוד</h2>
+					<h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground">ערכי העבודה שמובילים את גיא אבני עו״ד</h2>
 					<p className="max-w-3xl text-pretty leading-relaxed text-muted-foreground">
 						העבודה שלי נשענת על שקיפות, זמינות וחשיבה אסטרטגית. אפשר להעמיק דרך עמוד{' '}
 						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/services">
