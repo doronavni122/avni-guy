@@ -7,28 +7,20 @@ alwaysApply: true
 
 Follow this loop exactly for internal-link insertion tasks.
 
-1. Create `temp_internal_links_checklist.txt` with one line per article and no extra text:
-   - Format: `- [ ] <article-path>`
+1. Create `temp_internal_links_checklist.txt` with one line per article:
+   - Format: `- [ ] src/content/blog/<slug>.mdx`
 2. Pick the first unchecked article.
-3. Identify valid internal destinations from pages/articles/tags/categories for this article.
-4. Insert internal links only inside paragraph hypertext (no titles or other formatting containers).
-5. Ensure the article has at least 10 internal links.
-6. Ensure all hyperlink text values are unique within that article.
-7. Ensure every link points to a different internal path within that article.
-8. Ensure no button-based links are counted.
-9. Run local dev server and review the live article page output.
-10. Mark the article as done in checklist:
-   - Format: `- [x] <article-path>`
-11. Continue until no unchecked lines remain.
+3. Choose silo targets: max 4 links to `/blog/*` per article; remaining links to `/`, `/about/`, `/services/`, `/blog/`, `/categories/`, `/tags/`, `/contact/`, category/tag hubs.
+4. Insert links only in **paragraph** prose (not headings, lists, or buttons).
+5. At least **10** paragraph links; unique Hebrew anchor text per link; unique `href` per article.
+6. Ban anchors matching: `קריאה פנימית`, `קריאה קשורה`, numbered generic series, `קישור פנימי`.
+7. Do not use the standard 7-nav boilerplate paragraph (`כדי לבנות הקשר רחב` + home/about/services block).
+8. All internal paths use trailing slashes (e.g. `/about/`).
+9. Sync `internalLinks` frontmatter array to match every internal path used in body paragraphs.
+10. Run `pnpm run content:audit` for this slug.
+11. Mark article done.
 
 Hard requirements:
-- At least 10 internal links per article.
-- Links can point only to internal pages/articles/tags/categories.
-- All links must use paragraph hypertext only.
-- No title links, heading links, or non-paragraph formatting links.
-- Buttons do not count as internal-link quota entries.
-- Hyperlink text must be unique per article.
-- Each link target path must be unique per article.
-- Preserve content schema fields and required frontmatter keys.
-- Add explicit error logging for each loop step.
-- Never modify unrelated files or unrelated schema fields.
+- Minimum 10 paragraph links (schema target; Zod may still be min 7 until raised).
+- Log: `[internal-links-loop] step N` or `ERROR`.
+- Preserve frontmatter schema; never modify unrelated files.

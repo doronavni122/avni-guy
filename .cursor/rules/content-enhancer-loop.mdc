@@ -5,24 +5,24 @@ alwaysApply: true
 
 # Content Enhancer Loop (Strict)
 
-Follow this loop exactly for article enhancement tasks.
+Follow this loop exactly for article enhancement tasks. Stack with `content-pipeline-loop.mdc` when doing full remediation.
 
-1. Create `temp_articles_checklist.txt` with one line per article and no extra text:
-   - Format: `- [ ] <article-path>`
+1. Create `temp_articles_checklist.txt` with one line per article:
+   - Format: `- [ ] src/content/blog/<slug>.mdx`
 2. Pick the first unchecked article.
-3. Improve only the article title to top-tier quality while preserving SEO keyword constraints.
-4. Perform deep research on the title subject and write findings into a temp markdown file.
-5. Translate the temp research content to Hebrew.
-6. Replace article body content using the researched Hebrew content in the same article path.
-7. Run local dev server and review the live article page output.
-8. Remove unrelated links and fix formatting mismatches.
-9. Mark the article as done in checklist:
-   - Format: `- [x] <article-path>`
-10. Continue until no unchecked lines remain.
+3. Remove forbidden copy before rewrite: shared title suffix `מדריך מעשי, שיטות יישום וטעויות שכדאי למנוע`, opening nav boilerplate `כדי לבנות הקשר רחב`, closing `צ׳קליסט הרחבה ליישום מיידי`, and `## תוכנית 30/60/90 יום` blocks.
+4. Improve **title**, **metaTitle** (50–60 chars), **metaDescription** (120–165 chars), and **description** together; preserve `mainKeyword` from `SITE_KEYWORDS` in `src/consts.ts`.
+5. Research: write `.cursor/tmp/research/<slug>.md`; translate to Hebrew; delete temp file after body merge.
+6. Replace MDX body with topic-specific Hebrew prose; no body `#` H1; first `##` must not duplicate layout `title`.
+7. Meet tier word minimum (pillar ≥1200, cluster ≥900, slug contracts in `scripts/lib/content-tiers.mjs`).
+8. YMYL slugs: add ≥2 external `https://` links to authority hosts (gov.il, israelbar.org.il, etc.).
+9. Run dev server and review live article.
+10. Run `pnpm run content:audit` for this slug; fix failures.
+11. Mark `- [x] src/content/blog/<slug>.mdx`.
 
 Hard requirements:
-- Preserve content schema fields and required frontmatter keys.
-- Keep a single primary keyword and ensure it appears in the article H1.
-- Keep internal links meaningful and relevant.
-- Add explicit error logging for each loop step.
-- Never modify unrelated files or unrelated schema fields.
+- No Unicode em dash U+2014 (use `-`, `:`, commas).
+- Do not set `updatedDate` unless body materially changed; never batch-stamp without `materialChange: true` in frontmatter when schema allows.
+- Run `pnpm run image-keyword-compliance` if `images` changed.
+- Log: `[content-enhancer-loop] step N` or `ERROR`.
+- Never modify unrelated files or schema fields.

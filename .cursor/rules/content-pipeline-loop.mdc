@@ -1,0 +1,23 @@
+---
+description: Master ordered pipeline for blog article remediation (enhancer, links, brand, audits)
+alwaysApply: false
+---
+
+# Content Pipeline Loop (Strict)
+
+Use when remediating one or more blog articles. Run steps in order; do not skip.
+
+1. Ensure `temp_articles_checklist.txt` exists (one `- [ ] src/content/blog/<slug>.mdx` per article).
+2. **Content enhancer** — follow `content-enhancer-loop.mdc` for the active article.
+3. **Internal links** — follow `internal-links-loop.mdc` for the same article.
+4. **Homepage brand link** — follow `homepage-brand-internal-links-loop.mdc` for the same article.
+5. Run `pnpm run content:audit` (or `CONTENT_AUDIT_SLUGS=<slug>` for one file). On failure, log `ERROR` with slug and fix before marking done.
+6. Run `pnpm run image-keyword-compliance` when images/frontmatter images changed.
+7. Run `pnpm run seo:guardrails` (main pages + H1; article audit only if `CONTENT_AUDIT_ENFORCE=1`).
+8. Run `pnpm build`.
+9. Mark article `[x]` in all three checklists when steps 2–8 pass for that slug.
+
+Hard requirements:
+- Research files only under `.cursor/tmp/research/<slug>.md`; delete after merge.
+- Preserve frontmatter schema in `src/lib/content/schema.ts`; do not add fields unless the task requires it.
+- Log each step: `[content-pipeline-loop] step N: ...` or `[content-pipeline-loop] ERROR ...`.

@@ -6,6 +6,7 @@ import { runH1Checks } from './lib/check-page-h1.mjs';
 import { validateAllMainPageStyles } from './lib/main-page-style-rules.mjs';
 import { runMainPageMetaChecks } from './lib/check-main-page-meta.mjs';
 import { validateAllMainPageHeroes } from './lib/seo-hero-rules.mjs';
+import { runArticleContentChecks } from './lib/check-article-content.mjs';
 
 const EXPECTED_HOST = 'https://avniguy.co.il';
 
@@ -88,6 +89,28 @@ function checkMainPageHeroes() {
 	}
 }
 
+function checkArticleContentIfEnabled() {
+	if (process.env.CONTENT_AUDIT_ENFORCE !== '1') {
+		logStep('step 2.35: skipping article content audit (set CONTENT_AUDIT_ENFORCE=1 to enable)');
+		return;
+	}
+	logStep('step 2.35: running article content audit');
+	try {
+		const result = runArticleContentChecks();
+		if (!result.ok) {
+			for (const err of result.errors.slice(0, 20)) {
+				fail(err);
+			}
+			if (result.errors.length > 20) {
+				fail(`... and ${result.errors.length - 20} more article content issues (run pnpm run content:audit)`);
+			}
+		}
+	} catch (err) {
+		console.error('[seo-guardrails] checkArticleContentIfEnabled failed', err);
+		fail('Article content audit failed');
+	}
+}
+
 function checkPageH1Rules() {
 	logStep('step 2.4: checking single-H1 rules for blog');
 	try {
@@ -117,6 +140,7 @@ function main() {
 	logStep('step 0: starting SEO guardrails (Next.js)');
 	checkSourceFiles();
 	checkMainPageHeroes();
+	checkArticleContentIfEnabled();
 	checkPageH1Rules();
 	try {
 		runBannedCharacterChecks();

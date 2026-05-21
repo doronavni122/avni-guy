@@ -1,0 +1,22 @@
+---
+description: Main-menu hero and page copy loop for seven routes (no blog MDX)
+alwaysApply: false
+---
+
+# Main Page Loop (Strict)
+
+Use for `/`, `/about/`, `/services/`, `/blog/`, `/categories/`, `/tags/`, `/contact/` only.
+
+1. Create `temp_main_pages_checklist.txt` with seven paths (one per line, `- [ ] /path/`).
+2. Edit hero copy only in `src/lib/seo/main-page-heroes.mjs` (SSOT).
+3. Align `export const metadata` in matching `src/app/**/page.tsx` (title, description 120–165 chars, keyword).
+4. Deepen TSX body copy under `MainPageHero` where needed; use trailing slashes on internal `Link href`.
+5. Run `pnpm run seo:guardrails`.
+6. Run `pnpm build`.
+7. Mark path `[x]` in checklist.
+
+Hard requirements:
+- Intro 130–200 Hebrew words; include a `SITE_KEYWORDS` phrase; no style-meta blocklist phrases.
+- Brand: prefer `גיא אבני` / `גיא אבני עו״ד` / `גיא אבני עורך דין` on heroes.
+- Do not edit `src/content/blog/*.mdx`.
+- Log: `[main-page-loop] step N` or `ERROR`.
