@@ -2,8 +2,10 @@ import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { FormattedDate } from '@/components/FormattedDate';
+import { MainPageHero } from '@/components/seo/MainPageHero';
 import { SiteShell } from '@/components/layout/SiteShell';
 import { getSortedPosts } from '@/lib/content/posts';
+import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
 import { buildPageMetadata } from '@/lib/metadata';
 import { buildBreadcrumbSchema } from '@/utils/structured-data';
 
@@ -27,37 +29,26 @@ export default async function BlogIndexPage() {
 	return (
 		<SiteShell extraJsonLd={jsonLd}>
 			<section className="flex flex-col gap-10">
+				<MainPageHero hero={MAIN_PAGE_HEROES['/blog/']} />
+				<Separator className="bg-border/60" />
 				<div className="flex flex-col gap-4 text-right">
-					<p className="text-sm font-medium text-primary">אבני גיא עוד</p>
-					<h1 className="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-						אבני גיא עוד - מאמרים מקצועיים בעברית
-					</h1>
-					<p className="max-w-3xl text-pretty text-lg leading-relaxed text-muted-foreground">
-						עמוד זה מרכז את כל המאמרים לפי סדר עדכני. ניתן לקפוץ גם ל־{' '}
-						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/categories">
+					<h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground">
+						מה כדאי לקרוא השבוע — לפי סדר עדכני
+					</h2>
+					<p className="max-w-3xl text-pretty text-muted-foreground">
+						להעמקה לפי נושא, אפשר לעבור ל־{' '}
+						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/categories/">
 							קטגוריות
 						</Link>
 						,{' '}
-						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/tags">
+						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/tags/">
 							תגיות
 						</Link>
 						,{' '}
-						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/services">
+						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/services/">
 							שירותים
-						</Link>
-						,{' '}
-						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/about">
-							אודות
-						</Link>
-						,{' '}
-						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/contact">
-							יצירת קשר
-						</Link>
-						,{' '}
-						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/">
-							דף הבית
 						</Link>{' '}
-						ולמאמר{' '}
+						או למאמר{' '}
 						<Link
 							className="font-medium text-primary underline-offset-2 hover:underline"
 							href="/blog/guy-avni-client-trust-roadmap/"
@@ -66,11 +57,6 @@ export default async function BlogIndexPage() {
 						</Link>
 						.
 					</p>
-				</div>
-				<Separator className="bg-border/60" />
-				<div className="flex flex-col gap-4 text-right">
-					<h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground">רשימת מאמרים</h2>
-					<h3 className="text-lg font-medium text-muted-foreground">בחירה מהירה לפי נושא</h3>
 				</div>
 				<div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
 					{posts.map((post) => (

@@ -1,5 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { MAIN_PAGE_HEROES } from '../src/lib/seo/main-page-heroes.mjs';
+import { validateAllMainPageHeroes } from './lib/seo-hero-rules.mjs';
+import { runH1Checks } from './lib/check-page-h1.mjs';
 
 const EXPECTED_HOST = 'https://avniguy.co.il';
 
@@ -57,6 +60,27 @@ function checkSourceFiles() {
 	}
 }
 
+function checkMainPageHeroes() {
+	logStep('step 2.3: validating main-menu page heroes');
+	const heroes = Object.values(MAIN_PAGE_HEROES);
+	const result = validateAllMainPageHeroes(heroes);
+	if (!result.ok) {
+		for (const err of result.errors) {
+			fail(err);
+		}
+	}
+}
+
+function checkPageH1Rules() {
+	logStep('step 2.4: checking single-H1 rules for blog');
+	try {
+		runH1Checks();
+	} catch (err) {
+		console.error('[seo-guardrails] checkPageH1Rules failed', err);
+		fail('H1 structural checks failed');
+	}
+}
+
 function checkNextBuildOutputIfPresent() {
 	const requireDist = process.env.SEO_GUARDRAILS_REQUIRE_DIST === '1';
 	const nextDir = path.join(process.cwd(), '.next');
@@ -75,6 +99,8 @@ function checkNextBuildOutputIfPresent() {
 function main() {
 	logStep('step 0: starting SEO guardrails (Next.js)');
 	checkSourceFiles();
+	checkMainPageHeroes();
+	checkPageH1Rules();
 	checkNextBuildOutputIfPresent();
 	if (process.exitCode && process.exitCode !== 0) {
 		logStep('done: guardrails completed with failures');

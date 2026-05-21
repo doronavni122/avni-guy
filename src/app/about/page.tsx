@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import { MainPageHero } from '@/components/seo/MainPageHero';
 import { SiteShell } from '@/components/layout/SiteShell';
+import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
 import { buildPageMetadata } from '@/lib/metadata';
 import { buildBreadcrumbSchema } from '@/utils/structured-data';
 
@@ -24,16 +26,7 @@ export default function AboutPage() {
 	return (
 		<SiteShell extraJsonLd={jsonLd}>
 			<section className="flex flex-col gap-10">
-				<div className="flex flex-col gap-4 text-right">
-					<p className="text-sm font-medium text-primary">גיא אבני עוד</p>
-					<h1 className="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-						גיא אבני עוד - ניסיון, אחריות וראייה קדימה
-					</h1>
-					<p className="max-w-3xl text-pretty text-lg leading-relaxed text-muted-foreground">
-						אני פועל מתוך אמונה ששירות משפטי צריך להיות אנושי, ברור וממוקד תוצאה. לאורך השנים בניתי תהליך עבודה שמצמצם
-						אי-ודאות ומאפשר ללקוח להתקדם בביטחון.
-					</p>
-				</div>
+				<MainPageHero hero={MAIN_PAGE_HEROES['/about/']} />
 				<div className="grid gap-6 lg:grid-cols-2">
 					<Card className="border-border/60 bg-card/70 shadow-sm">
 						<CardContent className="flex flex-col gap-3 p-8 text-right">

@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import { MainPageHero } from '@/components/seo/MainPageHero';
 import { SiteShell } from '@/components/layout/SiteShell';
 import { getTags } from '@/lib/content/posts';
+import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
 import { buildPageMetadata } from '@/lib/metadata';
 import { buildBreadcrumbSchema } from '@/utils/structured-data';
 import { getTagLabel } from '@/utils/taxonomy-labels';
@@ -27,12 +29,7 @@ export default async function TagsIndexPage() {
 	return (
 		<SiteShell extraJsonLd={jsonLd}>
 			<section className="flex flex-col gap-10">
-				<div className="flex flex-col gap-4 text-right">
-					<p className="text-sm font-medium text-primary">גיא אבני משרד עורכי דין</p>
-					<h1 className="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-						גיא אבני משרד עורכי דין - תגיות תוכן
-					</h1>
-				</div>
+				<MainPageHero hero={MAIN_PAGE_HEROES['/tags/']} />
 				<Separator className="bg-border/60" />
 				<div className="flex flex-wrap justify-end gap-3">
 					{tags.map((tag) => (

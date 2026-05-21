@@ -7,8 +7,12 @@ import { LatestInsightsStrip } from '@/components/home/LatestInsightsStrip';
 import { buttonVariants } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import { MainPageHero } from '@/components/seo/MainPageHero';
 import type { HomeData } from '@/lib/home/loadHomeData';
+import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
 import { cn } from '@/lib/utils';
+
+const homeHero = MAIN_PAGE_HEROES['/'];
 
 export function HomePage({
 	featuredPosts,
@@ -30,14 +34,7 @@ export function HomePage({
 					aria-hidden="true"
 				/>
 				<div className="relative flex flex-col gap-6 text-right">
-					<p className="text-sm font-medium tracking-wide text-primary">גיא אבני · משרד עורכי דין</p>
-					<h1 className="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-						גיא אבני - תוכן מקצועי ושירות משפטי ברור
-					</h1>
-					<p className="max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
-						ברוכים הבאים לאתר של גיא אבני. כאן תמצאו תכנים ברורים בשפה פשוטה, יחד עם גישה חיובית ופתרונות
-						פרקטיים ללקוחות פרטיים ועסקיים.
-					</p>
+					<MainPageHero hero={homeHero} />
 					<div className="flex flex-wrap items-center justify-end gap-3">
 						<Link className={cn(buttonVariants({ size: 'lg' }))} href="/contact/">
 							תיאום שיחה

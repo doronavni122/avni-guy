@@ -60,7 +60,7 @@ export function BlogPostLayout({ mainKeyword, data, jsonLd, children }: BlogPost
 						<CardDescription className="text-xs font-medium uppercase tracking-wide text-primary">
 							{mainKeyword}
 						</CardDescription>
-						<p className="font-heading text-3xl font-semibold tracking-tight text-foreground md:text-4xl">{title}</p>
+						<h1 className="font-heading text-3xl font-semibold tracking-tight text-foreground md:text-4xl">{title}</h1>
 						<div className="flex flex-wrap items-center justify-end gap-2">
 							<Link
 								href={`/categories/${category}/`}

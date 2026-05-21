@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import { MainPageHero } from '@/components/seo/MainPageHero';
 import { SiteShell } from '@/components/layout/SiteShell';
+import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
 import { buildPageMetadata } from '@/lib/metadata';
 import { buildBreadcrumbSchema } from '@/utils/structured-data';
 
@@ -24,16 +26,7 @@ export default function ServicesPage() {
 	return (
 		<SiteShell extraJsonLd={jsonLd}>
 			<section className="flex flex-col gap-10">
-				<div className="flex flex-col gap-4 text-right">
-					<p className="text-sm font-medium text-primary">גיא אבני משרד עורכי דין</p>
-					<h1 className="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-						גיא אבני משרד עורכי דין - שירותים מקצועיים
-					</h1>
-					<p className="max-w-3xl text-pretty text-lg leading-relaxed text-muted-foreground">
-						השירותים בנויים למסלול ברור: אבחון, תכנון, ביצוע ומעקב. המטרה היא לתת ודאות ולשמור על התקדמות אפקטיבית לאורך כל
-						הדרך.
-					</p>
-				</div>
+				<MainPageHero hero={MAIN_PAGE_HEROES['/services/']} />
 				<div className="grid gap-6 md:grid-cols-2">
 					{[
 						['ייעוץ ואסטרטגיה', 'מיפוי מצב, זיהוי הזדמנויות ובניית תוכנית פעולה מדויקת לפי סדר עדיפויות.'],

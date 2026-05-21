@@ -2,7 +2,9 @@ import Link from 'next/link';
 import { buttonVariants } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import { MainPageHero } from '@/components/seo/MainPageHero';
 import { SiteShell } from '@/components/layout/SiteShell';
+import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
 import { cn } from '@/lib/utils';
 import { SITE_CONTACT_EMAIL } from '@/consts';
 import { buildPageMetadata } from '@/lib/metadata';
@@ -30,13 +32,7 @@ export default function ContactPage() {
 		<SiteShell extraJsonLd={jsonLd}>
 			<section className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-14">
 				<div className="flex max-w-xl flex-col gap-4 text-right">
-					<p className="text-sm font-medium text-primary">אבני גיא</p>
-					<h1 className="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-						אבני גיא - יצירת קשר מקצועית ונוחה
-					</h1>
-					<p className="text-pretty text-lg leading-relaxed text-muted-foreground">
-						אפשר לתאם שיחה ראשונית ולהציג את התמונה המלאה. המטרה היא להבין את הצורך במהירות ולהציע מסלול עבודה ברור.
-					</p>
+					<MainPageHero hero={MAIN_PAGE_HEROES['/contact/']} />
 					<Separator className="bg-border/60" />
 					<div className="flex flex-col gap-4">
 						<h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground">מה להכין לפני פנייה</h2>

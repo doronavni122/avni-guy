@@ -22,6 +22,12 @@
 - Always provide unique meta title and meta description per page (`buildPageMetadata` in `src/lib/metadata.ts`).
 - Every page must declare a single primary keyword.
 - Primary keyword must appear in the page `H1`.
+- **Exactly one `<h1>` per page** (blog title via `BlogPostLayout`; MDX body must not start with `#`).
+- **Main-menu pages** (`/`, `/about/`, `/services/`, `/blog/`, `/categories/`, `/tags/`, `/contact/`): hero copy lives in [`src/lib/seo/main-page-heroes.ts`](src/lib/seo/main-page-heroes.ts); render with [`MainPageHero`](src/components/seo/MainPageHero.tsx).
+  - One intro **paragraph** directly under the H1: **130–200 words** (Hebrew word count via `countWordsHe` in [`src/lib/seo/hero-rules.ts`](src/lib/seo/hero-rules.ts)).
+  - Intro must include at least one phrase from `SITE_KEYWORDS` in [`src/consts.ts`](src/consts.ts) in natural prose.
+  - **No generic/nav boilerplate** in H1 or intro (e.g. `רשימת מאמרים`, `בחירה מהירה לפי נושא`, `קטגוריות תוכן`, `תגיות תוכן`). Use magazine-style, concrete Hebrew — not index labels.
+  - Good H1: *גיא אבני — כשצריך תוכן ברור וליווי משפטי בלי רעש*. Bad H1: *קטגוריות תוכן*.
 - Keep canonical links correct (`trailingSlash: true` in `next.config.ts`).
 - Global JSON-LD: `Organization` + `WebSite` in `SiteShell`; per-page breadcrumbs / `BlogPosting` / `FAQPage` as appropriate.
 - Preserve `public/robots.txt`, `public/llms.txt`, `app/sitemap.ts`, `app/rss.xml/route.ts`.
