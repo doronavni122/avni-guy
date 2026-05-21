@@ -4,6 +4,7 @@ import { MAIN_PAGE_HEROES } from '../src/lib/seo/main-page-heroes.mjs';
 import { runBannedCharacterChecks } from './lib/check-banned-characters.mjs';
 import { runH1Checks } from './lib/check-page-h1.mjs';
 import { validateAllMainPageStyles } from './lib/main-page-style-rules.mjs';
+import { runMainPageMetaChecks } from './lib/check-main-page-meta.mjs';
 import { validateAllMainPageHeroes } from './lib/seo-hero-rules.mjs';
 
 const EXPECTED_HOST = 'https://avniguy.co.il';
@@ -75,6 +76,13 @@ function checkMainPageHeroes() {
 	const styleResult = validateAllMainPageStyles(heroes);
 	if (!styleResult.ok) {
 		for (const err of styleResult.errors) {
+			fail(err);
+		}
+	}
+	logStep('step 2.3.2: validating main-menu brand and meta conventions');
+	const metaResult = runMainPageMetaChecks();
+	if (!metaResult.ok) {
+		for (const err of metaResult.errors) {
 			fail(err);
 		}
 	}
