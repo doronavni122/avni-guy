@@ -71,6 +71,10 @@ export default function ContactPage() {
 							.
 						</p>
 						<h3 className="font-heading text-xl font-semibold text-foreground">ערוץ פנייה</h3>
+						<p className="text-pretty text-sm leading-relaxed text-muted-foreground">
+							בשיחה הראשונה מתמקדים במיפוי עובדות, דחיפות וצעדים לשבוע הקרוב. אין צורך בתיק מושלם; כן כדאי שאלות
+							כתובות ומסמכים מרכזיים.
+						</p>
 						<p className="text-pretty leading-relaxed text-muted-foreground">
 							ניתן לפנות בדוא״ל - המענה ניתן במסגרת הזמינות המקצועית, בצורה עניינית ומכבדת.
 						</p>

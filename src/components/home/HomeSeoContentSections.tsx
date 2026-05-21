@@ -90,7 +90,7 @@ function renderSectionBody(sectionId: string) {
 					<Link className={linkClass} href="/categories/service/">
 						קטגוריית שירות
 					</Link>{' '}
-					 -  נקודת פתיחה טובה לפני כל פנייה לייעוץ או ייצוג.
+						: נקודת פתיחה טובה לפני כל פנייה לייעוץ או ייצוג.
 				</p>
 			);
 		case 'seo-israel-context':
@@ -132,7 +132,7 @@ function renderSectionBody(sectionId: string) {
 					<Link className={linkClass} href="/contact/">
 						תיאום ייעוץ ראשון
 					</Link>{' '}
-					 -  גם כשעדיין לא ברור אם נדרש ייצוג מלא.
+						, גם כשעדיין לא ברור אם נדרש ייצוג מלא.
 				</p>
 			);
 		case 'seo-transparency':
@@ -155,7 +155,7 @@ function renderSectionBody(sectionId: string) {
 					<Link className={linkClass} href="/categories/communication/">
 						תקשורת
 					</Link>{' '}
-					 -  תחום שמזין כל הליך אזרחי או מסחרי מוצלח.
+						: תחום שמזין כל הליך אזרחי או מסחרי מוצלח.
 				</p>
 			);
 		case 'seo-real-estate':
@@ -174,7 +174,7 @@ function renderSectionBody(sectionId: string) {
 					<Link className={linkClass} href="/categories/real-estate-law/">
 						קטגוריית נדל״ן
 					</Link>{' '}
-					 -  לפני חתימה על כל התחייבות כספית משמעותית.
+						, לפני חתימה על כל התחייבות כספית משמעותית.
 				</p>
 			);
 		case 'seo-choosing-lawyer':
@@ -212,7 +212,7 @@ function renderSectionBody(sectionId: string) {
 					<Link className={linkClass} href="/categories/strategy/">
 						קטגוריית אסטרטגיה
 					</Link>{' '}
-					 -  בסיס להחלטות עסקיות ואזרחיות כאחד.
+						: בסיס להחלטות עסקיות ואזרחיות כאחד.
 				</p>
 			);
 		case 'seo-documents':
@@ -235,7 +235,7 @@ function renderSectionBody(sectionId: string) {
 					<Link className={linkClass} href="/categories/documents/">
 						קטגוריית מסמכים
 					</Link>{' '}
-					 -  הכנה שמונעת עיכובים יקרים בהמשך.
+						: הכנה שמונעת עיכובים יקרים בהמשך.
 				</p>
 			);
 		case 'seo-counsel-vs-representation':

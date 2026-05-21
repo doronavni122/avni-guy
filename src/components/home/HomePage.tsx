@@ -263,7 +263,7 @@ export function HomePage({
 
 			<section id="reading-paths" className="home-anchor-target flex flex-col gap-5 text-right" aria-labelledby="reading-paths-title">
 				<h2 id="reading-paths-title" className="font-heading text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-					מסלולי קריאה מומלצים מאתר אבני גיא
+					מסלולי קריאה מומלצים מאתר גיא אבני
 				</h2>
 				<div className="grid gap-5 lg:grid-cols-3">
 					{readingPaths.map((path) => (
@@ -389,7 +389,7 @@ export function HomePage({
 
 			<section id="comparison" className="home-anchor-target flex flex-col gap-5 text-right" aria-labelledby="comparison-title">
 				<h2 id="comparison-title" className="font-heading text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-					לבד מול ליווי משפטי - הפרספקטיבה של אבני גיא עו״ד
+					לבד מול ליווי משפטי - הפרספקטיבה של גיא אבני עו״ד
 				</h2>
 				<div className="grid gap-4 md:grid-cols-2">
 					<Card className="border-border/60 bg-card/70 shadow-sm">
@@ -608,7 +608,7 @@ export function HomePage({
 							שגרה חודשית
 						</span>
 					</div>
-					<h4 className="font-heading text-lg font-semibold text-foreground">מוקדי בקרה שסביבם בונה אבני גיא שגרת ניהול סיכונים</h4>
+					<h4 className="font-heading text-lg font-semibold text-foreground">מוקדי בקרה שסביבם בונה גיא אבני שגרת ניהול סיכונים</h4>
 					<ul className="max-w-4xl list-disc space-y-2 pr-5 text-sm leading-relaxed text-muted-foreground sm:text-base">
 						<li>
 							<strong className="text-foreground">חוזים פעילים:</strong> זיהוי סעיפים שדורשים{' '}
@@ -674,7 +674,7 @@ export function HomePage({
 				</div>
 
 				<div className="space-y-4">
-					<h3 className="font-heading text-xl font-semibold text-foreground">איך בונים אמון לקוח - מתודולוגיה שמזינה את אבני גיא</h3>
+					<h3 className="font-heading text-xl font-semibold text-foreground">איך בונים אמון לקוח - מתודולוגיה שמזינה את גיא אבני</h3>
 					<div className="flex flex-wrap justify-end gap-2">
 						<span className="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground">
 							אמון לקוח
@@ -716,7 +716,7 @@ export function HomePage({
 							.
 						</li>
 					</ul>
-					<h5 className="font-heading text-base font-semibold text-foreground">להתחיל כבר השבוע עם אבני גיא עו״ד - בלי דחיינות</h5>
+					<h5 className="font-heading text-base font-semibold text-foreground">להתחיל כבר השבוע עם גיא אבני עו״ד - בלי דחיינות</h5>
 					<p className="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
 						לקוחות לא מחפשים רק תשובה משפטית נכונה; הם רוצים להבין מה קורה עכשיו, מה צפוי בהמשך, ואיך כל החלטה משרתת את
 						המטרה שלהם. מי שמאמץ את הכללים האלה מייצר{' '}

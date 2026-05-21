@@ -32,7 +32,8 @@ export default function AboutPage() {
 						<CardContent className="flex flex-col gap-3 p-8 text-right">
 							<p className="font-heading text-lg font-semibold text-foreground">ערכים</p>
 							<p className="text-pretty text-sm leading-relaxed text-muted-foreground">
-								שקיפות, זמינות וחשיבה אסטרטגית כבסיס לכל שיחה ולכל מסמך.
+								שקיפות, זמינות וחשיבה אסטרטגית כבסיס לכל שיחה ולכל מסמך: מה כלול בליווי, מה לא, ואיך מתקבלות החלטות
+								בזמן אמת.
 							</p>
 						</CardContent>
 					</Card>
@@ -40,7 +41,8 @@ export default function AboutPage() {
 						<CardContent className="flex flex-col gap-3 p-8 text-right">
 							<p className="font-heading text-lg font-semibold text-foreground">דרך עבודה</p>
 							<p className="text-pretty text-sm leading-relaxed text-muted-foreground">
-								מיפוי צעדים, סיכומים ברורים ובקרה שוטפת כדי לשמור על קצב מקצועי ונעים.
+								מיפוי צעדים, סיכומים ברורים אחרי שיחות ובקרה שוטפת: פגישת מיקוד, תמונת סיכונים, ועדכון כשמשהו משתנה
+								בשטח.
 							</p>
 						</CardContent>
 					</Card>
@@ -84,8 +86,8 @@ export default function AboutPage() {
 					</p>
 					<h3 className="font-heading text-xl font-semibold text-foreground">למי זה מתאים</h3>
 					<p className="max-w-3xl text-pretty leading-relaxed text-muted-foreground">
-						האתר מתאים למי שמחפש ליווי מקצועי בשפה פרקטית, עם דגש על תכנון מוקדם, צעדים ישימים ותוכן חיובי שמחבר בין ידע משפטי
-						לבין החלטות יומיומיות.
+						האתר מתאים למי שמחפש ליווי מקצועי בשפה פרקטית, עם דגש על תכנון מוקדם, צעדים ישימים ותוכן שמחבר בין ידע משפטי לבין
+						החלטות יומיומיות. התוכן באתר אינו תחליף לייעוץ אישי; כשיש סיכון מהותי, עדיף שיחה ממוקדת.
 					</p>
 				</div>
 			</section>
