@@ -1,0 +1,240 @@
+guy-avni-business-legal-habits: first H2 duplicates layout H1 title exactly
+guy-avni-business-legal-habits: Hebrew body word count ~693 — moderate depth, below typical guide target
+guy-avni-business-legal-habits: metaDescription length 103 chars — may be short for SERP
+guy-avni-business-legal-habits: duplicate paragraph link target URL within article
+guy-avni-business-legal-habits: 10 generic numbered internal-link anchors (קריאה פנימית/קשורה N)
+guy-avni-business-legal-habits: title uses shared long template suffix — SERP/H1 clutter
+guy-avni-business-legal-habits: updatedDate 2026-05-05 batch stamp — risk of perceived shallow refresh
+guy-avni-choosing-lawyer-israel-comprehensive-guide: metaTitle length 78 chars — likely SERP truncation
+guy-avni-choosing-lawyer-israel-comprehensive-guide: metaDescription length 116 chars — may be short for SERP
+guy-avni-choosing-lawyer-israel-comprehensive-guide: duplicate paragraph link target URL within article
+guy-avni-choosing-lawyer-israel-comprehensive-guide: image alt mixes Hebrew label with English keyword slug pattern
+guy-avni-choosing-lawyer-israel-comprehensive-guide: no updatedDate — weaker freshness signal vs batch-updated peers
+guy-avni-choosing-lawyer-israel-comprehensive-guide: cites israelbar.org.il as plain text without authoritative external hyperlink
+guy-avni-client-onboarding-framework: first H2 duplicates layout H1 title exactly
+guy-avni-client-onboarding-framework: Hebrew body word count ~628 — moderate depth, below typical guide target
+guy-avni-client-onboarding-framework: metaDescription length 95 chars — may be short for SERP
+guy-avni-client-onboarding-framework: duplicate paragraph link target URL within article
+guy-avni-client-onboarding-framework: uses standard 7-nav link block with identical anchors across site
+guy-avni-client-onboarding-framework: 10 generic numbered internal-link anchors (קריאה פנימית/קשורה N)
+guy-avni-client-onboarding-framework: frontmatter blog paths not linked in body paragraphs: /blog/guy-avni-client-trust-roadmap, /blog/guy-avni-service-quality-standards, /blog/guy-avni-document-readiness-guide
+guy-avni-client-onboarding-framework: title uses shared long template suffix — SERP/H1 clutter
+guy-avni-client-onboarding-framework: updatedDate 2026-05-05 batch stamp — risk of perceived shallow refresh
+guy-avni-client-trust-roadmap: first H2 duplicates layout H1 title exactly
+guy-avni-client-trust-roadmap: Hebrew body word count ~627 — moderate depth, below typical guide target
+guy-avni-client-trust-roadmap: metaDescription length 97 chars — may be short for SERP
+guy-avni-client-trust-roadmap: duplicate paragraph link target URL within article
+guy-avni-client-trust-roadmap: uses standard 7-nav link block with identical anchors across site
+guy-avni-client-trust-roadmap: 10 generic numbered internal-link anchors (קריאה פנימית/קשורה N)
+guy-avni-client-trust-roadmap: frontmatter blog paths not linked in body paragraphs: /blog/guy-avni-client-onboarding-framework, /blog/guy-avni-communication-strategy-for-clients, /blog/guy-avni-meeting-preparation-checklist
+guy-avni-client-trust-roadmap: title uses shared long template suffix — SERP/H1 clutter
+guy-avni-client-trust-roadmap: updatedDate 2026-05-05 batch stamp — risk of perceived shallow refresh
+guy-avni-collaboration-with-external-experts: first H2 duplicates layout H1 title exactly
+guy-avni-collaboration-with-external-experts: Hebrew body word count ~625 — moderate depth, below typical guide target
+guy-avni-collaboration-with-external-experts: metaDescription length 97 chars — may be short for SERP
+guy-avni-collaboration-with-external-experts: duplicate paragraph link target URL within article
+guy-avni-collaboration-with-external-experts: uses standard 7-nav link block with identical anchors across site
+guy-avni-collaboration-with-external-experts: 10 generic numbered internal-link anchors (קריאה פנימית/קשורה N)
+guy-avni-collaboration-with-external-experts: frontmatter blog paths not linked in body paragraphs: /blog/guy-avni-meeting-preparation-checklist, /blog/guy-avni-positive-case-organization, /blog/guy-avni-process-improvement-for-legal-teams
+guy-avni-collaboration-with-external-experts: title uses shared long template suffix — SERP/H1 clutter
+guy-avni-collaboration-with-external-experts: updatedDate 2026-05-05 batch stamp — risk of perceived shallow refresh
+guy-avni-communication-strategy-for-clients: first H2 duplicates layout H1 title exactly
+guy-avni-communication-strategy-for-clients: Hebrew body word count ~632 — moderate depth, below typical guide target
+guy-avni-communication-strategy-for-clients: metaDescription length 83 chars — may be short for SERP
+guy-avni-communication-strategy-for-clients: duplicate paragraph link target URL within article
+guy-avni-communication-strategy-for-clients: uses standard 7-nav link block with identical anchors across site
+guy-avni-communication-strategy-for-clients: 10 generic numbered internal-link anchors (קריאה פנימית/קשורה N)
+guy-avni-communication-strategy-for-clients: frontmatter blog paths not linked in body paragraphs: /blog/guy-avni-client-trust-roadmap, /blog/guy-avni-meeting-preparation-checklist, /blog/guy-avni-service-quality-standards
+guy-avni-communication-strategy-for-clients: title uses shared long template suffix — SERP/H1 clutter
+guy-avni-communication-strategy-for-clients: updatedDate 2026-05-05 batch stamp — risk of perceived shallow refresh
+guy-avni-contract-review-flow: first H2 duplicates layout H1 title exactly
+guy-avni-contract-review-flow: Hebrew body word count ~631 — moderate depth, below typical guide target
+guy-avni-contract-review-flow: metaDescription length 99 chars — may be short for SERP
+guy-avni-contract-review-flow: duplicate paragraph link target URL within article
+guy-avni-contract-review-flow: uses standard 7-nav link block with identical anchors across site
+guy-avni-contract-review-flow: 10 generic numbered internal-link anchors (קריאה פנימית/קשורה N)
+guy-avni-contract-review-flow: frontmatter blog paths not linked in body paragraphs: /blog/guy-avni-service-quality-standards, /blog/guy-avni-negotiation-clarity-principles, /blog/guy-avni-document-readiness-guide
+guy-avni-contract-review-flow: title uses shared long template suffix — SERP/H1 clutter
+guy-avni-contract-review-flow: image alt mixes Hebrew label with English keyword slug pattern
+guy-avni-contract-review-flow: updatedDate 2026-05-05 batch stamp — risk of perceived shallow refresh
+guy-avni-dispute-prevention-method: first H2 duplicates layout H1 title exactly
+guy-avni-dispute-prevention-method: Hebrew body word count ~628 — moderate depth, below typical guide target
+guy-avni-dispute-prevention-method: metaDescription length 88 chars — may be short for SERP
+guy-avni-dispute-prevention-method: duplicate paragraph link target URL within article
+guy-avni-dispute-prevention-method: uses standard 7-nav link block with identical anchors across site
+guy-avni-dispute-prevention-method: 10 generic numbered internal-link anchors (קריאה פנימית/קשורה N)
+guy-avni-dispute-prevention-method: frontmatter blog paths not linked in body paragraphs: /blog/guy-avni-negotiation-clarity-principles, /blog/guy-avni-risk-management-routine
+guy-avni-dispute-prevention-method: title uses shared long template suffix — SERP/H1 clutter
+guy-avni-dispute-prevention-method: updatedDate 2026-05-05 batch stamp — risk of perceived shallow refresh
+guy-avni-document-readiness-guide: first H2 duplicates layout H1 title exactly
+guy-avni-document-readiness-guide: Hebrew body word count ~626 — moderate depth, below typical guide target
+guy-avni-document-readiness-guide: metaDescription length 97 chars — may be short for SERP
+guy-avni-document-readiness-guide: duplicate paragraph link target URL within article
+guy-avni-document-readiness-guide: uses standard 7-nav link block with identical anchors across site
+guy-avni-document-readiness-guide: 10 generic numbered internal-link anchors (קריאה פנימית/קשורה N)
+guy-avni-document-readiness-guide: frontmatter blog paths not linked in body paragraphs: /blog/guy-avni-contract-review-flow, /blog/guy-avni-positive-case-organization
+guy-avni-document-readiness-guide: title uses shared long template suffix — SERP/H1 clutter
+guy-avni-document-readiness-guide: updatedDate 2026-05-05 batch stamp — risk of perceived shallow refresh
+guy-avni-ethical-decision-making-guide: first H2 duplicates layout H1 title exactly
+guy-avni-ethical-decision-making-guide: Hebrew body word count ~633 — moderate depth, below typical guide target
+guy-avni-ethical-decision-making-guide: metaDescription length 100 chars — may be short for SERP
+guy-avni-ethical-decision-making-guide: duplicate paragraph link target URL within article
+guy-avni-ethical-decision-making-guide: uses standard 7-nav link block with identical anchors across site
+guy-avni-ethical-decision-making-guide: 10 generic numbered internal-link anchors (קריאה פנימית/קשורה N)
+guy-avni-ethical-decision-making-guide: frontmatter blog paths not linked in body paragraphs: /blog/guy-avni-service-quality-standards
+guy-avni-ethical-decision-making-guide: title uses shared long template suffix — SERP/H1 clutter
+guy-avni-ethical-decision-making-guide: updatedDate 2026-05-05 batch stamp — risk of perceived shallow refresh
+guy-avni-evidence-prioritization-framework: first H2 duplicates layout H1 title exactly
+guy-avni-evidence-prioritization-framework: Hebrew body word count ~626 — moderate depth, below typical guide target
+guy-avni-evidence-prioritization-framework: metaDescription length 98 chars — may be short for SERP
+guy-avni-evidence-prioritization-framework: duplicate paragraph link target URL within article
+guy-avni-evidence-prioritization-framework: uses standard 7-nav link block with identical anchors across site
+guy-avni-evidence-prioritization-framework: 10 generic numbered internal-link anchors (קריאה פנימית/קשורה N)
+guy-avni-evidence-prioritization-framework: frontmatter blog paths not linked in body paragraphs: /blog/guy-avni-positive-case-organization
+guy-avni-evidence-prioritization-framework: title uses shared long template suffix — SERP/H1 clutter
+guy-avni-evidence-prioritization-framework: updatedDate 2026-05-05 batch stamp — risk of perceived shallow refresh
+guy-avni-evidence-prioritization-framework: evidence framework topic — body lacks evidence-prioritization terminology
+guy-avni-israel-real-estate-delay-delivery-research: first H2 duplicates layout H1 title exactly
+guy-avni-israel-real-estate-delay-delivery-research: Hebrew body word count ~643 — moderate depth, below typical guide target
+guy-avni-israel-real-estate-delay-delivery-research: metaDescription length 103 chars — may be short for SERP
+guy-avni-israel-real-estate-delay-delivery-research: duplicate paragraph link target URL within article
+guy-avni-israel-real-estate-delay-delivery-research: uses standard 7-nav link block with identical anchors across site
+guy-avni-israel-real-estate-delay-delivery-research: 10 generic numbered internal-link anchors (קריאה פנימית/קשורה N)
+guy-avni-israel-real-estate-delay-delivery-research: frontmatter blog paths not linked in body paragraphs: /blog/guy-avni-risk-management-routine, /blog/guy-avni-dispute-prevention-method
+guy-avni-israel-real-estate-delay-delivery-research: title uses shared long template suffix — SERP/H1 clutter
+guy-avni-israel-real-estate-delay-delivery-research: image alt mixes Hebrew label with English keyword slug pattern
+guy-avni-israel-real-estate-delay-delivery-research: updatedDate 2026-05-05 batch stamp — risk of perceived shallow refresh
+guy-avni-israel-real-estate-delay-delivery-research: metaTitle/metaDescription cite חוק המכר and פיצוי but body is mostly generic ops template
+guy-avni-jurist-vs-lawyer-israel-licensing-guide: metaTitle length 74 chars — likely SERP truncation
+guy-avni-jurist-vs-lawyer-israel-licensing-guide: metaDescription length 98 chars — may be short for SERP
+guy-avni-jurist-vs-lawyer-israel-licensing-guide: duplicate paragraph link target URL within article
+guy-avni-jurist-vs-lawyer-israel-licensing-guide: image alt mixes Hebrew label with English keyword slug pattern
+guy-avni-jurist-vs-lawyer-israel-licensing-guide: no updatedDate — weaker freshness signal vs batch-updated peers
+guy-avni-jurist-vs-lawyer-israel-licensing-guide: uses French guillemets « » — typography inconsistent with rest of Hebrew site
+guy-avni-lawyer-types-israel-specialties-full-guide: metaTitle length 77 chars — likely SERP truncation
+guy-avni-lawyer-types-israel-specialties-full-guide: duplicate paragraph link target URL within article
+guy-avni-lawyer-types-israel-specialties-full-guide: image alt mixes Hebrew label with English keyword slug pattern
+guy-avni-lawyer-types-israel-specialties-full-guide: no updatedDate — weaker freshness signal vs batch-updated peers
+guy-avni-legal-content-writing-approach: first H2 duplicates layout H1 title exactly
+guy-avni-legal-content-writing-approach: Hebrew body word count ~627 — moderate depth, below typical guide target
+guy-avni-legal-content-writing-approach: metaDescription length 96 chars — may be short for SERP
+guy-avni-legal-content-writing-approach: duplicate paragraph link target URL within article
+guy-avni-legal-content-writing-approach: uses standard 7-nav link block with identical anchors across site
+guy-avni-legal-content-writing-approach: 10 generic numbered internal-link anchors (קריאה פנימית/קשורה N)
+guy-avni-legal-content-writing-approach: frontmatter blog paths not linked in body paragraphs: /blog/guy-avni-communication-strategy-for-clients, /blog/guy-avni-ethical-decision-making-guide
+guy-avni-legal-content-writing-approach: title uses shared long template suffix — SERP/H1 clutter
+guy-avni-legal-content-writing-approach: updatedDate 2026-05-05 batch stamp — risk of perceived shallow refresh
+guy-avni-legal-content-writing-approach: topic is legal writing clarity but body uses lowest-differentiation template prose
+guy-avni-legal-counsel-israel-2026-guide: metaTitle length 67 chars — likely SERP truncation
+guy-avni-legal-counsel-israel-2026-guide: duplicate paragraph link target URL within article
+guy-avni-legal-counsel-israel-2026-guide: image alt mixes Hebrew label with English keyword slug pattern
+guy-avni-legal-counsel-israel-2026-guide: no updatedDate — weaker freshness signal vs batch-updated peers
+guy-avni-legal-planning-basics: first H2 duplicates layout H1 title exactly
+guy-avni-legal-planning-basics: Hebrew body word count ~626 — moderate depth, below typical guide target
+guy-avni-legal-planning-basics: metaDescription length 100 chars — may be short for SERP
+guy-avni-legal-planning-basics: duplicate paragraph link target URL within article
+guy-avni-legal-planning-basics: uses standard 7-nav link block with identical anchors across site
+guy-avni-legal-planning-basics: 10 generic numbered internal-link anchors (קריאה פנימית/קשורה N)
+guy-avni-legal-planning-basics: frontmatter blog paths not linked in body paragraphs: /blog/guy-avni-long-term-legal-strategy, /blog/guy-avni-risk-management-routine
+guy-avni-legal-planning-basics: title uses shared long template suffix — SERP/H1 clutter
+guy-avni-legal-planning-basics: updatedDate 2026-05-05 batch stamp — risk of perceived shallow refresh
+guy-avni-long-term-legal-strategy: first H2 duplicates layout H1 title exactly
+guy-avni-long-term-legal-strategy: Hebrew body word count ~627 — moderate depth, below typical guide target
+guy-avni-long-term-legal-strategy: metaDescription length 101 chars — may be short for SERP
+guy-avni-long-term-legal-strategy: duplicate paragraph link target URL within article
+guy-avni-long-term-legal-strategy: uses standard 7-nav link block with identical anchors across site
+guy-avni-long-term-legal-strategy: 10 generic numbered internal-link anchors (קריאה פנימית/קשורה N)
+guy-avni-long-term-legal-strategy: frontmatter blog paths not linked in body paragraphs: /blog/guy-avni-legal-planning-basics, /blog/guy-avni-risk-management-routine
+guy-avni-long-term-legal-strategy: title uses shared long template suffix — SERP/H1 clutter
+guy-avni-long-term-legal-strategy: updatedDate 2026-05-05 batch stamp — risk of perceived shallow refresh
+guy-avni-meeting-preparation-checklist: first H2 duplicates layout H1 title exactly
+guy-avni-meeting-preparation-checklist: Hebrew body word count ~640 — moderate depth, below typical guide target
+guy-avni-meeting-preparation-checklist: metaDescription length 82 chars — may be short for SERP
+guy-avni-meeting-preparation-checklist: duplicate paragraph link target URL within article
+guy-avni-meeting-preparation-checklist: uses standard 7-nav link block with identical anchors across site
+guy-avni-meeting-preparation-checklist: 10 generic numbered internal-link anchors (קריאה פנימית/קשורה N)
+guy-avni-meeting-preparation-checklist: frontmatter blog paths not linked in body paragraphs: /blog/guy-avni-time-management-for-legal-work
+guy-avni-meeting-preparation-checklist: title uses shared long template suffix — SERP/H1 clutter
+guy-avni-meeting-preparation-checklist: updatedDate 2026-05-05 batch stamp — risk of perceived shallow refresh
+guy-avni-negotiation-clarity-principles: first H2 duplicates layout H1 title exactly
+guy-avni-negotiation-clarity-principles: Hebrew body word count ~637 — moderate depth, below typical guide target
+guy-avni-negotiation-clarity-principles: metaDescription length 93 chars — may be short for SERP
+guy-avni-negotiation-clarity-principles: duplicate paragraph link target URL within article
+guy-avni-negotiation-clarity-principles: uses standard 7-nav link block with identical anchors across site
+guy-avni-negotiation-clarity-principles: 10 generic numbered internal-link anchors (קריאה פנימית/קשורה N)
+guy-avni-negotiation-clarity-principles: frontmatter blog paths not linked in body paragraphs: /blog/guy-avni-communication-strategy-for-clients, /blog/guy-avni-dispute-prevention-method, /blog/guy-avni-contract-review-flow
+guy-avni-negotiation-clarity-principles: title uses shared long template suffix — SERP/H1 clutter
+guy-avni-negotiation-clarity-principles: image alt mixes Hebrew label with English keyword slug pattern
+guy-avni-negotiation-clarity-principles: updatedDate 2026-05-05 batch stamp — risk of perceived shallow refresh
+guy-avni-positive-case-organization: first H2 duplicates layout H1 title exactly
+guy-avni-positive-case-organization: Hebrew body word count ~641 — moderate depth, below typical guide target
+guy-avni-positive-case-organization: metaDescription length 97 chars — may be short for SERP
+guy-avni-positive-case-organization: duplicate paragraph link target URL within article
+guy-avni-positive-case-organization: uses standard 7-nav link block with identical anchors across site
+guy-avni-positive-case-organization: 10 generic numbered internal-link anchors (קריאה פנימית/קשורה N)
+guy-avni-positive-case-organization: frontmatter blog paths not linked in body paragraphs: /blog/guy-avni-evidence-prioritization-framework, /blog/guy-avni-process-improvement-for-legal-teams
+guy-avni-positive-case-organization: title uses shared long template suffix — SERP/H1 clutter
+guy-avni-positive-case-organization: updatedDate 2026-05-05 batch stamp — risk of perceived shallow refresh
+guy-avni-process-improvement-for-legal-teams: first H2 duplicates layout H1 title exactly
+guy-avni-process-improvement-for-legal-teams: Hebrew body word count ~629 — moderate depth, below typical guide target
+guy-avni-process-improvement-for-legal-teams: metaDescription length 103 chars — may be short for SERP
+guy-avni-process-improvement-for-legal-teams: duplicate paragraph link target URL within article
+guy-avni-process-improvement-for-legal-teams: uses standard 7-nav link block with identical anchors across site
+guy-avni-process-improvement-for-legal-teams: 10 generic numbered internal-link anchors (קריאה פנימית/קשורה N)
+guy-avni-process-improvement-for-legal-teams: frontmatter blog paths not linked in body paragraphs: /blog/guy-avni-risk-management-routine, /blog/guy-avni-service-quality-standards, /blog/guy-avni-positive-case-organization
+guy-avni-process-improvement-for-legal-teams: title uses shared long template suffix — SERP/H1 clutter
+guy-avni-process-improvement-for-legal-teams: updatedDate 2026-05-05 batch stamp — risk of perceived shallow refresh
+guy-avni-risk-management-routine: first H2 duplicates layout H1 title exactly
+guy-avni-risk-management-routine: Hebrew body word count ~636 — moderate depth, below typical guide target
+guy-avni-risk-management-routine: metaDescription length 100 chars — may be short for SERP
+guy-avni-risk-management-routine: duplicate paragraph link target URL within article
+guy-avni-risk-management-routine: uses standard 7-nav link block with identical anchors across site
+guy-avni-risk-management-routine: 10 generic numbered internal-link anchors (קריאה פנימית/קשורה N)
+guy-avni-risk-management-routine: frontmatter blog paths not linked in body paragraphs: /blog/guy-avni-legal-planning-basics, /blog/guy-avni-dispute-prevention-method
+guy-avni-risk-management-routine: title uses shared long template suffix — SERP/H1 clutter
+guy-avni-risk-management-routine: updatedDate 2026-05-05 batch stamp — risk of perceived shallow refresh
+guy-avni-service-quality-standards: first H2 duplicates layout H1 title exactly
+guy-avni-service-quality-standards: Hebrew body word count ~646 — moderate depth, below typical guide target
+guy-avni-service-quality-standards: metaDescription length 89 chars — may be short for SERP
+guy-avni-service-quality-standards: duplicate paragraph link target URL within article
+guy-avni-service-quality-standards: uses standard 7-nav link block with identical anchors across site
+guy-avni-service-quality-standards: 10 generic numbered internal-link anchors (קריאה פנימית/קשורה N)
+guy-avni-service-quality-standards: frontmatter blog paths not linked in body paragraphs: /blog/guy-avni-process-improvement-for-legal-teams
+guy-avni-service-quality-standards: title uses shared long template suffix — SERP/H1 clutter
+guy-avni-service-quality-standards: updatedDate 2026-05-05 batch stamp — risk of perceived shallow refresh
+guy-avni-time-management-for-legal-work: first H2 duplicates layout H1 title exactly
+guy-avni-time-management-for-legal-work: Hebrew body word count ~653 — moderate depth, below typical guide target
+guy-avni-time-management-for-legal-work: metaDescription length 95 chars — may be short for SERP
+guy-avni-time-management-for-legal-work: duplicate paragraph link target URL within article
+guy-avni-time-management-for-legal-work: uses standard 7-nav link block with identical anchors across site
+guy-avni-time-management-for-legal-work: 10 generic numbered internal-link anchors (קריאה פנימית/קשורה N)
+guy-avni-time-management-for-legal-work: frontmatter blog paths not linked in body paragraphs: /blog/guy-avni-meeting-preparation-checklist, /blog/guy-avni-process-improvement-for-legal-teams
+guy-avni-time-management-for-legal-work: title uses shared long template suffix — SERP/H1 clutter
+guy-avni-time-management-for-legal-work: image alt mixes Hebrew label with English keyword slug pattern
+guy-avni-time-management-for-legal-work: updatedDate 2026-05-05 batch stamp — risk of perceived shallow refresh
+Corpus: 25 blog MDX articles in src/content/blog/
+Corpus: 21/25 articles share identical title suffix "מדריך מעשי, שיטות יישום וטעויות שכדאי למנוע"
+Corpus: shared nav boilerplate paragraph ("כדי לבנות הקשר רחב...") in 20 articles
+Corpus: identical closing checklist block ("צ׳קליסט הרחבה ליישום מיידי") in 21 articles
+Corpus: 6 articles use reversed brand mainKeyword (אבני גיא*) vs majority גיא אבני*
+Guardrails: pnpm run seo:guardrails passes H1, heroes, em-dash, robots — does not check duplicate body text, meta length, anchor uniqueness, or frontmatter/body link parity
+Schema: internalLinks zod minimum is 7 — project content rules expect 10+ unique paragraph links per article
+BlogPostLayout: footer "קישורים פנימיים מומלצים" duplicates frontmatter links with slug labels via labelForInternalLink — weak Hebrew anchors
+BlogPostLayout: category badge renders raw English slug not Hebrew category label
+Frontmatter internalLinks: paths mix trailing-slash and no-slash — inconsistent with next.config trailingSlash true
+BlogPostLayout: three identical Unsplash license outbound links per article in image sources list
+Blog images: figcaption sr-only English keyword chains — no visible Hebrew captions for users or crawlers
+Corpus: no external https hyperlinks in article MDX bodies — missed E-E-A-T authority signals
+Main pages: hero intros pass automated 130-200 Hebrew words and SITE_KEYWORDS checks
+SEO gap: no automated near-duplicate detection across template-cluster MDX bodies
+SEO gap: no per-article enforcement of unique paragraph link anchor text (site-wide duplicate "קריאה פנימית ממוקדת N")
+SEO gap: pillar guides lack FAQPage JSON-LD while homepage may use FAQ schema
+Blog index: /blog/ cards use frontmatter description; article pages use metaDescription for metadata — inconsistent snippet fields across templates
+YMYL priority: expand guy-avni-israel-real-estate-delay-delivery-research with statute timelines sample letters before more ops templates
+YMYL priority: guy-avni-contract-review-flow has only ~2 topic-specific sentences in research section vs generic template bulk
+guy-avni-choosing-lawyer-israel-comprehensive-guide: pillar-style guide ~3286 Hebrew words — highest unique editorial value in corpus
+guy-avni-lawyer-types-israel-specialties-full-guide: pillar-style guide ~834 Hebrew words — highest unique editorial value in corpus
+guy-avni-jurist-vs-lawyer-israel-licensing-guide: pillar-style guide ~834 Hebrew words — highest unique editorial value in corpus
+guy-avni-legal-counsel-israel-2026-guide: pillar-style guide ~792 Hebrew words — highest unique editorial value in corpus
+Taxonomy: identical tag set [clients|israel-law|strategy] on 3 articles — weak tag-page differentiation
+Corpus: 20+ template articles share identical opening paragraph and methodology sections — programmatic duplicate-content risk
