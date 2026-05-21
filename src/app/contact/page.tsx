@@ -15,10 +15,10 @@ export const dynamic = 'force-static';
 const mailtoHref = `mailto:${SITE_CONTACT_EMAIL}?subject=${encodeURIComponent('פנייה מהאתר')}`;
 
 export const metadata = buildPageMetadata({
-	title: 'אבני גיא | יצירת קשר, תיאום שיחה ומענה מקצועי',
+	title: 'גיא אבני | יצירת קשר ותיאום שיחה',
 	description:
-		'באבני גיא תאמו פגישה ראשונה בדואל, תקבלו מענה מקצועי, ואופן פעולה ברור להמשך העבודה המשפטית המתאימה לכם.',
-	keyword: 'אבני גיא',
+		'גיא אבני: תיאום שיחה בדוא״ל, מה להכין לפני פנייה, ומה צפוי בשיחה הראשונה - סיכום קצר, צעדים ברורים וללא הבטחות בלתי אפשריות. התוכן באתר אינו תחליף לייעוץ.',
+	keyword: 'גיא אבני',
 	path: '/contact/',
 });
 
@@ -38,23 +38,23 @@ export default function ContactPage() {
 						<h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground">מה להכין לפני פנייה</h2>
 						<p className="text-pretty leading-relaxed text-muted-foreground">
 							כדאי להכין רקע קצר, מסמכים מרכזיים ושאלות ממוקדות. לפני פנייה מומלץ לעבור על{' '}
-							<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/services">
+							<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/services/">
 								השירותים
 							</Link>
 							, לקרוא ב־{' '}
-							<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/blog">
+							<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/blog/">
 								בלוג
 							</Link>
 							, לבדוק{' '}
-							<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/categories">
+							<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/categories/">
 								קטגוריות
 							</Link>{' '}
 							ו־{' '}
-							<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/tags">
+							<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/tags/">
 								תגיות
 							</Link>
 							, לעיין ב־{' '}
-							<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/about">
+							<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/about/">
 								אודות
 							</Link>
 							, לחזור ל־{' '}

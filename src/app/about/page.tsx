@@ -12,7 +12,7 @@ export const dynamic = 'force-static';
 export const metadata = buildPageMetadata({
 	title: 'גיא אבני עו״ד | ערכים, ניסיון ודרך עבודה מקצועית',
 	description:
-		'גיא אבני עו״ד מציג כאן ערכים, ניסיון מקצועי ודרך עבודה שקופה, זמינה וממוקדת לקוח לטווח הארוך בעסקי המשרד.',
+		'גיא אבני עו״ד מציג ערכים, ניסיון ודרך עבודה: שקיפות, סיכומים אחרי שיחות, מיפוי סיכונים וציפיות ברורות מהיום הראשון. קראו לפני פגישת מיקוד.',
 	keyword: 'גיא אבני עו״ד',
 	path: '/about/',
 });
@@ -50,19 +50,19 @@ export default function AboutPage() {
 					<h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground">ערכי העבודה שמובילים את גיא אבני עו״ד</h2>
 					<p className="max-w-3xl text-pretty leading-relaxed text-muted-foreground">
 						העבודה שלי נשענת על שקיפות, זמינות וחשיבה אסטרטגית. אפשר להעמיק דרך עמוד{' '}
-						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/services">
+						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/services/">
 							השירותים
 						</Link>
 						, לקרוא את{' '}
-						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/blog">
+						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/blog/">
 							הבלוג
 						</Link>
 						, לעיין ב־
-						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/categories">
+						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/categories/">
 							קטגוריות
 						</Link>
 						, לנווט לפי{' '}
-						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/tags">
+						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/tags/">
 							תגיות
 						</Link>
 						, לבדוק את{' '}
@@ -70,7 +70,7 @@ export default function AboutPage() {
 							דף הבית
 						</Link>
 						, לעבור ל־{' '}
-						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/contact">
+						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/contact/">
 							יצירת קשר
 						</Link>{' '}
 						ולקרוא על{' '}

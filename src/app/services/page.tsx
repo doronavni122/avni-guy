@@ -12,7 +12,7 @@ export const dynamic = 'force-static';
 export const metadata = buildPageMetadata({
 	title: 'גיא אבני משרד עורכי דין | ייעוץ, ליווי ותכנון משפטי',
 	description:
-		'במשרד גיא אבני ייעוץ משפטי, ליווי מסמכים ותכנון שקוף, יעדים ברורים ותיאום ציפיות מהיום הראשון לכל לקוח.',
+		'גיא אבני משרד עורכי דין: פגישת מיקוד, תכנון, ניסוח וליווי מסמכים, תקשורת מול גורמים חיצוניים ומעקב שמונע הפתעות. צעדים ברורים בכל שלב.',
 	keyword: 'גיא אבני משרד עורכי דין',
 	path: '/services/',
 });
@@ -47,23 +47,23 @@ export default function ServicesPage() {
 					<h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground">מה כולל השירות</h2>
 					<p className="max-w-3xl text-pretty leading-relaxed text-muted-foreground">
 						השירות כולל פגישת מיקוד, בניית מפת סיכונים והזדמנויות, הכנת מסמכים וניהול תקשורת מקצועית. מומלץ להמשיך גם ל־{' '}
-						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/about">
+						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/about/">
 							אודות
 						</Link>
 						,{' '}
-						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/blog">
+						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/blog/">
 							מאמרים
 						</Link>
 						,{' '}
-						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/categories">
+						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/categories/">
 							קטגוריות
 						</Link>
 						,{' '}
-						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/tags">
+						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/tags/">
 							תגיות
 						</Link>
 						,{' '}
-						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/contact">
+						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/contact/">
 							יצירת קשר
 						</Link>
 						,{' '}

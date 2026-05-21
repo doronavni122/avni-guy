@@ -12,10 +12,10 @@ import { buildBreadcrumbSchema } from '@/utils/structured-data';
 export const dynamic = 'force-static';
 
 export const metadata = buildPageMetadata({
-	title: 'אבני גיא עו״ד | מאמרים משפטיים, מעשיים ועדכניים',
+	title: 'גיא אבני עו״ד | מאמרים משפטיים מעשיים',
 	description:
-		'באבני גיא עו״ד מאגר מאמרים משפטיים בעברית, תכנים חיוביים, מעודכנים ומקושרים למסלולי עבודה פרקטיים במשרד העורך דין.',
-	keyword: 'אבני גיא עו״ד',
+		'גיא אבני עו״ד: מאגר מאמרים משפטיים בעברית על חוזים, נדל״ן, לקוחות ותהליכים. קראו לפני שיחה, סמנו מאמרים והגיעו מוכנים לייעוץ.',
+	keyword: 'גיא אבני עו״ד',
 	path: '/blog/',
 });
 
@@ -71,7 +71,7 @@ export default async function BlogIndexPage() {
 									</CardTitle>
 								</CardHeader>
 								<CardContent className="text-right">
-									<p className="line-clamp-3 text-sm leading-relaxed text-muted-foreground">{post.data.description}</p>
+									<p className="line-clamp-3 text-sm leading-relaxed text-muted-foreground">{post.data.metaDescription}</p>
 								</CardContent>
 							</Card>
 						</Link>

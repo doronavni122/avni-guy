@@ -14,7 +14,7 @@ export const dynamic = 'force-static';
 export const metadata = buildPageMetadata({
 	title: 'גיא אבני משרד עורכי דין | תגיות לנושאים ממוקדים',
 	description:
-		'תגיות תוכן באתר גיא אבני משרד עורכי דין, דיוק מהיר בנושא, קישורים למאמרים, קטגוריות, שירותים ואודות המשרד.',
+		'גיא אבני משרד עורכי דין: תגיות לנושאים צרים - זכויות רוכש, ציות, לקוחות ודין ישראלי. מצאו מאמר רלוונטי בלי לדפדף את כל הארכיון.',
 	keyword: 'גיא אבני משרד עורכי דין',
 	path: '/tags/',
 });
@@ -31,6 +31,13 @@ export default async function TagsIndexPage() {
 			<section className="flex flex-col gap-10">
 				<MainPageHero hero={MAIN_PAGE_HEROES['/tags/']} />
 				<Separator className="bg-border/60" />
+				<p className="max-w-3xl text-pretty text-right leading-relaxed text-muted-foreground">
+					תגית צרה מצמצמת רעש: פתחו נושא אחד, השוו ל־{' '}
+					<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/categories/">
+						קטגוריה רחבה
+					</Link>{' '}
+					רק אם צריך הקשר נוסף, ואז המשיכו למאמר המלא מהארכיון.
+				</p>
 				<div className="flex flex-wrap justify-end gap-3">
 					{tags.map((tag) => (
 						<Link key={tag} className="no-underline" href={`/tags/${tag}/`}>
