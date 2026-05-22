@@ -18,11 +18,6 @@ task_graph.log
 .vercelignore
 .dockerignore
 
-# Local scripts (exclude bulk; allow SEO prebuild audit chain)
-scripts/*
-!scripts/seo-guardrails.mjs
-!scripts/content-audit.mjs
-!scripts/lib/
 
 # Optional local env templates stay out of upload
 .env
