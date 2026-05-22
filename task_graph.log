@@ -63,3 +63,4 @@
 62. polish-homepage-brand-and-deepen-main-menu-bodies , src/components/home/HomePage.tsx src/components/home/HomeSeoContentSections.tsx src/app/about/page.tsx src/app/services/page.tsx src/app/contact/page.tsx
 63. add-content-seo-audit-and-loop-gap-inventories , content-seo-audit-findings.txt loop-audit-gaps.txt task_graph.log
 64. add-article-content-audit-and-align-content-loops , scripts/lib/check-article-content.mjs scripts/lib/content-forbidden-patterns.mjs scripts/lib/content-tiers.mjs scripts/content-audit.mjs scripts/seo-guardrails.mjs package.json .cursor/rules .cursor/agents .cursor/skills task_graph.log
+64. remediate-all-blog-mdx-for-content-audit , src/content/blog scripts/apply-article-remediation.mjs scripts/lib/article-specs.mjs scripts/lib/article-body-kit.mjs task_graph.log
