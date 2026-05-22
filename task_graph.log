@@ -66,3 +66,4 @@
 64. remediate-all-blog-mdx-for-content-audit , src/content/blog scripts/apply-article-remediation.mjs scripts/lib/article-specs.mjs scripts/lib/article-body-kit.mjs task_graph.log
 65. enforce-content-audit-on-prebuild-and-schema-min-ten-links , src/lib/content/schema.ts package.json task_graph.log
 66. allow-seo-guardrails-scripts-on-vercel-prebuild , .vercelignore task_graph.log
+67. include-scripts-in-vercel-deploy-for-prebuild , .vercelignore task_graph.log
