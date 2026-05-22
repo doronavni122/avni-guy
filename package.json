@@ -7,6 +7,7 @@
   },
   "scripts": {
     "dev": "next dev",
+    "prebuild": "CONTENT_AUDIT_ENFORCE=1 node scripts/seo-guardrails.mjs",
     "build": "next build",
     "start": "next start",
     "seo:indexnow": "node scripts/indexnow-submit.mjs",

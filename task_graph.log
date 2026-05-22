@@ -64,3 +64,4 @@
 63. add-content-seo-audit-and-loop-gap-inventories , content-seo-audit-findings.txt loop-audit-gaps.txt task_graph.log
 64. add-article-content-audit-and-align-content-loops , scripts/lib/check-article-content.mjs scripts/lib/content-forbidden-patterns.mjs scripts/lib/content-tiers.mjs scripts/content-audit.mjs scripts/seo-guardrails.mjs package.json .cursor/rules .cursor/agents .cursor/skills task_graph.log
 64. remediate-all-blog-mdx-for-content-audit , src/content/blog scripts/apply-article-remediation.mjs scripts/lib/article-specs.mjs scripts/lib/article-body-kit.mjs task_graph.log
+65. enforce-content-audit-on-prebuild-and-schema-min-ten-links , src/lib/content/schema.ts package.json task_graph.log

@@ -11,7 +11,7 @@ export const blogFrontmatterSchema = z.object({
 	updatedDate: z.coerce.date().optional(),
 	category: z.string(),
 	tags: z.array(z.string()).min(3),
-	internalLinks: z.array(z.string()).min(7),
+	internalLinks: z.array(z.string()).min(10),
 	images: z
 		.array(
 			z.object({
