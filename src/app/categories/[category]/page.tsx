@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { SiteShell } from '@/components/layout/SiteShell';
-import { getCategories, getSortedPosts } from '@/lib/content/posts';
+import { getCategories, getPostsIndex } from '@/lib/content/posts';
 import { buildPageMetadata } from '@/lib/metadata';
 import { buildBreadcrumbSchema } from '@/utils/structured-data';
 import {
@@ -34,10 +34,10 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function CategoryPage({ params }: PageProps) {
 	const { category } = await params;
-	const posts = (await getSortedPosts()).filter((post) => post.data.category === category);
+	const { posts: allPosts, categories } = await getPostsIndex();
+	const posts = allPosts.filter((post) => post.data.category === category);
 	if (posts.length === 0) {
-		const known = await getCategories();
-		if (!known.includes(category)) notFound();
+		if (!categories.includes(category)) notFound();
 	}
 	const categoryHe = getCategoryLabel(category);
 	const jsonLd = buildBreadcrumbSchema([
@@ -47,7 +47,7 @@ export default async function CategoryPage({ params }: PageProps) {
 	]);
 
 	return (
-		<SiteShell extraJsonLd={jsonLd}>
+		<SiteShell currentPath={`/categories/${category}/`} extraJsonLd={jsonLd}>
 			<section className="flex flex-col gap-10">
 				<div className="flex flex-col gap-4 text-right">
 					<p className="text-sm font-medium text-primary">אבני גיא</p>

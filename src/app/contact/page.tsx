@@ -29,7 +29,7 @@ export default function ContactPage() {
 	]);
 
 	return (
-		<SiteShell extraJsonLd={jsonLd}>
+		<SiteShell currentPath="/contact/" extraJsonLd={jsonLd}>
 			<section className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-14">
 				<div className="flex max-w-xl flex-col gap-4 text-right">
 					<MainPageHero hero={MAIN_PAGE_HEROES['/contact/']} />

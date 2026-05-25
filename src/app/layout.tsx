@@ -26,7 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	const bingVerification = process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION?.trim();
 
 	return (
-		<html lang="he" dir="rtl" className={`${atkinson.variable} scroll-smooth`}>
+		<html lang="he" dir="rtl" className={`${atkinson.variable} scroll-smooth font-sans`}>
 			<head>
 				<link rel="icon" type="image/svg+xml" href="/images/branding/guy-avni-avni-guy-law-firm-lawyer-brand-favicon.svg" />
 				<link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href="/rss.xml" />
@@ -34,7 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				{googleVerification ? <meta name="google-site-verification" content={googleVerification} /> : null}
 				{bingVerification ? <meta name="msvalidate.01" content={bingVerification} /> : null}
 			</head>
-			<body className="flex min-h-dvh flex-col antialiased font-sans">{children}</body>
+			<body className={`${atkinson.className} flex min-h-dvh flex-col antialiased`}>{children}</body>
 		</html>
 	);
 }

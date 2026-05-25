@@ -4,6 +4,7 @@ import { HomeSeoContentSections } from '@/components/home/HomeSeoContentSections
 import { FeaturedArticlesGrid } from '@/components/home/FeaturedArticlesGrid';
 import { HomeMiniToc } from '@/components/home/HomeMiniToc';
 import { LatestInsightsStrip } from '@/components/home/LatestInsightsStrip';
+import { OptimizedImage } from '@/components/media/OptimizedImage';
 import { buttonVariants } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
@@ -44,13 +45,11 @@ export function HomePage({
 						</Link>
 					</div>
 					<figure className="overflow-hidden rounded-xl border border-border/60 bg-background/80">
-						<img
+						<OptimizedImage
 							src={homeImages[0].src}
 							alt={homeImages[0].alt}
 							title={homeImages[0].title}
-							loading="eager"
-							width={1400}
-							height={900}
+							priority
 							className="h-56 w-full object-cover sm:h-64"
 						/>
 					</figure>
@@ -141,20 +140,17 @@ export function HomePage({
 					))}
 				</div>
 				<figure className="overflow-hidden rounded-xl border border-border/60 bg-background/80">
-					<img
+					<OptimizedImage
 						src={homeImages[1].src}
 						alt={homeImages[1].alt}
 						title={homeImages[1].title}
-						loading="lazy"
-						width={1400}
-						height={900}
 						className="h-52 w-full object-cover sm:h-60"
 					/>
 				</figure>
 			</section>
 
 			<div className="grid gap-6 lg:grid-cols-3">
-				<Card className="border-border/60 bg-card/70 shadow-sm backdrop-blur-sm">
+				<Card className="border-border/60 bg-card/70 shadow-sm">
 					<CardHeader className="text-right">
 						<CardTitle className="font-heading text-lg">בהירות מהירה</CardTitle>
 						<CardDescription className="text-pretty">
@@ -162,7 +158,7 @@ export function HomePage({
 						</CardDescription>
 					</CardHeader>
 				</Card>
-				<Card className="border-border/60 bg-card/70 shadow-sm backdrop-blur-sm">
+				<Card className="border-border/60 bg-card/70 shadow-sm">
 					<CardHeader className="text-right">
 						<CardTitle className="font-heading text-lg">שירות פרימיום</CardTitle>
 						<CardDescription className="text-pretty">
@@ -170,7 +166,7 @@ export function HomePage({
 						</CardDescription>
 					</CardHeader>
 				</Card>
-				<Card className="border-border/60 bg-card/70 shadow-sm backdrop-blur-sm">
+				<Card className="border-border/60 bg-card/70 shadow-sm">
 					<CardHeader className="text-right">
 						<CardTitle className="font-heading text-lg">תוכן מעשי</CardTitle>
 						<CardDescription className="text-pretty">
@@ -247,13 +243,10 @@ export function HomePage({
 					))}
 				</div>
 				<figure className="overflow-hidden rounded-xl border border-border/60 bg-background/80">
-					<img
+					<OptimizedImage
 						src={homeImages[2].src}
 						alt={homeImages[2].alt}
 						title={homeImages[2].title}
-						loading="lazy"
-						width={1400}
-						height={900}
 						className="h-52 w-full object-cover sm:h-60"
 					/>
 				</figure>
@@ -290,13 +283,10 @@ export function HomePage({
 					))}
 				</div>
 				<figure className="overflow-hidden rounded-xl border border-border/60 bg-background/80">
-					<img
+					<OptimizedImage
 						src={homeImages[3].src}
 						alt={homeImages[3].alt}
 						title={homeImages[3].title}
-						loading="lazy"
-						width={1400}
-						height={900}
 						className="h-52 w-full object-cover sm:h-60"
 					/>
 				</figure>
@@ -327,13 +317,10 @@ export function HomePage({
 					</Card>
 				</div>
 				<figure className="overflow-hidden rounded-xl border border-border/60 bg-background/80">
-					<img
+					<OptimizedImage
 						src={homeImages[4].src}
 						alt={homeImages[4].alt}
 						title={homeImages[4].title}
-						loading="lazy"
-						width={1400}
-						height={900}
 						className="h-52 w-full object-cover sm:h-60"
 					/>
 				</figure>
@@ -452,292 +439,43 @@ export function HomePage({
 				</div>
 			</section>
 
-			<section id="long-form-content" className="home-anchor-target flex flex-col gap-8 text-right" aria-labelledby="long-form-content-title">
+
+			<section
+				id="long-form-content"
+				className="home-anchor-target home-deferred-section flex flex-col gap-6 text-right"
+				aria-labelledby="long-form-content-title"
+			>
 				<h2 id="long-form-content-title" className="font-heading text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
 					מדריכי עומק של גיא אבני לקבלת החלטות טובה יותר
 				</h2>
-
-				<div className="space-y-4">
-					<h3 className="font-heading text-xl font-semibold text-foreground">
-						ייעוץ משפטי חכם: איך גיא אבני פותח כל מפגש בהגדרת מטרה ברורה
-					</h3>
-					<div className="flex flex-wrap justify-end gap-2">
-						<span className="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground">
-							אסטרטגיה
-						</span>
-						<span className="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground">
-							יעד ומיקוד
-						</span>
-					</div>
-					<h4 className="font-heading text-lg font-semibold text-foreground">שלוש שאלות פתיחה שגיא אבני עו״ד חוזר אליהן בכל תיק</h4>
-					<ul className="max-w-4xl list-disc space-y-2 pr-5 text-sm leading-relaxed text-muted-foreground sm:text-base">
-						<li>
-							<strong className="text-foreground">מה היעד המרכזי?</strong> איזו{' '}
-							<Link
-								className="font-medium text-primary underline-offset-2 hover:underline"
-								href="/blog/guy-avni-long-term-legal-strategy/"
-							>
-								תוצאה מעשית
-							</Link>{' '}
-							נחשבת הצלחה.
-						</li>
-						<li>
-							<strong className="text-foreground">מה המגבלות?</strong>{' '}
-							<Link
-								className="font-medium text-primary underline-offset-2 hover:underline"
-								href="/blog/guy-avni-time-management-for-legal-work/"
-							>
-								זמן, תקציב ואילוצים תפעוליים
-							</Link>{' '}
-							שחייבים לכבד.
-						</li>
-						<li>
-							<strong className="text-foreground">איזה סיכון לא מקבלים?</strong> הגבול שממנו לא ממשיכים בלי{' '}
-							<Link
-								className="font-medium text-primary underline-offset-2 hover:underline"
-								href="/blog/guy-avni-dispute-prevention-method/"
-							>
-								התאמה
-							</Link>
-							.
-						</li>
-					</ul>
-					<h5 className="font-heading text-base font-semibold text-foreground">צעדים מומלצים אחרי שיחה ראשונה עם גיא אבני</h5>
-					<p className="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
-						אחת הטעויות השכיחות בתחילת תהליך משפטי היא להיכנס לפעולה לפני שמגדירים מה רוצים להשיג. אחרי שמבהירים את שלושת
-						היסודות, ההחלטות נעשות פשוטות, מהירות ובטוחות יותר. בשלב הזה מומלץ לקרוא על הגישה המקצועית בעמוד{' '}
-						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/about/">
-							אודות
-						</Link>
-						, להבין את מסלולי העבודה בעמוד{' '}
-						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/services/">
-							שירותים
-						</Link>
-						, ולבסוף לקבוע צעד ראשון מעשי דרך{' '}
-						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/contact/">
-							יצירת קשר
-						</Link>
-						. השילוב הזה יוצר מעבר מהיר מתיאוריה לביצוע, עם{' '}
-						<strong className="text-foreground">פחות רעש ויותר ודאות</strong> לאורך הדרך.
-					</p>
-				</div>
-
-				<div className="space-y-4">
-					<h3 className="font-heading text-xl font-semibold text-foreground">לפני חתימה עם גיא אבני עורך דין - חמש בדיקות שחוסכות כסף</h3>
-					<div className="flex flex-wrap justify-end gap-2">
-						<span className="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground">
-							חוזים
-						</span>
-						<span className="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground">
-							בדיקת סיכון
-						</span>
-					</div>
-					<h4 className="font-heading text-lg font-semibold text-foreground">צ&apos;קליסט חתימה קצר - ניסוח גיא אבני לבדיקה לפני עט</h4>
-					<ol className="max-w-4xl list-decimal space-y-2 pr-5 text-sm leading-relaxed text-muted-foreground sm:text-base">
-						<li>
-							<strong className="text-foreground">הגדרת שירות/מוצר:</strong> היקף ברור שמונע{' '}
-							<Link
-								className="font-medium text-primary underline-offset-2 hover:underline"
-								href="/blog/guy-avni-contract-review-flow/"
-							>
-								פרשנות כפולה
-							</Link>
-							.
-						</li>
-						<li>
-							<strong className="text-foreground">מנגנון תשלום:</strong> מועדים, תנאים וחריגים בצורה חד־משמעית לפי{' '}
-							<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/categories/">
-								קטגוריות
-							</Link>
-							.
-						</li>
-						<li>
-							<strong className="text-foreground">אחריות וסייגים:</strong> מה כל צד מתחייב ומה מחוץ למסגרת לפי{' '}
-							<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/tags/">
-								תגיות
-							</Link>
-							.
-						</li>
-						<li>
-							<strong className="text-foreground">תנאי יציאה:</strong> איך מסיימים התקשרות בלי{' '}
-							<Link
-								className="font-medium text-primary underline-offset-2 hover:underline"
-								href="/blog/guy-avni-negotiation-clarity-principles/"
-							>
-								חיכוך מיותר
-							</Link>
-							.
-						</li>
-						<li>
-							<strong className="text-foreground">פתרון מחלוקות:</strong>{' '}
-							<Link
-								className="font-medium text-primary underline-offset-2 hover:underline"
-								href="/blog/guy-avni-dispute-prevention-method/"
-							>
-								מסלול מוסכם
-							</Link>{' '}
-							עוד לפני שיש מחלוקת.
-						</li>
-					</ol>
-					<p className="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
-						כל סעיף נראה לעיתים טכני, אבל בפועל הוא זה שקובע אם התהליך יישאר בשליטה גם כשמשהו משתבש. בדיקה מוקדמת לא נועדה
-						להאט עסקה אלא להפוך אותה ל־<strong className="text-foreground">בטוחה, הוגנת וברורה</strong> לשני הצדדים.
-						כדי להעמיק, כדאי להתחיל ברשימת{' '}
-						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/blog/">
-							המאמרים
-						</Link>
-						, למקד תחום עניין דרך{' '}
-						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/categories/">
-							קטגוריות
-						</Link>
-						, ולחדד נושא ספציפי באמצעות{' '}
-						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/tags/">
-							תגיות
-						</Link>
-						. כך אפשר להגיע לחתימה מתוך הבנה מלאה של ההשלכות ולא מתוך לחץ של הרגע האחרון.
-					</p>
-				</div>
-
-				<div className="space-y-4">
-					<h3 className="font-heading text-xl font-semibold text-foreground">שגרת סיכונים שגיא אבני משרד עורכי דין ממליץ לעגן ברבעון</h3>
-					<div className="flex flex-wrap justify-end gap-2">
-						<span className="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground">
-							ניהול סיכונים
-						</span>
-						<span className="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground">
-							שגרה חודשית
-						</span>
-					</div>
-					<h4 className="font-heading text-lg font-semibold text-foreground">מוקדי בקרה שסביבם בונה גיא אבני שגרת ניהול סיכונים</h4>
-					<ul className="max-w-4xl list-disc space-y-2 pr-5 text-sm leading-relaxed text-muted-foreground sm:text-base">
-						<li>
-							<strong className="text-foreground">חוזים פעילים:</strong> זיהוי סעיפים שדורשים{' '}
-							<Link
-								className="font-medium text-primary underline-offset-2 hover:underline"
-								href="/blog/guy-avni-contract-review-flow/"
-							>
-								עדכון או התראה מוקדמת
-							</Link>
-							.
-						</li>
-						<li>
-							<strong className="text-foreground">תקשורת לקוחות:</strong>{' '}
-							<Link
-								className="font-medium text-primary underline-offset-2 hover:underline"
-								href="/blog/guy-avni-communication-strategy-for-clients/"
-							>
-								תיעוד התחייבויות ותיאום ציפיות רציף
-							</Link>
-							.
-						</li>
-						<li>
-							<strong className="text-foreground">ספקים קריטיים:</strong> בקרה על{' '}
-							<Link
-								className="font-medium text-primary underline-offset-2 hover:underline"
-								href="/blog/guy-avni-collaboration-with-external-experts/"
-							>
-								תלות תפעולית ונקודות כשל אפשריות
-							</Link>
-							.
-						</li>
-					</ul>
-					<figure className="overflow-hidden rounded-xl border border-border/60 bg-background/80">
-						<img
-							src={homeImages[5].src}
-							alt={homeImages[5].alt}
-							title={homeImages[5].title}
-							loading="lazy"
-							width={1400}
-							height={900}
-							className="h-52 w-full object-cover sm:h-60"
-						/>
-					</figure>
-					<p className="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
-						ניהול סיכונים אפקטיבי הוא לא פעולה חד־פעמית אלא שגרה קבועה. עסקים שמתחזקים בדיקה חודשית, תיעוד החלטות ועדכון נהלים,
-						מצליחים לזהות בעיות מוקדם ולמנוע מהן להפוך למשבר. התחלה טובה היא קריאה ממוקדת של{' '}
-						<Link
-							className="font-medium text-primary underline-offset-2 hover:underline"
-							href="/blog/guy-avni-risk-management-routine/"
-						>
-							שגרת ניהול סיכונים
-						</Link>
-						, ואז חיבור היישום למסלולים הפרקטיים בעמוד{' '}
-						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/services/">
-							שירותים
-						</Link>
-						. אם תרצו לבנות שגרה מותאמת לענף, לגודל החברה וליעדים שלכם, אפשר להתקדם מיד דרך{' '}
-						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/contact/">
-							יצירת קשר
-						</Link>{' '}
-						ולתכנן <strong className="text-foreground">תוכנית עבודה מדויקת</strong>.
-					</p>
-				</div>
-
-				<div className="space-y-4">
-					<h3 className="font-heading text-xl font-semibold text-foreground">איך בונים אמון לקוח - מתודולוגיה שמזינה את גיא אבני</h3>
-					<div className="flex flex-wrap justify-end gap-2">
-						<span className="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground">
-							אמון לקוח
-						</span>
-						<span className="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground">
-							תקשורת ברורה
-						</span>
-					</div>
-					<h4 className="font-heading text-lg font-semibold text-foreground">שלושה עקרונות אמון מהניסיון של גיא אבני משרד עורכי דין</h4>
-					<ul className="max-w-4xl list-disc space-y-2 pr-5 text-sm leading-relaxed text-muted-foreground sm:text-base">
-						<li>
-							<strong className="text-foreground">שקיפות:</strong>{' '}
-							<Link
-								className="font-medium text-primary underline-offset-2 hover:underline"
-								href="/blog/guy-avni-client-onboarding-framework/"
-							>
-								להסביר מה קורה עכשיו ומה צפוי בהמשך
-							</Link>
-							.
-						</li>
-						<li>
-							<strong className="text-foreground">עקביות:</strong>{' '}
-							<Link
-								className="font-medium text-primary underline-offset-2 hover:underline"
-								href="/blog/guy-avni-service-quality-standards/"
-							>
-								לקיים שגרת עדכונים קצרה וקבועה
-							</Link>
-							.
-						</li>
-						<li>
-							<strong className="text-foreground">סיכום בכתב:</strong>{' '}
-							<Link
-								className="font-medium text-primary underline-offset-2 hover:underline"
-								href="/blog/guy-avni-document-readiness-guide/"
-							>
-								לתעד החלטות משמעותיות למעקב רציף
-							</Link>
-							.
-						</li>
-					</ul>
-					<h5 className="font-heading text-base font-semibold text-foreground">להתחיל כבר השבוע עם גיא אבני עו״ד - בלי דחיינות</h5>
-					<p className="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
-						לקוחות לא מחפשים רק תשובה משפטית נכונה; הם רוצים להבין מה קורה עכשיו, מה צפוי בהמשך, ואיך כל החלטה משרתת את
-						המטרה שלהם. מי שמאמץ את הכללים האלה מייצר{' '}
-						<strong className="text-foreground">פחות חיכוך ויותר שיתוף פעולה</strong>. כדי להתחיל, מומלץ לעבור על המאמר{' '}
-						<Link
-							className="font-medium text-primary underline-offset-2 hover:underline"
-							href="/blog/guy-avni-client-trust-roadmap/"
-						>
-							מפת אמון לקוח
-						</Link>
-						, להכיר את התפיסה המקצועית הרחבה בעמוד{' '}
-						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/about/">
-							אודות
-						</Link>
-						, ולבסוף לתאם שיחה ממוקדת דרך{' '}
-						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/contact/">
-							יצירת קשר
-						</Link>{' '}
-						כדי לתרגם את העקרונות לתוכנית מעשית עבור המקרה שלכם.
-					</p>
-				</div>
+				<p className="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
+					לפני מהלך משמעותי, כדאי לעצור ולהגדיר מטרה, מגבלות וסיכון שאי אפשר לקבל. שלושת אלה מונעים החלטות תחת לחץ ומאפשרים
+					תוכנית ברורה. להעמקה, קראו את{' '}
+					<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/blog/guy-avni-long-term-legal-strategy/">
+						אסטרטגיה משפטית לטווח ארוך
+					</Link>
+					,{' '}
+					<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/blog/guy-avni-contract-review-flow/">
+						בדיקת חוזים לפני חתימה
+					</Link>
+					,{' '}
+					<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/blog/guy-avni-risk-management-routine/">
+						שגרת ניהול סיכונים
+					</Link>{' '}
+					ו־{' '}
+					<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/blog/guy-avni-client-trust-roadmap/">
+						מפת אמון לקוח
+					</Link>
+					. ליישום מותאם, עברו ל־{' '}
+					<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/services/">
+						שירותים
+					</Link>{' '}
+					או{' '}
+					<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/contact/">
+						יצירת קשר
+					</Link>
+					.
+				</p>
 			</section>
 
 			<LatestInsightsStrip posts={latestPosts} />
@@ -789,13 +527,10 @@ export function HomePage({
 			<FaqAccordion items={faqItems} />
 
 			<figure className="home-anchor-target overflow-hidden rounded-xl border border-border/60 bg-background/80" id="home-image-final">
-				<img
+				<OptimizedImage
 					src={homeImages[6].src}
 					alt={homeImages[6].alt}
 					title={homeImages[6].title}
-					loading="lazy"
-					width={1400}
-					height={900}
 					className="h-56 w-full object-cover sm:h-64"
 				/>
 			</figure>
@@ -820,7 +555,7 @@ export function HomePage({
 			</Card>
 
 			<div
-				className="fixed inset-x-0 bottom-0 z-40 border-t border-border/60 bg-background/95 px-4 py-3 shadow-lg backdrop-blur supports-[backdrop-filter]:bg-background/80 md:hidden"
+				className="mobile-bottom-cta fixed inset-x-0 bottom-0 z-40 border-t border-border/60 bg-background/95 px-4 py-3 shadow-lg md:hidden"
 				dir="rtl"
 			>
 				<div className="mx-auto flex w-full max-w-6xl gap-2 pb-[env(safe-area-inset-bottom)]">

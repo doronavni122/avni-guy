@@ -1,5 +1,5 @@
 import { SITE_KEYWORDS } from '@/consts';
-import { getCategories, getSortedPosts, getTags } from '@/lib/content/posts';
+import { getPostsIndex } from '@/lib/content/posts';
 
 export interface PostPreview {
 	id: string;
@@ -66,9 +66,11 @@ export interface HomeData {
 
 export async function loadHomeData(): Promise<HomeData> {
 	let posts: PostPreview[] = [];
+	let categories: string[] = [];
+	let tags: string[] = [];
 	try {
-		const sortedPosts = await getSortedPosts();
-		posts = sortedPosts.map((post) => ({
+		const index = await getPostsIndex();
+		posts = index.posts.map((post) => ({
 			id: post.slug,
 			title: post.data.title,
 			description: post.data.description,
@@ -76,22 +78,10 @@ export async function loadHomeData(): Promise<HomeData> {
 			category: post.data.category,
 			tags: post.data.tags,
 		}));
+		categories = index.categories;
+		tags = index.tags;
 	} catch (error) {
-		console.error('[home:index] failed to load sorted posts', error);
-	}
-
-	let categories: string[] = [];
-	try {
-		categories = await getCategories();
-	} catch (error) {
-		console.error('[home:index] failed to load categories', error);
-	}
-
-	let tags: string[] = [];
-	try {
-		tags = await getTags();
-	} catch (error) {
-		console.error('[home:index] failed to load tags', error);
+		console.error('[home:index] failed to load posts index', error);
 	}
 
 	let featuredPosts: PostPreview[] = [];

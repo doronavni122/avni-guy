@@ -27,7 +27,7 @@ export default async function BlogIndexPage() {
 	]);
 
 	return (
-		<SiteShell extraJsonLd={jsonLd}>
+		<SiteShell currentPath="/blog/" extraJsonLd={jsonLd}>
 			<section className="flex flex-col gap-10">
 				<MainPageHero hero={MAIN_PAGE_HEROES['/blog/']} />
 				<Separator className="bg-border/60" />

@@ -27,7 +27,7 @@ export default async function TagsIndexPage() {
 	]);
 
 	return (
-		<SiteShell extraJsonLd={jsonLd}>
+		<SiteShell currentPath="/tags/" extraJsonLd={jsonLd}>
 			<section className="flex flex-col gap-10">
 				<MainPageHero hero={MAIN_PAGE_HEROES['/tags/']} />
 				<Separator className="bg-border/60" />

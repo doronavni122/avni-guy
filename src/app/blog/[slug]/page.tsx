@@ -75,6 +75,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 			mainKeyword={post.data.mainKeyword}
 			data={post.data}
 			slug={slug}
+			currentPath={`/blog/${slug}/`}
 			jsonLd={jsonLd}
 		>
 			{content}

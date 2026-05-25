@@ -27,7 +27,7 @@ export default async function CategoriesIndexPage() {
 	]);
 
 	return (
-		<SiteShell extraJsonLd={jsonLd}>
+		<SiteShell currentPath="/categories/" extraJsonLd={jsonLd}>
 			<section className="flex flex-col gap-10">
 				<MainPageHero hero={MAIN_PAGE_HEROES['/categories/']} />
 				<Separator className="bg-border/60" />

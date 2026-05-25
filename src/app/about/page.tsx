@@ -24,7 +24,7 @@ export default function AboutPage() {
 	]);
 
 	return (
-		<SiteShell extraJsonLd={jsonLd}>
+		<SiteShell currentPath="/about/" extraJsonLd={jsonLd}>
 			<section className="flex flex-col gap-10">
 				<MainPageHero hero={MAIN_PAGE_HEROES['/about/']} />
 				<div className="grid gap-6 lg:grid-cols-2">

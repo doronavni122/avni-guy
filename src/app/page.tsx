@@ -20,7 +20,7 @@ export default async function Home() {
 	const jsonLd = [buildBreadcrumbSchema([{ name: 'דף הבית', path: '/' }]), buildFaqSchema(data.faqItems)];
 
 	return (
-		<SiteShell extraJsonLd={jsonLd}>
+		<SiteShell currentPath="/" extraJsonLd={jsonLd}>
 			<HomePage {...data} />
 		</SiteShell>
 	);

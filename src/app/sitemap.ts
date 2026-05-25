@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { SITE_URL } from '@/consts';
-import { getAllPosts, getCategories, getTags } from '@/lib/content/posts';
+import { getPostsIndex } from '@/lib/content/posts';
 
 const STATIC_PATHS = ['/', '/about/', '/services/', '/contact/', '/blog/', '/categories/', '/tags/'];
 
@@ -8,9 +8,7 @@ export const dynamic = 'force-static';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	try {
-		const posts = await getAllPosts();
-		const categories = await getCategories();
-		const tags = await getTags();
+		const { posts, categories, tags } = await getPostsIndex();
 		const now = new Date();
 
 		const staticEntries: MetadataRoute.Sitemap = STATIC_PATHS.map((path) => ({

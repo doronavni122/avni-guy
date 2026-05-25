@@ -4,9 +4,13 @@ import { MobileNav } from '@/components/react/MobileNav';
 import { HeaderLink } from '@/components/HeaderLink';
 import { SITE_TITLE } from '@/consts';
 
-export function Header() {
+type HeaderProps = {
+	currentPath: string;
+};
+
+export function Header({ currentPath }: HeaderProps) {
 	return (
-		<header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/70">
+		<header className="sticky top-0 z-50 border-b border-border/60 bg-background/95">
 			<div className="container mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
 				<Link
 					className="group flex min-w-0 items-center gap-3 text-foreground no-underline transition-opacity hover:opacity-90"
@@ -31,16 +35,30 @@ export function Header() {
 					</span>
 				</Link>
 				<nav className="hidden flex-wrap items-center justify-end gap-1 md:flex" aria-label="ניווט ראשי">
-					<HeaderLink href="/">דף הבית</HeaderLink>
-					<HeaderLink href="/about">אודות</HeaderLink>
-					<HeaderLink href="/services">שירותים</HeaderLink>
-					<HeaderLink href="/blog">מאמרים</HeaderLink>
-					<HeaderLink href="/categories">קטגוריות</HeaderLink>
-					<HeaderLink href="/tags">תגיות</HeaderLink>
-					<HeaderLink href="/contact">יצירת קשר</HeaderLink>
+					<HeaderLink href="/" currentPath={currentPath}>
+						דף הבית
+					</HeaderLink>
+					<HeaderLink href="/about/" currentPath={currentPath}>
+						אודות
+					</HeaderLink>
+					<HeaderLink href="/services/" currentPath={currentPath}>
+						שירותים
+					</HeaderLink>
+					<HeaderLink href="/blog/" currentPath={currentPath}>
+						מאמרים
+					</HeaderLink>
+					<HeaderLink href="/categories/" currentPath={currentPath}>
+						קטגוריות
+					</HeaderLink>
+					<HeaderLink href="/tags/" currentPath={currentPath}>
+						תגיות
+					</HeaderLink>
+					<HeaderLink href="/contact/" currentPath={currentPath}>
+						יצירת קשר
+					</HeaderLink>
 				</nav>
 				<div className="flex shrink-0 items-center gap-2 md:hidden">
-					<MobileNav />
+					<MobileNav currentPath={currentPath} />
 				</div>
 			</div>
 		</header>

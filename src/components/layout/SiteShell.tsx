@@ -7,16 +7,17 @@ import { buildOrganizationSchema, buildWebSiteJsonLd } from '@/utils/structured-
 
 type SiteShellProps = {
 	children: ReactNode;
+	currentPath: string;
 	extraJsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
 };
 
-export function SiteShell({ children, extraJsonLd }: SiteShellProps) {
+export function SiteShell({ children, currentPath, extraJsonLd }: SiteShellProps) {
 	const globalJsonLd = [buildOrganizationSchema(), buildWebSiteJsonLd(), ...(extraJsonLd ? (Array.isArray(extraJsonLd) ? extraJsonLd : [extraJsonLd]) : [])];
 
 	return (
 		<>
 			<JsonLd data={globalJsonLd} />
-			<Header />
+			<Header currentPath={currentPath} />
 			<main className="flex flex-1 flex-col">
 				<div className="container mx-auto w-full max-w-6xl flex-1 px-4 py-10 sm:px-6 sm:py-12 lg:py-16">{children}</div>
 			</main>

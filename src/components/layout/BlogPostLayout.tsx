@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
+import { OptimizedImage } from '@/components/media/OptimizedImage';
 import { badgeVariants } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
@@ -17,29 +18,28 @@ type BlogPostLayoutProps = {
 	mainKeyword: SiteKeyword;
 	data: BlogFrontmatter;
 	slug: string;
+	currentPath: string;
 	jsonLd: Array<Record<string, unknown>>;
 	children: ReactNode;
 };
 
-export function BlogPostLayout({ mainKeyword, data, jsonLd, children }: BlogPostLayoutProps) {
+export function BlogPostLayout({ mainKeyword, data, slug, currentPath, jsonLd, children }: BlogPostLayoutProps) {
 	const { title, description, pubDate, updatedDate, category, tags, images, internalLinks } = data;
 
 	return (
-		<SiteShell extraJsonLd={jsonLd}>
+		<SiteShell currentPath={currentPath} extraJsonLd={jsonLd}>
 			<article className="flex flex-col gap-10">
 				<div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-					{images.map((imageItem) => (
+					{images.map((imageItem, index) => (
 						<figure
 							key={imageItem.src}
 							className="group overflow-hidden rounded-xl ring-1 ring-border/60 shadow-sm transition-shadow hover:shadow-md"
 						>
-							{/* eslint-disable-next-line @next/next/no-img-element */}
-							<img
+							<OptimizedImage
 								src={imageItem.src}
 								alt={imageItem.alt}
 								title={imageItem.title}
-								loading="lazy"
-								decoding="async"
+								priority={index === 0}
 								className="aspect-[3/2] h-auto w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
 							/>
 							<figcaption className="sr-only">{imageItem.description}</figcaption>

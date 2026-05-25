@@ -24,7 +24,7 @@ export default function ServicesPage() {
 	]);
 
 	return (
-		<SiteShell extraJsonLd={jsonLd}>
+		<SiteShell currentPath="/services/" extraJsonLd={jsonLd}>
 			<section className="flex flex-col gap-10">
 				<MainPageHero hero={MAIN_PAGE_HEROES['/services/']} />
 				<div className="grid gap-6 md:grid-cols-2">

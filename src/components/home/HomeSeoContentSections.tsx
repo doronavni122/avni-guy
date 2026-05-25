@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import { OptimizedImage } from '@/components/media/OptimizedImage';
 import Link from 'next/link';
 import { HOME_SEO_SECTION_DEFS, resolveHomeSeoSectionImages } from '@/lib/home/homeSeoSections';
 import type { HomeImage } from '@/lib/home/loadHomeData';
@@ -54,13 +54,11 @@ export function HomeSeoContentSections({ homeImages }: HomeSeoContentSectionsPro
 						{renderSectionBody(section.id)}
 						{image ? (
 							<figure className="overflow-hidden rounded-xl border border-border/60 bg-background/80">
-								<Image
+								<OptimizedImage
 									src={image.src}
 									alt={image.alt}
 									title={image.title}
-									width={1400}
-									height={900}
-									loading={index < 2 ? 'eager' : 'lazy'}
+									priority={index === 0}
 									className="h-48 w-full object-cover sm:h-56"
 								/>
 							</figure>

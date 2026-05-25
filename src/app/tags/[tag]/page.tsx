@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { SiteShell } from '@/components/layout/SiteShell';
-import { getSortedPosts, getTags } from '@/lib/content/posts';
+import { getPostsIndex, getTags } from '@/lib/content/posts';
 import { buildPageMetadata } from '@/lib/metadata';
 import { buildBreadcrumbSchema } from '@/utils/structured-data';
 import { buildTagMetaDescription, buildTagPageTitle, getTagLabel } from '@/utils/taxonomy-labels';
@@ -30,10 +30,10 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function TagPage({ params }: PageProps) {
 	const { tag } = await params;
-	const posts = (await getSortedPosts()).filter((post) => post.data.tags.includes(tag));
+	const { posts: allPosts, tags } = await getPostsIndex();
+	const posts = allPosts.filter((post) => post.data.tags.includes(tag));
 	if (posts.length === 0) {
-		const known = await getTags();
-		if (!known.includes(tag)) notFound();
+		if (!tags.includes(tag)) notFound();
 	}
 	const tagHe = getTagLabel(tag);
 	const jsonLd = buildBreadcrumbSchema([
@@ -43,7 +43,7 @@ export default async function TagPage({ params }: PageProps) {
 	]);
 
 	return (
-		<SiteShell extraJsonLd={jsonLd}>
+		<SiteShell currentPath={`/tags/${tag}/`} extraJsonLd={jsonLd}>
 			<section className="flex flex-col gap-10">
 				<div className="flex flex-col gap-4 text-right">
 					<p className="text-sm font-medium text-primary">גיא אבני עו״ד</p>
