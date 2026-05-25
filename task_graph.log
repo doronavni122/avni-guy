@@ -68,3 +68,4 @@
 66. allow-seo-guardrails-scripts-on-vercel-prebuild , .vercelignore task_graph.log
 67. include-scripts-in-vercel-deploy-for-prebuild , .vercelignore task_graph.log
 68. add-keystatic-content-admin-dashboard , keystatic.config.ts src/app/keystatic src/app/api/keystatic package.json src/lib/content/posts.ts public/robots.txt
+69. add-fifty-blog-articles-content-pipeline , src/content/blog scripts/run-new-articles-pipeline.mjs scripts/lib/new-article-spec-factory.mjs scripts/image-keyword-compliance.mjs public/images/blog temp_articles_checklist.txt temp_internal_links_checklist.txt

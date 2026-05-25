@@ -310,6 +310,10 @@ function applyBranding() {
 function patchHeaderBaseHead() {
 	const headerPath = path.join(ROOT, 'src', 'components', 'Header.astro');
 	const basePath = path.join(ROOT, 'src', 'components', 'BaseHead.astro');
+	if (!fs.existsSync(headerPath) || !fs.existsSync(basePath)) {
+		console.error('[image-keyword-compliance] skip patchHeaderBaseHead (no Astro header/base files)');
+		return;
+	}
 	let header = fs.readFileSync(headerPath, 'utf8');
 	let base = fs.readFileSync(basePath, 'utf8');
 	if (!header.includes('/images/branding/')) {
