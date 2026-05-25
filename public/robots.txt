@@ -5,6 +5,8 @@
 
 User-agent: *
 Allow: /
+Disallow: /keystatic/
+Disallow: /api/keystatic/
 
 # Allow AI answer and training crawlers as requested.
 User-agent: OAI-SearchBot

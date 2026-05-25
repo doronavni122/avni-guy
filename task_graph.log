@@ -67,3 +67,4 @@
 65. enforce-content-audit-on-prebuild-and-schema-min-ten-links , src/lib/content/schema.ts package.json task_graph.log
 66. allow-seo-guardrails-scripts-on-vercel-prebuild , .vercelignore task_graph.log
 67. include-scripts-in-vercel-deploy-for-prebuild , .vercelignore task_graph.log
+68. add-keystatic-content-admin-dashboard , keystatic.config.ts src/app/keystatic src/app/api/keystatic package.json src/lib/content/posts.ts public/robots.txt

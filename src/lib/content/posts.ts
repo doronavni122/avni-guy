@@ -6,8 +6,16 @@ import { blogFrontmatterSchema, type BlogPost } from './schema';
 
 const CONTENT_DIR = path.join(process.cwd(), 'src/content/blog');
 
+function slugFromFilePath(filePath: string): string {
+	const base = path.basename(filePath).replace(/\.(md|mdx)$/, '');
+	if (base === 'index') {
+		return path.basename(path.dirname(filePath));
+	}
+	return base;
+}
+
 async function readPostFile(filePath: string): Promise<BlogPost> {
-	const slug = path.basename(filePath).replace(/\.(md|mdx)$/, '');
+	const slug = slugFromFilePath(filePath);
 	try {
 		const raw = await fs.readFile(filePath, 'utf8');
 		const { data, content } = matter(raw);
