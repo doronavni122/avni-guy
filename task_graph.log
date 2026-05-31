@@ -13,3 +13,4 @@
 13. update-content-pipeline-rules-for-verify-ci , .cursor/rules/content-pipeline-loop.mdc .cursor/rules/content-enhancer-loop.mdc
 14. sync-task-graph-reliability-entries , task_graph.log
 15. enhance-three-blog-articles-hebrew-content , src/content/blog/guy-avni-contract-claim-mediation-four-thousand-six-weeks.mdx src/content/blog/guy-avni-court-case-keywords-find-case-90-seconds.mdx src/content/blog/guy-avni-israeli-contract-red-flags-spot-three.mdx
+16. add-ai-interop-rag-search-mcp-llms-full , src/app/api/search/route.ts src/app/api/mcp/route.ts src/app/api/site-urls/route.ts src/lib/rag scripts/build-vector-index.mjs scripts/sync-llms-full.mjs scripts/site-mcp-server.mjs public/llms-full.txt

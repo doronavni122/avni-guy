@@ -14,19 +14,36 @@
 
 ## מאמרים עומק (מדריכים מקיפים)
 
-- [איך לבחור עורך דין בישראל](https://avniguy.co.il/blog/guy-avni-choosing-lawyer-israel-comprehensive-guide/): מסגרת החלטה מעשית לפני בחירת ליווי משפטי.
-- [ייעוץ משפטי ו-General Counsel בעסקים בישראל](https://avniguy.co.il/blog/guy-avni-legal-counsel-israel-2026-guide/): תפקיד הייעוץ השוטף ומה לבקש מהליווי.
-- [סוגי עורכי דין והתמחויות בישראל](https://avniguy.co.il/blog/guy-avni-lawyer-types-israel-specialties-full-guide/): מיפוי התמחויות והתאמה לצורך.
-- [יוריסט מול עורך דין בישראל](https://avniguy.co.il/blog/guy-avni-jurist-vs-lawyer-israel-licensing-guide/): הבדלים מהותיים בהסמכה ובתחום העיסוק.
-- [מחקר: איחור במסירת דירה בישראל](https://avniguy.co.il/blog/guy-avni-israel-real-estate-delay-delivery-research/): תמונת רקע ומסגרת חשיבה לנושא נדל״ן.
+- [ישנם 5 מסמכים שכל קונה דירה חייב לדרוש, 2 מהם חסרים בתיק שלך?](https://avniguy.co.il/blog/guy-avni-apartment-buyer-required-documents/): ישנם 5 מסמכים שכל קונה דירה חייב לדרוש: סקירה מעשית בעברית עם צעדים, דוגמאות מהשטח ונקודות בדיקה לפני פנייה לגיא אבני עו
+- [ישנן 4 דרכים שבהן שותפות עסקית נגמרת רע, לאיזו מהן אתה הולך?](https://avniguy.co.il/blog/guy-avni-business-partnership-bad-endings/): ישנן 4 דרכים שבהן שותפות עסקית נגמרת רע: סקירה מעשית בעברית עם צעדים, דוגמאות מהשטח ונקודות בדיקה לפני פנייה לגיא אבני מ
+- [ישנם 4 סוגי שיתוף עסקי בישראל, איזה מהם מגן עליך כשהשותף תובע?](https://avniguy.co.il/blog/guy-avni-business-partnership-types-israel-protection/): ישנם 4 סוגי שיתוף עסקי בישראל: סקירה מעשית בעברית עם צעדים, דוגמאות מהשטח ונקודות בדיקה לפני פנייה לגיא אבני משרד עורכי 
+- [ישנן 3 דרכים לבטל חוזה ישראלי חתום, איזו מהן עובדת תוך פחות מ-14 יום?](https://avniguy.co.il/blog/guy-avni-cancel-signed-contract-israel-fourteen-days/): ישנן 3 דרכים לבטל חוזה ישראלי חתום: סקירה מעשית בעברית עם צעדים, דוגמאות מהשטח ונקודות בדיקה לפני פנייה לגיא אבני עורך ד
+- [מזונות ילדים מחושבים לפי 4 פרמטרים, איזה מהם מוריד הכי הרבה את התשלום החודשי?](https://avniguy.co.il/blog/guy-avni-child-support-four-parameters-lower-payment/): מזונות ילדים מחושבים לפי 4 פרמטרים: סקירה מעשית בעברית עם צעדים, דוגמאות מהשטח ונקודות בדיקה לפני פנייה לגיא אבני עורך ד
+- [תובענה ייצוגית נגד בנק נסגרה ב-180 מיליון ש"ח, מי בעצם קיבל את הכסף בסוף?](https://avniguy.co.il/blog/guy-avni-class-action-bank-settlement-who-gets-paid/): תובענה ייצוגית נגד בנק נסגרה ב-180 מיליון ש"ח: סקירה מעשית בעברית עם צעדים, דוגמאות מהשטח ונקודות בדיקה לפני פנייה לגיא 
+- [שיחת טלפון של 3 דקות לרשם החברות חוסכת 100,000 ש"ח, איזה 4 שאלות אתה באמת שואל?](https://avniguy.co.il/blog/guy-avni-companies-registry-phone-call-four-questions/): שיחת טלפון של 3 דקות לרשם החברות חוסכת 100: סקירה מעשית בעברית עם צעדים, דוגמאות מהשטח ונקודות בדיקה לפני פנייה לגיא אבנ
+- [חוק הגנת הצרכן נותן 14 ימי ביטול עסקה, איזו עסקה דווקא לא נכללת?](https://avniguy.co.il/blog/guy-avni-consumer-protection-fourteen-day-cancellation-exceptions/): חוק הגנת הצרכן נותן 14 ימי ביטול עסקה: סקירה מעשית בעברית עם צעדים, דוגמאות מהשטח ונקודות בדיקה לפני פנייה לגיא אבני עור
+
 
 ## מאמרים מומלצים (תהליכים ושגרה)
 
-- [מסלול קליטת לקוח חדש](https://avniguy.co.il/blog/guy-avni-client-onboarding-framework/): בניית ציפיות ותהליך עבודה ברור.
-- [ניהול סיכונים שוטף](https://avniguy.co.il/blog/guy-avni-risk-management-routine/): זיהוי וצמצום סיכונים לפני שהם מתפסקים.
-- [זרימת סקירת חוזים](https://avniguy.co.il/blog/guy-avni-contract-review-flow/): סדר בדיקה פרקטי למסמכים מהותיים.
-- [מניעת מחלוקות](https://avniguy.co.il/blog/guy-avni-dispute-prevention-method/): שפה, תיעוד והחלטות שמורידות חיכוך.
-- [תקשורת עם לקוחות](https://avniguy.co.il/blog/guy-avni-communication-strategy-for-clients/): בהירות ושגרת עדכונים תחת עומס.
+- [צ'ק שחזר הופך לתיק הוצל"פ ב-30 יום, איך עוצרים את התהליך תוך 7?](https://avniguy.co.il/blog/guy-avni-bounced-check-enforcement-stop-seven-days/): צ'ק שחזר הופך לתיק הוצל"פ ב-30 יום: סקירה מעשית בעברית עם צעדים, דוגמאות מהשטח ונקודות בדיקה לפני פנייה לגיא אבני עורך ד
+- [היתר בנייה נמשך בממוצע 11 חודשים, מה עו"ד עושה כדי לקצר אותו ל-5?](https://avniguy.co.il/blog/guy-avni-building-permit-shorten-lawyer-five-months/): היתר בנייה נמשך בממוצע 11 חודשים: סקירה מעשית בעברית עם צעדים, דוגמאות מהשטח ונקודות בדיקה לפני פנייה לגיא אבני עורך דין
+- [תאונת דרכים עם נזק מתחת ל-5,000 ש"ח, למה כדאי סולחה ולא תביעה?](https://avniguy.co.il/blog/guy-avni-car-accident-under-five-thousand-settlement/): תאונת דרכים עם נזק מתחת ל-5: סקירה מעשית בעברית עם צעדים, דוגמאות מהשטח ונקודות בדיקה לפני פנייה לגיא אבני עורך דין.
+- [תביעה על הפרת חוזה מתיישנת אחרי 7 שנים, מתי בדיוק מתחיל השעון לרוץ?](https://avniguy.co.il/blog/guy-avni-contract-breach-statute-limitations-seven-years/): תביעה על הפרת חוזה מתיישנת אחרי 7 שנים: סקירה מעשית בעברית עם צעדים, דוגמאות מהשטח ונקודות בדיקה לפני פנייה לגיא אבני עו
+- [תביעה חוזית נמשכת בממוצע 27 חודשים, האם מגשר ב-4,000 ש"ח יכול לסגור את זה ב-6 שבועות?](https://avniguy.co.il/blog/guy-avni-contract-claim-mediation-four-thousand-six-weeks/): מתי גישור חוזי משתלם יותר מתביעה: עלויות, לוחות זמנים, סיכונים ושאלות לפני בחירה. גיא אבני עורך דין מסביר מתי 4,000 ש"ח 
+- [6 המילים האלה מעבירות את כל הסיכון אליך, אתה יכול למצוא אותן בעמוד 4 של החוזה שלך?](https://avniguy.co.il/blog/guy-avni-contract-risk-shifting-words-page-four/): 6 המילים האלה מעבירות את כל הסיכון אליך: סקירה מעשית בעברית עם צעדים, דוגמאות מהשטח ונקודות בדיקה לפני פנייה לגיא אבני ע
+- [בנט המשפט יש 12 מיליון תיקים, אילו 4 מילות מפתח ימצאו את שלך תוך 90 שניות?](https://avniguy.co.il/blog/guy-avni-court-case-keywords-find-case-90-seconds/): ארבע מילות מפתח לחיפוש תיק בנט המשפט: מספר תיק, תעודת זהות, בית משפט ושם צד. מדריך מעשי לאיתור תיק מהיר לפני פנייה לגיא 
+- [תיק פלילי נסגר ב-3 דרכים שונות, איזו מהן לא משאירה שום רישום?](https://avniguy.co.il/blog/guy-avni-criminal-case-closure-no-record/): תיק פלילי נסגר ב-3 דרכים שונות: סקירה מעשית בעברית עם צעדים, דוגמאות מהשטח ונקודות בדיקה לפני פנייה לגיא אבני עו״ד.
+
+
+## ממשקים למערכות AI
+
+- [llms-full.txt](https://avniguy.co.il/llms-full.txt): כל התוכן בקובץ markdown אחד.
+- חיפוש סמנטי: POST https://avniguy.co.il/api/search/ body {"query":"..."}
+- חיפוש GET: https://avniguy.co.il/api/search/?q=...
+- רשימת URLs: GET https://avniguy.co.il/api/site-urls/?section=blog
+- MCP (Streamable HTTP): POST https://avniguy.co.il/api/mcp/
+- כלים: search_site, list_site_urls
 
 ## Optional
 

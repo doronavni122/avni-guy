@@ -58,6 +58,20 @@ function checkSourceFiles() {
 		return;
 	}
 	assertIncludes(llmsContent, EXPECTED_HOST, 'llms.txt missing canonical host URLs');
+	assertIncludes(llmsContent, '/api/search/', 'llms.txt missing machine search API path');
+
+	logStep('step 2.15: checking llms-full.txt');
+	const llmsFullPath = path.join(process.cwd(), 'public', 'llms-full.txt');
+	if (!fs.existsSync(llmsFullPath)) {
+		fail('public/llms-full.txt missing (run pnpm run sync:llms-full)');
+		return;
+	}
+	const llmsFullContent = fs.readFileSync(llmsFullPath, 'utf8').trim();
+	if (llmsFullContent.length < 200) {
+		fail('public/llms-full.txt too short');
+		return;
+	}
+	assertIncludes(llmsFullContent, EXPECTED_HOST, 'llms-full.txt missing canonical host URLs');
 
 	logStep('step 2.2: checking Next.js app entry');
 	const layoutPath = path.join(process.cwd(), 'src', 'app', 'layout.tsx');

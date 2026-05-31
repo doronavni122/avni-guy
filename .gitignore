@@ -46,6 +46,9 @@ lerna-debug.log*
 
 # Agent / local workflow scratch (not production source)
 temp_*
+
+# Generated RAG vector index (build with pnpm run vector:build)
+data/vector-index.json
 temp_research/
 
 # OS
