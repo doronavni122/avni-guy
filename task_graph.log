@@ -11,3 +11,5 @@
 11. wire-vercel-build-ci-command , vercel.json
 12. add-optional-production-smoke-script , scripts/smoke-production.mjs package.json
 13. update-content-pipeline-rules-for-verify-ci , .cursor/rules/content-pipeline-loop.mdc .cursor/rules/content-enhancer-loop.mdc
+14. sync-task-graph-reliability-entries , task_graph.log
+15. enhance-three-blog-articles-hebrew-content , src/content/blog/guy-avni-contract-claim-mediation-four-thousand-six-weeks.mdx src/content/blog/guy-avni-court-case-keywords-find-case-90-seconds.mdx src/content/blog/guy-avni-israeli-contract-red-flags-spot-three.mdx
