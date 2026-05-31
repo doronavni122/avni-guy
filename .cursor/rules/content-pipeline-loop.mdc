@@ -11,10 +11,10 @@ Use when remediating one or more blog articles. Run steps in order; do not skip.
 2. **Content enhancer** — follow `content-enhancer-loop.mdc` for the active article.
 3. **Internal links** — follow `internal-links-loop.mdc` for the same article.
 4. **Homepage brand link** — follow `homepage-brand-internal-links-loop.mdc` for the same article.
-5. Run `pnpm run content:audit` (or `CONTENT_AUDIT_SLUGS=<slug>` for one file). On failure, log `ERROR` with slug and fix before marking done.
+5. Run `pnpm run verify:content` (or set `CONTENT_AUDIT_SLUGS=<slug>` for scoped MDX/image checks). On failure, log `ERROR` with slug and fix before marking done.
 6. Run `pnpm run image-keyword-compliance` when images/frontmatter images changed.
-7. Run `pnpm run seo:guardrails` (main pages + H1; article audit only if `CONTENT_AUDIT_ENFORCE=1`).
-8. Run `pnpm build`.
+7. Run `pnpm run seo:guardrails` (main pages + H1; full article/taxonomy audit when `CONTENT_AUDIT_ENFORCE=1`).
+8. Run `pnpm run build:ci`.
 9. Mark article `[x]` in all three checklists when steps 2–8 pass for that slug.
 
 Hard requirements:

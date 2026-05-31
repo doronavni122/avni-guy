@@ -16,8 +16,8 @@ Follow this loop exactly for article enhancement tasks. Stack with `content-pipe
 6. Replace MDX body with topic-specific Hebrew prose; no body `#` H1; first `##` must not duplicate layout `title`.
 7. Meet tier word minimum (pillar ≥1200, cluster ≥900, slug contracts in `scripts/lib/content-tiers.mjs`).
 8. YMYL slugs: add ≥2 external `https://` links to authority hosts (gov.il, israelbar.org.il, etc.).
-9. Run dev server and review live article.
-10. Run `pnpm run content:audit` for this slug; fix failures.
+9. Run dev server at **http://localhost:3001/** and review live article.
+10. Run `pnpm run verify:content` for this slug (`CONTENT_AUDIT_SLUGS=<slug>`); run `pnpm run taxonomy:audit` if new tags/categories were added; run `pnpm run images:audit` if `images` changed.
 11. Mark `- [x] src/content/blog/<slug>.mdx`.
 
 Hard requirements:
