@@ -14,6 +14,7 @@
     "start": "next start",
     "seo:indexnow": "node scripts/indexnow-submit.mjs",
     "seo:guardrails": "node scripts/seo-guardrails.mjs",
+    "taxonomy:report": "node scripts/taxonomy-report.mjs",
     "content:audit": "node scripts/content-audit.mjs",
     "image-keyword-compliance": "node scripts/image-keyword-compliance.mjs",
     "cms:dev": "KEYSTATIC_STORAGE_KIND=local next dev"
