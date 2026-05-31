@@ -1,1 +1,13 @@
 1. add-taxonomy-corpus-scanner-and-task-graph-log , task_graph.log scripts/lib/taxonomy-corpus.mjs scripts/taxonomy-report.mjs package.json
+2. pin-dev-server-port-to-3001 , package.json scripts/check-dev-port.mjs AGENTS.md
+3. add-taxonomy-label-audit-script , scripts/lib/check-taxonomy-labels.mjs scripts/taxonomy-audit.mjs scripts/seo-guardrails.mjs package.json
+4. backfill-taxonomy-hebrew-labels , src/utils/taxonomy-labels.ts
+5. add-mdx-compile-audit-for-blog-slugs , scripts/lib/check-mdx-compile.mjs scripts/mdx-audit.mjs
+6. add-frontmatter-image-url-audit , scripts/lib/check-image-urls.mjs scripts/images-audit.mjs
+7. add-verify-content-orchestrator-script , scripts/verify-content.mjs package.json
+8. add-keystatic-github-env-validation , scripts/lib/check-keystatic-env.mjs scripts/seo-guardrails.mjs AGENTS.md
+9. add-github-actions-ci-workflow , .github/workflows/ci.yml
+10. add-curl-smoke-tests-after-build , scripts/smoke-routes.mjs package.json
+11. wire-vercel-build-ci-command , vercel.json
+12. add-optional-production-smoke-script , scripts/smoke-production.mjs package.json
+13. update-content-pipeline-rules-for-verify-ci , .cursor/rules/content-pipeline-loop.mdc .cursor/rules/content-enhancer-loop.mdc
