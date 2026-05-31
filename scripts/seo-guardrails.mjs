@@ -7,6 +7,8 @@ import { validateAllMainPageStyles } from './lib/main-page-style-rules.mjs';
 import { runMainPageMetaChecks } from './lib/check-main-page-meta.mjs';
 import { validateAllMainPageHeroes } from './lib/seo-hero-rules.mjs';
 import { runArticleContentChecks } from './lib/check-article-content.mjs';
+import { runTaxonomyLabelChecks } from './lib/check-taxonomy-labels.mjs';
+import { runKeystaticEnvChecks } from './lib/check-keystatic-env.mjs';
 
 const EXPECTED_HOST = 'https://avniguy.co.il';
 
@@ -89,6 +91,47 @@ function checkMainPageHeroes() {
 	}
 }
 
+function checkTaxonomyLabelsIfEnabled() {
+	if (process.env.CONTENT_AUDIT_ENFORCE !== '1') {
+		logStep('step 2.36: skipping taxonomy label audit (set CONTENT_AUDIT_ENFORCE=1 to enable)');
+		return;
+	}
+	logStep('step 2.36: running taxonomy label audit');
+	try {
+		const result = runTaxonomyLabelChecks();
+		if (!result.ok) {
+			for (const err of result.errors.slice(0, 20)) {
+				fail(err);
+			}
+			if (result.errors.length > 20) {
+				fail(`... and ${result.errors.length - 20} more taxonomy label issues (run pnpm run taxonomy:audit)`);
+			}
+		}
+	} catch (err) {
+		console.error('[seo-guardrails] checkTaxonomyLabelsIfEnabled failed', err);
+		fail('Taxonomy label audit failed');
+	}
+}
+
+function checkKeystaticEnvIfCi() {
+	if (process.env.CI !== '1') {
+		logStep('step 2.37: skipping Keystatic env check (CI=1 required)');
+		return;
+	}
+	logStep('step 2.37: running Keystatic env validation');
+	try {
+		const result = runKeystaticEnvChecks({ enforce: true });
+		if (!result.ok) {
+			for (const err of result.errors) {
+				fail(err);
+			}
+		}
+	} catch (err) {
+		console.error('[seo-guardrails] checkKeystaticEnvIfCi failed', err);
+		fail('Keystatic env validation failed');
+	}
+}
+
 function checkArticleContentIfEnabled() {
 	if (process.env.CONTENT_AUDIT_ENFORCE !== '1') {
 		logStep('step 2.35: skipping article content audit (set CONTENT_AUDIT_ENFORCE=1 to enable)');
@@ -141,6 +184,8 @@ function main() {
 	checkSourceFiles();
 	checkMainPageHeroes();
 	checkArticleContentIfEnabled();
+	checkTaxonomyLabelsIfEnabled();
+	checkKeystaticEnvIfCi();
 	checkPageH1Rules();
 	try {
 		runBannedCharacterChecks();
