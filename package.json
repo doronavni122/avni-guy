@@ -6,18 +6,25 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "dev": "next dev",
+    "predev": "node scripts/check-dev-port.mjs",
+    "dev": "next dev -p 3001",
     "images:optimize": "node scripts/optimize-images.mjs",
     "prebuild": "node scripts/optimize-images.mjs && CONTENT_AUDIT_ENFORCE=1 node scripts/seo-guardrails.mjs",
     "build": "next build",
-    "build:ci": "pnpm run build && node scripts/check-performance-budget.mjs",
+    "build:ci": "pnpm run build && node scripts/check-performance-budget.mjs && pnpm run smoke:routes",
     "start": "next start",
     "seo:indexnow": "node scripts/indexnow-submit.mjs",
     "seo:guardrails": "node scripts/seo-guardrails.mjs",
     "taxonomy:report": "node scripts/taxonomy-report.mjs",
+    "taxonomy:audit": "node scripts/taxonomy-audit.mjs",
+    "mdx:audit": "node scripts/mdx-audit.mjs",
+    "images:audit": "node scripts/images-audit.mjs",
+    "verify:content": "node scripts/verify-content.mjs",
+    "smoke:routes": "node scripts/smoke-routes.mjs",
+    "smoke:production": "node scripts/smoke-production.mjs",
     "content:audit": "node scripts/content-audit.mjs",
     "image-keyword-compliance": "node scripts/image-keyword-compliance.mjs",
-    "cms:dev": "KEYSTATIC_STORAGE_KIND=local next dev"
+    "cms:dev": "KEYSTATIC_STORAGE_KIND=local next dev -p 3001"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",

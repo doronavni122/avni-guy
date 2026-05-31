@@ -48,3 +48,13 @@
 ## Deployment
 - Deploy with Vercel (`framework: nextjs` in `vercel.json`).
 - Verify build output, metadata, sitemap, and crawlability post-deploy.
+
+## Local development
+- Dev server: `pnpm run dev` → **http://localhost:3001/** (port 3001 is pinned; do not use `:3000` if another app occupies it).
+- CMS local editing: `pnpm run cms:dev` (Keystatic with `KEYSTATIC_STORAGE_KIND=local`).
+- Pre-flight: `pnpm run verify:content` then `pnpm run build:ci` before merge.
+
+## Keystatic (GitHub mode on Vercel)
+When `KEYSTATIC_STORAGE_KIND=github`, set:
+- `KEYSTATIC_GITHUB_REPO` (`owner/repo`)
+- `KEYSTATIC_GITHUB_CLIENT_ID`, `KEYSTATIC_GITHUB_CLIENT_SECRET`, `KEYSTATIC_SECRET` (OAuth app per Keystatic docs)
