@@ -29,6 +29,14 @@ import {
 	pillarsForCategory,
 } from './lib/pillar-cluster-registry.mjs';
 
+function primaryPillarHref(donorSlug, postsBySlug) {
+	const donor = postsBySlug.get(donorSlug);
+	if (!donor) return null;
+	const pillarSlug = primaryPillarForCategory(donor.category, donorSlug);
+	if (!pillarSlug || pillarSlug === donorSlug) return null;
+	return `/blog/${pillarSlug}/`;
+}
+
 const OVERLINKED_HUBS = new Set([
 	'guy-avni-dispute-prevention-method',
 	'guy-avni-contract-review-flow',
@@ -174,12 +182,14 @@ function rebalanceHubLinks(body, donorSlug, postsBySlug) {
 
 function reduceBlogLinksOverMax(body, donorSlug, postsBySlug) {
 	let b = body;
+	const protectedHref = primaryPillarHref(donorSlug, postsBySlug);
 	while (countBlogLinksInBody(b) > MAX_BLOG_LINKS) {
 		const links = extractParagraphMarkdownLinks(b).filter(
 			(l) => l.href.startsWith('/blog/') && l.href !== '/blog/',
 		);
 		const hubLink = links.find((l) => OVERLINKED_HUBS.has(slugFromBlogHref(l.href) ?? ''));
-		const toRemove = hubLink ?? links[links.length - 1];
+		const removable = links.filter((l) => l.href !== protectedHref);
+		const toRemove = hubLink ?? removable[removable.length - 1];
 		if (!toRemove) break;
 		const tagFallback = hashPick(`${donorSlug}:tag`, ['/tags/', '/categories/']);
 		const tagAnchor = tagFallback === '/tags/' ? 'תגיות במאגר' : 'קטגוריות תוכן';
@@ -230,29 +240,50 @@ function injectPillarLink(body, donorSlug, postsBySlug) {
 	if (!pillar) return body;
 	const href = `/blog/${pillarSlug}/`;
 	if (extractParagraphMarkdownLinks(body).some((l) => l.href === href)) return body;
-	const anchor = pillar.mainKeyword && pillar.mainKeyword.length >= 4
+	let anchor = pillar.mainKeyword && pillar.mainKeyword.length >= 4
 		? pillar.mainKeyword
 		: anchorVariants(pillar.title, `${donorSlug}:pillar:${pillarSlug}`);
 	if (!anchorMatchesTarget(anchor, pillar)) {
-		return injectLinkIntoSection(body, href, anchorVariants(pillar.title, `${donorSlug}:pillar`));
+		anchor = anchorVariants(pillar.title, `${donorSlug}:pillar`);
+	}
+	if (countBlogLinksInBody(body) >= MAX_BLOG_LINKS) {
+		const categoryPillars = new Set(pillarsForCategory(donor.category));
+		const links = extractParagraphMarkdownLinks(body).filter(
+			(l) => l.href.startsWith('/blog/') && l.href !== '/blog/' && l.href !== href,
+		);
+		const toSwap =
+			links.find((l) => {
+				const s = slugFromBlogHref(l.href);
+				return s && !categoryPillars.has(s) && !OVERLINKED_HUBS.has(s);
+			}) ??
+			links.find((l) => OVERLINKED_HUBS.has(slugFromBlogHref(l.href) ?? '')) ??
+			links[links.length - 1];
+		if (toSwap) {
+			return body.replace(toSwap.full, `[${anchor}](${href})`);
+		}
 	}
 	return injectLinkIntoSection(body, href, anchor);
 }
 
-function injectOrphanLink(body, donorSlug, orphanSlug, postsBySlug) {
+function injectOrphanLink(body, donorSlug, orphanSlug, postsBySlug, inbound = new Map()) {
 	const orphan = postsBySlug.get(orphanSlug);
 	if (!orphan) return body;
 	const href = `/blog/${orphanSlug}/`;
 	const already = extractParagraphMarkdownLinks(body).some((l) => l.href === href);
 	if (already) return body;
-	const anchor = anchorVariants(orphan.title, `${donorSlug}:orphan:${orphanSlug}`);
+	let anchor = anchorVariants(orphan.title, `${donorSlug}:orphan:${orphanSlug}`);
+	if (!anchorMatchesTarget(anchor, orphan)) {
+		anchor = orphan.mainKeyword && orphan.mainKeyword.length >= 4
+			? orphan.mainKeyword
+			: anchorVariants(orphan.title, `${donorSlug}:orphan2:${orphanSlug}`);
+	}
 
 	if (countBlogLinksInBody(body) >= MAX_BLOG_LINKS) {
+		const protectedHref = primaryPillarHref(donorSlug, postsBySlug);
 		const links = extractParagraphMarkdownLinks(body).filter(
-			(l) => l.href.startsWith('/blog/') && l.href !== '/blog/',
+			(l) => l.href.startsWith('/blog/') && l.href !== '/blog/' && l.href !== href && l.href !== protectedHref,
 		);
-		const hubLink = links.find((l) => OVERLINKED_HUBS.has(slugFromBlogHref(l.href) ?? ''));
-		const toSwap = hubLink ?? links[links.length - 1];
+		const toSwap = pickSwapBlogLink(links, inbound, protectedHref);
 		if (toSwap) {
 			return body.replace(toSwap.full, `[${anchor}](${href})`);
 		}
@@ -325,6 +356,60 @@ function dedupeParagraphLinks(body, donorSlug) {
 	return b;
 }
 
+function pickSwapBlogLink(links, inbound, protectedHref) {
+	const candidates = links.filter((l) => l.href !== protectedHref);
+	if (!candidates.length) return null;
+	const scored = candidates.map((l) => {
+		const slug = slugFromBlogHref(l.href);
+		const inCount = slug ? (inbound.get(slug)?.length ?? 0) : 99;
+		const hubBoost = slug && OVERLINKED_HUBS.has(slug) ? 1000 : 0;
+		return { link: l, score: hubBoost + inCount };
+	});
+	scored.sort((a, b) => b.score - a.score);
+	return scored[0]?.link ?? null;
+}
+
+function meshOrphans(posts, postsBySlug, inbound, stats, minInbound = 1) {
+	const orphans = posts.filter((p) => (inbound.get(p.slug) ?? []).length < minInbound);
+	for (const orphan of orphans) {
+		const donors = posts
+			.filter((p) => p.slug !== orphan.slug)
+			.sort((a, b) => {
+				const aScore = a.category === orphan.category ? 2 : 0;
+				const bScore = b.category === orphan.category ? 2 : 0;
+				const aTag = orphan.tags.some((t) => a.tags.includes(t)) ? 1 : 0;
+				const bTag = orphan.tags.some((t) => b.tags.includes(t)) ? 1 : 0;
+				return bScore + bTag - (aScore + aTag);
+			});
+		for (const donor of donors) {
+			if ((inbound.get(orphan.slug) ?? []).length >= minInbound) break;
+			const fresh = postsBySlug.get(donor.slug);
+			if (!fresh) continue;
+			let newBody = injectOrphanLink(fresh.content, donor.slug, orphan.slug, postsBySlug, inbound);
+			newBody = reduceBlogLinksOverMax(newBody, donor.slug, postsBySlug);
+			if (newBody === fresh.content) continue;
+			writePost(donor.slug, fresh.raw, newBody);
+			stats.orphanLinks += 1;
+			fresh.content = newBody;
+			fresh.raw = fs.readFileSync(path.join(BLOG_DIR, `${donor.slug}.mdx`), 'utf8');
+			const swapped = extractParagraphMarkdownLinks(fresh.content)
+				.filter((l) => l.href.startsWith('/blog/') && l.href !== '/blog/')
+				.map((l) => slugFromBlogHref(l.href))
+				.filter(Boolean);
+			for (const slug of swapped) {
+				if (!inbound.has(slug)) inbound.set(slug, []);
+				if (!inbound.get(slug).some((e) => e.from === donor.slug)) {
+					inbound.get(slug).push({ from: donor.slug });
+				}
+			}
+			// Rebuild inbound from graph after each write for accuracy
+			const rebuilt = buildLinkGraph(loadAllPosts()).inbound;
+			for (const [k, v] of rebuilt) inbound.set(k, v);
+		}
+	}
+	return orphans.length;
+}
+
 function writePost(slug, raw, content) {
 	const out = writeMdxWithSyncedLinks(raw, content);
 	fs.writeFileSync(path.join(BLOG_DIR, `${slug}.mdx`), out, 'utf8');
@@ -361,35 +446,8 @@ function main() {
 	({ inbound } = buildLinkGraph(posts));
 	for (const p of posts) postsBySlug.set(p.slug, p);
 
-	const orphans = posts.filter((p) => (inbound.get(p.slug) ?? []).length === 0);
-	logGraph('remediate', `orphans to mesh: ${orphans.length}`);
-
-	for (const orphan of orphans) {
-		const donors = posts
-			.filter((p) => p.slug !== orphan.slug)
-			.sort((a, b) => {
-				const aScore = a.category === orphan.category ? 2 : 0;
-				const bScore = b.category === orphan.category ? 2 : 0;
-				const aTag = orphan.tags.some((t) => a.tags.includes(t)) ? 1 : 0;
-				const bTag = orphan.tags.some((t) => b.tags.includes(t)) ? 1 : 0;
-				return bScore + bTag - (aScore + aTag);
-			});
-		for (const donor of donors) {
-			if ((inbound.get(orphan.slug) ?? []).length >= 2) break;
-			const fresh = postsBySlug.get(donor.slug);
-			if (!fresh) continue;
-			const newBody = injectOrphanLink(fresh.content, donor.slug, orphan.slug, postsBySlug);
-			if (newBody !== fresh.content) {
-				let finalBody = dedupeParagraphLinks(newBody, donor.slug);
-				writePost(donor.slug, fresh.raw, finalBody);
-				stats.orphanLinks += 1;
-				fresh.content = finalBody;
-				fresh.raw = fs.readFileSync(path.join(BLOG_DIR, `${donor.slug}.mdx`), 'utf8');
-				if (!inbound.has(orphan.slug)) inbound.set(orphan.slug, []);
-				inbound.get(orphan.slug).push({ from: donor.slug });
-			}
-		}
-	}
+	let orphanCount = meshOrphans(posts, postsBySlug, inbound, stats, 2);
+	logGraph('remediate', `orphans to mesh: ${orphanCount}`);
 
 	posts = loadAllPosts();
 	for (const p of posts) {
@@ -404,6 +462,28 @@ function main() {
 	for (const p of posts) {
 		const body = dedupeParagraphLinks(p.content, p.slug);
 		if (body !== p.content) writePost(p.slug, p.raw, body);
+	}
+
+	// Final pillar pass then iterative orphan mesh until stable
+	posts = loadAllPosts();
+	for (const p of posts) postsBySlug.set(p.slug, p);
+	for (const p of posts) {
+		let body = injectPillarLink(p.content, p.slug, postsBySlug);
+		body = reduceBlogLinksOverMax(body, p.slug, postsBySlug);
+		if (body !== p.content) {
+			writePost(p.slug, p.raw, body);
+			stats.pillarLinks += 1;
+		}
+	}
+
+	for (let round = 0; round < 15; round++) {
+		posts = loadAllPosts();
+		({ inbound } = buildLinkGraph(posts));
+		for (const p of posts) postsBySlug.set(p.slug, p);
+		const remaining = posts.filter((p) => (inbound.get(p.slug) ?? []).length === 0).length;
+		if (remaining === 0) break;
+		logGraph('remediate', `orphan mesh round ${round + 1}: ${remaining} orphans`);
+		meshOrphans(posts, postsBySlug, inbound, stats, 1);
 	}
 
 	logGraph('remediate', 'done', stats);

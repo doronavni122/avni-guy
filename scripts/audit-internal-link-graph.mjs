@@ -21,8 +21,9 @@ function auditPillarBidirectional(posts, postsBySlug) {
 		if (isGlobalPillarSlug(p.slug)) continue;
 		const pillars = pillarsForCategory(p.category);
 		if (!pillars.length) continue;
+		if (pillars.includes(p.slug)) continue;
 		const primary = primaryPillarForCategory(p.category, p.slug);
-		if (!primary) continue;
+		if (!primary || primary === p.slug) continue;
 		const href = `/blog/${primary}/`;
 		const hasPillar = p.paragraphLinks.some((l) => l.href === href);
 		if (!hasPillar) {
