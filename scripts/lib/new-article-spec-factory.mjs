@@ -1,40 +1,10 @@
 import {
+	buildLinkPlan,
 	normalizeBodyHrefs,
 } from './article-body-kit.mjs';
 import { getArticleTier, getMinWordsForTier } from './content-tiers.mjs';
 import { KEYWORD_STUB_SLUGS_SET } from './keyword-stub-slugs.mjs';
 import { countWordsHe } from './seo-hero-rules.mjs';
-
-const HUB_PATHS = [
-	'/about/',
-	'/services/',
-	'/blog/',
-	'/categories/',
-	'/tags/',
-	'/contact/',
-];
-
-function buildUniqueLinkPlan(spec) {
-	const { title, category, tags, relatedBlogSlugs, mainKeyword } = spec;
-	const fragments = title.split(/[,?]/).map((s) => s.trim()).filter(Boolean);
-	let idx = 0;
-	const anchor = () => {
-		const base = fragments[idx % fragments.length] ?? title;
-		idx += 1;
-		return `${base.slice(0, 38)}-${idx}`.slice(0, 45);
-	};
-	const brand = mainKeyword.includes('עורך דין') || mainKeyword.includes('משרד עורכי דין') ? 'גיא אבני עורך דין' : 'גיא אבני';
-	const links = HUB_PATHS.filter((path) => path !== '/').map((path) => ({ href: path, anchor: anchor() }));
-	links.push({ href: `/categories/${category}/`, anchor: anchor() });
-	for (const tag of tags) {
-		links.push({ href: `/tags/${tag}/`, anchor: anchor() });
-	}
-	for (const rel of relatedBlogSlugs.slice(0, 4)) {
-		links.push({ href: `/blog/${rel}/`, anchor: anchor() });
-	}
-	links.push({ href: '/', anchor: brand });
-	return links;
-}
 
 /** @typedef {import('./article-specs.mjs').ArticleSpec} ArticleSpec */
 
@@ -329,7 +299,7 @@ function padUniqueWords(body, slug, title, minWords, extraTokens = []) {
 }
 
 function buildLinkHelpers(spec) {
-	const links = buildUniqueLinkPlan(spec);
+	const links = buildLinkPlan(spec);
 	const usedHrefs = new Set();
 	let linkIdx = 0;
 	const takeLink = () => {

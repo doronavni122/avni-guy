@@ -11,6 +11,8 @@ import { labelForInternalLink } from '@/utils/link-labels';
 import { getTagLabel } from '@/utils/taxonomy-labels';
 import type { BlogFrontmatter } from '@/lib/content/schema';
 import type { SiteKeyword } from '@/consts';
+import type { BlogPost } from '@/lib/content/schema';
+import { RelatedArticles } from '@/components/blog/RelatedArticles';
 
 type BlogPostLayoutProps = {
 	metaTitle: string;
@@ -20,11 +22,27 @@ type BlogPostLayoutProps = {
 	slug: string;
 	currentPath: string;
 	jsonLd: Array<Record<string, unknown>>;
+	relatedPosts?: BlogPost[];
 	children: ReactNode;
 };
 
-export function BlogPostLayout({ mainKeyword, data, slug, currentPath, jsonLd, children }: BlogPostLayoutProps) {
+export function BlogPostLayout({
+	mainKeyword,
+	data,
+	slug,
+	currentPath,
+	jsonLd,
+	relatedPosts = [],
+	children,
+}: BlogPostLayoutProps) {
 	const { title, description, pubDate, updatedDate, category, tags, images, internalLinks } = data;
+
+	const footerBlogLinks = internalLinks.filter((l) => l.startsWith('/blog/') && l !== '/blog/').slice(0, 3);
+	const footerNavLinks = internalLinks
+		.filter((l) => !l.startsWith('/blog/') || l === '/blog/')
+		.filter((l) => !footerBlogLinks.includes(l))
+		.slice(0, 2);
+	const footerLinks = [...footerBlogLinks, ...footerNavLinks].slice(0, 5);
 
 	return (
 		<SiteShell currentPath={currentPath} extraJsonLd={jsonLd}>
@@ -102,10 +120,15 @@ export function BlogPostLayout({ mainKeyword, data, slug, currentPath, jsonLd, c
 							{children}
 						</div>
 					</CardContent>
+					{relatedPosts.length > 0 ? (
+						<div className="border-t border-border/60 px-6 py-6">
+							<RelatedArticles posts={relatedPosts} />
+						</div>
+					) : null}
 					<CardFooter className="flex flex-col items-stretch gap-4 border-t border-border/60 bg-muted/20 p-6 text-right">
 						<h2 className="font-heading text-lg font-semibold text-foreground">קישורים פנימיים מומלצים</h2>
 						<ul className="flex flex-col gap-2 text-sm">
-							{internalLinks.map((link) => (
+							{footerLinks.map((link) => (
 								<li key={link}>
 									<Link className="font-medium text-primary underline-offset-2 hover:underline" href={link}>
 										{labelForInternalLink(link)}

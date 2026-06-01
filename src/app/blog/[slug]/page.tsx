@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { BlogPostLayout } from '@/components/layout/BlogPostLayout';
 import { renderMdxContent } from '@/lib/content/mdx';
 import { getAllPosts, getPostBySlug } from '@/lib/content/posts';
+import { scoreRelatedPosts } from '@/lib/content/related-posts';
 import { buildPageMetadata } from '@/lib/metadata';
 import { SITE_URL } from '@/consts';
 import {
@@ -46,6 +47,8 @@ export default async function BlogPostPage({ params }: PageProps) {
 	}
 
 	const content = await renderMdxContent(post.content);
+	const allPosts = await getAllPosts();
+	const relatedPosts = scoreRelatedPosts(post, allPosts, 4);
 	const canonicalUrl = new URL(`/blog/${slug}/`, SITE_URL).toString();
 
 	const jsonLd = [
@@ -77,6 +80,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 			slug={slug}
 			currentPath={`/blog/${slug}/`}
 			jsonLd={jsonLd}
+			relatedPosts={relatedPosts}
 		>
 			{content}
 		</BlogPostLayout>

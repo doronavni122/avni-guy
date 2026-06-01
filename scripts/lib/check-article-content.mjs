@@ -11,6 +11,11 @@ import {
 	YMYL_EXTERNAL_ALLOWLIST_HOSTS,
 	YMYL_SLUGS,
 } from './content-forbidden-patterns.mjs';
+import {
+	ENGLISH_SLUG_ANCHOR_PATTERNS,
+	GARBAGE_ANCHOR_PATTERNS,
+	MAX_BLOG_LINKS,
+} from './internal-link-graph.mjs';
 import { getArticleTier, getMinWordsForTier, SLUG_CONTENT_CONTRACTS } from './content-tiers.mjs';
 import { KEYWORD_STUB_SLUGS_SET } from './keyword-stub-slugs.mjs';
 import { countWordsHe, SITE_KEYWORDS } from './seo-hero-rules.mjs';
@@ -158,9 +163,21 @@ function auditPost(slug, raw, allBodies) {
 	if (dupHref) errors.push(`${slug}: duplicate paragraph link target ${dupHref}`);
 	const dupAnchor = anchors.find((a, i) => anchors.indexOf(a) !== i);
 	if (dupAnchor) errors.push(`${slug}: duplicate paragraph link anchor "${dupAnchor}"`);
+	const blogLinks = paragraphLinks.filter((l) => l.href.startsWith('/blog/') && l.href !== '/blog/');
+	if (blogLinks.length > MAX_BLOG_LINKS) {
+		errors.push(`${slug}: blog paragraph links ${blogLinks.length} exceed max ${MAX_BLOG_LINKS}`);
+	}
 	for (const { anchor } of paragraphLinks) {
 		if (BANNED_ANCHOR_PATTERNS.some((re) => re.test(anchor))) {
 			errors.push(`${slug}: banned generic anchor "${anchor}"`);
+			break;
+		}
+		if (ENGLISH_SLUG_ANCHOR_PATTERNS.some((re) => re.test(anchor))) {
+			errors.push(`${slug}: english-slug anchor pattern "${anchor}"`);
+			break;
+		}
+		if (GARBAGE_ANCHOR_PATTERNS.some((re) => re.test(anchor))) {
+			errors.push(`${slug}: garbage anchor pattern "${anchor}"`);
 			break;
 		}
 	}

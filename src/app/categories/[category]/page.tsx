@@ -6,6 +6,7 @@ import { SiteShell } from '@/components/layout/SiteShell';
 import { getCategories, getPostsIndex } from '@/lib/content/posts';
 import { buildPageMetadata } from '@/lib/metadata';
 import { buildBreadcrumbSchema } from '@/utils/structured-data';
+import { getCategoryHubIntro } from '@/lib/seo/category-hub-intros';
 import {
 	buildCategoryMetaDescription,
 	buildCategoryPageTitle,
@@ -40,6 +41,7 @@ export default async function CategoryPage({ params }: PageProps) {
 		if (!categories.includes(category)) notFound();
 	}
 	const categoryHe = getCategoryLabel(category);
+	const hubIntro = getCategoryHubIntro(category);
 	const jsonLd = buildBreadcrumbSchema([
 		{ name: 'דף הבית', path: '/' },
 		{ name: 'קטגוריות', path: '/categories' },
@@ -54,6 +56,18 @@ export default async function CategoryPage({ params }: PageProps) {
 					<h1 className="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
 						אבני גיא - קטגוריה {categoryHe}
 					</h1>
+					<p className="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
+						{hubIntro.paragraph}{' '}
+						{hubIntro.pillarLinks.map((link, i) => (
+							<span key={link.href}>
+								{i > 0 ? (i === hubIntro.pillarLinks.length - 1 ? ' ו-' : ', ') : ''}
+								<Link className="font-medium text-primary underline-offset-2 hover:underline" href={link.href}>
+									{link.label}
+								</Link>
+							</span>
+						))}
+						.
+					</p>
 				</div>
 				<Separator className="bg-border/60" />
 				<div className="grid gap-4 sm:grid-cols-2">

@@ -6,6 +6,7 @@ import {
 	YMYL_SLUGS,
 } from './content-forbidden-patterns.mjs';
 import { getMinWordsForTier, getArticleTier } from './content-tiers.mjs';
+import { loadAllPosts, titleAnchorFragment } from './internal-link-graph.mjs';
 import { countWordsHe } from './seo-hero-rules.mjs';
 
 const META_TITLE_MIN = 50;
@@ -100,11 +101,19 @@ export function buildLinkPlan(spec) {
 		});
 	}
 	const blogs = relatedBlogSlugs.slice(0, MAX_BLOG_LINKS);
+	const titleBySlug = new Map(loadAllPosts().map((p) => [p.slug, p.title]));
 	for (const rel of blogs) {
-		const label = rel.replace(/^guy-avni-/, '').replace(/-/g, ' ');
+		const postTitle = titleBySlug.get(rel);
+		const titleFrag =
+			spec.relatedTitles?.[rel] ??
+			(postTitle ? titleAnchorFragment(postTitle) : rel.replace(/^guy-avni-/, '').replace(/-/g, ' '));
 		links.push({
 			href: `/blog/${rel}/`,
-			anchor: anchorFor(slug, rel, [`מדריך ${label}`, `המשך בנושא ${label}`, `קראו על ${label}`]),
+			anchor: anchorFor(slug, rel, [
+				titleFrag,
+				`מדריך: ${titleFrag}`,
+				`המשך בנושא ${titleFrag}`,
+			]),
 		});
 	}
 	links.push({ href: '/', anchor: brand });

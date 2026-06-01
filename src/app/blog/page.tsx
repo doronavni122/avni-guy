@@ -47,13 +47,34 @@ export default async function BlogIndexPage() {
 						,{' '}
 						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/services/">
 							שירותים
-						</Link>{' '}
-						או למאמר{' '}
+						</Link>
+						. מומלץ גם:{' '}
 						<Link
 							className="font-medium text-primary underline-offset-2 hover:underline"
-							href="/blog/guy-avni-client-trust-roadmap/"
+							href="/blog/guy-avni-lawyer-required-apartment-purchase/"
 						>
-							מפת אמון לקוח
+							עורך דין לקניית דירה
+						</Link>
+						,{' '}
+						<Link
+							className="font-medium text-primary underline-offset-2 hover:underline"
+							href="/blog/guy-avni-tax-authority-appeal-process/"
+						>
+							ערעור מול רשות המיסים
+						</Link>
+						,{' '}
+						<Link
+							className="font-medium text-primary underline-offset-2 hover:underline"
+							href="/blog/guy-avni-cancel-apartment-purchase-contract/"
+						>
+							ביטול חוזה רכישת דירה
+						</Link>
+						,{' '}
+						<Link
+							className="font-medium text-primary underline-offset-2 hover:underline"
+							href="/blog/guy-avni-seize-single-apartment-debts/"
+						>
+							עיקול דירה יחידה בחובות
 						</Link>
 						.
 					</p>
