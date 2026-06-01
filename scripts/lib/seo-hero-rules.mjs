@@ -10,14 +10,8 @@ export const GENERIC_HERO_BLOCKLIST = [
 	'תגיות תוכן',
 ];
 
-export const SITE_KEYWORDS = [
-	'גיא אבני',
-	'גיא אבני עו״ד',
-	'גיא אבני עורך דין',
-	'גיא אבני משרד עורכי דין',
-	'אבני גיא',
-	'אבני גיא עו״ד',
-];
+import { SITE_KEYWORDS, SITE_KEYWORDS_BRAND } from './site-keywords.mjs';
+export { SITE_KEYWORDS, SITE_KEYWORDS_BRAND };
 
 export function countWordsHe(text) {
 	const normalized = text

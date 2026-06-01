@@ -7,27 +7,50 @@ import {
 	FORBIDDEN_CLOSING_SNIPPET,
 	FORBIDDEN_OPENING_SNIPPET,
 	FORBIDDEN_TITLE_SUFFIX,
+	FLUFF_BODY_PATTERNS,
 	STANDARD_NAV_LINK_PATHS,
 	YMYL_EXTERNAL_ALLOWLIST_HOSTS,
 	YMYL_SLUGS,
 } from './content-forbidden-patterns.mjs';
 import {
+	anchorMatchesTarget,
+	buildLinkGraph,
+	CONTEXTUAL_BLOG_MAX,
+	CONTEXTUAL_BLOG_MIN,
+	CONTEXTUAL_WORD_THRESHOLD,
+	countContextualBlogLinks,
 	ENGLISH_SLUG_ANCHOR_PATTERNS,
+	findSectionDuplicateHrefs,
 	GARBAGE_ANCHOR_PATTERNS,
+	loadAllPosts,
 	MAX_BLOG_LINKS,
+	slugFromBlogHref,
 } from './internal-link-graph.mjs';
+import { isBrandMainKeyword } from './pillar-cluster-registry.mjs';
 import { getArticleTier, getMinWordsForTier, SLUG_CONTENT_CONTRACTS } from './content-tiers.mjs';
 import { KEYWORD_STUB_SLUGS_SET } from './keyword-stub-slugs.mjs';
 import { countWordsHe, SITE_KEYWORDS } from './seo-hero-rules.mjs';
 
 const BLOG_DIR = path.join(process.cwd(), 'src', 'content', 'blog');
 const MIN_PARAGRAPH_INTERNAL_LINKS = 10;
+const FIRST_100_WORDS_MAIN_KEYWORD_STRICT =
+	process.env.CONTENT_LINKS_STRICT === '1' || process.env.CONTENT_STRICT === '1';
+const LINKS_STRICT = process.env.CONTENT_LINKS_STRICT === '1';
+const CONTENT_STRICT = process.env.CONTENT_STRICT === '1';
 const META_TITLE_MIN = 50;
 const META_TITLE_MAX = 60;
 const META_DESC_MIN = 120;
-const META_DESC_MAX = 165;
-const NEAR_DUPLICATE_JACCARD_THRESHOLD = 0.42;
+const META_DESC_MAX = CONTENT_STRICT ? 155 : 165;
+const NEAR_DUPLICATE_JACCARD_THRESHOLD = CONTENT_STRICT ? 0.38 : 0.42;
 const BATCH_UPDATED_DATE = '2026-05-05';
+const TOPICAL_BLOG_MIN = 3;
+const TOPICAL_BLOG_MAX = 5;
+const EXTERNAL_STRICT_MIN = 3;
+const EXTERNAL_STRICT_MAX = 5;
+const FAQ_STRICT_MIN = 4;
+const FAQ_STRICT_MAX = 8;
+const SECONDARY_KW_MIN = 4;
+const SECONDARY_KW_MAX = 6;
 
 function logErr(step, message, extra) {
 	console.error(`[check-article-content] ERROR step=${step} ${message}`, extra ?? '');
@@ -98,6 +121,112 @@ function firstH2Text(body) {
 	return m ? m[1].trim() : '';
 }
 
+function first100WordsText(body) {
+	const plain = body
+		.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+		.replace(/^#+\s+/gm, '')
+		.replace(/^\s*[-*+]\s+/gm, '');
+	const words = plain.split(/\s+/).filter(Boolean);
+	return words.slice(0, 100).join(' ');
+}
+
+function lastParagraphText(body) {
+	const lines = body.split('\n');
+	const paragraphs = [];
+	let current = [];
+	for (const line of lines) {
+		const trimmed = line.trim();
+		if (!trimmed) {
+			if (current.length) {
+				paragraphs.push(current.join(' '));
+				current = [];
+			}
+			continue;
+		}
+		if (trimmed.startsWith('#')) continue;
+		if (/^[-*+]\s/.test(trimmed)) continue;
+		if (/^\d+\.\s/.test(trimmed)) continue;
+		current.push(trimmed);
+	}
+	if (current.length) paragraphs.push(current.join(' '));
+	const last = paragraphs[paragraphs.length - 1] ?? '';
+	return last
+		.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+		.replace(/\*\*/g, '')
+		.trim();
+}
+
+function hasTldrPattern(body) {
+	if (/^##\s+סיכום\b/m.test(body)) return true;
+	const intro = body
+		.replace(/^#+\s.+$/gm, '')
+		.split('\n')
+		.map((l) => l.trim())
+		.filter((l) => l && !l.startsWith('#') && !/^[-*+]\s/.test(l) && !/^\d+\.\s/.test(l))
+		.slice(0, 3)
+		.join(' ');
+	if (/\*\*[^*]{8,}\*\*/.test(intro)) return true;
+	const sentences = intro.split(/(?<=[.!?])\s+/u).filter(Boolean);
+	return sentences.length >= 1 && sentences.length <= 4 && intro.length >= 40;
+}
+
+function parseFaqFromBody(body) {
+	const sectionMatch = body.match(/##\s+שאלות נפוצות[\s\S]*/u);
+	if (!sectionMatch) return [];
+	const section = sectionMatch[0];
+	const items = [];
+	const re = /\*\*([^*]+?\?)\*\*\s*([^\n*]+(?:\n(?![*#])[^\n*]+)*)/gu;
+	let match;
+	while ((match = re.exec(section)) !== null) {
+		const question = match[1].trim();
+		const answer = match[2].trim().replace(/\n+/g, ' ');
+		if (question.length >= 8 && answer.length >= 20) items.push({ question, answer });
+	}
+	return items;
+}
+
+function countFaqItems(data, body) {
+	if (Array.isArray(data.faq) && data.faq.length) return data.faq.length;
+	return parseFaqFromBody(body).length;
+}
+
+function hasScannableStructure(body) {
+	if (/^\s*[-*+]\s/m.test(body)) return true;
+	if (/^\s*\d+\.\s/m.test(body)) return true;
+	if (/\|.+\|/.test(body)) return true;
+	return false;
+}
+
+function hasRecentStatsOrExamples(body) {
+	return /202[56]/u.test(body);
+}
+
+function hasCtaPattern(body) {
+	return (
+		/(יצירת קשר|תיאום פגישה|פנו אלינו|לתיאום|לפנייה)/u.test(body) &&
+		/\]\(\/contact\//.test(body)
+	);
+}
+
+function contentTypeMatchesTier(dataContentType, tier) {
+	if (!dataContentType) return true;
+	if (tier === 'contract') return dataContentType === 'cluster';
+	if (tier === 'pillar') return dataContentType === 'pillar';
+	return dataContentType === 'cluster';
+}
+
+/** @type {Map<string, { slug: string, mainKeyword: string, title: string }> | null} */
+let postsBySlugCache = null;
+
+function getPostsBySlug() {
+	if (!postsBySlugCache) {
+		postsBySlugCache = new Map(
+			loadAllPosts().map((p) => [p.slug, { slug: p.slug, mainKeyword: p.mainKeyword, title: p.title }]),
+		);
+	}
+	return postsBySlugCache;
+}
+
 function auditPost(slug, raw, allBodies) {
 	const errors = [];
 	const { data, content: body } = matter(raw);
@@ -121,6 +250,14 @@ function auditPost(slug, raw, allBodies) {
 	if (body.includes(FORBIDDEN_30_60_90_HEADING)) {
 		errors.push(`${slug}: body contains forbidden 30/60/90 template section`);
 	}
+	if (CONTENT_STRICT) {
+		for (const re of FLUFF_BODY_PATTERNS) {
+			if (re.test(body)) {
+				errors.push(`${slug}: body matches fluff/stuffing pattern ${re.source}`);
+				break;
+			}
+		}
+	}
 	if (/^#\s+/m.test(body)) {
 		errors.push(`${slug}: MDX body must not contain H1 (# heading)`);
 	}
@@ -138,6 +275,53 @@ function auditPost(slug, raw, allBodies) {
 		errors.push(`${slug}: mainKeyword not in SITE_KEYWORDS`);
 	} else if (!body.includes(mainKeyword)) {
 		errors.push(`${slug}: body missing mainKeyword phrase`);
+	}
+	if (FIRST_100_WORDS_MAIN_KEYWORD_STRICT && mainKeyword && !first100WordsText(body).includes(mainKeyword)) {
+		errors.push(`${slug}: mainKeyword missing from first 100 words`);
+	}
+	if (CONTENT_STRICT && mainKeyword) {
+		const lastPara = lastParagraphText(body);
+		if (lastPara && !lastPara.includes(mainKeyword)) {
+			errors.push(`${slug}: mainKeyword missing from last paragraph`);
+		}
+		if (!title.includes(mainKeyword)) {
+			errors.push(`${slug}: mainKeyword missing from title`);
+		}
+	}
+	if (CONTENT_STRICT && data.contentType && !contentTypeMatchesTier(data.contentType, tier)) {
+		errors.push(`${slug}: contentType "${data.contentType}" mismatches tier "${tier}"`);
+	}
+	const secondaryKeywords = Array.isArray(data.secondaryKeywords) ? data.secondaryKeywords : [];
+	if (CONTENT_STRICT) {
+		if (secondaryKeywords.length < SECONDARY_KW_MIN || secondaryKeywords.length > SECONDARY_KW_MAX) {
+			errors.push(
+				`${slug}: secondaryKeywords count ${secondaryKeywords.length} outside ${SECONDARY_KW_MIN}-${SECONDARY_KW_MAX}`,
+			);
+		}
+		for (const sk of secondaryKeywords) {
+			if (!body.includes(sk)) {
+				errors.push(`${slug}: secondaryKeyword "${sk}" missing from body`);
+				break;
+			}
+		}
+	}
+	if (CONTENT_STRICT && !hasTldrPattern(body)) {
+		errors.push(`${slug}: missing TL;DR pattern (## סיכום or bold lead in opening)`);
+	}
+	if (CONTENT_STRICT) {
+		const faqCount = countFaqItems(data, body);
+		if (faqCount < FAQ_STRICT_MIN || faqCount > FAQ_STRICT_MAX) {
+			errors.push(`${slug}: FAQ count ${faqCount} outside ${FAQ_STRICT_MIN}-${FAQ_STRICT_MAX}`);
+		}
+	}
+	if (CONTENT_STRICT && !hasScannableStructure(body)) {
+		errors.push(`${slug}: missing scannable structure (list, numbered list, or table)`);
+	}
+	if (CONTENT_STRICT && !hasRecentStatsOrExamples(body)) {
+		errors.push(`${slug}: missing 2025-2026 statistics or dated examples`);
+	}
+	if (CONTENT_STRICT && !hasCtaPattern(body)) {
+		errors.push(`${slug}: missing CTA paragraph with link to /contact/`);
 	}
 	const words = countWordsHe(body);
 	if (words < minWords) {
@@ -164,8 +348,40 @@ function auditPost(slug, raw, allBodies) {
 	const dupAnchor = anchors.find((a, i) => anchors.indexOf(a) !== i);
 	if (dupAnchor) errors.push(`${slug}: duplicate paragraph link anchor "${dupAnchor}"`);
 	const blogLinks = paragraphLinks.filter((l) => l.href.startsWith('/blog/') && l.href !== '/blog/');
-	if (blogLinks.length > MAX_BLOG_LINKS) {
-		errors.push(`${slug}: blog paragraph links ${blogLinks.length} exceed max ${MAX_BLOG_LINKS}`);
+	const topicalBlogMax = CONTENT_STRICT ? TOPICAL_BLOG_MAX : MAX_BLOG_LINKS;
+	if (blogLinks.length > topicalBlogMax) {
+		errors.push(`${slug}: blog paragraph links ${blogLinks.length} exceed max ${topicalBlogMax}`);
+	}
+	if (CONTENT_STRICT && blogLinks.length < TOPICAL_BLOG_MIN) {
+		errors.push(`${slug}: topical blog links ${blogLinks.length} below min ${TOPICAL_BLOG_MIN}`);
+	}
+	const contextualCount = countContextualBlogLinks(paragraphLinks);
+	if (LINKS_STRICT && words > CONTEXTUAL_WORD_THRESHOLD) {
+		if (contextualCount < CONTEXTUAL_BLOG_MIN) {
+			errors.push(
+				`${slug}: contextual blog links ${contextualCount} below min ${CONTEXTUAL_BLOG_MIN} (words>${CONTEXTUAL_WORD_THRESHOLD})`,
+			);
+		}
+		if (contextualCount > CONTEXTUAL_BLOG_MAX) {
+			errors.push(
+				`${slug}: contextual blog links ${contextualCount} exceed max ${CONTEXTUAL_BLOG_MAX} (words>${CONTEXTUAL_WORD_THRESHOLD})`,
+			);
+		}
+	}
+	const sectionDup = findSectionDuplicateHrefs(body);
+	if (sectionDup.length && LINKS_STRICT) {
+		errors.push(`${slug}: duplicate href in same H2 section: ${sectionDup[0]}`);
+	}
+	if (LINKS_STRICT) {
+		const bySlug = getPostsBySlug();
+		for (const link of blogLinks) {
+			const targetSlug = slugFromBlogHref(link.href);
+			const target = targetSlug ? bySlug.get(targetSlug) : null;
+			if (target && !anchorMatchesTarget(link.anchor, target)) {
+				errors.push(`${slug}: blog anchor "${link.anchor}" lacks target keyword/title tokens -> ${link.href}`);
+				break;
+			}
+		}
 	}
 	for (const { anchor } of paragraphLinks) {
 		if (BANNED_ANCHOR_PATTERNS.some((re) => re.test(anchor))) {
@@ -202,15 +418,22 @@ function auditPost(slug, raw, allBodies) {
 	}
 	const externalHttps = (body.match(/https:\/\/[^\s)]+/g) ?? []).filter((u) => !u.includes('avniguy.co.il'));
 	const needsExternal = contract?.requireExternalHttps || YMYL_SLUGS.has(slug);
-	if (needsExternal && externalHttps.length < 2) {
-		errors.push(`${slug}: YMYL/topic contract requires at least 2 external https links in body`);
+	const externalMin = CONTENT_STRICT ? EXTERNAL_STRICT_MIN : 2;
+	if ((needsExternal || CONTENT_STRICT) && externalHttps.length < externalMin) {
+		errors.push(`${slug}: external https links ${externalHttps.length} below minimum ${externalMin}`);
 	}
-	if (needsExternal) {
+	if (CONTENT_STRICT && externalHttps.length > EXTERNAL_STRICT_MAX) {
+		console.warn(
+			`[check-article-content] WARN ${slug}: external links ${externalHttps.length} exceed recommended max ${EXTERNAL_STRICT_MAX}`,
+		);
+	}
+	if (needsExternal || CONTENT_STRICT) {
 		const allowed = externalHttps.filter((u) =>
 			YMYL_EXTERNAL_ALLOWLIST_HOSTS.some((host) => u.includes(host)),
 		);
-		if (allowed.length < 1) {
-			errors.push(`${slug}: external links should include allowlisted authority host`);
+		const allowedMin = CONTENT_STRICT ? EXTERNAL_STRICT_MIN : 1;
+		if (allowed.length < allowedMin) {
+			errors.push(`${slug}: allowlisted authority external links ${allowed.length} below ${allowedMin}`);
 		}
 	}
 	if (data.updatedDate) {
@@ -237,9 +460,28 @@ function auditPost(slug, raw, allBodies) {
  * @param {{ slugFilter?: string[] }} [options]
  * @returns {{ ok: boolean, errors: string[] }}
  */
+function collectTopicCannibalizationErrors(posts) {
+	if (!LINKS_STRICT) return [];
+	const errors = [];
+	const byKw = new Map();
+	for (const p of posts) {
+		const kw = String(p.mainKeyword ?? '').trim();
+		if (!kw || isBrandMainKeyword(kw)) continue;
+		if (!byKw.has(kw)) byKw.set(kw, []);
+		byKw.get(kw).push(p.slug);
+	}
+	for (const [kw, slugs] of byKw) {
+		if (slugs.length > 1) {
+			errors.push(`cannibalization: mainKeyword "${kw}" shared by ${slugs.join(', ')}`);
+		}
+	}
+	return errors;
+}
+
 export function runArticleContentChecks(options = {}) {
 	const errors = [];
 	try {
+		postsBySlugCache = null;
 		const files = fs.readdirSync(BLOG_DIR).filter((f) => f.endsWith('.mdx'));
 		const raws = files.map((f) => {
 			const slug = f.replace(/\.mdx$/, '');
@@ -257,6 +499,17 @@ export function runArticleContentChecks(options = {}) {
 			} catch (err) {
 				logErr('auditPost', slug, err);
 				errors.push(`${slug}: audit threw ${err.message}`);
+			}
+		}
+		if (!options.slugFilter) {
+			errors.push(...collectTopicCannibalizationErrors(loadAllPosts()));
+		}
+		if (process.env.LINKS_AUDIT_ENFORCE === '1' && !options.slugFilter) {
+			const posts = loadAllPosts();
+			const { inbound } = buildLinkGraph(posts);
+			const orphans = posts.filter((p) => (inbound.get(p.slug) ?? []).length === 0);
+			for (const o of orphans) {
+				errors.push(`${o.slug}: orphan (zero inbound blog links)`);
 			}
 		}
 	} catch (err) {

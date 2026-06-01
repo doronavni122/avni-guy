@@ -1,20 +1,72 @@
 #!/usr/bin/env node
 import {
+	anchorMatchesTarget,
 	buildLinkGraph,
-	ENGLISH_SLUG_ANCHOR_PATTERNS,
-	GARBAGE_ANCHOR_PATTERNS,
 	isEnglishSlugAnchor,
 	isGarbageAnchor,
 	loadAllPosts,
 	logGraph,
 	MAX_BLOG_LINKS,
 	normalizePath,
+	pillarsForCategory,
+	primaryPillarForCategory,
 	slugFromBlogHref,
 } from './lib/internal-link-graph.mjs';
+import { isGlobalPillarSlug } from './lib/pillar-cluster-registry.mjs';
+
+function auditPillarBidirectional(posts, postsBySlug) {
+	const missingSpokeToPillar = [];
+	const missingPillarToSpoke = [];
+	for (const p of posts) {
+		if (isGlobalPillarSlug(p.slug)) continue;
+		const pillars = pillarsForCategory(p.category);
+		if (!pillars.length) continue;
+		const primary = primaryPillarForCategory(p.category, p.slug);
+		if (!primary) continue;
+		const href = `/blog/${primary}/`;
+		const hasPillar = p.paragraphLinks.some((l) => l.href === href);
+		if (!hasPillar) {
+			missingSpokeToPillar.push(p.slug);
+		}
+	}
+	for (const p of posts) {
+		if (!pillarsForCategory(p.category).includes(p.slug) && !isGlobalPillarSlug(p.slug)) continue;
+		const spokes = posts.filter(
+			(s) => s.category === p.category && s.slug !== p.slug && !isGlobalPillarSlug(s.slug),
+		);
+		const linkedSlugs = new Set(
+			p.paragraphLinks
+				.map((l) => slugFromBlogHref(l.href))
+				.filter(Boolean),
+		);
+		const unlinked = spokes.filter((s) => !linkedSlugs.has(s.slug)).length;
+		if (unlinked > Math.max(3, spokes.length * 0.5)) {
+			missingPillarToSpoke.push(`${p.slug}: ${unlinked}/${spokes.length} category spokes not linked`);
+		}
+	}
+	return { missingSpokeToPillar, missingPillarToSpoke };
+}
+
+function auditBlogAnchorKeywords(posts, postsBySlug) {
+	const issues = [];
+	for (const p of posts) {
+		for (const link of p.paragraphLinks) {
+			const targetSlug = slugFromBlogHref(link.href);
+			if (!targetSlug) continue;
+			const target = postsBySlug.get(targetSlug);
+			if (!target) continue;
+			if (!anchorMatchesTarget(link.anchor, target)) {
+				issues.push({ slug: p.slug, anchor: link.anchor, href: link.href });
+			}
+		}
+	}
+	return issues;
+}
 
 function main() {
 	logGraph('audit', 'starting internal link graph audit');
 	const posts = loadAllPosts();
+	const postsBySlug = new Map(posts.map((p) => [p.slug, p]));
 	const { inbound } = buildLinkGraph(posts);
 	let fail = false;
 
@@ -23,6 +75,15 @@ function main() {
 	console.log(`\n=== LINK GRAPH SUMMARY ===`);
 	console.log(`Total articles: ${posts.length}`);
 	console.log(`Orphans (0 inbound blog): ${orphans.length} (${orphanPct}%)`);
+	if (orphans.length) {
+		console.log(`  sample: ${orphans.slice(0, 8).map((p) => p.slug).join(', ')}`);
+		if (process.env.LINKS_AUDIT_ENFORCE === '1') {
+			fail = true;
+			for (const o of orphans) {
+				console.error(`[links:audit] FAIL orphan: ${o.slug}`);
+			}
+		}
+	}
 
 	const overBlog = posts.filter((p) => p.blogOutCount > MAX_BLOG_LINKS);
 	console.log(`Posts with >${MAX_BLOG_LINKS} blog links: ${overBlog.length}`);
@@ -59,7 +120,33 @@ function main() {
 		for (const i of garbageIssues.slice(0, 20)) {
 			console.error(`[links:audit] FAIL garbage: ${i.slug} "${i.anchor}" -> ${i.href}`);
 		}
-		if (garbageIssues.length > 20) console.error(`... and ${garbageIssues.length - 20} more`);
+	}
+
+	const anchorKwIssues = auditBlogAnchorKeywords(posts, postsBySlug);
+	console.log(`Blog anchors missing target keyword/title tokens: ${anchorKwIssues.length}`);
+	if (process.env.CONTENT_LINKS_STRICT === '1' && anchorKwIssues.length) {
+		fail = true;
+		for (const i of anchorKwIssues.slice(0, 15)) {
+			console.error(`[links:audit] FAIL anchor-keyword: ${i.slug} "${i.anchor}" -> ${i.href}`);
+		}
+	}
+
+	const { missingSpokeToPillar, missingPillarToSpoke } = auditPillarBidirectional(posts, postsBySlug);
+	console.log(`Spokes missing category pillar link: ${missingSpokeToPillar.length}`);
+	console.log(`Pillars with sparse spoke coverage: ${missingPillarToSpoke.length}`);
+	if (process.env.LINKS_AUDIT_ENFORCE === '1' && missingSpokeToPillar.length) {
+		fail = true;
+		for (const s of missingSpokeToPillar.slice(0, 20)) {
+			console.error(`[links:audit] FAIL spoke->pillar: ${s}`);
+		}
+		if (missingSpokeToPillar.length > 20) {
+			console.error(`... and ${missingSpokeToPillar.length - 20} more spoke->pillar gaps`);
+		}
+	}
+	if (missingPillarToSpoke.length) {
+		for (const e of missingPillarToSpoke.slice(0, 5)) {
+			console.log(`  pillar coverage: ${e}`);
+		}
 	}
 
 	const fmSyncFails = [];

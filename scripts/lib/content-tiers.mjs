@@ -38,5 +38,5 @@ export function getMinWordsForTier(tier, slug) {
 	const contract = SLUG_CONTENT_CONTRACTS[slug];
 	if (contract?.minWords) return contract.minWords;
 	if (tier === 'pillar') return 1200;
-	return 900;
+	return 800;
 }

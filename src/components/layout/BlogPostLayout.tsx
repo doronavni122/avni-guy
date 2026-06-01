@@ -12,6 +12,7 @@ import { getTagLabel } from '@/utils/taxonomy-labels';
 import type { BlogFrontmatter } from '@/lib/content/schema';
 import type { SiteKeyword } from '@/consts';
 import type { BlogPost } from '@/lib/content/schema';
+import { AuthorBio } from '@/components/blog/AuthorBio';
 import { RelatedArticles } from '@/components/blog/RelatedArticles';
 
 type BlogPostLayoutProps = {
@@ -125,6 +126,9 @@ export function BlogPostLayout({
 							<RelatedArticles posts={relatedPosts} />
 						</div>
 					) : null}
+					<div className="border-t border-border/60 px-6 py-6">
+						<AuthorBio />
+					</div>
 					<CardFooter className="flex flex-col items-stretch gap-4 border-t border-border/60 bg-muted/20 p-6 text-right">
 						<h2 className="font-heading text-lg font-semibold text-foreground">קישורים פנימיים מומלצים</h2>
 						<ul className="flex flex-col gap-2 text-sm">

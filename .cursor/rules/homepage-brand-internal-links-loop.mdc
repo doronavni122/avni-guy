@@ -22,6 +22,6 @@ Use this loop when each blog article needs an extra **paragraph** link to the **
 12. Repeat until no unchecked lines remain.
 
 Hard requirements:
-- Exactly one **new** brand homepage link per article (when not already present).
+- Exactly one **new** brand homepage link per article (when not already present). E-E-A-T: brand anchor only once per article; do not duplicate `[גיא אבני](/)` elsewhere.
 - Paragraph-only placement (no links inside headings, list markers, or buttons).
 - Preserve all frontmatter schema fields; only additive edits to body and optional append of `"/"` to `internalLinks`.

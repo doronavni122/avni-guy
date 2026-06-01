@@ -4,6 +4,9 @@ import matter from 'gray-matter';
 
 export const BLOG_DIR = path.join(process.cwd(), 'src', 'content', 'blog');
 export const MAX_BLOG_LINKS = 4;
+export const CONTEXTUAL_BLOG_MIN = 3;
+export const CONTEXTUAL_BLOG_MAX = 8;
+export const CONTEXTUAL_WORD_THRESHOLD = 800;
 
 /** @type {RegExp[]} */
 export const ENGLISH_SLUG_ANCHOR_PATTERNS = [
@@ -146,3 +149,74 @@ export function writeMdxWithSyncedLinks(raw, content) {
 export function countBlogLinksInBody(body) {
 	return extractParagraphMarkdownLinks(body).filter((l) => l.href.startsWith('/blog/') && l.href !== '/blog/').length;
 }
+
+export function countContextualBlogLinks(paragraphLinks) {
+	return paragraphLinks.filter((l) => l.href.startsWith('/blog/') && l.href !== '/blog/').length;
+}
+
+/**
+ * Anchor should reflect target mainKeyword or title tokens (Hebrew descriptive).
+ * @param {string} anchor
+ * @param {{ mainKeyword?: string, title?: string }} target
+ */
+export function anchorMatchesTarget(anchor, target) {
+	const a = String(anchor ?? '').trim();
+	const kw = String(target?.mainKeyword ?? '').trim();
+	if (kw.length >= 4 && a.includes(kw)) return true;
+	const frag = titleAnchorFragment(target?.title ?? '');
+	const words = frag.split(/\s+/).filter((w) => w.length >= 3);
+	if (!words.length) return false;
+	let hits = 0;
+	for (const w of words) {
+		if (a.includes(w)) hits += 1;
+	}
+	if (words.length === 1) return hits >= 1;
+	return hits >= 2;
+}
+
+/**
+ * Split MDX body into H2 sections (content between ## headings).
+ * @param {string} body
+ * @returns {{ heading: string, content: string }[]}
+ */
+export function splitBodyByH2Sections(body) {
+	const sections = [];
+	const lines = body.split('\n');
+	let currentHeading = '';
+	let buf = [];
+	for (const line of lines) {
+		if (/^##\s+/.test(line)) {
+			if (buf.length || currentHeading) {
+				sections.push({ heading: currentHeading, content: buf.join('\n') });
+			}
+			currentHeading = line.replace(/^##\s+/, '').trim();
+			buf = [];
+			continue;
+		}
+		buf.push(line);
+	}
+	sections.push({ heading: currentHeading, content: buf.join('\n') });
+	return sections;
+}
+
+/**
+ * @param {string} body
+ * @returns {string[]} duplicate hrefs appearing twice in same H2 section
+ */
+export function findSectionDuplicateHrefs(body) {
+	const dups = [];
+	for (const { content } of splitBodyByH2Sections(body)) {
+		const links = extractParagraphMarkdownLinks(content);
+		const seen = new Set();
+		for (const { href } of links) {
+			if (seen.has(href)) {
+				dups.push(href);
+				break;
+			}
+			seen.add(href);
+		}
+	}
+	return dups;
+}
+
+export { CATEGORY_PILLARS, pillarsForCategory, primaryPillarForCategory, isBrandMainKeyword } from './pillar-cluster-registry.mjs';

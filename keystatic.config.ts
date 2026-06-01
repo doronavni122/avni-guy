@@ -50,6 +50,33 @@ export default config({
 					options: SITE_KEYWORDS.map((keyword) => ({ label: keyword, value: keyword })),
 					defaultValue: SITE_KEYWORDS[0],
 				}),
+				secondaryKeywords: fields.array(fields.text({ label: 'Secondary / LSI keyword' }), {
+					label: 'Secondary keywords (4-6 recommended)',
+					itemLabel: (props) => props.value || 'Keyword',
+				}),
+	contentType: fields.select({
+					label: 'Content type',
+					options: [
+						{ label: 'Cluster', value: 'cluster' },
+						{ label: 'Pillar', value: 'pillar' },
+					],
+					defaultValue: 'cluster',
+				}),
+				geoKeywords: fields.array(fields.text({ label: 'Geo keyword' }), {
+					label: 'Geo keywords (optional)',
+					itemLabel: (props) => props.value || 'Geo',
+				}),
+				faq: fields.array(
+					fields.object({
+						question: fields.text({ label: 'Question', validation: { isRequired: true } }),
+						answer: fields.text({ label: 'Answer', multiline: true, validation: { isRequired: true } }),
+					}),
+					{
+						label: 'FAQ (4-8 for schema)',
+						itemLabel: (props) => props.fields.question.value || 'FAQ item',
+					},
+				),
+				materialChange: fields.checkbox({ label: 'Material change (sets freshness signal)' }),
 				pubDate: fields.date({ label: 'Published date', validation: { isRequired: true } }),
 				updatedDate: fields.date({ label: 'Updated date' }),
 				category: fields.text({ label: 'Category', validation: { isRequired: true } }),

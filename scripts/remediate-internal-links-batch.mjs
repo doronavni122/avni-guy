@@ -20,7 +20,14 @@ import {
 	slugFromBlogHref,
 	writeMdxWithSyncedLinks,
 	titleAnchorFragment,
+	anchorMatchesTarget,
+	splitBodyByH2Sections,
 } from './lib/internal-link-graph.mjs';
+import {
+	CATEGORY_PILLARS,
+	primaryPillarForCategory,
+	pillarsForCategory,
+} from './lib/pillar-cluster-registry.mjs';
 
 const OVERLINKED_HUBS = new Set([
 	'guy-avni-dispute-prevention-method',
@@ -32,43 +39,6 @@ const OVERLINKED_HUBS = new Set([
 	'guy-avni-risk-management-routine',
 	'guy-avni-evidence-prioritization-framework',
 ]);
-
-/** Category -> pillar slugs for sibling replacement */
-const CATEGORY_PILLARS = {
-	'real-estate': [
-		'guy-avni-buying-from-contractor-checklist',
-		'guy-avni-lawyer-required-apartment-purchase',
-		'guy-avni-sale-law-guarantee-importance',
-		'guy-avni-check-apartment-liens-before-purchase',
-		'guy-avni-second-hand-apartment-sale-agreement',
-	],
-	tax: [
-		'guy-avni-purchase-tax-exemption-first-apartment',
-		'guy-avni-capital-gains-exemption-single-apartment-2026',
-		'guy-avni-second-apartment-purchase-tax-calculation',
-		'guy-avni-additional-tax-who-pays',
-		'guy-avni-property-purchase-tax-legal-reduction',
-	],
-	litigation: [
-		'guy-avni-small-claims-without-lawyer-why-lose',
-		'guy-avni-contract-claim-mediation-four-thousand-six-weeks',
-		'guy-avni-debt-collection-claim-minimum-amount',
-		'guy-avni-defamation-claim-without-damage-proof',
-		'guy-avni-enforcement-freeze-bank-account-release-48-hours',
-	],
-	contracts: [
-		'guy-avni-contract-review-flow',
-		'guy-avni-israeli-contract-red-flags-spot-three',
-		'guy-avni-contract-breach-statute-limitations-seven-years',
-		'guy-avni-non-compete-clause-israel-enforceability',
-		'guy-avni-cancel-signed-contract-israel-fourteen-days',
-	],
-	service: [
-		'guy-avni-choosing-lawyer-israel-comprehensive-guide',
-		'guy-avni-lawyer-types-israel-specialties-full-guide',
-		'guy-avni-jurist-vs-lawyer-israel-licensing-guide',
-	],
-};
 
 const MAIN_KEYWORD_MISSING_ANCHORS = [
 	'guy-avni-business-partnership-bad-endings',
@@ -218,6 +188,57 @@ function reduceBlogLinksOverMax(body, donorSlug, postsBySlug) {
 	return b;
 }
 
+function rebuildBodyFromSections(sections) {
+	const parts = [];
+	for (const s of sections) {
+		if (s.heading) parts.push(`## ${s.heading}`);
+		if (s.content.trim()) parts.push(s.content.trimEnd());
+	}
+	return `${parts.join('\n\n')}\n`;
+}
+
+function injectLinkIntoSection(body, href, anchor) {
+	const sections = splitBodyByH2Sections(body);
+	for (let i = sections.length - 1; i >= 0; i--) {
+		const sec = sections[i];
+		if (extractParagraphMarkdownLinks(sec.content).some((l) => l.href === href)) continue;
+		const lines = sec.content.split('\n');
+		for (let j = lines.length - 1; j >= 0; j--) {
+			const t = lines[j].trim();
+			if (!t || t.startsWith('#') || /^[-*+]\s/.test(t) || /^\d+\.\s/.test(t)) continue;
+			lines[j] = `${lines[j]} לעיון: [${anchor}](${href}).`;
+			sec.content = lines.join('\n');
+			return rebuildBodyFromSections(sections);
+		}
+	}
+	const lines = body.split('\n');
+	for (let i = lines.length - 1; i >= 0; i--) {
+		const t = lines[i].trim();
+		if (!t || t.startsWith('#') || /^[-*+]\s/.test(t) || /^\d+\.\s/.test(t)) continue;
+		lines[i] = `${lines[i]} לעיון: [${anchor}](${href}).`;
+		return lines.join('\n');
+	}
+	return body;
+}
+
+function injectPillarLink(body, donorSlug, postsBySlug) {
+	const donor = postsBySlug.get(donorSlug);
+	if (!donor) return body;
+	const pillarSlug = primaryPillarForCategory(donor.category, donorSlug);
+	if (!pillarSlug || pillarSlug === donorSlug) return body;
+	const pillar = postsBySlug.get(pillarSlug);
+	if (!pillar) return body;
+	const href = `/blog/${pillarSlug}/`;
+	if (extractParagraphMarkdownLinks(body).some((l) => l.href === href)) return body;
+	const anchor = pillar.mainKeyword && pillar.mainKeyword.length >= 4
+		? pillar.mainKeyword
+		: anchorVariants(pillar.title, `${donorSlug}:pillar:${pillarSlug}`);
+	if (!anchorMatchesTarget(anchor, pillar)) {
+		return injectLinkIntoSection(body, href, anchorVariants(pillar.title, `${donorSlug}:pillar`));
+	}
+	return injectLinkIntoSection(body, href, anchor);
+}
+
 function injectOrphanLink(body, donorSlug, orphanSlug, postsBySlug) {
 	const orphan = postsBySlug.get(orphanSlug);
 	if (!orphan) return body;
@@ -315,12 +336,15 @@ function main() {
 	const postsBySlug = new Map(posts.map((p) => [p.slug, p]));
 	let { inbound } = buildLinkGraph(posts);
 
-	let stats = { anchorFixes: 0, hubRebalance: 0, orphanLinks: 0, keywordAnchors: 0, blogReduced: 0 };
+	let stats = { anchorFixes: 0, hubRebalance: 0, orphanLinks: 0, keywordAnchors: 0, blogReduced: 0, pillarLinks: 0 };
 
 	for (const p of posts) {
 		let body = p.content;
 		const before = body;
 		body = fixAnchorsInBody(body, postsBySlug, p.slug);
+		const afterAnchors = body;
+		body = injectPillarLink(body, p.slug, postsBySlug);
+		if (body !== afterAnchors) stats.pillarLinks += 1;
 		body = rebalanceHubLinks(body, p.slug, postsBySlug);
 		body = reduceBlogLinksOverMax(body, p.slug, postsBySlug);
 		body = dedupeParagraphLinks(body, p.slug);

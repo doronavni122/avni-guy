@@ -1,26 +1,30 @@
 ---
-description: Enforce a strict per-article internal-link insertion loop with paragraph-only hyperlinking and uniqueness constraints
+description: Enforce per-article internal links with 2026 SEO pillar-cluster, contextual blog tiers, and paragraph-only placement
 alwaysApply: true
 ---
 
 # Internal Links Loop (Strict)
 
-Follow this loop exactly for internal-link insertion tasks.
+Follow this loop exactly for internal-link insertion tasks. Stack `internal-links-pillar-cluster-loop.mdc` for category pillar/spoke wiring.
 
 1. Create `temp_internal_links_checklist.txt` with one line per article:
    - Format: `- [ ] src/content/blog/<slug>.mdx`
 2. Pick the first unchecked article.
-3. Choose silo targets: max 4 links to `/blog/*` per article; remaining links to `/`, `/about/`, `/services/`, `/blog/`, `/categories/`, `/tags/`, `/contact/`, category/tag hubs.
-4. Insert links only in **paragraph** prose (not headings, lists, or buttons).
-5. At least **10** paragraph links; unique Hebrew anchor text per link; unique `href` per article.
-6. Ban anchors matching: `קריאה פנימית`, `קריאה קשורה`, numbered generic series, `קישור פנימי`.
-7. Do not use the standard 7-nav boilerplate paragraph (`כדי לבנות הקשר רחב` + home/about/services block).
-8. All internal paths use trailing slashes (e.g. `/about/`).
-9. Sync `internalLinks` frontmatter array to match every internal path used in body paragraphs.
-10. Run `pnpm run content:audit` for this slug.
-11. Mark article done.
+3. **Keyword map first:** read target `mainKeyword` and `title` from frontmatter (and pillar registry) before choosing anchors.
+4. **Silo targets:** max **4** contextual links to `/blog/*` per article (excluding `/blog/` hub); remaining paragraph links to `/`, `/about/`, `/services/`, `/blog/`, `/categories/`, `/tags/`, `/contact/`, category/tag hubs.
+5. **Contextual tier (words >800):** target **3-8** `/blog/*` paragraph links (topical; enforced when `CONTENT_LINKS_STRICT=1`). Hub/category/tag links are separate and count toward the **10** minimum paragraph links total.
+6. Insert links only in **paragraph** prose (not headings, lists, or buttons). **Max one link per `href` per `##` H2 section.**
+7. At least **10** paragraph links total; unique Hebrew anchor per link; unique `href` per article.
+8. **Anchor text:** descriptive Hebrew; must include target `mainKeyword` or meaningful title tokens. Ban: `קריאה פנימית`, `קריאה קשורה`, numbered generic series, `קישור פנימי`, `לחץ כאן`, `קרא עוד`, `עמוד זה`, English slug fragments, `click here`, `read more`, `this page`.
+9. Do not use the standard 7-nav boilerplate paragraph (`כדי לבנות הקשר רחב` + home/about/services block).
+10. **Pillar:** each non-pillar post in a category with `CATEGORY_PILLARS` must link its primary pillar once (anchor uses pillar `mainKeyword` when possible). See pillar-cluster loop.
+11. All internal paths use trailing slashes (e.g. `/about/`). Internal links stay crawlable (no `nofollow` on internal).
+12. Sync `internalLinks` frontmatter array to match every internal path used in body paragraphs.
+13. Run `pnpm run content:audit` for this slug; run `pnpm run links:audit` when graph/orphan checks are needed.
+14. Mark article done.
 
 Hard requirements:
-- Minimum 10 paragraph links (schema target; Zod may still be min 7 until raised).
+- Minimum **10** paragraph links; **3-8** contextual `/blog/*` when body >800 words.
 - Log: `[internal-links-loop] step N` or `ERROR`.
 - Preserve frontmatter schema; never modify unrelated files.
+- Orphan posts (zero inbound blog links) must be fixed before batch complete (`node scripts/remediate-internal-links-batch.mjs`).

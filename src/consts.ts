@@ -1,3 +1,5 @@
+import { SITE_KEYWORDS_BATCH } from '@/lib/seo/site-keywords-batch';
+
 export const SITE_TITLE = 'גיא אבני עו״ד: משפטים, כלכלה, נדלן ודין';
 export const SITE_DESCRIPTION =
 	'אתר תוכן מקצועי בעברית של גיא אבני עם מאמרים, שירותים ותובנות מעשיות.';
@@ -21,7 +23,8 @@ function readContactEmail(): string {
 
 export const SITE_CONTACT_EMAIL = readContactEmail();
 
-export const SITE_KEYWORDS = [
+/** Brand / site identity keywords (first priority). */
+export const SITE_KEYWORDS_BRAND = [
 	'גיא אבני',
 	'גיא אבני עו״ד',
 	'גיא אבני עורך דין',
@@ -29,5 +32,11 @@ export const SITE_KEYWORDS = [
 	'אבני גיא',
 	'אבני גיא עו״ד',
 ] as const;
+
+const siteKeywordsBrandSet = new Set<string>(SITE_KEYWORDS_BRAND);
+const siteKeywordsBatchDeduped = SITE_KEYWORDS_BATCH.filter((kw) => !siteKeywordsBrandSet.has(kw));
+
+/** Brand first, then keywords_titles.csv batch (second priority, deduped). */
+export const SITE_KEYWORDS = [...SITE_KEYWORDS_BRAND, ...siteKeywordsBatchDeduped] as const;
 
 export type SiteKeyword = (typeof SITE_KEYWORDS)[number];

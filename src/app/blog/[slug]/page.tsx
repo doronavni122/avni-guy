@@ -5,9 +5,11 @@ import { getAllPosts, getPostBySlug } from '@/lib/content/posts';
 import { scoreRelatedPosts } from '@/lib/content/related-posts';
 import { buildPageMetadata } from '@/lib/metadata';
 import { SITE_URL } from '@/consts';
+import { resolveArticleFaq } from '@/lib/content/faq';
 import {
 	buildBlogPostingSchema,
 	buildBreadcrumbSchema,
+	buildFaqSchema,
 } from '@/utils/structured-data';
 
 export const dynamic = 'force-static';
@@ -51,7 +53,14 @@ export default async function BlogPostPage({ params }: PageProps) {
 	const relatedPosts = scoreRelatedPosts(post, allPosts, 4);
 	const canonicalUrl = new URL(`/blog/${slug}/`, SITE_URL).toString();
 
-	const jsonLd = [
+	const faqItems = resolveArticleFaq(post.data, post.content);
+	const keywordTags = [
+		post.data.mainKeyword,
+		...(post.data.secondaryKeywords ?? []),
+		...(post.data.geoKeywords ?? []),
+	];
+
+	const jsonLd: Array<Record<string, unknown>> = [
 		buildBreadcrumbSchema([
 			{ name: 'דף הבית', path: '/' },
 			{ name: 'מאמרים', path: '/blog' },
@@ -62,7 +71,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 			description: post.data.metaDescription ?? post.data.description,
 			datePublished: post.data.pubDate.toISOString(),
 			dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
-			keywords: [post.data.mainKeyword],
+			keywords: keywordTags,
 			articleSection: post.data.category,
 			canonicalUrl,
 			imageUrls: post.data.images.map((item) => item.src),
@@ -70,6 +79,9 @@ export default async function BlogPostPage({ params }: PageProps) {
 			authorUrl: new URL('/about/', SITE_URL).toString(),
 		}),
 	];
+	if (faqItems.length >= 4) {
+		jsonLd.push(buildFaqSchema(faqItems));
+	}
 
 	return (
 		<BlogPostLayout

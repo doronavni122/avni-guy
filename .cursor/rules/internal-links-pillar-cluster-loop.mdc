@@ -1,0 +1,20 @@
+---
+description: Pillar-cluster bidirectional internal links per category (registry in scripts/lib/pillar-cluster-registry.mjs)
+alwaysApply: false
+---
+
+# Internal Links Pillar-Cluster Loop
+
+Use after keyword assignment and before bulk hub links. Registry: `scripts/lib/pillar-cluster-registry.mjs` (`CATEGORY_PILLARS`, `PILLAR_SLUGS` in `content-tiers.mjs`).
+
+1. Identify article **category** and tier (`pillar` | `cluster` | `contract` via `getArticleTier`).
+2. **Cluster/spoke -> pillar:** link exactly one primary pillar per category (`primaryPillarForCategory`). Anchor = pillar `mainKeyword` if descriptive, else `titleAnchorFragment(pillar.title)`.
+3. **Pillar -> spokes:** pillar/hub posts should link key category spokes (prioritize high-value slugs in `CATEGORY_PILLARS[category]`); avoid orphaning new cluster posts.
+4. **Bidirectional check:** run `LINKS_AUDIT_ENFORCE=1 pnpm run links:audit` and fix `spoke->pillar` failures.
+5. **Equity flow:** link from higher inbound hubs to newer/low-inbound slugs when replacing overlinked hubs (`OVERLINKED_HUBS` in remediate script).
+6. **Optional pillar refresh (90d):** when materially updating a pillar body, set `materialChange: true` and `updatedDate`; do not batch-stamp.
+
+Hard requirements:
+- Max **3 clicks** from home: home -> category/blog hub -> pillar -> cluster.
+- No keyword cannibalization: one topic-specific `mainKeyword` per URL (brand keywords exempt).
+- Log: `[internal-links-pillar-cluster-loop] step N` or `ERROR`.

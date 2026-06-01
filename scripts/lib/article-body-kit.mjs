@@ -7,6 +7,7 @@ import {
 } from './content-forbidden-patterns.mjs';
 import { getMinWordsForTier, getArticleTier } from './content-tiers.mjs';
 import { loadAllPosts, titleAnchorFragment } from './internal-link-graph.mjs';
+import { primaryPillarForCategory, isGlobalPillarSlug } from './pillar-cluster-registry.mjs';
 import { countWordsHe } from './seo-hero-rules.mjs';
 
 const META_TITLE_MIN = 50;
@@ -26,6 +27,29 @@ const HUB_PATHS = [
 
 const EXTERNAL_YMYL_BLOCK =
 	'\n\nמקורות רשמיים לעיון: [לשכת עורכי הדין בישראל](https://www.israelbar.org.il/) ו[משרד המשפטים](https://www.gov.il/he/departments/ministry_of_justice/govil-landing-page).\n';
+
+/** TL;DR opening block: direct answer in first 3 sentences with bold lead. */
+export function buildTldrBlock(mainKeyword, directAnswer) {
+	return `**${directAnswer}** ${mainKeyword} מסביר את הנקודות שצריך לבדוק לפני החלטה. המדריך מעודכן ל-2026 ומתאים לחיפוש מהיר.\n`;
+}
+
+/** FAQ section template (4+ items for schema). */
+export function buildFaqSection(items) {
+	const lines = ['\n## שאלות נפוצות\n'];
+	for (const { question, answer } of items) {
+		lines.push(`\n**${question}** ${answer}\n`);
+	}
+	return lines.join('');
+}
+
+/** Closing CTA paragraph with contact link. */
+export function buildCtaParagraph(mainKeyword) {
+	return `\nלפני שמחליטים, כדאי לתאם [יצירת קשר](/contact/) עם ${mainKeyword} ולבדוק את המסמכים הספציפיים שלכם.\n`;
+}
+
+/** Stats placeholder guidance for authors (not injected into body). */
+export const STATS_GUIDANCE =
+	'Include at least one dated 2025-2026 statistic or concrete Israeli example per article (court, tax, market data).';
 
 export function logRemediation(step, message, extra) {
 	if (extra !== undefined) console.error(`[apply-article-remediation] ${step}: ${message}`, extra);
@@ -100,16 +124,26 @@ export function buildLinkPlan(spec) {
 			anchor: anchorFor(slug, `tag-${tag}`, [`תגית ${tag}`, `מאמרים עם תגית ${tag}`, `נושא ${tag} במאגר`]),
 		});
 	}
-	const blogs = relatedBlogSlugs.slice(0, MAX_BLOG_LINKS);
+	let blogs = relatedBlogSlugs.slice(0, MAX_BLOG_LINKS);
 	const titleBySlug = new Map(loadAllPosts().map((p) => [p.slug, p.title]));
+	const mainKwBySlug = new Map(loadAllPosts().map((p) => [p.slug, p.mainKeyword]));
+	if (!isGlobalPillarSlug(slug)) {
+		const pillarSlug = primaryPillarForCategory(category, slug);
+		if (pillarSlug && pillarSlug !== slug && !blogs.includes(pillarSlug)) {
+			blogs = [pillarSlug, ...blogs].slice(0, MAX_BLOG_LINKS);
+		}
+	}
 	for (const rel of blogs) {
 		const postTitle = titleBySlug.get(rel);
+		const relKw = mainKwBySlug.get(rel);
 		const titleFrag =
 			spec.relatedTitles?.[rel] ??
 			(postTitle ? titleAnchorFragment(postTitle) : rel.replace(/^guy-avni-/, '').replace(/-/g, ' '));
+		const pillarAnchor = relKw && relKw.length >= 4 ? relKw : titleFrag;
 		links.push({
 			href: `/blog/${rel}/`,
 			anchor: anchorFor(slug, rel, [
+				pillarAnchor,
 				titleFrag,
 				`מדריך: ${titleFrag}`,
 				`המשך בנושא ${titleFrag}`,
@@ -183,6 +217,7 @@ export function buildStandardBody(spec) {
 	}
 
 	const slugParts = spec.slug.replace(/^guy-avni-/, '').split('-').join(' ');
+	const sectionUsedHrefs = new Set();
 	for (let i = 0; i < spec.sectionBlueprints.length; i++) {
 		const { heading, focus } = spec.sectionBlueprints[i];
 		let h = heading;
@@ -193,7 +228,12 @@ export function buildStandardBody(spec) {
 		parts.push(`\n## ${h}\n\n`);
 		const w1 = spec.topicLexicon[(i * 3) % spec.topicLexicon.length];
 		let para = `${focus} (${slugParts} / ${w1} / מקטע ${i + 1})`;
-		para = applyLink(para);
+		const link = takeLink();
+		if (link && !sectionUsedHrefs.has(link.href)) {
+			sectionUsedHrefs.add(link.href);
+			usedHrefs.add(link.href);
+			para = injectLinkIntoParagraph(para, link);
+		}
 		parts.push(`${para}\n`);
 	}
 
@@ -291,6 +331,22 @@ export function serializeFrontmatter(data, imagesSection) {
 	}
 	if (data.materialChange) {
 		lines.push('materialChange: true');
+	}
+	if (data.contentType) {
+		lines.push(`contentType: "${data.contentType}"`);
+	}
+	if (Array.isArray(data.secondaryKeywords) && data.secondaryKeywords.length) {
+		lines.push(`secondaryKeywords: [${data.secondaryKeywords.map((k) => `"${k.replace(/"/g, '\\"')}"`).join(', ')}]`);
+	}
+	if (Array.isArray(data.geoKeywords) && data.geoKeywords.length) {
+		lines.push(`geoKeywords: [${data.geoKeywords.map((k) => `"${k.replace(/"/g, '\\"')}"`).join(', ')}]`);
+	}
+	if (Array.isArray(data.faq) && data.faq.length) {
+		lines.push('faq:');
+		for (const item of data.faq) {
+			lines.push(`  - question: "${String(item.question).replace(/"/g, '\\"')}"`);
+			lines.push(`    answer: "${String(item.answer).replace(/"/g, '\\"')}"`);
+		}
 	}
 	lines.push(`tags: [${data.tags.map((t) => `"${t}"`).join(', ')}]`);
 	const ils = data.internalLinks.map((p) => `"${p}"`);
