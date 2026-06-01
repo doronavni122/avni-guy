@@ -38,7 +38,7 @@ function buildUniqueLinkPlan(spec) {
 
 /** @typedef {import('./article-specs.mjs').ArticleSpec} ArticleSpec */
 
-const CATEGORY_RELATED = {
+export const CATEGORY_RELATED = {
 	contracts: [
 		'guy-avni-contract-review-flow',
 		'guy-avni-document-readiness-guide',

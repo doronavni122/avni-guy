@@ -280,6 +280,9 @@ export function serializeFrontmatter(data, imagesSection) {
 	if (data.updatedDate) {
 		lines.push(`updatedDate: "${data.updatedDate}"`);
 	}
+	if (data.materialChange) {
+		lines.push('materialChange: true');
+	}
 	lines.push(`tags: [${data.tags.map((t) => `"${t}"`).join(', ')}]`);
 	const ils = data.internalLinks.map((p) => `"${p}"`);
 	lines.push(`internalLinks: [${ils.join(', ')}]`);
