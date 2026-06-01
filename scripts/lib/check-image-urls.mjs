@@ -4,6 +4,7 @@ import matter from 'gray-matter';
 import fg from 'fast-glob';
 
 const BLOG_DIR = path.join(process.cwd(), 'src', 'content', 'blog');
+const PUBLIC_DIR = path.join(process.cwd(), 'public');
 const TIMEOUT_MS = 10_000;
 const CONCURRENCY = 5;
 
@@ -15,6 +16,19 @@ function slugFilterFromEnv() {
 	const raw = process.env.CONTENT_AUDIT_SLUGS?.trim();
 	if (!raw) return null;
 	return new Set(raw.split(',').map((s) => s.trim()).filter(Boolean));
+}
+
+function localPublicFileForUrl(url) {
+	try {
+		const parsed = new URL(url);
+		if (parsed.hostname !== 'avniguy.co.il') return null;
+		const rel = parsed.pathname.replace(/^\/+/, '');
+		if (!rel.startsWith('images/')) return null;
+		const localPath = path.join(PUBLIC_DIR, rel);
+		return fs.existsSync(localPath) ? localPath : null;
+	} catch {
+		return null;
+	}
 }
 
 async function headWithRetry(url, retries = 1) {
@@ -86,6 +100,9 @@ export async function runImageUrlChecks() {
 	await mapPool(tasks, CONCURRENCY, async (task) => {
 		if (task.error) {
 			errors.push(`${task.slug}: ${task.error}`);
+			return;
+		}
+		if (localPublicFileForUrl(task.url)) {
 			return;
 		}
 		try {

@@ -102,6 +102,7 @@ function enhanceSlug(slug) {
 		category: parsed.data.category,
 		tags: parsed.data.tags,
 		mainKeyword: parsed.data.mainKeyword,
+		description: parsed.data.description,
 	});
 	writeResearchFile(slug, spec);
 	const data = buildFrontmatterData(parsed.data, spec);

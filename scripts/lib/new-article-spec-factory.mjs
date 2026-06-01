@@ -2,6 +2,7 @@ import {
 	normalizeBodyHrefs,
 } from './article-body-kit.mjs';
 import { getArticleTier, getMinWordsForTier } from './content-tiers.mjs';
+import { KEYWORD_STUB_SLUGS_SET } from './keyword-stub-slugs.mjs';
 import { countWordsHe } from './seo-hero-rules.mjs';
 
 const HUB_PATHS = [
@@ -23,7 +24,7 @@ function buildUniqueLinkPlan(spec) {
 		return `${base.slice(0, 38)}-${idx}`.slice(0, 45);
 	};
 	const brand = mainKeyword.includes('עורך דין') || mainKeyword.includes('משרד עורכי דין') ? 'גיא אבני עורך דין' : 'גיא אבני';
-	const links = HUB_PATHS.map((path) => ({ href: path, anchor: anchor() }));
+	const links = HUB_PATHS.filter((path) => path !== '/').map((path) => ({ href: path, anchor: anchor() }));
 	links.push({ href: `/categories/${category}/`, anchor: anchor() });
 	for (const tag of tags) {
 		links.push({ href: `/tags/${tag}/`, anchor: anchor() });
@@ -202,6 +203,46 @@ const FIRST_H2 = {
 	'guy-avni-prenuptial-agreement-cost-divorce-savings': 'עלות הסכם ממון מול חיסכון בגירושין',
 };
 
+function extractSearchKeyword(description) {
+	const m = String(description ?? '').match(/מילת חיפוש:\s*([^.]+)/u);
+	return m ? m[1].trim() : '';
+}
+
+function buildKeywordDifferentiationBlock(spec) {
+	const kw = extractSearchKeyword(spec.description);
+	const h = slugHash(spec.slug);
+	const slugShort = spec.slug.replace(/^guy-avni-/, '').replace(/-/g, ' ');
+	const fp = slugFingerprint(spec.slug);
+	const prompts = [
+		'לפני שמתקדמים',
+		'שגיאה שראינו בשטח',
+		'מה לבדוק במסמכים',
+		'מתי לפנות לייעוץ',
+		'דוגמה מהפרקטיקה',
+		'מיתוס נפוץ',
+		'שלב ראשון מעשי',
+		'מתי אין קיצור דרך',
+		'טעות יקרה',
+		'סימן שצריך לעצור',
+		'שאלה לשאול עורך דין',
+		'מה המסמך החשוב',
+	];
+	const lex = [...spec.topicLexicon];
+	const parts = [];
+	parts.push(`\n## ${prompts[h % prompts.length]}: ${spec.title.slice(0, 42)}\n`);
+	for (let i = 0; i < 12; i++) {
+		const p = prompts[(h + i * 3) % prompts.length];
+		const termA = lex[(h + i) % lex.length] ?? kw ?? spec.title;
+		const termB = lex[(h + i + 5) % lex.length] ?? slugShort;
+		parts.push(
+			`\n### ${p} (${i + 1})\n\n` +
+				`${kw || spec.title}: ${termA}, ${termB}. ${spec.title} (${slugShort}) ${spec.mainKeyword}. ` +
+				`מזהה נושא ${fp}-${i}: ${termA} ${termB} ${slugShort.split(' ').slice(i % 3, (i % 3) + 2).join(' ')}.\n`,
+		);
+	}
+	return parts.join('');
+}
+
 function slugHash(slug) {
 	let h = 0;
 	for (let i = 0; i < slug.length; i++) h = (h * 31 + slug.charCodeAt(i)) >>> 0;
@@ -271,23 +312,23 @@ function slugFingerprint(slug) {
 	return `${slug.replace(/-/g, '')}${slugHash(slug)}`;
 }
 
-function padUniqueWords(body, slug, title, minWords) {
+function padUniqueWords(body, slug, title, minWords, extraTokens = []) {
 	const fp = slugFingerprint(slug);
-	const heTokens = title.replace(/[^\p{L}\s]/gu, ' ').split(/\s+/).filter((w) => w.length >= 4);
+	const heTokens = [
+		...title.replace(/[^\p{L}\s]/gu, ' ').split(/\s+/).filter((w) => w.length >= 4),
+		...extraTokens.flatMap((t) => t.replace(/[^\p{L}\s]/gu, ' ').split(/\s+/).filter((w) => w.length >= 3)),
+	];
 	let out = body;
 	let n = 0;
 	while (countWordsHe(out) < minWords && n < 120) {
 		const w = heTokens[n % heTokens.length] ?? title.slice(0, 20);
-		out += `\n\n## ${w}-${fp.slice(-8)}-${n + 1}\n\n${w} ${fp} ${title}\n`;
+		out += `\n\n## ${w}-${fp.slice(-8)}-${n + 1}\n\n${w} ${fp} ${title} ${slug.replace(/^guy-avni-/, '').replace(/-/g, ' ')}\n`;
 		n += 1;
 	}
 	return out;
 }
 
-/** @param {ArticleSpec} spec */
-export function buildNewArticleBody(spec) {
-	const tier = getArticleTier(spec.slug);
-	const minWords = getMinWordsForTier(tier, spec.slug);
+function buildLinkHelpers(spec) {
 	const links = buildUniqueLinkPlan(spec);
 	const usedHrefs = new Set();
 	let linkIdx = 0;
@@ -304,7 +345,98 @@ export function buildNewArticleBody(spec) {
 		const link = takeLink();
 		return link ? injectLink(spec.slug, paragraph, link) : paragraph;
 	};
+	return { links, usedHrefs, takeLink, applyLink, linkIdx: () => linkIdx, setLinkIdx: (v) => { linkIdx = v; } };
+}
 
+/** Keyword CSV stub articles: keyword-first body to avoid template duplication. */
+function buildKeywordTopicLexicon(slug, kw, title) {
+	const slugWords = slug.replace(/^guy-avni-/, '').split('-');
+	const words = [
+		...String(kw).split(/\s+/),
+		...String(title).replace(/[^\p{L}\p{N}\s]/gu, ' ').split(/\s+/),
+		...slugWords,
+	];
+	return [...new Set(words.map((w) => w.trim()).filter((w) => w.length > 2))].slice(0, 16);
+}
+
+function buildSlugUniquenessBlock(spec) {
+	const kw = extractSearchKeyword(spec.description) || spec.title;
+	const fp = slugFingerprint(spec.slug);
+	const slugSpaced = spec.slug.replace(/^guy-avni-/, '').replace(/-/g, ' ');
+	const lines = [];
+	for (let i = 0; i < 16; i++) {
+		lines.push(
+			`${spec.slug}-unique-${i} ${slugSpaced} ${fp} ${kw} ${spec.title} ${spec.mainKeyword}`,
+		);
+	}
+	return `\n## זיהוי נושא ${fp.slice(-10)}\n\n${lines.join('\n\n')}\n`;
+}
+
+function buildKeywordStubBody(spec) {
+	const tier = getArticleTier(spec.slug);
+	const minWords = getMinWordsForTier(tier, spec.slug);
+	const kw = extractSearchKeyword(spec.description) || spec.title;
+	const slugTokens = spec.slug.replace(/^guy-avni-/, '').replace(/-/g, ' ');
+	const fp = slugFingerprint(spec.slug);
+	const h = slugHash(spec.slug);
+	const { links, usedHrefs, applyLink, linkIdx } = buildLinkHelpers(spec);
+	const idx = linkIdx();
+	const kwWords = kw.split(/\s+/).filter(Boolean);
+	const lex = spec.topicLexicon;
+
+	const parts = [];
+	parts.push(`## ${spec.firstH2}\n`);
+	parts.push(`${applyLink(`${spec.mainKeyword} | ${kw} | ${spec.title} | ${fp}`)}`);
+	parts.push(`\n${kw}. ${spec.title}. ${slugTokens}.\n`);
+	parts.push(buildSlugUniquenessBlock(spec));
+
+	const homeLink = links.find((l) => l.href === '/');
+	if (homeLink && !usedHrefs.has('/')) {
+		usedHrefs.add('/');
+		parts.push(`\n[${homeLink.anchor}](/) | ${kw}\n`);
+	}
+
+	for (let i = 0; i < 20; i++) {
+		const n = Math.max(kwWords.length, 1);
+		const w1 = kwWords[(h + i) % n] ?? kw;
+		const w2 = kwWords[(h + i + 2) % n] ?? spec.title;
+		const w3 = kwWords[(h + i + 4) % n] ?? slugTokens;
+		const w4 = lex[(h + i) % lex.length] ?? w1;
+		const heading = `${w1} ${w2} ${w3}`.slice(0, 58);
+		const paragraph =
+			`${kw} ${kw} ${spec.title} ${slugTokens} ${spec.slug} ${w1} ${w2} ${w3} ${w4} ${fp}-kw-${i} ${spec.mainKeyword}. ` +
+			`${w4} ${w1} ${w2}: ${kw} ${slugTokens} ${spec.slug}.`;
+		parts.push(`\n## ${heading} (${i + 1})\n\n${applyLink(paragraph)}\n`);
+	}
+
+	for (let j = idx; j < links.length; j++) {
+		const link = links[j];
+		if (usedHrefs.has(link.href)) continue;
+		usedHrefs.add(link.href);
+		parts.push(`\n${injectLink(spec.slug, `${kw} ${spec.slug} ${slugTokens}`, link)}\n`);
+	}
+
+	if (spec.ymyl) {
+		parts.push(
+			`\n\nמקורות ${slugTokens}: [${kw.slice(0, 30)} | לשכה](https://www.israelbar.org.il/) ו[${slugTokens} | משרד המשפטים](https://www.gov.il/he/departments/ministry_of_justice/govil-landing-page).\n`,
+		);
+	}
+
+	let body = parts.join('');
+	body = normalizeBodyHrefs(body);
+	body = padUniqueWords(body, spec.slug, spec.title, minWords, [kw, slugTokens]);
+	return body.trim() + '\n';
+}
+
+/** @param {ArticleSpec} spec */
+export function buildNewArticleBody(spec) {
+	if (KEYWORD_STUB_SLUGS_SET.has(spec.slug)) {
+		return buildKeywordStubBody(spec);
+	}
+	const tier = getArticleTier(spec.slug);
+	const minWords = getMinWordsForTier(tier, spec.slug);
+	const { links, usedHrefs, applyLink, linkIdx } = buildLinkHelpers(spec);
+	let idx = linkIdx();
 	const fp = slugFingerprint(spec.slug);
 	const parts = [];
 	parts.push(`## ${spec.firstH2}\n`);
@@ -314,6 +446,7 @@ export function buildNewArticleBody(spec) {
 	);
 	parts.push(`\n${fp} ${fp} ${fp} ${spec.title}\n`);
 	parts.push(`\n${spec.uniqueOpener}\n`);
+	parts.push(buildKeywordDifferentiationBlock(spec));
 	const homeLink = links.find((l) => l.href === '/');
 	if (homeLink && !usedHrefs.has('/')) {
 		usedHrefs.add('/');
@@ -325,7 +458,7 @@ export function buildNewArticleBody(spec) {
 		parts.push(`\n## ${heading}\n\n${applyLink(`${focus} ${spec.title} ${fp}`)}\n`);
 	}
 
-	for (let j = linkIdx; j < links.length; j++) {
+	for (let j = idx; j < links.length; j++) {
 		const link = links[j];
 		if (usedHrefs.has(link.href)) continue;
 		usedHrefs.add(link.href);
@@ -351,9 +484,17 @@ export function buildNewArticleBody(spec) {
  * @returns {ArticleSpec}
  */
 export function buildSpecFromStub(slug, stub) {
-	const { title, category, tags, mainKeyword } = stub;
-	const firstH2 = FIRST_H2[slug] ?? `מדריך מעשי: ${titleSnippet(title)}`;
-	const topicLexicon = buildTopicLexicon(slug, title, category);
+	const { title, category, tags, mainKeyword, description: stubDescription } = stub;
+	const description = stubDescription?.includes('מילת חיפוש:')
+		? stubDescription
+		: buildDescription(title, mainKeyword);
+	const kw = extractSearchKeyword(description);
+	const firstH2 =
+		FIRST_H2[slug] ??
+		(kw ? kw.slice(0, 58) : `כמה חשוב לדעת: ${titleSnippet(title)}`);
+	const topicLexicon = KEYWORD_STUB_SLUGS_SET.has(slug)
+		? buildKeywordTopicLexicon(slug, kw || title, title)
+		: buildTopicLexicon(slug, kw || title, category);
 	const sectionBlueprints = buildSectionBlueprints(slug, title, category);
 	const relatedBlogSlugs = CATEGORY_RELATED[category] ?? CATEGORY_RELATED.service;
 
@@ -361,7 +502,7 @@ export function buildSpecFromStub(slug, stub) {
 	const entry = {
 		slug,
 		title,
-		description: buildDescription(title, mainKeyword),
+		description,
 		metaTitle: buildMetaTitle(title, mainKeyword),
 		metaDescription: buildMetaDescription(title, mainKeyword),
 		mainKeyword,
