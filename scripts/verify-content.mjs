@@ -2,6 +2,7 @@ import { spawnSync } from 'node:child_process';
 
 const STEPS = [
 	{ name: 'content:audit', cmd: 'pnpm', args: ['run', 'content:audit'] },
+	{ name: 'links:audit', cmd: 'pnpm', args: ['run', 'links:audit'] },
 	{ name: 'taxonomy:audit', cmd: 'pnpm', args: ['run', 'taxonomy:audit'] },
 	{ name: 'mdx:audit', cmd: 'pnpm', args: ['run', 'mdx:audit'] },
 	{ name: 'images:audit', cmd: 'pnpm', args: ['run', 'images:audit'] },
@@ -18,8 +19,13 @@ function logErr(msg, extra) {
 
 function main() {
 	logStep('step 0: starting content verification pipeline');
-	for (let i = 0; i < STEPS.length; i++) {
-		const step = STEPS[i];
+	const steps = [...STEPS];
+	if (process.env.LINK_CRAWL_ENFORCE === '1') {
+		steps.push({ name: 'links:crawl', cmd: 'pnpm', args: ['run', 'links:crawl'] });
+		logStep('optional: LINK_CRAWL_ENFORCE=1 — links:crawl appended');
+	}
+	for (let i = 0; i < steps.length; i++) {
+		const step = steps[i];
 		logStep(`step ${i + 1}: running ${step.name}`);
 		const result = spawnSync(step.cmd, step.args, { stdio: 'inherit', env: process.env });
 		if (result.status !== 0) {

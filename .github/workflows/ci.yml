@@ -12,6 +12,8 @@ jobs:
     env:
       CI: '1'
       CONTENT_AUDIT_ENFORCE: '1'
+      CONTENT_LINKS_STRICT: '1'
+      LINKS_AUDIT_ENFORCE: '1'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
