@@ -102,3 +102,4 @@
 97. merge-main-for-pr16-clean-merge , task_graph.log public/llms.txt
 98. fix-strict-blog-link-anchors-pass1-batch , src/content/blog/guy-avni-business-partnership-types-israel-protection.mdx src/content/blog/guy-avni-buying-from-contractor-checklist.mdx src/content/blog/guy-avni-cancel-apartment-purchase-contract.mdx src/content/blog/guy-avni-cancel-signed-contract-israel-fourteen-days.mdx task_graph.log
 99. extend-pass1-remediation-batch-eighth-batch-specs , scripts/pass1-remediation-batch.mjs task_graph.log
+100. remediate-pass1-guy-avni-capital-gains-tax-assessment-appeal , content-research/guy-avni-capital-gains-tax-assessment-appeal.md src/content/blog/guy-avni-capital-gains-tax-assessment-appeal.mdx task_graph.log
