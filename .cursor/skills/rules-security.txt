@@ -1,0 +1,4 @@
+# Security rules (META-RULEs) — enforced via pre-commit, CI, and package.json scripts; not VSCode settings
+enforcement , no-commit-secrets , Use pre-commit or editor integration to block commits containing known secret patterns (e.g. API_KEY=, _SECRET=, password=).
+security , bundle-secret-scan , Post-build step or CI: grep (or dedicated tool) for API keys and other secrets in build output; fail if found.
+security , dependency-audit , Run pnpm audit (or npm audit) in CI; fix or document high/critical; optional: Dependabot or Renovate.

@@ -1,0 +1,4 @@
+# Testing rules (META-RULEs) — enforced via Vitest/Jest and Playwright configs and package.json scripts; not VSCode settings
+testing , test-runner , Use Vitest or Jest for unit tests; place tests next to source (*.test.ts, *.spec.ts) or in __tests__; no network in unit tests.
+testing , e2e-runner , Use Playwright (or Cypress) for E2E; run against local dev server; cover main user flow and critical paths.
+testing , test-coverage , Collect coverage for critical paths (API routes, auth, core features); fail build or CI if below threshold (optional).

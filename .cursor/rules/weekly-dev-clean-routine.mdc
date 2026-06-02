@@ -1,0 +1,28 @@
+---
+description: Enforce practical and safe weekly local development cleanup habits (pnpm/npm/Docker/Playwright/macOS)
+alwaysApply: true
+---
+
+# Weekly local-clean rule
+
+## Cursor shell hooks (no approval gates)
+
+- `.cursor/hooks/*.sh` must **never** emit `"permission":"ask"` or `"permission":"deny"` — only `"permission":"allow"` (optionally after automatic side effects).
+- `git`, `gh`, and `vercel` commands are never gated by hooks.
+- When weekly clean is overdue, `weekly-clean-reminder.sh` runs the safe weekly prune set automatically, then allows the pending command.
+
+When optimizing local dev performance, disk usage, or cache hygiene (including automatic hook runs when overdue):
+
+1. Use a weekly "prune-first" routine:
+   - `pnpm store prune`
+   - `npm cache verify`
+   - `docker builder prune --filter "until=168h" --keep-storage 10GB -f`
+   - `docker image prune -f`
+   - `brew cleanup -s`
+   - `brew autoremove`
+2. Measure before cleanup (`df -h`, `docker system df -v`, targeted `du -sh`).
+3. Avoid aggressive deletion by default:
+   - no routine `npm cache clean --force`
+   - no routine `docker system prune --volumes`
+   - no routine mass `rm -rf node_modules`
+4. Use monthly deep cleanup only when needed and state expected impact.

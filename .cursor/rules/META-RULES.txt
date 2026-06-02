@@ -1,0 +1,72 @@
+# Generic rules list — one line per rule. Format: domain , rule_name , one-line description. Includes generic paths/names only (no project-specific dirs). Portable across projects.
+
+enforcement , atomic-change-logging , Every atomic change MUST be committed immediately and separately the moment it is done (never end-of-session never end-of-plan never bulk never squashed); exactly one new task_graph.log line per atomic commit (append-only at repo root); format: <task_number>. <descriptive_task_id> , <files_touched_or_created>; task id kebab-case descriptive; commit message = descriptive task id (imperative); see enforcement/atomic-change-loging.mdc.
+enforcement , user-checklist-readonly , Designated user-owned checklist directories (e.g. under .cursor or per doc-reference) are read-only; agent may read but not modify or check off.
+enforcement , configuration-driven-behavior , All limits thresholds timeouts and behavioral rules must live in config or SSOT; no hard-coded values in application code.
+enforcement , deprecated-redundant-awareness , Treat code as potentially deprecated; remove only after 100% certainty of no references or runtime use.
+enforcement , dev-env-mirror-production , Every env var must exist in .env.example and .env.development.example (or config/.env.example and config/.env.development.example) with values; declare in env schema (e.g. env.ts in config package); dev env mirrors production var set so local runs can run end-to-end.
+enforcement , document-not-solution-policy , Resolve gaps with implementation not documentation; document-only allowed only when keeping current behavior is intentional and already planned.
+enforcement , plans-directory-and-numbering , Plans in .cursor/plans/ only; naming NNN_<scope>_<three_word_slug>_<id>.plan.md (NNN zero-padded, next = max(existing)+1); implementation brief in notes/implementations/ with same base name + _brief.txt (e.g. NNN_scope_slug_id_brief.txt).
+enforcement , plans-adr-link , Every plan must include relevant ADR(s) in exactly: ADR: <pillar> , <ids> (pillar from ADR ontology; ids = space-separated NNNN from adr_index).
+enforcement , plans-reports-agentic-only , Reports plans and documents are machine-consumable only: dense structured parseable; no human fluff or intro prose.
+enforcement , scripts-placement , Scripts at repo root only: scripts/dev/ (local dev migrations seeding), scripts/automation/ (CI releases), scripts/tools/ (one-off), scripts/<package-name>/ (package-specific); no scripts inside packages or apps.
+enforcement , ssot-location , Shared config types and client live in a single canonical location (e.g. packages/); no duplication in apps or elsewhere.
+enforcement , ssot-repo-structure , Repo structure (backend frontend layout deploy config) is defined in a single SSOT file (e.g. system-rules/ JSON or meta-structure).
+workflow , read-structure-first , Before any codebase change read the repo structure rule in system-rules/ (or equivalent) as the first step.
+workflow , v0-submodule-read-only , v0-reference-web/ is a read-only v0.dev UI submodule; never edit deploy or import it; product code and SSOT live in apps/web and repo root; see v0-ui-submodule-port-isolation.mdc and v0-REFERENCE-ONLY.txt.
+workflow , handoff-brief-after-implementation , After implementation create a brief for next model in notes/implementations/<plan_base>_brief.txt (plan-tied) or notes/sessions/session_*_YYYY-MM-DD.txt (no plan); sections: next plan suggestion files to read rules (.cursor/rules/) tools and status open issues; create plan-tied brief on plan close-out without asking.
+loop , scope-list-completion-loop , For each scope in list: plan mode then full plan then implement fully then run post-implementation checklist then assess; repeat until all scopes complete and all checklist items done; do not stop until no open todos.
+code-style , import-standards , Use path aliases instead of relative paths; imports ordered builtin then external then workspace then internal alias then relative; alphabetical within group.
+code-style , side-effect-imports , Side-effect imports allowed only for polyfills and global styles; require explicit comment.
+code-style , one-responsibility-per-file , One responsibility per file; folder represents domain or feature; no mixed abstractions in same folder.
+code-style , naming-folders-files , Folders kebab-case; React components PascalCase; hooks useCamelCase; utilities camelCase; configs kebab-case.
+code-style , functions , Prefer pure functions; keep functions short; no hidden side effects.
+code-style , classes , Classes only for domain models and services; avoid god classes.
+code-style , variables , Prefer const; no var; meaningful names; no single-letter except loop indices.
+code-style , typescript-strict , Strict TypeScript; no any; explicit return types for public functions.
+code-style , null-handling , Prefer undefined in app code; use null at DB boundary only; map in DTOs; use optional chaining; avoid non-null assertions.
+code-style , logging , Structured logging; no console.log in production; include context fields (e.g. requestId userId).
+enforcement , feature-boundary , No cross-domain or cross-feature imports without public API; prefer domain roots over feature facades.
+enforcement , immutability-inputs , Do not mutate inputs; enforce with lint and review.
+enforcement , ssot-state , No duplicated state; centralize single source of truth.
+enforcement , env-validation , Env vars use config layer (e.g. env.ts with schema validation); no direct process.env in application code.
+enforcement , api-validation , Validate all external inputs; prefer schema library (e.g. Zod); fail fast.
+enforcement , ownership-auth , Enforce user ownership on every request; never trust client-supplied user id.
+enforcement , error-handling , Never swallow errors; log with context; throw domain-specific errors; no internal details in user-facing messages.
+enforcement , testing , Unit tests for logic; integration tests for boundaries; tests deterministic; no network calls in unit tests.
+enforcement , security , Never log secrets; validate external inputs; no dynamic code execution; encrypt sensitive data at rest.
+enforcement , git-atomic , No direct commits to default branch; small atomic commits committed immediately per change (no end-of-session bulk commits no end-of-plan omnibus commits); commit message imperative and descriptive (same as task id when using task_graph.log); one commit = one repo root.
+code-style , commit-messages , Commit messages: imperative present tense; descriptive of atomic change; optional prefixes feat fix docs chore refactor test; when using task graph use kebab-case task id as message.
+enforcement , anti-patterns , No magic numbers without named constants; no deeply nested conditionals; no circular dependencies; no global mutable state.
+enforcement , branch-naming , Use consistent branch naming (feature/ bugfix/ hotfix/ release/) and semantic version tags (e.g. v<major>.<minor>.<patch>).
+enforcement , pr-workflow , Use branches for features and bugs; require reviews; PR title format [type] short description.
+enforcement , database-schema , Match main app DB style; define uniques and indexes for core queries; never store file contents or signed URLs in DB.
+enforcement , api-contracts , No internal details in user-facing errors; stable DTO shape; human-readable messages.
+enforcement , migration-adapters , Imported or third-party code must be adapted to app conventions behind adapters; do not merge raw.
+
+# --- VSCode / editor and tooling (recommended for minimizing ambiguity, errors, non-comply behavior; 2026 best practices) ---
+# Same format: domain , rule_name , one-line description. Non-JSON; enforce via .vscode/settings.json and extensions.
+
+editor , format-on-save , Enable format on save; use project formatter (Prettier) for consistent style.
+editor , default-formatter , Set default formatter to Prettier (or project-chosen); avoid conflicting formatters.
+editor , trim-trailing-whitespace , Trim trailing whitespace on save (files.trimTrailingWhitespace).
+editor , insert-final-newline , Insert final newline at end of file (files.insertFinalNewline).
+editor , tab-size , Use spaces for indentation; tab size 2 for JSON/JS/TS/YCAML; align with ESLint indent rule.
+editor , bracket-pair-colorization , Enable bracket pair colorization for readability (editor.bracketPairColorization.enabled).
+editor , detect-indentation , Detect indentation from file when opening; prefer project setting for new files.
+code-style , eslint-save-actions , Run ESLint on save (or on type) so violations are fixed or surfaced immediately.
+code-style , typescript-prefer-strict , TypeScript strict mode in tsconfig; no implicit any; strict null checks.
+code-style , organize-imports-on-save , Organize imports on save (e.g. ESLint fix or editor action) to match import-standards rule.
+enforcement , no-commit-secrets , Use pre-commit or editor integration to block commits containing known secret patterns (e.g. API_KEY=, _SECRET=, password=).
+enforcement , editorconfig , Use .editorconfig at repo root for indent size, end of line, charset across editors and IDEs.
+testing , test-runner , Use Vitest or Jest for unit tests; place tests next to source (*.test.ts, *.spec.ts) or in __tests__; no network in unit tests.
+testing , e2e-runner , Use Playwright (or Cypress) for E2E; run against local dev server; cover main user flow and critical paths.
+testing , test-coverage , Collect coverage for critical paths (API routes, auth, core features); fail build or CI if below threshold (optional).
+lint , eslint , ESLint with TypeScript parser; rules for no-console (warn/error in prod), no-explicit-any, import order, consistent return.
+lint , prettier , Prettier for formatting; single config at root; no conflicting ESLint format rules (use eslint-config-prettier).
+lint , turbo-lint , Run lint via Turborepo pipeline (turbo run lint) so all apps/packages linted consistently.
+security , bundle-secret-scan , Post-build step or CI: grep (or dedicated tool) for API keys and other secrets in build output; fail if found.
+security , dependency-audit , Run pnpm audit (or npm audit) in CI; fix or document high/critical; optional: Dependabot or Renovate.
+tools , package-manager , Use pnpm only; lockfile committed; no package-lock.json or yarn.lock in repo.
+tools , node-version , Pin Node version via .nvmrc or engines in package.json; use in CI and recommend for local.
+tools , turbo-build-filter , For monorepo deploy use turbo run build --filter=<app-name> (or target package); document in project SSOT / setup docs.

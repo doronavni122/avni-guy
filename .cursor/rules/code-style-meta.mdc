@@ -1,0 +1,32 @@
+---
+description: Code-style rules from META-RULEs (imports, naming, TS, logging, commits)
+globs: "**/*.{ts,tsx,js,jsx}"
+alwaysApply: false
+---
+
+# Code style (META)
+
+**Imports**
+- import-standards: Path aliases over relative; order: builtin → external → workspace → internal alias → relative; alphabetical within group.
+- side-effect-imports: Only for polyfills and global styles; require explicit comment.
+
+**Structure**
+- one-responsibility-per-file: One responsibility per file; folder = domain or feature; no mixed abstractions in same folder.
+- naming-folders-files: Folders kebab-case; React components PascalCase; hooks useCamelCase; utilities camelCase; configs kebab-case.
+
+**Functions & classes**
+- functions: Prefer pure; keep short; no hidden side effects.
+- classes: Only for domain models and services; avoid god classes.
+
+**Variables**
+- variables: Prefer const; no var; meaningful names; single-letter only for loop indices.
+
+**TypeScript**
+- typescript-strict: Strict TS; no any; explicit return types for public functions.
+- null-handling: Prefer undefined in app; null at DB boundary only; map in DTOs; optional chaining; avoid non-null assertions.
+
+**Logging**
+- logging: Structured logging; no console.log in production; include context (e.g. requestId, userId).
+
+**Commits**
+- commit-messages: Imperative present tense; descriptive of atomic change; optional prefixes feat fix docs chore refactor test; when using task graph use kebab-case task id as message.

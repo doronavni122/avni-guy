@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Atomic change logging hook disabled (owner request): no commit-msg validation.
+set -euo pipefail
+exit 0

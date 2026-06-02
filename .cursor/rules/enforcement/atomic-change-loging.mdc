@@ -1,0 +1,201 @@
+---
+description: Enforce atomic commits and task graph logging for all changes
+alwaysApply: true
+---
+
+# Atomic Change Logging Invariant
+
+**Status**: MANDATORY - STRICT - NON-NEGOTIABLE
+
+**Axiom**: *If a change is not committed and not logged as a one-line atomic task with a descriptive task ID in `task_graph.log`, it does not exist.*
+
+---
+
+## Atomicity timing (NON-NEGOTIABLE)
+
+**One-line invariant**: `1 atomic change == 1 commit == 1 new task_graph.log line`.
+
+- ✅ Each small atomic change MUST be committed **immediately** and **separately**, the moment that single change is done.
+- ✅ Exactly **one** new `task_graph.log` line per atomic commit (the line that describes that commit).
+- ❌ **FORBIDDEN**: end-of-session bulk commits.
+- ❌ **FORBIDDEN**: end-of-plan / end-of-scope / end-of-checklist bulk commits.
+- ❌ **FORBIDDEN**: "WIP", "checkpoint", "various fixes", or omnibus commits that group multiple atomic changes.
+- ❌ **FORBIDDEN**: squashing multiple atomic changes into one commit.
+- ❌ **FORBIDDEN**: appending more than one line to `task_graph.log` per commit.
+- ❌ **FORBIDDEN**: staging unrelated files alongside an atomic change.
+
+This is not a guideline. It is a hard invariant. If you finish one small change, you commit before starting the next.
+
+---
+
+## Git Authority Scope
+
+**Git Roots (Authoritative)**:
+
+- **my-project**: `my-project` -  all commits and `task_graph.log` from here.
+- **Agent-stack or any other repos** (same OOST/custom-branch policy as my-project): each repo root is the Git authority for that repo; commits and any task_graph (or equivalent) per repo.
+
+- The Cursor workspace root (`my-project/`) is **NOT** a Git authority.
+- No other `.git` directories are allowed except `my-project/` and any other agent-stack repo roots if present.
+
+**Locked: One commit = one OSS root.** A single commit MUST NOT touch files under more than one repo root.
+
+## Core Requirements
+
+### 1. Atomic Commits
+
+Every change MUST be committed as a single atomic unit, **immediately** when that change is done:
+
+- ✅ **One commit per atomic change**
+- ✅ **Committed the moment the atomic change is done — not later, not at end of session, not at end of plan**
+- ❌ **No mixed or unrelated changes**
+- ❌ **No batching of multiple atomic changes into one commit**
+- ✅ **Commit message must describe the atomic change**
+
+```bash
+# ✅ GOOD - Single atomic change, committed immediately
+git add apps/web/app/api/example/route.ts task_graph.log
+git commit -m "add-example-api-route"
+
+# ❌ BAD - Multiple unrelated changes
+git add apps/web/app/api/example/route.ts apps/web/components/footer.tsx
+git commit -m "various fixes"
+
+# ❌ BAD - End-of-session bulk commit
+git add -A
+git commit -m "session changes"
+
+# ❌ BAD - End-of-plan / end-of-scope omnibus commit
+git add -A
+git commit -m "implement plan 123"
+
+# ❌ BAD - Multiple task_graph.log lines appended in one commit
+# (each atomic change requires its own commit + its own single new task_graph.log line)
+```
+
+---
+
+
+### 2. Task Graph Logging
+
+**File**: `my-project/task_graph.log` (OOST - One Official Source of Truth)
+
+**Properties**:
+- Single global file
+- Append-only (NEVER edit, delete, or reorder)
+- Permanent record from day one to forever
+- The file MUST live at the Git repository root (`my-project/`)
+- No copies, mirrors, or secondary task graphs are allowed
+
+
+**Format** (ONE LINE ONLY):
+```
+<task_number>. <descriptive_task_id> , <files_touched_or_created>
+```
+
+
+---
+
+### 3. Task ID Rules
+
+- ✅ **Original and descriptive** - reflects real intent
+- ✅ **kebab-case format** (e.g., `create-auth-middleware`)
+- ✅ **Numeric monotonic order** (1, 2, 3, ...)
+- ❌ **No number reuse**
+- ❌ **No multiline entries**
+- ❌ **No extra metadata**
+
+```
+# ✅ GOOD
+5. add-env-validation-schema , apps/web/env.ts
+
+# ❌ BAD - Too vague
+5. update , apps/web/env.ts
+
+# ❌ BAD - Multiline
+5. add-env-validation-schema
+   apps/web/env.ts
+
+# ❌ BAD - Extra metadata
+5. add-env-validation-schema [WIP] , apps/web/env.ts
+```
+
+**Good task log lines (project-suited examples)**:
+```
+30. add-api-input-validation , apps/web/app/api/example/route.ts task_graph.log
+31. add-webhook-signature-check , apps/web/app/api/webhooks/route.ts task_graph.log
+32. add-page-loading-state , apps/web/app/example/page.tsx task_graph.log
+33. add-e2e-smoke-assertions , apps/web/e2e/smoke.spec.ts task_graph.log
+34. add-env-schema-optional-key , apps/web/env.ts task_graph.log
+35. add-scope-loop-rule-and-agent , .cursor/rules/enforcement/scope-list-infi-implementation-loop .cursor/agents/scope-loop-runner.md task_graph.log
+```
+(Single-file: one route or one page. Multi-file: one logical change across related files. Always include `task_graph.log` when it is appended.)
+
+---
+
+### 4. Workflow for Every Change
+
+Done **immediately** per atomic change, in order, before starting the next change:
+
+1. **Make the one atomic change** (code, schema, migration, etc.) — nothing else.
+2. **Append exactly one line to `task_graph.log`**:
+   ```
+   <next_number>. <descriptive-task-id> , <files_changed>
+   ```
+3. **Stage only that change + `task_graph.log`** (never `git add -A`, never stage unrelated files).
+4. **Commit atomically, immediately**:
+   ```bash
+   cd my-project
+   git add <files_changed> task_graph.log
+   git commit -m "<descriptive-task-id>"
+   ```
+5. **Only then** start the next atomic change and repeat from step 1.
+
+Forbidden shortcuts:
+- ❌ Editing several unrelated files, then committing once at the end.
+- ❌ Appending multiple `task_graph.log` lines and grouping them into one commit.
+- ❌ "I'll commit at the end of the session/plan/scope" — never.
+
+---
+
+### 5. Code & Database Changes
+
+All changes to these MUST be committed and logged:
+- Code files
+- Database schema
+- Migrations
+- Data logic
+- **Config and root-level files** (e.g. `turbo.json`, `package.json`, `apps/web/tsconfig.json`, `apps/web/env.ts`)
+- **Fixes** (lint/type errors, one-line fixes, dependency additions)
+
+**Invalid if missing**:
+- Commit
+- Task graph entry
+
+**No exceptions**: Every edit that touches the repo—including bug fixes, config tweaks, and dependency adds—requires steps 2–4 (append task_graph.log, stage, commit). Before ending the turn, confirm: for each change made, is there a task_graph line and a commit? If not, add the line and commit.
+
+### 6. Immutability Rules
+
+The `task_graph.log` is **immutable**:
+- ❌ No editing historical lines
+- ❌ No renumbering
+- ❌ No reordering
+- ❌ No deletions
+- ✅ Append only
+
+---
+
+## Quick Reference
+
+| Step | Action |
+|------|--------|
+| 1 | Make your change |
+| 2 | Add line to `task_graph.log` |
+| 3 | Stage files + `task_graph.log` |
+| 4 | Commit with descriptive ID |
+
+**Remember**: No change exists without BOTH a commit AND a task graph entry. Applies to every change (features, fixes, config, deps).
+
+### Git hooks / CI (optional)
+
+The repo may ship **without** git `pre-commit` / `commit-msg` scripts or a GitHub `atomic-change-loging` workflow (disabled in task 454). That does **not** relax the invariant above: every intentional scoped change still requires an **append-only** `task_graph.log` line and an **atomic** git commit. Hooks and CI are optional guardrails, not the source of truth.

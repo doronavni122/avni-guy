@@ -1,0 +1,20 @@
+---
+description: Agent has full permission to read, write, edit, add, and delete local/dev .env files and env schema/test files; when tests fail due to missing env, set env locally, add empty on production via CLI, and add production build warning for empty vars.
+alwaysApply: true
+---
+
+# Env files — agent permission (dev)
+
+**Scope**: Local and dev-environment env files and env-related code.
+
+**Files** (examples): `.env.example`, `.env.development.example`, `apps/web/.env.local`, `apps/web/env.ts`, env schema or env test files.
+
+**Permission**: You may **read, write, edit, add, and delete** these files when needed for the task.
+
+**First choice**: Do **not** ask the owner to set or change env variables when the change is for the **dev environment**. Apply the change yourself.
+
+**When tests fail due to missing env:** (1) Set the ENV in local test/env files (full permission). (2) Local must match production: add the same env key on production as **empty** via CLI (e.g. `vercel env add VAR_NAME`) so production has the same keys. (3) Add a **production build warning**: when `NODE_ENV===production` and the var is empty, warn that it must be set correctly for production (e.g. in `env.ts` or build script).
+
+**Examples**:
+- Adding a new optional dev var → add to `.env.example` and `.env.development.example`, extend `env.ts` schema, update `apps/web/.env.local` if present.
+- Tests fail due to missing X → set X in local env files; add X empty on production via CLI; add production build warning for empty X.

@@ -1,0 +1,20 @@
+---
+description: After every implementation run build and dev (or just dev if build not needed); check logs and fix until clean.
+alwaysApply: true
+---
+
+# After implementation: build and dev
+
+**When**: After every implementation (code, config, or dependency change).
+
+**Rule**: Run build and dev before considering the implementation complete.
+
+1. **Build** — Run `pnpm build` from repo root. If build is not applicable for the change (e.g. docs/plans only), skip.
+2. **Dev** — Run `pnpm dev` (or the project’s dev command). Let it compile and serve; check dev server logs for errors.
+3. **On failure** — Fix errors (RCA if needed), then re-run build and dev until both succeed.
+
+**Done when**: Build succeeds (or skipped) and dev runs without error.
+
+**Atomic commit invariant**: Build/dev runs are verification only. Any fix made during them is its own atomic commit, committed **immediately and separately** the moment it is done, with exactly one new `task_graph.log` line per commit, per `enforcement/atomic-change-loging.mdc`. Never batch fixes into one end-of-loop commit.
+
+For the full verify loop including dev smoke (e2e), see `post-implementation-build-dev-verify-loop.mdc`.

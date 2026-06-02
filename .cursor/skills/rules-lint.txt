@@ -1,0 +1,4 @@
+# Lint rules (META-RULEs) — enforced via ESLint config, Prettier config, and turbo run lint; settings.json enables fix on save
+lint , eslint , ESLint with TypeScript parser; rules for no-console (warn/error in prod), no-explicit-any, import order, consistent return.
+lint , prettier , Prettier for formatting; single config at root; no conflicting ESLint format rules (use eslint-config-prettier).
+lint , turbo-lint , Run lint via Turborepo pipeline (turbo run lint) so all apps/packages linted consistently.

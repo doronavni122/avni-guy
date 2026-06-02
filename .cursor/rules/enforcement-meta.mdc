@@ -1,0 +1,59 @@
+---
+description: Enforcement rules from META-RULEs (atomic logging, SSOT, validation, security, git, DB, API)
+alwaysApply: true
+---
+
+# Enforcement (META)
+
+**Change & logging**
+- atomic-change-logging: One commit per atomic change, committed **immediately and separately** the moment the change is done; exactly **one** new `task_graph.log` line per commit; format `N. <task_id> , <files>`; commit message = task id (imperative kebab-case). Bulk / end-of-session / end-of-plan / end-of-scope / squashed commits are forbidden. See `enforcement/atomic-change-loging.mdc`.
+- user-checklist-readonly: Designated checklist dirs (e.g. .cursor) read-only; agent reads only, does not modify or check off.
+- git-atomic: No direct commits to default; small atomic commits committed **immediately** per change; one commit = one logical change at repo root; no end-of-session bulk commits.
+
+**Config & SSOT**
+- configuration-driven-behavior: Limits, thresholds, timeouts in config/SSOT; no hard-coded values in app code.
+- ssot-repo-structure: Repo structure (backend, frontend, deploy, config) in single SSOT (e.g. system-rules/ or meta).
+- ssot-location: Shared config/types/client in one canonical place (e.g. packages/); no duplication in apps.
+- ssot-state: No duplicated state; single source of truth.
+
+**Code & deprecation**
+- deprecated-redundant-awareness: Treat code as potentially deprecated; remove only after 100% no references/runtime use.
+- document-not-solution-policy: Resolve gaps with implementation; document-only only when keeping current behavior is intentional.
+- plans-reports-agentic-only: Reports/plans machine-consumable; dense, structured, parseable; no fluff.
+
+**Plans & scripts**
+- plans-directory-and-numbering: Plans in .cursor/plans/ only; name NNN_<scope>_<three_word_slug>_<id>.plan.md; brief in notes/implementations/<base>_brief.txt.
+- plans-adr-link: Every plan MUST include relevant ADR(s) in exactly this form: `ADR: <pillar> , <ids>` (e.g. `ADR: auth , 0001 0005`). Pillar from ADR ontology; ids = space-separated NNNN from ADR/adr_index.md.
+- scripts-placement: Scripts at repo root: scripts/dev/, scripts/automation/, scripts/tools/, scripts/<package>/; none inside packages/apps.
+
+**Env**
+- dev-env-mirror-production: Every env var in .env.example and .env.development.example with values; declare in env schema (e.g. env.ts); dev mirrors prod var set.
+- env-validation: Config layer for env (e.g. env.ts + schema); no direct process.env in app code.
+
+**Boundaries & immutability**
+- feature-boundary: No cross-domain/cross-feature imports without public API; prefer domain roots.
+- immutability-inputs: Do not mutate inputs; enforce via lint/review.
+
+**Validation & auth**
+- api-validation: Validate all external inputs; prefer schema lib (e.g. Zod); fail fast.
+- ownership-auth: Enforce user ownership on every request; never trust client-supplied user id.
+
+**Errors & testing**
+- error-handling: Never swallow errors; log with context; throw domain errors; no internal details in user messages.
+- testing: Unit tests for logic; integration for boundaries; deterministic; no network in unit tests.
+
+**Security**
+- security: No logging secrets; validate external input; no dynamic code execution; encrypt sensitive at rest.
+
+**V0 reference submodule**
+- v0-ui-submodule-port-isolation: `v0-reference-web/` read-only v0 snapshot; no edits/deploy/imports; port UI into `apps/web/` only; see `v0-REFERENCE-ONLY.txt`.
+
+**Anti-patterns & workflow**
+- anti-patterns: No magic numbers (use named constants); no deep nesting; no circular deps; no global mutable state.
+- branch-naming: feature/, bugfix/, hotfix/, release/; semantic tags v<major>.<minor>.<patch>.
+- pr-workflow: Branches for features/bugs; reviews required; PR title [type] short description.
+
+**DB & API contracts**
+- database-schema: Match app DB style; uniques and indexes for core queries; never store file contents or signed URLs in DB.
+- api-contracts: No internal details in user-facing errors; stable DTO shape; human-readable messages.
+- migration-adapters: Third-party/imported code behind adapters to app conventions; do not merge raw.

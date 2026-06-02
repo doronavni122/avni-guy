@@ -1,0 +1,18 @@
+---
+description: Before any codebase change read repo structure first
+alwaysApply: true
+---
+
+# Read structure first
+
+Before making any codebase change:
+
+1. **First step**: Read the repo structure rule (SSOT). It includes **product law**: `END-GOAL-PROJECT.md` and formal ADRs **0014–0017**. Locate structure SSOT in:
+   - `.cursor/rules/ssot-repo-structure.mdc` (canonical for this repo), or
+   - `system-rules/` (or equivalent), or
+   - `.cursor/rules/` — e.g. `META-RULES.txt` / `RULES-GENERIC.txt` (line `ssot-repo-structure`), or
+   - Any single SSOT file that defines backend, frontend, layout, deploy, config.
+
+2. **Then** proceed with edits, new files, or refactors so all changes align with the defined structure.
+
+Do not skip this step. If no explicit repo-structure file exists, scan repo root and key dirs (e.g. `packages/`, `apps/`, `scripts/`) to infer layout before changing code.

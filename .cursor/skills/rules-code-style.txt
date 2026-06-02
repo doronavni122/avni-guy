@@ -1,0 +1,4 @@
+# Code-style rules (META-RULEs) — ESLint/organize via settings.json codeActionsOnSave; TypeScript strict in tsconfig
+code-style , eslint-save-actions , Run ESLint on save (or on type) so violations are fixed or surfaced immediately.
+code-style , typescript-prefer-strict , TypeScript strict mode in tsconfig; no implicit any; strict null checks.
+code-style , organize-imports-on-save , Organize imports on save (e.g. ESLint fix or editor action) to match import-standards rule.

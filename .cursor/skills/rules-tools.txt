@@ -1,0 +1,5 @@
+# Tools rules (META-RULEs) — enforced via .nvmrc, package.json engines, pnpm-workspace, turbo; not VSCode settings
+enforcement , editorconfig , Use .editorconfig at repo root for indent size, end of line, charset across editors and IDEs.
+tools , package-manager , Use pnpm only; lockfile committed; no package-lock.json or yarn.lock in repo.
+tools , node-version , Pin Node version via .nvmrc or engines in package.json; use in CI and recommend for local.
+tools , turbo-build-filter , For monorepo deploy use turbo run build --filter=<app-name> (or target package); document in project SSOT / setup docs.

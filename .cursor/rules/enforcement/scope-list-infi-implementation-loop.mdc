@@ -1,0 +1,140 @@
+---
+description: Workflow — for each scope in a list, create full phases todo lists include plan in (Plan_Mode), implement, run post-implementation, assess completion; repeat until ALL scopes are fully implemented. Designed for long autonomous runs (4–10+ hours).
+alwaysApply: false
+---
+
+# Scope-List infi implementation Loop (Long-Running)
+
+**Status**: MANDATORY when the user invokes this workflow
+
+This rule defines a **strict outer loop** that processes **every single scope** in the provided list until all of the todo tasks the scopes based on are fully implemented, and mark as done in the following way in the task file [x]
+
+---
+
+## Scope Definition
+- A **scope** = a group of related checklist tasks/items/todos (all checkboxes items that belong to the scope)
+---
+
+## Scope Discipline — INVARIANT (HIGHEST PRIORITY – NON-NEGOTIABLE)
+
+**This overrides everything else.**
+
+- **Global rule**: do not stop the loop until **every single task** that the scopes are attached to the scope are fully implemented and mark as done on the checklist item file.
+
+---
+
+## Intent (Summary) – Long-Running Loop
+
+Process the full scope list **sequentially** with this repeating cycle:
+
+For each scope (one at a time):
+1. Switch to **PLAN_MODE**
+2. Create a complete implementation plan that will make **every checklist item** in this scope 100% done
+3. Implement the plan fully (no partial work)
+4. Run the full post-implementation checklist
+5. **Assess** (keep this step exactly as written)
+   - If **NOT fully complete** → immediately loop back to Step 1 for the **same scope** to complete the implementation fully.
+   - If **fully complete** → check each todo in the checklist file as done, and move to the next scope in the list
+
+**Outer loop**: Keep repeating the above for the next scope until **no scopes remain** and **all checklist items across the entire list are marked as done** (- [x])
+
+**Long-running instruction**:
+no human in the loop needed for plan implemnetaion.
+Do **not** ask the user for permission to continue.
+Do **not** conclude or say “workflow finished” until **every scope** has passed assessment.
+DO not stop untill no more open todos in the checklist file (e,g. all todo items marked as [x])
+---
+
+## Trigger
+
+When the user says any of:
+"run the scope list workflow", "run full scope completion loop", "execute Scope-List Full Completion Loop", etc.
+
+---
+
+## Steps (Strict Order – Do Not Skip)
+
+**Global invariant**: Never advance to the next scope until the current one is assessed as **FULLY COMPLETE**.
+The entire process loops automatically for hours until the whole list is done.
+
+### Step 1: Switch to Plan Mode
+- Immediately switch to **Cursor PLAN_MODE** (Agent → Plan).
+
+### Step 2: Create Full Implementation Plan
+- Create a **complete phased plan** that, when executed, will make **every single checklist item** belonging to the current scope 100% implemented and ready to be marked done.
+
+### Step 3: Implement the Plan
+- Execute the entire plan without asking for approval.
+- Implement **fully** (every task 100% complete).
+- Follow atomic commit rules (`.cursor/rules/enforcement/atomic-change-loging.mdc`).
+- Do **not** stop implementing until the plan is 100% executed.
+
+### Step 4: Run Post-Implementation
+- Execute **every item** in `.commands/TODO_post_implementation.md` in order.
+
+### Step 5: Assess Completion (KEEP THIS STEP UNCHANGED IN SPIRIT)
+- **Assess** whether the current scope is **fully implemented** (every checklist item belonging to it is 100% complete and can be marked done).
+- **If the answer is YES (needs more work / not fully complete)**:
+  → Immediately return to **Step 1** for the **exact same scope** (repeat plan → implement → post → assess).
+- **If the answer is NO (scope is fully complete)**:
+  → Proceed to Step 6.
+
+### Step 6: Advance to Next Scope
+- Determine the next scope in the original list (current index + 1).
+- If there is a next scope → set it as the new “current scope” and go to Step 7.
+- If **no more scopes remain** → go to Step 8 (final check).
+
+### Step 7: Loop Back
+- Return to **Step 1** with the new current scope.
+- Continue the full cycle.
+
+### Step 8: Final Completion Check & Stop Condition
+- Verify that **every scope** in the original list has been processed and assessed as fully complete.
+- If any scope is still incomplete → return to Step 1 for that scope.
+- **Only when the entire list is 100% complete and all checklist items are marked done**:
+  → End the workflow with a clear final summary:
+  “All scopes completed. Workflow finished.”
+
+---
+
+## Flow Summary (Updated for Full Completion Loop)
+Scope list = [Scope1, Scope2, … ScopeN]
+While there are any remaining scopes in the list:
+CurrentScope = next uncompleted scope
+while CurrentScope is NOT fully complete:
+
+PLAN_MODE
+Create full plan for CurrentScope
+Implement plan fully
+Run post-implementation checklist
+Assess CurrentScope
+→ If not complete → loop back to 1 (same scope)
+→ If complete → break inner loop
+Move to next scope
+
+When no scopes remain AND final assessment confirms everything is done:
+END WORKFLOW
+text---
+
+## References (unchanged)
+- Plan location and numbering: `.cursor/rules/enforcement/plans-directory-and-numbering.mdc`
+- Atomic commits and task graph: `.cursor/rules/enforcement/atomic-change-loging.mdc`
+- Post scope plan cycle: `.commends/TODO_post_implementation.md`
+
+
+---
+
+## Quick Reference Table
+
+| Step | Action |
+|------|--------|
+| 1    | Switch to PLAN_MODE |
+| 2    | Create full plan for **current** scope |
+| 3    | Implement plan 100% |
+| 4    | Run full post-implementation checklist |
+| 5    | Assess: fully complete? (If NO → back to Step 1 same scope) |
+| 6    | If YES → get next scope |
+| 7    | Loop back to Step 1 with next scope |
+| 8    | Only stop when **ALL** scopes are assessed complete |
+
+---

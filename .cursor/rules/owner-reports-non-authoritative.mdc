@@ -1,0 +1,29 @@
+---
+description: OWNER-REPORTS are session workfiles—not SSOT or authoritative product sources
+alwaysApply: true
+---
+
+# OWNER-REPORTS — non-authoritative
+
+Files under `OWNER-REPORTS/` (including any nested or archived copies kept for history or investigation) are **mostly per-session or short program workfiles**: audits, gap inventories, checklists, and operator notes produced while executing a scope.
+
+## Do not treat as SSOT
+
+- **Not** authoritative product law, API contracts, security baselines, or normative journey definitions.
+- **Not** a substitute for code, `END-GOAL-PROJECT.md`, `PROJECT_USER_JOURNEY_STEPS.md`, or **Accepted ADRs** in `ADR/`.
+
+## Allowed use
+
+- **Context** for what was discussed or scoped in a past session; **history** or investigation pointers; **temporary** tracking until work lands in code, ADRs, or the supreme product file above.
+
+## When describing requirements
+
+Prefer **code + formal SSOT** (end-goal doc, journey doc, ADRs). If you mention an owner report, frame it as **historical / working notes**, not “the spec says”.
+
+```markdown
+# ❌ BAD — cites owner report as law
+Per OWNER-REPORTS/066_*.txt, production must …
+
+# ✅ GOOD — SSOT first, owner report optional
+Per END-GOAL-PROJECT.md and ADR 0014 … (066 inventory was a working gap list during closure.)
+```

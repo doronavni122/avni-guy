@@ -1,0 +1,8 @@
+# Editor rules (META-RULEs) — applied via .vscode/settings.json
+editor , format-on-save , Enable format on save; use project formatter (Prettier) for consistent style.
+editor , default-formatter , Set default formatter to Prettier (or project-chosen); avoid conflicting formatters.
+editor , trim-trailing-whitespace , Trim trailing whitespace on save (files.trimTrailingWhitespace).
+editor , insert-final-newline , Insert final newline at end of file (files.insertFinalNewline).
+editor , tab-size , Use spaces for indentation; tab size 2 for JSON/JS/TS/YAML; align with ESLint indent rule.
+editor , bracket-pair-colorization , Enable bracket pair colorization for readability (editor.bracketPairColorization.enabled).
+editor , detect-indentation , Detect indentation from file when opening; prefer project setting for new files.

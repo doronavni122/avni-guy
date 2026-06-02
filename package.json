@@ -37,7 +37,10 @@
     "vector:audit": "node scripts/audit-vector-index.mjs",
     "mcp:site": "node scripts/site-mcp-server.mjs",
     "image-keyword-compliance": "node scripts/image-keyword-compliance.mjs",
-    "cms:dev": "KEYSTATIC_STORAGE_KIND=local next dev -p 3001"
+    "cms:dev": "KEYSTATIC_STORAGE_KIND=local next dev -p 3001",
+    "hooks:install": "node scripts/tools/install-git-hooks.cjs",
+    "atomic:validate-staged": "node scripts/tools/validate-atomic-change-logging.cjs --staged",
+    "atomic:validate-range": "node scripts/tools/validate-atomic-change-logging.cjs --range"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",

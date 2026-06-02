@@ -1,0 +1,39 @@
+# Weekly + lockfile-change audit. Policy: fail the job on high+ so issues surface in CI (axios/wagmi transitive advisories are mitigated via root `pnpm.overrides` when safe).
+name: pnpm audit
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '15 6 * * 1'
+  push:
+    branches:
+      - main
+    paths:
+      - 'pnpm-lock.yaml'
+      - 'package.json'
+      - 'apps/web/package.json'
+      - '.github/workflows/pnpm-audit.yml'
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Check apps/web static dangerous API patterns
+        run: node scripts/tools/check-apps-web-dangerous-api-patterns.js
+
+      - name: pnpm audit (high or above fails)
+        run: pnpm audit --audit-level=high

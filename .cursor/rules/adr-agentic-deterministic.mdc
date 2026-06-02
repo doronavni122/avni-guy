@@ -1,0 +1,33 @@
+---
+description: ADR format, ontology, immutability and index rules for root ADR/
+globs: ADR/**/*.md
+alwaysApply: false
+---
+
+# ADR – Agentic Deterministic
+
+**Directory**: `ADR/` at repo root. Files: `*.md`. Index: `ADR/adr_index.md` (auto-generated only; manual edit forbidden). Index regeneration MUST run on every new or changed file in `ADR/` except when the only change is `adr_index.md` itself.
+
+**Naming**: `NNNN-PILLAR-DESCRIPTIVE-KEBAB.md` — NNNN = 4 zero-padded digits; PILLAR = one word from ontology; 2–5 kebab words after. No random suffix, no date prefix.
+
+**Ontology (exact)**: auth, database, messaging, deployment, frontend, backend, monitoring, security, storage, caching, api, eventing, observability. Extension: `pillar-subfeature` only when >3 decisions on same pillar (e.g. auth-oidc).
+
+**File format (exact order)**:
+- `# ADR NNNN – PILLAR DESCRIPTIVE TITLE`
+- `## Status` (Accepted | Proposed | Deprecated | Superseded | Rejected)
+- `## Date` (YYYY-MM-DD)
+- `## Context` (one paragraph, no fluff)
+- `## Decision` (one declarative sentence + bullet justification)
+- `## Consequences` (bullets)
+- `## Supersedes` (IDs or None)
+- `## SupersededBy` (IDs or None)
+
+**Immutability**: Decision / Context / Consequences NEVER edited after commit. Only Status, Supersedes, SupersededBy may be updated. Changing a decision → create new ADR; set old to Status: Superseded, SupersededBy: new-NNNN; new to Status: Accepted, Supersedes: old-NNNN.
+
+**SSOT**: Active decision per pillar = unique ADR with Status=Accepted AND SupersededBy=None. Multiple active per pillar = violation.
+
+**Workflow**: Read ADR/adr_index.md → identify pillar → if active ADR exists, create new ADR and update old metadata only; else create with next NNNN → regenerate ADR/adr_index.md → commit old + new + index together. Index: table, sort NNNN ascending; script idempotent. Regenerate index on every new or changed file in ADR/ (except when the only changed file is adr_index.md).
+
+**Violations (reject)**: Multiple Accepted+SupersededBy=None per pillar; Supersedes refs missing ID; in-place edit of Decision/Context/Consequences; NNNN gap or duplicate.
+
+**Plan linkage**: Every plan (in `.cursor/plans/`) MUST include the relevant ADR id(s) and pillar name. Format exactly: `ADR: <pillar> , <ids>` (e.g. `ADR: auth , 0001 0005`). Pillar = ontology name from the ADR(s) the plan implements or depends on; ids = space-separated NNNN from `ADR/adr_index.md`.

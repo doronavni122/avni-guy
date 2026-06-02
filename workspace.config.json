@@ -1,0 +1,18 @@
+{
+  "repoName": "avni-guy",
+  "appRoot": ".",
+  "prodUrl": "https://avniguy.co.il",
+  "previewUrl": "https://avni-guy.vercel.app",
+  "taskLogFile": "task_graph.log",
+  "ownerTasksFile": "OWNER-TASKS.txt",
+  "productSsotDoc": "SSOT.md",
+  "journeyDoc": "PROJECT_USER_JOURNEY_STEPS.md",
+  "ownerReportsDir": "OWNER-REPORTS",
+  "implementationNotesDir": "notes/implementations",
+  "commandsDir": ".commends",
+  "adrDir": "ADR",
+  "packageManager": "pnpm",
+  "workspaceAppFilter": "",
+  "setupInstructionsDoc": "SETUP-INSTRUCTIONS.md",
+  "productSlug": "avni-guy"
+}

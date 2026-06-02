@@ -1,0 +1,16 @@
+---
+description: Referencing a .commends todo file means execute its workflow as an explicit user request
+alwaysApply: true
+---
+
+# `.commends` todo files = explicit user request
+
+When the user references a file under **`.commends/`** (for example `@.commends/TODO_post_tests.md`, `TODO_post_implementation.md`, `TODO_validate_true.md`), treat the **actionable checklist / workflow** in that file as **explicit instructions**—the same as if the user had typed each step: run commands, read code, implement fixes, validate, and report outcomes.
+
+**Path alias:** If the user writes **`.commands/`** and there is no `.commands/` directory in the repo, interpret it as **`.commends/`** (this project’s canonical folder).
+
+**Read-only on the file itself:** If the commends file header says it must not be edited, **do not mutate that file** to tick boxes or reword templates. Still **perform the work** the file describes (tests, build, post-impl steps, etc.).
+
+**Template placeholders:** Lines that are clearly format examples (e.g. a single `- [ ] item` line in meta `TODO_todo.md`) are not a backlog to mass-toggle without context; execute the **intent** of the doc (e.g. “spawn child plans with `##todos`”) when the user points at that file for process.
+
+**Does not override stricter rules:** atomic-change-loging, legal/governance read-only paths, or another workspace rule that forbids a specific edit (e.g. owner-only checklist files) still wins.
