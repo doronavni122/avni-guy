@@ -75,3 +75,58 @@ export function isGlobalPillarSlug(slug) {
 export function spokesForCategory(category) {
 	return pillarsForCategory(category);
 }
+
+/** Conversion and cornerstone hub paths — equity bias in remediate scoring (Scope 09). */
+export const CONVERSION_CORNERSTONE_HREFS = ['/', '/contact/', '/services/', '/about/'];
+
+/**
+ * High-value pillar slugs: prioritize inbound links from overlinked hubs and orphan mesh.
+ * @type {string[]}
+ */
+export const CONVERSION_CORNERSTONE_PILLARS = [
+	'guy-avni-choosing-lawyer-israel-comprehensive-guide',
+	'guy-avni-lawyer-required-apartment-purchase',
+	'guy-avni-buying-from-contractor-checklist',
+	'guy-avni-purchase-tax-exemption-first-apartment',
+	'guy-avni-small-claims-without-lawyer-why-lose',
+	'guy-avni-contract-review-flow',
+];
+
+/** Funnel intent pathway for link placement (awareness → consideration → decision). */
+export const LINK_INTENT_PATHWAY = ['awareness', 'consideration', 'decision'];
+
+const LINK_GOAL_BY_CONTENT_TYPE = {
+	pillar: 'awareness',
+	cluster: 'consideration',
+};
+
+/**
+ * Default linkGoal when frontmatter omits it (optional field; legacy posts unchanged).
+ * @param {'pillar' | 'cluster' | undefined} contentType
+ * @returns {'awareness' | 'consideration' | 'decision' | undefined}
+ */
+export function defaultLinkGoalForContentType(contentType) {
+	return LINK_GOAL_BY_CONTENT_TYPE[contentType];
+}
+
+/**
+ * Suggested href targets by linkGoal (remediate + manual review).
+ * @param {'awareness' | 'consideration' | 'decision'} linkGoal
+ * @returns {string[]}
+ */
+export function cornerstoneHrefsForLinkGoal(linkGoal) {
+	switch (linkGoal) {
+		case 'awareness':
+			return ['/', '/blog/', '/categories/'];
+		case 'consideration':
+			return CONVERSION_CORNERSTONE_PILLARS.slice(0, 4).map((s) => `/blog/${s}/`);
+		case 'decision':
+			return ['/contact/', '/services/'];
+		default:
+			return CONVERSION_CORNERSTONE_HREFS;
+	}
+}
+
+export function isConversionCornerstonePillar(slug) {
+	return CONVERSION_CORNERSTONE_PILLARS.includes(slug);
+}

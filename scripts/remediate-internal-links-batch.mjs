@@ -35,7 +35,9 @@ import {
 import { countWordsHe } from './lib/seo-hero-rules.mjs';
 import {
 	CATEGORY_PILLARS,
+	CONVERSION_CORNERSTONE_PILLARS,
 	isBrandMainKeyword,
+	isConversionCornerstonePillar,
 	primaryPillarForCategory,
 	pillarsForCategory,
 } from './lib/pillar-cluster-registry.mjs';
@@ -269,6 +271,7 @@ function trimExcessParagraphLinks(body, donorSlug, postsBySlug) {
 			if (link.href === protectedHref) score -= 500;
 			if (link.href === '/') score -= 400;
 			if (link.href === '/contact/') score -= 350;
+			if (slug && isConversionCornerstonePillar(slug)) score -= 200;
 			if (OVERLINKED_HUBS.has(slug ?? '')) score += 120;
 			if (link.href.startsWith('/tags/') || link.href === '/tags/') score += 90;
 			if (link.href.startsWith('/categories/')) score += 85;
@@ -348,6 +351,8 @@ function pickContextualBlogTarget(donorSlug, donor, postsBySlug, body) {
 			p.category === donor?.category &&
 			!OVERLINKED_HUBS.has(p.slug),
 	);
+	const cornerstone = sameCat.filter((p) => isConversionCornerstonePillar(p.slug));
+	if (cornerstone.length) return hashPick(`${donorSlug}:cornerstone`, cornerstone.map((p) => p.slug));
 	if (sameCat.length) return hashPick(`${donorSlug}:ctx`, sameCat.map((p) => p.slug));
 	const any = [...postsBySlug.values()].filter(
 		(p) => p.slug !== donorSlug && !linked.has(p.slug) && !OVERLINKED_HUBS.has(p.slug),

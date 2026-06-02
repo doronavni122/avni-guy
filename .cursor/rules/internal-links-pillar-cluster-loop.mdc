@@ -9,10 +9,11 @@ Use after keyword assignment and before bulk hub links. Registry: `scripts/lib/p
 
 1. Identify article **category** and tier (`pillar` | `cluster` | `contract` via `getArticleTier`).
 2. **Cluster/spoke -> pillar:** link exactly one primary pillar per category (`primaryPillarForCategory`). Anchor = pillar `mainKeyword` if descriptive, else `titleAnchorFragment(pillar.title)`.
-3. **Pillar -> spokes:** pillar/hub posts should link key category spokes (prioritize high-value slugs in `CATEGORY_PILLARS[category]`); avoid orphaning new cluster posts.
-4. **Bidirectional check:** run `LINKS_AUDIT_ENFORCE=1 pnpm run links:audit` and fix `spoke->pillar` failures.
-5. **Equity flow:** link from higher inbound hubs to newer/low-inbound slugs when replacing overlinked hubs (`OVERLINKED_HUBS` in remediate script).
-6. **Optional pillar refresh (90d):** when materially updating a pillar body, set `materialChange: true` and `updatedDate`; do not batch-stamp.
+3. **Pillar -> spokes:** pillar/hub posts should link key category spokes (prioritize high-value slugs in `CATEGORY_PILLARS[category]` and `CONVERSION_CORNERSTONE_PILLARS`); avoid orphaning new cluster posts.
+4. **Bidirectional check:** run `LINKS_AUDIT_ENFORCE=1 pnpm run links:audit` and fix `spoke->pillar` failures. Pillar→spoke sparse gaps are warn-only unless threshold doc updated (see `links:audit:full` IL-33).
+5. **Equity flow:** link from higher inbound hubs to newer/low-inbound slugs when replacing overlinked hubs (`OVERLINKED_HUBS` in remediate script). Boost `CONVERSION_CORNERSTONE_PILLARS` and `/contact/` in remediate scoring.
+6. **Intent pathway:** funnel stages **awareness → consideration → decision**. Map optional `linkGoal` frontmatter (or `contentType` default) to targets: awareness = home/blog/category hubs; consideration = category pillars and related spokes; decision = `/contact/`, `/services/`. One decision-path link on YMYL cluster posts when density allows.
+7. **Optional pillar refresh (90d):** when materially updating a pillar body, set `materialChange: true` and `updatedDate`; do not batch-stamp.
 
 Hard requirements:
 - Max **3 clicks** from home: home -> category/blog hub -> pillar -> cluster.

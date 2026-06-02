@@ -11,7 +11,8 @@ Follow this loop exactly for internal-link insertion tasks. Stack `internal-link
    - Format: `- [ ] src/content/blog/<slug>.mdx`
 2. Pick the first unchecked article.
 3. **Keyword map first:** read target `mainKeyword` and `title` from frontmatter (and pillar registry) before choosing anchors.
-4. **Silo targets:** max **4** contextual links to `/blog/*` per article (excluding `/blog/` hub); stricter silo cap until long-form remediate (Scope 08). Remaining paragraph links to `/`, `/about/`, `/services/`, `/blog/`, `/categories/`, `/tags/`, `/contact/`, category/tag hubs.
+3b. **Link goal (optional):** read `linkGoal` frontmatter (`awareness` | `consideration` | `decision`) or infer from `contentType` (`pillar`→awareness, `cluster`→consideration). Place hub links toward `/`, `/blog/`, `/categories/` for awareness; pillar spokes for consideration; `/contact/`, `/services/` for decision CTAs. See `cornerstoneHrefsForLinkGoal()` in `pillar-cluster-registry.mjs`.
+4. **Silo targets:** max **4** contextual links to `/blog/*` per article (excluding `/blog/` hub); stricter silo cap until long-form remediate (Scope 08). Remaining paragraph links to `/`, `/about/`, `/services/`, `/blog/`, `/categories/`, `/tags/`, `/contact/`, category/tag hubs. Prioritize `CONVERSION_CORNERSTONE_HREFS` and `CONVERSION_CORNERSTONE_PILLARS` for equity bias.
 5. **Density (2026 SSOT):** **3-7** paragraph internal links per **1000 Hebrew words**; target spacing **~1 link per 200-350 words**; never exceed **7/1000**. Hub/category/tag links count toward density totals.
 6. **Contextual tier (words >800):** target contextual `/blog/*` links per `computeBlogLinkDensityBounds()` (min capped by silo max 4). Enforced in `content:audit` and when `CONTENT_LINKS_STRICT=1`.
 7. Insert links only in **paragraph** prose (not headings, lists, or buttons). **Max one link per `href` per `##` H2 section.**

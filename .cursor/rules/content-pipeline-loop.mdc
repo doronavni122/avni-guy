@@ -13,14 +13,15 @@ Use when remediating one or more blog articles. Run steps in order; do not skip.
 4. **Content type** — confirm `pillar` vs `cluster` matches `getArticleTier(slug)`.
 5. **Content enhancer** — follow `content-enhancer-loop.mdc` (26-rule checklist, keywords before prose; research audit must pass first).
 6. **E-E-A-T structure** — follow `content-eeat-structure-loop.mdc` (TL;DR, FAQ, stats, CTA, external sources).
-7. **Pillar-cluster links** — follow `internal-links-pillar-cluster-loop.mdc`.
-8. **Internal links** — follow `internal-links-loop.mdc` (10 paragraph links; 3-5 topical blog + hubs).
+7. **Pillar-cluster links** — follow `internal-links-pillar-cluster-loop.mdc` (intent pathway + cornerstone equity).
+8. **Internal links** — follow `internal-links-loop.mdc` (10 paragraph links; 3-5 topical blog + hubs; optional `linkGoal` in frontmatter).
 9. **Homepage brand link** — follow `homepage-brand-internal-links-loop.mdc`.
 10. **FAQ/schema check** — frontmatter `faq` or body `## שאלות נפוצות`; FAQPage JSON-LD when >=4 items.
 11. Run `pnpm run verify:content` (`CONTENT_AUDIT_SLUGS=<slug>`). On failure, log `ERROR` with slug and fix before marking done.
 12. Optional strict gate: `CONTENT_STRICT=1 CONTENT_AUDIT_SLUGS=<slug> pnpm run content:audit`.
 13. Run `pnpm run image-keyword-compliance` when images changed.
 14. Run `pnpm run links:audit` (`LINKS_AUDIT_ENFORCE=1` before merge when graph must be clean).
+14b. Optional full rule matrix: `LINKS_AUDIT_FULL=1 pnpm run links:audit:full` (61-rule PASS/FAIL/MANUAL report).
 15. Run `pnpm run seo:guardrails` (`CONTENT_AUDIT_ENFORCE=1`; `CONTENT_LINKS_STRICT=1` for anchor rules).
 16. Run `pnpm run build:ci`.
 17. Mark article `[x]` in all checklists when steps 2-16 pass for that slug.
@@ -41,3 +42,4 @@ Hard requirements:
 | `CONTENT_LINKS_STRICT=1` | Anchor, section, cannibalization, first-100w keyword |
 | `CONTENT_STRICT=1` | Full 2026 rules (LSI, FAQ, TL;DR, metaDesc max 155, etc.) |
 | `LINKS_AUDIT_ENFORCE=1` | Orphan graph enforcement |
+| `LINKS_AUDIT_FULL=1` | Append `links:audit:full` in verify:content (61-rule matrix) |
