@@ -5,44 +5,51 @@ alwaysApply: false
 
 # Article Research Loop (Strict)
 
-Use before `content-enhancer-loop` body rewrite. Stack with `content-pipeline-loop.mdc`.
+**Mandatory before `content-enhancer-loop` body merge.** Stack with `content-pipeline-loop.mdc`.
+
+SSOT thresholds: `scripts/lib/research-study-rules.mjs` (300s, 2000 words, 5 URLs, 2026 rubric).
 
 1. Pick slug from `temp_articles_checklist.txt` (unchecked) or `PIPELINE_SLUGS`.
-2. Create `.cursor/tmp/research/<slug>.md` using the template below (Hebrew notes + source URLs).
-3. Fetch at least **two** authority sources (`gov.il`, `israelbar.org.il`, `justice.gov.il`, or statute pages) via Bright Data / Exa / manual browse; log URLs in the research file.
-4. Quality rubric before merge:
-   - Facts dated or qualified; no unsourced legal thresholds
-   - LSI: 5+ topic terms beyond `mainKeyword`
-   - Section outline maps to final `##` headings (no duplicate layout `title`)
-5. Merge research into Hebrew MDX body; keep **2+** external `https://` links in YMYL slugs per enhancer loop.
-6. Delete research file only after `pnpm run pipeline:audit-slugs` or scoped `CONTENT_AUDIT_SLUGS=<slug> pnpm run content:audit` passes.
-7. Log: `[article-research-loop] step N` or `ERROR`.
+2. **Keywords locked** — complete `content-keywords-assignment-loop.mdc`; copy `main_keyword` into research frontmatter.
+3. **Scaffold** (if missing): `pnpm run research:scaffold -- <slug>` → `content-research/<slug>.md` (git-tracked).
+4. **Fetch authority sources** — Bright Data / Exa / manual browse; log in `## Authority source matrix` and `## Research log` (≥5 allowlisted `https://` URLs; YMYL: ≥2 matrix rows from gov.il / justice.gov.il / israelbar.org.il).
+5. **Write study** — Hebrew notes + English framework where helpful; **≥2000 words** (`countWordsHe`); all required `##` sections per rubric below; ≥3 dated facts (2025/2026); ≥8 LSI terms beyond `mainKeyword`.
+6. Set `research_completed_at` (ISO8601) only when study is complete; elapsed time from `research_started_at` must be **≥300 seconds**.
+7. **Gate:** `pnpm run research:audit -- <slug>` (or `RESEARCH_AUDIT_SLUGS=<slug> pnpm run research:audit`) — exit 0 required before merge.
+8. Merge research into Hebrew MDX body via `content-enhancer-loop`; keep **2+** external `https://` links in YMYL slugs.
+9. **Commit study** with MDX in the same PR. Tracked studies are not deleted by default (`deleteResearchStudy` no-ops unless `RESEARCH_ALLOW_DELETE=1`).
+10. Log: `[article-research-loop] step N` or `ERROR`.
 
-## Research file template (`.cursor/tmp/research/<slug>.md`)
+## Required research file sections
 
-```markdown
-# Research: <slug>
+`content-research/<slug>.md` must include YAML frontmatter:
 
-## Query intent
-- Primary question:
-- Audience:
-
-## Authority sources (fetch before writing)
-- https://www.gov.il/...
-- https://www.israelbar.org.il/...
-
-## Facts (Hebrew bullets, cite source host)
--
-
-## LSI / related terms
--
-
-## Section outline → MDX H2
-1.
-2.
+```yaml
+---
+research_started_at: <ISO8601>
+research_completed_at: <ISO8601>
+slug: <slug>
+main_keyword: <from MDX frontmatter>
+---
 ```
 
+Required body headings:
+
+- `## Query intent`
+- `## Methodology`
+- `## Authority source matrix` (table: URL, host, date accessed, extracted claim)
+- `## Primary legal / regulatory framework` (YMYL; non-YMYL may use alias from SSOT)
+- `## Facts` (Hebrew bullets, host citation, 2025/2026 dates)
+- `## SERP and content gap`
+- `## Contradictions and open questions`
+- `## Limitations` (YMYL: not legal advice / אינו ייעוץ משפטי)
+- `## Statistics 2025-2026`
+- `## LSI and related terms`
+- `## Section outline` (maps to final MDX `##` H2s)
+- `## Research log` (fetch steps with timestamps)
+
 Hard requirements:
-- Do not merge body without an on-disk research file for new or materially rewritten articles.
+- Do not merge body without `research:audit` pass for new or materially rewritten articles.
+- Batch scripts **never** write research; they call `assertResearchStudyReady(slug)` and fail fast if missing.
 - No Unicode em dash U+2014 in research or merged body.
-- Never commit `.cursor/tmp/research/` (ephemeral).
+- SSOT path: `content-research/` (committed). Legacy `.cursor/tmp/research/` is ignored.

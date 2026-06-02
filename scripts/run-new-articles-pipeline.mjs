@@ -12,9 +12,9 @@ import {
 } from './lib/article-body-kit.mjs';
 import { runArticleContentChecks } from './lib/check-article-content.mjs';
 import { buildSpecFromStub, NEW_ARTICLE_SLUGS } from './lib/new-article-spec-factory.mjs';
+import { assertResearchStudyReady, deleteResearchStudy } from './lib/research-study-io.mjs';
 
 const BLOG_DIR = path.join(process.cwd(), 'src/content/blog');
-const RESEARCH_DIR = path.join(process.cwd(), '.cursor/tmp/research');
 const BATCH_SIZE = 10;
 
 function logPipeline(step, message, extra) {
@@ -25,37 +25,6 @@ function logPipeline(step, message, extra) {
 function extractImagesSection(raw) {
 	const m = raw.match(/^images:\n[\s\S]*?(?=\n---)/m);
 	return m ? m[0].replace(/\s+$/, '') : '';
-}
-
-function writeResearchFile(slug, spec) {
-	fs.mkdirSync(RESEARCH_DIR, { recursive: true });
-	const filePath = path.join(RESEARCH_DIR, `${slug}.md`);
-	const lines = [
-		`# Research: ${spec.title}`,
-		'',
-		'## Key points (Hebrew)',
-		`- נושא: ${spec.title.split(',')[0].trim()}`,
-		`- קטגוריה: ${spec.category}`,
-		`- מילות מפתח: ${spec.topicLexicon.slice(0, 6).join(', ')}`,
-		'',
-		'## Sections',
-		...spec.sectionBlueprints.map((s) => `- ${s.heading}: ${s.focus}`),
-		'',
-		'## YMYL sources',
-		'- https://www.israelbar.org.il/',
-		'- https://www.gov.il/he/departments/ministry_of_justice/govil-landing-page',
-	];
-	fs.writeFileSync(filePath, lines.join('\n'), 'utf8');
-	return filePath;
-}
-
-function deleteResearchFile(slug) {
-	const filePath = path.join(RESEARCH_DIR, `${slug}.md`);
-	try {
-		if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
-	} catch (err) {
-		logPipeline('ERROR', `research delete failed ${slug}`, err.message);
-	}
 }
 
 function buildFrontmatterData(existing, spec) {
@@ -104,7 +73,8 @@ function enhanceSlug(slug) {
 		mainKeyword: parsed.data.mainKeyword,
 		description: parsed.data.description,
 	});
-	writeResearchFile(slug, spec);
+	assertResearchStudyReady(slug);
+	logPipeline('step 2', 'research audit ok', { slug });
 	const data = buildFrontmatterData(parsed.data, spec);
 	let body;
 	try {
@@ -116,7 +86,6 @@ function enhanceSlug(slug) {
 			return false;
 		}
 		writeMdx(slug, data, body, imagesSection);
-		deleteResearchFile(slug);
 		logPipeline('step 2', 'content-enhancer-loop done', { slug });
 		logPipeline('step 3', 'internal-links-loop done (embedded in body)', { slug });
 		return true;
@@ -178,6 +147,13 @@ function runBatch(slugs) {
 		return { ok, fail, auditOk: false, errors: audit.errors };
 	}
 	logPipeline('step 5', 'content:audit passed for batch', { slugs: slugs.length });
+	for (const slug of slugs) {
+		try {
+			deleteResearchStudy(slug, { contentAuditPassed: true });
+		} catch (err) {
+			logPipeline('ERROR', `research delete failed ${slug}`, err.message);
+		}
+	}
 	return { ok, fail, auditOk: true, errors: [] };
 }
 

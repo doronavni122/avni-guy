@@ -11,9 +11,14 @@ export function RelatedArticles({ posts }: RelatedArticlesProps) {
 
 	return (
 		<section className="flex flex-col gap-4 text-right" aria-labelledby="related-articles-heading">
-			<h2 id="related-articles-heading" className="font-heading text-lg font-semibold text-foreground">
-				המשך קריאה
-			</h2>
+			<div className="flex flex-col gap-1">
+				<h2 id="related-articles-heading" className="font-heading text-lg font-semibold text-foreground">
+					המשך קריאה
+				</h2>
+				<p className="text-sm text-muted-foreground">
+					מאמרים קשורים לפי נושא - משלימים את הקישורים בתוך גוף המאמר, לא מחליפים אותם.
+				</p>
+			</div>
 			<div className="grid gap-3 sm:grid-cols-2">
 				{posts.map((post) => (
 					<Link key={post.slug} className="group block no-underline" href={`/blog/${post.slug}/`}>

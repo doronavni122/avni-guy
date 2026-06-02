@@ -1,7 +1,14 @@
 #!/usr/bin/env node
 import {
 	anchorMatchesTarget,
+	auditAnchorTypeDistribution,
+	auditInternalNofollowLinks,
+	auditLateralClusterLinks,
+	auditSiteWideAnchorCollisions,
 	buildLinkGraph,
+	computeDonorDiversityMetrics,
+	extractNonParagraphMarkdownLinks,
+	isAnchorTooLong,
 	isEnglishSlugAnchor,
 	isGarbageAnchor,
 	loadAllPosts,
@@ -14,7 +21,7 @@ import {
 } from './lib/internal-link-graph.mjs';
 import { isGlobalPillarSlug } from './lib/pillar-cluster-registry.mjs';
 
-function auditPillarBidirectional(posts, postsBySlug) {
+function auditPillarBidirectional(posts) {
 	const missingSpokeToPillar = [];
 	const missingPillarToSpoke = [];
 	for (const p of posts) {
@@ -67,14 +74,16 @@ function auditBlogAnchorKeywords(posts, postsBySlug) {
 function main() {
 	logGraph('audit', 'starting internal link graph audit');
 	const posts = loadAllPosts();
-	const postsBySlug = new Map(posts.map((p) => [p.slug, p]));
-	const { inbound } = buildLinkGraph(posts);
+	const expandedInbound = process.env.LINK_INBOUND_EXPANDED === '1';
+	const { inbound, postsBySlug, mode } = buildLinkGraph(posts, { expandedInbound });
 	let fail = false;
+
+	console.log(`\n=== LINK GRAPH SUMMARY ===`);
+	console.log(`Total articles: ${posts.length}`);
+	console.log(`Inbound graph mode: ${mode} (LINK_INBOUND_EXPANDED=1 for all paragraph blog inbounds)`);
 
 	const orphans = posts.filter((p) => (inbound.get(p.slug) ?? []).length === 0);
 	const orphanPct = ((orphans.length / posts.length) * 100).toFixed(1);
-	console.log(`\n=== LINK GRAPH SUMMARY ===`);
-	console.log(`Total articles: ${posts.length}`);
 	console.log(`Orphans (0 inbound blog): ${orphans.length} (${orphanPct}%)`);
 	if (orphans.length) {
 		console.log(`  sample: ${orphans.slice(0, 8).map((p) => p.slug).join(', ')}`);
@@ -84,6 +93,13 @@ function main() {
 				console.error(`[links:audit] FAIL orphan: ${o.slug}`);
 			}
 		}
+	}
+
+	const diversity = computeDonorDiversityMetrics(inbound, posts);
+	console.log(`Donor diversity: avg=${diversity.avgDonors} single-donor=${diversity.singleDonorTargets} zero-donor=${diversity.zeroDonorTargets}`);
+	console.log('Top outbound blog donors:');
+	for (const d of diversity.topDonors.slice(0, 5)) {
+		console.log(`  ${d.slug}: ${d.outboundBlogLinks} blog outlinks`);
 	}
 
 	const overBlog = posts.filter((p) => p.blogOutCount > MAX_BLOG_LINKS);
@@ -104,6 +120,9 @@ function main() {
 			}
 			if (isGarbageAnchor(link.anchor)) {
 				garbageIssues.push({ slug: p.slug, anchor: link.anchor, href: link.href });
+			}
+			if (isAnchorTooLong(link.anchor)) {
+				garbageIssues.push({ slug: p.slug, anchor: link.anchor, href: link.href, reason: 'anchor-too-long' });
 			}
 		}
 	}
@@ -132,7 +151,7 @@ function main() {
 		}
 	}
 
-	const { missingSpokeToPillar, missingPillarToSpoke } = auditPillarBidirectional(posts, postsBySlug);
+	const { missingSpokeToPillar, missingPillarToSpoke } = auditPillarBidirectional(posts);
 	console.log(`Spokes missing category pillar link: ${missingSpokeToPillar.length}`);
 	console.log(`Pillars with sparse spoke coverage: ${missingPillarToSpoke.length}`);
 	if (process.env.LINKS_AUDIT_ENFORCE === '1' && missingSpokeToPillar.length) {
@@ -147,6 +166,70 @@ function main() {
 	if (missingPillarToSpoke.length) {
 		for (const e of missingPillarToSpoke.slice(0, 5)) {
 			console.log(`  pillar coverage: ${e}`);
+		}
+		if (process.env.LINKS_AUDIT_ENFORCE === '1') {
+			fail = true;
+			for (const e of missingPillarToSpoke.slice(0, 15)) {
+				console.error(`[links:audit] FAIL pillar->spoke sparse: ${e}`);
+			}
+			if (missingPillarToSpoke.length > 15) {
+				console.error(`... and ${missingPillarToSpoke.length - 15} more pillar->spoke gaps`);
+			}
+		}
+	}
+
+	const lateral = auditLateralClusterLinks(posts);
+	console.log(`Cluster posts missing lateral same-category link: ${lateral.missingLateral.length}/${lateral.clusterCount}`);
+	if (lateral.missingLateral.length) {
+		console.log(`  sample: ${lateral.missingLateral.slice(0, 8).join(', ')}`);
+		if (process.env.LINKS_AUDIT_ENFORCE === '1') {
+			fail = true;
+			for (const s of lateral.missingLateral.slice(0, 15)) {
+				console.error(`[links:audit] FAIL lateral-cluster: ${s}`);
+			}
+		}
+	}
+
+	console.log('\n=== ANCHOR QUALITY (site-wide) ===');
+	const collisions = auditSiteWideAnchorCollisions(posts);
+	console.log(`Same anchor -> multiple URLs: ${collisions.length}`);
+	for (const c of collisions.slice(0, 5)) {
+		console.log(`  "${c.anchor}" -> ${c.hrefs.join(', ')}`);
+	}
+	if (process.env.LINKS_AUDIT_ENFORCE === '1' && collisions.length) {
+		fail = true;
+		for (const c of collisions.slice(0, 10)) {
+			console.error(`[links:audit] FAIL anchor-collision: "${c.anchor}" -> ${c.hrefs.join(' | ')}`);
+		}
+	}
+
+	const anchorTypes = auditAnchorTypeDistribution(posts, postsBySlug);
+	console.log(
+		`Anchor types (blog links): exact=${anchorTypes.counts.exact} partial=${anchorTypes.counts.partial} branded=${anchorTypes.counts.branded} natural=${anchorTypes.counts.natural}`,
+	);
+	console.log(`Exact-match ratio: ${anchorTypes.exactMatchRatio} (${anchorTypes.blogLinks} blog links)`);
+	if (process.env.CONTENT_LINKS_STRICT === '1' && anchorTypes.exactMatchRatio > 0.35) {
+		fail = true;
+		console.error(`[links:audit] FAIL exact-match over-optimization: ratio=${anchorTypes.exactMatchRatio}`);
+	}
+
+	const nonParagraph = [];
+	const nofollowIssues = [];
+	for (const p of posts) {
+		nonParagraph.push(...extractNonParagraphMarkdownLinks(p.content).map((l) => ({ slug: p.slug, ...l })));
+		nofollowIssues.push(...auditInternalNofollowLinks(p.content, p.slug));
+	}
+	console.log(`Non-paragraph internal links (heading/list/image): ${nonParagraph.length}`);
+	console.log(`Internal nofollow/rel issues: ${nofollowIssues.length}`);
+	if (nonParagraph.length) {
+		for (const l of nonParagraph.slice(0, 5)) {
+			console.log(`  ${l.slug} [${l.context}]: ${l.href}`);
+		}
+	}
+	if (nofollowIssues.length) {
+		fail = true;
+		for (const i of nofollowIssues.slice(0, 10)) {
+			console.error(`[links:audit] FAIL internal-nofollow: ${i.slug}:${i.line} ${i.kind}`);
 		}
 	}
 

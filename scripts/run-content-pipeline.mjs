@@ -61,6 +61,11 @@ function main() {
 	const skipAudit = argv.includes('--skip-audit');
 	const slugs = resolveSlugs(argv.filter((a) => !a.startsWith('--')));
 
+	if (skipResearch && slugs.length) {
+		logErr(0, '--skip-research blocked when scoped slugs are set');
+		process.exit(1);
+	}
+
 	log(0, 'pipeline run start', {
 		slugs: slugs.length || 'none',
 		skipManifest,
@@ -80,7 +85,9 @@ function main() {
 
 	if (!skipResearch) {
 		log(3, 'research preflight');
-		const code = runNode('scripts/run-research-preflight.mjs', slugs);
+		const preflightEnv =
+			slugs.length > 0 ? { REQUIRE_RESEARCH: '1' } : {};
+		const code = runNode('scripts/run-research-preflight.mjs', slugs, preflightEnv);
 		if (code !== 0) {
 			logErr(3, 'research preflight failed');
 			process.exit(code);

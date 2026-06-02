@@ -2,13 +2,14 @@ import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { OptimizedImage } from '@/components/media/OptimizedImage';
 import { badgeVariants } from '@/components/ui/badge';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { FormattedDate } from '@/components/FormattedDate';
 import { SiteShell } from '@/components/layout/SiteShell';
 import { cn } from '@/lib/utils';
-import { labelForInternalLink } from '@/utils/link-labels';
+import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
 import { getTagLabel } from '@/utils/taxonomy-labels';
+import type { BreadcrumbItem } from '@/utils/structured-data';
 import type { BlogFrontmatter } from '@/lib/content/schema';
 import type { SiteKeyword } from '@/consts';
 import type { BlogPost } from '@/lib/content/schema';
@@ -23,6 +24,7 @@ type BlogPostLayoutProps = {
 	slug: string;
 	currentPath: string;
 	jsonLd: Array<Record<string, unknown>>;
+	breadcrumbItems: BreadcrumbItem[];
 	relatedPosts?: BlogPost[];
 	children: ReactNode;
 };
@@ -30,24 +32,18 @@ type BlogPostLayoutProps = {
 export function BlogPostLayout({
 	mainKeyword,
 	data,
-	slug,
 	currentPath,
 	jsonLd,
+	breadcrumbItems,
 	relatedPosts = [],
 	children,
 }: BlogPostLayoutProps) {
-	const { title, description, pubDate, updatedDate, category, tags, images, internalLinks } = data;
-
-	const footerBlogLinks = internalLinks.filter((l) => l.startsWith('/blog/') && l !== '/blog/').slice(0, 3);
-	const footerNavLinks = internalLinks
-		.filter((l) => !l.startsWith('/blog/') || l === '/blog/')
-		.filter((l) => !footerBlogLinks.includes(l))
-		.slice(0, 2);
-	const footerLinks = [...footerBlogLinks, ...footerNavLinks].slice(0, 5);
+	const { title, pubDate, updatedDate, category, tags, images } = data;
 
 	return (
 		<SiteShell currentPath={currentPath} extraJsonLd={jsonLd}>
 			<article className="flex flex-col gap-10">
+				<BreadcrumbNav items={breadcrumbItems} />
 				<div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
 					{images.map((imageItem, index) => (
 						<figure
@@ -129,18 +125,6 @@ export function BlogPostLayout({
 					<div className="border-t border-border/60 px-6 py-6">
 						<AuthorBio />
 					</div>
-					<CardFooter className="flex flex-col items-stretch gap-4 border-t border-border/60 bg-muted/20 p-6 text-right">
-						<h2 className="font-heading text-lg font-semibold text-foreground">קישורים פנימיים מומלצים</h2>
-						<ul className="flex flex-col gap-2 text-sm">
-							{footerLinks.map((link) => (
-								<li key={link}>
-									<Link className="font-medium text-primary underline-offset-2 hover:underline" href={link}>
-										{labelForInternalLink(link)}
-									</Link>
-								</li>
-							))}
-						</ul>
-					</CardFooter>
 				</Card>
 			</article>
 		</SiteShell>

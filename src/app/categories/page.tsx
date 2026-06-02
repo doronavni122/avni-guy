@@ -7,6 +7,7 @@ import { getCategories } from '@/lib/content/posts';
 import { getCategoryLabel } from '@/utils/taxonomy-labels';
 import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
 import { buildPageMetadata } from '@/lib/metadata';
+import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
 import { buildBreadcrumbSchema } from '@/utils/structured-data';
 
 export const dynamic = 'force-static';
@@ -21,14 +22,16 @@ export const metadata = buildPageMetadata({
 
 export default async function CategoriesIndexPage() {
 	const categories = await getCategories();
-	const jsonLd = buildBreadcrumbSchema([
+	const breadcrumbItems = [
 		{ name: 'דף הבית', path: '/' },
 		{ name: 'קטגוריות', path: '/categories' },
-	]);
+	];
+	const jsonLd = buildBreadcrumbSchema(breadcrumbItems);
 
 	return (
 		<SiteShell currentPath="/categories/" extraJsonLd={jsonLd}>
 			<section className="flex flex-col gap-10">
+				<BreadcrumbNav items={breadcrumbItems} />
 				<MainPageHero hero={MAIN_PAGE_HEROES['/categories/']} />
 				<Separator className="bg-border/60" />
 				<p className="max-w-3xl text-pretty text-right leading-relaxed text-muted-foreground">

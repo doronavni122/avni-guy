@@ -5,6 +5,7 @@ import { MainPageHero } from '@/components/seo/MainPageHero';
 import { SiteShell } from '@/components/layout/SiteShell';
 import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
 import { buildPageMetadata } from '@/lib/metadata';
+import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
 import { buildBreadcrumbSchema } from '@/utils/structured-data';
 
 export const dynamic = 'force-static';
@@ -18,14 +19,16 @@ export const metadata = buildPageMetadata({
 });
 
 export default function AboutPage() {
-	const jsonLd = buildBreadcrumbSchema([
+	const breadcrumbItems = [
 		{ name: 'דף הבית', path: '/' },
 		{ name: 'אודות', path: '/about' },
-	]);
+	];
+	const jsonLd = buildBreadcrumbSchema(breadcrumbItems);
 
 	return (
 		<SiteShell currentPath="/about/" extraJsonLd={jsonLd}>
 			<section className="flex flex-col gap-10">
+				<BreadcrumbNav items={breadcrumbItems} />
 				<MainPageHero hero={MAIN_PAGE_HEROES['/about/']} />
 				<div className="grid gap-6 lg:grid-cols-2">
 					<Card className="border-border/60 bg-card/70 shadow-sm">

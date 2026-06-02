@@ -6,6 +6,7 @@ import { SiteShell } from '@/components/layout/SiteShell';
 import { getTags } from '@/lib/content/posts';
 import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
 import { buildPageMetadata } from '@/lib/metadata';
+import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
 import { buildBreadcrumbSchema } from '@/utils/structured-data';
 import { getTagLabel } from '@/utils/taxonomy-labels';
 
@@ -21,14 +22,16 @@ export const metadata = buildPageMetadata({
 
 export default async function TagsIndexPage() {
 	const tags = await getTags();
-	const jsonLd = buildBreadcrumbSchema([
+	const breadcrumbItems = [
 		{ name: 'דף הבית', path: '/' },
 		{ name: 'תגיות', path: '/tags' },
-	]);
+	];
+	const jsonLd = buildBreadcrumbSchema(breadcrumbItems);
 
 	return (
 		<SiteShell currentPath="/tags/" extraJsonLd={jsonLd}>
 			<section className="flex flex-col gap-10">
+				<BreadcrumbNav items={breadcrumbItems} />
 				<MainPageHero hero={MAIN_PAGE_HEROES['/tags/']} />
 				<Separator className="bg-border/60" />
 				<p className="max-w-3xl text-pretty text-right leading-relaxed text-muted-foreground">

@@ -21,3 +21,37 @@
 21. batch-existing-articles-links-remediation-125-corpus , src/content/blog scripts/audit-internal-link-graph.mjs scripts/remediate-internal-links-batch.mjs
 22. install-agentic-workspace-template , .commends .cursor/agents .cursor/cli.json .cursor/hooks.json .cursor/hooks .cursor/rules .cursor/skills .github/workflows/pnpm-audit.yml OWNER-REPORTS OWNER-TASKS.txt README.md RULES-GENERIC.txt notes scripts/git-hooks scripts/tools workspace.config.json package.json task_graph.log
 23. content-pipeline-cursor-tmp-bodies , .cursor/tmp task_graph.log
+24. add-research-study-validator-ssot , scripts/lib/research-study-rules.mjs scripts/lib/check-research-study.mjs scripts/lib/research-study-io.mjs scripts/audit-research-study.mjs package.json .gitignore task_graph.log
+25. add-research-scaffold-and-preflight , scripts/scaffold-research-study.mjs scripts/run-research-preflight.mjs task_graph.log
+26. internal-links-density-anchor-ssot-scope01 , SSOT.md scripts/lib/internal-link-graph.mjs scripts/lib/check-article-content.mjs .cursor/rules/internal-links-loop.mdc task_graph.log
+27. internal-links-ci-gates-scope02 , .github/workflows/ci.yml scripts/verify-content.mjs task_graph.log
+26. update-research-study-loop-agents , .cursor/rules/article-research-loop.mdc .cursor/rules/content-enhancer-loop.mdc .cursor/rules/content-pipeline-loop.mdc .cursor/rules/content-keywords-assignment-loop.mdc .cursor/rules/post-pipeline-verify-loop.mdc .cursor/rules/monthly-content-prune-loop.mdc .cursor/agents/article-research-loop.md .cursor/agents/content-enhancer-loop.md .cursor/skills/article-research-loop/SKILL.md .cursor/skills/content-enhancer-loop/SKILL.md AGENTS.md task_graph.log
+28. internal-links-crawl-graph-audits-scope03-05 , scripts/audit-internal-link-graph.mjs scripts/audit-internal-link-crawl.mjs scripts/remediate-internal-links-batch.mjs scripts/smoke-routes.mjs task_graph.log
+29. internal-links-breadcrumbs-template-ui-scope06-07 , src/components/navigation/BreadcrumbNav.tsx src/app src/components/Footer.tsx src/components/blog/RelatedArticles.tsx src/components/layout/BlogPostLayout.tsx src/utils/structured-data.ts task_graph.log
+30. wire-research-study-gates-batch-pipelines , scripts/run-batch10-content-pipeline.mjs scripts/run-batch10-keyword-pipeline.mjs scripts/run-batch11-keyword-pipeline.mjs scripts/run-batch2-content-enhancer.mjs scripts/run-batch2-researched-enhancer.mjs task_graph.log
+31. relax-internal-links-fm-schema-remediate , src/lib/content/schema.ts scripts/remediate-internal-links-batch.mjs task_graph.log
+32. sync-blog-internal-links-density-remediate , src/content/blog task_graph.log
+33. wire-research-study-gates-remaining-pipelines , scripts/enhance-batch-b-slugs.mjs scripts/enhance-keyword-stub-batch.mjs scripts/run-batch-f-pipeline.mjs scripts/run-keyword-stubs-pipeline.mjs scripts/run-new-articles-pipeline.mjs task_graph.log
+34. wire-research-study-gates-write-real-estate-10 , scripts/write-real-estate-10.mjs task_graph.log
+35. research-preflight-fail-fast-content-pipeline , scripts/run-content-pipeline.mjs task_graph.log
+36. add-scoped-research-audit-verify-content , scripts/verify-content.mjs task_graph.log
+37. add-research-audit-ci-workflow-step , .github/workflows/ci.yml task_graph.log
+38. remove-legacy-write-enhanced-12-script , .cursor/tmp/write_enhanced_12.py task_graph.log
+39. deprecate-embedded-research-md-lib-batches , scripts/lib/batch-b-lease-tabu-articles.mjs scripts/lib/batch2-research-sections.mjs scripts/lib/batch2-researched-articles-part2.mjs scripts/lib/batch2-researched-articles.mjs scripts/lib/keyword-stub-batch-mortgage-bodies.mjs scripts/lib/keyword-stub-batch-tax-bodies.mjs task_graph.log
+40. delete-root-legacy-research-markdown , israel-real-estate-legal-research-delay-delivery.md task_graph.log
+28. migrate-golden-study-delete-root-md , israel-real-estate-legal-research-delay-delivery.md scripts/lib/batch2-research-sections.mjs scripts/lib/batch2-researched-articles.mjs scripts/lib/batch2-researched-articles-part2.mjs scripts/lib/batch-b-lease-tabu-articles.mjs scripts/lib/keyword-stub-batch-tax-bodies.mjs scripts/lib/keyword-stub-batch-mortgage-bodies.mjs scripts/verify-content.mjs task_graph.log
+41. patch-blog-internal-links-post-remediate , src/content/blog task_graph.log
+42. remove-unused-imports-verify-content , scripts/verify-content.mjs task_graph.log
+29. remove-researchmd-from-batch-f-resolve , scripts/run-batch-f-pipeline.mjs task_graph.log
+30. fix-em-dash-deprecation-comments , scripts/lib/batch2-research-sections.mjs scripts/lib/batch2-researched-articles.mjs scripts/lib/batch2-researched-articles-part2.mjs scripts/lib/batch-b-lease-tabu-articles.mjs scripts/lib/keyword-stub-batch-tax-bodies.mjs scripts/lib/keyword-stub-batch-mortgage-bodies.mjs scripts/verify-content.mjs task_graph.log
+43. internal-links-corpus-remediate-scope08 , src/content/blog/ scripts/lib/internal-link-graph.mjs scripts/remediate-internal-links-batch.mjs task_graph.log
+44. link-goal-intent-equity-brief-integration , src/lib/content/schema.ts scripts/lib/pillar-cluster-registry.mjs scripts/remediate-internal-links-batch.mjs .cursor/rules/internal-links-loop.mdc .cursor/rules/content-pipeline-loop.mdc .cursor/rules/internal-links-pillar-cluster-loop.mdc task_graph.log
+45. master-61-rule-audit-runner , scripts/lib/internal-links-rules-registry.mjs scripts/audit-internal-links-full.mjs scripts/verify-content.mjs package.json task_graph.log
+46. quarterly-governance-cadence , .github/workflows/internal-links-quarterly.yml .cursor/rules/monthly-content-prune-loop.mdc task_graph.log
+47. fix-golden-slug-delay-delivery-audit , src/content/blog/guy-avni-israel-real-estate-delay-delivery-research.mdx task_graph.log
+48. fix-choosing-lawyer-external-sources , src/content/blog/guy-avni-choosing-lawyer-israel-comprehensive-guide.mdx task_graph.log
+49. fix-contract-review-audit-gaps , src/content/blog/guy-avni-contract-review-flow.mdx task_graph.log
+50. fix-jurist-vs-lawyer-pillar-word-count , src/content/blog/guy-avni-jurist-vs-lawyer-israel-licensing-guide.mdx task_graph.log
+51. fix-lawyer-types-pillar-word-count , src/content/blog/guy-avni-lawyer-types-israel-specialties-full-guide.mdx task_graph.log
+52. fix-legal-counsel-pillar-word-count , src/content/blog/guy-avni-legal-counsel-israel-2026-guide.mdx task_graph.log
+53. fix-em-dash-in-script-comments , scripts/audit-internal-links-full.mjs scripts/lib/internal-links-rules-registry.mjs scripts/lib/pillar-cluster-registry.mjs task_graph.log

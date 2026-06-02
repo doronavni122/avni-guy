@@ -19,9 +19,9 @@ import { BATCH2_RESEARCHED_ARTICLES } from './lib/batch2-researched-articles.mjs
 import { BATCH2_RESEARCHED_PART2 } from './lib/batch2-researched-articles-part2.mjs';
 import { CATEGORY_RELATED } from './lib/new-article-spec-factory.mjs';
 import { countWordsHe } from './lib/seo-hero-rules.mjs';
+import { assertResearchStudyReady, deleteResearchStudy } from './lib/research-study-io.mjs';
 
 const BLOG = path.join(process.cwd(), 'src/content/blog');
-const RESEARCH = path.join(process.cwd(), '.cursor/tmp/research');
 const CHECKLIST = path.join(process.cwd(), 'temp_articles_checklist.txt');
 const MIN_WORDS = 900;
 
@@ -51,23 +51,6 @@ function log(step, msg, extra) {
 function extractImages(raw) {
 	const m = raw.match(/^images:\n[\s\S]*?(?=\n---)/m);
 	return m ? m[0].replace(/\s+$/, '') : '';
-}
-
-function writeResearch(slug, researchMd) {
-	fs.mkdirSync(RESEARCH, { recursive: true });
-	const fp = path.join(RESEARCH, `${slug}.md`);
-	fs.writeFileSync(fp, researchMd, 'utf8');
-	log(5, `research written ${slug}`, fp);
-	return fp;
-}
-
-function deleteResearch(slug) {
-	try {
-		fs.unlinkSync(path.join(RESEARCH, `${slug}.md`));
-		log(6, `research deleted ${slug}`);
-	} catch {
-		/* ok */
-	}
 }
 
 /** Expand with topic-specific prose until cluster minimum. */
@@ -141,7 +124,8 @@ function enhanceSlug(slug) {
 	if (!images) throw new Error(`missing images block: ${slug}`);
 
 	const parsed = matter(raw);
-	writeResearch(slug, spec.researchMd);
+	assertResearchStudyReady(slug);
+	log(5, `research audit ok ${slug}`);
 
 	let body = normalizeBodyHrefs(spec.body.trim());
 	body = padBodyWords(body, slug, parsed.data.title, MIN_WORDS);
@@ -181,7 +165,6 @@ function enhanceSlug(slug) {
 
 	const fm = serializeFrontmatter(data, images);
 	fs.writeFileSync(fp, `${fm}\n\n${body}\n`, 'utf8');
-	deleteResearch(slug);
 
 	log(10, `body merged ${slug}`, {
 		words: countWordsHe(body),
@@ -203,6 +186,7 @@ for (const slug of SLUGS) {
 		log(10, `verify start ${slug}`);
 		const verify = verifySlug(slug);
 		if (verify.ok) {
+			deleteResearchStudy(slug, { contentAuditPassed: true });
 			markChecklist(slug, true);
 			summary[slug] = 'pass';
 			log(11, `verify pass ${slug}`);

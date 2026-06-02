@@ -15,7 +15,7 @@ Follow this loop exactly for article enhancement tasks. Stack with `content-pipe
 3. Remove forbidden copy before rewrite: shared title suffix `מדריך מעשי, שיטות יישום וטעויות שכדאי למנוע`, opening nav boilerplate `כדי לבנות הקשר רחב`, closing `צ׳קליסט הרחבה ליישום מיידי`, and `## תוכנית 30/60/90 יום` blocks.
 4. **Keywords (Rules 1-2, 26):** confirm `mainKeyword`, `secondaryKeywords` (4-6), `contentType` (`pillar`|`cluster`); optional `geoKeywords` only if real geo intent.
 5. Improve **title**, **metaTitle** (50-60 chars), **metaDescription** (120-165 default; max 155 when `CONTENT_STRICT=1`), and **description** together; preserve validated `mainKeyword` in title.
-6. Research: write `.cursor/tmp/research/<slug>.md`; translate to Hebrew; delete temp file after body merge.
+6. **Research (prerequisite):** complete `article-research-loop.mdc` — scaffold → fetch → ≥2000w study → `pnpm run research:audit -- <slug>` pass; **forbid MDX body merge without audit pass**.
 7. Replace MDX body with topic-specific Hebrew prose; no body `#` H1; first `##` must not duplicate layout `title`.
 8. **TL;DR (Rule 8):** direct answer in first 3 sentences or `## סיכום` or bold lead.
 9. **Primary keyword (Rules 4-5):** in first paragraph, first 100 words, and last paragraph.

@@ -15,9 +15,9 @@ import {
 import { getBatchBArticle } from './lib/batch-b-lease-tabu-articles.mjs';
 import { runArticleContentChecks } from './lib/check-article-content.mjs';
 import { countWordsHe } from './lib/seo-hero-rules.mjs';
+import { assertResearchStudyReady, deleteResearchStudy } from './lib/research-study-io.mjs';
 
 const BLOG = path.join(process.cwd(), 'src/content/blog');
-const RESEARCH = path.join(process.cwd(), '.cursor/tmp/research');
 const SLUGS = [
 	'guy-avni-evict-tenant-nonpayment-rent',
 	'guy-avni-tenant-rights-israel',
@@ -39,21 +39,6 @@ function log(step, msg, extra) {
 function extractImages(raw) {
 	const m = raw.match(/^images:\n[\s\S]*?(?=\n---)/m);
 	return m ? m[0].replace(/\s+$/, '') : '';
-}
-
-function writeResearch(slug, researchMd) {
-	fs.mkdirSync(RESEARCH, { recursive: true });
-	const fp = path.join(RESEARCH, `${slug}.md`);
-	fs.writeFileSync(fp, researchMd, 'utf8');
-	return fp;
-}
-
-function deleteResearch(slug) {
-	try {
-		fs.unlinkSync(path.join(RESEARCH, `${slug}.md`));
-	} catch {
-		/* ok */
-	}
 }
 
 function padBody(body, slug, minWords = 900) {
@@ -87,8 +72,8 @@ function enhanceSlug(slug) {
 	const spec = getBatchBArticle(slug);
 	if (!spec) throw new Error(`no content spec ${slug}`);
 
-	writeResearch(slug, spec.researchMd);
-	log(5, `research written ${slug}`);
+	assertResearchStudyReady(slug);
+	log(5, `research audit ok ${slug}`);
 
 	let body = padBody(spec.body, slug);
 	const data = {
@@ -111,7 +96,6 @@ function enhanceSlug(slug) {
 
 	const fm = serializeFrontmatter(data, images);
 	fs.writeFileSync(fp, `${fm}\n\n${body}\n`, 'utf8');
-	deleteResearch(slug);
 	log(6, `body merged ${slug}`, { words: countWordsHe(body) });
 	log(11, `done ${slug}`);
 	return true;
@@ -132,6 +116,7 @@ const audit = runArticleContentChecks({ slugFilter: SLUGS });
 for (const slug of SLUGS) {
 	const slugErrors = audit.errors.filter((e) => e.startsWith(`${slug}:`));
 	if (slugErrors.length === 0 && results[slug] === 'enhanced') {
+		deleteResearchStudy(slug, { contentAuditPassed: true });
 		results[slug] = 'PASS-enhancer';
 	} else if (slugErrors.length) {
 		results[slug] = `FAIL: ${slugErrors.join('; ')}`;

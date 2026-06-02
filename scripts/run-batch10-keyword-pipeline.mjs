@@ -18,9 +18,9 @@ import { BATCH10_ARTICLES } from './lib/batch10-article-bodies.mjs';
 import { runArticleContentChecks } from './lib/check-article-content.mjs';
 import { getMinWordsForTier, getArticleTier } from './lib/content-tiers.mjs';
 import { countWordsHe } from './lib/seo-hero-rules.mjs';
+import { assertResearchStudyReady, deleteResearchStudy } from './lib/research-study-io.mjs';
 
 const BLOG = path.join(process.cwd(), 'src/content/blog');
-const RESEARCH = path.join(process.cwd(), '.cursor/tmp/research');
 
 const SLUGS = [
 	'guy-avni-offset-capital-loss-against-gains',
@@ -53,19 +53,6 @@ function logBrand(step, msg, extra) {
 function extractImages(raw) {
 	const m = raw.match(/^images:\n[\s\S]*?(?=\n---)/m);
 	return m ? m[0].replace(/\s+$/, '') : '';
-}
-
-function writeResearch(slug, title) {
-	fs.mkdirSync(RESEARCH, { recursive: true });
-	fs.writeFileSync(path.join(RESEARCH, `${slug}.md`), `# Research: ${title}\n\n- gov.il\n- israelbar.org.il\n`, 'utf8');
-}
-
-function deleteResearch(slug) {
-	try {
-		fs.unlinkSync(path.join(RESEARCH, `${slug}.md`));
-	} catch {
-		/* ok */
-	}
 }
 
 function padBody(body, slug, minWords) {
@@ -120,14 +107,13 @@ function enhanceSlug(slug) {
 		const data = { ...parsed.data, internalLinks: extractParagraphInternalHrefs(body) };
 		const fm = serializeFrontmatter(data, images);
 		fs.writeFileSync(fp, `${fm}\n\n${body}\n`, 'utf8');
-		deleteResearch(slug);
 		return countWordsHe(body);
 	}
 
 	if (!spec?.body) throw new Error(`no batch10 spec for ${slug}`);
 
-	writeResearch(slug, spec.title);
-	logEnhancer(5, 'research written', { slug });
+	assertResearchStudyReady(slug);
+	logEnhancer(5, 'research audit ok', { slug });
 
 	let body = normalizeBodyHrefs(spec.body);
 	const tier = getArticleTier(slug);
@@ -160,7 +146,6 @@ function enhanceSlug(slug) {
 
 	const fm = serializeFrontmatter(data, images);
 	fs.writeFileSync(fp, `${fm}\n\n${body}\n`, 'utf8');
-	deleteResearch(slug);
 
 	const words = countWordsHe(body);
 	logEnhancer(6, 'body merged', { slug, words });
@@ -253,6 +238,7 @@ function main() {
 				logPipeline('ERROR', slug, audit.errors);
 				continue;
 			}
+			deleteResearchStudy(slug, { contentAuditPassed: true });
 			markChecklists(slug, true);
 			results[slug] = 'PASS';
 			logPipeline(9, 'marked all checklists', { slug });

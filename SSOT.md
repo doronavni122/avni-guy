@@ -23,8 +23,10 @@ This file is the **single source of truth** for non-code expectations (workflow,
    - Intro paragraph under H1: **130-200 Hebrew words**, includes a `SITE_KEYWORDS` phrase naturally, concrete copy (no generic index copy; no style-meta phrases - see `hero-rules` + `main-page-style-rules`).
 5. **Banned typography:** the Unicode em dash (U+2014) is forbidden in all `src/`, `public/`, and content files. Use `-`, `:`, or commas. Checked in `seo:guardrails`.
 6. **Internal linking**: Articles and listing pages should link to services, about, contact, blog, categories, tags, and related posts where it helps readers.
-   - For internal-link loop passes, every article must include **at least 10 internal links**.
+   - **2026 density SSOT:** **3-7** paragraph internal links per **1000 Hebrew words**; spacing target **~1 link per 200-350 words**; never exceed **7/1000**.
+   - **Silo cap:** max **4** contextual `/blog/*` links per article (stricter than density on long posts until corpus remediate).
    - Links used for the quota must be **paragraph hypertext only** (no title/heading/formatted container links for quota).
+   - **Max 7 words** per anchor text; enforced in `scripts/lib/check-article-content.mjs` and `internal-link-graph.mjs`.
    - **Buttons do not count** toward the internal-link quota.
    - Per article, hyperlink text must be **unique** (no repeated anchor text).
    - Per article, each link must point to a **different internal path** (no duplicate destinations in the same article).

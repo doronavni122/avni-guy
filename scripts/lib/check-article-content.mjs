@@ -14,15 +14,19 @@ import {
 } from './content-forbidden-patterns.mjs';
 import {
 	anchorMatchesTarget,
+	anchorWordCount,
+	auditLinkSpacing,
 	buildLinkGraph,
-	CONTEXTUAL_BLOG_MAX,
-	CONTEXTUAL_BLOG_MIN,
+	computeBlogLinkDensityBounds,
+	computeLinkDensityBounds,
 	CONTEXTUAL_WORD_THRESHOLD,
 	countContextualBlogLinks,
 	ENGLISH_SLUG_ANCHOR_PATTERNS,
 	findSectionDuplicateHrefs,
 	GARBAGE_ANCHOR_PATTERNS,
+	isAnchorTooLong,
 	loadAllPosts,
+	MAX_ANCHOR_WORDS,
 	MAX_BLOG_LINKS,
 	slugFromBlogHref,
 } from './internal-link-graph.mjs';
@@ -32,7 +36,6 @@ import { KEYWORD_STUB_SLUGS_SET } from './keyword-stub-slugs.mjs';
 import { countWordsHe, SITE_KEYWORDS } from './seo-hero-rules.mjs';
 
 const BLOG_DIR = path.join(process.cwd(), 'src', 'content', 'blog');
-const MIN_PARAGRAPH_INTERNAL_LINKS = 10;
 const FIRST_100_WORDS_MAIN_KEYWORD_STRICT =
 	process.env.CONTENT_LINKS_STRICT === '1' || process.env.CONTENT_STRICT === '1';
 const LINKS_STRICT = process.env.CONTENT_LINKS_STRICT === '1';
@@ -338,8 +341,26 @@ function auditPost(slug, raw, allBodies) {
 		errors.push(`${slug}: body uses forbidden standard 7-nav link boilerplate block`);
 	}
 	const paragraphLinks = extractParagraphMarkdownLinks(body);
-	if (paragraphLinks.length < MIN_PARAGRAPH_INTERNAL_LINKS) {
-		errors.push(`${slug}: paragraph internal links ${paragraphLinks.length} below minimum ${MIN_PARAGRAPH_INTERNAL_LINKS}`);
+	const totalDensity = computeLinkDensityBounds(words);
+	if (paragraphLinks.length < totalDensity.min) {
+		errors.push(
+			`${slug}: paragraph internal links ${paragraphLinks.length} below density minimum ${totalDensity.min} (${words} words, 3-7/1000)`,
+		);
+	}
+	if (paragraphLinks.length > totalDensity.max) {
+		errors.push(
+			`${slug}: paragraph internal links ${paragraphLinks.length} exceed density maximum ${totalDensity.max} (${words} words, 3-7/1000)`,
+		);
+	}
+	const spacing = auditLinkSpacing(words, paragraphLinks.length);
+	if (!spacing.ok && paragraphLinks.length > 0) {
+		const withinBounds =
+			paragraphLinks.length >= totalDensity.min && paragraphLinks.length <= totalDensity.max;
+		if (!withinBounds) {
+			errors.push(
+				`${slug}: link spacing ${spacing.wordsPerLink?.toFixed(0) ?? 'n/a'} words/link outside ${spacing.minWords}-${spacing.maxWords} target`,
+			);
+		}
 	}
 	const hrefs = paragraphLinks.map((l) => l.href);
 	const anchors = paragraphLinks.map((l) => l.anchor);
@@ -348,7 +369,8 @@ function auditPost(slug, raw, allBodies) {
 	const dupAnchor = anchors.find((a, i) => anchors.indexOf(a) !== i);
 	if (dupAnchor) errors.push(`${slug}: duplicate paragraph link anchor "${dupAnchor}"`);
 	const blogLinks = paragraphLinks.filter((l) => l.href.startsWith('/blog/') && l.href !== '/blog/');
-	const topicalBlogMax = CONTENT_STRICT ? TOPICAL_BLOG_MAX : MAX_BLOG_LINKS;
+	const blogDensity = computeBlogLinkDensityBounds(words);
+	const topicalBlogMax = CONTENT_STRICT ? TOPICAL_BLOG_MAX : blogDensity.max;
 	if (blogLinks.length > topicalBlogMax) {
 		errors.push(`${slug}: blog paragraph links ${blogLinks.length} exceed max ${topicalBlogMax}`);
 	}
@@ -356,15 +378,15 @@ function auditPost(slug, raw, allBodies) {
 		errors.push(`${slug}: topical blog links ${blogLinks.length} below min ${TOPICAL_BLOG_MIN}`);
 	}
 	const contextualCount = countContextualBlogLinks(paragraphLinks);
-	if (LINKS_STRICT && words > CONTEXTUAL_WORD_THRESHOLD) {
-		if (contextualCount < CONTEXTUAL_BLOG_MIN) {
+	if (words > CONTEXTUAL_WORD_THRESHOLD) {
+		if (contextualCount < blogDensity.min) {
 			errors.push(
-				`${slug}: contextual blog links ${contextualCount} below min ${CONTEXTUAL_BLOG_MIN} (words>${CONTEXTUAL_WORD_THRESHOLD})`,
+				`${slug}: contextual blog links ${contextualCount} below min ${blogDensity.min} (words>${CONTEXTUAL_WORD_THRESHOLD}, silo cap ${MAX_BLOG_LINKS})`,
 			);
 		}
-		if (contextualCount > CONTEXTUAL_BLOG_MAX) {
+		if (contextualCount > blogDensity.max) {
 			errors.push(
-				`${slug}: contextual blog links ${contextualCount} exceed max ${CONTEXTUAL_BLOG_MAX} (words>${CONTEXTUAL_WORD_THRESHOLD})`,
+				`${slug}: contextual blog links ${contextualCount} exceed max ${blogDensity.max} (density max ${blogDensity.densityMax}, silo cap ${blogDensity.siloCap})`,
 			);
 		}
 	}
@@ -384,6 +406,10 @@ function auditPost(slug, raw, allBodies) {
 		}
 	}
 	for (const { anchor } of paragraphLinks) {
+		if (isAnchorTooLong(anchor)) {
+			errors.push(`${slug}: anchor exceeds ${MAX_ANCHOR_WORDS} words (${anchorWordCount(anchor)}): "${anchor}"`);
+			break;
+		}
 		if (BANNED_ANCHOR_PATTERNS.some((re) => re.test(anchor))) {
 			errors.push(`${slug}: banned generic anchor "${anchor}"`);
 			break;
@@ -413,8 +439,12 @@ function auditPost(slug, raw, allBodies) {
 			}
 		}
 	}
-	if (internalLinks.length < MIN_PARAGRAPH_INTERNAL_LINKS) {
-		errors.push(`${slug}: internalLinks frontmatter count ${internalLinks.length} below ${MIN_PARAGRAPH_INTERNAL_LINKS}`);
+	const bodyHrefSet = new Set(hrefs);
+	for (const h of bodyHrefSet) {
+		if (!fmNormalized.includes(h)) {
+			errors.push(`${slug}: body paragraph href ${h} missing from internalLinks frontmatter`);
+			break;
+		}
 	}
 	const externalHttps = (body.match(/https:\/\/[^\s)]+/g) ?? []).filter((u) => !u.includes('avniguy.co.il'));
 	const needsExternal = contract?.requireExternalHttps || YMYL_SLUGS.has(slug);

@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /**
  * Batch internal links remediation: anchors, orphan mesh, hub rebalance, mainKeyword anchors.
+ * Respects MAX_BLOG_LINKS silo cap (4); total density targets use computeLinkDensityBounds() in internal-link-graph.mjs.
  * Run: node scripts/remediate-internal-links-batch.mjs
  */
 import fs from 'node:fs';
@@ -9,12 +10,17 @@ import matter from 'gray-matter';
 import {
 	BLOG_DIR,
 	buildLinkGraph,
+	auditLateralClusterLinks,
+	computeBlogLinkDensityBounds,
+	computeLinkDensityBounds,
 	countBlogLinksInBody,
 	extractParagraphMarkdownLinks,
+	isAnchorTooLong,
 	isEnglishSlugAnchor,
 	isGarbageAnchor,
 	loadAllPosts,
 	logGraph,
+	MAX_ANCHOR_WORDS,
 	MAX_BLOG_LINKS,
 	normalizePath,
 	slugFromBlogHref,
@@ -22,9 +28,16 @@ import {
 	titleAnchorFragment,
 	anchorMatchesTarget,
 	splitBodyByH2Sections,
+	wordsAboveContextualThreshold,
+	isCategoryClusterPost,
+	BRAND_ANCHOR_PATTERNS,
 } from './lib/internal-link-graph.mjs';
+import { countWordsHe } from './lib/seo-hero-rules.mjs';
 import {
 	CATEGORY_PILLARS,
+	CONVERSION_CORNERSTONE_PILLARS,
+	isBrandMainKeyword,
+	isConversionCornerstonePillar,
 	primaryPillarForCategory,
 	pillarsForCategory,
 } from './lib/pillar-cluster-registry.mjs';
@@ -79,15 +92,206 @@ function hashPick(seed, arr) {
 	return arr[h % arr.length];
 }
 
-function anchorVariants(title, seed) {
+/** Descriptive Hebrew anchor ≤7 words; no banned prefix pools that blow word limits. */
+function anchorVariants(title, seed, target) {
 	const frag = titleAnchorFragment(title);
-	const pools = [
-		frag,
-		`מדריך: ${frag}`,
-		`המשך בנושא ${frag}`,
-		`קראו על ${frag}`,
-	];
-	return hashPick(seed, pools);
+	const kw = String(target?.mainKeyword ?? '').trim();
+	if (kw.length >= 4 && anchorWordCount(kw) <= MAX_ANCHOR_WORDS) {
+		const pools = [frag, kw];
+		return clampAnchorWords(hashPick(seed, pools));
+	}
+	return clampAnchorWords(frag);
+}
+
+function clampAnchorWords(anchor) {
+	let t = String(anchor ?? '')
+		.trim()
+		.replace(/\s+ב-?\d{2,4}\s*$/u, '')
+		.replace(/\s*[-–]\s*\d{2,4}\s*$/u, '');
+	const words = t.split(/\s+/).filter(Boolean);
+	if (words.length <= MAX_ANCHOR_WORDS) return words.join(' ');
+	return words.slice(0, MAX_ANCHOR_WORDS).join(' ');
+}
+
+function anchorWordCount(anchor) {
+	return String(anchor ?? '')
+		.trim()
+		.split(/\s+/)
+		.filter(Boolean).length;
+}
+
+function densityBoundsForBody(body) {
+	const words = countWordsHe(body);
+	return { words, total: computeLinkDensityBounds(words), blog: computeBlogLinkDensityBounds(words) };
+}
+
+function canAddParagraphLink(body) {
+	const { total } = densityBoundsForBody(body);
+	const count = extractParagraphMarkdownLinks(body).length;
+	return count < total.max;
+}
+
+/** Remove remediation artifacts: keyword spam, bad nav anchors, duplicate prose. */
+function stripRemediationSpam(body) {
+	let b = body;
+	b = b.replace(/(\s+\S+\s+מלווה את הנושא במאמר זה\.)+/gu, '');
+	b = b.replace(/(\s+גיא אבני(?:\s+ע(?:ו״ד|ורך דין))?(?:\s+משרד עורכי דין)?\.){2,}/gu, '.');
+	b = b.replace(/(\s+ניווט לפי קטגוריות\.){2,}/gu, '.');
+	b = b.replace(/\[עורך דין 1(?:\s+1)?\]\(\/(categories|tags)\/\)/gu, (_, p) =>
+		p === 'categories' ? '[קטגוריות תוכן](/categories/)' : '[אינדקס תגיות](/tags/)',
+	);
+	b = b.replace(/([^.!?]+[.!?])(?:\s*\1){2,}/gu, '$1');
+	return b;
+}
+
+/** Remove legacy trailing injections from orphan mesh (upper-half policy uses inline prose). */
+function stripLegacyLeyonInjections(body) {
+	let b = body;
+	b = b.replace(/\s+לעיון(?:\s+נוסף)?:\s*\[[^\]]+\]\([^)]+\)\.?/gu, '');
+	b = b.replace(/\s+לעיון:\s*[^.\n]+(?=\.|$)/gu, '');
+	return b;
+}
+
+function isQualifyingParagraphLine(line) {
+	const t = String(line ?? '').trim();
+	if (!t || t.startsWith('#')) return false;
+	if (/^[-*+]\s/.test(t)) return false;
+	if (/^\d+\.\s/.test(t)) return false;
+	if (t.includes('](http')) return false;
+	return true;
+}
+
+function qualifyingParagraphIndices(lines, start = 0, end = lines.length) {
+	const indices = [];
+	for (let i = start; i < end; i++) {
+		if (isQualifyingParagraphLine(lines[i])) indices.push(i);
+	}
+	return indices;
+}
+
+function firstQualifyingParagraphIndex(lines, start = 0, end = lines.length) {
+	const indices = qualifyingParagraphIndices(lines, start, end);
+	if (!indices.length) return -1;
+	const upperEnd = start + Math.ceil((end - start) / 2);
+	const inUpper = indices.filter((i) => i < upperEnd);
+	return (inUpper.length ? inUpper : indices)[0];
+}
+
+function appendLinkToLine(line, anchor, href) {
+	const trimmed = line.trimEnd();
+	const link = `[${clampAnchorWords(anchor)}](${href})`;
+	if (trimmed.includes(link)) return line;
+	const sep = /[.!?]\s*$/.test(trimmed) ? ' ' : ': ';
+	return `${trimmed}${sep}${link}.`;
+}
+
+function isBrandAnchorText(anchor) {
+	const a = String(anchor ?? '').trim();
+	return isBrandMainKeyword(a) || BRAND_ANCHOR_PATTERNS.some((re) => re.test(a));
+}
+
+/** Pillar/cluster anchors must not reuse homepage brand text (dedupe + collision SSOT). */
+function descriptiveAnchorForTarget(target, donorSlug, targetSlug, seed) {
+	if (!target) return '';
+	let anchor = anchorVariants(target.title, `${donorSlug}:${targetSlug}:${seed}`, target);
+	if (isBrandAnchorText(anchor) || isBrandMainKeyword(target.mainKeyword)) {
+		anchor = clampAnchorWords(titleAnchorFragment(target.title));
+	}
+	if (!anchorMatchesTarget(anchor, target) && target.mainKeyword?.length >= 4 && !isBrandMainKeyword(target.mainKeyword)) {
+		anchor = clampAnchorWords(target.mainKeyword);
+	}
+	if (!anchorMatchesTarget(anchor, target) || isBrandAnchorText(anchor)) {
+		anchor = anchorVariants(target.title, `${donorSlug}:retry:${targetSlug}:${seed}`, target);
+		if (isBrandAnchorText(anchor)) {
+			anchor = clampAnchorWords(titleAnchorFragment(target.title));
+		}
+	}
+	return clampAnchorWords(anchor);
+}
+
+function resolveAnchorForTarget(target, donorSlug, targetSlug, seed) {
+	return descriptiveAnchorForTarget(target, donorSlug, targetSlug, seed);
+}
+
+function fixAllAnchorsInBody(body, postsBySlug, donorSlug) {
+	let b = body;
+	const links = extractParagraphMarkdownLinks(b);
+	for (const link of links) {
+		let newAnchor = link.anchor;
+		const targetSlug = slugFromBlogHref(link.href);
+		const target = targetSlug ? postsBySlug.get(targetSlug) : null;
+		const isBlog = Boolean(targetSlug);
+		const needsFix =
+			isGarbageAnchor(link.anchor) ||
+			/\s+ב-?\d{2,4}$/u.test(link.anchor) ||
+			isAnchorTooLong(link.anchor) ||
+			/^מדריך:\s/u.test(link.anchor) ||
+			/^המשך בנושא\s/u.test(link.anchor) ||
+			/^קראו על\s/u.test(link.anchor) ||
+			/\s-\sפירוט$/u.test(link.anchor) ||
+			(isBlog && (isEnglishSlugAnchor(link.anchor) || /[a-z]{3,}/.test(link.anchor)));
+		if (isBlog && target) {
+			if (needsFix || !anchorMatchesTarget(link.anchor, target) || isBrandAnchorText(link.anchor)) {
+				newAnchor = resolveAnchorForTarget(target, donorSlug, targetSlug, link.anchor);
+			}
+		} else if (needsFix) {
+			newAnchor = navAnchorFor(link.href, `${donorSlug}:${link.href}:${link.anchor}`);
+		} else if (isAnchorTooLong(link.anchor)) {
+			newAnchor = clampAnchorWords(titleAnchorFragment(link.anchor));
+		}
+		if (!newAnchor || newAnchor === link.anchor) continue;
+		b = replaceLinkInBody(b, link.full, newAnchor, link.href);
+	}
+	return b;
+}
+
+/**
+ * Trim paragraph links to computeLinkDensityBounds max; preserve pillar + one brand home when possible.
+ */
+function trimExcessParagraphLinks(body, donorSlug, postsBySlug) {
+	let b = stripLegacyLeyonInjections(body);
+	const protectedHref = primaryPillarHref(donorSlug, postsBySlug);
+	const lines = b.split('\n');
+	const totalLines = lines.length;
+
+	while (true) {
+		const { total } = densityBoundsForBody(b);
+		const links = extractParagraphMarkdownLinks(b);
+		if (links.length <= total.max) break;
+
+		const hrefFirst = new Map();
+		const scored = links.map((link, order) => {
+			const lineIdx = b.slice(0, b.indexOf(link.full)).split('\n').length - 1;
+			const line = lines[lineIdx] ?? '';
+			const lineLinkCount = (line.match(/\[[^\]]+\]\([^)]+\)/g) ?? []).length;
+			const slug = slugFromBlogHref(link.href);
+			let score = order;
+			if (hrefFirst.has(link.href)) score += 200;
+			else hrefFirst.set(link.href, true);
+			if (link.href === protectedHref) score -= 500;
+			if (link.href === '/') score -= 400;
+			if (link.href === '/contact/') score -= 350;
+			if (slug && isConversionCornerstonePillar(slug)) score -= 200;
+			if (OVERLINKED_HUBS.has(slug ?? '')) score += 120;
+			if (link.href.startsWith('/tags/') || link.href === '/tags/') score += 90;
+			if (link.href.startsWith('/categories/')) score += 85;
+			if (link.href.startsWith('/blog/') && link.href !== '/blog/') score -= 80;
+			if (/\s-\sפירוט$/u.test(link.anchor)) score += 150;
+			if (lineLinkCount > 2) score += 80 + lineLinkCount * 10;
+			if (lineIdx > totalLines * 0.75) score += 40;
+			if (link.href === '/about/' || link.href === '/services/' || link.href === '/blog/') score += 50;
+			return { link, score };
+		});
+		scored.sort((a, b) => b.score - a.score);
+		const victim = scored[0]?.link;
+		if (!victim) break;
+		const idx = b.indexOf(victim.full);
+		if (idx < 0) break;
+		b = b.slice(0, idx) + victim.anchor + b.slice(idx + victim.full.length);
+		logGraph('remediate', `trim link ${donorSlug}`, { href: victim.href, count: links.length, max: total.max });
+	}
+
+	return b;
 }
 
 function replaceLinkInBody(body, oldFull, newAnchor, href) {
@@ -118,27 +322,285 @@ function navAnchorFor(href, seed) {
 	return null;
 }
 
-function fixAnchorsInBody(body, postsBySlug, donorSlug) {
+function removeDuplicateParagraphHrefs(body) {
 	let b = body;
+	const seen = new Set();
 	const links = extractParagraphMarkdownLinks(b);
 	for (const link of links) {
-		const targetSlug = slugFromBlogHref(link.href);
-		const target = targetSlug ? postsBySlug.get(targetSlug) : null;
-		const isBlog = Boolean(targetSlug);
-		const needsFix =
-			isGarbageAnchor(link.anchor) ||
-			(isBlog && (isEnglishSlugAnchor(link.anchor) || /[a-z]{3,}/.test(link.anchor)));
-		if (!needsFix) continue;
-		let newAnchor;
-		if (isBlog && target) {
-			newAnchor = anchorVariants(target.title, `${donorSlug}:${targetSlug}:${link.anchor}`);
-		} else {
-			newAnchor = navAnchorFor(link.href, `${donorSlug}:${link.href}:${link.anchor}`);
+		if (!seen.has(link.href)) {
+			seen.add(link.href);
+			continue;
 		}
+		const idx = b.indexOf(link.full);
+		if (idx < 0) continue;
+		b = b.slice(0, idx) + link.anchor + b.slice(idx + link.full.length);
+	}
+	return b;
+}
+
+function pickContextualBlogTarget(donorSlug, donor, postsBySlug, body) {
+	const linked = new Set(
+		extractParagraphMarkdownLinks(body)
+			.map((l) => slugFromBlogHref(l.href))
+			.filter(Boolean),
+	);
+	const sameCat = [...postsBySlug.values()].filter(
+		(p) =>
+			p.slug !== donorSlug &&
+			!linked.has(p.slug) &&
+			p.category === donor?.category &&
+			!OVERLINKED_HUBS.has(p.slug),
+	);
+	const cornerstone = sameCat.filter((p) => isConversionCornerstonePillar(p.slug));
+	if (cornerstone.length) return hashPick(`${donorSlug}:cornerstone`, cornerstone.map((p) => p.slug));
+	if (sameCat.length) return hashPick(`${donorSlug}:ctx`, sameCat.map((p) => p.slug));
+	const any = [...postsBySlug.values()].filter(
+		(p) => p.slug !== donorSlug && !linked.has(p.slug) && !OVERLINKED_HUBS.has(p.slug),
+	);
+	return any.length ? hashPick(`${donorSlug}:ctx2`, any.map((p) => p.slug)) : null;
+}
+
+function pickNavSwapVictim(links) {
+	const priority = [
+		(l) => l.href.startsWith('/tags/') || l.href === '/tags/',
+		(l) => l.href.startsWith('/categories/') || l.href === '/categories/',
+		(l) => l.href === '/about/',
+		(l) => l.href === '/services/',
+		(l) => l.href === '/blog/',
+		(l) => l.href === '/contact/',
+	];
+	for (const pred of priority) {
+		const found = links.find(pred);
+		if (found) return found;
+	}
+	return null;
+}
+
+function ensureContextualBlogLinks(body, donorSlug, postsBySlug) {
+	const donor = postsBySlug.get(donorSlug);
+	if (!donor) return body;
+	const { words, blog } = densityBoundsForBody(body);
+	if (!wordsAboveContextualThreshold(words)) return body;
+	let b = body;
+	let contextual = countBlogLinksInBody(b);
+
+	const tryAddBlog = () => {
+		if (!canAddParagraphLink(b)) {
+			b = makeRoomNavOnly(b, donorSlug, postsBySlug);
+		}
+		const targetSlug = pickContextualBlogTarget(donorSlug, donor, postsBySlug, b);
+		if (!targetSlug) return false;
+		const target = postsBySlug.get(targetSlug);
+		if (!target) return false;
+		const href = `/blog/${targetSlug}/`;
+		const anchor = resolveAnchorForTarget(target, donorSlug, targetSlug, 'ctx');
+		if (canAddParagraphLink(b)) {
+			const next = injectLinkIntoSection(b, href, anchor, donorSlug, postsBySlug);
+			if (next !== b) {
+				b = next;
+				return true;
+			}
+			return false;
+		}
+		const links = extractParagraphMarkdownLinks(b);
+		const navVictim = pickNavSwapVictim(links);
+		if (!navVictim) return false;
+		const newFull = `[${anchor}](${href})`;
+		b = b.replace(navVictim.full, newFull);
+		logGraph('remediate', `swap nav->blog ${donorSlug}`, { from: navVictim.href, to: href });
+		return true;
+	};
+
+	while (contextual < blog.min && contextual < MAX_BLOG_LINKS) {
+		if (!tryAddBlog()) break;
+		contextual = countBlogLinksInBody(b);
+	}
+	return b;
+}
+
+function injectLateralClusterLink(body, donorSlug, postsBySlug) {
+	const donor = postsBySlug.get(donorSlug);
+	if (!donor || !isCategoryClusterPost(donor)) return body;
+	const clusterSlugs = [...postsBySlug.values()]
+		.filter((p) => p.category === donor.category && isCategoryClusterPost(p) && p.slug !== donorSlug)
+		.map((p) => p.slug);
+	if (!clusterSlugs.length) return body;
+	const hasLateral = extractParagraphMarkdownLinks(body).some((l) => {
+		const t = slugFromBlogHref(l.href);
+		return t && clusterSlugs.includes(t);
+	});
+	if (hasLateral) return body;
+	const targetSlug = hashPick(`${donorSlug}:lat`, clusterSlugs);
+	const target = postsBySlug.get(targetSlug);
+	if (!target) return body;
+	const href = `/blog/${targetSlug}/`;
+	const anchor = resolveAnchorForTarget(target, donorSlug, targetSlug, 'lat');
+	if (countBlogLinksInBody(body) >= MAX_BLOG_LINKS) {
+		const clusterSet = new Set(clusterSlugs);
+		const links = extractParagraphMarkdownLinks(body).filter(
+			(l) => l.href.startsWith('/blog/') && l.href !== '/blog/',
+		);
+		const toSwap =
+			links.find((l) => OVERLINKED_HUBS.has(slugFromBlogHref(l.href) ?? '')) ??
+			links.find((l) => {
+				const s = slugFromBlogHref(l.href);
+				return s && !clusterSet.has(s);
+			}) ??
+			links[links.length - 1];
+		if (toSwap) return body.replace(toSwap.full, `[${anchor}](${href})`);
+	}
+	return injectLinkIntoSection(body, href, anchor, donorSlug, postsBySlug);
+}
+
+function ensureMinimumParagraphLinks(body, donorSlug, postsBySlug) {
+	let b = body;
+	const { total } = densityBoundsForBody(b);
+	let guard = 0;
+	while (extractParagraphMarkdownLinks(b).length < total.min && guard < 6) {
+		guard += 1;
+		const donor = postsBySlug.get(donorSlug);
+		const targetSlug = pickContextualBlogTarget(donorSlug, donor, postsBySlug, b);
+		if (targetSlug) {
+			const target = postsBySlug.get(targetSlug);
+			const href = `/blog/${targetSlug}/`;
+			const anchor = descriptiveAnchorForTarget(target, donorSlug, targetSlug, 'min');
+			const next = injectLinkIntoSection(b, href, anchor, donorSlug, postsBySlug);
+			if (next === b) break;
+			b = next;
+			continue;
+		}
+		const nav = hashPick(`${donorSlug}:min-nav`, ['/about/', '/services/', '/blog/']);
+		const navAnchor = navAnchorFor(nav, `${donorSlug}:min`) ?? 'מאגר המשרד';
+		const next = injectLinkIntoSection(b, nav, navAnchor, donorSlug, postsBySlug);
+		if (next === b) break;
+		b = next;
+	}
+	return b;
+}
+
+function dedupeBrandHomeAnchors(body) {
+	let b = body;
+	const brandRe = /\[(גיא אבני(?: עורך דין)?)\]\(\/\)/gu;
+	let seen = false;
+	b = b.replace(brandRe, (full, anchor) => {
+		if (!seen) {
+			seen = true;
+			return full;
+		}
+		return anchor;
+	});
+	return b;
+}
+
+function dedupeDuplicateAnchors(body, postsBySlug, donorSlug) {
+	let b = body;
+	/** @type {Map<string, { href: string, full: string }>} */
+	const seen = new Map();
+	for (const link of extractParagraphMarkdownLinks(b)) {
+		const key = link.anchor.trim();
+		if (!seen.has(key)) {
+			seen.set(key, { href: link.href, full: link.full });
+			continue;
+		}
+		const first = seen.get(key);
+		if (first?.href === link.href) continue;
+		const targetSlug = slugFromBlogHref(link.href);
+		let newAnchor = null;
+		if (targetSlug && postsBySlug.has(targetSlug)) {
+			newAnchor = descriptiveAnchorForTarget(postsBySlug.get(targetSlug), donorSlug, targetSlug, 'dedupe');
+		} else {
+			newAnchor = navAnchorFor(link.href, `${donorSlug}:dedupe-nav:${link.href}`);
+		}
+		if (!newAnchor || newAnchor === link.anchor || isBrandAnchorText(newAnchor)) {
+			const idx = b.indexOf(link.full);
+			if (idx < 0) continue;
+			b = b.slice(0, idx) + link.anchor + b.slice(idx + link.full.length);
+			logGraph('remediate', 'dedupe strip duplicate anchor', { donorSlug, anchor: key, href: link.href });
+			continue;
+		}
+		b = replaceLinkInBody(b, link.full, newAnchor, link.href);
+		seen.set(newAnchor.trim(), { href: link.href, full: `[${newAnchor}](${link.href})` });
+	}
+	return b;
+}
+
+function fixBrandedBlogAnchors(body, postsBySlug, donorSlug) {
+	let b = body;
+	for (const link of extractParagraphMarkdownLinks(b)) {
+		if (!link.href.startsWith('/blog/') || link.href === '/blog/') continue;
+		if (!isBrandAnchorText(link.anchor)) continue;
+		const targetSlug = slugFromBlogHref(link.href);
+		if (!targetSlug) continue;
+		const target = postsBySlug.get(targetSlug);
+		if (!target) continue;
+		const newAnchor = descriptiveAnchorForTarget(target, donorSlug, targetSlug, 'brand-fix');
 		if (!newAnchor || newAnchor === link.anchor) continue;
 		b = replaceLinkInBody(b, link.full, newAnchor, link.href);
 	}
 	return b;
+}
+
+/** Remove one nav/hub paragraph link when at density max (never drop silo blog links). */
+function makeRoomNavOnly(body, donorSlug, postsBySlug) {
+	const { total } = densityBoundsForBody(body);
+	const links = extractParagraphMarkdownLinks(body);
+	if (links.length < total.max) return body;
+	const protectedHref = primaryPillarHref(donorSlug, postsBySlug);
+	const navOnly = links.filter(
+		(l) =>
+			l.href !== '/' &&
+			l.href !== protectedHref &&
+			(!l.href.startsWith('/blog/') || l.href === '/blog/'),
+	);
+	const victim = pickNavSwapVictim(navOnly);
+	if (!victim) return body;
+	const idx = body.indexOf(victim.full);
+	if (idx < 0) return body;
+	logGraph('remediate', 'makeRoom nav-only', { donorSlug, href: victim.href });
+	return body.slice(0, idx) + victim.anchor + body.slice(idx + victim.full.length);
+}
+
+/** Remove one low-priority paragraph link when at density max (orphan/pillar inject make-room). */
+function makeRoomForParagraphLink(body, donorSlug, postsBySlug) {
+	const navTrimmed = makeRoomNavOnly(body, donorSlug, postsBySlug);
+	if (navTrimmed !== body) return navTrimmed;
+	const { total } = densityBoundsForBody(body);
+	const links = extractParagraphMarkdownLinks(body);
+	if (links.length < total.max) return body;
+	const protectedHref = primaryPillarHref(donorSlug, postsBySlug);
+	const hrefFirst = new Map();
+	const lines = body.split('\n');
+	const totalLines = lines.length;
+	const scored = links.map((link, order) => {
+		const lineIdx = body.slice(0, body.indexOf(link.full)).split('\n').length - 1;
+		const line = lines[lineIdx] ?? '';
+		const lineLinkCount = (line.match(/\[[^\]]+\]\([^)]+\)/g) ?? []).length;
+		const slug = slugFromBlogHref(link.href);
+		let score = order;
+		if (hrefFirst.has(link.href)) score += 200;
+		else hrefFirst.set(link.href, true);
+		if (link.href === protectedHref) score -= 500;
+		if (link.href === '/') score -= 400;
+		if (link.href === '/contact/') score -= 350;
+		if (link.href.startsWith('/blog/') && link.href !== '/blog/') score -= 80;
+		if (link.href.startsWith('/tags/') || link.href === '/tags/') score += 90;
+		if (link.href.startsWith('/categories/')) score += 85;
+		if (link.href === '/about/' || link.href === '/services/' || link.href === '/blog/') score += 50;
+		if (lineLinkCount > 2) score += 80 + lineLinkCount * 10;
+		if (lineIdx > totalLines * 0.75) score += 40;
+		return { link, score };
+	});
+	scored.sort((a, b) => b.score - a.score);
+	const victim = scored[0]?.link;
+	if (!victim || victim.href === '/' || victim.href === protectedHref) return body;
+	const idx = body.indexOf(victim.full);
+	if (idx < 0) return body;
+	logGraph('remediate', 'makeRoom trim', { donorSlug, href: victim.href });
+	return body.slice(0, idx) + victim.anchor + body.slice(idx + victim.full.length);
+}
+
+function fixAnchorsInBody(body, postsBySlug, donorSlug) {
+	return fixAllAnchorsInBody(body, postsBySlug, donorSlug);
 }
 
 function pickSiblingReplacement(donorSlug, hubSlug, postsBySlug, inbound) {
@@ -174,7 +636,7 @@ function rebalanceHubLinks(body, donorSlug, postsBySlug) {
 		if (!replacement) continue;
 		const repPost = postsBySlug.get(replacement);
 		const newHref = `/blog/${replacement}/`;
-		const newAnchor = anchorVariants(repPost.title, `${donorSlug}:rep:${target}`);
+		const newAnchor = anchorVariants(repPost.title, `${donorSlug}:rep:${target}`, repPost);
 		b = replaceLinkInBody(b, link.full, newAnchor, newHref);
 	}
 	return b;
@@ -207,27 +669,43 @@ function rebuildBodyFromSections(sections) {
 	return `${parts.join('\n\n')}\n`;
 }
 
-function injectLinkIntoSection(body, href, anchor) {
+function injectLinkIntoSection(body, href, anchor, donorSlug, postsBySlug) {
+	if (!canAddParagraphLink(body)) {
+		body = makeRoomForParagraphLink(body, donorSlug ?? 'inject', postsBySlug ?? new Map());
+		if (!canAddParagraphLink(body)) {
+			logGraph('remediate', 'inject skip density max', { href });
+			return body;
+		}
+	}
 	const sections = splitBodyByH2Sections(body);
-	for (let i = sections.length - 1; i >= 0; i--) {
+	const upperSectionCount = Math.max(1, Math.ceil(sections.length / 2));
+	for (let i = 0; i < upperSectionCount; i++) {
 		const sec = sections[i];
 		if (extractParagraphMarkdownLinks(sec.content).some((l) => l.href === href)) continue;
 		const lines = sec.content.split('\n');
-		for (let j = lines.length - 1; j >= 0; j--) {
-			const t = lines[j].trim();
-			if (!t || t.startsWith('#') || /^[-*+]\s/.test(t) || /^\d+\.\s/.test(t)) continue;
-			lines[j] = `${lines[j]} לעיון: [${anchor}](${href}).`;
-			sec.content = lines.join('\n');
-			return rebuildBodyFromSections(sections);
-		}
+		const j = firstQualifyingParagraphIndex(lines, 0, lines.length);
+		if (j < 0) continue;
+		lines[j] = appendLinkToLine(lines[j], anchor, href);
+		sec.content = lines.join('\n');
+		return rebuildBodyFromSections(sections);
+	}
+	for (let i = upperSectionCount; i < sections.length; i++) {
+		const sec = sections[i];
+		if (extractParagraphMarkdownLinks(sec.content).some((l) => l.href === href)) continue;
+		const lines = sec.content.split('\n');
+		const j = firstQualifyingParagraphIndex(lines, 0, lines.length);
+		if (j < 0) continue;
+		lines[j] = appendLinkToLine(lines[j], anchor, href);
+		sec.content = lines.join('\n');
+		return rebuildBodyFromSections(sections);
 	}
 	const lines = body.split('\n');
-	for (let i = lines.length - 1; i >= 0; i--) {
-		const t = lines[i].trim();
-		if (!t || t.startsWith('#') || /^[-*+]\s/.test(t) || /^\d+\.\s/.test(t)) continue;
-		lines[i] = `${lines[i]} לעיון: [${anchor}](${href}).`;
+	const j = firstQualifyingParagraphIndex(lines, 0, lines.length);
+	if (j >= 0) {
+		lines[j] = appendLinkToLine(lines[j], anchor, href);
 		return lines.join('\n');
 	}
+	logGraph('remediate', 'ERROR inject no qualifying paragraph', { href, donorSlug });
 	return body;
 }
 
@@ -240,12 +718,7 @@ function injectPillarLink(body, donorSlug, postsBySlug) {
 	if (!pillar) return body;
 	const href = `/blog/${pillarSlug}/`;
 	if (extractParagraphMarkdownLinks(body).some((l) => l.href === href)) return body;
-	let anchor = pillar.mainKeyword && pillar.mainKeyword.length >= 4
-		? pillar.mainKeyword
-		: anchorVariants(pillar.title, `${donorSlug}:pillar:${pillarSlug}`);
-	if (!anchorMatchesTarget(anchor, pillar)) {
-		anchor = anchorVariants(pillar.title, `${donorSlug}:pillar`);
-	}
+	let anchor = descriptiveAnchorForTarget(pillar, donorSlug, pillarSlug, 'pillar');
 	if (countBlogLinksInBody(body) >= MAX_BLOG_LINKS) {
 		const categoryPillars = new Set(pillarsForCategory(donor.category));
 		const links = extractParagraphMarkdownLinks(body).filter(
@@ -262,7 +735,7 @@ function injectPillarLink(body, donorSlug, postsBySlug) {
 			return body.replace(toSwap.full, `[${anchor}](${href})`);
 		}
 	}
-	return injectLinkIntoSection(body, href, anchor);
+	return injectLinkIntoSection(body, href, anchor, donorSlug, postsBySlug);
 }
 
 function injectOrphanLink(body, donorSlug, orphanSlug, postsBySlug, inbound = new Map()) {
@@ -271,12 +744,14 @@ function injectOrphanLink(body, donorSlug, orphanSlug, postsBySlug, inbound = ne
 	const href = `/blog/${orphanSlug}/`;
 	const already = extractParagraphMarkdownLinks(body).some((l) => l.href === href);
 	if (already) return body;
-	let anchor = anchorVariants(orphan.title, `${donorSlug}:orphan:${orphanSlug}`);
-	if (!anchorMatchesTarget(anchor, orphan)) {
-		anchor = orphan.mainKeyword && orphan.mainKeyword.length >= 4
-			? orphan.mainKeyword
-			: anchorVariants(orphan.title, `${donorSlug}:orphan2:${orphanSlug}`);
+	if (!canAddParagraphLink(body)) {
+		body = makeRoomForParagraphLink(body, donorSlug, postsBySlug);
+		if (!canAddParagraphLink(body)) {
+			logGraph('remediate', 'orphan inject skip density', { donorSlug, orphanSlug });
+			return body;
+		}
 	}
+	let anchor = resolveAnchorForTarget(orphan, donorSlug, orphanSlug, 'orphan');
 
 	if (countBlogLinksInBody(body) >= MAX_BLOG_LINKS) {
 		const protectedHref = primaryPillarHref(donorSlug, postsBySlug);
@@ -290,19 +765,30 @@ function injectOrphanLink(body, donorSlug, orphanSlug, postsBySlug, inbound = ne
 		return body;
 	}
 
+	const sections = splitBodyByH2Sections(body);
+	const upperSectionCount = Math.max(1, Math.ceil(sections.length / 2));
+	for (let i = 0; i < upperSectionCount; i++) {
+		const sec = sections[i];
+		if (extractParagraphMarkdownLinks(sec.content).some((l) => l.href === href)) continue;
+		const lines = sec.content.split('\n');
+		const j = firstQualifyingParagraphIndex(lines, 0, lines.length);
+		if (j < 0) continue;
+		lines[j] = appendLinkToLine(lines[j], anchor, href);
+		sec.content = lines.join('\n');
+		return rebuildBodyFromSections(sections);
+	}
 	const lines = body.split('\n');
-	for (let i = lines.length - 1; i >= 0; i--) {
-		const t = lines[i].trim();
-		if (!t || t.startsWith('#') || /^[-*+]\s/.test(t) || /^\d+\.\s/.test(t)) continue;
-		if (t.includes('](http')) continue;
-		lines[i] = `${lines[i]} לעיון נוסף: [${anchor}](${href}).`;
+	const j = firstQualifyingParagraphIndex(lines, 0, Math.ceil(lines.length / 2));
+	if (j >= 0) {
+		lines[j] = appendLinkToLine(lines[j], anchor, href);
 		return lines.join('\n');
 	}
+	logGraph('remediate', 'ERROR orphan inject no paragraph', { donorSlug, orphanSlug });
 	return body;
 }
 
 function addMainKeywordAnchor(body, slug, mainKeyword) {
-	if (!mainKeyword) return body;
+	if (!mainKeyword || isBrandMainKeyword(mainKeyword)) return body;
 	const links = extractParagraphMarkdownLinks(body);
 	if (links.some((l) => l.anchor.includes(mainKeyword))) return body;
 	const lines = body.split('\n');
@@ -314,12 +800,6 @@ function addMainKeywordAnchor(body, slug, mainKeyword) {
 			lines[i] = wrapped;
 			return lines.join('\n');
 		}
-	}
-	for (let i = 0; i < lines.length; i++) {
-		const t = lines[i].trim();
-		if (!t || t.startsWith('#') || /^[-*+]\s/.test(t)) continue;
-		lines[i] = `${lines[i]} ${mainKeyword} מלווה את הנושא במאמר זה.`;
-		return lines.join('\n');
 	}
 	return body;
 }
@@ -335,6 +815,8 @@ function dedupeParagraphLinks(body, donorSlug) {
 		{ href: '/services/', anchor: 'מפת שירותים משפטיים' },
 		{ href: '/categories/', anchor: 'ניווט לפי קטגוריות' },
 		{ href: '/tags/', anchor: 'אינדקס תגיות' },
+		{ href: '/categories/', anchor: 'קטגוריות במאגר' },
+		{ href: '/tags/', anchor: 'תגיות במאגר' },
 	];
 	let offset = 0;
 	for (const link of links) {
@@ -343,11 +825,19 @@ function dedupeParagraphLinks(body, donorSlug) {
 		hrefCount.set(link.href, hCount);
 		anchorCount.set(link.anchor, aCount);
 		if (hCount === 1 && aCount === 1) continue;
+		if (/^עורך דין\s*\d+$/u.test(link.anchor.trim())) {
+			const idx = b.indexOf(link.full, offset);
+			if (idx >= 0) {
+				const pick = link.href.startsWith('/tags/') ? replacements[5] : replacements[6];
+				const newFull = `[${pick.anchor}](${pick.href})`;
+				b = b.slice(0, idx) + newFull + b.slice(idx + link.full.length);
+				offset = idx + newFull.length;
+				continue;
+			}
+		}
 		const pick = replacements[(hCount + aCount) % replacements.length];
-		const newFull =
-			hCount > 1
-				? `[${pick.anchor}](${pick.href})`
-				: `[${link.anchor} - פירוט](${link.href})`;
+		const dupAnchor = clampAnchorWords(pick.anchor);
+		const newFull = `[${dupAnchor}](${pick.href})`;
 		const idx = b.indexOf(link.full, offset);
 		if (idx < 0) continue;
 		b = b.slice(0, idx) + newFull + b.slice(idx + link.full.length);
@@ -387,6 +877,8 @@ function meshOrphans(posts, postsBySlug, inbound, stats, minInbound = 1) {
 			if (!fresh) continue;
 			let newBody = injectOrphanLink(fresh.content, donor.slug, orphan.slug, postsBySlug, inbound);
 			newBody = reduceBlogLinksOverMax(newBody, donor.slug, postsBySlug);
+			newBody = trimExcessParagraphLinks(newBody, donor.slug, postsBySlug);
+			newBody = fixAnchorsInBody(newBody, postsBySlug, donor.slug);
 			if (newBody === fresh.content) continue;
 			writePost(donor.slug, fresh.raw, newBody);
 			stats.orphanLinks += 1;
@@ -410,8 +902,19 @@ function meshOrphans(posts, postsBySlug, inbound, stats, minInbound = 1) {
 	return orphans.length;
 }
 
+/** Sync internalLinks frontmatter to paragraph hrefs only (2026 density SSOT). */
+function repairFrontmatterInternalLinks(slug, raw, content) {
+	const parsed = matter(raw);
+	const paragraphHrefs = [...new Set(extractParagraphMarkdownLinks(content).map((l) => l.href))];
+	parsed.data.internalLinks = paragraphHrefs;
+	if (paragraphHrefs.length === 0) {
+		logGraph('remediate', 'ERROR repairFrontmatterInternalLinks empty', { slug });
+	}
+	return matter.stringify({ ...parsed, content });
+}
+
 function writePost(slug, raw, content) {
-	const out = writeMdxWithSyncedLinks(raw, content);
+	const out = repairFrontmatterInternalLinks(slug, raw, content);
 	fs.writeFileSync(path.join(BLOG_DIR, `${slug}.mdx`), out, 'utf8');
 }
 
@@ -421,18 +924,56 @@ function main() {
 	const postsBySlug = new Map(posts.map((p) => [p.slug, p]));
 	let { inbound } = buildLinkGraph(posts);
 
-	let stats = { anchorFixes: 0, hubRebalance: 0, orphanLinks: 0, keywordAnchors: 0, blogReduced: 0, pillarLinks: 0 };
+	let stats = {
+		anchorFixes: 0,
+		hubRebalance: 0,
+		orphanLinks: 0,
+		keywordAnchors: 0,
+		blogReduced: 0,
+		pillarLinks: 0,
+		densityTrimmed: 0,
+		leyonStripped: 0,
+		contextualBoosted: 0,
+		lateralLinks: 0,
+	};
 
 	for (const p of posts) {
 		let body = p.content;
 		const before = body;
+		body = stripRemediationSpam(body);
+		const stripped = stripLegacyLeyonInjections(body);
+		if (stripped !== body) {
+			body = stripped;
+			stats.leyonStripped += 1;
+		}
 		body = fixAnchorsInBody(body, postsBySlug, p.slug);
 		const afterAnchors = body;
+		const trimmed = trimExcessParagraphLinks(body, p.slug, postsBySlug);
+		if (trimmed !== body) {
+			body = trimmed;
+			stats.densityTrimmed += 1;
+		}
 		body = injectPillarLink(body, p.slug, postsBySlug);
 		if (body !== afterAnchors) stats.pillarLinks += 1;
 		body = rebalanceHubLinks(body, p.slug, postsBySlug);
 		body = reduceBlogLinksOverMax(body, p.slug, postsBySlug);
+		body = trimExcessParagraphLinks(body, p.slug, postsBySlug);
+		body = removeDuplicateParagraphHrefs(body);
+		const boosted = ensureContextualBlogLinks(body, p.slug, postsBySlug);
+		if (boosted !== body) {
+			body = boosted;
+			stats.contextualBoosted += 1;
+		}
+		body = trimExcessParagraphLinks(body, p.slug, postsBySlug);
 		body = dedupeParagraphLinks(body, p.slug);
+		body = removeDuplicateParagraphHrefs(body);
+		body = dedupeBrandHomeAnchors(body);
+		body = fixBrandedBlogAnchors(body, postsBySlug, p.slug);
+		const lateral = injectLateralClusterLink(body, p.slug, postsBySlug);
+		if (lateral !== body) {
+			body = lateral;
+			stats.lateralLinks += 1;
+		}
 		if (MAIN_KEYWORD_MISSING_ANCHORS.includes(p.slug)) {
 			body = addMainKeywordAnchor(body, p.slug, p.mainKeyword);
 		}
@@ -450,17 +991,30 @@ function main() {
 	logGraph('remediate', `orphans to mesh: ${orphanCount}`);
 
 	posts = loadAllPosts();
+	for (const p of posts) postsBySlug.set(p.slug, p);
 	for (const p of posts) {
-		if (countBlogLinksInBody(p.content) > MAX_BLOG_LINKS) {
-			const body = reduceBlogLinksOverMax(p.content, p.slug, postsBySlug);
-			writePost(p.slug, p.raw, body);
+		let body = trimExcessParagraphLinks(p.content, p.slug, postsBySlug);
+		body = fixAnchorsInBody(body, postsBySlug, p.slug);
+		if (countBlogLinksInBody(body) > MAX_BLOG_LINKS) {
+			body = reduceBlogLinksOverMax(body, p.slug, postsBySlug);
 			stats.blogReduced += 1;
+		}
+		if (body !== p.content) {
+			writePost(p.slug, p.raw, body);
+			stats.densityTrimmed += 1;
 		}
 	}
 
 	posts = loadAllPosts();
 	for (const p of posts) {
-		const body = dedupeParagraphLinks(p.content, p.slug);
+		let body = dedupeParagraphLinks(p.content, p.slug);
+		body = removeDuplicateParagraphHrefs(body);
+		body = ensureMinimumParagraphLinks(body, p.slug, postsBySlug);
+		body = ensureContextualBlogLinks(body, p.slug, postsBySlug);
+		body = fixBrandedBlogAnchors(body, postsBySlug, p.slug);
+		body = trimExcessParagraphLinks(body, p.slug, postsBySlug);
+		body = fixAnchorsInBody(body, postsBySlug, p.slug);
+		body = removeDuplicateParagraphHrefs(body);
 		if (body !== p.content) writePost(p.slug, p.raw, body);
 	}
 
@@ -470,6 +1024,8 @@ function main() {
 	for (const p of posts) {
 		let body = injectPillarLink(p.content, p.slug, postsBySlug);
 		body = reduceBlogLinksOverMax(body, p.slug, postsBySlug);
+		body = trimExcessParagraphLinks(body, p.slug, postsBySlug);
+		body = fixAnchorsInBody(body, postsBySlug, p.slug);
 		if (body !== p.content) {
 			writePost(p.slug, p.raw, body);
 			stats.pillarLinks += 1;
@@ -485,6 +1041,89 @@ function main() {
 		logGraph('remediate', `orphan mesh round ${round + 1}: ${remaining} orphans`);
 		meshOrphans(posts, postsBySlug, inbound, stats, 1);
 	}
+
+	posts = loadAllPosts();
+	for (const p of posts) postsBySlug.set(p.slug, p);
+	for (const p of posts) {
+		let body = stripRemediationSpam(stripLegacyLeyonInjections(p.content));
+		body = injectPillarLink(body, p.slug, postsBySlug);
+		body = ensureMinimumParagraphLinks(body, p.slug, postsBySlug);
+		body = ensureContextualBlogLinks(body, p.slug, postsBySlug);
+		body = fixAnchorsInBody(body, postsBySlug, p.slug);
+		body = fixBrandedBlogAnchors(body, postsBySlug, p.slug);
+		body = trimExcessParagraphLinks(body, p.slug, postsBySlug);
+		body = reduceBlogLinksOverMax(body, p.slug, postsBySlug);
+		body = removeDuplicateParagraphHrefs(body);
+		body = dedupeBrandHomeAnchors(body);
+		body = dedupeDuplicateAnchors(body, postsBySlug, p.slug);
+		if (body !== p.content) writePost(p.slug, p.raw, body);
+	}
+
+	// Lateral cluster pass: inject same-category cluster links for any remaining gaps
+	posts = loadAllPosts();
+	for (const p of posts) postsBySlug.set(p.slug, p);
+	const { missingLateral } = auditLateralClusterLinks(posts);
+	logGraph('remediate', `lateral cluster gaps: ${missingLateral.length}`);
+	for (const slug of missingLateral) {
+		const p = postsBySlug.get(slug);
+		if (!p) continue;
+		let body = injectLateralClusterLink(p.content, slug, postsBySlug);
+		body = fixBrandedBlogAnchors(body, postsBySlug, slug);
+		body = fixAnchorsInBody(body, postsBySlug, slug);
+		body = trimExcessParagraphLinks(body, slug, postsBySlug);
+		if (body !== p.content) {
+			writePost(slug, p.raw, body);
+			stats.lateralLinks += 1;
+		}
+	}
+
+	// Stabilize: pillar gaps + zero-inbound (prefer donors with link budget)
+	posts = loadAllPosts();
+	for (const p of posts) postsBySlug.set(p.slug, p);
+	for (const p of posts) {
+		let body = injectPillarLink(p.content, p.slug, postsBySlug);
+		body = fixAnchorsInBody(body, postsBySlug, p.slug);
+		body = fixBrandedBlogAnchors(body, postsBySlug, p.slug);
+		if (body !== p.content) writePost(p.slug, p.raw, body);
+	}
+	posts = loadAllPosts();
+	({ inbound } = buildLinkGraph(posts));
+	for (const p of posts) postsBySlug.set(p.slug, p);
+	const zeroInbound = posts.filter((p) => (inbound.get(p.slug) ?? []).length === 0);
+	for (const orphan of zeroInbound) {
+		const donors = posts
+			.filter((p) => p.slug !== orphan.slug)
+			.map((p) => {
+				const links = extractParagraphMarkdownLinks(p.content);
+				const { total } = densityBoundsForBody(p.content);
+				return { p, slack: total.max - links.length };
+			})
+			.filter((d) => d.slack > 0)
+			.sort((a, b) => b.slack - a.slack);
+		for (const { p: donor } of donors) {
+			const fresh = postsBySlug.get(donor.slug);
+			if (!fresh) continue;
+			const next = injectOrphanLink(fresh.content, donor.slug, orphan.slug, postsBySlug, inbound);
+			if (next === fresh.content) continue;
+			writePost(donor.slug, fresh.raw, next);
+			stats.orphanLinks += 1;
+			fresh.content = next;
+			const rebuilt = buildLinkGraph(loadAllPosts()).inbound;
+			for (const [k, v] of rebuilt) inbound.set(k, v);
+			break;
+		}
+	}
+
+	posts = loadAllPosts();
+	let fmRepaired = 0;
+	for (const p of posts) {
+		const out = repairFrontmatterInternalLinks(p.slug, p.raw, p.content);
+		if (out !== fs.readFileSync(path.join(BLOG_DIR, `${p.slug}.mdx`), 'utf8')) {
+			fs.writeFileSync(path.join(BLOG_DIR, `${p.slug}.mdx`), out, 'utf8');
+			fmRepaired += 1;
+		}
+	}
+	stats.fmRepaired = fmRepaired;
 
 	logGraph('remediate', 'done', stats);
 	console.log(JSON.stringify(stats, null, 2));

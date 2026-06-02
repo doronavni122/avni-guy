@@ -18,10 +18,10 @@ export function Footer() {
 					<div className="flex flex-col gap-3 text-right md:items-end">
 						<p className="text-sm text-muted-foreground">&copy; {today.getFullYear()} גיא אבני. כל הזכויות שמורות.</p>
 						<div className="flex flex-wrap items-center justify-end gap-2">
-							<Link className={cn(buttonVariants({ variant: 'secondary', size: 'sm' }))} href="/contact">
+							<Link className={cn(buttonVariants({ variant: 'secondary', size: 'sm' }))} href="/contact/">
 								יצירת קשר
 							</Link>
-							<Link className={cn(buttonVariants({ variant: 'outline', size: 'sm' }))} href="/blog">
+							<Link className={cn(buttonVariants({ variant: 'outline', size: 'sm' }))} href="/blog/">
 								מאמרים
 							</Link>
 							<a

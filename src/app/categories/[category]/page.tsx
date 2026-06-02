@@ -5,6 +5,7 @@ import { Separator } from '@/components/ui/separator';
 import { SiteShell } from '@/components/layout/SiteShell';
 import { getCategories, getPostsIndex } from '@/lib/content/posts';
 import { buildPageMetadata } from '@/lib/metadata';
+import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
 import { buildBreadcrumbSchema } from '@/utils/structured-data';
 import { getCategoryHubIntro } from '@/lib/seo/category-hub-intros';
 import {
@@ -42,15 +43,17 @@ export default async function CategoryPage({ params }: PageProps) {
 	}
 	const categoryHe = getCategoryLabel(category);
 	const hubIntro = getCategoryHubIntro(category);
-	const jsonLd = buildBreadcrumbSchema([
+	const breadcrumbItems = [
 		{ name: 'דף הבית', path: '/' },
 		{ name: 'קטגוריות', path: '/categories' },
 		{ name: categoryHe, path: `/categories/${category}/` },
-	]);
+	];
+	const jsonLd = buildBreadcrumbSchema(breadcrumbItems);
 
 	return (
 		<SiteShell currentPath={`/categories/${category}/`} extraJsonLd={jsonLd}>
 			<section className="flex flex-col gap-10">
+				<BreadcrumbNav items={breadcrumbItems} />
 				<div className="flex flex-col gap-4 text-right">
 					<p className="text-sm font-medium text-primary">אבני גיא</p>
 					<h1 className="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">

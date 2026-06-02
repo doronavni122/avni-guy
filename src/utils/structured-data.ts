@@ -99,7 +99,9 @@ export const buildBlogPostingSchema = (input: BlogPostingSchemaInput) => ({
 	},
 });
 
-export const buildBreadcrumbSchema = (items: Array<{ name: string; path: string }>) => ({
+export type BreadcrumbItem = { name: string; path: string };
+
+export const buildBreadcrumbSchema = (items: BreadcrumbItem[]) => ({
 	'@context': 'https://schema.org',
 	'@type': 'BreadcrumbList',
 	itemListElement: items.map((item, index) => ({
