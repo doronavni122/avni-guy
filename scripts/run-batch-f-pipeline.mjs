@@ -20,9 +20,9 @@ import { getBatch2ResearchedArticle } from './lib/batch2-researched-articles.mjs
 import { getArticleContent } from './lib/batch2-research-sections.mjs';
 import { getArticleTier, getMinWordsForTier } from './lib/content-tiers.mjs';
 import { countWordsHe } from './lib/seo-hero-rules.mjs';
+import { assertResearchStudyReady, deleteResearchStudy } from './lib/research-study-io.mjs';
 
 const BLOG_DIR = path.join(process.cwd(), 'src/content/blog');
-const RESEARCH_DIR = path.join(process.cwd(), '.cursor/tmp/research');
 
 export const BATCH_F_SLUGS = [
 	'guy-avni-tabu-rights-registration',
@@ -92,20 +92,6 @@ function resolveContent(slug, existingTitle) {
 		};
 	}
 	return null;
-}
-
-function writeResearchFile(slug, researchMd) {
-	fs.mkdirSync(RESEARCH_DIR, { recursive: true });
-	fs.writeFileSync(path.join(RESEARCH_DIR, `${slug}.md`), researchMd, 'utf8');
-}
-
-function deleteResearchFile(slug) {
-	const filePath = path.join(RESEARCH_DIR, `${slug}.md`);
-	try {
-		if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
-	} catch (err) {
-		logErr('[content-enhancer-loop]', `research delete failed ${slug}`, err.message);
-	}
 }
 
 function padBodyToMinWords(body, slug, title, minWords) {
@@ -184,7 +170,8 @@ function enhanceSlug(slug) {
 		logErr('[content-enhancer-loop]', `no research content for ${slug}`);
 		return false;
 	}
-	writeResearchFile(slug, content.researchMd);
+	assertResearchStudyReady(slug);
+	logEnhancer(5, 'research audit ok', { slug });
 	const data = {
 		...parsed.data,
 		title: content.title,
@@ -204,7 +191,6 @@ function enhanceSlug(slug) {
 	}
 	const fm = serializeFrontmatter(data, imagesSection);
 	fs.writeFileSync(filePath, `${fm}\n\n${body}`, 'utf8');
-	deleteResearchFile(slug);
 	logEnhancer(11, 'done', { slug, words: countWordsHe(body), links: data.internalLinks.length });
 	logPipe(3, 'internal-links-loop embedded in body', { slug });
 	return true;
@@ -251,6 +237,7 @@ function processSlug(slug) {
 		logPipe('ERROR', `content audit ${slug}`, audit.errors.slice(0, 6));
 		return false;
 	}
+	deleteResearchStudy(slug, { contentAuditPassed: true });
 	markChecklists(rel, true);
 	logPipe(9, 'marked checklists', { slug });
 	return true;

@@ -17,9 +17,9 @@ import { runArticleContentChecks } from './lib/check-article-content.mjs';
 import { getKeywordStubBatchArticle } from './lib/keyword-stub-batch-articles.mjs';
 import { TOPUP_PARAGRAPHS_BY_SLUG } from './lib/keyword-stub-batch-topup.mjs';
 import { countWordsHe } from './lib/seo-hero-rules.mjs';
+import { assertResearchStudyReady, deleteResearchStudy } from './lib/research-study-io.mjs';
 
 const BLOG = path.join(process.cwd(), 'src/content/blog');
-const RESEARCH = path.join(process.cwd(), '.cursor/tmp/research');
 
 const SLUGS = [
 	'guy-avni-capital-gains-tax-second-apartment',
@@ -47,19 +47,6 @@ function stripStubPadding(body) {
 	return body.replace(/\n## [^\n]*השלכות מעשיות \(\d+\)[\s\S]*?(?=\n## |\nמקורות|$)/g, '\n');
 }
 
-function writeResearch(slug, researchMd) {
-	fs.mkdirSync(RESEARCH, { recursive: true });
-	fs.writeFileSync(path.join(RESEARCH, `${slug}.md`), researchMd, 'utf8');
-}
-
-function deleteResearch(slug) {
-	try {
-		fs.unlinkSync(path.join(RESEARCH, `${slug}.md`));
-	} catch {
-		/* ok */
-	}
-}
-
 function enhanceSlug(slug) {
 	log(2, `start ${slug}`);
 	const fp = path.join(BLOG, `${slug}.mdx`);
@@ -70,8 +57,8 @@ function enhanceSlug(slug) {
 	const spec = getKeywordStubBatchArticle(slug);
 	if (!spec) throw new Error(`no content spec ${slug}`);
 
-	writeResearch(slug, spec.researchMd);
-	log(5, `research written ${slug}`);
+	assertResearchStudyReady(slug);
+	log(5, `research audit ok ${slug}`);
 
 	let body = stripStubPadding(normalizeBodyHrefs(spec.body));
 	const topups = TOPUP_PARAGRAPHS_BY_SLUG[slug] ?? [];
@@ -103,7 +90,6 @@ function enhanceSlug(slug) {
 
 	const fm = serializeFrontmatter(data, images);
 	fs.writeFileSync(fp, `${fm}\n\n${body}\n`, 'utf8');
-	deleteResearch(slug);
 	log(6, `body merged ${slug}`, { words });
 	log(11, `done ${slug}`);
 	return true;
@@ -124,6 +110,7 @@ const audit = runArticleContentChecks({ slugFilter: SLUGS });
 for (const slug of SLUGS) {
 	const slugErrors = audit.errors.filter((e) => e.startsWith(`${slug}:`));
 	if (slugErrors.length === 0 && results[slug] === 'enhanced') {
+		deleteResearchStudy(slug, { contentAuditPassed: true });
 		results[slug] = 'PASS-checks';
 	} else if (slugErrors.length) {
 		results[slug] = `FAIL-checks: ${slugErrors.join('; ')}`;
