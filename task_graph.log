@@ -86,3 +86,4 @@
 82. update-capital-gains-exemption-mdx-material-change , src/content/blog/guy-avni-capital-gains-exemption-single-apartment-2026.mdx task_graph.log
 83. mark-remediation-program-pass1-batch-three-complete , config/remediation-program.json task_graph.log
 84. merge-main-into-pass1-batch-three , task_graph.log
+85. restrict-automation-pr-head-branch-filter , scripts/automation-prefill-article-remediation.json task_graph.log

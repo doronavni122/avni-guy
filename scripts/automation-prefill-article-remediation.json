@@ -7,7 +7,9 @@
         "git": {
           "pullRequest": {
             "opened": {},
-            "repos": ["doronavni122/avni-guy"]
+            "synchronize": {},
+            "repos": ["doronavni122/avni-guy"],
+            "headBranchPattern": "auto/remediation-*"
           }
         }
       }
