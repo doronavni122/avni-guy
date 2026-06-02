@@ -38,6 +38,7 @@ Hard requirements:
 | `REQUIRE_RESEARCH=1` | Preflight fails if study missing or invalid |
 | `RESEARCH_AUDIT_SLUGS` | Scoped research audit in verify / CI |
 | `RESEARCH_MIN_DURATION_SEC` | Optional override for tests only |
+| `config/remediation-program.json` | Cap (default 20), pause, `completedSlugs`; resume by editing file |
 | `CONTENT_AUDIT_ENFORCE=1` | CI article audit via seo:guardrails |
 | `CONTENT_LINKS_STRICT=1` | Anchor, section, cannibalization, first-100w keyword |
 | `CONTENT_STRICT=1` | Full 2026 rules (LSI, FAQ, TL;DR, metaDesc max 155, etc.) |

@@ -5,6 +5,12 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { runArticleContentChecks } from './check-article-content.mjs';
 import { checkResearchStudyFile } from './check-research-study.mjs';
+import {
+    effectiveBatchSize,
+    filterPendingForProgram,
+    isProgramActive,
+    loadProgram,
+} from './remediation-program.mjs';
 import { RESEARCH_DIR } from './research-study-rules.mjs';
 
 const BLOG_DIR = path.join(process.cwd(), 'src/content/blog');
@@ -62,10 +68,17 @@ export function listPass1RemediationSlugs() {
 	return pending;
 }
 
-/** Pick first N slugs (stable sort by slug). */
+/** Pick first N slugs (stable sort by slug), respecting remediation program cap. */
 export function pickPass1Batch(batchSize) {
-	const pending = listPass1RemediationSlugs();
-	const n = Math.max(1, Math.min(batchSize, pending.length));
+	const program = loadProgram();
+	if (!isProgramActive(program)) {
+		return [];
+	}
+	const pending = filterPendingForProgram(listPass1RemediationSlugs(), program);
+	const n = effectiveBatchSize(batchSize, program);
+	if (n === 0 || pending.length === 0) {
+		return [];
+	}
 	return pending.slice(0, n).map((p) => p.slug);
 }
 

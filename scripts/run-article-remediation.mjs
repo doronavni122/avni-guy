@@ -3,14 +3,21 @@
  * Pass 1/2 orchestration for article remediation (LLM steps are manual/agent).
  * Log: [article-remediation]
  */
+import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
-import { spawnSync } from 'node:child_process';
 import {
-	listPass1RemediationSlugs,
-	pickPass1Batch,
-	researchDirPath,
+    listPass1RemediationSlugs,
+    pickPass1Batch,
+    researchDirPath,
 } from './lib/list-remediation-queue.mjs';
+import {
+    getProgramStatus,
+    isProgramActive,
+    loadProgram,
+    markSlugCompleted,
+    remainingSlots,
+} from './lib/remediation-program.mjs';
 import { researchStudyExists } from './lib/research-study-io.mjs';
 import { RESEARCH_DIR } from './lib/research-study-rules.mjs';
 
@@ -30,17 +37,22 @@ function parseArgs(argv) {
 	const positional = argv.filter((a) => !a.startsWith('--'));
 	const pickFailuresEq = argv.find((a) => a.startsWith('--pick-failures='));
 	const pickFailuresFlag = flags.has('--pick-failures') || Boolean(pickFailuresEq);
+	const markCompleteEq = argv.find((a) => a.startsWith('--mark-complete='));
 	const pass = argv.find((a) => a.startsWith('--pass='));
 	const batchFromArg = pickFailuresEq ? Number(pickFailuresEq.split('=')[1]) : NaN;
+	const program = loadProgram();
+	const defaultBatch = program.batchSize;
 	const batchSize = Number.isFinite(batchFromArg)
 		? batchFromArg
-		: Number(process.env.REMEDIATION_BATCH_SIZE ?? 5);
+		: Number(process.env.REMEDIATION_BATCH_SIZE ?? defaultBatch);
 	return {
 		scaffold: flags.has('--scaffold'),
 		verify: flags.has('--verify'),
 		emitQueue: flags.has('--emit-queue'),
 		printSteps: flags.has('--print-steps'),
 		listPending: flags.has('--list-pending'),
+		programStatus: flags.has('--program-status'),
+		markComplete: markCompleteEq?.split('=')[1]?.trim() ?? null,
 		pickFailures: pickFailuresFlag,
 		pass2: flags.has('--pass2') || pass?.split('=')[1] === '2',
 		pass1: flags.has('--pass1') || pass?.split('=')[1] === '1' || (!flags.has('--pass2') && !pass),
@@ -64,12 +76,27 @@ function runPnpm(script, env = {}) {
 	return r.status ?? 1;
 }
 
+function ensureProgramActiveForBatch() {
+	if (isProgramActive()) return true;
+	const status = getProgramStatus();
+	log(0, 'remediation program complete or paused; no batch', status);
+	return false;
+}
+
 function resolveSlugs(opts) {
 	if (opts.slugs.length) return opts.slugs;
 	if (opts.pickFailures || opts.emitQueue || opts.scaffold) {
+		if (!ensureProgramActiveForBatch()) {
+			return [];
+		}
 		const pending = listPass1RemediationSlugs();
 		log(0, 'pending Pass 1 slugs', { count: pending.length });
-		return pickPass1Batch(opts.batchSize);
+		const slugs = pickPass1Batch(opts.batchSize);
+		log(0, 'program slots', {
+			remaining: remainingSlots(),
+			batch: slugs.length,
+		});
+		return slugs;
 	}
 	logErr(0, 'no slugs (argv, PIPELINE_SLUGS, or --pick-failures=N)');
 	process.exit(1);
@@ -110,6 +137,7 @@ function printAgentSteps(slugs, passLabel) {
 function writeQueueFile(slugs) {
 	fs.mkdirSync(path.dirname(QUEUE_PATH), { recursive: true });
 	const pending = listPass1RemediationSlugs();
+	const programStatus = getProgramStatus();
 	const payload = {
 		createdAt: new Date().toISOString(),
 		pass: 1,
@@ -117,6 +145,11 @@ function writeQueueFile(slugs) {
 		pendingTotal: pending.length,
 		researchDir: RESEARCH_DIR,
 		pipelineSlugs: slugs.join(','),
+		program: {
+			completedCount: programStatus.completedCount,
+			maxArticles: programStatus.maxArticles,
+			remaining: programStatus.remaining,
+		},
 		agentNote:
 			'Complete article-research-loop and content-enhancer for batch slugs; commit content-research/*.md and src/content/blog/*.mdx',
 	};
@@ -124,7 +157,7 @@ function writeQueueFile(slugs) {
 	log(3, 'wrote remediation batch queue', { path: QUEUE_PATH, slugs });
 }
 
-function verifyPass1(slugs) {
+function verifyPass1(slugs, { updateProgram = false } = {}) {
 	let failed = 0;
 	for (const slug of slugs) {
 		log(4, 'research:audit', { slug });
@@ -139,9 +172,19 @@ function verifyPass1(slugs) {
 		if (c !== 0) {
 			failed++;
 			logErr(5, 'content audit failed', { slug });
+			continue;
+		}
+		if (updateProgram) {
+			const { added } = markSlugCompleted(slug);
+			log(5, 'program mark complete', { slug, added });
 		}
 	}
 	return failed === 0 ? 0 : 1;
+}
+
+function printProgramStatus() {
+	const s = getProgramStatus();
+	console.log(JSON.stringify(s, null, 2));
 }
 
 function runPass2() {
@@ -163,12 +206,31 @@ function main() {
 	const opts = parseArgs(process.argv.slice(2));
 	fs.mkdirSync(researchDirPath(), { recursive: true });
 
+	if (opts.programStatus) {
+		printProgramStatus();
+		process.exit(0);
+	}
+
+	if (opts.markComplete) {
+		const { added, program } = markSlugCompleted(opts.markComplete);
+		log(0, 'mark-complete', {
+			slug: opts.markComplete,
+			added,
+			completed: `${program.completedSlugs.length}/${program.maxArticles}`,
+		});
+		process.exit(0);
+	}
+
 	if (opts.listPending) {
 		const pending = listPass1RemediationSlugs();
+		const status = getProgramStatus();
 		for (const p of pending) {
 			console.log(`${p.slug}\tresearch=${p.researchOk}\tcontent=${p.contentOk}\t${p.reasons.join(';')}`);
 		}
 		console.error(`[article-remediation] pending count: ${pending.length}`);
+		console.error(
+			`[article-remediation] program: ${status.completedCount}/${status.maxArticles} completed, active=${status.active}`,
+		);
 		process.exit(0);
 	}
 
@@ -185,6 +247,11 @@ function main() {
 	const slugs = resolveSlugs(opts);
 	log(0, 'batch slugs', { count: slugs.length, slugs });
 
+	if (slugs.length === 0) {
+		log(0, 'no slugs to process (program cap or no pending)');
+		process.exit(0);
+	}
+
 	if (opts.scaffold) {
 		for (const slug of slugs) {
 			const code = scaffoldSlug(slug);
@@ -197,7 +264,7 @@ function main() {
 	if (opts.printSteps) printAgentSteps(slugs, 'Pass 1');
 
 	if (opts.verify) {
-		const code = verifyPass1(slugs);
+		const code = verifyPass1(slugs, { updateProgram: true });
 		process.exit(code);
 	}
 
