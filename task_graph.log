@@ -30,3 +30,4 @@
 29. internal-links-breadcrumbs-template-ui-scope06-07 , src/components/navigation/BreadcrumbNav.tsx src/app src/components/Footer.tsx src/components/blog/RelatedArticles.tsx src/components/layout/BlogPostLayout.tsx src/utils/structured-data.ts task_graph.log
 30. wire-research-study-gates-batch-pipelines , scripts/run-batch10-content-pipeline.mjs scripts/run-batch10-keyword-pipeline.mjs scripts/run-batch11-keyword-pipeline.mjs scripts/run-batch2-content-enhancer.mjs scripts/run-batch2-researched-enhancer.mjs task_graph.log
 31. relax-internal-links-fm-schema-remediate , src/lib/content/schema.ts scripts/remediate-internal-links-batch.mjs task_graph.log
+32. sync-blog-internal-links-density-remediate , src/content/blog task_graph.log
