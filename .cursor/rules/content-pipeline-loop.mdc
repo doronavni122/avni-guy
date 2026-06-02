@@ -9,9 +9,9 @@ Use when remediating one or more blog articles. Run steps in order; do not skip.
 
 1. Ensure `temp_articles_checklist.txt` exists (one `- [ ] src/content/blog/<slug>.mdx` per article).
 2. **Keywords assignment** — follow `content-keywords-assignment-loop.mdc` (`mainKeyword`, 4-6 `secondaryKeywords`, `contentType`).
-3. **Research** — `.cursor/tmp/research/<slug>.md`; delete after body merge.
+3. **Research** — `pnpm run research:scaffold -- <slug>` (if missing) → `article-research-loop.mdc` (fetch, ≥2000w study, set `research_completed_at`) → `pnpm run research:audit -- <slug>`; delete study only after scoped `content:audit` passes.
 4. **Content type** — confirm `pillar` vs `cluster` matches `getArticleTier(slug)`.
-5. **Content enhancer** — follow `content-enhancer-loop.mdc` (26-rule checklist, keywords before prose).
+5. **Content enhancer** — follow `content-enhancer-loop.mdc` (26-rule checklist, keywords before prose; research audit must pass first).
 6. **E-E-A-T structure** — follow `content-eeat-structure-loop.mdc` (TL;DR, FAQ, stats, CTA, external sources).
 7. **Pillar-cluster links** — follow `internal-links-pillar-cluster-loop.mdc`.
 8. **Internal links** — follow `internal-links-loop.mdc` (10 paragraph links; 3-5 topical blog + hubs).
@@ -26,13 +26,17 @@ Use when remediating one or more blog articles. Run steps in order; do not skip.
 17. Mark article `[x]` in all checklists when steps 2-16 pass for that slug.
 
 Hard requirements:
-- Research files only under `.cursor/tmp/research/<slug>.md`; delete after merge.
+- Research files only under `.cursor/tmp/research/<slug>.md`; delete only after dual audit (research + content).
+- Scoped pipeline runs set `REQUIRE_RESEARCH=1` automatically (`scripts/run-content-pipeline.mjs`).
 - Preserve frontmatter schema in `src/lib/content/schema.ts`; new fields optional for legacy posts.
 - Log each step: `[content-pipeline-loop] step N: ...` or `[content-pipeline-loop] ERROR ...`.
 
 ## Env flags
 | Flag | Effect |
 |------|--------|
+| `REQUIRE_RESEARCH=1` | Preflight fails if study missing or invalid |
+| `RESEARCH_AUDIT_SLUGS` | Scoped research audit in verify / CI |
+| `RESEARCH_MIN_DURATION_SEC` | Optional override for tests only |
 | `CONTENT_AUDIT_ENFORCE=1` | CI article audit via seo:guardrails |
 | `CONTENT_LINKS_STRICT=1` | Anchor, section, cannibalization, first-100w keyword |
 | `CONTENT_STRICT=1` | Full 2026 rules (LSI, FAQ, TL;DR, metaDesc max 155, etc.) |

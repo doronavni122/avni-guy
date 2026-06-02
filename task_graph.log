@@ -25,3 +25,4 @@
 25. add-research-scaffold-and-preflight , scripts/scaffold-research-study.mjs scripts/run-research-preflight.mjs task_graph.log
 26. internal-links-density-anchor-ssot-scope01 , SSOT.md scripts/lib/internal-link-graph.mjs scripts/lib/check-article-content.mjs .cursor/rules/internal-links-loop.mdc task_graph.log
 27. internal-links-ci-gates-scope02 , .github/workflows/ci.yml scripts/verify-content.mjs task_graph.log
+26. update-research-study-loop-agents , .cursor/rules/article-research-loop.mdc .cursor/rules/content-enhancer-loop.mdc .cursor/rules/content-pipeline-loop.mdc .cursor/rules/content-keywords-assignment-loop.mdc .cursor/rules/post-pipeline-verify-loop.mdc .cursor/rules/monthly-content-prune-loop.mdc .cursor/agents/article-research-loop.md .cursor/agents/content-enhancer-loop.md .cursor/skills/article-research-loop/SKILL.md .cursor/skills/content-enhancer-loop/SKILL.md AGENTS.md task_graph.log

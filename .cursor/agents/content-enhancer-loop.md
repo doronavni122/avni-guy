@@ -5,6 +5,8 @@ description: Processes blog MDX through research-and-rewrite with content:audit 
 
 Specialized subagent for `src/content/blog/*.mdx` on Next.js.
 
+**Prerequisite:** run `article-research-loop` agent first; `pnpm run research:audit -- <slug>` must pass before body merge.
+
 Follow `.cursor/rules/content-enhancer-loop.mdc` and master `content-pipeline-loop.mdc`.
 
 Schema: `src/lib/content/schema.ts` (not Astro `content.config.ts`).

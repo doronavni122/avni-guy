@@ -10,7 +10,7 @@ Run on a schedule (monthly or quarterly), not per article.
 1. `pnpm run content:audit` (full corpus) — collect word-count and near-duplicate failures.
 2. `LINKS_AUDIT_ENFORCE=1 pnpm run links:audit` — list orphan slugs and overlinked hubs.
 3. Flag stubs: body contains `-unique-`, placeholder image descriptions, or jaccard ≥0.42 vs non-stub corpus.
-4. Prioritize `KEYWORD_STUB_SLUGS` with lowest word count; run `content-enhancer-loop` + research, not `fix-content-audit-failures` padding.
+4. Prioritize `KEYWORD_STUB_SLUGS` with lowest word count; run `research:scaffold` → `article-research-loop` → `research:audit`, then `content-enhancer-loop` (not stub research or padding scripts).
 5. Merge or noindex only with explicit product decision (out of scope for automated scripts).
 6. Log: `[monthly-content-prune-loop] step N` or `ERROR`.
 

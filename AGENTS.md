@@ -16,7 +16,7 @@
 - Schema: `src/lib/content/schema.ts` (ported from former Astro collection).
 - Frontmatter must include SEO fields (title, description, metaTitle, metaDescription, mainKeyword).
 - Use consistent heading hierarchy (`H1` from title, then `H2`/`H3` in body).
-- Include meaningful internal links to site pages, tags, categories, and related articles. Loops: `.cursor/rules/internal-links-loop.mdc`, `internal-links-pillar-cluster-loop.mdc`, `homepage-brand-internal-links-loop.mdc`; audits: `pnpm run links:audit`, `pnpm run content:audit` (optional `LINKS_AUDIT_ENFORCE=1`, `CONTENT_LINKS_STRICT=1`).
+- Loops: `.cursor/rules/internal-links-loop.mdc`, `internal-links-pillar-cluster-loop.mdc`, `homepage-brand-internal-links-loop.mdc`, `article-research-loop.mdc`; research gates: `pnpm run research:scaffold`, `pnpm run research:audit` (SSOT: `scripts/lib/research-study-rules.mjs`); audits: `pnpm run links:audit`, `pnpm run content:audit` (optional `LINKS_AUDIT_ENFORCE=1`, `CONTENT_LINKS_STRICT=1`).
 
 ## SEO Rules
 - Always provide unique meta title and meta description per page (`buildPageMetadata` in `src/lib/metadata.ts`).

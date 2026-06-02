@@ -21,7 +21,7 @@ Keywords list first, then full content. Do not draft prose until steps 1-4 are c
    - `cluster` for all other posts (including `contract` tier slugs)
 5. Optional **`geoKeywords`**: only when page genuinely targets a location (Rule 14). Never invent fake geo.
 6. Map secondary terms to planned H2 sections and 3-5 topical `/blog/*` link targets.
-7. Lock keyword map in checklist comment or research file header before writing.
+7. Lock keyword map in research file frontmatter (`main_keyword`) before writing the study body.
 8. Log: `[content-keywords-assignment-loop] step N` or `ERROR`.
 
 ## Audit (when `CONTENT_STRICT=1`)
