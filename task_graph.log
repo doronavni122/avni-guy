@@ -23,3 +23,4 @@
 23. content-pipeline-cursor-tmp-bodies , .cursor/tmp task_graph.log
 24. add-research-study-validator-ssot , scripts/lib/research-study-rules.mjs scripts/lib/check-research-study.mjs scripts/lib/research-study-io.mjs scripts/audit-research-study.mjs package.json .gitignore task_graph.log
 25. add-research-scaffold-and-preflight , scripts/scaffold-research-study.mjs scripts/run-research-preflight.mjs task_graph.log
+26. internal-links-density-anchor-ssot-scope01 , SSOT.md scripts/lib/internal-link-graph.mjs scripts/lib/check-article-content.mjs .cursor/rules/internal-links-loop.mdc task_graph.log
