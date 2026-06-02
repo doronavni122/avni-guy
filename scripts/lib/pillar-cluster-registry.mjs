@@ -76,7 +76,7 @@ export function spokesForCategory(category) {
 	return pillarsForCategory(category);
 }
 
-/** Conversion and cornerstone hub paths — equity bias in remediate scoring (Scope 09). */
+/** Conversion and cornerstone hub paths - equity bias in remediate scoring (Scope 09). */
 export const CONVERSION_CORNERSTONE_HREFS = ['/', '/contact/', '/services/', '/about/'];
 
 /**

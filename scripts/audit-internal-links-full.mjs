@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Full internal links audit — 61 rules with PASS/FAIL/MANUAL output (Scope 10).
+ * Full internal links audit - 61 rules with PASS/FAIL/MANUAL output (Scope 10).
  * Run: pnpm run links:audit:full
  * Env: LINKS_AUDIT_ENFORCE=1, CONTENT_LINKS_STRICT=1, CONTENT_STRICT=1 (affects rule strictness)
  */

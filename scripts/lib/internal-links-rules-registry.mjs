@@ -1,5 +1,5 @@
 /**
- * Internal links program — 61-rule audit matrix (Scope 10).
+ * Internal links program - 61-rule audit matrix (Scope 10).
  * Each rule returns PASS | FAIL | MANUAL with reason.
  */
 import {
