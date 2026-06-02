@@ -7,9 +7,9 @@ on:
   workflow_dispatch:
     inputs:
       batch_size:
-        description: Number of slugs to scaffold per run
+        description: Override batch size (default from remediation-program.json)
         required: false
-        default: '5'
+        default: ''
 
 permissions:
   contents: write
@@ -36,17 +36,32 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Pick failing slugs and scaffold research
+      - name: Guard remediation program cap
+        id: program
         env:
-          REMEDIATION_BATCH_SIZE: ${{ github.event.inputs.batch_size || '5' }}
+          REMEDIATION_BATCH_OVERRIDE: ${{ github.event.inputs.batch_size }}
+        run: node scripts/emit-remediation-program-gha.mjs
+
+      - name: Skip when program inactive or cap reached
+        if: steps.program.outputs.active != 'true' || steps.program.outputs.batch_size == '0'
+        run: |
+          echo "Remediation program complete or paused; skipping scaffold PR."
+          echo "Completed: ${{ steps.program.outputs.completed }}/${{ steps.program.outputs.max }}"
+
+      - name: Pick failing slugs and scaffold research
+        if: steps.program.outputs.active == 'true' && steps.program.outputs.batch_size != '0'
+        env:
+          REMEDIATION_BATCH_SIZE: ${{ steps.program.outputs.batch_size }}
         run: |
           node scripts/run-article-remediation.mjs --pick-failures="${REMEDIATION_BATCH_SIZE}" --scaffold --emit-queue --print-steps
 
       - name: List pending count
+        if: steps.program.outputs.active == 'true' && steps.program.outputs.batch_size != '0'
         run: node scripts/run-article-remediation.mjs --list-pending | tail -1
 
       - name: Create remediation PR branch
         id: branch
+        if: steps.program.outputs.active == 'true' && steps.program.outputs.batch_size != '0'
         run: |
           BRANCH="auto/remediation-$(date -u +%Y%m%d-%H%M)"
           echo "name=$BRANCH" >> "$GITHUB_OUTPUT"
@@ -67,23 +82,33 @@ jobs:
         if: steps.branch.outputs.no_changes != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
+          PIPELINE_SLUGS: ''
         run: |
-          BODY="$(cat <<'EOF'
-## Automated Pass 1 batch (scaffold only)
+          SLUGS=$(node --input-type=module -e "import fs from 'node:fs'; const q=JSON.parse(fs.readFileSync('config/remediation-batch.json','utf8')); console.log(q.pipelineSlugs||'');")
+          COMPLETED="${{ steps.program.outputs.completed }}"
+          MAX="${{ steps.program.outputs.max }}"
+          BODY="$(cat <<EOF
+## Automated Pass 1 batch (scaffold)
 
-Research scaffolds were added under `content-research/` for the next failing slugs.
-`config/remediation-batch.json` lists `PIPELINE_SLUGS` for this batch.
+Research scaffolds under \`content-research/\`. Program progress: **${COMPLETED}/${MAX}** completed.
 
-### Agent / Cursor steps (Pass 1)
-1. Complete `article-research-loop.mdc` for each slug (≥2000w study, ≥5 min, commit `content-research/<slug>.md`).
-2. Run `pnpm run research:audit -- <slug>` per slug.
-3. Run `content-enhancer-loop` + E-E-A-T + internal links + brand link; commit MDX.
-4. `CONTENT_AUDIT_SLUGS=<slug> pnpm run content:audit` per slug.
-5. When the whole batch passes Pass 1, run Pass 2 on `main`: `pnpm run run-article-remediation.mjs --pass2 --verify`.
+\`PIPELINE_SLUGS=${SLUGS}\`
 
-Studies stay in git (`content-research/`); do not delete unless `RESEARCH_ALLOW_DELETE=1`.
+\`config/remediation-batch.json\` lists batch slugs. Cursor Automation should run Pass 1 and merge when audits pass.
+
+### Pass 1 (Cursor Automation / agent)
+1. \`article-research-loop.mdc\`: complete study (≥2000w, ≥5 min), commit \`content-research/<slug>.md\`
+2. \`pnpm run research:audit -- <slug>\`
+3. \`content-enhancer-loop.mdc\` + E-E-A-T + internal links + brand link
+4. \`CONTENT_AUDIT_SLUGS=<slug> pnpm run content:audit\`
+5. Update \`config/remediation-program.json\` \`completedSlugs\` for each passing slug
+6. Merge PR when all batch slugs pass
+
+Studies stay in \`content-research/\`; do not delete unless \`RESEARCH_ALLOW_DELETE=1\`.
 EOF
 )"
           gh pr create --base main --head "${{ steps.branch.outputs.name }}" \
-            --title "auto: remediation batch scaffolds" \
+            --title "auto: remediation batch (${COMPLETED}/${MAX})" \
             --body "$BODY"
+          PR_URL=$(gh pr view --head "${{ steps.branch.outputs.name }}" --json url -q .url)
+          gh pr edit "$PR_URL" --add-label "remediation-batch" 2>/dev/null || true
