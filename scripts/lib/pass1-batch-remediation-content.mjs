@@ -15,14 +15,16 @@ const AUTH_MATRIX = `| URL | host | date accessed | extracted claim |
 
 const LSI_BLOCK = (terms) => terms.map((t) => `- ${t}`).join('\n');
 
-function padResearchHebrew(body, minWords = 2050) {
-	const pad =
-		'סקירה משפטית ומיסויית בישראל ב-2025-2026 מחייבת בדיקת מקורות רשמיים, תאריכים מדויקים ותיעוד החלטות לפני פעולה. ';
-	let out = body;
-	while (countWordsHe(out) < minWords) {
-		out += pad;
+function assertMinWordsHe(label, text, minWords) {
+	const n = countWordsHe(text);
+	if (n < minWords) {
+		const err = new Error(
+			`[pass1-batch-content] ERROR ${label}: ${n} Hebrew words < ${minWords} (no sentence padding allowed)`,
+		);
+		console.error(err.message);
+		throw err;
 	}
-	return out;
+	return text;
 }
 
 const EXTERNAL_BLOCK =
@@ -52,15 +54,9 @@ export function buildCompactBody(spec) {
 		`\nלסיכום בנושא ${slugTag}, מומלץ לבדוק מסמכים ולתאם ייעוץ לפני החתימה. ${kw} מפרסם מדריכים נוספים ב[גיא אבני עורך דין](/).\n`,
 	);
 	parts.push(EXTERNAL_BLOCK);
-	let body = parts.join('');
-	let n = 0;
-	const paras = spec.uniqueParagraphs;
-	while (countWordsHe(body) < 1000 && n < 40) {
-		const p = paras[n % paras.length];
-		body += `\n\n## פירוט נוסף (${slugTag}) - ${n + 1}\n\n${p}\n`;
-		n += 1;
-	}
-	return body.trim() + '\n';
+	const body = parts.join('').trim() + '\n';
+	assertMinWordsHe(`buildCompactBody:${spec.slug}`, body, 800);
+	return body;
 }
 
 function researchTimestamps() {
@@ -122,7 +118,7 @@ ${spec.outline}
 - 2026-06-02T10:03:00Z fetched justice.gov.il legal info
 - 2026-06-02T10:05:20Z synthesized Hebrew study notes
 `;
-	return padResearchHebrew(core);
+	return assertMinWordsHe(`buildResearchStudy:${spec.slug}`, core, 2000);
 }
 
 export const RESEARCH_SPECS = {
