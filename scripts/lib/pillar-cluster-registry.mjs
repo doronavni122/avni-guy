@@ -63,6 +63,7 @@ export function primaryPillarForCategory(category, seed = '') {
 	const list = pillarsForCategory(category);
 	if (!list.length) return null;
 	if (!seed) return list[0];
+	if (list.includes(seed)) return seed;
 	let h = 0;
 	for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) >>> 0;
 	return list[h % list.length];
