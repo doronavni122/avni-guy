@@ -86,3 +86,11 @@
 82. update-capital-gains-exemption-mdx-material-change , src/content/blog/guy-avni-capital-gains-exemption-single-apartment-2026.mdx task_graph.log
 83. mark-remediation-program-pass1-batch-three-complete , config/remediation-program.json task_graph.log
 84. merge-main-into-pass1-batch-three , task_graph.log
+85. merge-main-into-pass1-pr-15 , public/llms-full.txt src/content/blog/guy-avni-additional-tax-who-pays.mdx src/content/blog/guy-avni-apartment-buyer-required-documents.mdx src/content/blog/guy-avni-appraisal-required-mortgage.mdx src/content/blog/guy-avni-bank-financing-private-home-construction.mdx src/content/blog/guy-avni-betterment-levy-land-plot-when.mdx src/content/blog/guy-avni-bounced-check-enforcement-stop-seven-days.mdx src/content/blog/guy-avni-building-committee-legal-duties.mdx src/content/blog/guy-avni-building-permit-shorten-lawyer-five-months.mdx task_graph.log
+86. primary-pillar-when-seed-in-category-list , scripts/lib/pillar-cluster-registry.mjs task_graph.log
+87. extend-pass1-batch5-remediation-batch-specs , scripts/pass1-remediation-batch.mjs task_graph.log
+88. remediate-pass1-guy-avni-business-partnership-types-israel-protection , content-research/guy-avni-business-partnership-types-israel-protection.md src/content/blog/guy-avni-business-partnership-types-israel-protection.mdx task_graph.log
+89. remediate-pass1-guy-avni-buying-from-contractor-checklist , content-research/guy-avni-buying-from-contractor-checklist.md src/content/blog/guy-avni-buying-from-contractor-checklist.mdx task_graph.log
+90. remediate-pass1-guy-avni-cancel-apartment-purchase-contract , content-research/guy-avni-cancel-apartment-purchase-contract.md src/content/blog/guy-avni-cancel-apartment-purchase-contract.mdx task_graph.log
+91. remediate-pass1-guy-avni-cancel-signed-contract-israel-fourteen-days , content-research/guy-avni-cancel-signed-contract-israel-fourteen-days.md src/content/blog/guy-avni-cancel-signed-contract-israel-fourteen-days.mdx task_graph.log
+92. remediate-pass1-guy-avni-capital-gains-exemption-single-apartment-2026 , content-research/guy-avni-capital-gains-exemption-single-apartment-2026.md src/content/blog/guy-avni-capital-gains-exemption-single-apartment-2026.mdx task_graph.log
