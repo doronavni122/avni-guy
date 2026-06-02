@@ -17,7 +17,7 @@ import {
 	serializeFrontmatter,
 	stripForbiddenTitle,
 } from './lib/article-body-kit.mjs';
-import { primaryPillarForCategory } from './lib/pillar-cluster-registry.mjs';
+import { pillarsForCategory, primaryPillarForCategory } from './lib/pillar-cluster-registry.mjs';
 import { checkResearchStudy } from './lib/check-research-study.mjs';
 import { countWordsHe } from './lib/seo-hero-rules.mjs';
 import { RESEARCH_YMYL_FRAMEWORK_SECTION } from './lib/research-study-rules.mjs';
@@ -128,15 +128,18 @@ ${lsiBlock}
 /** Lean body: 800+ words, 4-6 spaced internal links, pillar + brand. */
 function buildLeanBody(entry) {
 	const kw = entry.mainKeyword;
-	const pillar = primaryPillarForCategory(entry.category, entry.slug);
-	const blogB = entry.relatedBlogSlugs[1] ?? entry.relatedBlogSlugs[0];
-	const blogC = entry.relatedBlogSlugs[2] ?? entry.relatedBlogSlugs[0];
-	let blogD = entry.relatedBlogSlugs[3] ?? entry.relatedBlogSlugs[0];
-	if (blogD === pillar || blogD === blogB || blogD === blogC) {
-		blogD =
-			entry.relatedBlogSlugs.find((s) => s !== pillar && s !== blogB && s !== blogC) ??
-			entry.relatedBlogSlugs[0];
+	let pillar = primaryPillarForCategory(entry.category, entry.slug);
+	if (!pillar) {
+		pillar = entry.relatedBlogSlugs[0];
 	}
+	if (pillar === entry.slug) {
+		const alt = pillarsForCategory(entry.category).filter((s) => s !== entry.slug);
+		pillar = alt[0] ?? entry.relatedBlogSlugs[0];
+	}
+	const blogSlugs = entry.relatedBlogSlugs.filter((s) => s !== pillar);
+	const blogB = blogSlugs[0] ?? entry.relatedBlogSlugs[0];
+	const blogC = blogSlugs[1] ?? blogB;
+	const blogD = blogSlugs[2] ?? blogC;
 	const pillarHref = pillar ? `/blog/${pillar}/` : `/blog/${entry.relatedBlogSlugs[0]}/`;
 	const blogBHref = `/blog/${blogB}/`;
 	const blogCHref = `/blog/${blogC}/`;
@@ -161,7 +164,7 @@ function buildLeanBody(entry) {
 	}
 	parts.push(
 		`## לסיכום`,
-		`${entry.tldr} לפני שמחליטים, כדאי לתאם [יצירת קשר](/contact/) ולבדוק את המסמכים הספציפיים שלכם. ` +
+		`${entry.tldr} לפני שמחליטים, כדאי לתאם ייעוץ ולבדוק את המסמכים הספציפיים שלכם. ` +
 			`כשיש ספק לגבי חבות, מועד תשלום או רישום בטאבו, עדיף לבדוק מוקדם מאשר לתקן אחרי עסקה.`,
 		buildFaqSection(entry.faq).trim(),
 		`מקורות רשמיים: [רשות המיסים](https://www.gov.il/he/departments/israel_tax_authority/govil-landing-page) ו-[לשכת עורכי הדין](https://www.israelbar.org.il/).`,
@@ -170,7 +173,7 @@ function buildLeanBody(entry) {
 	let body = normalizeBodyHrefs(parts.join('\n\n'));
 	let n = 0;
 	const uniqueChunks = entry.uniqueProse ?? [];
-	while (countWordsHe(body) < 1250 && n < 40) {
+	while (countWordsHe(body) < 1100 && n < 40) {
 		const chunk = uniqueChunks[n % uniqueChunks.length];
 		if (chunk) {
 			body += `\n\n${chunk}`;
@@ -524,6 +527,245 @@ const BATCH_SPECS = [
 		uniqueProse: [
 			'## היטל השבחה לפני רכישת מגרש\n\nלפני רכישת מגרש בודקים בחוזה ובעירייה האם קיימת חבות היטל במימוש, בהיתר או במכירה. שיעור מרבי 50% מהשבח לפי חוק, אך החישוב תלוי בתכנית ובשמאות.',
 			'## מימוש בהיתר לעומת מכירה\n\nמימוש זכויות בעת הוצאת היתר בנייה יכול ליצור חבות גם לפני בנייה בפועל. במכירה לצד שלישי החבות לרוב מוסדרת לפני רישום בטאבו.',
+		],
+	},
+	{
+		slug: 'guy-avni-business-partnership-types-israel-protection',
+		title: 'ישנם 4 סוגי שיתוף עסקי בישראל, איזה מהם מגן עליך כשהשותף תובע?',
+		description:
+			'ארבעה מבני שיתוף עסקי בישראל: שותפות, חברה בע"מ, עוסק מורשה והבדלי אחריות. איך להגן מפני תביעת שותף בהסכם מוקדם.',
+		metaTitle: 'גיא אבני משרד עורכי דין | סוגי שיתוף עסקי בישראל',
+		metaDescription:
+			'4 סוגי שיתוף עסקי בישראל: אחריות, רישום והגנה מפני תביעת שותף. גיא אבני משרד עורכי דין מסביר מה לבחור לפני פתיחת עסק משותף.',
+		mainKeyword: 'גיא אבני משרד עורכי דין',
+		category: 'business',
+		tags: ['partnership', 'business', 'litigation'],
+		relatedBlogSlugs: [
+			'guy-avni-business-partnership-bad-endings',
+			'guy-avni-companies-registry-phone-call-four-questions',
+			'guy-avni-client-onboarding-framework',
+			'guy-avni-business-legal-habits',
+		],
+		firstH2: 'ארבעה מבנים עיקריים לשיתוף עסקי בישראל',
+		topicLexicon: ['שותפות רשומה', 'חברה בע"מ', 'הסכם שותפים', 'אחריות אישית', 'קניית חלק', 'בוררות'],
+		sectionBlueprints: [
+			{ heading: 'שותפות לעומת חברה', focus: 'אחריות אישית מול הגבלה' },
+			{ heading: 'הסכם שותפים בכתב', focus: 'סמכויות, כסף ויציאה' },
+			{ heading: 'הגנה כששותף תובע', focus: 'בוררות, גילוי נאות ותיעוד' },
+			{ heading: 'טעויות בפתיחת עסק', focus: 'הסתמכות על בעל פה' },
+		],
+		research: {
+			topic: 'סוגי שיתוף עסקי והגנה מפני תביעת שותף',
+			framework:
+				'- פקודת השותפויות: שותפות רשומה ושותפות שלא ברישום (2025).\n- חוק החברות: חברה בע"מ (2026).\n- חוק החוזים: חובות אמונים (2025).',
+			facts: [
+				'שותפות רשומה מחייבת רישום ברשם השותפויות (gov.il, 2025).',
+				'חברה בע"מ מבודדת בדרך כלל אחריות לחברה (2026).',
+				'הסכם שותפות בכתב מצמצם סכסוכים על סמכויות (israelbar.org.il, 2025).',
+			],
+			lsi: ['שותפות רשומה', 'חברה בע"מ', 'הסכם שותפים', 'אחריות אישית', 'קניית חלק', 'בוררות', 'גילוי נאות', 'הפרת אמונים'],
+		},
+		faq: [
+			{ question: 'מה ההבדל בין שותפות לחברה?', answer: 'בשותפות לרוב אחריות אישית; בחברה בע"מ האחריות מוגבלת לחברה.' },
+			{ question: 'האם חובה הסכם שותפים?', answer: 'לא בחוק, אך מומלץ בחתימה לפני תחילת פעילות משותפת.' },
+			{ question: 'איך מגנים מפני תביעת שותף?', answer: 'הסכם עם בוררות, הגבלת סמכויות חתימה ותיעוד החלטות.' },
+			{ question: 'מתי לפנות לעורך דין?', answer: 'בתחילת השותפות או לפני חלוקת כספים ופירוק.' },
+		],
+		tldr: 'בישראל נפוצים שותפות, חברה בע"מ ועוסק מורשה; הבחירה קובעת אחריות והגנה כששותף תובע.',
+		uniqueProse: [
+			'## בחירת מבנה לפני חתימה\n\nיוזמים שבוחרים חברה בע"מ לעיתים מפספסים עלויות רישום ודיווח, אך מרוויחים הפרדה מאחריות אישית. שותפות פשוטה מתאימה לפרויקטים קצרים עם אמון גבוה, אך חשופה לחיובים אישיים.',
+			'## תביעה בין שותפים: מה עושים ראשון\n\nכשמתקבלת תביעה, עוצרים העברות כספיות, בודקים פרוטוקולים ומפעילים סעיפי בוררות מההסכם. תיעוד החלטות דירקטוריון או שותפים הוא קו ההגנה הראשון.',
+		],
+	},
+	{
+		slug: 'guy-avni-buying-from-contractor-checklist',
+		title: 'מה לבדוק לפני קנייה מקבלן: רשימה שלא כדאי לדלג',
+		description:
+			'צ\'קליסט לקנייה מקבלן: רישום קבלן, ערבות חוק מכר, לוח תשלומים, מפרט, איחור מסירה וליקויי בנייה.',
+		metaTitle: 'גיא אבני עורך דין | קנייה מקבלן: מה לבדוק',
+		metaDescription:
+			'מה לבדוק לפני קנייה מקבלן? ערבות, רישום, מפרט ולוחות זמנים. גיא אבני עורך דין מסביר צ\'קליסט מעשי לפני חתימה על חוזה.',
+		mainKeyword: 'גיא אבני עורך דין',
+		category: 'real-estate',
+		tags: ['real-estate', 'buyer', 'contractor'],
+		relatedBlogSlugs: [
+			'guy-avni-sale-law-guarantee-importance',
+			'guy-avni-lawyer-required-apartment-purchase',
+			'guy-avni-israel-real-estate-delay-delivery-research',
+			'guy-avni-check-apartment-liens-before-purchase',
+		],
+		firstH2: 'למה קנייה מקבלן שונה מיד שנייה',
+		topicLexicon: ['קנייה מקבלן', 'ערבות חוק מכר', 'רישום קבלן', 'מפרט טכני', 'איחור מסירה', 'רוכש דירה'],
+		sectionBlueprints: [
+			{ heading: 'צ\'קליסט לפני חתימה', focus: 'רישום, ערבות ומפרט' },
+			{ heading: 'מימון ומשכנתא', focus: 'סנכרון בנק ועורך דין' },
+			{ heading: 'אחרי החתימה עד מסירה', focus: 'ביקורים ותיעוד' },
+			{ heading: 'טעויות יקרות', focus: 'מזומן מחוץ לחוזה' },
+		],
+		research: {
+			topic: 'מה לבדוק לפני קניית דירה מקבלן',
+			framework: '- חוק המכר (דירות): ערבות ומקדמות (2025).\n- פנקס הקבלנים (2026).',
+			facts: [
+				'מותר לגבות עד 7% ללא ערבות חוק מכר (gov.il, 2025).',
+				'ערבות בנק מגנה על כספי רוכש (2026).',
+				'תלונה לממונה חוק המכר על הפרות ערבות (2025).',
+			],
+			lsi: ['קנייה מקבלן', 'ערבות חוק מכר', 'רישום קבלן', 'מפרט טכני', 'לוח תשלומים', 'איחור מסירה', 'ליקויי בנייה', 'רוכש דירה'],
+		},
+		faq: [
+			{ question: 'כמה מותר לשלם לפני ערבות?', answer: 'עד 7% ממחיר הדירה ללא ערבות חוק מכר.' },
+			{ question: 'חייבים עורך דין?', answer: 'לא בחוק, אך מומלץ לבדיקת חוזה וערבות.' },
+			{ question: 'מה אם הקבלן מתעכב?', answer: 'לפי חוזה: פיצוי איחור; אפשר תלונה לממונה.' },
+			{ question: 'מתי בודקים מפרט?', answer: 'לפני חתימה ולפני כל שינוי בזמן הבנייה.' },
+		],
+		tldr: 'לפני קנייה מקבלן בודקים רישום קבלן, ערבות חוק מכר, מפרט, לוח תשלומים ותאריך מסירה בכתב.',
+		uniqueProse: [
+			'## ערבות בפועל\n\nבדקו שהערבות מכסה את כל הסכומים שמשולמים מעל 7%, שהיא לטובתכם בשם, ובתוקף עד מסירה. העתק מקורי נשמר אצלכם.',
+			'## מפרט ושינויים\n\nכל שינוי גמר או שטח דורש נספח חתום. בלי זה קשה לדרוש את מה שהובטח במכרז או בדירוג.',
+		],
+	},
+	{
+		slug: 'guy-avni-cancel-apartment-purchase-contract',
+		title: 'איך מבטלים חוזה קניית דירה בלי להיכוות',
+		description:
+			'ביטול חוזה קניית דירה: עילות, מקדמה, קנס, יום העסקה והפרה מצד מוכר.',
+		metaTitle: 'גיא אבני עורך דין | ביטול חוזה קניית דירה',
+		metaDescription:
+			'איך מבטלים חוזה קניית דירה? קנס, מקדמה והפרה. גיא אבני עורך דין מסביר מתי מותר לבטל ומה העלות.',
+		mainKeyword: 'גיא אבני עורך דין',
+		category: 'contracts',
+		tags: ['contracts', 'real-estate', 'cancellation'],
+		relatedBlogSlugs: [
+			'guy-avni-contract-review-flow',
+			'guy-avni-second-hand-apartment-sale-agreement',
+			'guy-avni-buying-from-contractor-checklist',
+			'guy-avni-lawyer-required-apartment-purchase',
+		],
+		firstH2: 'מתי אפשר לבטל חוזה מכר דירה',
+		topicLexicon: ['ביטול חוזה', 'מקדמת קנייה', 'קנס ביטול', 'יום העסקה', 'הפרת חוזה', 'עורך דין נאמן'],
+		sectionBlueprints: [
+			{ heading: 'עילות ביטול בחוזה', focus: 'סעיפים מוסכמים ותנאים מתלים' },
+			{ heading: 'מה קורה לכסף', focus: 'מקדמה, נאמן וקנס' },
+			{ heading: 'הפרה מצד מוכר', focus: 'איחור, שעבודים, ליקויים' },
+			{ heading: 'צעדים מעשיים', focus: 'הודעה בכתב ותיעוד' },
+		],
+		research: {
+			topic: 'איך מבטלים חוזה קניית דירה בישראל',
+			framework: '- חוק המכר (דירות) (2025).\n- חוק החוזים: הפרה ופיצוי (2026).',
+			facts: [
+				'ביטול לפי סעיף בחוזה דורש עמידה בתנאים (2025).',
+				'הפרת מוכר עשויה לאפשר ביטול ופיצוי (2026).',
+				'מקדמה לעורך דין נאמן מגנה על כספים (2025).',
+			],
+			lsi: ['ביטול חוזה מכר', 'מקדמת קנייה', 'קנס ביטול', 'יום העסקה', 'הפרת חוזה', 'החזר מקדמה', 'משא ומתן', 'עורך דין נאמן'],
+		},
+		faq: [
+			{ question: 'האם אפשר לבטל בלי סיבה?', answer: 'רק אם יש סעיף ביטול או הסכמת הצד השני; אחרת עלול להיות קנס.' },
+			{ question: 'מה קורה למקדמה?', answer: 'לפי החוזה: החזר, קיזוז או forfeiture.' },
+			{ question: 'מוכר לא מסיר בזמן?', answer: 'עילת הפרה עשויה לאפשר ביטול ופיצוי.' },
+			{ question: 'חייבים עורך דין?', answer: 'מומלץ לפני הודעת ביטול וניהול כספים.' },
+		],
+		tldr: 'ביטול חוזה קניית דירה תלוי בסעיפי החוזה, בהפרות הצד השני ובניהול נכון של המקדמה.',
+		uniqueProse: [
+			'## יום העסקה ומקדמה\n\nסעיף יום העסקה קובע מתי המקדמה "נשרפת" או חוזרת. לפני חתימה ממפים את כל התנאים המתלים, כולל אישור משכנתא.',
+			'## הפרה מצד מוכר\n\nאיחור מסירה, שעבוד שלא נוקה או אי התאמה למפרט יכולים להקים עילת ביטול. תיעוד בכתב וצילומים חיזוק את העמדה.',
+			'## ניהול משא ומתן לפני ביטול\n\nלפני שליחת הודעת ביטול כדאי לבדוק אם ניתן להסדיר את ההפרה בהסכמה משלימה, תוך שמירה על זכויות בחוזה המקורי.',
+		],
+	},
+	{
+		slug: 'guy-avni-cancel-signed-contract-israel-fourteen-days',
+		title: 'ישנן 3 דרכים לבטל חוזה ישראלי חתום, איזו מהן עובדת תוך פחות מ-14 יום?',
+		description:
+			'ביטול חוזה חתום בישראל: הסכמה, הפרה, זכות ביטול צרכן 14 יום ומגבלות בחוזי מכר דירה.',
+		metaTitle: 'גיא אבני עורך דין | ביטול חוזה חתום 14 יום',
+		metaDescription:
+			'3 דרכים לבטל חוזה חתום: צרכן 14 יום, הפרה והסכמה. גיא אבני עורך דין מסביר מתי חלה זכות הביטול ומה המועדים.',
+		mainKeyword: 'גיא אבני עורך דין',
+		category: 'contracts',
+		tags: ['contracts', 'cancellation', 'consumer'],
+		relatedBlogSlugs: [
+			'guy-avni-contract-review-flow',
+			'guy-avni-cancel-apartment-purchase-contract',
+			'guy-avni-unprotected-lease-contract-contents',
+			'guy-avni-contract-claim-mediation-four-thousand-six-weeks',
+		],
+		firstH2: 'שלוש דרכים עיקריות לביטול חוזה חתום',
+		topicLexicon: ['ביטול עסקה', 'חוק הגנת הצרכן', '14 יום', 'עסקה מרחוק', 'הפרת חוזה', 'חוזה מכר'],
+		sectionBlueprints: [
+			{ heading: 'זכות ביטול צרכן', focus: '14 יום בעסקה מרחוק' },
+			{ heading: 'ביטול לפי חוזה', focus: 'סעיפים וקנסות' },
+			{ heading: 'הפרה והסכמה', focus: 'עילות בדין' },
+			{ heading: 'מגבלות במכר דירה', focus: 'מתי לא חלה זכות צרכן' },
+		],
+		research: {
+			topic: 'ביטול חוזה חתום בישראל כולל 14 יום',
+			framework:
+				'- חוק הגנת הצרכן: זכות ביטול עסקה מרחוק (2025).\n- חוק החוזים: ביטול בהסכמה והפרה (2026).',
+			facts: [
+				'זכות ביטול 14 יום בעסקאות מרחוק מסוימות (gov.il, 2025).',
+				'חוזה מכר דירה אינו תמיד כפוף לזכות ביטול צרכן (2026).',
+				'ביטול לפי חוזה תלוי בסעיפים המוסכמים (2025).',
+			],
+			lsi: ['ביטול עסקה', 'חוק הגנת הצרכן', '14 יום', 'עסקה מרחוק', 'הפרת חוזה', 'קנס ביטול', 'חוזה מכר', 'זכות צרכן'],
+		},
+		faq: [
+			{ question: 'כל חוזה ניתן לביטול תוך 14 יום?', answer: 'לא. זכות הצרכן חלה בעסקאות מרחוק מוגדרות, לא בכל מכר דירה.' },
+			{ question: 'איך מודיעים על ביטול?', answer: 'בכתב, לפי הדרך והמועד בחוק או בחוזה.' },
+			{ question: 'מה אם עברו 14 יום?', answer: 'בודקים סעיפי ביטול בחוזה או עילת הפרה.' },
+			{ question: 'האם יש קנס?', answer: 'ייתכן לפי חוזה; בזכות צרכן יש כללים מיוחדים.' },
+		],
+		tldr: 'ביטול חוזה חתום אפשרי בהסכמה, בהפרה, בזכות צרכן 14 יום (כשחלה) או לפי סעיפי החוזה.',
+		uniqueProse: [
+			'## עסקה מרחוק מול מכר דירה\n\nרכישת דירה בדרך כלל אינה עסקת צרכנות מרחוק קלאסית; זכות 14 הימים לעיתים לא חלה. בדקו את סוג העסקה לפני שמסתמכים על ביטול מהיר.',
+			'## הודעת ביטול נכונה\n\nשולחים הודעה לפי הכתובת והאמצעי בחוק, שומרים אישור מסירה ומצרפים מסמכי תשלום. טעות בפרטי הודעה עלולה לעכב החזר.',
+		],
+	},
+	{
+		slug: 'guy-avni-capital-gains-exemption-single-apartment-2026',
+		title: 'פטור ממס שבח על דירה יחידה ב-2026: תנאים, תקרות וטעויות',
+		description:
+			'פטור מס שבח דירה יחידה 2026: סעיף 49ב, תקרה, 18 חודשים החזקה, משפר דיור ודיווח לרשות המיסים.',
+		metaTitle: 'גיא אבני עורך דין | פטור מס שבח דירה יחידה 2026',
+		metaDescription:
+			'פטור ממס שבח על דירה יחידה ב-2026: תנאי זכאות, תקרה ופטור חלקי. גיא אבני עורך דין מסביר לפני מכירה.',
+		mainKeyword: 'גיא אבני עורך דין',
+		category: 'tax',
+		tags: ['tax', 'capital-gains', 'single-apartment'],
+		relatedBlogSlugs: [
+			'guy-avni-purchase-tax-exemption-first-apartment',
+			'guy-avni-additional-tax-who-pays',
+			'guy-avni-second-apartment-purchase-tax-calculation',
+			'guy-avni-linear-capital-gains-tax-benefit',
+		],
+		firstH2: 'מהו פטור מס שבח על דירה יחידה ב-2026',
+		topicLexicon: ['פטור מס שבח', 'דירה יחידה', 'סעיף 49ב', 'תקרת פטור', 'משפר דיור', 'דיווח מס שבח'],
+		sectionBlueprints: [
+			{ heading: 'תנאי זכאות', focus: 'יחידה, החזקה וטופס 4' },
+			{ heading: 'תקרת פטור מלא וחלקי', focus: 'סכומים 2026' },
+			{ heading: 'משפר דיור', focus: 'מכירה ורכישה בפרק זמן' },
+			{ heading: 'טעויות בדיווח', focus: 'פטור שני תוך 18 חודשים' },
+		],
+		research: {
+			topic: 'פטור מס שבח דירה יחידה 2026',
+			framework:
+				'- חוק מיסוי מקרקעין: סעיף 49ב (2025).\n- תקנות מס שבח: תקרת פטור (2026).',
+			facts: [
+				'פטור מלא עד תקרה שנצמדת למדד (gov.il, 2026).',
+				'תקופת החזקה 18 חודשים מסיום בנייה (2025).',
+				'לא ניתן פטור שני תוך 18 חודשים (2026).',
+			],
+			lsi: ['פטור מס שבח', 'דירה יחידה', 'סעיף 49ב', 'תקרת פטור', 'משפר דיור', 'רשות המיסים', 'מכירת דירה', 'פטור חלקי'],
+		},
+		faq: [
+			{ question: 'מה תקרת הפטור ב-2026?', answer: 'בסביבות 5.4-5.6 מיליון ש"ח לפטור מלא, לפי עדכוני רשות המיסים.' },
+			{ question: 'חייבים 18 חודשים החזקה?', answer: 'כן, מסיום בנייה או רכישה לפי הנסיבות.' },
+			{ question: 'מהו משפר דיור?', answer: 'מכירת דירה ורכישת דירת מגורים אחרת בפרק זמן קצוב.' },
+			{ question: 'מתי מדווחים?', answer: 'במועד הקבוע בדין, עם טופס מס שבח ונספחים.' },
+		],
+		tldr: 'פטור מס שבח על דירה יחידה ב-2026 כפוף לתקרה, תקופת החזקה, דירה יחידה ודיווח מלא לרשות המיסים.',
+		uniqueProse: [
+			'## פטור חלקי מעל התקרה\n\nמעל תקרת הפטור המלא חל שיעור מס על החלק העודף; תכנון מכירה ורכישה משפר דיור משפיע על החישוב.',
+			'## דירה יחידה בפועל\n\nרשות המיסים בודקת בעלות בדירות נוספות ובני זוג; מכירה "טכנית" של דירה יחידה עלולה להיפסל בביקורת.',
 		],
 	},
 ];
