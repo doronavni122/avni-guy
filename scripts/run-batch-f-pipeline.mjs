@@ -76,7 +76,6 @@ function resolveContent(slug, existingTitle) {
 			description: sections.description,
 			metaTitle: sections.metaTitle,
 			metaDescription: sections.metaDescription,
-			researchMd: sections.researchMd,
 			body: sections.body,
 		};
 	}
@@ -87,7 +86,6 @@ function resolveContent(slug, existingTitle) {
 			description: researched.description,
 			metaTitle: researched.metaTitle,
 			metaDescription: researched.metaDescription,
-			researchMd: researched.researchMd,
 			body: researched.body,
 		};
 	}
