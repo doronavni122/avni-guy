@@ -106,3 +106,4 @@
 101. remediate-pass1-guy-avni-capital-gains-tax-evacuation-reconstruction , content-research/guy-avni-capital-gains-tax-evacuation-reconstruction.md src/content/blog/guy-avni-capital-gains-tax-evacuation-reconstruction.mdx task_graph.log
 102. remediate-pass1-guy-avni-capital-gains-tax-installment-payment , content-research/guy-avni-capital-gains-tax-installment-payment.md src/content/blog/guy-avni-capital-gains-tax-installment-payment.mdx task_graph.log
 103. remediate-pass1-guy-avni-capital-gains-tax-second-apartment , content-research/guy-avni-capital-gains-tax-second-apartment.md src/content/blog/guy-avni-capital-gains-tax-second-apartment.mdx task_graph.log
+104. mark-remediation-program-pass1-batch-eight , config/remediation-program.json task_graph.log
