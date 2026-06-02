@@ -59,3 +59,4 @@
 55. add-pass1-remediation-batch-script , scripts/pass1-remediation-batch.mjs task_graph.log
 56. remediate-additional-tax-who-pays , content-research/guy-avni-additional-tax-who-pays.md src/content/blog/guy-avni-additional-tax-who-pays.mdx task_graph.log
 57. remediate-apartment-buyer-documents , content-research/guy-avni-apartment-buyer-required-documents.md src/content/blog/guy-avni-apartment-buyer-required-documents.mdx task_graph.log
+58. remediate-appraisal-mortgage , content-research/guy-avni-appraisal-required-mortgage.md src/content/blog/guy-avni-appraisal-required-mortgage.mdx task_graph.log
