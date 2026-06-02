@@ -48,6 +48,10 @@ function main() {
 	}
 
 	const steps = [...STEPS];
+	if (process.env.LINKS_AUDIT_FULL === '1') {
+		steps.push({ name: 'links:audit:full', cmd: 'pnpm', args: ['run', 'links:audit:full'] });
+		logStep('optional: LINKS_AUDIT_FULL=1 - links:audit:full appended');
+	}
 	if (process.env.LINK_CRAWL_ENFORCE === '1') {
 		steps.push({ name: 'links:crawl', cmd: 'pnpm', args: ['run', 'links:crawl'] });
 		logStep('optional: LINK_CRAWL_ENFORCE=1 - links:crawl appended');

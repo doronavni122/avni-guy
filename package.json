@@ -31,6 +31,7 @@
     "research:audit": "node scripts/audit-research-study.mjs",
     "research:scaffold": "node scripts/scaffold-research-study.mjs",
     "links:audit": "node scripts/audit-internal-link-graph.mjs",
+    "links:audit:full": "node scripts/audit-internal-links-full.mjs",
     "links:crawl": "node scripts/audit-internal-link-crawl.mjs",
     "links:remediate": "node scripts/remediate-internal-links-batch.mjs",
     "links:dedupe": "node scripts/fix-duplicate-paragraph-links.mjs",
