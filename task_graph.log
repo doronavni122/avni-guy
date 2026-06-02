@@ -75,3 +75,4 @@
 71. add-pass1-remediation-batch-script , scripts/pass1-remediation-batch.mjs task_graph.log
 72. sync-llms-index-after-pass1-descriptions , public/llms.txt public/llms-full.txt task_graph.log
 73. merge-main-into-pass1-pr-14 , task_graph.log
+74. add-pass1-batch5-research-specs-and-runner , scripts/lib/pass1-batch5-research-specs.mjs scripts/cursor-pass1-batch5.mjs task_graph.log
