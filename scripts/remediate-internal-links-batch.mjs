@@ -6,7 +6,6 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import { execSync } from 'node:child_process';
 import matter from 'gray-matter';
 import {
 	BLOG_DIR,
@@ -709,42 +708,14 @@ function meshOrphans(posts, postsBySlug, inbound, stats, minInbound = 1) {
 	return orphans.length;
 }
 
-const INTERNAL_LINKS_FM_MIN = 10;
-
-function loadGitHeadRaw(slug) {
-	try {
-		return execSync(`git show HEAD:src/content/blog/${slug}.mdx`, {
-			encoding: 'utf8',
-			stdio: ['ignore', 'pipe', 'ignore'],
-		});
-	} catch (err) {
-		logGraph('remediate', 'ERROR loadGitHeadRaw', { slug, err: String(err) });
-		return null;
-	}
-}
-
-/** Restore internalLinks FM when density trim left fewer than schema min (merge HEAD + paragraph hrefs). */
+/** Sync internalLinks frontmatter to paragraph hrefs only (2026 density SSOT). */
 function repairFrontmatterInternalLinks(slug, raw, content) {
 	const parsed = matter(raw);
 	const paragraphHrefs = [...new Set(extractParagraphMarkdownLinks(content).map((l) => l.href))];
-	let merged = [
-		...new Set([
-			...paragraphHrefs,
-			...(Array.isArray(parsed.data.internalLinks) ? parsed.data.internalLinks.map(normalizePath) : []),
-		]),
-	];
-	if (merged.length >= INTERNAL_LINKS_FM_MIN) {
-		parsed.data.internalLinks = merged;
-		return matter.stringify({ ...parsed, content });
+	parsed.data.internalLinks = paragraphHrefs;
+	if (paragraphHrefs.length === 0) {
+		logGraph('remediate', 'ERROR repairFrontmatterInternalLinks empty', { slug });
 	}
-	const headRaw = loadGitHeadRaw(slug);
-	if (headRaw) {
-		const head = matter(headRaw);
-		const headLinks = Array.isArray(head.data.internalLinks) ? head.data.internalLinks.map(normalizePath) : [];
-		merged = [...new Set([...merged, ...headLinks])];
-	}
-	parsed.data.internalLinks = merged;
-	logGraph('remediate', 'repair internalLinks FM', { slug, count: merged.length });
 	return matter.stringify({ ...parsed, content });
 }
 
