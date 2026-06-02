@@ -1,7 +1,4 @@
 import { spawnSync } from 'node:child_process';
-import fs from 'node:fs';
-import path from 'node:path';
-import { runArticleContentChecks } from './lib/check-article-content.mjs';
 
 const STEPS = [
 	{ name: 'content:audit', cmd: 'pnpm', args: ['run', 'content:audit'] },
