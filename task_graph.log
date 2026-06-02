@@ -94,3 +94,4 @@
 90. remediate-pass1-guy-avni-cancel-apartment-purchase-contract , content-research/guy-avni-cancel-apartment-purchase-contract.md src/content/blog/guy-avni-cancel-apartment-purchase-contract.mdx task_graph.log
 91. remediate-pass1-guy-avni-cancel-signed-contract-israel-fourteen-days , content-research/guy-avni-cancel-signed-contract-israel-fourteen-days.md src/content/blog/guy-avni-cancel-signed-contract-israel-fourteen-days.mdx task_graph.log
 92. remediate-pass1-guy-avni-capital-gains-exemption-single-apartment-2026 , content-research/guy-avni-capital-gains-exemption-single-apartment-2026.md src/content/blog/guy-avni-capital-gains-exemption-single-apartment-2026.mdx task_graph.log
+93. add-pass1-batch6-remediation-scripts , scripts/cursor-pass1-batch6.mjs scripts/lib/pass1-batch6-mdx-specs.mjs scripts/lib/pass1-batch6-research-specs.mjs task_graph.log
