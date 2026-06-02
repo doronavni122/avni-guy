@@ -78,3 +78,4 @@
 74. sync-llms-full-after-pr14-merge , public/llms-full.txt task_graph.log
 75. fix-pass1-strict-blog-anchor-audit , src/content/blog/guy-avni-additional-tax-who-pays.mdx src/content/blog/guy-avni-apartment-buyer-required-documents.mdx src/content/blog/guy-avni-appraisal-required-mortgage.mdx src/content/blog/guy-avni-bank-financing-private-home-construction.mdx src/content/blog/guy-avni-betterment-levy-land-plot-when.mdx src/content/blog/guy-avni-bounced-check-enforcement-stop-seven-days.mdx src/content/blog/guy-avni-building-committee-legal-duties.mdx src/content/blog/guy-avni-building-permit-shorten-lawyer-five-months.mdx task_graph.log
 76. restrict-automation-pr-head-branch-filter , scripts/automation-prefill-article-remediation.json task_graph.log
+77. add-pass1-remediation-specs-five-slugs , scripts/lib/pass1-batch-remediation-content.mjs scripts/run-pass1-batch-remediation.mjs task_graph.log

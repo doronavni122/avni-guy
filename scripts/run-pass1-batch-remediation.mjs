@@ -109,6 +109,36 @@ const FAQ_BY_SLUG = {
 		{ question: 'איך יוצאים בשלום?', answer: 'מנגנון קניית חלק, בוררות והסדר חובות.' },
 		{ question: 'מתי פונים לעורך דין?', answer: 'בתחילת השותפות או לפני פירוק.' },
 	],
+	'guy-avni-business-partnership-types-israel-protection': [
+		{ question: 'מה ארבעת סוגי השיתוף?', answer: 'שותפות רשומה, מוגבלת, מוגבלת בערבות, וחברה.' },
+		{ question: 'איזה מבנה מגן מפני תביעת שותף?', answer: 'הסכם מפורט ובוררות; חברה מפרידה חבות.' },
+		{ question: 'האם שותפות חושפת לחבות אישית?', answer: 'כן, בניגוד לחברה בע"מ.' },
+		{ question: 'מתי לבחור חברה?', answer: 'כשמגייסים משקיעים או רוצים הגבלת חבות.' },
+	],
+	'guy-avni-buying-from-contractor-checklist': [
+		{ question: 'מה חובה לפני חתימה מקבלן?', answer: 'רישום קבלן, ערבות, מפרט ולוח תשלומים.' },
+		{ question: 'כמה מותר לשלם בלי ערבות?', answer: 'עד 7% ללא בטוחה לפי חוק המכר.' },
+		{ question: 'מה אם הקבלן מתעכב?', answer: 'פיצוי לפי חוזה וחוק; תלונה לממונה.' },
+		{ question: 'האם צריך עורך דין?', answer: 'מומלץ מאוד לפני חתימה על חוזה מקבלן.' },
+	],
+	'guy-avni-cancel-apartment-purchase-contract': [
+		{ question: 'אפשר לבטל בלי סיבה?', answer: 'רק אם החוזה מאפשר או בהסכמה; אחרת עילה נדרשת.' },
+		{ question: 'מה קורה למקדמה?', answer: 'לפי סעיף הביטול: החזר, קנס או אובדן.' },
+		{ question: 'מתי מוכר הפר?', answer: 'איחור, שעבוד, אי התאמה למפרט.' },
+		{ question: 'צריך עורך דין?', answer: 'מומלץ לפני הודעת ביטול או תביעה.' },
+	],
+	'guy-avni-cancel-signed-contract-israel-fourteen-days': [
+		{ question: 'תמיד אפשר 14 יום?', answer: 'לא; בעיקר עסקאות מרחוק מסוימות.' },
+		{ question: 'חוזה נדל"ן?', answer: 'לרוב לא בזכות 14 יום; בדקו סעיפים.' },
+		{ question: 'איך מבטלים בהסכמה?', answer: 'הסכם ביטול בכתב וסילוק כספים.' },
+		{ question: 'מהי הפרה יסודית?', answer: 'הפרה מהותית המצדיקה ביטול לפי דין.' },
+	],
+	'guy-avni-capital-gains-exemption-single-apartment-2026': [
+		{ question: 'מה תקרת הפטור ב-2026?', answer: 'מצמדת למדד; בדקו עדכון שנתי ברשות המיסים.' },
+		{ question: 'כמה זמן להחזיק?', answer: '18 חודשים מטופס 4 או 4/6 שנים.' },
+		{ question: 'דירה שנייה פוסלת?', answer: 'לרוב כן; יש לבדוק חריגים.' },
+		{ question: 'משפר דיור?', answer: 'מסלול מועדים לרכישה לפני מכירה.' },
+	],
 };
 
 function enhanceBody(slug, spec, rawBody) {
