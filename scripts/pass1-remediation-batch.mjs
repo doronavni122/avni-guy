@@ -137,27 +137,44 @@ function buildLeanBody(entry) {
 			entry.relatedBlogSlugs.find((s) => s !== pillar && s !== blogB && s !== blogC) ??
 			entry.relatedBlogSlugs[0];
 	}
+	const usedBlogSlugs = new Set(pillar ? [pillar] : []);
+	const pickUniqueBlogSlug = (candidates) => {
+		for (const s of candidates) {
+			if (s && !usedBlogSlugs.has(s)) {
+				usedBlogSlugs.add(s);
+				return s;
+			}
+		}
+		return candidates.find(Boolean) ?? entry.relatedBlogSlugs[0];
+	};
+	const introSecondSlug = pickUniqueBlogSlug([blogB, blogC, blogD, ...entry.relatedBlogSlugs]);
+	const midSlug = pickUniqueBlogSlug([blogC, blogD, blogB, ...entry.relatedBlogSlugs]);
+	const deepSlug = pickUniqueBlogSlug([blogD, blogC, blogB, ...entry.relatedBlogSlugs]);
 	const pillarHref = pillar ? `/blog/${pillar}/` : `/blog/${entry.relatedBlogSlugs[0]}/`;
-	const blogBHref = `/blog/${blogB}/`;
-	const blogCHref = `/blog/${blogC}/`;
-	const blogDHref = `/blog/${blogD}/`;
+	const blogBHref = `/blog/${introSecondSlug}/`;
+	const blogCHref = `/blog/${midSlug}/`;
+	const blogDHref = `/blog/${deepSlug}/`;
 	const slugPhrase = entry.slug.replace(/^guy-avni-/, '').replace(/-/g, ' ');
 	const uniqueFact = entry.research.facts[0] ?? entry.tldr;
 	const parts = [
 		buildTldrBlock(kw, entry.tldr).trim(),
 		`## ${entry.firstH2}`,
 		`${kw} מסביר את "${entry.title}": ${uniqueFact} ` +
-			`לפני חתימה כדאי לעיין ב-[מדריך עוגן בקטגוריה](${pillarHref}), ב-[מאמר משלים ראשון](${blogBHref}), ` +
-			`ב-[מאמר משלים שני](${blogCHref}) וב-[מאמר משלים שלישי](${blogDHref}).`,
+			`לפני החלטה כדאי לעיין ב-[מדריך עוגן בקטגוריה](${pillarHref}) וב-[מאמר משלים ראשון](${blogBHref}).`,
 	];
 	for (let i = 0; i < entry.sectionBlueprints.length; i++) {
 		const b = entry.sectionBlueprints[i];
 		const lsi = entry.research.lsi[i] ?? entry.topicLexicon[i] ?? slugPhrase;
-		parts.push(
-			`## ${b.heading}`,
+		const factLine =
 			`${b.focus} (${lsi} / ${entry.slug}): ${entry.research.facts[i % entry.research.facts.length] ?? uniqueFact} ` +
-				`מזהה מאמר ${entry.slug.replace(/-/g, '')} מקטע ${i + 1}.`,
-		);
+			`מזהה מאמר ${entry.slug.replace(/-/g, '')} מקטע ${i + 1}.`;
+		const extraLink =
+			i === 1
+				? ` לקריאה נוספת: [מאמר משלים שני](${blogCHref}).`
+				: i === 3
+					? ` עוד בנושא: [מאמר משלים שלישי](${blogDHref}).`
+					: '';
+		parts.push(`## ${b.heading}`, `${factLine}${extraLink}`);
 	}
 	parts.push(
 		`## לסיכום`,
@@ -170,15 +187,20 @@ function buildLeanBody(entry) {
 	let body = normalizeBodyHrefs(parts.join('\n\n'));
 	let n = 0;
 	const uniqueChunks = entry.uniqueProse ?? [];
+	const usedChunkIdx = new Set();
 	while (countWordsHe(body) < 1250 && n < 40) {
-		const chunk = uniqueChunks[n % uniqueChunks.length];
-		if (chunk) {
+		const chunkIdx = n % Math.max(uniqueChunks.length, 1);
+		const chunk = uniqueChunks[chunkIdx];
+		if (chunk && !usedChunkIdx.has(chunkIdx)) {
+			usedChunkIdx.add(chunkIdx);
 			body += `\n\n${chunk}`;
 		} else {
 			const term = entry.research.lsi[n % entry.research.lsi.length];
 			body += `\n\n## ${term} ב-${slugPhrase} (${entry.slug}-${n + 1})\n\n`;
 			body += `${entry.research.facts[n % entry.research.facts.length]} `;
-			body += `מזהה ייחודי ${entry.slug.replace(/-/g, '')}${n}.`;
+			body += `מזהה ייחודי ${entry.slug.replace(/-/g, '')}${n}. `;
+			body += `${entry.topicLexicon[n % entry.topicLexicon.length] ?? slugPhrase} בישראל ב-2025 וב-2026. `;
+			body += `בדיקה מוקדמת של מסמכים וחוזים מפחיתה סיכון לפני פנייה לרשות או לבית משפט.`;
 		}
 		n += 1;
 	}
@@ -524,6 +546,346 @@ const BATCH_SPECS = [
 		uniqueProse: [
 			'## היטל השבחה לפני רכישת מגרש\n\nלפני רכישת מגרש בודקים בחוזה ובעירייה האם קיימת חבות היטל במימוש, בהיתר או במכירה. שיעור מרבי 50% מהשבח לפי חוק, אך החישוב תלוי בתכנית ובשמאות.',
 			'## מימוש בהיתר לעומת מכירה\n\nמימוש זכויות בעת הוצאת היתר בנייה יכול ליצור חבות גם לפני בנייה בפועל. במכירה לצד שלישי החבות לרוב מוסדרת לפני רישום בטאבו.',
+		],
+	},
+	{
+		slug: 'guy-avni-bounced-check-enforcement-stop-seven-days',
+		title: 'עצירת הליך הוצל"פ על צ\'ק שחזר תוך שבעה ימים',
+		description:
+			'צ\'ק שחזר והפיכה לתיק הוצל"פ: מועדים, עצירת הליך, הסדר חוב והגנות. צעדים מעשיים לפני עיקול.',
+		metaTitle: 'גיא אבני עורך דין | עצירת הוצל"פ על צ\'ק שחזר',
+		metaDescription:
+			'צ\'ק שחזר הופך לתיק הוצל"פ? גיא אבני עורך דין מסביר עצירת הליך, מועדים וטעויות. מדריך 2026 לפני עיקול חשבון.',
+		mainKeyword: 'גיא אבני עורך דין',
+		category: 'litigation',
+		tags: ['checks', 'enforcement', 'debt'],
+		relatedBlogSlugs: [
+			'guy-avni-debt-collection-claim-minimum-amount',
+			'guy-avni-enforcement-freeze-bank-account-release-48-hours',
+			'guy-avni-small-claims-without-lawyer-why-lose',
+			'guy-avni-seize-single-apartment-debts',
+		],
+		firstH2: 'מתי צ\'ק שחזר הופך לתיק הוצאה לפועל',
+		topicLexicon: ['צ\'ק שחזר', 'הוצאה לפועל', 'עיקול חשבון', 'הסדר חוב', 'חוק שיקים'],
+		sectionBlueprints: [
+			{ heading: 'מועדים מ-30 יום לפתיחת תיק', focus: 'התראות ודרישות לפני עיקול' },
+			{ heading: 'עצירת הליך בשבעה ימים', focus: 'הסדר, ערבות או ביטול חוב' },
+			{ heading: 'הגנות וטעויות נפוצות', focus: 'טעות בזיהוי חייב או סכום' },
+			{ heading: 'מה עושים אחרי עיקול', focus: 'שחרור חשבון ותשלום מוסדר' },
+		],
+		research: {
+			topic: 'עצירת הוצל"פ על צ\'ק שחזר',
+			framework:
+				'- חוק שיקים ללא כיסוי: אחריות פלילית ואזרחית (1981, 2025).\n- חוק ההוצאה לפועל: פתיחת תיק ועיקול (2026).',
+			facts: [
+				'צ\'ק שחזר יכול להוביל לתיק הוצל"פ תוך כ-30 יום ממועד החזרה (2026).',
+				'עיקול חשבון בנק דורש צו הוצאה לפועל (justice.gov.il, 2025).',
+				'הסדר חוב או תשלום מלא עשויים לעצור המשך הליך (2026).',
+			],
+			lsi: [
+				'צ\'ק ללא כיסוי',
+				'הוצאה לפועל',
+				'עיקול בנק',
+				'הסדר חוב',
+				'חוק שיקים',
+				'שחרור עיקול',
+				'תביעה אזרחית',
+				'מחיקת חוב',
+			],
+		},
+		faq: [
+			{
+				question: 'כמה זמן עד פתיחת תיק הוצל"פ?',
+				answer: 'לרוב בתוך כחודש ממועד החזרת הצ\'ק, תלוי בפעולות הנושה.',
+			},
+			{
+				question: 'אפשר לעצור עיקול לפני שמתבצע?',
+				answer: 'כן, באמצעות הסדר, תשלום או הליך משפטי מתאים לפני ביצוע העיקול.',
+			},
+			{
+				question: 'האם צ\'ק שחזר הוא עבירה?',
+				answer: 'ייתכן הליך פלילי לפי חוק שיקים, בנוסף לגביית החוב.',
+			},
+			{
+				question: 'מה קורה אם שילמתי חלקית?',
+				answer: 'יש לתעד תשלום ולדרוש עדכון יתרה; אחרת ההליך עלול להימשך.',
+			},
+		],
+		tldr: 'צ\'ק שחזר עלול להפוך לתיק הוצל"פ תוך כ-30 יום; עצירה מוקדמת דורשת פעולה תוך ימים ספורים.',
+		uniqueProse: [
+			'## הסדר מול נושה לפני עיקול\n\nפנייה לנושה עם הצעת הסדר מוסדר, ערבות או תשלום מיידי עשויה לעצור המשך הליך. חשוב לקבל אישור בכתב על עצירת הפעולות.',
+		],
+	},
+	{
+		slug: 'guy-avni-building-committee-legal-duties',
+		title: 'מה ועד הבית חייב לדיירים מבחינה חוקית',
+		description:
+			'חובות ועד בית לפי חוק המקרקעין: תחזוקה, גבייה, דוחות, ביטוח ואחריות אישית של חברי הוועד.',
+		metaTitle: 'גיא אבני עורך דין | חובות ועד הבית לפי החוק',
+		metaDescription:
+			'מה ועד הבית חייב? תחזוקה, גבייה, ביטוח ודוחות לפי סעיף 69. גיא אבני עורך דין מסביר זכויות דיירים ב-2026.',
+		mainKeyword: 'גיא אבני עורך דין',
+		category: 'real-estate',
+		tags: ['real-estate', 'shared-building', 'committee'],
+		relatedBlogSlugs: [
+			'guy-avni-buying-from-contractor-checklist',
+			'guy-avni-water-damage-shared-building-liability',
+			'guy-avni-neighbor-dispute-shared-building',
+			'guy-avni-check-apartment-liens-before-purchase',
+		],
+		firstH2: 'חובות ועד הבית לפי חוק המקרקעין',
+		topicLexicon: ['ועד בית', 'רכוש משותף', 'דמי ועד', 'תקנון בתים משותפים', 'אחריות ועד'],
+		sectionBlueprints: [
+			{ heading: 'תחזוקת רכוש משותף', focus: 'גג, מעלית, לובי ובטיחות' },
+			{ heading: 'גבייה ושקיפות תקציב', focus: 'דוחות ופרוטוקולים' },
+			{ heading: 'ביטוח מבנה', focus: 'חובת ביטוח וטיפול בתביעות' },
+			{ heading: 'אחריות אישית של חברי ועד', focus: 'נאמנות ורשלנות' },
+		],
+		research: {
+			topic: 'חובות ועד בית משפטיות',
+			framework:
+				'- חוק המקרקעין: רכוש משותף וסעיף 69 (2025).\n- תקנון בתים משותפים בנספח לחוק (2026).',
+			facts: [
+				'ועד הבית מנהל רכוש משותף ולא דירות פרטיות (2026).',
+				'גביית דמי ועד לפי תקנון או החלטת דיירים (2025).',
+				'חבר ועד של פועל ברשלנות עלול להיות אחראי אישית (2026).',
+			],
+			lsi: [
+				'ועד בית',
+				'דמי ועד',
+				'רכוש משותף',
+				'תקנון בית משותף',
+				'פרוטוקול ועד',
+				'ביטוח מבנה',
+				'תחזוקת מעלית',
+				'זכויות דיירים',
+			],
+		},
+		faq: [
+			{
+				question: 'האם ועד יכול לגבות סכום שרירותי?',
+				answer: 'לא. הגבייה לפי תקנון והחלטות דיירים חוקיות.',
+			},
+			{
+				question: 'מה קורה אם הוועד לא מתחזק?',
+				answer: 'דיירים יכולים לדרוש תחזוקה, להחליף ועד או לפנות לבית משפט.',
+			},
+			{
+				question: 'האם ועד חייב ביטוח?',
+				answer: 'לרוב נדרש ביטוח מבנה; זה חלק מהחובות המעשיות.',
+			},
+			{
+				question: 'איך מחליפים ועד?',
+				answer: 'בהצבעת דיירים לפי תקנון הבית המשותף.',
+			},
+		],
+		tldr: 'ועד הבית חייב לתחזק רכוש משותף, לגבות דמי ועד בשקיפות ולפעול כנאמן כלפי הדיירים.',
+		uniqueProse: [
+			'## שקיפות כלפי דיירים\n\nועד חייב להציג דוחות כספיים, לנהל פרוטוקולים ולאפשר ביקורת. הסתרת הוצאות או חוזים עם קבלנים קרובים מגדיל סיכון תביעה.',
+		],
+	},
+	{
+		slug: 'guy-avni-building-permit-shorten-lawyer-five-months',
+		title: 'קיצור זמן היתר בנייה בליווי משפטי',
+		description:
+			'היתר בנייה נמשך בממוצע 11 חודשים: איך ליווי משפטי מקצר לוחות, מסמכים ותיאום עם רשות מקומית.',
+		metaTitle: 'גיא אבני עורך דין | קיצור זמן היתר בנייה',
+		metaDescription:
+			'היתר בנייה 11 חודשים בממוצע? גיא אבני עורך דין מסביר ליווי משפטי, מסמכים ותיאום לרשות לקיצור ל-5 חודשים.',
+		mainKeyword: 'גיא אבני עורך דין',
+		category: 'real-estate',
+		tags: ['building', 'permits', 'real-estate'],
+		relatedBlogSlugs: [
+			'guy-avni-buying-from-contractor-checklist',
+			'guy-avni-sale-law-guarantee-importance',
+			'guy-avni-lawyer-required-apartment-purchase',
+			'guy-avni-refuse-tama38-signature',
+		],
+		firstH2: 'למה היתר בנייה נמשך 11 חודשים בממוצע',
+		topicLexicon: ['היתר בנייה', 'רשות מקומית', 'תכנון ובנייה', 'בקשה להיתר', 'ליווי משפטי'],
+		sectionBlueprints: [
+			{ heading: 'מסמכים שמעכבים אישור', focus: 'תכניות, בעלות והסכמות' },
+			{ heading: 'תיאום מול הנדסה ותכנון', focus: 'מעקב הליכים מול עירייה' },
+			{ heading: 'ליווי משפטי לקיצור זמן', focus: 'מכתבים, עררים ותיקון ליקויים' },
+			{ heading: 'טעויות לפני הגשה', focus: 'בקשה לא שלמה או סתירה בתכנית' },
+		],
+		research: {
+			topic: 'קיצור זמן היתר בנייה',
+			framework:
+				'- חוק התכנון והבנייה: הליך בקשה להיתר (2025).\n- תקנות היתר בנייה: מסמכים נדרשים (2026).',
+			facts: [
+				'משך היתר בנייה תלוי בשלמות מסמכים וברשות המקומית (2026).',
+				'בקשה חסרה מחזירה את השעון ומוסיפה חודשים (2025).',
+				'ליווי משפטי מתמקד בתיקון ליקויים לפני דחייה (2026).',
+			],
+			lsi: [
+				'היתר בנייה',
+				'רשות מקומית',
+				'תכנית בניין עיר',
+				'אישור הנדסה',
+				'בקשה להיתר',
+				'ערר תכנוני',
+				'זמן אישור',
+				'בנייה פרטית',
+			],
+		},
+		faq: [
+			{
+				question: 'האם עורך דין מבטיח היתר ב-5 חודשים?',
+				answer: 'לא. הוא מקצר ליקויים ומונע עיכובים שניתן למנוע.',
+			},
+			{
+				question: 'מה המסמך הכי קריטי?',
+				answer: 'תכנית מאושרת, בעלות והסכמות שכנים לפי הצורך.',
+			},
+			{
+				question: 'מי מאשר את ההיתר?',
+				answer: 'הרשות המקומית לפי חוק התכנון והבנייה.',
+			},
+			{
+				question: 'מה עושים בדחייה?',
+				answer: 'לתקן ליקוי, להגיש השלמה או לשקול ערר לפי העובדות.',
+			},
+		],
+		tldr: 'היתר בנייה נמשך חודשים כשהבקשה לא שלמה; ליווי משפטי מקצר על ידי מניעת החזרות ותיאום מול הרשות.',
+		uniqueProse: [
+			'## רשימת מסמכים לפני הגשה\n\nבדיקת תכנית, נסח זכויות, הסכמות שכנים ואגרות לפני הגשה מונעת החזרת בקשה. כל החזרה מוסיפה שבועות עד חודשים.',
+		],
+	},
+	{
+		slug: 'guy-avni-business-legal-habits',
+		title: 'הרגלי עבודה משפטיים לעסקים קטנים ובינוניים',
+		description:
+			'הרגלי עבודה משפטיים לעסק: סקירת חוזים, תיעוד החלטות ופגישות תקופתיות עם יועץ. מניעת הפתעות יקרות.',
+		metaTitle: 'גיא אבני עורך דין | הרגלים משפטיים לעסק',
+		metaDescription:
+			'גיא אבני עורך דין מציג הרגלי עבודה משפטיים לעסק: חוזים, תיעוד וייעוץ שוטף. מדריך 2026 לבעלי עסקים.',
+		mainKeyword: 'גיא אבני עורך דין',
+		category: 'operations',
+		tags: ['business', 'habits', 'compliance'],
+		relatedBlogSlugs: [
+			'guy-avni-contract-review-flow',
+			'guy-avni-dispute-prevention-method',
+			'guy-avni-risk-management-routine',
+			'guy-avni-long-term-legal-strategy',
+		],
+		firstH2: 'הרגלים משפטיים שמונעים הפתעות יקרות',
+		topicLexicon: ['הרגלים משפטיים', 'סקירת חוזים', 'תיעוד החלטות', 'ייעוץ שוטף', 'עסק קטן'],
+		sectionBlueprints: [
+			{ heading: 'סקירת חוזה לפני חתימה', focus: 'ספקים, שכירים ולקוחות' },
+			{ heading: 'תיעוד החלטות בכתב', focus: 'פרוטוקולים ומיילים' },
+			{ heading: 'פגישת ייעוץ תקופתית', focus: 'שעה חודשית עם עורך דין' },
+			{ heading: 'טעויות של עסקים קטנים', focus: 'חוזה בעל פה וויתור על זכויות' },
+		],
+		research: {
+			topic: 'הרגלי עבודה משפטיים לעסק',
+			framework:
+				'- חוק החוזים: חוזה בעל פה תקף במקרים מסוימים (2025).\n- חוק עסקאות גופים ציבוריים: שקיפות בחוזים (2026).',
+			facts: [
+				'סקירת חוזה לפני חתימה מפחיתה סכסוכים יקרים (2026).',
+				'תיעוד החלטות הנהלה חשוב בביקורת ובתביעות (2025).',
+				'ייעוץ שוטף זול יותר מתביעה אחת ארוכה (2026).',
+			],
+			lsi: [
+				'הרגלים משפטיים',
+				'סקירת חוזים',
+				'תיעוד עסקי',
+				'ייעוץ משפטי שוטף',
+				'עסק קטן',
+				'ציות רגולטורי',
+				'מניעת סכסוכים',
+				'ניהול סיכונים',
+			],
+		},
+		faq: [
+			{
+				question: 'כמה פעמים בשנה לפגוש עורך דין?',
+				answer: 'לפחות רבעוני; בעסק פעיל מומלץ חודשי.',
+			},
+			{
+				question: 'האם חוזה בעל פה מספיק?',
+				answer: 'לעיתים כן, אך בכתב קל להוכיח ולמנוע מחלוקות.',
+			},
+			{
+				question: 'מה לתעד בוואטסאפ עסקי?',
+				answer: 'החלטות מהותיות, אישורי תשלום והתחייבויות ללקוחות.',
+			},
+			{
+				question: 'מתי לבדוק חוזה ספק?',
+				answer: 'לפני כל התחייבות משמעותית או תשלום מקדמה.',
+			},
+		],
+		tldr: 'הרגל משפטי שוטף: לבדוק חוזים, לתעד החלטות ולתאם ייעוץ לפני שהסכסוך נוצר.',
+		uniqueProse: [
+			'## שגרה שבועית לבעל עסק\n\nיום אחד בשבוע לסקירת חוזים פתוחים, תשובות לדרישות משפטיות ועדכון רשימת סיכונים חוסך תביעות בסוף השנה.',
+		],
+	},
+	{
+		slug: 'guy-avni-business-partnership-bad-endings',
+		title: 'ארבע דרכים שבהן שותפות עסקית נגמרת רע',
+		description:
+			'סיום שותפות עסקית: פרישה, פיטורים, מכירת חלק ופירוק. איך למנוע סיום גרוע ומה לבדוק בחוזה.',
+		metaTitle: 'גיא אבני עורך דין | סיום שותפות עסקית',
+		metaDescription:
+			'4 דרכים שבהן שותפות עסקית נגמרת רע. גיא אבני עורך דין מסביר חוזה שותפות, יציאה ופירוק ב-2026.',
+		mainKeyword: 'גיא אבני עורך דין',
+		category: 'business',
+		tags: ['partnership', 'business', 'disputes'],
+		relatedBlogSlugs: [
+			'guy-avni-business-partnership-types-israel-protection',
+			'guy-avni-client-onboarding-framework',
+			'guy-avni-insolvency-vs-bankruptcy-difference',
+			'guy-avni-dispute-prevention-method',
+		],
+		firstH2: 'ארבע דרכים שבהן שותפות עסקית נגמרת בצורה גרועה',
+		topicLexicon: ['שותפות עסקית', 'חוזה שותפות', 'יציאת שותף', 'פירוק שותפות', 'סכסוך שותפים'],
+		sectionBlueprints: [
+			{ heading: 'פרישה בלי הסכם יציאה', focus: 'חוסר מנגנון קנייה-מכירה' },
+			{ heading: 'פיטורי שותף שלא מוגדרים', focus: 'סמכות ניהולית ורכוש' },
+			{ heading: 'מכירת חלק לצד שלישי', focus: 'זכות סירוב ושווי' },
+			{ heading: 'פירוק וחדלות פירעון', focus: 'כשהכסף נגמר' },
+		],
+		research: {
+			topic: 'סיום שותפות עסקית בצורה גרועה',
+			framework:
+				'- חוק השותפויות: זכויות וחובות שותפים (1975, 2025).\n- חוק החברות: פירוק מרצון (2026).',
+			facts: [
+				'חוזה שותפות מסודר מונע רוב המחלוקות ביציאה (2026).',
+				'מכירת חלק לצד שלישי ללא זכות סירוב עלולה לשבור אמון (2025).',
+				'פירוק שותפות דורש פירעון חובות והפרדת נכסים (2026).',
+			],
+			lsi: [
+				'חוזה שותפות',
+				'יציאת שותף',
+				'מכירת חלק',
+				'פירוק שותפות',
+				'סכסוך שותפים',
+				'הערכת שווי',
+				'זכות סירוב',
+				'חדלות פירעון',
+			],
+		},
+		faq: [
+			{
+				question: 'חייבים חוזה שותפות בכתב?',
+				answer: 'מומלץ מאוד; בלעדיו קשה לפתור יציאה ושווי.',
+			},
+			{
+				question: 'איך קובעים שווי ביציאה?',
+				answer: 'לפי חוזה, שמאות או מכרז פנימי שהוסכם מראש.',
+			},
+			{
+				question: 'שותף יכול למכור לזר?',
+				answer: 'תלוי בזכות סירוב ובחוזה; ללא סעיף - סיכון גבוה.',
+			},
+			{
+				question: 'מתי פונים לפירוק?',
+				answer: 'כשאין הסכמה ואין תזרים; זה הליך יקר ואחרון.',
+			},
+		],
+		tldr: 'שותפות נגמרת רע כשאין חוזה יציאה, שווי והחלטות ברורים; מניעה מתחילה בחתימה.',
+		uniqueProse: [
+			'## סעיפי יציאה בחוזה שותפות\n\nקנייה-מכירה בין שותפים, lock-in, ועיכבון מידע וקניין רוחני מפחיתים תביעות בפרידה.',
 		],
 	},
 ];
