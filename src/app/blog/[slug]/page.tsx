@@ -10,6 +10,7 @@ import {
 	buildBlogPostingSchema,
 	buildBreadcrumbSchema,
 	buildFaqSchema,
+	type BreadcrumbItem,
 } from '@/utils/structured-data';
 
 export const dynamic = 'force-static';
@@ -60,12 +61,14 @@ export default async function BlogPostPage({ params }: PageProps) {
 		...(post.data.geoKeywords ?? []),
 	];
 
+	const breadcrumbItems: BreadcrumbItem[] = [
+		{ name: 'דף הבית', path: '/' },
+		{ name: 'מאמרים', path: '/blog' },
+		{ name: post.data.title, path: `/blog/${slug}/` },
+	];
+
 	const jsonLd: Array<Record<string, unknown>> = [
-		buildBreadcrumbSchema([
-			{ name: 'דף הבית', path: '/' },
-			{ name: 'מאמרים', path: '/blog' },
-			{ name: post.data.title, path: `/blog/${slug}/` },
-		]),
+		buildBreadcrumbSchema(breadcrumbItems),
 		buildBlogPostingSchema({
 			headline: post.data.title,
 			description: post.data.metaDescription ?? post.data.description,
@@ -92,6 +95,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 			slug={slug}
 			currentPath={`/blog/${slug}/`}
 			jsonLd={jsonLd}
+			breadcrumbItems={breadcrumbItems}
 			relatedPosts={relatedPosts}
 		>
 			{content}

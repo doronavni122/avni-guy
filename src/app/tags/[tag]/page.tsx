@@ -5,6 +5,7 @@ import { Separator } from '@/components/ui/separator';
 import { SiteShell } from '@/components/layout/SiteShell';
 import { getPostsIndex, getTags } from '@/lib/content/posts';
 import { buildPageMetadata } from '@/lib/metadata';
+import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
 import { buildBreadcrumbSchema } from '@/utils/structured-data';
 import { buildTagMetaDescription, buildTagPageTitle, getTagLabel } from '@/utils/taxonomy-labels';
 
@@ -36,15 +37,17 @@ export default async function TagPage({ params }: PageProps) {
 		if (!tags.includes(tag)) notFound();
 	}
 	const tagHe = getTagLabel(tag);
-	const jsonLd = buildBreadcrumbSchema([
+	const breadcrumbItems = [
 		{ name: 'דף הבית', path: '/' },
 		{ name: 'תגיות', path: '/tags' },
 		{ name: tagHe, path: `/tags/${tag}/` },
-	]);
+	];
+	const jsonLd = buildBreadcrumbSchema(breadcrumbItems);
 
 	return (
 		<SiteShell currentPath={`/tags/${tag}/`} extraJsonLd={jsonLd}>
 			<section className="flex flex-col gap-10">
+				<BreadcrumbNav items={breadcrumbItems} />
 				<div className="flex flex-col gap-4 text-right">
 					<p className="text-sm font-medium text-primary">גיא אבני עו״ד</p>
 					<h1 className="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">

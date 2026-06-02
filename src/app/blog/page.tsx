@@ -7,6 +7,7 @@ import { SiteShell } from '@/components/layout/SiteShell';
 import { getSortedPosts } from '@/lib/content/posts';
 import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
 import { buildPageMetadata } from '@/lib/metadata';
+import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
 import { buildBreadcrumbSchema } from '@/utils/structured-data';
 
 export const dynamic = 'force-static';
@@ -21,14 +22,16 @@ export const metadata = buildPageMetadata({
 
 export default async function BlogIndexPage() {
 	const posts = await getSortedPosts();
-	const jsonLd = buildBreadcrumbSchema([
+	const breadcrumbItems = [
 		{ name: 'דף הבית', path: '/' },
 		{ name: 'מאמרים', path: '/blog' },
-	]);
+	];
+	const jsonLd = buildBreadcrumbSchema(breadcrumbItems);
 
 	return (
 		<SiteShell currentPath="/blog/" extraJsonLd={jsonLd}>
 			<section className="flex flex-col gap-10">
+				<BreadcrumbNav items={breadcrumbItems} />
 				<MainPageHero hero={MAIN_PAGE_HEROES['/blog/']} />
 				<Separator className="bg-border/60" />
 				<div className="flex flex-col gap-4 text-right">

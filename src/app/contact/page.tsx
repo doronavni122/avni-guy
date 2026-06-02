@@ -8,6 +8,7 @@ import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
 import { cn } from '@/lib/utils';
 import { SITE_CONTACT_EMAIL } from '@/consts';
 import { buildPageMetadata } from '@/lib/metadata';
+import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
 import { buildBreadcrumbSchema } from '@/utils/structured-data';
 
 export const dynamic = 'force-static';
@@ -23,15 +24,17 @@ export const metadata = buildPageMetadata({
 });
 
 export default function ContactPage() {
-	const jsonLd = buildBreadcrumbSchema([
+	const breadcrumbItems = [
 		{ name: 'דף הבית', path: '/' },
 		{ name: 'יצירת קשר', path: '/contact' },
-	]);
+	];
+	const jsonLd = buildBreadcrumbSchema(breadcrumbItems);
 
 	return (
 		<SiteShell currentPath="/contact/" extraJsonLd={jsonLd}>
 			<section className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-14">
 				<div className="flex max-w-xl flex-col gap-4 text-right">
+					<BreadcrumbNav items={breadcrumbItems} />
 					<MainPageHero hero={MAIN_PAGE_HEROES['/contact/']} />
 					<Separator className="bg-border/60" />
 					<div className="flex flex-col gap-4">

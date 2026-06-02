@@ -3,6 +3,7 @@ import { SiteShell } from '@/components/layout/SiteShell';
 import { SITE_TITLE } from '@/consts';
 import { loadHomeData } from '@/lib/home/loadHomeData';
 import { buildPageMetadata } from '@/lib/metadata';
+import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
 import { buildBreadcrumbSchema, buildFaqSchema } from '@/utils/structured-data';
 
 export const dynamic = 'force-static';
@@ -17,10 +18,14 @@ export const metadata = buildPageMetadata({
 
 export default async function Home() {
 	const data = await loadHomeData();
-	const jsonLd = [buildBreadcrumbSchema([{ name: 'דף הבית', path: '/' }]), buildFaqSchema(data.faqItems)];
+	const breadcrumbItems = [{ name: 'דף הבית', path: '/' }];
+	const jsonLd = [buildBreadcrumbSchema(breadcrumbItems), buildFaqSchema(data.faqItems)];
 
 	return (
 		<SiteShell currentPath="/" extraJsonLd={jsonLd}>
+			<div className="mb-6">
+				<BreadcrumbNav items={breadcrumbItems} />
+			</div>
 			<HomePage {...data} />
 		</SiteShell>
 	);
