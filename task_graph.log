@@ -57,3 +57,4 @@
 53. fix-em-dash-in-script-comments , scripts/audit-internal-links-full.mjs scripts/lib/internal-links-rules-registry.mjs scripts/lib/pillar-cluster-registry.mjs task_graph.log
 54. add-pass1-batch-remediation-scripts , scripts/lib/pass1-batch-remediation-content.mjs scripts/run-pass1-batch-remediation.mjs task_graph.log
 55. remediate-pass1-guy-avni-additional-tax-who-pays , content-research/guy-avni-additional-tax-who-pays.md src/content/blog/guy-avni-additional-tax-who-pays.mdx task_graph.log
+56. remediate-pass1-guy-avni-apartment-buyer-required-documents , content-research/guy-avni-apartment-buyer-required-documents.md src/content/blog/guy-avni-apartment-buyer-required-documents.mdx task_graph.log
