@@ -80,3 +80,4 @@
 76. restrict-automation-pr-head-branch-filter , scripts/automation-prefill-article-remediation.json task_graph.log
 77. add-pass1-remediation-specs-five-slugs , scripts/lib/pass1-batch-remediation-content.mjs scripts/run-pass1-batch-remediation.mjs task_graph.log
 78. remediate-pass1-guy-avni-business-partnership-types-israel-protection , content-research/guy-avni-business-partnership-types-israel-protection.md src/content/blog/guy-avni-business-partnership-types-israel-protection.mdx task_graph.log
+79. remediate-pass1-guy-avni-buying-from-contractor-checklist , content-research/guy-avni-buying-from-contractor-checklist.md src/content/blog/guy-avni-buying-from-contractor-checklist.mdx task_graph.log
