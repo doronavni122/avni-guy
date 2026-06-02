@@ -86,3 +86,4 @@
 82. remediate-pass1-guy-avni-capital-gains-exemption-single-apartment-2026 , content-research/guy-avni-capital-gains-exemption-single-apartment-2026.md src/content/blog/guy-avni-capital-gains-exemption-single-apartment-2026.mdx task_graph.log
 83. update-remediation-program-pass1-batch-five , config/remediation-program.json task_graph.log
 84. add-pass1-batch6-capital-gains-specs , scripts/lib/pass1-batch6-capital-gains-specs.mjs scripts/run-pass1-batch6-remediation.mjs task_graph.log
+85. remediate-pass1-guy-avni-capital-gains-tax-assessment-appeal , content-research/guy-avni-capital-gains-tax-assessment-appeal.md src/content/blog/guy-avni-capital-gains-tax-assessment-appeal.mdx task_graph.log
