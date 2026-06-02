@@ -289,7 +289,7 @@ export const BATCH_MDX_SPECS = {
 		{
 			pillarAnchor: 'פטור מס רכישה ראשונה',
 			blogAnchor: 'מס שבח דירה שנייה',
-			blogAnchor2: 'החישוב הלינארי המוטב',
+			blogAnchor2: 'גיא אבני עורך דין חישוב לינארי',
 			blogAnchor3: 'ערעור מול רשות המיסים',
 			title: 'גיא אבני עורך דין | פריסת מס שבח: מדריך מעשי',
 			description:
@@ -323,7 +323,7 @@ export const BATCH_MDX_SPECS = {
 		'guy-avni-capital-gains-tax-second-apartment',
 		{
 			pillarAnchor: 'פטור מס רכישה ראשונה',
-			blogAnchor: 'החישוב הלינארי המוטב',
+			blogAnchor: 'גיא אבני עורך דין חישוב לינארי',
 			blogAnchor2: 'חישוב מס רכישה דירה שנייה',
 			blogAnchor3: 'פטור מס שבח דירה יחידה 2026',
 			title: 'גיא אבני עורך דין | מס שבח על דירה שנייה',
