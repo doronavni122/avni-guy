@@ -54,14 +54,16 @@ export function computeLinkDensityBounds(wordCount) {
  * @returns {{ min: number, max: number, densityMax: number, siloCap: number }}
  */
 export function computeBlogLinkDensityBounds(wordCount) {
-	const { min: densityMin, max: densityMax } = computeLinkDensityBounds(wordCount);
+	const total = computeLinkDensityBounds(wordCount);
 	const siloCap = MAX_BLOG_LINKS;
-	const max = Math.min(densityMax, siloCap);
+	const max = Math.min(total.max, siloCap);
 	if (!wordsAboveContextualThreshold(wordCount)) {
-		return { min: 0, max, densityMax, siloCap };
+		return { min: 0, max, densityMax: total.max, siloCap, totalMax: total.max };
 	}
-	const min = Math.min(densityMin, max);
-	return { min, max, densityMax, siloCap };
+	const densityMin = Math.ceil((LINK_DENSITY_MIN_PER_1000 * Math.max(0, Number(wordCount) || 0)) / 1000);
+	// Reconcile silo/density tension: blog min cannot exceed total.max
+	const min = Math.min(Math.min(densityMin, max), total.max);
+	return { min, max, densityMax: total.max, siloCap, totalMax: total.max };
 }
 
 /**
@@ -117,10 +119,11 @@ export const ENGLISH_SLUG_ANCHOR_PATTERNS = [
 
 /** @type {RegExp[]} */
 export const GARBAGE_ANCHOR_PATTERNS = [
-	/-\d+$/,
+	/[a-z0-9]{3,}-\d+$/i,
 	/guyavni[a-z0-9]+/iu,
 	/000\s*ש"ח-\d/u,
 	/חסרים בתיק שלך-\d+/u,
+	/^עורך דין 1(?:\s+1)?$/u,
 ];
 
 export function logGraph(step, message, extra) {
@@ -318,6 +321,14 @@ export function computeDonorDiversityMetrics(inbound, posts) {
 
 /** @type {RegExp[]} */
 export const BRAND_ANCHOR_PATTERNS = [/גיא\s*אבני/u, /אבני\s*גיא/u, /עורך\s*דין\s*גיא/u];
+
+/**
+ * @param {string} anchor
+ */
+export function isBrandAnchorText(anchor) {
+	const a = String(anchor ?? '').trim();
+	return BRAND_ANCHOR_PATTERNS.some((re) => re.test(a)) || isBrandMainKeyword(a);
+}
 
 /**
  * @param {string} anchor
