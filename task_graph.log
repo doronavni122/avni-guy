@@ -55,3 +55,4 @@
 51. fix-lawyer-types-pillar-word-count , src/content/blog/guy-avni-lawyer-types-israel-specialties-full-guide.mdx task_graph.log
 52. fix-legal-counsel-pillar-word-count , src/content/blog/guy-avni-legal-counsel-israel-2026-guide.mdx task_graph.log
 53. fix-em-dash-in-script-comments , scripts/audit-internal-links-full.mjs scripts/lib/internal-links-rules-registry.mjs scripts/lib/pillar-cluster-registry.mjs task_graph.log
+54. add-pass1-batch-remediation-scripts , scripts/lib/pass1-batch-remediation-content.mjs scripts/run-pass1-batch-remediation.mjs task_graph.log
