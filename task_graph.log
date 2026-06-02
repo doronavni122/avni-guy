@@ -48,3 +48,4 @@
 44. link-goal-intent-equity-brief-integration , src/lib/content/schema.ts scripts/lib/pillar-cluster-registry.mjs scripts/remediate-internal-links-batch.mjs .cursor/rules/internal-links-loop.mdc .cursor/rules/content-pipeline-loop.mdc .cursor/rules/internal-links-pillar-cluster-loop.mdc task_graph.log
 45. master-61-rule-audit-runner , scripts/lib/internal-links-rules-registry.mjs scripts/audit-internal-links-full.mjs scripts/verify-content.mjs package.json task_graph.log
 46. quarterly-governance-cadence , .github/workflows/internal-links-quarterly.yml .cursor/rules/monthly-content-prune-loop.mdc task_graph.log
+47. fix-golden-slug-delay-delivery-audit , src/content/blog/guy-avni-israel-real-estate-delay-delivery-research.mdx task_graph.log
