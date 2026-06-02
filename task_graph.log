@@ -72,3 +72,6 @@
 68. remediate-pass1-guy-avni-business-partnership-bad-endings , content-research/guy-avni-business-partnership-bad-endings.md src/content/blog/guy-avni-business-partnership-bad-endings.mdx task_graph.log
 69. mark-remediation-program-pass1-batch-two-complete , config/remediation-program.json task_graph.log
 70. resolve-merge-main-task-graph-conflict , task_graph.log
+71. add-pass1-remediation-batch-script , scripts/pass1-remediation-batch.mjs task_graph.log
+72. sync-llms-index-after-pass1-descriptions , public/llms.txt public/llms-full.txt task_graph.log
+73. merge-main-into-pass1-pr-14 , task_graph.log
