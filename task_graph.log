@@ -100,3 +100,4 @@
 96. merge-main-into-pass1-pr-17 , scripts/cursor-pass1-batch5.mjs scripts/lib/pass1-batch5-research-specs.mjs scripts/lib/pillar-cluster-registry.mjs scripts/pass1-remediation-batch.mjs task_graph.log
 97. merge-main-into-pass1-batch-six-pr16 , task_graph.log scripts/pass1-remediation-batch.mjs
 98. add-pass1-batch6-capital-gains-automation , scripts/cursor-pass1-capital-gains-batch4.mjs scripts/lib/pass1-batch6-capital-gains-research-specs.mjs task_graph.log
+99. remediate-pass1-capital-gains-tax-assessment-appeal , content-research/guy-avni-capital-gains-tax-assessment-appeal.md src/content/blog/guy-avni-capital-gains-tax-assessment-appeal.mdx task_graph.log
