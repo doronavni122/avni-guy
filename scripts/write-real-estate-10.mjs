@@ -15,9 +15,9 @@ import {
 import { runArticleContentChecks } from './lib/check-article-content.mjs';
 import { countWordsHe } from './lib/seo-hero-rules.mjs';
 import { REAL_ESTATE_10_META, getRealEstate10Body } from './lib/real-estate-10-bodies.mjs';
+import { assertResearchStudyReady, deleteResearchStudy } from './lib/research-study-io.mjs';
 
 const BLOG_DIR = path.join(process.cwd(), 'src/content/blog');
-const RESEARCH_DIR = path.join(process.cwd(), '.cursor/tmp/research');
 const SLUGS = Object.keys(REAL_ESTATE_10_META);
 
 function log(step, msg, extra) {
@@ -28,25 +28,6 @@ function log(step, msg, extra) {
 function extractImagesSection(raw) {
 	const m = raw.match(/^images:\n[\s\S]*?(?=\n---)/m);
 	return m ? m[0].replace(/\s+$/, '') : '';
-}
-
-function writeResearch(slug, title) {
-	fs.mkdirSync(RESEARCH_DIR, { recursive: true });
-	const fp = path.join(RESEARCH_DIR, `${slug}.md`);
-	fs.writeFileSync(
-		fp,
-		`# Research: ${title}\n\n- gov.il urban renewal / sale law / tax authority\n- israelbar.org.il\n- TAMA 38 ended August 2024; pinui binui 66% threshold (2022 reforms)\n`,
-		'utf8',
-	);
-	return fp;
-}
-
-function deleteResearch(slug) {
-	try {
-		fs.unlinkSync(path.join(RESEARCH_DIR, `${slug}.md`));
-	} catch {
-		/* ok */
-	}
 }
 
 function padFaq(body, minWords = 900) {
@@ -96,8 +77,8 @@ function enhanceSlug(slug) {
 		return false;
 	}
 	const parsed = matter(raw);
-	writeResearch(slug, meta.title);
-	log(5, `research written ${slug}`);
+	assertResearchStudyReady(slug);
+	log(5, `research audit ok ${slug}`);
 	body = padFaq(normalizeBodyHrefs(body.trim()));
 	const data = {
 		title: meta.title,
@@ -117,12 +98,12 @@ function enhanceSlug(slug) {
 		return false;
 	}
 	fs.writeFileSync(filePath, `${serializeFrontmatter(data, imagesSection)}\n\n${body}\n`, 'utf8');
-	deleteResearch(slug);
 	const audit = runArticleContentChecks({ slugFilter: [slug] });
 	if (!audit.ok) {
 		log('ERROR', `audit ${slug}`, audit.errors);
 		return false;
 	}
+	deleteResearchStudy(slug, { contentAuditPassed: true });
 	log(11, `done ${slug}`, { words: countWordsHe(body) });
 	return true;
 }

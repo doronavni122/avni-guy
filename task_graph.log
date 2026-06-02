@@ -32,3 +32,4 @@
 31. relax-internal-links-fm-schema-remediate , src/lib/content/schema.ts scripts/remediate-internal-links-batch.mjs task_graph.log
 32. sync-blog-internal-links-density-remediate , src/content/blog task_graph.log
 33. wire-research-study-gates-remaining-pipelines , scripts/enhance-batch-b-slugs.mjs scripts/enhance-keyword-stub-batch.mjs scripts/run-batch-f-pipeline.mjs scripts/run-keyword-stubs-pipeline.mjs scripts/run-new-articles-pipeline.mjs task_graph.log
+34. wire-research-study-gates-write-real-estate-10 , scripts/write-real-estate-10.mjs task_graph.log
