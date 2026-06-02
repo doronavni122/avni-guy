@@ -56,11 +56,12 @@
 52. fix-legal-counsel-pillar-word-count , src/content/blog/guy-avni-legal-counsel-israel-2026-guide.mdx task_graph.log
 53. fix-em-dash-in-script-comments , scripts/audit-internal-links-full.mjs scripts/lib/internal-links-rules-registry.mjs scripts/lib/pillar-cluster-registry.mjs task_graph.log
 54. fix-ci-mainkeyword-first-100-words , src/content/blog/guy-avni-betterment-levy-land-plot-when.mdx src/content/blog/guy-avni-capital-gains-exemption-single-apartment-2026.mdx src/content/blog/guy-avni-capital-gains-tax-second-apartment.mdx src/content/blog/guy-avni-choosing-lawyer-israel-comprehensive-guide.mdx src/content/blog/guy-avni-offset-capital-loss-against-gains.mdx src/content/blog/guy-avni-second-apartment-purchase-tax-calculation.mdx src/content/blog/guy-avni-tax-authority-appeal-process.mdx src/content/blog/guy-avni-contract-risk-shifting-words-page-four.mdx task_graph.log
-55. add-pass1-remediation-batch-script , scripts/pass1-remediation-batch.mjs task_graph.log
-56. remediate-additional-tax-who-pays , content-research/guy-avni-additional-tax-who-pays.md src/content/blog/guy-avni-additional-tax-who-pays.mdx task_graph.log
-57. remediate-apartment-buyer-documents , content-research/guy-avni-apartment-buyer-required-documents.md src/content/blog/guy-avni-apartment-buyer-required-documents.mdx task_graph.log
-58. remediate-appraisal-mortgage , content-research/guy-avni-appraisal-required-mortgage.md src/content/blog/guy-avni-appraisal-required-mortgage.mdx task_graph.log
-59. remediate-bank-financing-construction , content-research/guy-avni-bank-financing-private-home-construction.md src/content/blog/guy-avni-bank-financing-private-home-construction.mdx task_graph.log
-60. remediate-betterment-levy-plot , content-research/guy-avni-betterment-levy-land-plot-when.md src/content/blog/guy-avni-betterment-levy-land-plot-when.mdx task_graph.log
-61. update-remediation-program-completed-batch , config/remediation-program.json task_graph.log
-62. sync-llms-index-after-pass1-descriptions , public/llms.txt public/llms-full.txt task_graph.log
+55. add-pass1-batch-remediation-scripts , scripts/lib/pass1-batch-remediation-content.mjs scripts/run-pass1-batch-remediation.mjs task_graph.log
+56. remediate-pass1-guy-avni-additional-tax-who-pays , content-research/guy-avni-additional-tax-who-pays.md src/content/blog/guy-avni-additional-tax-who-pays.mdx task_graph.log
+57. remediate-pass1-guy-avni-apartment-buyer-required-documents , content-research/guy-avni-apartment-buyer-required-documents.md src/content/blog/guy-avni-apartment-buyer-required-documents.mdx task_graph.log
+58. remediate-pass1-guy-avni-appraisal-required-mortgage , content-research/guy-avni-appraisal-required-mortgage.md src/content/blog/guy-avni-appraisal-required-mortgage.mdx task_graph.log
+59. remediate-pass1-guy-avni-bank-financing-private-home-construction , content-research/guy-avni-bank-financing-private-home-construction.md src/content/blog/guy-avni-bank-financing-private-home-construction.mdx task_graph.log
+60. remediate-pass1-guy-avni-betterment-levy-land-plot-when , content-research/guy-avni-betterment-levy-land-plot-when.md src/content/blog/guy-avni-betterment-levy-land-plot-when.mdx task_graph.log
+61. mark-remediation-program-pass1-batch-complete , config/remediation-program.json task_graph.log
+56. fix-main-ci-after-pr12-merge , .github/workflows/ci.yml src/content/blog/guy-avni-additional-tax-who-pays.mdx src/content/blog/guy-avni-apartment-buyer-required-documents.mdx src/content/blog/guy-avni-appraisal-required-mortgage.mdx src/content/blog/guy-avni-bank-financing-private-home-construction.mdx src/content/blog/guy-avni-betterment-levy-land-plot-when.mdx src/content/blog/guy-avni-mortgage-pre-approval-process.mdx task_graph.log
+63. merge-main-resolve-pass1-pr-conflicts , config/remediation-program.json task_graph.log
