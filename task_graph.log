@@ -22,3 +22,4 @@
 22. install-agentic-workspace-template , .commends .cursor/agents .cursor/cli.json .cursor/hooks.json .cursor/hooks .cursor/rules .cursor/skills .github/workflows/pnpm-audit.yml OWNER-REPORTS OWNER-TASKS.txt README.md RULES-GENERIC.txt notes scripts/git-hooks scripts/tools workspace.config.json package.json task_graph.log
 23. content-pipeline-cursor-tmp-bodies , .cursor/tmp task_graph.log
 24. add-research-study-validator-ssot , scripts/lib/research-study-rules.mjs scripts/lib/check-research-study.mjs scripts/lib/research-study-io.mjs scripts/audit-research-study.mjs package.json .gitignore task_graph.log
+25. add-research-scaffold-and-preflight , scripts/scaffold-research-study.mjs scripts/run-research-preflight.mjs task_graph.log
