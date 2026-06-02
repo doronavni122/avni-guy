@@ -68,3 +68,4 @@
 64. extend-pass1-remediation-batch-sixth-batch-specs , scripts/pass1-remediation-batch.mjs task_graph.log
 65. remediate-pass1-guy-avni-bounced-check-enforcement-stop-seven-days , content-research/guy-avni-bounced-check-enforcement-stop-seven-days.md src/content/blog/guy-avni-bounced-check-enforcement-stop-seven-days.mdx task_graph.log
 66. remediate-pass1-guy-avni-building-committee-legal-duties , content-research/guy-avni-building-committee-legal-duties.md src/content/blog/guy-avni-building-committee-legal-duties.mdx task_graph.log
+67. remediate-pass1-guy-avni-building-permit-shorten-lawyer-five-months , content-research/guy-avni-building-permit-shorten-lawyer-five-months.md src/content/blog/guy-avni-building-permit-shorten-lawyer-five-months.mdx task_graph.log
