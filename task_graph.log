@@ -61,3 +61,4 @@
 57. remediate-pass1-guy-avni-appraisal-required-mortgage , content-research/guy-avni-appraisal-required-mortgage.md src/content/blog/guy-avni-appraisal-required-mortgage.mdx task_graph.log
 58. remediate-pass1-guy-avni-bank-financing-private-home-construction , content-research/guy-avni-bank-financing-private-home-construction.md src/content/blog/guy-avni-bank-financing-private-home-construction.mdx task_graph.log
 59. remediate-pass1-guy-avni-betterment-levy-land-plot-when , content-research/guy-avni-betterment-levy-land-plot-when.md src/content/blog/guy-avni-betterment-levy-land-plot-when.mdx task_graph.log
+60. mark-remediation-program-pass1-batch-complete , config/remediation-program.json task_graph.log
