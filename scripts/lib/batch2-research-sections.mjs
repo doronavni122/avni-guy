@@ -1,4 +1,4 @@
-/** Researched Hebrew bodies for batch-2 content enhancer (12 slugs). */
+/** Researched Hebrew bodies for batch-2 content enhancer (12 slugs). @deprecated researchMd — use assertResearchStudyReady. */
 
 const TAX_SOURCES =
 	'\n\nמקורות רשמיים: [רשות המיסים בישראל](https://www.gov.il/he/departments/israel_tax_authority/govil-landing-page) ו-[לשכת עורכי הדין](https://www.israelbar.org.il/). המידע במאמר הוא לצורכי הסברה כללית ואינו מהווה ייעוץ מס או משפטי אישי.\n';

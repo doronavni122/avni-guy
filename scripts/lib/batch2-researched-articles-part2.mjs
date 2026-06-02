@@ -1,4 +1,4 @@
-/** Researched Hebrew bodies part 2 (6 slugs). */
+/** Researched Hebrew bodies part 2 (6 slugs). @deprecated researchMd — use assertResearchStudyReady. */
 
 const LEGAL_SOURCES =
 	'\n\nמקורות רשמיים: [משרד המשפטים](https://www.gov.il/he/departments/ministry_of_justice/govil-landing-page) ו-[לשכת עורכי הדין](https://www.israelbar.org.il/). המידע במאמר הוא לצורכי הסברה כללית ואינו מהווה ייעוץ משפטי אישי.\n';

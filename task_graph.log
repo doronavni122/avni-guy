@@ -37,3 +37,4 @@
 36. add-scoped-research-audit-verify-content , scripts/verify-content.mjs task_graph.log
 37. add-research-audit-ci-workflow-step , .github/workflows/ci.yml task_graph.log
 38. remove-legacy-write-enhanced-12-script , .cursor/tmp/write_enhanced_12.py task_graph.log
+39. deprecate-embedded-research-md-lib-batches , scripts/lib/batch-b-lease-tabu-articles.mjs scripts/lib/batch2-research-sections.mjs scripts/lib/batch2-researched-articles-part2.mjs scripts/lib/batch2-researched-articles.mjs scripts/lib/keyword-stub-batch-mortgage-bodies.mjs scripts/lib/keyword-stub-batch-tax-bodies.mjs task_graph.log
