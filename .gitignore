@@ -50,6 +50,7 @@ temp_*
 # Generated RAG vector index (build with pnpm run vector:build)
 data/vector-index.json
 temp_research/
+.cursor/tmp/research/
 
 # OS
 .DS_Store
