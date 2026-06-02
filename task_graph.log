@@ -108,3 +108,4 @@
 102. remediate-pass1-guy-avni-capital-gains-tax-second-apartment , content-research/guy-avni-capital-gains-tax-second-apartment.md src/content/blog/guy-avni-capital-gains-tax-second-apartment.mdx task_graph.log
 103. update-remediation-program-pass1-batch-six , config/remediation-program.json task_graph.log
 104. merge-main-into-pass1-batch-six-pr19 , task_graph.log
+105. sync-llms-after-pass1-batch-six , public/llms.txt public/llms-full.txt task_graph.log
