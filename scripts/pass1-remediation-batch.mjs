@@ -17,7 +17,7 @@ import {
 	serializeFrontmatter,
 	stripForbiddenTitle,
 } from './lib/article-body-kit.mjs';
-import { pillarsForCategory, primaryPillarForCategory } from './lib/pillar-cluster-registry.mjs';
+import { primaryPillarForCategory } from './lib/pillar-cluster-registry.mjs';
 import { checkResearchStudy } from './lib/check-research-study.mjs';
 import { countWordsHe } from './lib/seo-hero-rules.mjs';
 import { RESEARCH_YMYL_FRAMEWORK_SECTION } from './lib/research-study-rules.mjs';
@@ -128,43 +128,57 @@ ${lsiBlock}
 /** Lean body: 800+ words, 4-6 spaced internal links, pillar + brand. */
 function buildLeanBody(entry) {
 	const kw = entry.mainKeyword;
-	let pillar = primaryPillarForCategory(entry.category, entry.slug);
-	if (!pillar) {
-		pillar = entry.relatedBlogSlugs[0];
+	const pillar = primaryPillarForCategory(entry.category, entry.slug);
+	const blogB = entry.relatedBlogSlugs[1] ?? entry.relatedBlogSlugs[0];
+	const blogC = entry.relatedBlogSlugs[2] ?? entry.relatedBlogSlugs[0];
+	let blogD = entry.relatedBlogSlugs[3] ?? entry.relatedBlogSlugs[0];
+	if (blogD === pillar || blogD === blogB || blogD === blogC) {
+		blogD =
+			entry.relatedBlogSlugs.find((s) => s !== pillar && s !== blogB && s !== blogC) ??
+			entry.relatedBlogSlugs[0];
 	}
-	if (pillar === entry.slug) {
-		const alt = pillarsForCategory(entry.category).filter((s) => s !== entry.slug);
-		pillar = alt[0] ?? entry.relatedBlogSlugs[0];
-	}
-	const blogSlugs = entry.relatedBlogSlugs.filter((s) => s !== pillar);
-	const blogB = blogSlugs[0] ?? entry.relatedBlogSlugs[0];
-	const blogC = blogSlugs[1] ?? blogB;
-	const blogD = blogSlugs[2] ?? blogC;
+	const usedBlogSlugs = new Set(pillar ? [pillar] : []);
+	const pickUniqueBlogSlug = (candidates) => {
+		for (const s of candidates) {
+			if (s && !usedBlogSlugs.has(s)) {
+				usedBlogSlugs.add(s);
+				return s;
+			}
+		}
+		return candidates.find(Boolean) ?? entry.relatedBlogSlugs[0];
+	};
+	const introSecondSlug = pickUniqueBlogSlug([blogB, blogC, blogD, ...entry.relatedBlogSlugs]);
+	const midSlug = pickUniqueBlogSlug([blogC, blogD, blogB, ...entry.relatedBlogSlugs]);
+	const deepSlug = pickUniqueBlogSlug([blogD, blogC, blogB, ...entry.relatedBlogSlugs]);
 	const pillarHref = pillar ? `/blog/${pillar}/` : `/blog/${entry.relatedBlogSlugs[0]}/`;
-	const blogBHref = `/blog/${blogB}/`;
-	const blogCHref = `/blog/${blogC}/`;
-	const blogDHref = `/blog/${blogD}/`;
+	const blogBHref = `/blog/${introSecondSlug}/`;
+	const blogCHref = `/blog/${midSlug}/`;
+	const blogDHref = `/blog/${deepSlug}/`;
 	const slugPhrase = entry.slug.replace(/^guy-avni-/, '').replace(/-/g, ' ');
 	const uniqueFact = entry.research.facts[0] ?? entry.tldr;
 	const parts = [
 		buildTldrBlock(kw, entry.tldr).trim(),
 		`## ${entry.firstH2}`,
 		`${kw} מסביר את "${entry.title}": ${uniqueFact} ` +
-			`לפני חתימה כדאי לעיין ב-[מדריך עוגן בקטגוריה](${pillarHref}), ב-[מאמר משלים ראשון](${blogBHref}), ` +
-			`ב-[מאמר משלים שני](${blogCHref}) וב-[מאמר משלים שלישי](${blogDHref}).`,
+			`לפני החלטה כדאי לעיין ב-[מדריך עוגן בקטגוריה](${pillarHref}) וב-[מאמר משלים ראשון](${blogBHref}).`,
 	];
 	for (let i = 0; i < entry.sectionBlueprints.length; i++) {
 		const b = entry.sectionBlueprints[i];
 		const lsi = entry.research.lsi[i] ?? entry.topicLexicon[i] ?? slugPhrase;
-		parts.push(
-			`## ${b.heading}`,
+		const factLine =
 			`${b.focus} (${lsi} / ${entry.slug}): ${entry.research.facts[i % entry.research.facts.length] ?? uniqueFact} ` +
-				`מזהה מאמר ${entry.slug.replace(/-/g, '')} מקטע ${i + 1}.`,
-		);
+			`מזהה מאמר ${entry.slug.replace(/-/g, '')} מקטע ${i + 1}.`;
+		const extraLink =
+			i === 1
+				? ` לקריאה נוספת: [מאמר משלים שני](${blogCHref}).`
+				: i === 3
+					? ` עוד בנושא: [מאמר משלים שלישי](${blogDHref}).`
+					: '';
+		parts.push(`## ${b.heading}`, `${factLine}${extraLink}`);
 	}
 	parts.push(
 		`## לסיכום`,
-		`${entry.tldr} לפני שמחליטים, כדאי לתאם ייעוץ ולבדוק את המסמכים הספציפיים שלכם. ` +
+		`${entry.tldr} לפני שמחליטים, כדאי לתאם [יצירת קשר](/contact/) ולבדוק את המסמכים הספציפיים שלכם. ` +
 			`כשיש ספק לגבי חבות, מועד תשלום או רישום בטאבו, עדיף לבדוק מוקדם מאשר לתקן אחרי עסקה.`,
 		buildFaqSection(entry.faq).trim(),
 		`מקורות רשמיים: [רשות המיסים](https://www.gov.il/he/departments/israel_tax_authority/govil-landing-page) ו-[לשכת עורכי הדין](https://www.israelbar.org.il/).`,
@@ -173,15 +187,20 @@ function buildLeanBody(entry) {
 	let body = normalizeBodyHrefs(parts.join('\n\n'));
 	let n = 0;
 	const uniqueChunks = entry.uniqueProse ?? [];
-	while (countWordsHe(body) < 1100 && n < 40) {
-		const chunk = uniqueChunks[n % uniqueChunks.length];
-		if (chunk) {
+	const usedChunkIdx = new Set();
+	while (countWordsHe(body) < 1250 && n < 40) {
+		const chunkIdx = n % Math.max(uniqueChunks.length, 1);
+		const chunk = uniqueChunks[chunkIdx];
+		if (chunk && !usedChunkIdx.has(chunkIdx)) {
+			usedChunkIdx.add(chunkIdx);
 			body += `\n\n${chunk}`;
 		} else {
 			const term = entry.research.lsi[n % entry.research.lsi.length];
 			body += `\n\n## ${term} ב-${slugPhrase} (${entry.slug}-${n + 1})\n\n`;
 			body += `${entry.research.facts[n % entry.research.facts.length]} `;
-			body += `מזהה ייחודי ${entry.slug.replace(/-/g, '')}${n}.`;
+			body += `מזהה ייחודי ${entry.slug.replace(/-/g, '')}${n}. `;
+			body += `${entry.topicLexicon[n % entry.topicLexicon.length] ?? slugPhrase} בישראל ב-2025 וב-2026. `;
+			body += `בדיקה מוקדמת של מסמכים וחוזים מפחיתה סיכון לפני פנייה לרשות או לבית משפט.`;
 		}
 		n += 1;
 	}
@@ -530,242 +549,343 @@ const BATCH_SPECS = [
 		],
 	},
 	{
-		slug: 'guy-avni-business-partnership-types-israel-protection',
-		title: 'ישנם 4 סוגי שיתוף עסקי בישראל, איזה מהם מגן עליך כשהשותף תובע?',
+		slug: 'guy-avni-bounced-check-enforcement-stop-seven-days',
+		title: 'עצירת הליך הוצל"פ על צ\'ק שחזר תוך שבעה ימים',
 		description:
-			'ארבעה מבני שיתוף עסקי בישראל: שותפות, חברה בע"מ, עוסק מורשה והבדלי אחריות. איך להגן מפני תביעת שותף בהסכם מוקדם.',
-		metaTitle: 'גיא אבני משרד עורכי דין | סוגי שיתוף עסקי בישראל',
+			'צ\'ק שחזר והפיכה לתיק הוצל"פ: מועדים, עצירת הליך, הסדר חוב והגנות. צעדים מעשיים לפני עיקול.',
+		metaTitle: 'גיא אבני עורך דין | עצירת הוצל"פ על צ\'ק שחזר',
 		metaDescription:
-			'4 סוגי שיתוף עסקי בישראל: אחריות, רישום והגנה מפני תביעת שותף. גיא אבני משרד עורכי דין מסביר מה לבחור לפני פתיחת עסק משותף.',
-		mainKeyword: 'גיא אבני משרד עורכי דין',
-		category: 'business',
-		tags: ['partnership', 'business', 'litigation'],
+			'צ\'ק שחזר הופך לתיק הוצל"פ? גיא אבני עורך דין מסביר עצירת הליך, מועדים וטעויות. מדריך 2026 לפני עיקול חשבון.',
+		mainKeyword: 'גיא אבני עורך דין',
+		category: 'litigation',
+		tags: ['checks', 'enforcement', 'debt'],
 		relatedBlogSlugs: [
-			'guy-avni-business-partnership-bad-endings',
-			'guy-avni-companies-registry-phone-call-four-questions',
-			'guy-avni-client-onboarding-framework',
-			'guy-avni-business-legal-habits',
+			'guy-avni-debt-collection-claim-minimum-amount',
+			'guy-avni-enforcement-freeze-bank-account-release-48-hours',
+			'guy-avni-small-claims-without-lawyer-why-lose',
+			'guy-avni-seize-single-apartment-debts',
 		],
-		firstH2: 'ארבעה מבנים עיקריים לשיתוף עסקי בישראל',
-		topicLexicon: ['שותפות רשומה', 'חברה בע"מ', 'הסכם שותפים', 'אחריות אישית', 'קניית חלק', 'בוררות'],
+		firstH2: 'מתי צ\'ק שחזר הופך לתיק הוצאה לפועל',
+		topicLexicon: ['צ\'ק שחזר', 'הוצאה לפועל', 'עיקול חשבון', 'הסדר חוב', 'חוק שיקים'],
 		sectionBlueprints: [
-			{ heading: 'שותפות לעומת חברה', focus: 'אחריות אישית מול הגבלה' },
-			{ heading: 'הסכם שותפים בכתב', focus: 'סמכויות, כסף ויציאה' },
-			{ heading: 'הגנה כששותף תובע', focus: 'בוררות, גילוי נאות ותיעוד' },
-			{ heading: 'טעויות בפתיחת עסק', focus: 'הסתמכות על בעל פה' },
+			{ heading: 'מועדים מ-30 יום לפתיחת תיק', focus: 'התראות ודרישות לפני עיקול' },
+			{ heading: 'עצירת הליך בשבעה ימים', focus: 'הסדר, ערבות או ביטול חוב' },
+			{ heading: 'הגנות וטעויות נפוצות', focus: 'טעות בזיהוי חייב או סכום' },
+			{ heading: 'מה עושים אחרי עיקול', focus: 'שחרור חשבון ותשלום מוסדר' },
 		],
 		research: {
-			topic: 'סוגי שיתוף עסקי והגנה מפני תביעת שותף',
+			topic: 'עצירת הוצל"פ על צ\'ק שחזר',
 			framework:
-				'- פקודת השותפויות: שותפות רשומה ושותפות שלא ברישום (2025).\n- חוק החברות: חברה בע"מ (2026).\n- חוק החוזים: חובות אמונים (2025).',
+				'- חוק שיקים ללא כיסוי: אחריות פלילית ואזרחית (1981, 2025).\n- חוק ההוצאה לפועל: פתיחת תיק ועיקול (2026).',
 			facts: [
-				'שותפות רשומה מחייבת רישום ברשם השותפויות (gov.il, 2025).',
-				'חברה בע"מ מבודדת בדרך כלל אחריות לחברה (2026).',
-				'הסכם שותפות בכתב מצמצם סכסוכים על סמכויות (israelbar.org.il, 2025).',
+				'צ\'ק שחזר יכול להוביל לתיק הוצל"פ תוך כ-30 יום ממועד החזרה (2026).',
+				'עיקול חשבון בנק דורש צו הוצאה לפועל (justice.gov.il, 2025).',
+				'הסדר חוב או תשלום מלא עשויים לעצור המשך הליך (2026).',
 			],
-			lsi: ['שותפות רשומה', 'חברה בע"מ', 'הסכם שותפים', 'אחריות אישית', 'קניית חלק', 'בוררות', 'גילוי נאות', 'הפרת אמונים'],
+			lsi: [
+				'צ\'ק ללא כיסוי',
+				'הוצאה לפועל',
+				'עיקול בנק',
+				'הסדר חוב',
+				'חוק שיקים',
+				'שחרור עיקול',
+				'תביעה אזרחית',
+				'מחיקת חוב',
+			],
 		},
 		faq: [
-			{ question: 'מה ההבדל בין שותפות לחברה?', answer: 'בשותפות לרוב אחריות אישית; בחברה בע"מ האחריות מוגבלת לחברה.' },
-			{ question: 'האם חובה הסכם שותפים?', answer: 'לא בחוק, אך מומלץ בחתימה לפני תחילת פעילות משותפת.' },
-			{ question: 'איך מגנים מפני תביעת שותף?', answer: 'הסכם עם בוררות, הגבלת סמכויות חתימה ותיעוד החלטות.' },
-			{ question: 'מתי לפנות לעורך דין?', answer: 'בתחילת השותפות או לפני חלוקת כספים ופירוק.' },
+			{
+				question: 'כמה זמן עד פתיחת תיק הוצל"פ?',
+				answer: 'לרוב בתוך כחודש ממועד החזרת הצ\'ק, תלוי בפעולות הנושה.',
+			},
+			{
+				question: 'אפשר לעצור עיקול לפני שמתבצע?',
+				answer: 'כן, באמצעות הסדר, תשלום או הליך משפטי מתאים לפני ביצוע העיקול.',
+			},
+			{
+				question: 'האם צ\'ק שחזר הוא עבירה?',
+				answer: 'ייתכן הליך פלילי לפי חוק שיקים, בנוסף לגביית החוב.',
+			},
+			{
+				question: 'מה קורה אם שילמתי חלקית?',
+				answer: 'יש לתעד תשלום ולדרוש עדכון יתרה; אחרת ההליך עלול להימשך.',
+			},
 		],
-		tldr: 'בישראל נפוצים שותפות, חברה בע"מ ועוסק מורשה; הבחירה קובעת אחריות והגנה כששותף תובע.',
+		tldr: 'צ\'ק שחזר עלול להפוך לתיק הוצל"פ תוך כ-30 יום; עצירה מוקדמת דורשת פעולה תוך ימים ספורים.',
 		uniqueProse: [
-			'## בחירת מבנה לפני חתימה\n\nיוזמים שבוחרים חברה בע"מ לעיתים מפספסים עלויות רישום ודיווח, אך מרוויחים הפרדה מאחריות אישית. שותפות פשוטה מתאימה לפרויקטים קצרים עם אמון גבוה, אך חשופה לחיובים אישיים.',
-			'## תביעה בין שותפים: מה עושים ראשון\n\nכשמתקבלת תביעה, עוצרים העברות כספיות, בודקים פרוטוקולים ומפעילים סעיפי בוררות מההסכם. תיעוד החלטות דירקטוריון או שותפים הוא קו ההגנה הראשון.',
+			'## הסדר מול נושה לפני עיקול\n\nפנייה לנושה עם הצעת הסדר מוסדר, ערבות או תשלום מיידי עשויה לעצור המשך הליך. חשוב לקבל אישור בכתב על עצירת הפעולות.',
 		],
 	},
 	{
-		slug: 'guy-avni-buying-from-contractor-checklist',
-		title: 'מה לבדוק לפני קנייה מקבלן: רשימה שלא כדאי לדלג',
+		slug: 'guy-avni-building-committee-legal-duties',
+		title: 'מה ועד הבית חייב לדיירים מבחינה חוקית',
 		description:
-			'צ\'קליסט לקנייה מקבלן: רישום קבלן, ערבות חוק מכר, לוח תשלומים, מפרט, איחור מסירה וליקויי בנייה.',
-		metaTitle: 'גיא אבני עורך דין | קנייה מקבלן: מה לבדוק',
+			'חובות ועד בית לפי חוק המקרקעין: תחזוקה, גבייה, דוחות, ביטוח ואחריות אישית של חברי הוועד.',
+		metaTitle: 'גיא אבני עורך דין | חובות ועד הבית לפי החוק',
 		metaDescription:
-			'מה לבדוק לפני קנייה מקבלן? ערבות, רישום, מפרט ולוחות זמנים. גיא אבני עורך דין מסביר צ\'קליסט מעשי לפני חתימה על חוזה.',
+			'מה ועד הבית חייב? תחזוקה, גבייה, ביטוח ודוחות לפי סעיף 69. גיא אבני עורך דין מסביר זכויות דיירים ב-2026.',
 		mainKeyword: 'גיא אבני עורך דין',
 		category: 'real-estate',
-		tags: ['real-estate', 'buyer', 'contractor'],
+		tags: ['real-estate', 'shared-building', 'committee'],
 		relatedBlogSlugs: [
-			'guy-avni-sale-law-guarantee-importance',
-			'guy-avni-lawyer-required-apartment-purchase',
-			'guy-avni-israel-real-estate-delay-delivery-research',
+			'guy-avni-buying-from-contractor-checklist',
+			'guy-avni-water-damage-shared-building-liability',
+			'guy-avni-neighbor-dispute-shared-building',
 			'guy-avni-check-apartment-liens-before-purchase',
 		],
-		firstH2: 'למה קנייה מקבלן שונה מיד שנייה',
-		topicLexicon: ['קנייה מקבלן', 'ערבות חוק מכר', 'רישום קבלן', 'מפרט טכני', 'איחור מסירה', 'רוכש דירה'],
+		firstH2: 'חובות ועד הבית לפי חוק המקרקעין',
+		topicLexicon: ['ועד בית', 'רכוש משותף', 'דמי ועד', 'תקנון בתים משותפים', 'אחריות ועד'],
 		sectionBlueprints: [
-			{ heading: 'צ\'קליסט לפני חתימה', focus: 'רישום, ערבות ומפרט' },
-			{ heading: 'מימון ומשכנתא', focus: 'סנכרון בנק ועורך דין' },
-			{ heading: 'אחרי החתימה עד מסירה', focus: 'ביקורים ותיעוד' },
-			{ heading: 'טעויות יקרות', focus: 'מזומן מחוץ לחוזה' },
+			{ heading: 'תחזוקת רכוש משותף', focus: 'גג, מעלית, לובי ובטיחות' },
+			{ heading: 'גבייה ושקיפות תקציב', focus: 'דוחות ופרוטוקולים' },
+			{ heading: 'ביטוח מבנה', focus: 'חובת ביטוח וטיפול בתביעות' },
+			{ heading: 'אחריות אישית של חברי ועד', focus: 'נאמנות ורשלנות' },
 		],
 		research: {
-			topic: 'מה לבדוק לפני קניית דירה מקבלן',
-			framework: '- חוק המכר (דירות): ערבות ומקדמות (2025).\n- פנקס הקבלנים (2026).',
+			topic: 'חובות ועד בית משפטיות',
+			framework:
+				'- חוק המקרקעין: רכוש משותף וסעיף 69 (2025).\n- תקנון בתים משותפים בנספח לחוק (2026).',
 			facts: [
-				'מותר לגבות עד 7% ללא ערבות חוק מכר (gov.il, 2025).',
-				'ערבות בנק מגנה על כספי רוכש (2026).',
-				'תלונה לממונה חוק המכר על הפרות ערבות (2025).',
+				'ועד הבית מנהל רכוש משותף ולא דירות פרטיות (2026).',
+				'גביית דמי ועד לפי תקנון או החלטת דיירים (2025).',
+				'חבר ועד של פועל ברשלנות עלול להיות אחראי אישית (2026).',
 			],
-			lsi: ['קנייה מקבלן', 'ערבות חוק מכר', 'רישום קבלן', 'מפרט טכני', 'לוח תשלומים', 'איחור מסירה', 'ליקויי בנייה', 'רוכש דירה'],
+			lsi: [
+				'ועד בית',
+				'דמי ועד',
+				'רכוש משותף',
+				'תקנון בית משותף',
+				'פרוטוקול ועד',
+				'ביטוח מבנה',
+				'תחזוקת מעלית',
+				'זכויות דיירים',
+			],
 		},
 		faq: [
-			{ question: 'כמה מותר לשלם לפני ערבות?', answer: 'עד 7% ממחיר הדירה ללא ערבות חוק מכר.' },
-			{ question: 'חייבים עורך דין?', answer: 'לא בחוק, אך מומלץ לבדיקת חוזה וערבות.' },
-			{ question: 'מה אם הקבלן מתעכב?', answer: 'לפי חוזה: פיצוי איחור; אפשר תלונה לממונה.' },
-			{ question: 'מתי בודקים מפרט?', answer: 'לפני חתימה ולפני כל שינוי בזמן הבנייה.' },
+			{
+				question: 'האם ועד יכול לגבות סכום שרירותי?',
+				answer: 'לא. הגבייה לפי תקנון והחלטות דיירים חוקיות.',
+			},
+			{
+				question: 'מה קורה אם הוועד לא מתחזק?',
+				answer: 'דיירים יכולים לדרוש תחזוקה, להחליף ועד או לפנות לבית משפט.',
+			},
+			{
+				question: 'האם ועד חייב ביטוח?',
+				answer: 'לרוב נדרש ביטוח מבנה; זה חלק מהחובות המעשיות.',
+			},
+			{
+				question: 'איך מחליפים ועד?',
+				answer: 'בהצבעת דיירים לפי תקנון הבית המשותף.',
+			},
 		],
-		tldr: 'לפני קנייה מקבלן בודקים רישום קבלן, ערבות חוק מכר, מפרט, לוח תשלומים ותאריך מסירה בכתב.',
+		tldr: 'ועד הבית חייב לתחזק רכוש משותף, לגבות דמי ועד בשקיפות ולפעול כנאמן כלפי הדיירים.',
 		uniqueProse: [
-			'## ערבות בפועל\n\nבדקו שהערבות מכסה את כל הסכומים שמשולמים מעל 7%, שהיא לטובתכם בשם, ובתוקף עד מסירה. העתק מקורי נשמר אצלכם.',
-			'## מפרט ושינויים\n\nכל שינוי גמר או שטח דורש נספח חתום. בלי זה קשה לדרוש את מה שהובטח במכרז או בדירוג.',
+			'## שקיפות כלפי דיירים\n\nועד חייב להציג דוחות כספיים, לנהל פרוטוקולים ולאפשר ביקורת. הסתרת הוצאות או חוזים עם קבלנים קרובים מגדיל סיכון תביעה.',
 		],
 	},
 	{
-		slug: 'guy-avni-cancel-apartment-purchase-contract',
-		title: 'איך מבטלים חוזה קניית דירה בלי להיכוות',
+		slug: 'guy-avni-building-permit-shorten-lawyer-five-months',
+		title: 'קיצור זמן היתר בנייה בליווי משפטי',
 		description:
-			'ביטול חוזה קניית דירה: עילות, מקדמה, קנס, יום העסקה והפרה מצד מוכר.',
-		metaTitle: 'גיא אבני עורך דין | ביטול חוזה קניית דירה',
+			'היתר בנייה נמשך בממוצע 11 חודשים: איך ליווי משפטי מקצר לוחות, מסמכים ותיאום עם רשות מקומית.',
+		metaTitle: 'גיא אבני עורך דין | קיצור זמן היתר בנייה',
 		metaDescription:
-			'איך מבטלים חוזה קניית דירה? קנס, מקדמה והפרה. גיא אבני עורך דין מסביר מתי מותר לבטל ומה העלות.',
+			'היתר בנייה 11 חודשים בממוצע? גיא אבני עורך דין מסביר ליווי משפטי, מסמכים ותיאום לרשות לקיצור ל-5 חודשים.',
 		mainKeyword: 'גיא אבני עורך דין',
-		category: 'contracts',
-		tags: ['contracts', 'real-estate', 'cancellation'],
+		category: 'real-estate',
+		tags: ['building', 'permits', 'real-estate'],
 		relatedBlogSlugs: [
-			'guy-avni-contract-review-flow',
-			'guy-avni-second-hand-apartment-sale-agreement',
 			'guy-avni-buying-from-contractor-checklist',
+			'guy-avni-sale-law-guarantee-importance',
 			'guy-avni-lawyer-required-apartment-purchase',
+			'guy-avni-refuse-tama38-signature',
 		],
-		firstH2: 'מתי אפשר לבטל חוזה מכר דירה',
-		topicLexicon: ['ביטול חוזה', 'מקדמת קנייה', 'קנס ביטול', 'יום העסקה', 'הפרת חוזה', 'עורך דין נאמן'],
+		firstH2: 'למה היתר בנייה נמשך 11 חודשים בממוצע',
+		topicLexicon: ['היתר בנייה', 'רשות מקומית', 'תכנון ובנייה', 'בקשה להיתר', 'ליווי משפטי'],
 		sectionBlueprints: [
-			{ heading: 'עילות ביטול בחוזה', focus: 'סעיפים מוסכמים ותנאים מתלים' },
-			{ heading: 'מה קורה לכסף', focus: 'מקדמה, נאמן וקנס' },
-			{ heading: 'הפרה מצד מוכר', focus: 'איחור, שעבודים, ליקויים' },
-			{ heading: 'צעדים מעשיים', focus: 'הודעה בכתב ותיעוד' },
+			{ heading: 'מסמכים שמעכבים אישור', focus: 'תכניות, בעלות והסכמות' },
+			{ heading: 'תיאום מול הנדסה ותכנון', focus: 'מעקב הליכים מול עירייה' },
+			{ heading: 'ליווי משפטי לקיצור זמן', focus: 'מכתבים, עררים ותיקון ליקויים' },
+			{ heading: 'טעויות לפני הגשה', focus: 'בקשה לא שלמה או סתירה בתכנית' },
 		],
 		research: {
-			topic: 'איך מבטלים חוזה קניית דירה בישראל',
-			framework: '- חוק המכר (דירות) (2025).\n- חוק החוזים: הפרה ופיצוי (2026).',
+			topic: 'קיצור זמן היתר בנייה',
+			framework:
+				'- חוק התכנון והבנייה: הליך בקשה להיתר (2025).\n- תקנות היתר בנייה: מסמכים נדרשים (2026).',
 			facts: [
-				'ביטול לפי סעיף בחוזה דורש עמידה בתנאים (2025).',
-				'הפרת מוכר עשויה לאפשר ביטול ופיצוי (2026).',
-				'מקדמה לעורך דין נאמן מגנה על כספים (2025).',
+				'משך היתר בנייה תלוי בשלמות מסמכים וברשות המקומית (2026).',
+				'בקשה חסרה מחזירה את השעון ומוסיפה חודשים (2025).',
+				'ליווי משפטי מתמקד בתיקון ליקויים לפני דחייה (2026).',
 			],
-			lsi: ['ביטול חוזה מכר', 'מקדמת קנייה', 'קנס ביטול', 'יום העסקה', 'הפרת חוזה', 'החזר מקדמה', 'משא ומתן', 'עורך דין נאמן'],
+			lsi: [
+				'היתר בנייה',
+				'רשות מקומית',
+				'תכנית בניין עיר',
+				'אישור הנדסה',
+				'בקשה להיתר',
+				'ערר תכנוני',
+				'זמן אישור',
+				'בנייה פרטית',
+			],
 		},
 		faq: [
-			{ question: 'האם אפשר לבטל בלי סיבה?', answer: 'רק אם יש סעיף ביטול או הסכמת הצד השני; אחרת עלול להיות קנס.' },
-			{ question: 'מה קורה למקדמה?', answer: 'לפי החוזה: החזר, קיזוז או forfeiture.' },
-			{ question: 'מוכר לא מסיר בזמן?', answer: 'עילת הפרה עשויה לאפשר ביטול ופיצוי.' },
-			{ question: 'חייבים עורך דין?', answer: 'מומלץ לפני הודעת ביטול וניהול כספים.' },
+			{
+				question: 'האם עורך דין מבטיח היתר ב-5 חודשים?',
+				answer: 'לא. הוא מקצר ליקויים ומונע עיכובים שניתן למנוע.',
+			},
+			{
+				question: 'מה המסמך הכי קריטי?',
+				answer: 'תכנית מאושרת, בעלות והסכמות שכנים לפי הצורך.',
+			},
+			{
+				question: 'מי מאשר את ההיתר?',
+				answer: 'הרשות המקומית לפי חוק התכנון והבנייה.',
+			},
+			{
+				question: 'מה עושים בדחייה?',
+				answer: 'לתקן ליקוי, להגיש השלמה או לשקול ערר לפי העובדות.',
+			},
 		],
-		tldr: 'ביטול חוזה קניית דירה תלוי בסעיפי החוזה, בהפרות הצד השני ובניהול נכון של המקדמה.',
+		tldr: 'היתר בנייה נמשך חודשים כשהבקשה לא שלמה; ליווי משפטי מקצר על ידי מניעת החזרות ותיאום מול הרשות.',
 		uniqueProse: [
-			'## יום העסקה ומקדמה\n\nסעיף יום העסקה קובע מתי המקדמה "נשרפת" או חוזרת. לפני חתימה ממפים את כל התנאים המתלים, כולל אישור משכנתא.',
-			'## הפרה מצד מוכר\n\nאיחור מסירה, שעבוד שלא נוקה או אי התאמה למפרט יכולים להקים עילת ביטול. תיעוד בכתב וצילומים חיזוק את העמדה.',
-			'## ניהול משא ומתן לפני ביטול\n\nלפני שליחת הודעת ביטול כדאי לבדוק אם ניתן להסדיר את ההפרה בהסכמה משלימה, תוך שמירה על זכויות בחוזה המקורי.',
+			'## רשימת מסמכים לפני הגשה\n\nבדיקת תכנית, נסח זכויות, הסכמות שכנים ואגרות לפני הגשה מונעת החזרת בקשה. כל החזרה מוסיפה שבועות עד חודשים.',
 		],
 	},
 	{
-		slug: 'guy-avni-cancel-signed-contract-israel-fourteen-days',
-		title: 'ישנן 3 דרכים לבטל חוזה ישראלי חתום, איזו מהן עובדת תוך פחות מ-14 יום?',
+		slug: 'guy-avni-business-legal-habits',
+		title: 'הרגלי עבודה משפטיים לעסקים קטנים ובינוניים',
 		description:
-			'ביטול חוזה חתום בישראל: הסכמה, הפרה, זכות ביטול צרכן 14 יום ומגבלות בחוזי מכר דירה.',
-		metaTitle: 'גיא אבני עורך דין | ביטול חוזה חתום 14 יום',
+			'הרגלי עבודה משפטיים לעסק: סקירת חוזים, תיעוד החלטות ופגישות תקופתיות עם יועץ. מניעת הפתעות יקרות.',
+		metaTitle: 'גיא אבני עורך דין | הרגלים משפטיים לעסק',
 		metaDescription:
-			'3 דרכים לבטל חוזה חתום: צרכן 14 יום, הפרה והסכמה. גיא אבני עורך דין מסביר מתי חלה זכות הביטול ומה המועדים.',
+			'גיא אבני עורך דין מציג הרגלי עבודה משפטיים לעסק: חוזים, תיעוד וייעוץ שוטף. מדריך 2026 לבעלי עסקים.',
 		mainKeyword: 'גיא אבני עורך דין',
-		category: 'contracts',
-		tags: ['contracts', 'cancellation', 'consumer'],
+		category: 'operations',
+		tags: ['business', 'habits', 'compliance'],
 		relatedBlogSlugs: [
 			'guy-avni-contract-review-flow',
-			'guy-avni-cancel-apartment-purchase-contract',
-			'guy-avni-unprotected-lease-contract-contents',
-			'guy-avni-contract-claim-mediation-four-thousand-six-weeks',
+			'guy-avni-dispute-prevention-method',
+			'guy-avni-risk-management-routine',
+			'guy-avni-long-term-legal-strategy',
 		],
-		firstH2: 'שלוש דרכים עיקריות לביטול חוזה חתום',
-		topicLexicon: ['ביטול עסקה', 'חוק הגנת הצרכן', '14 יום', 'עסקה מרחוק', 'הפרת חוזה', 'חוזה מכר'],
+		firstH2: 'הרגלים משפטיים שמונעים הפתעות יקרות',
+		topicLexicon: ['הרגלים משפטיים', 'סקירת חוזים', 'תיעוד החלטות', 'ייעוץ שוטף', 'עסק קטן'],
 		sectionBlueprints: [
-			{ heading: 'זכות ביטול צרכן', focus: '14 יום בעסקה מרחוק' },
-			{ heading: 'ביטול לפי חוזה', focus: 'סעיפים וקנסות' },
-			{ heading: 'הפרה והסכמה', focus: 'עילות בדין' },
-			{ heading: 'מגבלות במכר דירה', focus: 'מתי לא חלה זכות צרכן' },
+			{ heading: 'סקירת חוזה לפני חתימה', focus: 'ספקים, שכירים ולקוחות' },
+			{ heading: 'תיעוד החלטות בכתב', focus: 'פרוטוקולים ומיילים' },
+			{ heading: 'פגישת ייעוץ תקופתית', focus: 'שעה חודשית עם עורך דין' },
+			{ heading: 'טעויות של עסקים קטנים', focus: 'חוזה בעל פה וויתור על זכויות' },
 		],
 		research: {
-			topic: 'ביטול חוזה חתום בישראל כולל 14 יום',
+			topic: 'הרגלי עבודה משפטיים לעסק',
 			framework:
-				'- חוק הגנת הצרכן: זכות ביטול עסקה מרחוק (2025).\n- חוק החוזים: ביטול בהסכמה והפרה (2026).',
+				'- חוק החוזים: חוזה בעל פה תקף במקרים מסוימים (2025).\n- חוק עסקאות גופים ציבוריים: שקיפות בחוזים (2026).',
 			facts: [
-				'זכות ביטול 14 יום בעסקאות מרחוק מסוימות (gov.il, 2025).',
-				'חוזה מכר דירה אינו תמיד כפוף לזכות ביטול צרכן (2026).',
-				'ביטול לפי חוזה תלוי בסעיפים המוסכמים (2025).',
+				'סקירת חוזה לפני חתימה מפחיתה סכסוכים יקרים (2026).',
+				'תיעוד החלטות הנהלה חשוב בביקורת ובתביעות (2025).',
+				'ייעוץ שוטף זול יותר מתביעה אחת ארוכה (2026).',
 			],
-			lsi: ['ביטול עסקה', 'חוק הגנת הצרכן', '14 יום', 'עסקה מרחוק', 'הפרת חוזה', 'קנס ביטול', 'חוזה מכר', 'זכות צרכן'],
+			lsi: [
+				'הרגלים משפטיים',
+				'סקירת חוזים',
+				'תיעוד עסקי',
+				'ייעוץ משפטי שוטף',
+				'עסק קטן',
+				'ציות רגולטורי',
+				'מניעת סכסוכים',
+				'ניהול סיכונים',
+			],
 		},
 		faq: [
-			{ question: 'כל חוזה ניתן לביטול תוך 14 יום?', answer: 'לא. זכות הצרכן חלה בעסקאות מרחוק מוגדרות, לא בכל מכר דירה.' },
-			{ question: 'איך מודיעים על ביטול?', answer: 'בכתב, לפי הדרך והמועד בחוק או בחוזה.' },
-			{ question: 'מה אם עברו 14 יום?', answer: 'בודקים סעיפי ביטול בחוזה או עילת הפרה.' },
-			{ question: 'האם יש קנס?', answer: 'ייתכן לפי חוזה; בזכות צרכן יש כללים מיוחדים.' },
+			{
+				question: 'כמה פעמים בשנה לפגוש עורך דין?',
+				answer: 'לפחות רבעוני; בעסק פעיל מומלץ חודשי.',
+			},
+			{
+				question: 'האם חוזה בעל פה מספיק?',
+				answer: 'לעיתים כן, אך בכתב קל להוכיח ולמנוע מחלוקות.',
+			},
+			{
+				question: 'מה לתעד בוואטסאפ עסקי?',
+				answer: 'החלטות מהותיות, אישורי תשלום והתחייבויות ללקוחות.',
+			},
+			{
+				question: 'מתי לבדוק חוזה ספק?',
+				answer: 'לפני כל התחייבות משמעותית או תשלום מקדמה.',
+			},
 		],
-		tldr: 'ביטול חוזה חתום אפשרי בהסכמה, בהפרה, בזכות צרכן 14 יום (כשחלה) או לפי סעיפי החוזה.',
+		tldr: 'הרגל משפטי שוטף: לבדוק חוזים, לתעד החלטות ולתאם ייעוץ לפני שהסכסוך נוצר.',
 		uniqueProse: [
-			'## עסקה מרחוק מול מכר דירה\n\nרכישת דירה בדרך כלל אינה עסקת צרכנות מרחוק קלאסית; זכות 14 הימים לעיתים לא חלה. בדקו את סוג העסקה לפני שמסתמכים על ביטול מהיר.',
-			'## הודעת ביטול נכונה\n\nשולחים הודעה לפי הכתובת והאמצעי בחוק, שומרים אישור מסירה ומצרפים מסמכי תשלום. טעות בפרטי הודעה עלולה לעכב החזר.',
+			'## שגרה שבועית לבעל עסק\n\nיום אחד בשבוע לסקירת חוזים פתוחים, תשובות לדרישות משפטיות ועדכון רשימת סיכונים חוסך תביעות בסוף השנה.',
 		],
 	},
 	{
-		slug: 'guy-avni-capital-gains-exemption-single-apartment-2026',
-		title: 'פטור ממס שבח על דירה יחידה ב-2026: תנאים, תקרות וטעויות',
+		slug: 'guy-avni-business-partnership-bad-endings',
+		title: 'ארבע דרכים שבהן שותפות עסקית נגמרת רע',
 		description:
-			'פטור מס שבח דירה יחידה 2026: סעיף 49ב, תקרה, 18 חודשים החזקה, משפר דיור ודיווח לרשות המיסים.',
-		metaTitle: 'גיא אבני עורך דין | פטור מס שבח דירה יחידה 2026',
+			'סיום שותפות עסקית: פרישה, פיטורים, מכירת חלק ופירוק. איך למנוע סיום גרוע ומה לבדוק בחוזה.',
+		metaTitle: 'גיא אבני עורך דין | סיום שותפות עסקית',
 		metaDescription:
-			'פטור ממס שבח על דירה יחידה ב-2026: תנאי זכאות, תקרה ופטור חלקי. גיא אבני עורך דין מסביר לפני מכירה.',
+			'4 דרכים שבהן שותפות עסקית נגמרת רע. גיא אבני עורך דין מסביר חוזה שותפות, יציאה ופירוק ב-2026.',
 		mainKeyword: 'גיא אבני עורך דין',
-		category: 'tax',
-		tags: ['tax', 'capital-gains', 'single-apartment'],
+		category: 'business',
+		tags: ['partnership', 'business', 'disputes'],
 		relatedBlogSlugs: [
-			'guy-avni-purchase-tax-exemption-first-apartment',
-			'guy-avni-additional-tax-who-pays',
-			'guy-avni-second-apartment-purchase-tax-calculation',
-			'guy-avni-linear-capital-gains-tax-benefit',
+			'guy-avni-business-partnership-types-israel-protection',
+			'guy-avni-client-onboarding-framework',
+			'guy-avni-insolvency-vs-bankruptcy-difference',
+			'guy-avni-dispute-prevention-method',
 		],
-		firstH2: 'מהו פטור מס שבח על דירה יחידה ב-2026',
-		topicLexicon: ['פטור מס שבח', 'דירה יחידה', 'סעיף 49ב', 'תקרת פטור', 'משפר דיור', 'דיווח מס שבח'],
+		firstH2: 'ארבע דרכים שבהן שותפות עסקית נגמרת בצורה גרועה',
+		topicLexicon: ['שותפות עסקית', 'חוזה שותפות', 'יציאת שותף', 'פירוק שותפות', 'סכסוך שותפים'],
 		sectionBlueprints: [
-			{ heading: 'תנאי זכאות', focus: 'יחידה, החזקה וטופס 4' },
-			{ heading: 'תקרת פטור מלא וחלקי', focus: 'סכומים 2026' },
-			{ heading: 'משפר דיור', focus: 'מכירה ורכישה בפרק זמן' },
-			{ heading: 'טעויות בדיווח', focus: 'פטור שני תוך 18 חודשים' },
+			{ heading: 'פרישה בלי הסכם יציאה', focus: 'חוסר מנגנון קנייה-מכירה' },
+			{ heading: 'פיטורי שותף שלא מוגדרים', focus: 'סמכות ניהולית ורכוש' },
+			{ heading: 'מכירת חלק לצד שלישי', focus: 'זכות סירוב ושווי' },
+			{ heading: 'פירוק וחדלות פירעון', focus: 'כשהכסף נגמר' },
 		],
 		research: {
-			topic: 'פטור מס שבח דירה יחידה 2026',
+			topic: 'סיום שותפות עסקית בצורה גרועה',
 			framework:
-				'- חוק מיסוי מקרקעין: סעיף 49ב (2025).\n- תקנות מס שבח: תקרת פטור (2026).',
+				'- חוק השותפויות: זכויות וחובות שותפים (1975, 2025).\n- חוק החברות: פירוק מרצון (2026).',
 			facts: [
-				'פטור מלא עד תקרה שנצמדת למדד (gov.il, 2026).',
-				'תקופת החזקה 18 חודשים מסיום בנייה (2025).',
-				'לא ניתן פטור שני תוך 18 חודשים (2026).',
+				'חוזה שותפות מסודר מונע רוב המחלוקות ביציאה (2026).',
+				'מכירת חלק לצד שלישי ללא זכות סירוב עלולה לשבור אמון (2025).',
+				'פירוק שותפות דורש פירעון חובות והפרדת נכסים (2026).',
 			],
-			lsi: ['פטור מס שבח', 'דירה יחידה', 'סעיף 49ב', 'תקרת פטור', 'משפר דיור', 'רשות המיסים', 'מכירת דירה', 'פטור חלקי'],
+			lsi: [
+				'חוזה שותפות',
+				'יציאת שותף',
+				'מכירת חלק',
+				'פירוק שותפות',
+				'סכסוך שותפים',
+				'הערכת שווי',
+				'זכות סירוב',
+				'חדלות פירעון',
+			],
 		},
 		faq: [
-			{ question: 'מה תקרת הפטור ב-2026?', answer: 'בסביבות 5.4-5.6 מיליון ש"ח לפטור מלא, לפי עדכוני רשות המיסים.' },
-			{ question: 'חייבים 18 חודשים החזקה?', answer: 'כן, מסיום בנייה או רכישה לפי הנסיבות.' },
-			{ question: 'מהו משפר דיור?', answer: 'מכירת דירה ורכישת דירת מגורים אחרת בפרק זמן קצוב.' },
-			{ question: 'מתי מדווחים?', answer: 'במועד הקבוע בדין, עם טופס מס שבח ונספחים.' },
+			{
+				question: 'חייבים חוזה שותפות בכתב?',
+				answer: 'מומלץ מאוד; בלעדיו קשה לפתור יציאה ושווי.',
+			},
+			{
+				question: 'איך קובעים שווי ביציאה?',
+				answer: 'לפי חוזה, שמאות או מכרז פנימי שהוסכם מראש.',
+			},
+			{
+				question: 'שותף יכול למכור לזר?',
+				answer: 'תלוי בזכות סירוב ובחוזה; ללא סעיף - סיכון גבוה.',
+			},
+			{
+				question: 'מתי פונים לפירוק?',
+				answer: 'כשאין הסכמה ואין תזרים; זה הליך יקר ואחרון.',
+			},
 		],
-		tldr: 'פטור מס שבח על דירה יחידה ב-2026 כפוף לתקרה, תקופת החזקה, דירה יחידה ודיווח מלא לרשות המיסים.',
+		tldr: 'שותפות נגמרת רע כשאין חוזה יציאה, שווי והחלטות ברורים; מניעה מתחילה בחתימה.',
 		uniqueProse: [
-			'## פטור חלקי מעל התקרה\n\nמעל תקרת הפטור המלא חל שיעור מס על החלק העודף; תכנון מכירה ורכישה משפר דיור משפיע על החישוב.',
-			'## דירה יחידה בפועל\n\nרשות המיסים בודקת בעלות בדירות נוספות ובני זוג; מכירה "טכנית" של דירה יחידה עלולה להיפסל בביקורת.',
+			'## סעיפי יציאה בחוזה שותפות\n\nקנייה-מכירה בין שותפים, lock-in, ועיכבון מידע וקניין רוחני מפחיתים תביעות בפרידה.',
 		],
 	},
 ];
