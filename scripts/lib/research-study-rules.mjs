@@ -1,4 +1,4 @@
-/** SSOT thresholds and paths for ephemeral research studies (.cursor/tmp/research). */
+/** SSOT thresholds and paths for tracked research studies (committed under content-research/). */
 
 export const RESEARCH_MIN_DURATION_SEC = 300;
 export const RESEARCH_MIN_WORDS = 2000;
@@ -6,7 +6,11 @@ export const RESEARCH_MIN_AUTHORITY_URLS = 5;
 export const RESEARCH_MIN_DATED_FACTS = 3;
 export const RESEARCH_MIN_LSI_TERMS = 8;
 
-export const RESEARCH_DIR = '.cursor/tmp/research';
+/** Git-tracked studies for CI and scheduled remediation batches. */
+export const RESEARCH_DIR = 'content-research';
+
+/** When true (default for content-research), deleteResearchStudy is a no-op unless RESEARCH_ALLOW_DELETE=1. */
+export const RESEARCH_TRACKED_IN_GIT = true;
 
 /** Required ## headings (exact match after strip). */
 export const RESEARCH_REQUIRED_SECTIONS = [

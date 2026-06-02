@@ -1,0 +1,89 @@
+name: Article remediation batch
+
+on:
+  schedule:
+    # Every 12 hours UTC
+    - cron: '0 */12 * * *'
+  workflow_dispatch:
+    inputs:
+      batch_size:
+        description: Number of slugs to scaffold per run
+        required: false
+        default: '5'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  pass1-scaffold-batch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Pick failing slugs and scaffold research
+        env:
+          REMEDIATION_BATCH_SIZE: ${{ github.event.inputs.batch_size || '5' }}
+        run: |
+          node scripts/run-article-remediation.mjs --pick-failures="${REMEDIATION_BATCH_SIZE}" --scaffold --emit-queue --print-steps
+
+      - name: List pending count
+        run: node scripts/run-article-remediation.mjs --list-pending | tail -1
+
+      - name: Create remediation PR branch
+        id: branch
+        run: |
+          BRANCH="auto/remediation-$(date -u +%Y%m%d-%H%M)"
+          echo "name=$BRANCH" >> "$GITHUB_OUTPUT"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add content-research/ config/remediation-batch.json
+          if git diff --staged --quiet; then
+            echo "no_changes=true" >> "$GITHUB_OUTPUT"
+            echo "No scaffolds to commit (batch may be complete)."
+          else
+            git commit -m "auto-scaffold-remediation-batch"
+            git push -u origin "$BRANCH"
+            echo "no_changes=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open pull request
+        if: steps.branch.outputs.no_changes != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          BODY="$(cat <<'EOF'
+## Automated Pass 1 batch (scaffold only)
+
+Research scaffolds were added under `content-research/` for the next failing slugs.
+`config/remediation-batch.json` lists `PIPELINE_SLUGS` for this batch.
+
+### Agent / Cursor steps (Pass 1)
+1. Complete `article-research-loop.mdc` for each slug (≥2000w study, ≥5 min, commit `content-research/<slug>.md`).
+2. Run `pnpm run research:audit -- <slug>` per slug.
+3. Run `content-enhancer-loop` + E-E-A-T + internal links + brand link; commit MDX.
+4. `CONTENT_AUDIT_SLUGS=<slug> pnpm run content:audit` per slug.
+5. When the whole batch passes Pass 1, run Pass 2 on `main`: `pnpm run run-article-remediation.mjs --pass2 --verify`.
+
+Studies stay in git (`content-research/`); do not delete unless `RESEARCH_ALLOW_DELETE=1`.
+EOF
+)"
+          gh pr create --base main --head "${{ steps.branch.outputs.name }}" \
+            --title "auto: remediation batch scaffolds" \
+            --body "$BODY"

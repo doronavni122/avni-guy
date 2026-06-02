@@ -27,7 +27,7 @@ Use when remediating one or more blog articles. Run steps in order; do not skip.
 17. Mark article `[x]` in all checklists when steps 2-16 pass for that slug.
 
 Hard requirements:
-- Research files only under `.cursor/tmp/research/<slug>.md`; delete only after dual audit (research + content).
+- Research files under `content-research/<slug>.md` (git-tracked); optional delete only with `RESEARCH_ALLOW_DELETE=1`.
 - Scoped pipeline runs set `REQUIRE_RESEARCH=1` automatically (`scripts/run-content-pipeline.mjs`).
 - Preserve frontmatter schema in `src/lib/content/schema.ts`; new fields optional for legacy posts.
 - Log each step: `[content-pipeline-loop] step N: ...` or `[content-pipeline-loop] ERROR ...`.

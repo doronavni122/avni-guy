@@ -50,7 +50,10 @@ temp_*
 # Generated RAG vector index (build with pnpm run vector:build)
 data/vector-index.json
 temp_research/
+# Legacy ephemeral path (use content-research/ instead)
 .cursor/tmp/research/
+# Generated per scheduled remediation run
+config/remediation-batch.json
 
 # OS
 .DS_Store

@@ -5,7 +5,7 @@ import {
 	checkResearchStudyFile,
 	formatResearchErrors,
 } from './check-research-study.mjs';
-import { RESEARCH_DIR } from './research-study-rules.mjs';
+import { RESEARCH_DIR, RESEARCH_TRACKED_IN_GIT } from './research-study-rules.mjs';
 
 function log(msg, extra) {
 	if (extra !== undefined) console.error(`[research-study-io] ${msg}`, extra);
@@ -39,6 +39,13 @@ export function assertResearchStudyReady(slug, options = {}) {
  * @param {{ contentAuditPassed?: boolean }} options
  */
 export function deleteResearchStudy(slug, { contentAuditPassed = false } = {}) {
+	if (RESEARCH_TRACKED_IN_GIT && process.env.RESEARCH_ALLOW_DELETE !== '1') {
+		log('delete skipped (tracked content-research; set RESEARCH_ALLOW_DELETE=1 to remove)', {
+			slug,
+		});
+		return false;
+	}
+
 	if (!contentAuditPassed) {
 		logErr('delete blocked: contentAuditPassed must be true after scoped content:audit');
 		throw new Error(

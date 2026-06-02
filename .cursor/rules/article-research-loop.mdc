@@ -11,18 +11,18 @@ SSOT thresholds: `scripts/lib/research-study-rules.mjs` (300s, 2000 words, 5 URL
 
 1. Pick slug from `temp_articles_checklist.txt` (unchecked) or `PIPELINE_SLUGS`.
 2. **Keywords locked** — complete `content-keywords-assignment-loop.mdc`; copy `main_keyword` into research frontmatter.
-3. **Scaffold** (if missing): `pnpm run research:scaffold -- <slug>` → `.cursor/tmp/research/<slug>.md`.
+3. **Scaffold** (if missing): `pnpm run research:scaffold -- <slug>` → `content-research/<slug>.md` (git-tracked).
 4. **Fetch authority sources** — Bright Data / Exa / manual browse; log in `## Authority source matrix` and `## Research log` (≥5 allowlisted `https://` URLs; YMYL: ≥2 matrix rows from gov.il / justice.gov.il / israelbar.org.il).
 5. **Write study** — Hebrew notes + English framework where helpful; **≥2000 words** (`countWordsHe`); all required `##` sections per rubric below; ≥3 dated facts (2025/2026); ≥8 LSI terms beyond `mainKeyword`.
 6. Set `research_completed_at` (ISO8601) only when study is complete; elapsed time from `research_started_at` must be **≥300 seconds**.
 7. **Gate:** `pnpm run research:audit -- <slug>` (or `RESEARCH_AUDIT_SLUGS=<slug> pnpm run research:audit`) — exit 0 required before merge.
 8. Merge research into Hebrew MDX body via `content-enhancer-loop`; keep **2+** external `https://` links in YMYL slugs.
-9. **Delete study only after** scoped `CONTENT_AUDIT_SLUGS=<slug> pnpm run content:audit` passes (use `deleteResearchStudy` from `scripts/lib/research-study-io.mjs`; never delete on merge alone).
+9. **Commit study** with MDX in the same PR. Tracked studies are not deleted by default (`deleteResearchStudy` no-ops unless `RESEARCH_ALLOW_DELETE=1`).
 10. Log: `[article-research-loop] step N` or `ERROR`.
 
 ## Required research file sections
 
-`.cursor/tmp/research/<slug>.md` must include YAML frontmatter:
+`content-research/<slug>.md` must include YAML frontmatter:
 
 ```yaml
 ---
@@ -52,4 +52,4 @@ Hard requirements:
 - Do not merge body without `research:audit` pass for new or materially rewritten articles.
 - Batch scripts **never** write research; they call `assertResearchStudyReady(slug)` and fail fast if missing.
 - No Unicode em dash U+2014 in research or merged body.
-- Never commit `.cursor/tmp/research/` (gitignored ephemeral).
+- SSOT path: `content-research/` (committed). Legacy `.cursor/tmp/research/` is ignored.
