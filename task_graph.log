@@ -100,3 +100,4 @@
 96. merge-main-into-pass1-pr-17 , scripts/cursor-pass1-batch5.mjs scripts/lib/pass1-batch5-research-specs.mjs scripts/lib/pillar-cluster-registry.mjs scripts/pass1-remediation-batch.mjs task_graph.log
 97. sync-llms-after-pass1-batch-five , public/llms.txt public/llms-full.txt task_graph.log
 97. merge-main-for-pr16-clean-merge , task_graph.log public/llms.txt
+98. add-pass1-batch6-remediation-scripts , scripts/cursor-pass1-batch6.mjs scripts/lib/pass1-batch6-mdx-specs.mjs scripts/lib/pass1-batch6-research-specs.mjs task_graph.log
