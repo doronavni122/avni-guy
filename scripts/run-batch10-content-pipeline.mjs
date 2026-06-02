@@ -17,9 +17,9 @@ import {
 import { getArticleContent } from './lib/batch2-research-sections.mjs';
 import { runArticleContentChecks } from './lib/check-article-content.mjs';
 import { countWordsHe } from './lib/seo-hero-rules.mjs';
+import { assertResearchStudyReady, deleteResearchStudy } from './lib/research-study-io.mjs';
 
 const BLOG = path.join(process.cwd(), 'src/content/blog');
-const RESEARCH = path.join(process.cwd(), '.cursor/tmp/research');
 const SLUGS = process.argv.slice(2).length
 	? process.argv.slice(2)
 	: [
@@ -49,21 +49,6 @@ function log(prefix, step, msg, extra) {
 function extractImages(raw) {
 	const m = raw.match(/^images:\n[\s\S]*?(?=\n---)/m);
 	return m ? m[0].replace(/\s+$/, '') : '';
-}
-
-function writeResearch(slug, md) {
-	fs.mkdirSync(RESEARCH, { recursive: true });
-	const fp = path.join(RESEARCH, `${slug}.md`);
-	fs.writeFileSync(fp, md, 'utf8');
-	return fp;
-}
-
-function deleteResearch(slug) {
-	try {
-		fs.unlinkSync(path.join(RESEARCH, `${slug}.md`));
-	} catch {
-		/* ok */
-	}
 }
 
 function padBody(body, slug, minWords = 900) {
@@ -116,8 +101,8 @@ function enhanceSlug(slug) {
 	const spec = getArticleContent(slug);
 	if (!spec) throw new Error(`no content spec ${slug}`);
 
-	writeResearch(slug, spec.researchMd ?? `# Research: ${slug}\n`);
-	log('content-enhancer-loop', 5, `research written ${slug}`);
+	assertResearchStudyReady(slug);
+	log('content-enhancer-loop', 5, `research audit ok ${slug}`);
 
 	let body = padBody(normalizeBodyHrefs(spec.body.trim()), slug);
 	const data = {
@@ -139,7 +124,6 @@ function enhanceSlug(slug) {
 
 	const fm = serializeFrontmatter(data, images);
 	fs.writeFileSync(fp, `${fm}\n\n${body}\n`, 'utf8');
-	deleteResearch(slug);
 	log('content-enhancer-loop', 11, `done ${slug}`, { words: countWordsHe(body) });
 }
 
@@ -210,6 +194,7 @@ for (const slug of SLUGS) {
 			results[slug].audit = `FAIL: ${audit.errors.slice(0, 3).join('; ')}`;
 		} else {
 			results[slug].audit = 'PASS';
+			deleteResearchStudy(slug, { contentAuditPassed: true });
 			markChecklists(`src/content/blog/${slug}.mdx`, true);
 			log('content-pipeline-loop', 9, 'marked all checklists', { slug });
 		}

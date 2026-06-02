@@ -16,9 +16,9 @@ import { runArticleContentChecks } from './lib/check-article-content.mjs';
 import { getArticleContent } from './lib/batch2-research-sections.mjs';
 import { getArticleTier, getMinWordsForTier } from './lib/content-tiers.mjs';
 import { countWordsHe } from './lib/seo-hero-rules.mjs';
+import { assertResearchStudyReady, deleteResearchStudy } from './lib/research-study-io.mjs';
 
 const BLOG_DIR = path.join(process.cwd(), 'src/content/blog');
-const RESEARCH_DIR = path.join(process.cwd(), '.cursor/tmp/research');
 const CHECKLIST = 'temp_articles_checklist.txt';
 
 const SLUGS = [
@@ -48,20 +48,6 @@ function logErr(message, extra) {
 function extractImagesSection(raw) {
 	const m = raw.match(/^images:\n[\s\S]*?(?=\n---)/m);
 	return m ? m[0].replace(/\s+$/, '') : '';
-}
-
-function writeResearchFile(slug, researchMd) {
-	fs.mkdirSync(RESEARCH_DIR, { recursive: true });
-	fs.writeFileSync(path.join(RESEARCH_DIR, `${slug}.md`), researchMd, 'utf8');
-}
-
-function deleteResearchFile(slug) {
-	const filePath = path.join(RESEARCH_DIR, `${slug}.md`);
-	try {
-		if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
-	} catch (err) {
-		logErr(`research delete failed ${slug}`, err.message);
-	}
 }
 
 function padBodyToMinWords(body, slug, title, minWords) {
@@ -131,7 +117,8 @@ function enhanceSlug(slug) {
 		logErr(`no research content for ${slug}`);
 		return false;
 	}
-	writeResearchFile(slug, content.researchMd);
+	assertResearchStudyReady(slug);
+	log(5, 'research audit ok', { slug });
 	const data = {
 		...parsed.data,
 		title: content.title,
@@ -151,12 +138,12 @@ function enhanceSlug(slug) {
 	}
 	const fm = serializeFrontmatter(data, imagesSection);
 	fs.writeFileSync(filePath, `${fm}\n\n${body}`, 'utf8');
-	deleteResearchFile(slug);
 	const audit = runArticleContentChecks({ slugFilter: [slug] });
 	if (!audit.ok) {
 		logErr(`content audit failed ${slug}`, audit.errors.slice(0, 8));
 		return false;
 	}
+	deleteResearchStudy(slug, { contentAuditPassed: true });
 	markChecklist(`src/content/blog/${slug}.mdx`, true);
 	log(11, 'done', { slug });
 	return true;
