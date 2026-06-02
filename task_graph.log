@@ -99,3 +99,4 @@
 83. update-remediation-program-pass1-batch-five , config/remediation-program.json task_graph.log
 96. merge-main-into-pass1-pr-17 , scripts/cursor-pass1-batch5.mjs scripts/lib/pass1-batch5-research-specs.mjs scripts/lib/pillar-cluster-registry.mjs scripts/pass1-remediation-batch.mjs task_graph.log
 97. sync-llms-after-pass1-batch-five , public/llms.txt public/llms-full.txt task_graph.log
+98. fix-strict-blog-link-anchors-pass1-batch , src/content/blog/guy-avni-business-partnership-types-israel-protection.mdx src/content/blog/guy-avni-buying-from-contractor-checklist.mdx src/content/blog/guy-avni-cancel-apartment-purchase-contract.mdx src/content/blog/guy-avni-cancel-signed-contract-israel-fourteen-days.mdx task_graph.log
