@@ -50,7 +50,7 @@ function main() {
 	const steps = [...STEPS];
 	if (process.env.LINK_CRAWL_ENFORCE === '1') {
 		steps.push({ name: 'links:crawl', cmd: 'pnpm', args: ['run', 'links:crawl'] });
-		logStep('optional: LINK_CRAWL_ENFORCE=1 — links:crawl appended');
+		logStep('optional: LINK_CRAWL_ENFORCE=1 - links:crawl appended');
 	}
 	for (let i = 0; i < steps.length; i++) {
 		const step = steps[i];

@@ -1,4 +1,4 @@
-/** Researched Hebrew bodies for batch-B lease/tabu/appraisal slugs (10). @deprecated researchMd — use assertResearchStudyReady. */
+/** Researched Hebrew bodies for batch-B lease/tabu/appraisal slugs (10). @deprecated researchMd - use assertResearchStudyReady. */
 
 const LEGAL =
 	'\n\nמקורות: [משרד המשפטים](https://www.gov.il/he/departments/ministry_of_justice/govil-landing-page) ו-[לשכת עורכי הדין](https://www.israelbar.org.il/). המידע במאמר הוא לצורכי הסברה כללית ואינו מהווה ייעוץ משפטי אישי.\n';

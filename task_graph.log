@@ -43,3 +43,4 @@
 41. patch-blog-internal-links-post-remediate , src/content/blog task_graph.log
 42. remove-unused-imports-verify-content , scripts/verify-content.mjs task_graph.log
 29. remove-researchmd-from-batch-f-resolve , scripts/run-batch-f-pipeline.mjs task_graph.log
+30. fix-em-dash-deprecation-comments , scripts/lib/batch2-research-sections.mjs scripts/lib/batch2-researched-articles.mjs scripts/lib/batch2-researched-articles-part2.mjs scripts/lib/batch-b-lease-tabu-articles.mjs scripts/lib/keyword-stub-batch-tax-bodies.mjs scripts/lib/keyword-stub-batch-mortgage-bodies.mjs scripts/verify-content.mjs task_graph.log

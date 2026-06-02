@@ -1,4 +1,4 @@
-/** Mortgage cluster bodies for keyword-stub batch (5 slugs). @deprecated researchMd — use assertResearchStudyReady. */
+/** Mortgage cluster bodies for keyword-stub batch (5 slugs). @deprecated researchMd - use assertResearchStudyReady. */
 
 export const MORTGAGE_SOURCES =
 	'\n\nמקורות: [בנק ישראל - משכנתאות](https://www.boi.org.il/he/consumer-information/banking-supervision/mortgages/) ו-[משרד הפנים](https://www.gov.il/he/departments/ministry_of_interior/govil-landing-page). המידע במאמר הוא לצורכי הסברה כללית ואינו מהווה ייעוץ משפטי או פיננסי אישי.\n';
