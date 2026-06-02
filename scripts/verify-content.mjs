@@ -1,4 +1,7 @@
 import { spawnSync } from 'node:child_process';
+import fs from 'node:fs';
+import path from 'node:path';
+import { runArticleContentChecks } from './lib/check-article-content.mjs';
 
 const STEPS = [
 	{ name: 'content:audit', cmd: 'pnpm', args: ['run', 'content:audit'] },
@@ -17,8 +20,36 @@ function logErr(msg, extra) {
 	console.error(`[verify-content] ERROR ${msg}`, extra ?? '');
 }
 
+function resolveResearchSlugs() {
+	const env =
+		process.env.RESEARCH_AUDIT_SLUGS?.trim() || process.env.PIPELINE_SLUGS?.trim() || '';
+	if (!env) return [];
+	return env.split(',').map((s) => s.trim()).filter(Boolean);
+}
+
+function runResearchAudit(slugs) {
+	if (!slugs.length) return true;
+	logStep('optional: scoped research audit', { slugs: slugs.length });
+	const result = spawnSync(
+		process.execPath,
+		['scripts/audit-research-study.mjs', ...slugs],
+		{ stdio: 'inherit', env: process.env },
+	);
+	if (result.status !== 0) {
+		logErr('research:audit failed', { exit: result.status });
+		return false;
+	}
+	return true;
+}
+
 function main() {
 	logStep('step 0: starting content verification pipeline');
+
+	const researchSlugs = resolveResearchSlugs();
+	if (researchSlugs.length && !runResearchAudit(researchSlugs)) {
+		process.exit(1);
+	}
+
 	const steps = [...STEPS];
 	if (process.env.LINK_CRAWL_ENFORCE === '1') {
 		steps.push({ name: 'links:crawl', cmd: 'pnpm', args: ['run', 'links:crawl'] });
