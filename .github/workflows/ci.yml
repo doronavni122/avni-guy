@@ -35,6 +35,12 @@ jobs:
       - name: Verify content
         run: pnpm run verify:content
 
+      - name: Research audit (scoped)
+        if: env.RESEARCH_AUDIT_SLUGS != ''
+        run: pnpm run research:audit
+        env:
+          RESEARCH_AUDIT_SLUGS: ${{ env.RESEARCH_AUDIT_SLUGS }}
+
       - name: SEO guardrails
         run: pnpm run seo:guardrails
 

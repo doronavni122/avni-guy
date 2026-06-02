@@ -35,3 +35,4 @@
 34. wire-research-study-gates-write-real-estate-10 , scripts/write-real-estate-10.mjs task_graph.log
 35. research-preflight-fail-fast-content-pipeline , scripts/run-content-pipeline.mjs task_graph.log
 36. add-scoped-research-audit-verify-content , scripts/verify-content.mjs task_graph.log
+37. add-research-audit-ci-workflow-step , .github/workflows/ci.yml task_graph.log
