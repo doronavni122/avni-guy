@@ -3,7 +3,7 @@
  * Log: [pass1-batch6-content]
  */
 import { YMYL_SLUGS } from './content-forbidden-patterns.mjs';
-import { buildCompactBody } from './pass1-batch-remediation-content.mjs';
+import { buildExpandedBody } from './pass1-batch-remediation-content.mjs';
 
 export const BATCH6_SLUGS = [
 	'guy-avni-capital-gains-tax-assessment-appeal',
@@ -207,7 +207,7 @@ function batchSpec(slug, partial) {
 		uniqueParagraphs: UNIQUE_PARAS[slug] ?? [],
 		ymyl: YMYL_SLUGS.has(slug) || partial.ymyl === true,
 		buildBody() {
-			return buildCompactBody(entry);
+			return buildExpandedBody(entry);
 		},
 	};
 	return entry;

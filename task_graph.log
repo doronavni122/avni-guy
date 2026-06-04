@@ -113,3 +113,4 @@
 112. merge-main-into-pass1-batch6-pr21 , task_graph.log
 113. fix-pass1-batch6-linear-blog-anchor-spec , scripts/lib/pass1-batch6-capital-gains-specs.mjs task_graph.log
 114. fix-pass1-padding-rewrite-additional-tax , content-research/guy-avni-additional-tax-who-pays.md src/content/blog/guy-avni-additional-tax-who-pays.mdx scripts/lib/pass1-batch-remediation-content.mjs task_graph.log
+115. remediate-filler-padded-nine-slugs , scripts/remediate-filler-padded-articles.mjs scripts/lib/pass1-batch-remediation-content.mjs scripts/lib/pass1-batch6-capital-gains-specs.mjs content-research/ src/content/blog/ task_graph.log
