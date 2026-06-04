@@ -3,23 +3,20 @@
  * Complete Pass 1 research + MDX for config/remediation-batch.json slugs.
  * Log: [cursor-remediation-auto]
  */
+import matter from 'gray-matter';
 import fs from 'node:fs';
 import path from 'node:path';
-import matter from 'gray-matter';
 import {
-	buildFaqSection,
-	buildTldrBlock,
-	extractParagraphInternalHrefs,
-	fitMetaDescription,
-	fitMetaTitle,
-	normalizeBodyHrefs,
-	serializeFrontmatter,
+    buildFaqSection,
+    buildTldrBlock,
+    extractParagraphInternalHrefs,
+    fitMetaDescription,
+    fitMetaTitle,
+    normalizeBodyHrefs,
+    serializeFrontmatter,
 } from './lib/article-body-kit.mjs';
-import {
-	BATCH_MDX_SPECS,
-	RESEARCH_SPECS,
-	buildResearchStudy,
-} from './lib/pass1-batch-remediation-content.mjs';
+import { BATCH_MDX_SPECS } from './lib/pass1-batch-remediation-content.mjs';
+import { runExaResearchStudy } from './lib/research-study-io.mjs';
 import { RESEARCH_DIR } from './lib/research-study-rules.mjs';
 
 const BATCH_PATH = path.join(process.cwd(), 'config', 'remediation-batch.json');
@@ -181,15 +178,11 @@ function enhanceBody(slug, spec, rawBody) {
 }
 
 function writeResearch(slug) {
-	const spec = RESEARCH_SPECS[slug];
-	if (!spec) {
-		logErr(1, 'missing research spec', slug);
+	if (!runExaResearchStudy(slug, { force: true })) {
+		logErr(1, 'research:exa failed', slug);
 		return false;
 	}
-	const outPath = path.join(process.cwd(), RESEARCH_DIR, `${slug}.md`);
-	fs.mkdirSync(path.dirname(outPath), { recursive: true });
-	fs.writeFileSync(outPath, buildResearchStudy(spec), 'utf8');
-	log(1, 'wrote research study', { slug, path: outPath });
+	log(1, 'wrote research study via Exa', { slug, path: path.join(process.cwd(), RESEARCH_DIR, `${slug}.md`) });
 	return true;
 }
 

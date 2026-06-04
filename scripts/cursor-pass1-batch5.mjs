@@ -3,23 +3,22 @@
  * Pass 1 batch 5: research + MDX remediation for config/remediation-batch.json.
  * Log: [cursor-remediation-auto]
  */
+import matter from 'gray-matter';
+import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
-import { spawnSync } from 'node:child_process';
-import matter from 'gray-matter';
 import {
-	brandAnchor,
-	extractParagraphInternalHrefs,
-	fitMetaDescription,
-	fitMetaTitle,
-	normalizeBodyHrefs,
-	serializeFrontmatter,
+    brandAnchor,
+    extractParagraphInternalHrefs,
+    fitMetaDescription,
+    fitMetaTitle,
+    normalizeBodyHrefs,
+    serializeFrontmatter,
 } from './lib/article-body-kit.mjs';
 import { BATCH11_ARTICLES } from './lib/batch11-article-bodies.mjs';
-import { buildResearchStudy } from './lib/pass1-batch-remediation-content.mjs';
-import { BATCH5_RESEARCH_SPECS } from './lib/pass1-batch5-research-specs.mjs';
+import { getArticleTier, getMinWordsForTier } from './lib/content-tiers.mjs';
 import { primaryPillarForCategory } from './lib/pillar-cluster-registry.mjs';
-import { getMinWordsForTier, getArticleTier } from './lib/content-tiers.mjs';
+import { runExaResearchStudy } from './lib/research-study-io.mjs';
 import { countWordsHe } from './lib/seo-hero-rules.mjs';
 
 const BLOG_DIR = path.join(process.cwd(), 'src/content/blog');
@@ -68,15 +67,11 @@ function padBody(body, slug, minWords) {
 }
 
 function writeResearch(slug) {
-	const spec = BATCH5_RESEARCH_SPECS[slug];
-	if (!spec) {
-		logErr(1, 'missing research spec', slug);
+	if (!runExaResearchStudy(slug, { force: true })) {
+		logErr(1, 'research:exa failed', slug);
 		return false;
 	}
-	const outPath = path.join(RESEARCH_DIR, `${slug}.md`);
-	fs.mkdirSync(RESEARCH_DIR, { recursive: true });
-	fs.writeFileSync(outPath, buildResearchStudy(spec), 'utf8');
-	log(1, 'wrote research study', { slug, path: outPath });
+	log(1, 'wrote research study via Exa', { slug, path: path.join(RESEARCH_DIR, `${slug}.md`) });
 	return true;
 }
 

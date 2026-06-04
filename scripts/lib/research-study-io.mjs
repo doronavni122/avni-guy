@@ -1,9 +1,9 @@
+import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
-import { spawnSync } from 'node:child_process';
 import {
-	checkResearchStudyFile,
-	formatResearchErrors,
+    checkResearchStudyFile,
+    formatResearchErrors,
 } from './check-research-study.mjs';
 import { RESEARCH_DIR, RESEARCH_TRACKED_IN_GIT } from './research-study-rules.mjs';
 
@@ -101,4 +101,26 @@ export function researchStudyPath(slug) {
 
 export function researchStudyExists(slug) {
 	return fs.existsSync(researchStudyPath(slug));
+}
+
+/**
+ * Run live Exa research (~10 min) via `pnpm run research:exa`.
+ * @param {string} slug
+ * @param {{ force?: boolean, skipAudit?: boolean }} [options]
+ */
+export function runExaResearchStudy(slug, { force = true, skipAudit = false } = {}) {
+	const args = ['run', 'research:exa', '--', slug];
+	if (force) args.push('--force');
+	if (skipAudit) args.push('--skip-audit');
+	log('runExaResearchStudy', { slug, force, skipAudit });
+	const result = spawnSync('pnpm', args, {
+		stdio: 'inherit',
+		env: process.env,
+		cwd: process.cwd(),
+	});
+	if (result.status !== 0) {
+		logErr('runExaResearchStudy failed', { slug, status: result.status });
+		return false;
+	}
+	return true;
 }

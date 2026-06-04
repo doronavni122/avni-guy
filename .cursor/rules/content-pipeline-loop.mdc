@@ -9,7 +9,7 @@ Use when remediating one or more blog articles. Run steps in order; do not skip.
 
 1. Ensure `temp_articles_checklist.txt` exists (one `- [ ] src/content/blog/<slug>.mdx` per article).
 2. **Keywords assignment** — follow `content-keywords-assignment-loop.mdc` (`mainKeyword`, 4-6 `secondaryKeywords`, `contentType`).
-3. **Research** — `pnpm run research:scaffold -- <slug>` (if missing) → `article-research-loop.mdc` (fetch, ≥2000w study, set `research_completed_at`) → `pnpm run research:audit -- <slug>`; delete study only after scoped `content:audit` passes.
+3. **Research** — `pnpm run research:scaffold -- <slug>` (if missing) → `pnpm run research:exa -- <slug>` (Exa, ~10 min, `EXA_API_KEY`) or `article-research-loop.mdc` (Exa MCP + same rubric) → `pnpm run research:audit -- <slug>`; delete study only after scoped `content:audit` passes.
 4. **Content type** — confirm `pillar` vs `cluster` matches `getArticleTier(slug)`.
 5. **Content enhancer** — follow `content-enhancer-loop.mdc` (26-rule checklist, keywords before prose; research audit must pass first).
 6. **E-E-A-T structure** — follow `content-eeat-structure-loop.mdc` (TL;DR, FAQ, stats, CTA, external sources).

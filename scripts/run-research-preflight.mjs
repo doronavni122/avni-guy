@@ -4,8 +4,8 @@
  * Log: [content-pipeline-2026]
  */
 import {
-	checkResearchStudyFile,
-	formatResearchErrors,
+    checkResearchStudyFile,
+    formatResearchErrors,
 } from './lib/check-research-study.mjs';
 import { researchStudyExists } from './lib/research-study-io.mjs';
 
@@ -30,7 +30,10 @@ function auditSlugs(slugs) {
 	for (const slug of slugs) {
 		if (!researchStudyExists(slug)) {
 			logErr('research file missing', slug);
-			log('hint', { scaffold: `pnpm run research:scaffold -- ${slug}` });
+			log('hint', {
+				scaffold: `pnpm run research:scaffold -- ${slug}`,
+				exa: `pnpm run research:exa -- ${slug}`,
+			});
 			failed = true;
 			continue;
 		}

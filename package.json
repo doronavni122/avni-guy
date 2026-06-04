@@ -29,6 +29,7 @@
     "pipeline:run": "node scripts/run-content-pipeline.mjs",
     "pipeline:research-preflight": "node scripts/run-research-preflight.mjs",
     "research:audit": "node scripts/audit-research-study.mjs",
+    "research:exa": "node scripts/run-exa-research-study.mjs",
     "research:scaffold": "node scripts/scaffold-research-study.mjs",
     "remediation:list": "node scripts/run-article-remediation.mjs --list-pending",
     "remediation:status": "node scripts/run-article-remediation.mjs --program-status",

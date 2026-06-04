@@ -18,12 +18,9 @@ import {
 import { getBatch10Article } from './lib/batch10-article-bodies.mjs';
 import { BATCH11_ARTICLES } from './lib/batch11-article-bodies.mjs';
 import { TAX_BATCH_ARTICLES } from './lib/keyword-stub-batch-tax-bodies.mjs';
-import {
-    BATCH_MDX_SPECS,
-    RESEARCH_SPECS,
-    buildResearchStudyExpanded,
-} from './lib/pass1-batch-remediation-content.mjs';
-import { BATCH_MDX_SPECS as BATCH6_MDX, RESEARCH_SPECS as BATCH6_RESEARCH } from './lib/pass1-batch6-capital-gains-specs.mjs';
+import { BATCH_MDX_SPECS } from './lib/pass1-batch-remediation-content.mjs';
+import { BATCH_MDX_SPECS as BATCH6_MDX } from './lib/pass1-batch6-capital-gains-specs.mjs';
+import { runExaResearchStudy } from './lib/research-study-io.mjs';
 import { RESEARCH_DIR } from './lib/research-study-rules.mjs';
 import { countWordsHe } from './lib/seo-hero-rules.mjs';
 
@@ -159,22 +156,14 @@ function resolveMdxSpec(slug) {
 	return BATCH_MDX_SPECS[slug] ?? BATCH6_MDX[slug] ?? null;
 }
 
-function resolveResearchSpec(slug) {
-	return RESEARCH_SPECS[slug] ?? BATCH6_RESEARCH[slug] ?? null;
-}
-
 function writeResearch(slug) {
-	const spec = resolveResearchSpec(slug);
-	if (!spec) {
-		logErr(1, 'missing research spec', slug);
+	log(1, 'Exa research start', { slug });
+	if (!runExaResearchStudy(slug, { force: true })) {
+		logErr(1, 'research:exa failed', slug);
 		return false;
 	}
-	const mdxSpec = resolveMdxSpec(slug);
-	const paras = mdxSpec?.uniqueParagraphs ?? [];
 	const outPath = path.join(process.cwd(), RESEARCH_DIR, `${slug}.md`);
-	fs.mkdirSync(path.dirname(outPath), { recursive: true });
-	fs.writeFileSync(outPath, buildResearchStudyExpanded(spec, paras), 'utf8');
-	log(1, 'wrote research', { slug, words: countWordsHe(fs.readFileSync(outPath, 'utf8')) });
+	log(1, 'wrote research via Exa', { slug, words: countWordsHe(fs.readFileSync(outPath, 'utf8')) });
 	return true;
 }
 

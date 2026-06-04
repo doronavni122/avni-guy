@@ -2,9 +2,9 @@
 /**
  * Scaffold ephemeral research study file. Log prefix: [research-scaffold]
  */
+import matter from 'gray-matter';
 import fs from 'node:fs';
 import path from 'node:path';
-import matter from 'gray-matter';
 import { RESEARCH_DIR, RESEARCH_YMYL_FRAMEWORK_SECTION } from './lib/research-study-rules.mjs';
 
 function log(msg, extra) {
@@ -32,6 +32,7 @@ function buildScaffold(slug, mainKeyword, title) {
 	return `---
 research_started_at: ${started}
 research_completed_at:
+research_method:
 slug: ${slug}
 main_keyword: ${mainKeyword}
 ---
@@ -98,7 +99,7 @@ function main() {
 	const { mainKeyword, title } = readMdxMeta(slug);
 	fs.writeFileSync(fp, buildScaffold(slug, mainKeyword, title), 'utf8');
 	log('created', { slug, path: fp });
-	log('hint', 'Complete study, set research_completed_at, then: pnpm run research:audit -- ' + slug);
+	log('hint', 'Run: pnpm run research:exa -- ' + slug + ' (sets research_method: exa), then: pnpm run research:audit -- ' + slug);
 }
 
 main();

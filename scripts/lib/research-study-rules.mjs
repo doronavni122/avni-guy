@@ -1,6 +1,9 @@
 /** SSOT thresholds and paths for tracked research studies (committed under content-research/). */
 
 export const RESEARCH_MIN_DURATION_SEC = 300;
+/** Wall-clock minimum for studies with `research_method: exa` (10 minutes). */
+export const RESEARCH_EXA_MIN_DURATION_SEC = 600;
+export const RESEARCH_EXA_QUERY_COUNT = 10;
 export const RESEARCH_MIN_WORDS = 2000;
 export const RESEARCH_MIN_AUTHORITY_URLS = 5;
 export const RESEARCH_MIN_DATED_FACTS = 3;
@@ -55,4 +58,33 @@ export function resolveResearchMinDurationSec() {
 		if (Number.isFinite(n) && n >= 0) return n;
 	}
 	return RESEARCH_MIN_DURATION_SEC;
+}
+
+export function resolveResearchExaMinDurationSec() {
+	const override = process.env.RESEARCH_EXA_MIN_DURATION_SEC?.trim();
+	if (override) {
+		const n = Number(override);
+		if (Number.isFinite(n) && n >= 0) return n;
+	}
+	return RESEARCH_EXA_MIN_DURATION_SEC;
+}
+
+export function resolveResearchExaQueryCount() {
+	const override = process.env.RESEARCH_EXA_QUERY_COUNT?.trim();
+	if (override) {
+		const n = Number(override);
+		if (Number.isFinite(n) && n >= 1) return Math.floor(n);
+	}
+	return RESEARCH_EXA_QUERY_COUNT;
+}
+
+/**
+ * @param {Record<string, unknown>} fm
+ */
+export function resolveResearchMinDurationSecForStudy(fm) {
+	const method = String(fm?.research_method ?? fm?.research_provider ?? '')
+		.trim()
+		.toLowerCase();
+	if (method === 'exa') return resolveResearchExaMinDurationSec();
+	return resolveResearchMinDurationSec();
 }

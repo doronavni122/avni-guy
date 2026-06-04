@@ -1,26 +1,26 @@
+import matter from 'gray-matter';
 import fs from 'node:fs';
 import path from 'node:path';
-import matter from 'gray-matter';
 import { BANNED_EM_DASH } from './check-banned-characters.mjs';
 import {
-	YMYL_EXTERNAL_ALLOWLIST_HOSTS,
-	YMYL_SLUGS,
+    YMYL_EXTERNAL_ALLOWLIST_HOSTS,
+    YMYL_SLUGS,
 } from './content-forbidden-patterns.mjs';
-import { countWordsHe } from './seo-hero-rules.mjs';
 import {
-	RESEARCH_DIR,
-	RESEARCH_LIMITATIONS_DISCLAIMER_PATTERNS,
-	RESEARCH_MIN_AUTHORITY_URLS,
-	RESEARCH_MIN_DATED_FACTS,
-	RESEARCH_MIN_LSI_TERMS,
-	RESEARCH_MIN_WORDS,
-	RESEARCH_NON_YMYL_FRAMEWORK_ALIASES,
-	RESEARCH_REQUIRED_SECTIONS,
-	RESEARCH_STATUTE_REF_PATTERN,
-	RESEARCH_YMYL_FRAMEWORK_SECTION,
-	RESEARCH_YMYL_MATRIX_HOSTS,
-	resolveResearchMinDurationSec,
+    RESEARCH_DIR,
+    RESEARCH_LIMITATIONS_DISCLAIMER_PATTERNS,
+    RESEARCH_MIN_AUTHORITY_URLS,
+    RESEARCH_MIN_DATED_FACTS,
+    RESEARCH_MIN_LSI_TERMS,
+    RESEARCH_MIN_WORDS,
+    RESEARCH_NON_YMYL_FRAMEWORK_ALIASES,
+    RESEARCH_REQUIRED_SECTIONS,
+    RESEARCH_STATUTE_REF_PATTERN,
+    RESEARCH_YMYL_FRAMEWORK_SECTION,
+    RESEARCH_YMYL_MATRIX_HOSTS,
+    resolveResearchMinDurationSecForStudy,
 } from './research-study-rules.mjs';
+import { countWordsHe } from './seo-hero-rules.mjs';
 
 const HTTPS_URL_RE = /https:\/\/[^\s)\]|>"']+/gi;
 
@@ -125,7 +125,6 @@ function stripBodyForWordCount(rawBody) {
  */
 export function checkResearchStudy(input) {
 	const { slug, content } = input;
-	const minDurationSec = input.minDurationSec ?? resolveResearchMinDurationSec();
 	const errors = [];
 	const isYmyl = YMYL_SLUGS.has(slug);
 
@@ -140,6 +139,7 @@ export function checkResearchStudy(input) {
 	}
 
 	const fm = parsed.data;
+	const minDurationSec = input.minDurationSec ?? resolveResearchMinDurationSecForStudy(fm);
 	const body = parsed.content;
 
 	const started = parseIso8601(fm.research_started_at);

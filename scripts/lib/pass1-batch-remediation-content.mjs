@@ -256,6 +256,7 @@ ${spec.outline}
 }
 
 /** @param {{ slug: string, mainKeyword: string, title: string, query: string, audience: string, framework: string, facts: string[], stats: string[], lsi: string[], outline: string }} spec */
+/** @deprecated Use `pnpm run research:exa -- <slug>` for live Exa studies. */
 export function buildResearchStudy(spec) {
 	const { started, completed } = researchTimestamps();
 	return assertMinWordsHe(`buildResearchStudy:${spec.slug}`, researchStudyCore(spec, started, completed), 2000);
