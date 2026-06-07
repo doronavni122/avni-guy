@@ -18,6 +18,8 @@ permissions:
 jobs:
   pass1-scaffold-batch:
     runs-on: ubuntu-latest
+    env:
+      EXA_API_KEY: ${{ secrets.EXA_API_KEY }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -47,6 +49,10 @@ jobs:
         run: |
           echo "Remediation program complete or paused; skipping scaffold PR."
           echo "Completed: ${{ steps.program.outputs.completed }}/${{ steps.program.outputs.max }}"
+
+      - name: Verify EXA_API_KEY secret
+        if: steps.program.outputs.active == 'true' && steps.program.outputs.batch_size != '0'
+        run: node scripts/check-exa-api-key.mjs
 
       - name: Pick failing slugs and scaffold research
         if: steps.program.outputs.active == 'true' && steps.program.outputs.batch_size != '0'
@@ -97,12 +103,15 @@ Research scaffolds under \`content-research/\`. Program progress: **${COMPLETED}
 \`config/remediation-batch.json\` lists batch slugs. Cursor Automation should run Pass 1 and merge when audits pass.
 
 ### Pass 1 (Cursor Automation / agent)
-1. \`article-research-loop.mdc\`: complete study (≥2000w, ≥5 min), commit \`content-research/<slug>.md\`
-2. \`pnpm run research:audit -- <slug>\`
-3. \`content-enhancer-loop.mdc\` + E-E-A-T + internal links + brand link
-4. \`CONTENT_AUDIT_SLUGS=<slug> pnpm run content:audit\`
-5. Update \`config/remediation-program.json\` \`completedSlugs\` for each passing slug
-6. Merge PR when all batch slugs pass
+Requires \`EXA_API_KEY\` in **Cursor Automation environment** (same value as GitHub secret \`EXA_API_KEY\` / Vercel; not synced automatically).
+
+Per slug:
+1. \`pnpm run article:pipeline -- <slug> --force-research\`
+2. \`CONTENT_AUDIT_SLUGS=<slug> CONTENT_STRICT=1 PIPELINE_CONTRACT=1 pnpm run content:audit\`
+3. \`LINKS_AUDIT_SLUGS=<slug> LINKS_AUDIT_ENFORCE=1 PIPELINE_CONTRACT=1 pnpm run links:audit\`
+4. \`pnpm run research:audit -- <slug>\`
+
+After batch: \`node scripts/run-article-remediation.mjs --verify\` with \`PIPELINE_SLUGS\` set; update \`config/remediation-program.json\` \`completedSlugs\`; merge when all pass.
 
 Studies stay in \`content-research/\`; do not delete unless \`RESEARCH_ALLOW_DELETE=1\`.
 EOF

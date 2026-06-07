@@ -102,13 +102,23 @@ function fixDuplicates(body, slug, tags, category) {
 	return b;
 }
 
+function resolveSlugFilter() {
+	const raw = process.env.PIPELINE_SLUGS?.trim();
+	if (!raw) return null;
+	return new Set(raw.split(',').map((s) => s.trim()).filter(Boolean));
+}
+
 function main() {
-	logGraph('dedupe', 'fixing duplicate paragraph links');
+	const slugFilter = resolveSlugFilter();
+	logGraph('dedupe', 'fixing duplicate paragraph links', {
+		scoped: Boolean(slugFilter),
+	});
 	let totalFixed = 0;
 	for (let round = 0; round < 10; round++) {
 		const posts = loadAllPosts();
 		let fixed = 0;
 		for (const p of posts) {
+			if (slugFilter && !slugFilter.has(p.slug)) continue;
 			const body = fixDuplicates(p.content, p.slug, p.tags, p.category);
 			if (body !== p.content) {
 				fs.writeFileSync(path.join(BLOG_DIR, `${p.slug}.mdx`), writeMdxWithSyncedLinks(p.raw, body), 'utf8');

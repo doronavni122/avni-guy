@@ -46,7 +46,15 @@ export function assessSlugRemediation(slug) {
 		}
 	}
 
+	const prevStrict = process.env.CONTENT_STRICT;
+	const prevContract = process.env.PIPELINE_CONTRACT;
+	process.env.CONTENT_STRICT = '1';
+	process.env.PIPELINE_CONTRACT = '1';
 	const content = runArticleContentChecks({ slugFilter: [slug] });
+	if (prevStrict === undefined) delete process.env.CONTENT_STRICT;
+	else process.env.CONTENT_STRICT = prevStrict;
+	if (prevContract === undefined) delete process.env.PIPELINE_CONTRACT;
+	else process.env.PIPELINE_CONTRACT = prevContract;
 	const contentOk = content.ok === true;
 	if (!contentOk) {
 		for (const e of content.errors ?? []) {

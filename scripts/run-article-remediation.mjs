@@ -50,6 +50,7 @@ function parseArgs(argv) {
 		verify: flags.has('--verify'),
 		emitQueue: flags.has('--emit-queue'),
 		printSteps: flags.has('--print-steps'),
+		runPipeline: flags.has('--run-pipeline'),
 		listPending: flags.has('--list-pending'),
 		programStatus: flags.has('--program-status'),
 		markComplete: markCompleteEq?.split('=')[1]?.trim() ?? null,
@@ -116,19 +117,23 @@ function printAgentSteps(slugs, passLabel) {
 		`=== Agent steps (${passLabel}) ===`,
 		`PIPELINE_SLUGS=${slugs.join(',')}`,
 		'',
-		'Pass 1 (per slug, in order):',
-		'1. content-keywords-assignment-loop.mdc',
-		'2. article-research-loop.mdc (complete study in content-research/<slug>.md, commit)',
-		'3. pnpm run research:audit -- <slug>',
-		'4. content-enhancer-loop.mdc + content-eeat-structure-loop.mdc',
-		'5. internal-links-pillar-cluster + internal-links + homepage-brand loops',
-		'6. CONTENT_AUDIT_SLUGS=<slug> pnpm run content:audit',
-		'7. Commit MDX + content-research (studies stay tracked)',
+		'Requires EXA_API_KEY in environment (GitHub Actions secret / Cursor Automation env).',
+		'Quality contract: scripts/lib/article-pipeline-contract.mjs',
 		'',
-		'Pass 2 (after all slugs in batch pass Pass 1):',
-		'1. pnpm run links:remediate (if needed)',
-		'2. LINKS_AUDIT_ENFORCE=1 pnpm run links:audit',
-		'3. pnpm run run-article-remediation.mjs --pass2 --verify',
+		'Pass 1 (per slug, in order):',
+		'1. pnpm run article:pipeline -- <slug> --force-research',
+		'2. CONTENT_AUDIT_SLUGS=<slug> CONTENT_STRICT=1 PIPELINE_CONTRACT=1 pnpm run content:audit',
+		'3. LINKS_AUDIT_SLUGS=<slug> LINKS_AUDIT_ENFORCE=1 PIPELINE_CONTRACT=1 pnpm run links:audit',
+		'4. pnpm run research:audit -- <slug>',
+		'5. Commit content-research/<slug>.md + src/content/blog/<slug>.mdx',
+		'',
+		'After all slugs in batch:',
+		'1. PIPELINE_SLUGS=<csv> node scripts/run-article-remediation.mjs --verify',
+		'2. Update config/remediation-program.json completedSlugs for each passing slug',
+		'',
+		'Pass 2 (corpus graph, optional after batch merge):',
+		'1. LINKS_AUDIT_ENFORCE=1 pnpm run links:audit (skip links:remediate for pipelineContractVersion articles)',
+		'2. pnpm run seo:guardrails',
 		'',
 	];
 	console.log(lines.join('\n'));
@@ -151,7 +156,7 @@ function writeQueueFile(slugs) {
 			remaining: programStatus.remaining,
 		},
 		agentNote:
-			'Complete article-research-loop and content-enhancer for batch slugs; commit content-research/*.md and src/content/blog/*.mdx',
+			'Run pnpm run article:pipeline -- <slug> --force-research per batch slug (EXA_API_KEY required); commit content-research/*.md and src/content/blog/*.mdx',
 	};
 	fs.writeFileSync(QUEUE_PATH, `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
 	log(3, 'wrote remediation batch queue', { path: QUEUE_PATH, slugs });
@@ -167,16 +172,32 @@ function verifyPass1(slugs, { updateProgram = false } = {}) {
 			logErr(4, 'research audit failed', { slug });
 			continue;
 		}
-		log(5, 'content:audit', { slug });
-		const c = runPnpm('content:audit', { CONTENT_AUDIT_SLUGS: slug });
+		log(5, 'content:audit (contract)', { slug });
+		const c = runPnpm('content:audit', {
+			CONTENT_AUDIT_SLUGS: slug,
+			CONTENT_STRICT: '1',
+			PIPELINE_CONTRACT: '1',
+		});
 		if (c !== 0) {
 			failed++;
 			logErr(5, 'content audit failed', { slug });
 			continue;
 		}
+		log(6, 'links:audit (scoped contract)', { slug });
+		const l = runPnpm('links:audit', {
+			LINKS_AUDIT_SLUGS: slug,
+			LINKS_AUDIT_ENFORCE: '1',
+			PIPELINE_CONTRACT: '1',
+			PIPELINE_SLUGS: slug,
+		});
+		if (l !== 0) {
+			failed++;
+			logErr(6, 'links audit failed', { slug });
+			continue;
+		}
 		if (updateProgram) {
 			const { added } = markSlugCompleted(slug);
-			log(5, 'program mark complete', { slug, added });
+			log(6, 'program mark complete', { slug, added });
 		}
 	}
 	return failed === 0 ? 0 : 1;
@@ -262,6 +283,21 @@ function main() {
 	if (opts.emitQueue) writeQueueFile(slugs);
 
 	if (opts.printSteps) printAgentSteps(slugs, 'Pass 1');
+
+	if (opts.runPipeline && slugs.length) {
+		log(0, 'delegating to article:pipeline', { slugs: slugs.length });
+		const keyCheck = runNode('scripts/check-exa-api-key.mjs');
+		if (keyCheck !== 0) process.exit(keyCheck);
+		const code = runNode(
+			'scripts/run-article-pipeline.mjs',
+			[...slugs, '--force-research'],
+			{
+				PIPELINE_SLUGS: slugs.join(','),
+				EXA_API_KEY: process.env.EXA_API_KEY ?? '',
+			},
+		);
+		process.exit(code);
+	}
 
 	if (opts.verify) {
 		const code = verifyPass1(slugs, { updateProgram: true });

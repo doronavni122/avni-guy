@@ -1,41 +1,47 @@
+import matter from 'gray-matter';
 import fs from 'node:fs';
 import path from 'node:path';
-import matter from 'gray-matter';
+import { runPipelineContractChecks } from './article-pipeline-contract.mjs';
 import {
-	BANNED_ANCHOR_PATTERNS,
-	FORBIDDEN_30_60_90_HEADING,
-	FORBIDDEN_CLOSING_SNIPPET,
-	FORBIDDEN_OPENING_SNIPPET,
-	FORBIDDEN_TITLE_SUFFIX,
-	FLUFF_BODY_PATTERNS,
-	STANDARD_NAV_LINK_PATHS,
-	YMYL_EXTERNAL_ALLOWLIST_HOSTS,
-	YMYL_SLUGS,
+    BANNED_ANCHOR_PATTERNS,
+    FLUFF_BODY_PATTERNS,
+    FORBIDDEN_30_60_90_HEADING,
+    FORBIDDEN_CLOSING_SNIPPET,
+    FORBIDDEN_OPENING_SNIPPET,
+    FORBIDDEN_TITLE_SUFFIX,
+    STANDARD_NAV_LINK_PATHS,
+    YMYL_EXTERNAL_ALLOWLIST_HOSTS,
+    YMYL_SLUGS,
 } from './content-forbidden-patterns.mjs';
-import {
-	anchorMatchesTarget,
-	anchorWordCount,
-	auditLinkSpacing,
-	buildLinkGraph,
-	computeBlogLinkDensityBounds,
-	computeLinkDensityBounds,
-	CONTEXTUAL_WORD_THRESHOLD,
-	countContextualBlogLinks,
-	ENGLISH_SLUG_ANCHOR_PATTERNS,
-	findSectionDuplicateHrefs,
-	GARBAGE_ANCHOR_PATTERNS,
-	isAnchorTooLong,
-	loadAllPosts,
-	MAX_ANCHOR_WORDS,
-	MAX_BLOG_LINKS,
-	slugFromBlogHref,
-} from './internal-link-graph.mjs';
-import { isBrandMainKeyword } from './pillar-cluster-registry.mjs';
 import { getArticleTier, getMinWordsForTier, SLUG_CONTENT_CONTRACTS } from './content-tiers.mjs';
+import {
+    anchorMatchesTarget,
+    anchorWordCount,
+    auditLinkSpacing,
+    buildLinkGraph,
+    computeBlogLinkDensityBounds,
+    computeLinkDensityBounds,
+    CONTEXTUAL_WORD_THRESHOLD,
+    countContextualBlogLinks,
+    ENGLISH_SLUG_ANCHOR_PATTERNS,
+    findSectionDuplicateHrefs,
+    GARBAGE_ANCHOR_PATTERNS,
+    isAnchorTooLong,
+    loadAllPosts,
+    MAX_ANCHOR_WORDS,
+    MAX_BLOG_LINKS,
+    slugFromBlogHref,
+} from './internal-link-graph.mjs';
 import { KEYWORD_STUB_SLUGS_SET } from './keyword-stub-slugs.mjs';
+import { isBrandMainKeyword } from './pillar-cluster-registry.mjs';
 import { countWordsHe, SITE_KEYWORDS } from './seo-hero-rules.mjs';
 
 const BLOG_DIR = path.join(process.cwd(), 'src', 'content', 'blog');
+function usesPipelineContract(data) {
+	if (process.env.PIPELINE_CONTRACT === '1') return true;
+	const v = data?.pipelineContractVersion;
+	return typeof v === 'number' && v >= 1;
+}
 const FIRST_100_WORDS_MAIN_KEYWORD_STRICT =
 	process.env.CONTENT_LINKS_STRICT === '1' || process.env.CONTENT_STRICT === '1';
 const LINKS_STRICT = process.env.CONTENT_LINKS_STRICT === '1';
@@ -341,69 +347,78 @@ function auditPost(slug, raw, allBodies) {
 		errors.push(`${slug}: body uses forbidden standard 7-nav link boilerplate block`);
 	}
 	const paragraphLinks = extractParagraphMarkdownLinks(body);
-	const totalDensity = computeLinkDensityBounds(words);
-	if (paragraphLinks.length < totalDensity.min) {
-		errors.push(
-			`${slug}: paragraph internal links ${paragraphLinks.length} below density minimum ${totalDensity.min} (${words} words, 3-7/1000)`,
-		);
-	}
-	if (paragraphLinks.length > totalDensity.max) {
-		errors.push(
-			`${slug}: paragraph internal links ${paragraphLinks.length} exceed density maximum ${totalDensity.max} (${words} words, 3-7/1000)`,
-		);
-	}
-	const spacing = auditLinkSpacing(words, paragraphLinks.length);
-	if (!spacing.ok && paragraphLinks.length > 0) {
-		const withinBounds =
-			paragraphLinks.length >= totalDensity.min && paragraphLinks.length <= totalDensity.max;
-		if (!withinBounds) {
-			errors.push(
-				`${slug}: link spacing ${spacing.wordsPerLink?.toFixed(0) ?? 'n/a'} words/link outside ${spacing.minWords}-${spacing.maxWords} target`,
-			);
-		}
-	}
 	const hrefs = paragraphLinks.map((l) => l.href);
 	const anchors = paragraphLinks.map((l) => l.anchor);
-	const dupHref = hrefs.find((h, i) => hrefs.indexOf(h) !== i);
-	if (dupHref) errors.push(`${slug}: duplicate paragraph link target ${dupHref}`);
-	const dupAnchor = anchors.find((a, i) => anchors.indexOf(a) !== i);
-	if (dupAnchor) errors.push(`${slug}: duplicate paragraph link anchor "${dupAnchor}"`);
-	const blogLinks = paragraphLinks.filter((l) => l.href.startsWith('/blog/') && l.href !== '/blog/');
-	const blogDensity = computeBlogLinkDensityBounds(words);
-	const topicalBlogMax = CONTENT_STRICT ? TOPICAL_BLOG_MAX : blogDensity.max;
-	if (blogLinks.length > topicalBlogMax) {
-		errors.push(`${slug}: blog paragraph links ${blogLinks.length} exceed max ${topicalBlogMax}`);
-	}
-	if (CONTENT_STRICT && blogLinks.length < TOPICAL_BLOG_MIN) {
-		errors.push(`${slug}: topical blog links ${blogLinks.length} below min ${TOPICAL_BLOG_MIN}`);
-	}
-	const contextualCount = countContextualBlogLinks(paragraphLinks);
-	if (words > CONTEXTUAL_WORD_THRESHOLD) {
-		if (contextualCount < blogDensity.min) {
+
+	const pipelineContract = usesPipelineContract(data);
+	if (!pipelineContract) {
+		const totalDensity = computeLinkDensityBounds(words);
+		if (paragraphLinks.length < totalDensity.min) {
 			errors.push(
-				`${slug}: contextual blog links ${contextualCount} below min ${blogDensity.min} (words>${CONTEXTUAL_WORD_THRESHOLD}, silo cap ${MAX_BLOG_LINKS})`,
+				`${slug}: paragraph internal links ${paragraphLinks.length} below density minimum ${totalDensity.min} (${words} words, 3-7/1000)`,
 			);
 		}
-		if (contextualCount > blogDensity.max) {
+		if (paragraphLinks.length > totalDensity.max) {
 			errors.push(
-				`${slug}: contextual blog links ${contextualCount} exceed max ${blogDensity.max} (density max ${blogDensity.densityMax}, silo cap ${blogDensity.siloCap})`,
+				`${slug}: paragraph internal links ${paragraphLinks.length} exceed density maximum ${totalDensity.max} (${words} words, 3-7/1000)`,
 			);
 		}
-	}
-	const sectionDup = findSectionDuplicateHrefs(body);
-	if (sectionDup.length && LINKS_STRICT) {
-		errors.push(`${slug}: duplicate href in same H2 section: ${sectionDup[0]}`);
-	}
-	if (LINKS_STRICT) {
-		const bySlug = getPostsBySlug();
-		for (const link of blogLinks) {
-			const targetSlug = slugFromBlogHref(link.href);
-			const target = targetSlug ? bySlug.get(targetSlug) : null;
-			if (target && !anchorMatchesTarget(link.anchor, target)) {
-				errors.push(`${slug}: blog anchor "${link.anchor}" lacks target keyword/title tokens -> ${link.href}`);
-				break;
+		const spacing = auditLinkSpacing(words, paragraphLinks.length);
+		if (!spacing.ok && paragraphLinks.length > 0) {
+			const withinBounds =
+				paragraphLinks.length >= totalDensity.min && paragraphLinks.length <= totalDensity.max;
+			if (!withinBounds) {
+				errors.push(
+					`${slug}: link spacing ${spacing.wordsPerLink?.toFixed(0) ?? 'n/a'} words/link outside ${spacing.minWords}-${spacing.maxWords} target`,
+				);
 			}
 		}
+		const dupHref = hrefs.find((h, i) => hrefs.indexOf(h) !== i);
+		if (dupHref) errors.push(`${slug}: duplicate paragraph link target ${dupHref}`);
+		const dupAnchor = anchors.find((a, i) => anchors.indexOf(a) !== i);
+		if (dupAnchor) errors.push(`${slug}: duplicate paragraph link anchor "${dupAnchor}"`);
+		const blogLinks = paragraphLinks.filter((l) => l.href.startsWith('/blog/') && l.href !== '/blog/');
+		const blogDensity = computeBlogLinkDensityBounds(words);
+		const topicalBlogMax = CONTENT_STRICT ? TOPICAL_BLOG_MAX : blogDensity.max;
+		if (blogLinks.length > topicalBlogMax) {
+			errors.push(`${slug}: blog paragraph links ${blogLinks.length} exceed max ${topicalBlogMax}`);
+		}
+		if (CONTENT_STRICT && blogLinks.length < TOPICAL_BLOG_MIN) {
+			errors.push(`${slug}: topical blog links ${blogLinks.length} below min ${TOPICAL_BLOG_MIN}`);
+		}
+		const contextualCount = countContextualBlogLinks(paragraphLinks);
+		if (words > CONTEXTUAL_WORD_THRESHOLD) {
+			if (contextualCount < blogDensity.min) {
+				errors.push(
+					`${slug}: contextual blog links ${contextualCount} below min ${blogDensity.min} (words>${CONTEXTUAL_WORD_THRESHOLD}, silo cap ${MAX_BLOG_LINKS})`,
+				);
+			}
+			if (contextualCount > blogDensity.max) {
+				errors.push(
+					`${slug}: contextual blog links ${contextualCount} exceed max ${blogDensity.max} (density max ${blogDensity.densityMax}, silo cap ${blogDensity.siloCap})`,
+				);
+			}
+		}
+		const sectionDup = findSectionDuplicateHrefs(body);
+		if (sectionDup.length && LINKS_STRICT) {
+			errors.push(`${slug}: duplicate href in same H2 section: ${sectionDup[0]}`);
+		}
+		if (LINKS_STRICT) {
+			const bySlug = getPostsBySlug();
+			for (const link of blogLinks) {
+				const targetSlug = slugFromBlogHref(link.href);
+				const target = targetSlug ? bySlug.get(targetSlug) : null;
+				if (target && !anchorMatchesTarget(link.anchor, target)) {
+					errors.push(`${slug}: blog anchor "${link.anchor}" lacks target keyword/title tokens -> ${link.href}`);
+					break;
+				}
+			}
+		}
+	}
+
+	if (pipelineContract) {
+		const contract = runPipelineContractChecks({ slug, data, body });
+		errors.push(...contract.errors);
 	}
 	for (const { anchor } of paragraphLinks) {
 		if (isAnchorTooLong(anchor)) {

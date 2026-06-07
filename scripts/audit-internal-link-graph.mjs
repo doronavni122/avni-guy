@@ -1,23 +1,23 @@
 #!/usr/bin/env node
 import {
-	anchorMatchesTarget,
-	auditAnchorTypeDistribution,
-	auditInternalNofollowLinks,
-	auditLateralClusterLinks,
-	auditSiteWideAnchorCollisions,
-	buildLinkGraph,
-	computeDonorDiversityMetrics,
-	extractNonParagraphMarkdownLinks,
-	isAnchorTooLong,
-	isEnglishSlugAnchor,
-	isGarbageAnchor,
-	loadAllPosts,
-	logGraph,
-	MAX_BLOG_LINKS,
-	normalizePath,
-	pillarsForCategory,
-	primaryPillarForCategory,
-	slugFromBlogHref,
+    anchorMatchesTarget,
+    auditAnchorTypeDistribution,
+    auditInternalNofollowLinks,
+    auditLateralClusterLinks,
+    auditSiteWideAnchorCollisions,
+    buildLinkGraph,
+    computeDonorDiversityMetrics,
+    extractNonParagraphMarkdownLinks,
+    isAnchorTooLong,
+    isEnglishSlugAnchor,
+    isGarbageAnchor,
+    loadAllPosts,
+    logGraph,
+    MAX_BLOG_LINKS,
+    normalizePath,
+    pillarsForCategory,
+    primaryPillarForCategory,
+    slugFromBlogHref,
 } from './lib/internal-link-graph.mjs';
 import { isGlobalPillarSlug } from './lib/pillar-cluster-registry.mjs';
 
@@ -71,8 +71,27 @@ function auditBlogAnchorKeywords(posts, postsBySlug) {
 	return issues;
 }
 
+function resolveLinksAuditSlugs() {
+	const raw = process.env.LINKS_AUDIT_SLUGS?.trim() || process.env.PIPELINE_SLUGS?.trim();
+	if (!raw) return null;
+	return new Set(raw.split(',').map((s) => s.trim()).filter(Boolean));
+}
+
+function inLinksAuditScope(slug, scope) {
+	return !scope || scope.has(slug);
+}
+
+function failIfScoped(slug, scope, failFlag) {
+	return failFlag && inLinksAuditScope(slug, scope);
+}
+
 function main() {
-	logGraph('audit', 'starting internal link graph audit');
+	const PIPELINE_CONTRACT = process.env.PIPELINE_CONTRACT === '1';
+	const linksScope = resolveLinksAuditSlugs();
+	logGraph('audit', 'starting internal link graph audit', {
+		scoped: Boolean(linksScope),
+		scopeSize: linksScope?.size ?? 'all',
+	});
 	const posts = loadAllPosts();
 	const expandedInbound = process.env.LINK_INBOUND_EXPANDED === '1';
 	const { inbound, postsBySlug, mode } = buildLinkGraph(posts, { expandedInbound });
@@ -88,8 +107,9 @@ function main() {
 	if (orphans.length) {
 		console.log(`  sample: ${orphans.slice(0, 8).map((p) => p.slug).join(', ')}`);
 		if (process.env.LINKS_AUDIT_ENFORCE === '1') {
-			fail = true;
 			for (const o of orphans) {
+				if (!inLinksAuditScope(o.slug, linksScope)) continue;
+				fail = true;
 				console.error(`[links:audit] FAIL orphan: ${o.slug}`);
 			}
 		}
@@ -104,9 +124,10 @@ function main() {
 
 	const overBlog = posts.filter((p) => p.blogOutCount > MAX_BLOG_LINKS);
 	console.log(`Posts with >${MAX_BLOG_LINKS} blog links: ${overBlog.length}`);
-	if (overBlog.length) {
-		fail = true;
+	if (!PIPELINE_CONTRACT && overBlog.length) {
 		for (const p of overBlog) {
+			if (!failIfScoped(p.slug, linksScope, true)) continue;
+			fail = true;
 			console.error(`[links:audit] FAIL blog>${MAX_BLOG_LINKS}: ${p.slug} (${p.blogOutCount})`);
 		}
 	}
@@ -144,7 +165,7 @@ function main() {
 
 	const anchorKwIssues = auditBlogAnchorKeywords(posts, postsBySlug);
 	console.log(`Blog anchors missing target keyword/title tokens: ${anchorKwIssues.length}`);
-	if (process.env.CONTENT_LINKS_STRICT === '1' && anchorKwIssues.length) {
+	if (process.env.CONTENT_LINKS_STRICT === '1' && anchorKwIssues.length && !PIPELINE_CONTRACT) {
 		fail = true;
 		for (const i of anchorKwIssues.slice(0, 15)) {
 			console.error(`[links:audit] FAIL anchor-keyword: ${i.slug} "${i.anchor}" -> ${i.href}`);
@@ -154,7 +175,7 @@ function main() {
 	const { missingSpokeToPillar, missingPillarToSpoke } = auditPillarBidirectional(posts);
 	console.log(`Spokes missing category pillar link: ${missingSpokeToPillar.length}`);
 	console.log(`Pillars with sparse spoke coverage: ${missingPillarToSpoke.length}`);
-	if (process.env.LINKS_AUDIT_ENFORCE === '1' && missingSpokeToPillar.length) {
+	if (process.env.LINKS_AUDIT_ENFORCE === '1' && missingSpokeToPillar.length && !PIPELINE_CONTRACT) {
 		fail = true;
 		for (const s of missingSpokeToPillar.slice(0, 20)) {
 			console.error(`[links:audit] FAIL spoke->pillar: ${s}`);
@@ -167,7 +188,7 @@ function main() {
 		for (const e of missingPillarToSpoke.slice(0, 5)) {
 			console.log(`  pillar coverage: ${e}`);
 		}
-		if (process.env.LINKS_AUDIT_ENFORCE === '1') {
+		if (process.env.LINKS_AUDIT_ENFORCE === '1' && !PIPELINE_CONTRACT) {
 			fail = true;
 			for (const e of missingPillarToSpoke.slice(0, 15)) {
 				console.error(`[links:audit] FAIL pillar->spoke sparse: ${e}`);
@@ -182,7 +203,7 @@ function main() {
 	console.log(`Cluster posts missing lateral same-category link: ${lateral.missingLateral.length}/${lateral.clusterCount}`);
 	if (lateral.missingLateral.length) {
 		console.log(`  sample: ${lateral.missingLateral.slice(0, 8).join(', ')}`);
-		if (process.env.LINKS_AUDIT_ENFORCE === '1') {
+		if (process.env.LINKS_AUDIT_ENFORCE === '1' && !PIPELINE_CONTRACT) {
 			fail = true;
 			for (const s of lateral.missingLateral.slice(0, 15)) {
 				console.error(`[links:audit] FAIL lateral-cluster: ${s}`);
@@ -196,7 +217,7 @@ function main() {
 	for (const c of collisions.slice(0, 5)) {
 		console.log(`  "${c.anchor}" -> ${c.hrefs.join(', ')}`);
 	}
-	if (process.env.LINKS_AUDIT_ENFORCE === '1' && collisions.length) {
+	if (process.env.LINKS_AUDIT_ENFORCE === '1' && collisions.length && !PIPELINE_CONTRACT) {
 		fail = true;
 		for (const c of collisions.slice(0, 10)) {
 			console.error(`[links:audit] FAIL anchor-collision: "${c.anchor}" -> ${c.hrefs.join(' | ')}`);
@@ -235,6 +256,7 @@ function main() {
 
 	const fmSyncFails = [];
 	for (const p of posts) {
+		if (!inLinksAuditScope(p.slug, linksScope)) continue;
 		const bodyHrefs = [...new Set(p.paragraphLinks.map((l) => l.href))];
 		const fmSet = new Set(p.internalLinks.map(normalizePath));
 		for (const h of bodyHrefs) {

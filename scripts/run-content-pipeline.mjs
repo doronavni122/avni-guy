@@ -6,9 +6,8 @@
  */
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
-import path from 'node:path';
-import { KEYWORD_STUB_SLUGS } from './lib/keyword-stub-slugs.mjs';
 import { runArticleContentChecks } from './lib/check-article-content.mjs';
+import { KEYWORD_STUB_SLUGS } from './lib/keyword-stub-slugs.mjs';
 
 const CHECKLISTS = [
 	'temp_articles_checklist.txt',
@@ -55,6 +54,8 @@ function ensureChecklists(slugs) {
 }
 
 function main() {
+	console.error('[content-pipeline-2026] DEPRECATED: use pnpm run article:pipeline -- <slug>');
+	process.exit(1);
 	const argv = process.argv.slice(2);
 	const skipManifest = argv.includes('--skip-manifest');
 	const skipResearch = argv.includes('--skip-research');

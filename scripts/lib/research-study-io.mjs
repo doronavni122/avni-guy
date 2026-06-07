@@ -5,6 +5,8 @@ import {
     checkResearchStudyFile,
     formatResearchErrors,
 } from './check-research-study.mjs';
+import { loadEnvLocal } from './load-env-local.mjs';
+import { writeExaResearchStudy } from '../run-exa-research-study.mjs';
 import { RESEARCH_DIR, RESEARCH_TRACKED_IN_GIT } from './research-study-rules.mjs';
 
 function log(msg, extra) {
@@ -79,20 +81,11 @@ export function runScopedContentAudit(slug) {
 		stdio: 'inherit',
 		env: { ...process.env, CONTENT_AUDIT_SLUGS: slug },
 	});
-	return result.status === 0;
-}
-
-/**
- * Delete research after content audit passes (single code path for batch scripts).
- * @param {string} slug
- */
-export function deleteResearchStudyAfterContentAudit(slug) {
-	const contentOk = runScopedContentAudit(slug);
-	if (!contentOk) {
-		logErr('content audit failed; research file retained', { slug });
-		throw new Error(`content:audit failed for "${slug}"; research file not deleted`);
+	if (result.status !== 0) {
+		logErr('content:audit failed', { slug, status: result.status });
+		return false;
 	}
-	return deleteResearchStudy(slug, { contentAuditPassed: true });
+	return true;
 }
 
 export function researchStudyPath(slug) {
@@ -104,15 +97,30 @@ export function researchStudyExists(slug) {
 }
 
 /**
- * Run live Exa research (~10 min) via `pnpm run research:exa`.
+ * Run live Exa research (~10 min) via direct session call.
+ * @param {string} slug
+ * @param {{ force?: boolean, skipAudit?: boolean }} [options]
+ */
+export async function runExaResearchStudyAsync(slug, { force = true, skipAudit = false } = {}) {
+	loadEnvLocal();
+	log('runExaResearchStudyAsync', { slug, force, skipAudit });
+	const result = await writeExaResearchStudy(slug, { force, skipAudit });
+	if (!result.ok) {
+		logErr('runExaResearchStudyAsync failed', { slug, reason: result.reason });
+		return false;
+	}
+	return true;
+}
+
+/**
  * @param {string} slug
  * @param {{ force?: boolean, skipAudit?: boolean }} [options]
  */
 export function runExaResearchStudy(slug, { force = true, skipAudit = false } = {}) {
+	log('runExaResearchStudy (sync spawn fallback)', { slug, force, skipAudit });
 	const args = ['run', 'research:exa', '--', slug];
 	if (force) args.push('--force');
 	if (skipAudit) args.push('--skip-audit');
-	log('runExaResearchStudy', { slug, force, skipAudit });
 	const result = spawnSync('pnpm', args, {
 		stdio: 'inherit',
 		env: process.env,

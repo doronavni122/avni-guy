@@ -13,10 +13,13 @@
 
 ## Content Workflow
 - Store articles in `src/content/blog/`.
-- Schema: `src/lib/content/schema.ts` (ported from former Astro collection).
+- Schema: `src/lib/content/schema.ts`.
 - Frontmatter must include SEO fields (title, description, metaTitle, metaDescription, mainKeyword).
 - Use consistent heading hierarchy (`H1` from title, then `H2`/`H3` in body).
-- Loops: `.cursor/rules/internal-links-loop.mdc`, `internal-links-pillar-cluster-loop.mdc`, `homepage-brand-internal-links-loop.mdc`, `article-research-loop.mdc`; research gates: `pnpm run research:scaffold`, `pnpm run research:exa` (live Exa, `EXA_API_KEY`, ~10 min), `pnpm run research:audit` (tracked studies in `content-research/`); remediation program cap: `config/remediation-program.json` (default 20 articles, pause via `enabled: false`); batch orchestration: `pnpm run remediation:batch`, `pnpm run remediation:list`, `pnpm run remediation:status`; scheduled scaffold PRs: `.github/workflows/article-remediation-batch.yml` (every 12h, respects cap); Cursor Automation: PR opened on `auto/remediation-*` (prefill in `scripts/automation-prefill-article-remediation.json`); audits: `pnpm run links:audit`, `pnpm run content:audit` (optional `LINKS_AUDIT_ENFORCE=1`, `CONTENT_LINKS_STRICT=1`).
+- **Single pipeline**: `pnpm run article:pipeline -- <slug>` (or `PIPELINE_SLUGS=...`). Quality contract: `scripts/lib/article-pipeline-contract.mjs`.
+- Research: Exa live study in `content-research/<slug>.md` (`EXA_API_KEY`, ~10 min); gate: `pnpm run research:audit`.
+- Verification per slug: `CONTENT_AUDIT_SLUGS=<slug> CONTENT_STRICT=1 pnpm run content:audit`; scoped links: `LINKS_AUDIT_SLUGS=<slug> LINKS_AUDIT_ENFORCE=1 pnpm run links:audit`.
+- Remediation cap: `config/remediation-program.json`; orchestrator: `node scripts/run-article-remediation.mjs --run-pipeline <slug>`.
 
 ## SEO Rules
 - Always provide unique meta title and meta description per page (`buildPageMetadata` in `src/lib/metadata.ts`).

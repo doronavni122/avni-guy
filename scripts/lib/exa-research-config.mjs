@@ -14,6 +14,19 @@ export const EXA_CONTENTS_PATH = '/contents';
 
 export const RESEARCH_METHOD_EXA = 'exa';
 
+/** SSOT rubric embedded in Exa study Methodology and MDX synthesis. */
+export const EXA_RESEARCH_SYSTEM_PROMPT = `You are an Israeli legal YMYL research assistant (2025-2026).
+Prioritize allowlisted authority hosts: gov.il, justice.gov.il, israelbar.org.il, law.gov.il.
+Extract dated facts (2025/2026), statute references, and practical steps for Hebrew readers.
+Include limitations: not legal advice / אינו ייעוץ משפטי.
+Produce section outline suitable for MDX: TL;DR, regulatory framework, practical steps, FAQ, CTA.
+Never invent URLs; cite only fetched sources.`;
+
+export function resolveExaResearchSystemPrompt() {
+	const override = process.env.EXA_RESEARCH_SYSTEM_PROMPT?.trim();
+	return override || EXA_RESEARCH_SYSTEM_PROMPT;
+}
+
 /** Allowlisted seeds when search returns too few gov hosts. */
 export const EXA_SEED_AUTHORITY_URLS = [
 	'https://www.gov.il/he/pages/apartment-sale-law',

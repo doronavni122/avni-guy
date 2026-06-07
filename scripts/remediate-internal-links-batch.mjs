@@ -6,6 +6,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 import matter from 'gray-matter';
 import {
 	BLOG_DIR,
@@ -918,10 +919,27 @@ function writePost(slug, raw, content) {
 	fs.writeFileSync(path.join(BLOG_DIR, `${slug}.mdx`), out, 'utf8');
 }
 
-function main() {
-	logGraph('remediate', 'starting batch internal links remediation');
+function resolveSlugFilter() {
+	const raw = process.env.PIPELINE_SLUGS?.trim() || process.env.LINKS_REMEDIATE_SLUGS?.trim();
+	if (!raw) return null;
+	return new Set(raw.split(',').map((s) => s.trim()).filter(Boolean));
+}
+
+function matchesSlugFilter(slug, filter) {
+	return !filter || filter.has(slug);
+}
+
+export function runRemediateInternalLinks() {
+	const slugFilter = resolveSlugFilter();
+	logGraph('remediate', 'starting batch internal links remediation', {
+		scoped: Boolean(slugFilter),
+		slugCount: slugFilter?.size ?? 'all',
+	});
 	let posts = loadAllPosts();
-	const postsBySlug = new Map(posts.map((p) => [p.slug, p]));
+	if (slugFilter) {
+		posts = posts.filter((p) => slugFilter.has(p.slug));
+	}
+	const postsBySlug = new Map(loadAllPosts().map((p) => [p.slug, p]));
 	let { inbound } = buildLinkGraph(posts);
 
 	let stats = {
@@ -938,6 +956,7 @@ function main() {
 	};
 
 	for (const p of posts) {
+		if (!matchesSlugFilter(p.slug, slugFilter)) continue;
 		let body = p.content;
 		const before = body;
 		body = stripRemediationSpam(body);
@@ -987,12 +1006,18 @@ function main() {
 	({ inbound } = buildLinkGraph(posts));
 	for (const p of posts) postsBySlug.set(p.slug, p);
 
-	let orphanCount = meshOrphans(posts, postsBySlug, inbound, stats, 2);
-	logGraph('remediate', `orphans to mesh: ${orphanCount}`);
+	let orphanCount = 0;
+	if (!slugFilter) {
+		orphanCount = meshOrphans(posts, postsBySlug, inbound, stats, 2);
+		logGraph('remediate', `orphans to mesh: ${orphanCount}`);
+	} else {
+		logGraph('remediate', 'skip corpus orphan mesh (scoped PIPELINE_SLUGS)');
+	}
 
 	posts = loadAllPosts();
 	for (const p of posts) postsBySlug.set(p.slug, p);
 	for (const p of posts) {
+		if (!matchesSlugFilter(p.slug, slugFilter)) continue;
 		let body = trimExcessParagraphLinks(p.content, p.slug, postsBySlug);
 		body = fixAnchorsInBody(body, postsBySlug, p.slug);
 		if (countBlogLinksInBody(body) > MAX_BLOG_LINKS) {
@@ -1005,8 +1030,9 @@ function main() {
 		}
 	}
 
-	posts = loadAllPosts();
+	posts = slugFilter ? posts : loadAllPosts();
 	for (const p of posts) {
+		if (!matchesSlugFilter(p.slug, slugFilter)) continue;
 		let body = dedupeParagraphLinks(p.content, p.slug);
 		body = removeDuplicateParagraphHrefs(body);
 		body = ensureMinimumParagraphLinks(body, p.slug, postsBySlug);
@@ -1019,9 +1045,10 @@ function main() {
 	}
 
 	// Final pillar pass then iterative orphan mesh until stable
-	posts = loadAllPosts();
+	posts = slugFilter ? loadAllPosts().filter((p) => slugFilter.has(p.slug)) : loadAllPosts();
 	for (const p of posts) postsBySlug.set(p.slug, p);
 	for (const p of posts) {
+		if (!matchesSlugFilter(p.slug, slugFilter)) continue;
 		let body = injectPillarLink(p.content, p.slug, postsBySlug);
 		body = reduceBlogLinksOverMax(body, p.slug, postsBySlug);
 		body = trimExcessParagraphLinks(body, p.slug, postsBySlug);
@@ -1032,19 +1059,22 @@ function main() {
 		}
 	}
 
-	for (let round = 0; round < 15; round++) {
-		posts = loadAllPosts();
-		({ inbound } = buildLinkGraph(posts));
-		for (const p of posts) postsBySlug.set(p.slug, p);
-		const remaining = posts.filter((p) => (inbound.get(p.slug) ?? []).length === 0).length;
-		if (remaining === 0) break;
-		logGraph('remediate', `orphan mesh round ${round + 1}: ${remaining} orphans`);
-		meshOrphans(posts, postsBySlug, inbound, stats, 1);
+	if (!slugFilter) {
+		for (let round = 0; round < 15; round++) {
+			posts = loadAllPosts();
+			({ inbound } = buildLinkGraph(posts));
+			for (const p of posts) postsBySlug.set(p.slug, p);
+			const remaining = posts.filter((p) => (inbound.get(p.slug) ?? []).length === 0).length;
+			if (remaining === 0) break;
+			logGraph('remediate', `orphan mesh round ${round + 1}: ${remaining} orphans`);
+			meshOrphans(posts, postsBySlug, inbound, stats, 1);
+		}
 	}
 
-	posts = loadAllPosts();
+	posts = slugFilter ? loadAllPosts().filter((p) => slugFilter.has(p.slug)) : loadAllPosts();
 	for (const p of posts) postsBySlug.set(p.slug, p);
 	for (const p of posts) {
+		if (!matchesSlugFilter(p.slug, slugFilter)) continue;
 		let body = stripRemediationSpam(stripLegacyLeyonInjections(p.content));
 		body = injectPillarLink(body, p.slug, postsBySlug);
 		body = ensureMinimumParagraphLinks(body, p.slug, postsBySlug);
@@ -1065,6 +1095,7 @@ function main() {
 	const { missingLateral } = auditLateralClusterLinks(posts);
 	logGraph('remediate', `lateral cluster gaps: ${missingLateral.length}`);
 	for (const slug of missingLateral) {
+		if (!matchesSlugFilter(slug, slugFilter)) continue;
 		const p = postsBySlug.get(slug);
 		if (!p) continue;
 		let body = injectLateralClusterLink(p.content, slug, postsBySlug);
@@ -1081,11 +1112,13 @@ function main() {
 	posts = loadAllPosts();
 	for (const p of posts) postsBySlug.set(p.slug, p);
 	for (const p of posts) {
+		if (!matchesSlugFilter(p.slug, slugFilter)) continue;
 		let body = injectPillarLink(p.content, p.slug, postsBySlug);
 		body = fixAnchorsInBody(body, postsBySlug, p.slug);
 		body = fixBrandedBlogAnchors(body, postsBySlug, p.slug);
 		if (body !== p.content) writePost(p.slug, p.raw, body);
 	}
+	if (!slugFilter) {
 	posts = loadAllPosts();
 	({ inbound } = buildLinkGraph(posts));
 	for (const p of posts) postsBySlug.set(p.slug, p);
@@ -1113,10 +1146,12 @@ function main() {
 			break;
 		}
 	}
+	}
 
-	posts = loadAllPosts();
+	posts = slugFilter ? loadAllPosts().filter((p) => slugFilter.has(p.slug)) : loadAllPosts();
 	let fmRepaired = 0;
 	for (const p of posts) {
+		if (!matchesSlugFilter(p.slug, slugFilter)) continue;
 		const out = repairFrontmatterInternalLinks(p.slug, p.raw, p.content);
 		if (out !== fs.readFileSync(path.join(BLOG_DIR, `${p.slug}.mdx`), 'utf8')) {
 			fs.writeFileSync(path.join(BLOG_DIR, `${p.slug}.mdx`), out, 'utf8');
@@ -1129,4 +1164,10 @@ function main() {
 	console.log(JSON.stringify(stats, null, 2));
 }
 
-main();
+function main() {
+	runRemediateInternalLinks();
+}
+
+const isCli =
+	process.argv[1] && pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url;
+if (isCli) main();

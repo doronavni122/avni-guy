@@ -1,13 +1,13 @@
 import {
-	FORBIDDEN_30_60_90_HEADING,
-	FORBIDDEN_CLOSING_SNIPPET,
-	FORBIDDEN_OPENING_SNIPPET,
-	FORBIDDEN_TITLE_SUFFIX,
-	YMYL_SLUGS,
+    FORBIDDEN_30_60_90_HEADING,
+    FORBIDDEN_CLOSING_SNIPPET,
+    FORBIDDEN_OPENING_SNIPPET,
+    FORBIDDEN_TITLE_SUFFIX,
+    YMYL_SLUGS,
 } from './content-forbidden-patterns.mjs';
-import { getMinWordsForTier, getArticleTier } from './content-tiers.mjs';
+import { getArticleTier, getMinWordsForTier } from './content-tiers.mjs';
 import { loadAllPosts, titleAnchorFragment } from './internal-link-graph.mjs';
-import { primaryPillarForCategory, isGlobalPillarSlug } from './pillar-cluster-registry.mjs';
+import { isGlobalPillarSlug, primaryPillarForCategory } from './pillar-cluster-registry.mjs';
 import { countWordsHe } from './seo-hero-rules.mjs';
 
 const META_TITLE_MIN = 50;
@@ -331,6 +331,9 @@ export function serializeFrontmatter(data, imagesSection) {
 	}
 	if (data.materialChange) {
 		lines.push('materialChange: true');
+	}
+	if (data.pipelineContractVersion) {
+		lines.push(`pipelineContractVersion: ${data.pipelineContractVersion}`);
 	}
 	if (data.contentType) {
 		lines.push(`contentType: "${data.contentType}"`);

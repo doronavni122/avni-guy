@@ -5,7 +5,7 @@
 import matter from 'gray-matter';
 import { YMYL_SLUGS } from './content-forbidden-patterns.mjs';
 import { isAllowlistedHost } from './exa-research-client.mjs';
-import { RESEARCH_METHOD_EXA } from './exa-research-config.mjs';
+import { RESEARCH_METHOD_EXA, resolveExaResearchSystemPrompt } from './exa-research-config.mjs';
 import {
     RESEARCH_MIN_WORDS,
     RESEARCH_YMYL_FRAMEWORK_SECTION,
@@ -160,6 +160,7 @@ main_keyword: ${mainKeyword}
 - Main keyword: ${mainKeyword}
 
 ## Methodology
+- System prompt: ${resolveExaResearchSystemPrompt().replace(/\n/g, ' ')}
 - Exa web search (${queries.length} queries) + Exa URL fetch for allowlisted authority hosts (gov.il, justice.gov.il, israelbar.org.il, law.gov.il).
 - Wall-clock research window: ${startedAt} → ${completedAt} (target ≥10 minutes for Exa method).
 - Hebrew synthesis for MDX merge; English query strings logged in Research log.
