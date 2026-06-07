@@ -141,3 +141,4 @@
 140. update-remediation-program-batch9-slugs , config/remediation-program.json task_graph.log
 141. fix-consumer-faq-frontmatter-batch9 , scripts/lib/pass1-batch9-remediation-specs.mjs src/content/blog/guy-avni-consumer-protection-fourteen-day-cancellation-exceptions.mdx task_graph.log
 142. fix-construction-filing-faq-frontmatter-batch9 , src/content/blog/guy-avni-construction-defects-claim-filing.mdx task_graph.log
+143. add-pass1-batch10-remediation-scripts , scripts/lib/pass1-batch10-article-bodies.mjs scripts/lib/pass1-batch10-remediation-specs.mjs scripts/run-pass1-batch10-remediation.mjs task_graph.log
