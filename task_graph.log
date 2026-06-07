@@ -128,3 +128,4 @@
 127. add-pass1-batch8-remediation-scripts , scripts/lib/pass1-batch8-article-bodies.mjs scripts/lib/pass1-batch8-remediation-specs.mjs scripts/run-pass1-batch8-remediation.mjs task_graph.log
 128. remediate-class-action-bank-settlement-batch8 , content-research/guy-avni-class-action-bank-settlement-who-gets-paid.md src/content/blog/guy-avni-class-action-bank-settlement-who-gets-paid.mdx task_graph.log
 129. remediate-class-action-plaintiff-cost-batch8 , content-research/guy-avni-class-action-plaintiff-cost.md src/content/blog/guy-avni-class-action-plaintiff-cost.mdx task_graph.log
+130. remediate-client-onboarding-batch8 , content-research/guy-avni-client-onboarding-framework.md src/content/blog/guy-avni-client-onboarding-framework.mdx task_graph.log
