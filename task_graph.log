@@ -127,3 +127,4 @@
 126. sync-llms-after-batch7-remediation , public/llms.txt public/llms-full.txt task_graph.log
 127. add-pass1-batch8-remediation-scripts , scripts/lib/pass1-batch8-article-bodies.mjs scripts/lib/pass1-batch8-remediation-specs.mjs scripts/run-pass1-batch8-remediation.mjs task_graph.log
 128. remediate-class-action-bank-settlement-batch8 , content-research/guy-avni-class-action-bank-settlement-who-gets-paid.md src/content/blog/guy-avni-class-action-bank-settlement-who-gets-paid.mdx task_graph.log
+129. remediate-class-action-plaintiff-cost-batch8 , content-research/guy-avni-class-action-plaintiff-cost.md src/content/blog/guy-avni-class-action-plaintiff-cost.mdx task_graph.log
