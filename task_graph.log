@@ -139,3 +139,4 @@
 138. remediate-construction-defects-filing-batch9 , content-research/guy-avni-construction-defects-claim-filing.md src/content/blog/guy-avni-construction-defects-claim-filing.mdx task_graph.log
 139. remediate-consumer-protection-exceptions-batch9 , content-research/guy-avni-consumer-protection-fourteen-day-cancellation-exceptions.md src/content/blog/guy-avni-consumer-protection-fourteen-day-cancellation-exceptions.mdx task_graph.log
 140. update-remediation-program-batch9-slugs , config/remediation-program.json task_graph.log
+141. fix-consumer-faq-frontmatter-batch9 , scripts/lib/pass1-batch9-remediation-specs.mjs src/content/blog/guy-avni-consumer-protection-fourteen-day-cancellation-exceptions.mdx task_graph.log
