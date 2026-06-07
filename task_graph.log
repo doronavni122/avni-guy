@@ -147,3 +147,4 @@
 146. remediate-batch10-contract-review-flow-study-mdx , content-research/guy-avni-contract-review-flow.md src/content/blog/guy-avni-contract-review-flow.mdx task_graph.log
 147. remediate-batch10-contract-risk-shifting-study-mdx , content-research/guy-avni-contract-risk-shifting-words-page-four.md src/content/blog/guy-avni-contract-risk-shifting-words-page-four.mdx task_graph.log
 148. remediate-batch10-court-case-keywords-study-mdx , content-research/guy-avni-court-case-keywords-find-case-90-seconds.md src/content/blog/guy-avni-court-case-keywords-find-case-90-seconds.mdx task_graph.log
+149. update-remediation-program-batch10-slugs , config/remediation-program.json task_graph.log
