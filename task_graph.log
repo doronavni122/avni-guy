@@ -119,3 +119,4 @@
 118. add-pass1-batch7-remediation-runner , scripts/lib/pass1-batch7-article-bodies.mjs scripts/lib/pass1-batch7-remediation-specs.mjs scripts/run-pass1-batch7-remediation.mjs task_graph.log
 119. remediate-car-accident-batch7 , content-research/guy-avni-car-accident-under-five-thousand-settlement.md src/content/blog/guy-avni-car-accident-under-five-thousand-settlement.mdx task_graph.log
 120. remediate-check-liens-batch7 , content-research/guy-avni-check-apartment-liens-before-purchase.md src/content/blog/guy-avni-check-apartment-liens-before-purchase.mdx task_graph.log
+121. remediate-child-support-batch7 , content-research/guy-avni-child-support-four-parameters-lower-payment.md src/content/blog/guy-avni-child-support-four-parameters-lower-payment.mdx task_graph.log
