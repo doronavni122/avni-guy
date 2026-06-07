@@ -118,3 +118,4 @@
 117. raise-remediation-cap-40-article-pipeline-path1 , config/remediation-program.json scripts/run-article-pipeline.mjs scripts/lib/article-pipeline-contract.mjs scripts/check-exa-api-key.mjs .github/workflows/article-remediation-batch.yml scripts/automation-prefill-article-remediation.json scripts/run-article-remediation.mjs task_graph.log
 118. add-pass1-batch7-remediation-runner , scripts/lib/pass1-batch7-article-bodies.mjs scripts/lib/pass1-batch7-remediation-specs.mjs scripts/run-pass1-batch7-remediation.mjs task_graph.log
 119. remediate-car-accident-batch7 , content-research/guy-avni-car-accident-under-five-thousand-settlement.md src/content/blog/guy-avni-car-accident-under-five-thousand-settlement.mdx task_graph.log
+120. remediate-check-liens-batch7 , content-research/guy-avni-check-apartment-liens-before-purchase.md src/content/blog/guy-avni-check-apartment-liens-before-purchase.mdx task_graph.log
