@@ -134,3 +134,4 @@
 133. update-remediation-program-batch8-slugs , config/remediation-program.json task_graph.log
 134. add-pass1-batch9-remediation-scripts , scripts/lib/pass1-batch9-remediation-specs.mjs scripts/lib/pass1-batch9-article-bodies.mjs scripts/run-pass1-batch9-remediation.mjs task_graph.log
 135. remediate-communication-strategy-batch9 , content-research/guy-avni-communication-strategy-for-clients.md src/content/blog/guy-avni-communication-strategy-for-clients.mdx task_graph.log
+136. remediate-companies-registry-batch9 , content-research/guy-avni-companies-registry-phone-call-four-questions.md src/content/blog/guy-avni-companies-registry-phone-call-four-questions.mdx task_graph.log
