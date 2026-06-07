@@ -122,3 +122,4 @@
 121. remediate-child-support-batch7 , content-research/guy-avni-child-support-four-parameters-lower-payment.md src/content/blog/guy-avni-child-support-four-parameters-lower-payment.mdx task_graph.log
 122. remediate-choose-real-estate-lawyer-batch7 , content-research/guy-avni-choose-real-estate-lawyer.md src/content/blog/guy-avni-choose-real-estate-lawyer.mdx task_graph.log
 123. remediate-choosing-lawyer-guide-batch7 , content-research/guy-avni-choosing-lawyer-israel-comprehensive-guide.md src/content/blog/guy-avni-choosing-lawyer-israel-comprehensive-guide.mdx task_graph.log
+124. update-remediation-program-batch7-slugs , config/remediation-program.json task_graph.log
