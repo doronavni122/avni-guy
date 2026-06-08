@@ -85,7 +85,7 @@ jobs:
           fi
 
       - name: Open pull request
-        if: steps.branch.outputs.no_changes != 'true'
+        if: steps.program.outputs.active == 'true' && steps.branch.outputs.no_changes == 'false'
         env:
           GH_TOKEN: ${{ github.token }}
           REMEDIATION_COMPLETED: ${{ steps.program.outputs.completed }}

@@ -19,7 +19,7 @@ if (!slugs) {
 		slugs = String(q.pipelineSlugs ?? q.batchSlugs?.join(',') ?? '').trim();
 	} catch (err) {
 		logErr('read remediation-batch.json', err.message);
-		process.exit(1);
+		slugs = '(pending batch)';
 	}
 }
 
