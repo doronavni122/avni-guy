@@ -230,7 +230,15 @@ let postsBySlugCache = null;
 function getPostsBySlug() {
 	if (!postsBySlugCache) {
 		postsBySlugCache = new Map(
-			loadAllPosts().map((p) => [p.slug, { slug: p.slug, mainKeyword: p.mainKeyword, title: p.title }]),
+			loadAllPosts().map((p) => [
+				p.slug,
+				{
+					slug: p.slug,
+					mainKeyword: p.mainKeyword,
+					title: p.title,
+					description: String(p.data?.description ?? '').trim(),
+				},
+			]),
 		);
 	}
 	return postsBySlugCache;

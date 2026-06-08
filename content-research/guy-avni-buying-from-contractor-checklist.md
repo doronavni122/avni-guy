@@ -3,7 +3,7 @@ research_started_at: 2026-06-04T18:23:30.746Z
 research_completed_at: 2026-06-04T18:33:31.746Z
 research_method: exa
 slug: guy-avni-buying-from-contractor-checklist
-main_keyword: גיא אבני עורך דין
+main_keyword: מה לבדוק לפני רכישת דירה מקבלן
 ---
 
 # Research: guy-avni-buying-from-contractor-checklist
@@ -11,7 +11,7 @@ main_keyword: גיא אבני עורך דין
 ## Query intent
 - Primary question: צ'קליסט לקנייה מקבלן: רישום קבלן, ערבות חוק מכר, לוח תשלומים, מפרט, איחור מסירה וליקויי בנייה.
 - Audience: קוראים בישראל שמחפשים מידע רשמי ומעשי לפני החתימה או הדיווח (2025-2026).
-- Main keyword: גיא אבני עורך דין
+- Main keyword: מה לבדוק לפני רכישת דירה מקבלן
 
 ## Methodology
 - Exa web search (10 queries) + Exa URL fetch for allowlisted authority hosts (gov.il, justice.gov.il, israelbar.org.il, law.gov.il).

@@ -11,6 +11,7 @@ import {
     RESEARCH_YMYL_FRAMEWORK_SECTION,
 } from './research-study-rules.mjs';
 import { countWordsHe } from './seo-hero-rules.mjs';
+import { resolveTopicalMainKeyword } from './site-keywords.mjs';
 
 function logErr(step, msg, extra) {
 	console.error(`[exa-research-study-builder] ERROR step ${step}: ${msg}`, extra ?? '');
@@ -43,7 +44,7 @@ export function buildExaSearchQueries(meta, slug) {
 			.replace(/^גיא אבני[^|]*\|\s*/u, '')
 			.replace(/^גיא אבני\s*/u, '')
 			.trim() || slug.replace(/^guy-avni-/, '').replace(/-/g, ' ');
-	const kw = String(meta.mainKeyword ?? 'גיא אבני עורך דין').trim();
+	const kw = resolveTopicalMainKeyword(meta) || String(meta.mainKeyword ?? '').trim() || 'גיא אבני עורך דין';
 	const cat = String(meta.category ?? 'legal').trim();
 	const desc = String(meta.description ?? topic).slice(0, 200);
 	return [
@@ -92,7 +93,8 @@ function hostLabel(host) {
  */
 export function buildExaResearchStudyMarkdown(session) {
 	const { slug, meta, startedAt, completedAt, sources, logs, queries } = session;
-	const mainKeyword = String(meta.mainKeyword ?? meta.main_keyword ?? '').trim();
+	const mainKeyword =
+		resolveTopicalMainKeyword(meta) || String(meta.mainKeyword ?? meta.main_keyword ?? '').trim();
 	const title = String(meta.title ?? slug);
 	const isYmyl = YMYL_SLUGS.has(slug);
 	const accessDate = completedAt.slice(0, 10);

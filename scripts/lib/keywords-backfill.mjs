@@ -3,6 +3,8 @@
  */
 import matter from 'gray-matter';
 import { getArticleTier } from './content-tiers.mjs';
+import { isBrandMainKeyword } from './pillar-cluster-registry.mjs';
+import { resolveTopicalMainKeyword } from './site-keywords.mjs';
 
 const SECONDARY_MIN = 4;
 const SECONDARY_MAX = 6;
@@ -42,10 +44,13 @@ export function backfillKeywordsFromStudy(slug, data, studyMarkdown) {
 	let changed = false;
 
 	const studyKw = String(studyFm.main_keyword ?? studyFm.mainKeyword ?? '').trim();
-	if (studyKw && studyKw !== next.mainKeyword) {
-		next.mainKeyword = studyKw;
+	const topicalStudyKw = isBrandMainKeyword(studyKw)
+		? resolveTopicalMainKeyword({ ...next, title: next.title, description: next.description })
+		: studyKw;
+	if (topicalStudyKw && topicalStudyKw !== next.mainKeyword && !isBrandMainKeyword(topicalStudyKw)) {
+		next.mainKeyword = topicalStudyKw;
 		changed = true;
-		log(1, 'sync mainKeyword from study', { slug, mainKeyword: studyKw });
+		log(1, 'sync mainKeyword from study', { slug, mainKeyword: topicalStudyKw });
 	}
 
 	const tier = getArticleTier(slug);

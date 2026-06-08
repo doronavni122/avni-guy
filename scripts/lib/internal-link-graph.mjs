@@ -180,11 +180,38 @@ export function titleAnchorFragment(title) {
 		.replace(/^גיא אבני[^|]*\|\s*/u, '')
 		.replace(/^גיא אבני\s*/u, '')
 		.trim();
-	const cut = t.split(/[|?:]/)[0].trim();
+	const parts = t
+		.split(/[|?:]/)
+		.map((p) => p.trim())
+		.filter(Boolean);
+	const brandLead = /^(גיא אבני|עורך דין|עו״ד|עורכי דין)/u;
+	const topical = parts.filter((p) => p.length >= 4 && !brandLead.test(p));
+	const cut = topical[0] ?? parts[parts.length - 1] ?? t;
 	t = cut || t;
 	const words = t.split(/\s+/).filter(Boolean);
 	if (words.length <= MAX_ANCHOR_WORDS) return t;
 	return words.slice(0, MAX_ANCHOR_WORDS).join(' ');
+}
+
+/**
+ * @param {string} anchor
+ * @param {string} phrase
+ */
+function anchorSharesPhraseTokens(anchor, phrase, minHits = 2) {
+	const a = String(anchor ?? '').trim();
+	const words = String(phrase ?? '')
+		.split(/\s+/)
+		.map((w) => w.replace(/[^\p{L}\p{N}'״"]/gu, '').trim())
+		.filter((w) => w.length >= 2);
+	if (!words.length) return false;
+	let hits = 0;
+	for (const w of words) {
+		if (w.length < 2) continue;
+		if (a.includes(w)) hits += 1;
+	}
+	const need = Math.min(minHits, Math.max(1, words.length === 1 ? 1 : minHits));
+	if (words.length === 1) return hits >= 1;
+	return hits >= need;
 }
 
 export function loadAllPosts() {
@@ -585,15 +612,12 @@ export function anchorMatchesTarget(anchor, target) {
 	const a = String(anchor ?? '').trim();
 	const kw = String(target?.mainKeyword ?? '').trim();
 	if (kw.length >= 4 && a.includes(kw)) return true;
+	if (kw && anchorSharesPhraseTokens(a, kw)) return true;
+	const desc = String(target?.description ?? '').trim();
+	if (desc && anchorSharesPhraseTokens(a, desc)) return true;
 	const frag = titleAnchorFragment(target?.title ?? '');
-	const words = frag.split(/\s+/).filter((w) => w.length >= 3);
-	if (!words.length) return false;
-	let hits = 0;
-	for (const w of words) {
-		if (a.includes(w)) hits += 1;
-	}
-	if (words.length === 1) return hits >= 1;
-	return hits >= 2;
+	if (frag && anchorSharesPhraseTokens(a, frag)) return true;
+	return false;
 }
 
 /**
