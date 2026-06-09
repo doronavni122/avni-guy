@@ -150,3 +150,4 @@
 149. update-remediation-program-batch10-slugs , config/remediation-program.json task_graph.log
 150. fix-ci-anchor-matching-remediation-workflow-yaml , scripts/lib/internal-link-graph.mjs scripts/lib/check-article-content.mjs scripts/lib/site-keywords.mjs scripts/lib/keywords-backfill.mjs scripts/lib/exa-research-study-builder.mjs scripts/emit-remediation-pr-body.mjs .github/workflows/article-remediation-batch.yml content-research/guy-avni-buying-from-contractor-checklist.md task_graph.log
 151. fix-remediation-pr-step-when-program-inactive , .github/workflows/article-remediation-batch.yml scripts/emit-remediation-pr-body.mjs task_graph.log
+152. add-separated-research-articles-loop-commends , .commends/TODO_article_reserch.md .commends/TODO_articles_loop.md .commends/TODO_reserch_loop.md task_graph.log
