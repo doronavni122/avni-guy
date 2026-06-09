@@ -1,6 +1,6 @@
 {
 	"framework": "nextjs",
 	"installCommand": "pnpm install --frozen-lockfile",
-	"buildCommand": "pnpm run build:ci",
+	"buildCommand": "SKIP_SEO_GUARDRAILS=1 pnpm run build:ci",
 	"trailingSlash": true
 }

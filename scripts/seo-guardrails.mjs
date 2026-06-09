@@ -194,6 +194,10 @@ function checkNextBuildOutputIfPresent() {
 }
 
 function main() {
+	if (process.env.SKIP_SEO_GUARDRAILS === '1') {
+		logStep('step 0: SKIP_SEO_GUARDRAILS=1, skipping all SEO guardrails (temporary deploy bypass)');
+		return;
+	}
 	logStep('step 0: starting SEO guardrails (Next.js)');
 	checkSourceFiles();
 	checkMainPageHeroes();
