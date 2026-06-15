@@ -6,9 +6,8 @@ node_modules/
 .next/
 out/
 
-# Legacy Astro / static export
+# Build output
 dist/
-.astro/
 
 # TypeScript
 *.tsbuildinfo

@@ -2,11 +2,10 @@
 node_modules/
 .pnpm-store/
 
-# Next.js / legacy build output
+# Next.js build output
 .next/
 out/
 dist/
-.astro/
 
 # Vercel local
 .vercel/
