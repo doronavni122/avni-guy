@@ -11,11 +11,14 @@ function normalizePath(value: string): string {
 	return value.endsWith('/') ? value : `${value}/`;
 }
 
-export function HeaderLink({ href, currentPath, children }: HeaderLinkProps) {
+export function isNavLinkActive(href: string, currentPath: string): boolean {
 	const normalizedHref = normalizePath(href);
 	const normalizedPath = normalizePath(currentPath);
-	const isActive =
-		normalizedPath === normalizedHref || (href !== '/' && normalizedPath.startsWith(normalizedHref));
+	return normalizedPath === normalizedHref || (href !== '/' && normalizedPath.startsWith(normalizedHref));
+}
+
+export function HeaderLink({ href, currentPath, children }: HeaderLinkProps) {
+	const isActive = isNavLinkActive(href, currentPath);
 
 	return (
 		<Link

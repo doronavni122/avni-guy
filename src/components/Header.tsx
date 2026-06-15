@@ -1,8 +1,25 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { MobileNav } from '@/components/react/MobileNav';
-import { HeaderLink } from '@/components/HeaderLink';
+import { isNavLinkActive } from '@/components/HeaderLink';
+import {
+	NavigationMenu,
+	NavigationMenuItem,
+	NavigationMenuLink,
+	NavigationMenuList,
+} from '@/components/ui/navigation-menu';
 import { SITE_TITLE } from '@/consts';
+import { cn } from '@/lib/utils';
+
+const NAV_LINKS: { href: string; label: string }[] = [
+	{ href: '/', label: 'דף הבית' },
+	{ href: '/about/', label: 'אודות' },
+	{ href: '/services/', label: 'שירותים' },
+	{ href: '/blog/', label: 'מאמרים' },
+	{ href: '/categories/', label: 'קטגוריות' },
+	{ href: '/tags/', label: 'תגיות' },
+	{ href: '/contact/', label: 'יצירת קשר' },
+];
 
 type HeaderProps = {
 	currentPath: string;
@@ -34,28 +51,29 @@ export function Header({ currentPath }: HeaderProps) {
 						{SITE_TITLE}
 					</span>
 				</Link>
-				<nav className="hidden flex-wrap items-center justify-end gap-1 md:flex" aria-label="ניווט ראשי">
-					<HeaderLink href="/" currentPath={currentPath}>
-						דף הבית
-					</HeaderLink>
-					<HeaderLink href="/about/" currentPath={currentPath}>
-						אודות
-					</HeaderLink>
-					<HeaderLink href="/services/" currentPath={currentPath}>
-						שירותים
-					</HeaderLink>
-					<HeaderLink href="/blog/" currentPath={currentPath}>
-						מאמרים
-					</HeaderLink>
-					<HeaderLink href="/categories/" currentPath={currentPath}>
-						קטגוריות
-					</HeaderLink>
-					<HeaderLink href="/tags/" currentPath={currentPath}>
-						תגיות
-					</HeaderLink>
-					<HeaderLink href="/contact/" currentPath={currentPath}>
-						יצירת קשר
-					</HeaderLink>
+				<nav className="hidden md:flex" aria-label="ניווט ראשי">
+					<NavigationMenu viewport={false} className="max-w-none">
+					<NavigationMenuList className="justify-end gap-1">
+						{NAV_LINKS.map((item) => {
+							const isActive = isNavLinkActive(item.href, currentPath);
+							return (
+								<NavigationMenuItem key={item.href}>
+									<NavigationMenuLink
+										render={<Link href={item.href} aria-current={isActive ? 'page' : undefined} />}
+										className={cn(
+											'rounded-lg px-3 py-2 font-medium',
+											isActive
+												? 'bg-primary/10 text-primary'
+												: 'text-muted-foreground hover:bg-muted hover:text-foreground',
+										)}
+									>
+										{item.label}
+									</NavigationMenuLink>
+								</NavigationMenuItem>
+							);
+						})}
+					</NavigationMenuList>
+					</NavigationMenu>
 				</nav>
 				<div className="flex shrink-0 items-center gap-2 md:hidden">
 					<MobileNav currentPath={currentPath} />

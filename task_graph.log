@@ -172,3 +172,4 @@
 169. shadcn-apply-preset-b2fa-theme-font , src/app/layout.tsx task_graph.log
 170. shadcn-add-navigation-breadcrumb-accordion , src/components/ui/navigation-menu.tsx src/components/ui/breadcrumb.tsx src/components/ui/accordion.tsx task_graph.log
 171. clean-global-css-shadcn-rtl-hebrew-brand , src/styles/global.css task_graph.log
+172. migrate-header-navigation-menu , src/components/Header.tsx src/components/HeaderLink.tsx task_graph.log
