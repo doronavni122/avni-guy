@@ -164,3 +164,4 @@
 162. simplify-gitignore-legacy-paths , .gitignore task_graph.log
 163. remove-internal-links-quarterly-workflow , .github/workflows/internal-links-quarterly.yml task_graph.log
 164. replace-astro-vscode-with-next-dev , .vscode/launch.json .vscode/extensions.json task_graph.log
+165. remove-astro-tsconfig-exclude , tsconfig.json task_graph.log
