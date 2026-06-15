@@ -2,8 +2,6 @@
 
 This file is the **single source of truth** for non-code expectations (workflow, SEO, deployment). **Code behavior** remains authoritative in source files; this document lists what must stay true across changes.
 
-**Article pipeline quality** is **not** defined here. It lives only in code: `scripts/lib/article-pipeline-contract.mjs` (see plan `.cursor/plans/001_article_pipeline_study_anchors_8f2c1a4b.plan.md`).
-
 ---
 
 ## A. Product and stack
@@ -22,7 +20,6 @@ This file is the **single source of truth** for non-code expectations (workflow,
 2. **Frontmatter**: Required SEO fields per schema (`title`, `description`, `metaTitle`, `metaDescription`, `mainKeyword`, etc.).
 3. **Headings**: Exactly one visible `H1` per page (layout/title); MDX body must not start with `#`.
 4. **Taxonomy**: Categories/tags from content; routes consistent with `src/utils/content-taxonomy.ts`.
-5. **Pipeline entry**: `pnpm run article:pipeline -- <slug>` - all article quality gates enforced in code + audits, not Cursor rules.
 
 ---
 
@@ -30,8 +27,8 @@ This file is the **single source of truth** for non-code expectations (workflow,
 
 1. **Uniqueness**: Distinct page `title` and meta description per route.
 2. **Primary keyword**: Each page exposes a primary keyword; keyword in visible `H1` where applicable.
-3. **Main-menu heroes** (`/`, `/about/`, `/services/`, `/blog/`, `/categories/`, `/tags/`, `/contact/`): `src/lib/seo/main-page-heroes.ts`; validated by `hero-rules.ts` and `pnpm run seo:guardrails`.
-4. **Banned typography**: Unicode em dash (U+2014) forbidden in `src/`, `public/`, and content. Use `-`, `:`, or commas. Checked in `seo:guardrails`.
+3. **Main-menu heroes** (`/`, `/about/`, `/services/`, `/blog/`, `/categories/`, `/tags/`, `/contact/`): `src/lib/seo/main-page-heroes.ts`; conventions in `hero-rules.ts` and `main-page-style-rules.ts`.
+4. **Banned typography**: Unicode em dash (U+2014) forbidden in `src/`, `public/`, and content. Use `-`, `:`, or commas. See `BANNED_EM_DASH` in `hero-rules.ts`.
 5. **Canonical**: `trailingSlash: true` in `next.config.ts`; `SITE_URL` in `src/consts.ts` matches sitemap/RSS/robots.
 6. **Structured data**: `src/utils/structured-data.ts` for breadcrumbs and article JSON-LD.
 7. **Media**: Optimized images; English keyword-oriented filenames for local assets; meaningful `alt` (and title where used).
@@ -63,6 +60,5 @@ Do not add unsolicited reports or extra markdown unless the user explicitly asks
 
 ## G. Handoff
 
-- **Article quality contract**: implement per `.cursor/plans/001_article_pipeline_study_anchors_8f2c1a4b.plan.md`; code SSOT `scripts/lib/article-pipeline-contract.mjs`.
 - **Traceability**: latest entry in `task_graph.log`.
-- **First files for article work**: `scripts/run-article-pipeline.mjs`, `scripts/lib/article-pipeline-contract.mjs`, `scripts/lib/apply-research-to-mdx.mjs`, `scripts/lib/check-article-content.mjs`, `scripts/lib/research-study-rules.mjs`.
+- **First files for content work**: `src/lib/content/schema.ts`, `src/lib/content/posts.ts`, `src/content/blog/`.
