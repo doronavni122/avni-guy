@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Badge } from '@/components/ui/badge';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import type { FaqItem } from '@/lib/home/loadHomeData';
@@ -15,33 +17,29 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
 					שאלות נפוצות לפני שמדברים עם גיא אבני משרד עורכי דין
 				</h2>
 				<div className="flex flex-wrap justify-end gap-2">
-					<span className="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground">
-						שאלות נפוצות
-					</span>
-					<span className="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground">
-						התחלה מהירה
-					</span>
+					<Badge variant="outline">שאלות נפוצות</Badge>
+					<Badge variant="outline">התחלה מהירה</Badge>
 				</div>
 				<p className="max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
 					התשובות הבאות נועדו להסיר חסמים ראשוניים ולתת לכם ודאות לגבי הצעד הראשון.
 				</p>
 			</div>
-			<div className="grid gap-3">
+			<Accordion type="single" collapsible className="flex flex-col gap-3">
 				{items.map((item) => (
-					<details
+					<AccordionItem
 						key={item.question}
-						className="rounded-xl border border-border/60 bg-card/70 p-4 shadow-sm open:border-primary/30 open:bg-primary/5"
+						value={item.question}
+						className="rounded-xl border border-border/60 bg-card/70 px-4 shadow-sm last:border-b"
 					>
-						<summary className="cursor-pointer list-none font-semibold text-foreground [&::-webkit-details-marker]:hidden">
-							<span className="inline-flex items-center gap-2">
-								<span className="text-primary">+</span>
-								<strong>{item.question}</strong>
-							</span>
-						</summary>
-						<p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.answer}</p>
-					</details>
+						<AccordionTrigger className="text-right font-semibold text-foreground hover:no-underline">
+							<strong>{item.question}</strong>
+						</AccordionTrigger>
+						<AccordionContent className="text-right">
+							<p className="text-sm leading-relaxed text-muted-foreground">{item.answer}</p>
+						</AccordionContent>
+					</AccordionItem>
 				))}
-			</div>
+			</Accordion>
 			<div>
 				<Link className={cn(buttonVariants({ size: 'lg' }))} href="/contact/">
 					רוצים תשובה מותאמת? צרו קשר
