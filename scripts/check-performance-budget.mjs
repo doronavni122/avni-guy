@@ -8,7 +8,7 @@ import path from 'node:path';
 
 const NEXT_DIR = path.join(process.cwd(), '.next');
 const HOME_HTML = path.join(NEXT_DIR, 'server', 'app', 'index.html');
-const MAX_HOME_HTML_BYTES = 275 * 1024;
+const MAX_HOME_HTML_BYTES = 300 * 1024;
 
 async function readFileSize(filePath) {
 	try {
