@@ -4,6 +4,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { buildOrganizationSchema, buildWebSiteJsonLd } from '@/utils/structured-data';
+import { cn } from '@/lib/utils';
 
 type SiteShellProps = {
 	children: ReactNode;
@@ -19,7 +20,13 @@ export function SiteShell({ children, currentPath, extraJsonLd }: SiteShellProps
 			<JsonLd data={globalJsonLd} />
 			<Header currentPath={currentPath} />
 			<main className="flex flex-1 flex-col">
-				<div className="container mx-auto w-full max-w-6xl flex-1 px-4 py-10 sm:px-6 sm:py-12 lg:py-16">{children}</div>
+				<div
+					className={cn(
+						'page-enter container mx-auto w-full max-w-6xl flex-1 px-4 py-10 sm:px-6 sm:py-12 lg:py-16',
+					)}
+				>
+					{children}
+				</div>
 			</main>
 			<Footer />
 			{process.env.NODE_ENV === 'production' ? <Analytics /> : null}

@@ -184,3 +184,4 @@
 181. add-ui-redesign-june-2026-plan , .cursor/plans/002_ui_ux_redesign_june_2026_j7k2m9nx.plan.md task_graph.log
 182. redesign-design-tokens-typography , src/styles/global.css src/app/layout.tsx task_graph.log
 183. add-nav-ssot-layout-primitives , src/lib/nav/site-nav.ts src/lib/nav/is-nav-active.ts src/components/layout/PageSection.tsx src/components/layout/SectionHeader.tsx src/components/layout/PremiumPanel.tsx task_graph.log
+184. redesign-site-shell-navigation , src/components/layout/SiteShell.tsx src/components/Header.tsx src/components/Footer.tsx src/components/react/MobileNav.tsx src/components/seo/MainPageHero.tsx task_graph.log
