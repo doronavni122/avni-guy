@@ -178,3 +178,4 @@
 175. migrate-mobile-nav-sheet , src/components/react/MobileNav.tsx task_graph.log
 176. fix-header-navigation-menu-viewport-prop , src/components/Header.tsx task_graph.log
 177. fix-faq-accordion-base-ui-props , src/components/home/FaqAccordion.tsx task_graph.log
+178. fix-pnpm-audit-remove-apps-web-references , .github/workflows/pnpm-audit.yml task_graph.log
