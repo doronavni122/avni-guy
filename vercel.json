@@ -2,5 +2,19 @@
 	"framework": "nextjs",
 	"installCommand": "pnpm install --frozen-lockfile",
 	"buildCommand": "SKIP_SEO_GUARDRAILS=1 pnpm run build:ci",
-	"trailingSlash": true
+	"trailingSlash": true,
+	"redirects": [
+		{
+			"source": "/:path*",
+			"has": [{ "type": "host", "value": "avni-guy.vercel.app" }],
+			"destination": "https://avniguy.co.il/:path*",
+			"permanent": true
+		},
+		{
+			"source": "/:path*",
+			"has": [{ "type": "host", "value": "www.avniguy.co.il" }],
+			"destination": "https://avniguy.co.il/:path*",
+			"permanent": true
+		}
+	]
 }

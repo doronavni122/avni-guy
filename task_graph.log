@@ -191,3 +191,4 @@
 188. fix-sensitive-log-patterns-src-path , scripts/tools/check-sensitive-log-patterns.cjs task_graph.log
 189. fix-pnpm-lockfile-shadcn-specifier , pnpm-lock.yaml task_graph.log
 190. add-playwright-production-smoke-e2e , playwright.config.ts e2e/smoke.spec.ts package.json pnpm-lock.yaml task_graph.log
+191. restore-vercel-apex-domain-redirects , vercel.json task_graph.log
