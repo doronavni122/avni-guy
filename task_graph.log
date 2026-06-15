@@ -180,3 +180,4 @@
 177. fix-faq-accordion-base-ui-props , src/components/home/FaqAccordion.tsx task_graph.log
 178. fix-pnpm-audit-remove-apps-web-references , .github/workflows/pnpm-audit.yml task_graph.log
 179. set-content-profile-stack-custom-next , content-pipeline.profile.json .content-kit/schemas/project-profile.schema.json task_graph.log
+180. remove-dead-atkinson-font-files , src/assets/fonts/atkinson-bold.woff src/assets/fonts/atkinson-regular.woff task_graph.log
