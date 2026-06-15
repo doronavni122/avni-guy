@@ -18,7 +18,7 @@
     "kitVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
     "stack": {
       "type": "string",
-      "enum": ["next-guide", "astro-blog", "wordpress", "static-docs", "research-only", "custom"]
+      "enum": ["next-guide", "astro-blog", "wordpress", "static-docs", "research-only", "custom", "custom/next"]
     },
     "brand": { "type": "string", "minLength": 1 },
     "siteDomain": { "type": "string", "format": "uri" },
