@@ -8,6 +8,7 @@ import { OptimizedImage } from '@/components/media/OptimizedImage';
 import { buttonVariants } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import { PremiumPanel } from '@/components/layout/PremiumPanel';
 import { MainPageHero } from '@/components/seo/MainPageHero';
 import type { HomeData } from '@/lib/home/loadHomeData';
 import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
@@ -29,12 +30,8 @@ export function HomePage({
 }: HomeData) {
 	return (
 		<section className="relative flex flex-col gap-10 pb-24 lg:gap-14 md:pb-6">
-			<div className="relative overflow-hidden rounded-2xl border border-border/60 bg-card/80 p-8 shadow-sm ring-1 ring-primary/10 sm:p-10 lg:p-12">
-				<div
-					className="pointer-events-none absolute inset-0 bg-[radial-gradient(800px_circle_at_0%_0%,oklch(0.45_0.08_165/0.12),transparent_55%)]"
-					aria-hidden="true"
-				/>
-				<div className="relative flex flex-col gap-6 text-right">
+			<PremiumPanel variant="hero">
+				<div className="flex flex-col gap-6 text-right">
 					<MainPageHero hero={homeHero} />
 					<div className="flex flex-wrap items-center justify-end gap-3">
 						<Link className={cn(buttonVariants({ size: 'lg' }))} href="/contact/">
@@ -54,7 +51,7 @@ export function HomePage({
 						/>
 					</figure>
 				</div>
-			</div>
+			</PremiumPanel>
 
 			<HomeMiniToc items={tocItems} />
 
@@ -150,7 +147,7 @@ export function HomePage({
 			</section>
 
 			<div className="grid gap-6 lg:grid-cols-3">
-				<Card className="border-border/60 bg-card/70 shadow-sm">
+				<Card className="card-interactive">
 					<CardHeader className="text-right">
 						<CardTitle className="font-heading text-lg">בהירות מהירה</CardTitle>
 						<CardDescription className="text-pretty">
@@ -158,7 +155,7 @@ export function HomePage({
 						</CardDescription>
 					</CardHeader>
 				</Card>
-				<Card className="border-border/60 bg-card/70 shadow-sm">
+				<Card className="card-interactive">
 					<CardHeader className="text-right">
 						<CardTitle className="font-heading text-lg">שירות פרימיום</CardTitle>
 						<CardDescription className="text-pretty">
@@ -166,7 +163,7 @@ export function HomePage({
 						</CardDescription>
 					</CardHeader>
 				</Card>
-				<Card className="border-border/60 bg-card/70 shadow-sm">
+				<Card className="card-interactive">
 					<CardHeader className="text-right">
 						<CardTitle className="font-heading text-lg">תוכן מעשי</CardTitle>
 						<CardDescription className="text-pretty">
@@ -231,7 +228,7 @@ export function HomePage({
 				</ul>
 				<div className="grid gap-4 md:grid-cols-2">
 					{processSteps.map((step, index) => (
-						<Card key={step.title} className="border-border/60 bg-card/70 shadow-sm">
+						<Card key={step.title} className="card-interactive">
 							<CardHeader className="text-right">
 								<CardDescription className="text-xs font-semibold text-primary">שלב {index + 1}</CardDescription>
 								<CardTitle className="font-heading text-lg">{step.title}</CardTitle>
@@ -260,7 +257,7 @@ export function HomePage({
 				</h2>
 				<div className="grid gap-5 lg:grid-cols-3">
 					{readingPaths.map((path) => (
-						<Card key={path.title} className="border-border/60 bg-card/70 shadow-sm">
+						<Card key={path.title} className="card-interactive">
 							<CardHeader className="text-right">
 								<CardTitle className="font-heading text-lg">{path.title}</CardTitle>
 								<CardDescription className="leading-relaxed">{path.summary}</CardDescription>
@@ -297,19 +294,19 @@ export function HomePage({
 					למה לעבוד עם גיא אבני
 				</h2>
 				<div className="grid gap-4 md:grid-cols-3">
-					<Card className="border-border/60 bg-card/70 shadow-sm">
+					<Card className="card-interactive">
 						<CardHeader className="text-right">
 							<CardTitle className="font-heading text-lg">בהירות לפני הכול</CardTitle>
 							<CardDescription>כל החלטה מתורגמת לשפה עסקית ברורה: מה עושים עכשיו, מה מרוויחים ומה נמנע.</CardDescription>
 						</CardHeader>
 					</Card>
-					<Card className="border-border/60 bg-card/70 shadow-sm">
+					<Card className="card-interactive">
 						<CardHeader className="text-right">
 							<CardTitle className="font-heading text-lg">ליווי שמותאם לקצב שלכם</CardTitle>
 							<CardDescription>תהליך מודולרי, גמיש ומדויק ללקוחות פרטיים ולעסקים שצריכים תוצאה ולא עומס נוסף.</CardDescription>
 						</CardHeader>
 					</Card>
-					<Card className="border-border/60 bg-card/70 shadow-sm">
+					<Card className="card-interactive">
 						<CardHeader className="text-right">
 							<CardTitle className="font-heading text-lg">גישה פרקטית למדידה ושיפור</CardTitle>
 							<CardDescription>לא רק פותרים בעיה נקודתית, אלא בונים שגרה משפטית שתמשיך לעבוד גם בהמשך.</CardDescription>
@@ -338,7 +335,7 @@ export function HomePage({
 					למי גיא אבני עו״ד מלווה בפועל?
 				</h2>
 				<div className="grid gap-4 md:grid-cols-3">
-					<Card className="border-border/60 bg-card/70 shadow-sm">
+					<Card className="card-interactive">
 						<CardHeader className="text-right">
 							<CardTitle className="font-heading text-lg">לקוחות פרטיים</CardTitle>
 							<CardDescription>כשצריך סדר, הסבר ברור ותוכנית מעשית לפני מהלך משמעותי.</CardDescription>
@@ -349,7 +346,7 @@ export function HomePage({
 							</Link>
 						</CardContent>
 					</Card>
-					<Card className="border-border/60 bg-card/70 shadow-sm">
+					<Card className="card-interactive">
 						<CardHeader className="text-right">
 							<CardTitle className="font-heading text-lg">מייסדים ויזמים</CardTitle>
 							<CardDescription>ליווי מהיר סביב חוזים, תקשורת עם צדדים שלישיים וניהול סיכון בשלבי צמיחה.</CardDescription>
@@ -360,7 +357,7 @@ export function HomePage({
 							</Link>
 						</CardContent>
 					</Card>
-					<Card className="border-border/60 bg-card/70 shadow-sm">
+					<Card className="card-interactive">
 						<CardHeader className="text-right">
 							<CardTitle className="font-heading text-lg">עסקים קטנים ובינוניים</CardTitle>
 							<CardDescription>בניית שגרה משפטית יציבה: חוזים, נהלים ותגובות נכונות למצבי קצה.</CardDescription>
@@ -379,7 +376,7 @@ export function HomePage({
 					לבד מול ליווי משפטי - הפרספקטיבה של גיא אבני עו״ד
 				</h2>
 				<div className="grid gap-4 md:grid-cols-2">
-					<Card className="border-border/60 bg-card/70 shadow-sm">
+					<Card className="card-interactive">
 						<CardHeader className="text-right">
 							<CardTitle className="font-heading text-lg">טיפול עצמאי</CardTitle>
 						</CardHeader>
@@ -416,7 +413,7 @@ export function HomePage({
 							</p>
 						</CardContent>
 					</Card>
-					<Card className="border-primary/20 bg-primary/5 shadow-sm">
+					<Card className="card-interactive border-primary/20 bg-primary/5">
 						<CardHeader className="text-right">
 							<CardTitle className="font-heading text-lg">ליווי משפטי מקצועי</CardTitle>
 						</CardHeader>
@@ -485,7 +482,7 @@ export function HomePage({
 					ניווט מהיר לפי נושאים סביב גיא אבני
 				</h2>
 				<div className="grid gap-5 lg:grid-cols-2">
-					<Card className="border-border/60 bg-card/70 shadow-sm">
+					<Card className="card-interactive">
 						<CardHeader className="text-right">
 							<CardTitle className="font-heading text-lg">קטגוריות מובילות</CardTitle>
 							<CardDescription>תחומים עם נפח התוכן הגבוה ביותר באתר.</CardDescription>
@@ -503,7 +500,7 @@ export function HomePage({
 							))}
 						</CardContent>
 					</Card>
-					<Card className="border-border/60 bg-card/70 shadow-sm">
+					<Card className="card-interactive">
 						<CardHeader className="text-right">
 							<CardTitle className="font-heading text-lg">תגיות מובילות</CardTitle>
 							<CardDescription>נושאי עומק שחוזרים במאמרים ויכולים לקצר לכם את החיפוש.</CardDescription>
@@ -535,7 +532,7 @@ export function HomePage({
 				/>
 			</figure>
 
-			<Card className="home-anchor-target border-primary/20 bg-primary/5 shadow-sm" id="premium-cta">
+			<Card className="card-interactive home-anchor-target border-primary/20 bg-primary/5" id="premium-cta">
 				<CardContent className="flex flex-col gap-4 p-8 text-right sm:flex-row sm:items-center sm:justify-between">
 					<div className="flex flex-col gap-2">
 						<p className="font-heading text-lg font-semibold text-foreground">מוכנים לעבור משאלות לתוכנית עבודה ברורה?</p>
@@ -555,7 +552,7 @@ export function HomePage({
 			</Card>
 
 			<div
-				className="mobile-bottom-cta fixed inset-x-0 bottom-0 z-40 border-t border-border/60 bg-background/95 px-4 py-3 shadow-lg md:hidden"
+				className="glass-header mobile-bottom-cta fixed inset-x-0 bottom-0 z-40 border-t border-border/60 px-4 py-3 shadow-lg md:hidden"
 				dir="rtl"
 			>
 				<div className="mx-auto flex w-full max-w-6xl gap-2 pb-[env(safe-area-inset-bottom)]">

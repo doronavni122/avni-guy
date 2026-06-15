@@ -185,3 +185,4 @@
 182. redesign-design-tokens-typography , src/styles/global.css src/app/layout.tsx task_graph.log
 183. add-nav-ssot-layout-primitives , src/lib/nav/site-nav.ts src/lib/nav/is-nav-active.ts src/components/layout/PageSection.tsx src/components/layout/SectionHeader.tsx src/components/layout/PremiumPanel.tsx task_graph.log
 184. redesign-site-shell-navigation , src/components/layout/SiteShell.tsx src/components/Header.tsx src/components/Footer.tsx src/components/react/MobileNav.tsx src/components/seo/MainPageHero.tsx task_graph.log
+185. redesign-blog-faq-home-ui , src/components/layout/BlogPostLayout.tsx src/components/blog/RelatedArticles.tsx src/components/home/FaqAccordion.tsx src/components/home/HomePage.tsx src/components/home/FeaturedArticlesGrid.tsx src/components/home/LatestInsightsStrip.tsx task_graph.log

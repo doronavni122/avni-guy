@@ -29,7 +29,7 @@ export function LatestInsightsStrip({ posts }: LatestInsightsStripProps) {
 			<div className="grid gap-4 md:grid-cols-3">
 				{posts.map((post) => (
 					<Link key={post.id} className="group block no-underline" href={`/blog/${post.id}/`}>
-						<Card className="h-full border-border/60 bg-card/70 shadow-sm transition-all group-hover:border-primary/25 group-hover:shadow-md">
+						<Card className="card-interactive h-full group-hover:border-primary/25">
 							<CardHeader className="gap-2 text-right">
 								<p className="text-xs text-muted-foreground">
 									<FormattedDate date={post.pubDate} />

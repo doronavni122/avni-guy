@@ -62,7 +62,7 @@ export function BlogPostLayout({
 					))}
 				</div>
 
-				<Card className="border-border/60 shadow-sm">
+				<Card className="card-interactive border-border/60">
 					<CardHeader className="gap-4 text-right">
 						<div className="flex flex-col gap-2 text-sm text-muted-foreground">
 							<FormattedDate date={pubDate} />
@@ -113,7 +113,7 @@ export function BlogPostLayout({
 								))}
 							</ul>
 						</section>
-						<div className="max-w-none space-y-4 text-right text-base leading-relaxed text-foreground [&_a]:underline-offset-2 [&_a]:hover:underline [&_h2]:mt-8 [&_h2]:font-heading [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_h3]:mt-6 [&_h3]:font-heading [&_h3]:text-xl [&_h3]:font-semibold [&_p]:text-pretty">
+						<div className="prose-legal [&_a]:underline-offset-2 [&_a]:hover:underline">
 							{children}
 						</div>
 					</CardContent>
