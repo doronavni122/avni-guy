@@ -182,3 +182,4 @@
 179. set-content-profile-stack-custom-next , content-pipeline.profile.json .content-kit/schemas/project-profile.schema.json task_graph.log
 180. remove-dead-atkinson-font-files , src/assets/fonts/atkinson-bold.woff src/assets/fonts/atkinson-regular.woff task_graph.log
 181. add-ui-redesign-june-2026-plan , .cursor/plans/002_ui_ux_redesign_june_2026_j7k2m9nx.plan.md task_graph.log
+182. redesign-design-tokens-typography , src/styles/global.css src/app/layout.tsx task_graph.log

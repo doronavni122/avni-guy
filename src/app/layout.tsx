@@ -1,13 +1,14 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Geist_Mono, Noto_Sans_Hebrew } from 'next/font/google';
 import '@/styles/global.css';
 import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from '@/consts';
 import { cn } from '@/lib/utils';
 
-const geistSans = Geist({
-	subsets: ['latin'],
+const notoSansHebrew = Noto_Sans_Hebrew({
+	subsets: ['hebrew', 'latin'],
 	variable: '--font-sans',
 	display: 'swap',
+	weight: ['400', '500', '600', '700'],
 });
 
 const geistMono = Geist_Mono({
@@ -30,11 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	const bingVerification = process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION?.trim();
 
 	return (
-		<html
-			lang="he"
-			dir="rtl"
-			className={cn(geistSans.variable, geistMono.variable, 'scroll-smooth font-sans')}
-		>
+		<html lang="he" dir="rtl" className={cn(notoSansHebrew.variable, geistMono.variable, 'font-sans')}>
 			<head>
 				<link rel="icon" type="image/svg+xml" href="/images/branding/guy-avni-avni-guy-law-firm-lawyer-brand-favicon.svg" />
 				<link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href="/rss.xml" />
@@ -42,7 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				{googleVerification ? <meta name="google-site-verification" content={googleVerification} /> : null}
 				{bingVerification ? <meta name="msvalidate.01" content={bingVerification} /> : null}
 			</head>
-			<body className={cn(geistSans.className, 'flex min-h-dvh flex-col antialiased')}>{children}</body>
+			<body className={cn(notoSansHebrew.className, 'flex min-h-dvh flex-col')}>{children}</body>
 		</html>
 	);
 }
