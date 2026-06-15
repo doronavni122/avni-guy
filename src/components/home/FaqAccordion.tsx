@@ -24,7 +24,7 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
 					התשובות הבאות נועדו להסיר חסמים ראשוניים ולתת לכם ודאות לגבי הצעד הראשון.
 				</p>
 			</div>
-			<Accordion type="single" collapsible className="flex flex-col gap-3">
+			<Accordion className="flex flex-col gap-3">
 				{items.map((item) => (
 					<AccordionItem
 						key={item.question}
