@@ -163,3 +163,4 @@
 161. update-ssot-md-slug-audit , SSOT.md task_graph.log
 162. simplify-gitignore-legacy-paths , .gitignore task_graph.log
 163. remove-internal-links-quarterly-workflow , .github/workflows/internal-links-quarterly.yml task_graph.log
+164. replace-astro-vscode-with-next-dev , .vscode/launch.json .vscode/extensions.json task_graph.log
