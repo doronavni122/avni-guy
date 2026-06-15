@@ -44,7 +44,7 @@ export default async function TagsIndexPage() {
 				<div className="flex flex-wrap justify-end gap-3">
 					{tags.map((tag) => (
 						<Link key={tag} className="no-underline" href={`/tags/${tag}/`}>
-							<Card className="border-border/60 bg-card/70 px-4 py-3 shadow-sm transition-all hover:border-primary/25 hover:shadow-md">
+							<Card className="card-interactive transition-all hover:border-primary/25">
 								<CardHeader className="p-0 text-right">
 									<CardTitle className="font-heading text-sm font-semibold text-primary">{getTagLabel(tag)}</CardTitle>
 								</CardHeader>

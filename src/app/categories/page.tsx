@@ -48,7 +48,7 @@ export default async function CategoriesIndexPage() {
 				<div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
 					{categories.map((category) => (
 						<Link key={category} className="group block no-underline" href={`/categories/${category}/`}>
-							<Card className="border-border/60 bg-card/70 shadow-sm transition-all group-hover:border-primary/25 group-hover:shadow-md">
+							<Card className="card-interactive transition-all group-hover:border-primary/25">
 								<CardHeader className="text-right">
 									<CardTitle className="font-heading text-lg transition-colors group-hover:text-primary">
 										{getCategoryLabel(category)}

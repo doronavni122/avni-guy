@@ -31,7 +31,7 @@ export default function AboutPage() {
 				<BreadcrumbNav items={breadcrumbItems} />
 				<MainPageHero hero={MAIN_PAGE_HEROES['/about/']} />
 				<div className="grid gap-6 lg:grid-cols-2">
-					<Card className="border-border/60 bg-card/70 shadow-sm">
+					<Card className="card-interactive">
 						<CardContent className="flex flex-col gap-3 p-8 text-right">
 							<p className="font-heading text-lg font-semibold text-foreground">ערכים</p>
 							<p className="text-pretty text-sm leading-relaxed text-muted-foreground">
@@ -40,7 +40,7 @@ export default function AboutPage() {
 							</p>
 						</CardContent>
 					</Card>
-					<Card className="border-border/60 bg-card/70 shadow-sm">
+					<Card className="card-interactive">
 						<CardContent className="flex flex-col gap-3 p-8 text-right">
 							<p className="font-heading text-lg font-semibold text-foreground">דרך עבודה</p>
 							<p className="text-pretty text-sm leading-relaxed text-muted-foreground">

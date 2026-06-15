@@ -85,7 +85,7 @@ export default async function BlogIndexPage() {
 				<div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
 					{posts.map((post) => (
 						<Link key={post.slug} className="group block h-full no-underline" href={`/blog/${post.slug}/`}>
-							<Card className="h-full border-border/60 bg-card/70 shadow-sm transition-all group-hover:-translate-y-0.5 group-hover:border-primary/25 group-hover:shadow-md">
+							<Card className="card-interactive h-full group-hover:border-primary/25">
 								<CardHeader className="text-right">
 									<CardDescription className="text-xs text-muted-foreground">
 										<FormattedDate date={post.data.pubDate} />

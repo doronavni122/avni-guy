@@ -49,7 +49,7 @@ export default function ServicesPage() {
 							'בקרות תקופתיות, מדדים ברורים והתאמות כשהמצב משתנה: פחות הפתעות ויותר שליטה לאורך ההליך.',
 						],
 					].map(([title, text]) => (
-						<Card key={title} className="border-border/60 bg-card/70 shadow-sm">
+						<Card key={title} className="card-interactive">
 							<CardHeader className="text-right">
 								<CardTitle className="font-heading text-lg">{title}</CardTitle>
 							</CardHeader>

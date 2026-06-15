@@ -76,7 +76,7 @@ export default async function CategoryPage({ params }: PageProps) {
 				<div className="grid gap-4 sm:grid-cols-2">
 					{posts.map((post) => (
 						<Link key={post.slug} className="group block no-underline" href={`/blog/${post.slug}/`}>
-							<Card className="h-full border-border/60 bg-card/70 shadow-sm transition-all group-hover:border-primary/25 group-hover:shadow-md">
+							<Card className="card-interactive h-full group-hover:border-primary/25">
 								<CardHeader className="text-right">
 									<CardTitle className="font-heading text-base leading-snug transition-colors group-hover:text-primary">
 										{post.data.title}
