@@ -169,3 +169,4 @@
 160. merge-content-seo-kit-docs-and-slug-audit-cleanup , AGENTS.md SSOT.md .gitignore .github/workflows/internal-links-quarterly.yml task_graph.log
 167. align-docs-with-content-seo-kit , AGENTS.md SSOT.md .gitignore task_graph.log
 168. shadcn-init-new-template , pnpm-lock.yaml src/components/ui/button.tsx task_graph.log
+169. shadcn-apply-preset-b2fa-theme-font , src/app/layout.tsx task_graph.log
