@@ -161,3 +161,4 @@
 159. install-content-seo-kit-v1-3-1 , .content-kit/ .commends/TODO_article_reserch.md .commends/TODO_reserch.md .commends/TODO_confidance_full_95.md .cursor/rules/content-kit-commends-todo.mdc .cursor/rules/content-seo-quality.mdc .cursor/skills/content-seo-pipeline/ content-pipeline.profile.json scripts/content-kit-sync.mjs task_graph.log
 160. update-agents-md-slug-audit , AGENTS.md task_graph.log
 161. update-ssot-md-slug-audit , SSOT.md task_graph.log
+162. simplify-gitignore-legacy-paths , .gitignore task_graph.log
