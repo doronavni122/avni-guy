@@ -175,3 +175,4 @@
 172. migrate-header-navigation-menu , src/components/Header.tsx src/components/HeaderLink.tsx task_graph.log
 173. migrate-faq-accordion-shadcn , src/components/home/FaqAccordion.tsx task_graph.log
 174. migrate-breadcrumb-nav-shadcn , src/components/navigation/BreadcrumbNav.tsx task_graph.log
+175. migrate-mobile-nav-sheet , src/components/react/MobileNav.tsx task_graph.log
