@@ -1,0 +1,62 @@
+name: validate-kit
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Validate MANIFEST and VERSION match
+        run: |
+          v=$(cat VERSION | tr -d '[:space:]')
+          j=$(node -e "console.log(JSON.parse(require('fs').readFileSync('MANIFEST.json','utf8')).kitVersion)")
+          test "$v" = "$j" || (echo "VERSION mismatch" && exit 1)
+      - name: Validate MANIFEST paths exist
+        run: |
+          node -e "
+          const m = require('./MANIFEST.json');
+          const fs = require('fs');
+          for (const e of m.entries) {
+            if (!fs.existsSync(e.kitPath)) throw new Error('missing ' + e.kitPath);
+          }
+          console.log('manifest ok', m.entries.length, 'entries');
+          "
+      - name: Validate JSON schemas
+        run: node validators/validate-schemas.mjs
+      - name: Fixture validators — article pass
+        run: |
+          node validators/check-article.mjs fixtures/pass-article.md \
+            --profile fixtures/profile-fixture.json \
+            --manifest fixtures/manifest-fixture.json \
+            --subject-nnnn 0001
+      - name: Fixture validators — article fail
+        run: |
+          node validators/check-article.mjs fixtures/fail-article-missing-faq.md \
+            --profile fixtures/profile-fixture.json
+          test $? -ne 0 || (echo "expected fail-article to fail" && exit 1)
+      - name: Fixture validators — research pass
+        run: node validators/check-research.mjs fixtures/pass-research.md
+      - name: Fixture validators — research fail
+        run: |
+          node validators/check-research.mjs fixtures/pass-research-snippet.md
+          test $? -ne 0 || (echo "expected short research to fail" && exit 1)
+      - name: check-batch fixture
+        run: |
+          node validators/check-batch.mjs \
+            --profile fixtures/profile-fixture.json \
+            --manifest fixtures/manifest-fixture.json
+      - name: run-gate P pre-publish
+        run: |
+          node validators/run-gate.mjs P --profile fixtures/profile-fixture.json \
+            --manifest fixtures/manifest-fixture.json --pre-publish
+      - name: run-gate P post-publish with next-guide mocks
+        run: |
+          node validators/run-gate.mjs P --profile fixtures/next-guide-fixture.profile.json \
+            --manifest fixtures/manifest-fixture.json --post-publish

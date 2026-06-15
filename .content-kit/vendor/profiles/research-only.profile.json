@@ -1,0 +1,20 @@
+{
+  "kitVersion": "1.3.1",
+  "stack": "research-only",
+  "brand": "YOUR_BRAND",
+  "siteDomain": "https://www.example.com",
+  "language": "en-US",
+  "contentRoot": "reserch-based-articles/",
+  "publishPrefix": "/",
+  "primaryCta": "/",
+  "primaryServiceAnchor": "homepage",
+  "faqHeading": "FAQ",
+  "linksSectionHeading": "Related links",
+  "linkDenylist": [],
+  "subjectManifest": "subject-manifest.json",
+  "registryAdapter": "none",
+  "researchDir": "reserch/",
+  "articleDraftDir": "reserch-based-articles/",
+  "commandsDir": ".commends",
+  "note": "No Phase 7 publish — stop after Phase 6 validators pass"
+}

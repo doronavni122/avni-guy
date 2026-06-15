@@ -1,0 +1,19 @@
+{
+  "kitVersion": "1.3.1",
+  "stack": "research-only",
+  "brand": "FixtureBrand",
+  "siteDomain": "https://example.test",
+  "language": "en-US",
+  "contentRoot": "fixtures/content/",
+  "publishPrefix": "/blog/",
+  "primaryCta": "/#cta",
+  "primaryServiceAnchor": "our primary service",
+  "faqHeading": "FAQ",
+  "linksSectionHeading": "Related links",
+  "linkDenylist": ["evil.example"],
+  "subjectManifest": "fixtures/manifest-fixture.json",
+  "registryAdapter": "none",
+  "researchDir": "fixtures/",
+  "articleDraftDir": "fixtures/reserch-based-articles/",
+  "commandsDir": ".commends"
+}

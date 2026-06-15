@@ -1,0 +1,8 @@
+# Paths the kit must never sync or overwrite (project-owned)
+content/
+reserch/
+reserch-based-articles/
+lib/seo/guides-registry.ts
+END-GOAL-PROJECT.md
+workspace.config.json
+task_graph.log

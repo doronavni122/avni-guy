@@ -1,0 +1,21 @@
+{
+  "kitVersion": "1.3.1",
+  "stack": "next-guide",
+  "brand": "FixtureBrand",
+  "siteDomain": "https://example.test",
+  "language": "en-US",
+  "contentRoot": "fixtures/content/",
+  "publishPrefix": "/blog/",
+  "contentRegistry": "fixtures/mock-registry.ts",
+  "sitemapBuilder": "fixtures/mock-sitemap.ts",
+  "primaryCta": "/#cta",
+  "primaryServiceAnchor": "our primary service",
+  "faqHeading": "FAQ",
+  "linksSectionHeading": "Related links",
+  "linkDenylist": [],
+  "subjectManifest": "fixtures/manifest-fixture.json",
+  "registryAdapter": "next-guide",
+  "researchDir": "fixtures/",
+  "articleDraftDir": "fixtures/reserch-based-articles/",
+  "commandsDir": ".commends"
+}

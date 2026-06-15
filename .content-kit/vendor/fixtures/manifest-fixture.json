@@ -1,0 +1,12 @@
+{
+  "date": "2026-06-09",
+  "subjects": [
+    {
+      "nnnn": "0001",
+      "label": "example_subject",
+      "slug": "example-subject",
+      "contentFile": "example-subject.md",
+      "internalLinkManifest": ["/", "/#cta", "/blog/example-subject"]
+    }
+  ]
+}

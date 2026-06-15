@@ -1,0 +1,22 @@
+{
+  "kitVersion": "1.3.1",
+  "stack": "astro-blog",
+  "brand": "YOUR_BRAND",
+  "siteDomain": "https://www.example.com",
+  "language": "en-US",
+  "contentRoot": "src/content/blog/",
+  "publishPrefix": "/blog/",
+  "contentRegistry": "src/content/config.ts",
+  "publishRoute": "src/pages/blog/[...slug].astro",
+  "primaryCta": "/signup",
+  "primaryServiceAnchor": "your product category",
+  "faqHeading": "FAQ",
+  "linksSectionHeading": "Related links",
+  "navSectionLabel": "Blog",
+  "linkDenylist": [],
+  "subjectManifest": "subject-manifest.json",
+  "registryAdapter": "astro-blog",
+  "researchDir": "reserch/",
+  "articleDraftDir": "reserch-based-articles/",
+  "commandsDir": ".commends"
+}

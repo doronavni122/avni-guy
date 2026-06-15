@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ContentPipelineProfile",
+  "type": "object",
+  "required": [
+    "kitVersion",
+    "stack",
+    "brand",
+    "siteDomain",
+    "language",
+    "contentRoot",
+    "publishPrefix",
+    "primaryCta",
+    "primaryServiceAnchor",
+    "faqHeading"
+  ],
+  "properties": {
+    "kitVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "stack": {
+      "type": "string",
+      "enum": ["next-guide", "astro-blog", "wordpress", "static-docs", "research-only", "custom"]
+    },
+    "brand": { "type": "string", "minLength": 1 },
+    "siteDomain": { "type": "string", "format": "uri" },
+    "language": { "type": "string", "minLength": 2 },
+    "contentRoot": { "type": "string", "minLength": 1 },
+    "publishPrefix": { "type": "string", "minLength": 1 },
+    "researchDir": { "type": "string", "default": "reserch/" },
+    "articleDraftDir": { "type": "string", "default": "reserch-based-articles/" },
+    "contentRegistry": { "type": "string" },
+    "markdownLoader": { "type": "string" },
+    "publishRoute": { "type": "string" },
+    "sitemapBuilder": { "type": "string" },
+    "structuredDataModule": { "type": "string" },
+    "buildCommand": { "type": "string" },
+    "primaryCta": { "type": "string" },
+    "primaryServiceAnchor": { "type": "string" },
+    "faqHeading": { "type": "string" },
+    "faqHeadingAliases": { "type": "array", "items": { "type": "string" } },
+    "linksSectionHeading": { "type": "string" },
+    "linksSectionHeadingAliases": { "type": "array", "items": { "type": "string" } },
+    "tldrHeadingAliases": { "type": "array", "items": { "type": "string" } },
+    "researchSectionAliases": { "type": "array", "items": { "type": "string" } },
+    "navSectionLabel": { "type": "string" },
+    "subjectManifest": { "type": "string", "default": "subject-manifest.json" },
+    "registryAdapter": {
+      "type": "string",
+      "enum": ["next-guide", "astro-blog", "generic", "none"],
+      "default": "generic"
+    },
+    "linkDenylist": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "commandsDir": { "type": "string", "default": ".commends" }
+  },
+  "additionalProperties": true,
+  "allOf": [
+    {
+      "if": {
+        "properties": { "stack": { "const": "research-only" } }
+      },
+      "then": {}
+    },
+    {
+      "if": {
+        "properties": {
+          "stack": { "not": { "const": "research-only" } }
+        }
+      },
+      "then": {
+        "required": ["linksSectionHeading"]
+      }
+    }
+  ]
+}

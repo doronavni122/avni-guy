@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ArticleFrontmatter",
+  "type": "object",
+  "required": ["seo"],
+  "properties": {
+    "seo": {
+      "type": "object",
+      "required": ["title", "description", "slug", "canonical", "dateModified", "keywords"],
+      "properties": {
+        "title": { "type": "string", "minLength": 10 },
+        "description": { "type": "string", "minLength": 50 },
+        "slug": { "type": "string", "pattern": "^/" },
+        "canonical": { "type": "string", "pattern": "^/" },
+        "dateModified": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+        "keywords": {
+          "type": "array",
+          "minItems": 3,
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

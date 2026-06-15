@@ -1,0 +1,306 @@
+{
+  "kitVersion": "1.3.1",
+  "description": "Sync policy per kit file. managed = kit-owned, updatable with approval. template-once = copy on init only. optional = copy if missing, never auto-update.",
+  "entries": [
+    {
+      "id": "commends-article-reserch",
+      "kitPath": "commends/TODO_article_reserch.md",
+      "projectPath": ".commends/TODO_article_reserch.md",
+      "policy": "managed"
+    },
+    {
+      "id": "commends-reserch",
+      "kitPath": "commends/TODO_reserch.md",
+      "projectPath": ".commends/TODO_reserch.md",
+      "policy": "managed"
+    },
+    {
+      "id": "commends-confidence-95",
+      "kitPath": "commends/TODO_confidance_full_95.md",
+      "projectPath": ".commends/TODO_confidance_full_95.md",
+      "policy": "managed"
+    },
+    {
+      "id": "commends-confidence",
+      "kitPath": "commends/TODO_confidance.md",
+      "projectPath": ".commends/TODO_confidance.md",
+      "policy": "managed"
+    },
+    {
+      "id": "commends-suggest",
+      "kitPath": "commends/TODO_suggest.md",
+      "projectPath": ".commends/TODO_suggest.md",
+      "policy": "managed"
+    },
+    {
+      "id": "standards-research",
+      "kitPath": "standards/research.md",
+      "projectPath": ".content-kit/standards/research.md",
+      "policy": "managed"
+    },
+    {
+      "id": "standards-article",
+      "kitPath": "standards/article-structure.md",
+      "projectPath": ".content-kit/standards/article-structure.md",
+      "policy": "managed"
+    },
+    {
+      "id": "standards-seo",
+      "kitPath": "standards/seo-metadata.md",
+      "projectPath": ".content-kit/standards/seo-metadata.md",
+      "policy": "managed"
+    },
+    {
+      "id": "standards-links",
+      "kitPath": "standards/internal-linking.md",
+      "projectPath": ".content-kit/standards/internal-linking.md",
+      "policy": "managed"
+    },
+    {
+      "id": "standards-schema",
+      "kitPath": "standards/structured-data.md",
+      "projectPath": ".content-kit/standards/structured-data.md",
+      "policy": "managed"
+    },
+    {
+      "id": "standards-confidence",
+      "kitPath": "standards/confidence-gate.md",
+      "projectPath": ".content-kit/standards/confidence-gate.md",
+      "policy": "managed"
+    },
+    {
+      "id": "schema-profile",
+      "kitPath": "schemas/project-profile.schema.json",
+      "projectPath": ".content-kit/schemas/project-profile.schema.json",
+      "policy": "managed"
+    },
+    {
+      "id": "schema-manifest",
+      "kitPath": "schemas/subject-manifest.schema.json",
+      "projectPath": ".content-kit/schemas/subject-manifest.schema.json",
+      "policy": "managed"
+    },
+    {
+      "id": "schema-frontmatter",
+      "kitPath": "schemas/article-frontmatter.schema.json",
+      "projectPath": ".content-kit/schemas/article-frontmatter.schema.json",
+      "policy": "managed"
+    },
+    {
+      "id": "template-research",
+      "kitPath": "templates/research-outline.md",
+      "projectPath": ".content-kit/templates/research-outline.md",
+      "policy": "template-once"
+    },
+    {
+      "id": "template-frontmatter",
+      "kitPath": "templates/article-frontmatter.md",
+      "projectPath": ".content-kit/templates/article-frontmatter.md",
+      "policy": "template-once"
+    },
+    {
+      "id": "template-manifest",
+      "kitPath": "templates/subject-manifest.example.json",
+      "projectPath": ".content-kit/templates/subject-manifest.example.json",
+      "policy": "template-once"
+    },
+    {
+      "id": "validator-article",
+      "kitPath": "validators/check-article.mjs",
+      "projectPath": ".content-kit/validators/check-article.mjs",
+      "policy": "managed"
+    },
+    {
+      "id": "validator-research",
+      "kitPath": "validators/check-research.mjs",
+      "projectPath": ".content-kit/validators/check-research.mjs",
+      "policy": "managed"
+    },
+    {
+      "id": "validator-run-gate",
+      "kitPath": "validators/run-gate.mjs",
+      "projectPath": ".content-kit/validators/run-gate.mjs",
+      "policy": "managed"
+    },
+    {
+      "id": "validator-batch",
+      "kitPath": "validators/check-batch.mjs",
+      "projectPath": ".content-kit/validators/check-batch.mjs",
+      "policy": "managed"
+    },
+    {
+      "id": "validator-publish",
+      "kitPath": "validators/check-publish.mjs",
+      "projectPath": ".content-kit/validators/check-publish.mjs",
+      "policy": "managed"
+    },
+    {
+      "id": "validator-lib-load-profile",
+      "kitPath": "validators/lib/load-profile.mjs",
+      "projectPath": ".content-kit/validators/lib/load-profile.mjs",
+      "policy": "managed"
+    },
+    {
+      "id": "validator-lib-parse-article",
+      "kitPath": "validators/lib/parse-article.mjs",
+      "projectPath": ".content-kit/validators/lib/parse-article.mjs",
+      "policy": "managed"
+    },
+    {
+      "id": "validator-lib-match-denylist",
+      "kitPath": "validators/lib/match-denylist.mjs",
+      "projectPath": ".content-kit/validators/lib/match-denylist.mjs",
+      "policy": "managed"
+    },
+    {
+      "id": "validator-lib-parse-frontmatter",
+      "kitPath": "validators/lib/parse-frontmatter.mjs",
+      "projectPath": ".content-kit/validators/lib/parse-frontmatter.mjs",
+      "policy": "managed"
+    },
+    {
+      "id": "validator-lib-heading-aliases",
+      "kitPath": "validators/lib/heading-aliases.mjs",
+      "projectPath": ".content-kit/validators/lib/heading-aliases.mjs",
+      "policy": "managed"
+    },
+    {
+      "id": "validator-validate-schemas",
+      "kitPath": "validators/validate-schemas.mjs",
+      "projectPath": ".content-kit/validators/validate-schemas.mjs",
+      "policy": "managed"
+    },
+    {
+      "id": "fixture-pass-research",
+      "kitPath": "fixtures/pass-research.md",
+      "projectPath": ".content-kit/fixtures/pass-research.md",
+      "policy": "optional"
+    },
+    {
+      "id": "fixture-next-guide-profile",
+      "kitPath": "fixtures/next-guide-fixture.profile.json",
+      "projectPath": ".content-kit/fixtures/next-guide-fixture.profile.json",
+      "policy": "optional"
+    },
+    {
+      "id": "fixture-mock-registry",
+      "kitPath": "fixtures/mock-registry.ts",
+      "projectPath": ".content-kit/fixtures/mock-registry.ts",
+      "policy": "optional"
+    },
+    {
+      "id": "fixture-mock-sitemap",
+      "kitPath": "fixtures/mock-sitemap.ts",
+      "projectPath": ".content-kit/fixtures/mock-sitemap.ts",
+      "policy": "optional"
+    },
+    {
+      "id": "registry-adapter-index",
+      "kitPath": "validators/registry-adapters/index.mjs",
+      "projectPath": ".content-kit/validators/registry-adapters/index.mjs",
+      "policy": "managed"
+    },
+    {
+      "id": "registry-adapter-next-guide",
+      "kitPath": "validators/registry-adapters/next-guide.mjs",
+      "projectPath": ".content-kit/validators/registry-adapters/next-guide.mjs",
+      "policy": "managed"
+    },
+    {
+      "id": "registry-adapter-astro-blog",
+      "kitPath": "validators/registry-adapters/astro-blog.mjs",
+      "projectPath": ".content-kit/validators/registry-adapters/astro-blog.mjs",
+      "policy": "managed"
+    },
+    {
+      "id": "registry-adapter-generic",
+      "kitPath": "validators/registry-adapters/generic.mjs",
+      "projectPath": ".content-kit/validators/registry-adapters/generic.mjs",
+      "policy": "managed"
+    },
+    {
+      "id": "registry-adapter-research-only",
+      "kitPath": "validators/registry-adapters/research-only.mjs",
+      "projectPath": ".content-kit/validators/registry-adapters/research-only.mjs",
+      "policy": "managed"
+    },
+    {
+      "id": "cursor-skill-pipeline",
+      "kitPath": "cursor/skills/content-seo-pipeline/SKILL.md",
+      "projectPath": ".cursor/skills/content-seo-pipeline/SKILL.md",
+      "policy": "managed"
+    },
+    {
+      "id": "profile-default",
+      "kitPath": "profiles/default.profile.json",
+      "projectPath": ".content-kit/profiles/default.profile.json",
+      "policy": "optional"
+    },
+    {
+      "id": "profile-wordpress",
+      "kitPath": "profiles/wordpress.profile.json",
+      "projectPath": ".content-kit/profiles/wordpress.profile.json",
+      "policy": "optional"
+    },
+    {
+      "id": "profile-static-docs",
+      "kitPath": "profiles/static-docs.profile.json",
+      "projectPath": ".content-kit/profiles/static-docs.profile.json",
+      "policy": "optional"
+    },
+    {
+      "id": "fixture-pass-article",
+      "kitPath": "fixtures/pass-article.md",
+      "projectPath": ".content-kit/fixtures/pass-article.md",
+      "policy": "optional"
+    },
+    {
+      "id": "fixture-fail-article",
+      "kitPath": "fixtures/fail-article-missing-faq.md",
+      "projectPath": ".content-kit/fixtures/fail-article-missing-faq.md",
+      "policy": "optional"
+    },
+    {
+      "id": "fixture-profile",
+      "kitPath": "fixtures/profile-fixture.json",
+      "projectPath": ".content-kit/fixtures/profile-fixture.json",
+      "policy": "optional"
+    },
+    {
+      "id": "adapter-strip-guillemets",
+      "kitPath": "adapters/next/strip-guillemets.ts",
+      "projectPath": ".content-kit/adapters/next/strip-guillemets.ts",
+      "policy": "optional"
+    },
+    {
+      "id": "cursor-rule-commends",
+      "kitPath": "cursor/rules/commends-todo.mdc",
+      "projectPath": ".cursor/rules/content-kit-commends-todo.mdc",
+      "policy": "template-once"
+    },
+    {
+      "id": "cursor-rule-quality",
+      "kitPath": "cursor/rules/content-seo-quality.mdc",
+      "projectPath": ".cursor/rules/content-seo-quality.mdc",
+      "policy": "template-once"
+    },
+    {
+      "id": "profile-file",
+      "kitPath": "profiles/_active.profile.json",
+      "projectPath": "content-pipeline.profile.json",
+      "policy": "template-once"
+    },
+    {
+      "id": "kit-lock",
+      "kitPath": "templates/kit.lock.example.json",
+      "projectPath": ".content-kit/kit.lock.json",
+      "policy": "managed-by-sync"
+    },
+    {
+      "id": "sync-wrapper",
+      "kitPath": "scripts/project-sync-wrapper.mjs",
+      "projectPath": "scripts/content-kit-sync.mjs",
+      "policy": "managed"
+    }
+  ]
+}
