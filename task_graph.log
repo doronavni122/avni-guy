@@ -188,3 +188,4 @@
 185. redesign-blog-faq-home-ui , src/components/layout/BlogPostLayout.tsx src/components/blog/RelatedArticles.tsx src/components/home/FaqAccordion.tsx src/components/home/HomePage.tsx src/components/home/FeaturedArticlesGrid.tsx src/components/home/LatestInsightsStrip.tsx task_graph.log
 186. redesign-pages-card-interactive , src/app/about/page.tsx src/app/blog/page.tsx src/app/services/page.tsx src/app/categories/page.tsx src/app/categories/[category]/page.tsx src/app/tags/page.tsx src/app/tags/[tag]/page.tsx task_graph.log
 187. remove-deprecated-header-link , src/components/HeaderLink.tsx task_graph.log
+188. fix-sensitive-log-patterns-src-path , scripts/tools/check-sensitive-log-patterns.cjs task_graph.log

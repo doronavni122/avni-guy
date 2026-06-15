@@ -14,7 +14,7 @@ let failed = false;
 for (const { name, rg } of patterns) {
   try {
     execSync(
-      `rg -n --glob '*.ts' --glob '*.tsx' --glob '!**/*.test.ts' --glob '!**/*.spec.ts' '${rg}' apps/web`,
+      `rg -n --glob '*.ts' --glob '*.tsx' --glob '!**/*.test.ts' --glob '!**/*.spec.ts' '${rg}' src`,
       { stdio: 'inherit', cwd: require('path').join(__dirname, '../..') }
     );
     console.error(`check-sensitive-log-patterns: matched forbidden pattern (${name})`);
