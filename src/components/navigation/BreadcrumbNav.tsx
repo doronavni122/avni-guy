@@ -1,8 +1,17 @@
 import Link from 'next/link';
-import type { BreadcrumbItem } from '@/utils/structured-data';
+import { Fragment } from 'react';
+import {
+	Breadcrumb,
+	BreadcrumbItem,
+	BreadcrumbLink,
+	BreadcrumbList,
+	BreadcrumbPage,
+	BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb';
+import type { BreadcrumbItem as BreadcrumbItemData } from '@/utils/structured-data';
 
 type BreadcrumbNavProps = {
-	items: BreadcrumbItem[];
+	items: BreadcrumbItemData[];
 };
 
 /** Visible RTL breadcrumb trail; paths must match `buildBreadcrumbSchema` inputs on the same page. */
@@ -10,33 +19,35 @@ export function BreadcrumbNav({ items }: BreadcrumbNavProps) {
 	if (!items.length) return null;
 
 	return (
-		<nav aria-label="מסלול ניווט" dir="rtl" className="text-right">
-			<ol className="flex flex-row-reverse flex-wrap items-center justify-end gap-x-1 gap-y-1 text-sm text-muted-foreground">
+		<Breadcrumb dir="rtl" aria-label="מסלול ניווט" className="text-right">
+			<BreadcrumbList className="flex-row-reverse justify-end">
 				{items.map((item, index) => {
 					const isLast = index === items.length - 1;
 					return (
-						<li key={`${item.path}-${index}`} className="inline-flex flex-row-reverse items-center gap-1">
-							{isLast ? (
-								<span aria-current="page" className="max-w-[min(100%,42rem)] truncate font-medium text-foreground">
-									{item.name}
-								</span>
-							) : (
-								<Link
-									href={item.path}
-									className="text-primary underline-offset-2 transition-colors hover:text-primary/80 hover:underline"
-								>
-									{item.name}
-								</Link>
-							)}
+						<Fragment key={`${item.path}-${index}`}>
+							<BreadcrumbItem>
+								{isLast ? (
+									<BreadcrumbPage className="max-w-[min(100%,42rem)] truncate font-medium">
+										{item.name}
+									</BreadcrumbPage>
+								) : (
+									<BreadcrumbLink
+										render={<Link href={item.path} />}
+										className="text-primary underline-offset-2 hover:text-primary/80 hover:underline"
+									>
+										{item.name}
+									</BreadcrumbLink>
+								)}
+							</BreadcrumbItem>
 							{!isLast ? (
-								<span aria-hidden="true" className="select-none text-border">
+								<BreadcrumbSeparator className="select-none text-border [&>svg]:hidden">
 									/
-								</span>
+								</BreadcrumbSeparator>
 							) : null}
-						</li>
+						</Fragment>
 					);
 				})}
-			</ol>
-		</nav>
+			</BreadcrumbList>
+		</Breadcrumb>
 	);
 }
