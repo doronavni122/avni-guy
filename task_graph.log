@@ -170,3 +170,4 @@
 167. align-docs-with-content-seo-kit , AGENTS.md SSOT.md .gitignore task_graph.log
 168. shadcn-init-new-template , pnpm-lock.yaml src/components/ui/button.tsx task_graph.log
 169. shadcn-apply-preset-b2fa-theme-font , src/app/layout.tsx task_graph.log
+170. shadcn-add-navigation-breadcrumb-accordion , src/components/ui/navigation-menu.tsx src/components/ui/breadcrumb.tsx src/components/ui/accordion.tsx task_graph.log
