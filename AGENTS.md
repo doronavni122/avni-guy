@@ -11,11 +11,48 @@
 - Tailwind CSS 4 + shadcn/ui (React Server Components where possible)
 - Vercel deployment
 
-## Content Workflow
-- Store articles in `src/content/blog/`.
+## Content Workflow (published)
+- Store live articles in `src/content/blog/`.
 - Schema: `src/lib/content/schema.ts`.
 - Frontmatter must include SEO fields (title, description, metaTitle, metaDescription, mainKeyword).
 - Use consistent heading hierarchy (`H1` from title, then `H2`/`H3` in body).
+
+## Content SEO Kit (v1.3.1)
+Research → draft articles → publish using the kit; quality law is stack-agnostic.
+
+| Layer | Path |
+|-------|------|
+| Project profile | `content-pipeline.profile.json` |
+| Kit install + lock | `.content-kit/` (standards, validators, schemas; vendor pinned copy) |
+| Sync wrapper | `scripts/content-kit-sync.mjs` |
+| Research drafts | `reserch/` (domain studies, not SERP reports) |
+| Article drafts | `reserch-based-articles/` (pre-publish SEO blocks) |
+| Pipeline commends | `.commends/TODO_article_reserch.md`, `.commends/TODO_reserch.md` |
+| Standards | `.content-kit/standards/*.md` |
+| Agent skill | `.cursor/skills/content-seo-pipeline/SKILL.md` |
+
+**Before content pipeline work:** `node scripts/content-kit-sync.mjs check`; read profile + standards; execute `.commends/TODO_article_reserch.md`.
+
+**Kit sync:**
+```bash
+node scripts/content-kit-sync.mjs check
+node scripts/content-kit-sync.mjs diff
+node scripts/content-kit-sync.mjs update --approve
+```
+
+**Validators:**
+```bash
+node .content-kit/validators/check-research.mjs reserch/NNNN_*.md
+node .content-kit/validators/check-article.mjs reserch-based-articles/NNNN_*.md \
+  --manifest article-slug-manifest.json --subject-nnnn NNNN
+node .content-kit/validators/check-batch.mjs [--manifest article-slug-manifest.json]
+node .content-kit/validators/check-publish.mjs [--pre-publish|--post-publish]
+node .content-kit/validators/run-gate.mjs R1|A6|P [file] [extra args]
+```
+
+**Confidence gates:** R1 after research (`.commends/TODO_confidance_full_95.md`); A6 after link embed audit; P before publish. Do not proceed on FAIL.
+
+**Publish (Phase 7):** copy validated draft from `reserch-based-articles/` → `src/content/blog/`; register in content registry / sitemap per existing Next.js wiring. Draft dirs stay local (gitignored).
 
 ## SEO Rules
 - Always provide unique meta title and meta description per page (`buildPageMetadata` in `src/lib/metadata.ts`).
@@ -42,6 +79,7 @@
 - Keep imports at top of file.
 - Prefer Server Components; use `'use client'` only for interactive UI (mobile nav, sheets).
 - Reuse `SiteShell`, `BlogPostLayout`, and shared SEO helpers.
+
 ## Deployment
 - Deploy with Vercel (`framework: nextjs` in `vercel.json`).
 - Verify build output, metadata, sitemap, and crawlability post-deploy.

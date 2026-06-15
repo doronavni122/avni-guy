@@ -48,8 +48,11 @@ temp_*
 
 # Generated RAG vector index
 data/vector-index.json
-temp_research/
 .cursor/tmp/research/
+
+# Content SEO Kit draft dirs (local pipeline; not published source)
+reserch/
+reserch-based-articles/
 
 # OS
 .DS_Store
