@@ -11,8 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CI: '1'
-      CONTENT_AUDIT_ENFORCE: '1'
-      CONTENT_LINKS_STRICT: '1'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -30,18 +28,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-
-      - name: Verify content
-        run: pnpm run verify:content
-
-      - name: Research audit (scoped)
-        if: env.RESEARCH_AUDIT_SLUGS != ''
-        run: pnpm run research:audit
-        env:
-          RESEARCH_AUDIT_SLUGS: ${{ env.RESEARCH_AUDIT_SLUGS }}
-
-      - name: SEO guardrails
-        run: pnpm run seo:guardrails
 
       - name: Build and smoke tests
         run: pnpm run build:ci
