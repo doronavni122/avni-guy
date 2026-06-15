@@ -52,7 +52,7 @@ export function Header({ currentPath }: HeaderProps) {
 					</span>
 				</Link>
 				<nav className="hidden md:flex" aria-label="ניווט ראשי">
-					<NavigationMenu viewport={false} className="max-w-none">
+					<NavigationMenu className="max-w-none">
 					<NavigationMenuList className="justify-end gap-1">
 						{NAV_LINKS.map((item) => {
 							const isActive = isNavLinkActive(item.href, currentPath);
