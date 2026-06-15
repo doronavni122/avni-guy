@@ -15,6 +15,8 @@
     "start": "next start",
     "smoke:routes": "node scripts/smoke-routes.mjs",
     "smoke:production": "node scripts/smoke-production.mjs",
+    "test:e2e": "playwright test",
+    "test:e2e:prod": "PLAYWRIGHT_BASE_URL=https://www.avniguy.co.il playwright test",
     "mcp:site": "node scripts/site-mcp-server.mjs",
     "cms:dev": "KEYSTATIC_STORAGE_KIND=local next dev -p 3001",
     "hooks:install": "node scripts/tools/install-git-hooks.cjs",
@@ -45,6 +47,7 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.0",
     "@tailwindcss/postcss": "^4.2.4",
     "@types/node": "^22.19.3",
     "@types/react": "^19.2.14",
