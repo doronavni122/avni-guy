@@ -192,3 +192,4 @@
 189. fix-pnpm-lockfile-shadcn-specifier , pnpm-lock.yaml task_graph.log
 190. add-playwright-production-smoke-e2e , playwright.config.ts e2e/smoke.spec.ts package.json pnpm-lock.yaml task_graph.log
 191. restore-vercel-apex-domain-redirects , vercel.json task_graph.log
+192. restore-remediation-program-cap-state-72aa , config/remediation-program.json task_graph.log
