@@ -195,3 +195,4 @@
 192. strip-guy-avni-article-slug-prefix , src/content/blog/ article-slug-manifest.json public/llms.txt public/llms-full.txt temp-slugs.txt src/lib/seo/category-hub-intros.ts src/lib/home/loadHomeData.ts src/components/home/HomePage.tsx src/components/home/HomeSeoContentSections.tsx src/app/about/page.tsx src/app/blog/page.tsx src/app/contact/page.tsx src/app/services/page.tsx e2e/smoke.spec.ts scripts/smoke-routes.mjs task_graph.log
 193. add-blog-slug-redirect-middleware , src/middleware.ts task_graph.log
 194. add-blog-slug-prefix-validator , scripts/check-blog-slug-prefix.mjs package.json task_graph.log
+195. add-lawyer-long-tail-keywords-batch , src/lib/seo/site-keywords-batch.ts task_graph.log
