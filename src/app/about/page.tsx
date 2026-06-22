@@ -81,7 +81,7 @@ export default function AboutPage() {
 						ולקרוא על{' '}
 						<Link
 							className="font-medium text-primary underline-offset-2 hover:underline"
-							href="/blog/guy-avni-document-readiness-guide/"
+							href="/blog/document-readiness-guide/"
 						>
 							מוכנות מסמכים
 						</Link>

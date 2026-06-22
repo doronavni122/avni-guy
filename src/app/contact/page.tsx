@@ -67,7 +67,7 @@ export default function ContactPage() {
 							, ולקרוא על{' '}
 							<Link
 								className="font-medium text-primary underline-offset-2 hover:underline"
-								href="/blog/guy-avni-meeting-preparation-checklist/"
+								href="/blog/meeting-preparation-checklist/"
 							>
 								הכנה לפגישה
 							</Link>

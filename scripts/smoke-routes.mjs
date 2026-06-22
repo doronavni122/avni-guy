@@ -11,8 +11,8 @@ const ROUTES = [
 	'/about/',
 	'/categories/contracts/',
 	'/tags/mediation/',
-	'/blog/guy-avni-contract-claim-mediation-four-thousand-six-weeks/',
-	'/blog/guy-avni-court-case-keywords-find-case-90-seconds/',
+	'/blog/contract-claim-mediation-four-thousand-six-weeks/',
+	'/blog/court-case-keywords-find-case-90-seconds/',
 ];
 
 function logStep(msg, extra) {

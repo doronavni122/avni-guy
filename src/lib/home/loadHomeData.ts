@@ -142,17 +142,17 @@ export async function loadHomeData(): Promise<HomeData> {
 			{
 				title: 'קליטה חכמה של לקוח חדש',
 				summary: 'מסלול קצר לבניית ציפיות, אמון ותהליך עבודה נקי כבר מהפגישה הראשונה.',
-				slugs: ['guy-avni-client-onboarding-framework', 'guy-avni-client-trust-roadmap', 'guy-avni-communication-strategy-for-clients'],
+				slugs: ['client-onboarding-framework', 'client-trust-roadmap', 'communication-strategy-for-clients'],
 			},
 			{
 				title: 'ניהול סיכונים לעסק פעיל',
 				summary: 'רצף קריאה שנותן מסגרת פרקטית לזיהוי, מניעה ושיפור החלטות לאורך זמן.',
-				slugs: ['guy-avni-risk-management-routine', 'guy-avni-contract-review-flow', 'guy-avni-dispute-prevention-method'],
+				slugs: ['risk-management-routine', 'contract-review-flow', 'dispute-prevention-method'],
 			},
 			{
 				title: 'שיפור ביצועים בעבודה משפטית',
 				summary: 'שלושה מאמרים לבניית שגרה מקצועית מדויקת יותר, תחת עומס ותוך שמירה על איכות.',
-				slugs: ['guy-avni-process-improvement-for-legal-teams', 'guy-avni-time-management-for-legal-work', 'guy-avni-service-quality-standards'],
+				slugs: ['process-improvement-for-legal-teams', 'time-management-for-legal-work', 'service-quality-standards'],
 			},
 		];
 

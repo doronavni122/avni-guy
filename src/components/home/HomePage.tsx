@@ -209,7 +209,7 @@ export function HomePage({
 						<strong className="text-foreground">יותר שליטה:</strong> תיעדוף נכון של משימות לפי{' '}
 						<Link
 							className="font-medium text-primary underline-offset-2 hover:underline"
-							href="/blog/guy-avni-risk-management-routine/"
+							href="/blog/risk-management-routine/"
 						>
 							השפעה וסיכון
 						</Link>
@@ -219,7 +219,7 @@ export function HomePage({
 						<strong className="text-foreground">קצב יציב:</strong> התקדמות עקבית בלי{' '}
 						<Link
 							className="font-medium text-primary underline-offset-2 hover:underline"
-							href="/blog/guy-avni-process-improvement-for-legal-teams/"
+							href="/blog/process-improvement-for-legal-teams/"
 						>
 							עומס החלטות מיותר
 						</Link>
@@ -385,7 +385,7 @@ export function HomePage({
 								חוסך בטווח המיידי, אך מגדיל סיכון ל־{' '}
 								<Link
 									className="font-medium text-primary underline-offset-2 hover:underline"
-									href="/blog/guy-avni-evidence-prioritization-framework/"
+									href="/blog/evidence-prioritization-framework/"
 								>
 									טעויות
 								</Link>{' '}
@@ -395,7 +395,7 @@ export function HomePage({
 								דורש השקעת זמן גבוהה ב־{' '}
 								<Link
 									className="font-medium text-primary underline-offset-2 hover:underline"
-									href="/blog/guy-avni-document-readiness-guide/"
+									href="/blog/document-readiness-guide/"
 								>
 									בדיקת חומרים
 								</Link>{' '}
@@ -405,7 +405,7 @@ export function HomePage({
 								התוצאה תלויה בניסיון אישי וביכולת{' '}
 								<Link
 									className="font-medium text-primary underline-offset-2 hover:underline"
-									href="/blog/guy-avni-process-improvement-for-legal-teams/"
+									href="/blog/process-improvement-for-legal-teams/"
 								>
 									לתעדף נכון
 								</Link>{' '}
@@ -448,19 +448,19 @@ export function HomePage({
 				<p className="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
 					לפני מהלך משמעותי, כדאי לעצור ולהגדיר מטרה, מגבלות וסיכון שאי אפשר לקבל. שלושת אלה מונעים החלטות תחת לחץ ומאפשרים
 					תוכנית ברורה. להעמקה, קראו את{' '}
-					<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/blog/guy-avni-long-term-legal-strategy/">
+					<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/blog/long-term-legal-strategy/">
 						אסטרטגיה משפטית לטווח ארוך
 					</Link>
 					,{' '}
-					<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/blog/guy-avni-contract-review-flow/">
+					<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/blog/contract-review-flow/">
 						בדיקת חוזים לפני חתימה
 					</Link>
 					,{' '}
-					<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/blog/guy-avni-risk-management-routine/">
+					<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/blog/risk-management-routine/">
 						שגרת ניהול סיכונים
 					</Link>{' '}
 					ו־{' '}
-					<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/blog/guy-avni-client-trust-roadmap/">
+					<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/blog/client-trust-roadmap/">
 						מפת אמון לקוח
 					</Link>
 					. ליישום מותאם, עברו ל־{' '}

@@ -88,7 +88,7 @@ export default function ServicesPage() {
 						ולמאמר{' '}
 						<Link
 							className="font-medium text-primary underline-offset-2 hover:underline"
-							href="/blog/guy-avni-negotiation-clarity-principles/"
+							href="/blog/negotiation-clarity-principles/"
 						>
 							עקרונות משא ומתן
 						</Link>

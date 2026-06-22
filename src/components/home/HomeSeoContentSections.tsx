@@ -81,7 +81,7 @@ function renderSectionBody(sectionId: string) {
 						שירותי גיא אבני
 					</Link>{' '}
 					תמצאו מסלולי ייעוץ, ליווי מסמכים ומעקב שוטף; במאמר{' '}
-					<Link className={linkClass} href="/blog/guy-avni-business-legal-habits/">
+					<Link className={linkClass} href="/blog/business-legal-habits/">
 						שגרות משפטיות לעסק
 					</Link>{' '}
 					תראו איך בונים הרגלים שמונעים משברים ומקטינים חשיפה לתביעות. לעומק נושאי השירות, עברו ל{' '}
@@ -96,11 +96,11 @@ function renderSectionBody(sectionId: string) {
 				<p className="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
 					משפט ישראלי משתנה בקצב מהיר, ולכן חשוב לעבוד עם מי שמכיר דינים מקומיים, רגולציה ופרקטיקה שדה - במיוחד כשמדובר
 					בחוזים, ציות וסכסוכים מול גופים מוסדיים. המדריך{' '}
-					<Link className={linkClass} href="/blog/guy-avni-legal-counsel-israel-2026-guide/">
+					<Link className={linkClass} href="/blog/legal-counsel-israel-2026-guide/">
 						ייעוץ משפטי בישראל 2026
 					</Link>{' '}
 					מסביר מתי נדרש ליווי; בנושא רישוי והבדלים מקצועיים קראו על{' '}
-					<Link className={linkClass} href="/blog/guy-avni-jurist-vs-lawyer-israel-licensing-guide/">
+					<Link className={linkClass} href="/blog/jurist-vs-lawyer-israel-licensing-guide/">
 						גישור מול עורך דין
 					</Link>
 					. לסינון לפי תחום, השתמשו ב{' '}
@@ -119,11 +119,11 @@ function renderSectionBody(sectionId: string) {
 				<p className="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
 					אל תחכו למשבר: חתימה על חוזה, מחלוקת עם ספק או החלטה עם חשיפה כספית הם נקודות שבהן עצירה קצרה חוסכת זמן, כסף
 					ולחץ מול בתי משפט או בוררות. המאמר{' '}
-					<Link className={linkClass} href="/blog/guy-avni-meeting-preparation-checklist/">
+					<Link className={linkClass} href="/blog/meeting-preparation-checklist/">
 						הכנה לפגישה משפטית
 					</Link>{' '}
 					מפרט מה להביא לשיחה; ב{' '}
-					<Link className={linkClass} href="/blog/guy-avni-legal-planning-basics/">
+					<Link className={linkClass} href="/blog/legal-planning-basics/">
 						יסודות תכנון משפטי
 					</Link>{' '}
 					תמצאו סדר עדיפויות. כשמוכנים לדבר  - {' '}
@@ -142,11 +142,11 @@ function renderSectionBody(sectionId: string) {
 						עמוד האודות של גיא אבני
 					</Link>{' '}
 					ובמאמר{' '}
-					<Link className={linkClass} href="/blog/guy-avni-communication-strategy-for-clients/">
+					<Link className={linkClass} href="/blog/communication-strategy-for-clients/">
 						אסטרטגיית תקשורת ללקוחות
 					</Link>
 					. לסטנדרטים שוטפים, ראו{' '}
-					<Link className={linkClass} href="/blog/guy-avni-service-quality-standards/">
+					<Link className={linkClass} href="/blog/service-quality-standards/">
 						סטנדרטי איכות שירות
 					</Link>{' '}
 					ובקטגוריית{' '}
@@ -161,7 +161,7 @@ function renderSectionBody(sectionId: string) {
 				<p className="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
 					עסקאות נדל״ן דורשות בדיקת לוחות זמנים, אחריות מוכר ומסמכי זכויות לפני מחויבות - בין אם רוכשים דירה ראשונה
 					או משקיעים בנכס מסחרי. המחקר{' '}
-					<Link className={linkClass} href="/blog/guy-avni-israel-real-estate-delay-delivery-research/">
+					<Link className={linkClass} href="/blog/israel-real-estate-delay-delivery-research/">
 						עיכוב מסירה בנדל״ן
 					</Link>{' '}
 					מציג סיכונים נפוצים; לזכויות רוכשים עברו ל{' '}
@@ -180,11 +180,11 @@ function renderSectionBody(sectionId: string) {
 				<p className="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
 					בחירת עורך דין היא לא רק מוניטין - אלא התאמה לסוג התיק, שפה ברורה ויכולת לבנות תוכנית שמכבדת את המגבלות
 					שלכם. המדריך{' '}
-					<Link className={linkClass} href="/blog/guy-avni-choosing-lawyer-israel-comprehensive-guide/">
+					<Link className={linkClass} href="/blog/choosing-lawyer-israel-comprehensive-guide/">
 						איך לבחור עורך דין בישראל
 					</Link>{' '}
 					מסייע בהשוואה; לסוגי התמחויות קראו{' '}
-					<Link className={linkClass} href="/blog/guy-avni-lawyer-types-israel-specialties-full-guide/">
+					<Link className={linkClass} href="/blog/lawyer-types-israel-specialties-full-guide/">
 						סוגי עורכי דין והתמחויות
 					</Link>
 					. לעיון רחב במאמרים:{' '}
@@ -199,11 +199,11 @@ function renderSectionBody(sectionId: string) {
 				<p className="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
 					החלטה משפטית נכונה חייבת לעמוד גם בכללי האתיקה המקצועית וגם במטרות העסקיות שלכם, בלי קיצורי דרך שפוגעים
 					באמון או בחוק. המאמר{' '}
-					<Link className={linkClass} href="/blog/guy-avni-ethical-decision-making-guide/">
+					<Link className={linkClass} href="/blog/ethical-decision-making-guide/">
 						קבלת החלטות אתיות
 					</Link>{' '}
 					מציע מסגרת מעשית; לתכנון אסטרטגי ארוך טווח עברו ל{' '}
-					<Link className={linkClass} href="/blog/guy-avni-long-term-legal-strategy/">
+					<Link className={linkClass} href="/blog/long-term-legal-strategy/">
 						אסטרטגיה משפטית לטווח ארוך
 					</Link>
 					. נושאים דומים ב{' '}
@@ -218,15 +218,15 @@ function renderSectionBody(sectionId: string) {
 				<p className="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
 					תיק מסודר מקצר כל שלב: חוזים, התכתבויות, חשבוניות ופרוטוקולים שמספרים את הסיפור בבירור - גם בהליך אזרחי
 					וגם בגישור או משא ומתן. המדריך{' '}
-					<Link className={linkClass} href="/blog/guy-avni-document-readiness-guide/">
+					<Link className={linkClass} href="/blog/document-readiness-guide/">
 						מוכנות מסמכים
 					</Link>{' '}
 					ומסגרת{' '}
-					<Link className={linkClass} href="/blog/guy-avni-positive-case-organization/">
+					<Link className={linkClass} href="/blog/positive-case-organization/">
 						ארגון תיק חיובי
 					</Link>{' '}
 					עוזרים לפני פגישה. לניהול ראיות, ראו{' '}
-					<Link className={linkClass} href="/blog/guy-avni-evidence-prioritization-framework/">
+					<Link className={linkClass} href="/blog/evidence-prioritization-framework/">
 						תיעדוף ראיות
 					</Link>{' '}
 					וב{' '}
@@ -241,11 +241,11 @@ function renderSectionBody(sectionId: string) {
 				<p className="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
 					ייעוץ משפטי מתמקד בהבנה, תכנון ובחירת מהלך; ייצוג מלא כולל ניהול הליך מול גורמים חיצוניים, בית משפט
 					או רשות מוסמכת. ההבחנה מוסברת ב{' '}
-					<Link className={linkClass} href="/blog/guy-avni-legal-counsel-israel-2026-guide/">
+					<Link className={linkClass} href="/blog/legal-counsel-israel-2026-guide/">
 						מדריך הייעוץ המשפטי
 					</Link>
 					; לזרימת בדיקת חוזים עיינו ב{' '}
-					<Link className={linkClass} href="/blog/guy-avni-contract-review-flow/">
+					<Link className={linkClass} href="/blog/contract-review-flow/">
 						תהליך סקירת חוזים
 					</Link>
 					. לבחירת מסלול שירות:{' '}
@@ -260,11 +260,11 @@ function renderSectionBody(sectionId: string) {
 				<p className="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
 					אחרי פנייה ראשונה מתבצעת שיחת מיקוד, מיפוי מטרות והמלצה על צעדים - בלי עומס מיותר ועם סיכום ברור
 					להמשך. תהליך הקליטה מתואר ב{' '}
-					<Link className={linkClass} href="/blog/guy-avni-client-onboarding-framework/">
+					<Link className={linkClass} href="/blog/client-onboarding-framework/">
 						מסגרת קליטת לקוח
 					</Link>
 					; לבניית אמון לאורך זמן, קראו{' '}
-					<Link className={linkClass} href="/blog/guy-avni-client-trust-roadmap/">
+					<Link className={linkClass} href="/blog/client-trust-roadmap/">
 						מפת אמון לקוח
 					</Link>
 					. להתחלת מסלול:{' '}

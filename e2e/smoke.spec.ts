@@ -7,7 +7,7 @@ const ROUTES = [
 	'/services/',
 	'/contact/',
 	'/categories/',
-	'/blog/guy-avni-tenant-rights-israel/',
+	'/blog/tenant-rights-israel/',
 ] as const;
 
 const BRAND = 'גיא אבני';

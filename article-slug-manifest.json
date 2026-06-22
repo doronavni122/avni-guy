@@ -1,56 +1,56 @@
 {
   "generatedAt": "2026-06-01T21:44:38.551Z",
   "expectedSlugs": [
-    "guy-avni-second-apartment-purchase-tax-calculation",
-    "guy-avni-capital-gains-exemption-single-apartment-2026",
-    "guy-avni-betterment-levy-land-plot-when",
-    "guy-avni-capital-gains-tax-second-apartment",
-    "guy-avni-purchase-tax-exemption-first-apartment",
-    "guy-avni-split-sale-transaction-tax-savings",
-    "guy-avni-linear-capital-gains-tax-benefit",
-    "guy-avni-mortgage-portability-between-properties",
-    "guy-avni-mizrahi-mortgage-refinance-cost",
-    "guy-avni-mortgage-refinance-rising-rates",
-    "guy-avni-bank-financing-private-home-construction",
-    "guy-avni-mortgage-pre-approval-process",
-    "guy-avni-tama38-vs-evacuation-reconstruction",
-    "guy-avni-evacuation-reconstruction-project-duration",
-    "guy-avni-urban-renewal-tenant-rights",
-    "guy-avni-refuse-tama38-signature",
-    "guy-avni-capital-gains-tax-evacuation-reconstruction",
-    "guy-avni-buying-from-contractor-checklist",
-    "guy-avni-second-hand-apartment-sale-agreement",
-    "guy-avni-lawyer-required-apartment-purchase",
-    "guy-avni-sale-law-guarantee-importance",
-    "guy-avni-cancel-apartment-purchase-contract",
-    "guy-avni-evict-tenant-nonpayment-rent",
-    "guy-avni-tenant-rights-israel",
-    "guy-avni-landlord-security-deposit-return",
-    "guy-avni-unprotected-lease-contract-contents",
-    "guy-avni-mid-lease-rent-increase-allowed",
-    "guy-avni-tabu-rights-registration",
-    "guy-avni-check-apartment-liens-before-purchase",
-    "guy-avni-tabu-vs-land-registry",
-    "guy-avni-real-estate-appraiser-cost",
-    "guy-avni-appraisal-required-mortgage",
-    "guy-avni-construction-defects-claim-filing",
-    "guy-avni-construction-defects-claim-deadline",
-    "guy-avni-water-damage-shared-building-liability",
-    "guy-avni-neighbor-dispute-shared-building",
-    "guy-avni-building-committee-legal-duties",
-    "guy-avni-shared-building-tabu-registration",
-    "guy-avni-capital-gains-tax-assessment-appeal",
-    "guy-avni-tax-authority-appeal-process",
-    "guy-avni-capital-gains-tax-installment-payment",
-    "guy-avni-additional-tax-who-pays",
-    "guy-avni-offset-capital-loss-against-gains",
-    "guy-avni-insolvency-vs-bankruptcy-difference",
-    "guy-avni-exit-insolvency-proceedings",
-    "guy-avni-seize-single-apartment-debts",
-    "guy-avni-lawyer-fee-apartment-sale",
-    "guy-avni-choose-real-estate-lawyer",
-    "guy-avni-top-law-firms-israel-ranking",
-    "guy-avni-class-action-plaintiff-cost"
+    "second-apartment-purchase-tax-calculation",
+    "capital-gains-exemption-single-apartment-2026",
+    "betterment-levy-land-plot-when",
+    "capital-gains-tax-second-apartment",
+    "purchase-tax-exemption-first-apartment",
+    "split-sale-transaction-tax-savings",
+    "linear-capital-gains-tax-benefit",
+    "mortgage-portability-between-properties",
+    "mizrahi-mortgage-refinance-cost",
+    "mortgage-refinance-rising-rates",
+    "bank-financing-private-home-construction",
+    "mortgage-pre-approval-process",
+    "tama38-vs-evacuation-reconstruction",
+    "evacuation-reconstruction-project-duration",
+    "urban-renewal-tenant-rights",
+    "refuse-tama38-signature",
+    "capital-gains-tax-evacuation-reconstruction",
+    "buying-from-contractor-checklist",
+    "second-hand-apartment-sale-agreement",
+    "lawyer-required-apartment-purchase",
+    "sale-law-guarantee-importance",
+    "cancel-apartment-purchase-contract",
+    "evict-tenant-nonpayment-rent",
+    "tenant-rights-israel",
+    "landlord-security-deposit-return",
+    "unprotected-lease-contract-contents",
+    "mid-lease-rent-increase-allowed",
+    "tabu-rights-registration",
+    "check-apartment-liens-before-purchase",
+    "tabu-vs-land-registry",
+    "real-estate-appraiser-cost",
+    "appraisal-required-mortgage",
+    "construction-defects-claim-filing",
+    "construction-defects-claim-deadline",
+    "water-damage-shared-building-liability",
+    "neighbor-dispute-shared-building",
+    "building-committee-legal-duties",
+    "shared-building-tabu-registration",
+    "capital-gains-tax-assessment-appeal",
+    "tax-authority-appeal-process",
+    "capital-gains-tax-installment-payment",
+    "additional-tax-who-pays",
+    "offset-capital-loss-against-gains",
+    "insolvency-vs-bankruptcy-difference",
+    "exit-insolvency-proceedings",
+    "seize-single-apartment-debts",
+    "lawyer-fee-apartment-sale",
+    "choose-real-estate-lawyer",
+    "top-law-firms-israel-ranking",
+    "class-action-plaintiff-cost"
   ],
   "expectedCount": 50,
   "mdxCount": 125,
@@ -59,331 +59,331 @@
   "batchKeywordCountMismatch": null,
   "missingMdx": [],
   "legacyMdxSlugs": [
-    "guy-avni-apartment-buyer-required-documents",
-    "guy-avni-bounced-check-enforcement-stop-seven-days",
-    "guy-avni-building-permit-shorten-lawyer-five-months",
-    "guy-avni-business-legal-habits",
-    "guy-avni-business-partnership-bad-endings",
-    "guy-avni-business-partnership-types-israel-protection",
-    "guy-avni-cancel-signed-contract-israel-fourteen-days",
-    "guy-avni-car-accident-under-five-thousand-settlement",
-    "guy-avni-child-support-four-parameters-lower-payment",
-    "guy-avni-choosing-lawyer-israel-comprehensive-guide",
-    "guy-avni-class-action-bank-settlement-who-gets-paid",
-    "guy-avni-client-onboarding-framework",
-    "guy-avni-client-trust-roadmap",
-    "guy-avni-collaboration-with-external-experts",
-    "guy-avni-communication-strategy-for-clients",
-    "guy-avni-companies-registry-phone-call-four-questions",
-    "guy-avni-consumer-protection-fourteen-day-cancellation-exceptions",
-    "guy-avni-contract-breach-statute-limitations-seven-years",
-    "guy-avni-contract-claim-mediation-four-thousand-six-weeks",
-    "guy-avni-contract-review-flow",
-    "guy-avni-contract-risk-shifting-words-page-four",
-    "guy-avni-court-case-keywords-find-case-90-seconds",
-    "guy-avni-criminal-case-closure-no-record",
-    "guy-avni-criminal-record-sealing-seven-years",
-    "guy-avni-debt-collection-claim-minimum-amount",
-    "guy-avni-defamation-claim-without-damage-proof",
-    "guy-avni-defective-product-claim-thirty-day-notice",
-    "guy-avni-dispute-prevention-method",
-    "guy-avni-divorce-mediation-cost-vs-litigation",
-    "guy-avni-document-readiness-guide",
-    "guy-avni-driving-license-suspension-cancel-seven-days",
-    "guy-avni-enforcement-freeze-bank-account-release-48-hours",
-    "guy-avni-ethical-decision-making-guide",
-    "guy-avni-evidence-prioritization-framework",
-    "guy-avni-exempt-dealer-threshold-over-limit",
-    "guy-avni-find-winning-lawyer-israel-bar-members",
-    "guy-avni-hidden-legal-invoice-charges-israel",
-    "guy-avni-income-tax-refund-who-misses",
-    "guy-avni-israel-real-estate-delay-delivery-research",
-    "guy-avni-israeli-contract-red-flags-spot-three",
-    "guy-avni-israeli-lease-contract-traps",
-    "guy-avni-jurist-vs-lawyer-israel-licensing-guide",
-    "guy-avni-lawyer-dual-representation-ethics-complaint",
-    "guy-avni-lawyer-types-israel-specialties-full-guide",
-    "guy-avni-legal-content-writing-approach",
-    "guy-avni-legal-counsel-israel-2026-guide",
-    "guy-avni-legal-planning-basics",
-    "guy-avni-legal-retainer-eight-deliverables",
-    "guy-avni-long-term-legal-strategy",
-    "guy-avni-maternity-benefits-fifteen-weeks-three-conditions",
-    "guy-avni-mediation-cheaper-than-lawsuit-why-not-offered",
-    "guy-avni-medical-malpractice-expert-opinion-refund",
-    "guy-avni-meeting-preparation-checklist",
-    "guy-avni-national-insurance-appeal-approval-reason",
-    "guy-avni-negotiation-clarity-principles",
-    "guy-avni-non-compete-clause-israel-enforceability",
-    "guy-avni-positive-case-organization",
-    "guy-avni-power-of-attorney-hidden-limitations",
-    "guy-avni-prenuptial-agreement-cost-divorce-savings",
-    "guy-avni-private-health-insurance-claim-denial-letter",
-    "guy-avni-process-improvement-for-legal-teams",
-    "guy-avni-property-purchase-tax-legal-reduction",
-    "guy-avni-questions-expose-bad-lawyer-first-meeting",
-    "guy-avni-rent-increase-over-five-percent-consent",
-    "guy-avni-risk-management-routine",
-    "guy-avni-service-quality-standards",
-    "guy-avni-small-claims-without-lawyer-why-lose",
-    "guy-avni-third-party-car-insurance-denial-overturn",
-    "guy-avni-time-management-for-legal-work",
-    "guy-avni-travel-ban-order-cancel-urgent",
-    "guy-avni-unregistered-lease-contract-saving-clause",
-    "guy-avni-wage-delay-penalty-clock-start",
-    "guy-avni-workplace-harassment-complaint-filing",
-    "guy-avni-wrong-page-signature-checks-initials",
-    "guy-avni-wrongful-termination-notice-period-shortfall"
+    "apartment-buyer-required-documents",
+    "bounced-check-enforcement-stop-seven-days",
+    "building-permit-shorten-lawyer-five-months",
+    "business-legal-habits",
+    "business-partnership-bad-endings",
+    "business-partnership-types-israel-protection",
+    "cancel-signed-contract-israel-fourteen-days",
+    "car-accident-under-five-thousand-settlement",
+    "child-support-four-parameters-lower-payment",
+    "choosing-lawyer-israel-comprehensive-guide",
+    "class-action-bank-settlement-who-gets-paid",
+    "client-onboarding-framework",
+    "client-trust-roadmap",
+    "collaboration-with-external-experts",
+    "communication-strategy-for-clients",
+    "companies-registry-phone-call-four-questions",
+    "consumer-protection-fourteen-day-cancellation-exceptions",
+    "contract-breach-statute-limitations-seven-years",
+    "contract-claim-mediation-four-thousand-six-weeks",
+    "contract-review-flow",
+    "contract-risk-shifting-words-page-four",
+    "court-case-keywords-find-case-90-seconds",
+    "criminal-case-closure-no-record",
+    "criminal-record-sealing-seven-years",
+    "debt-collection-claim-minimum-amount",
+    "defamation-claim-without-damage-proof",
+    "defective-product-claim-thirty-day-notice",
+    "dispute-prevention-method",
+    "divorce-mediation-cost-vs-litigation",
+    "document-readiness-guide",
+    "driving-license-suspension-cancel-seven-days",
+    "enforcement-freeze-bank-account-release-48-hours",
+    "ethical-decision-making-guide",
+    "evidence-prioritization-framework",
+    "exempt-dealer-threshold-over-limit",
+    "find-winning-lawyer-israel-bar-members",
+    "hidden-legal-invoice-charges-israel",
+    "income-tax-refund-who-misses",
+    "israel-real-estate-delay-delivery-research",
+    "israeli-contract-red-flags-spot-three",
+    "israeli-lease-contract-traps",
+    "jurist-vs-lawyer-israel-licensing-guide",
+    "lawyer-dual-representation-ethics-complaint",
+    "lawyer-types-israel-specialties-full-guide",
+    "legal-content-writing-approach",
+    "legal-counsel-israel-2026-guide",
+    "legal-planning-basics",
+    "legal-retainer-eight-deliverables",
+    "long-term-legal-strategy",
+    "maternity-benefits-fifteen-weeks-three-conditions",
+    "mediation-cheaper-than-lawsuit-why-not-offered",
+    "medical-malpractice-expert-opinion-refund",
+    "meeting-preparation-checklist",
+    "national-insurance-appeal-approval-reason",
+    "negotiation-clarity-principles",
+    "non-compete-clause-israel-enforceability",
+    "positive-case-organization",
+    "power-of-attorney-hidden-limitations",
+    "prenuptial-agreement-cost-divorce-savings",
+    "private-health-insurance-claim-denial-letter",
+    "process-improvement-for-legal-teams",
+    "property-purchase-tax-legal-reduction",
+    "questions-expose-bad-lawyer-first-meeting",
+    "rent-increase-over-five-percent-consent",
+    "risk-management-routine",
+    "service-quality-standards",
+    "small-claims-without-lawyer-why-lose",
+    "third-party-car-insurance-denial-overturn",
+    "time-management-for-legal-work",
+    "travel-ban-order-cancel-urgent",
+    "unregistered-lease-contract-saving-clause",
+    "wage-delay-penalty-clock-start",
+    "workplace-harassment-complaint-filing",
+    "wrong-page-signature-checks-initials",
+    "wrongful-termination-notice-period-shortfall"
   ],
   "unexpectedMdxForBatchCount": 75,
   "likelyStubBodies": [],
   "stubMarkers": {
-    "guy-avni-second-apartment-purchase-tax-calculation": {
+    "second-apartment-purchase-tax-calculation": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-capital-gains-exemption-single-apartment-2026": {
+    "capital-gains-exemption-single-apartment-2026": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-betterment-levy-land-plot-when": {
+    "betterment-levy-land-plot-when": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-capital-gains-tax-second-apartment": {
+    "capital-gains-tax-second-apartment": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-purchase-tax-exemption-first-apartment": {
+    "purchase-tax-exemption-first-apartment": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-split-sale-transaction-tax-savings": {
+    "split-sale-transaction-tax-savings": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-linear-capital-gains-tax-benefit": {
+    "linear-capital-gains-tax-benefit": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-mortgage-portability-between-properties": {
+    "mortgage-portability-between-properties": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-mizrahi-mortgage-refinance-cost": {
+    "mizrahi-mortgage-refinance-cost": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-mortgage-refinance-rising-rates": {
+    "mortgage-refinance-rising-rates": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-bank-financing-private-home-construction": {
+    "bank-financing-private-home-construction": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-mortgage-pre-approval-process": {
+    "mortgage-pre-approval-process": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-tama38-vs-evacuation-reconstruction": {
+    "tama38-vs-evacuation-reconstruction": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-evacuation-reconstruction-project-duration": {
+    "evacuation-reconstruction-project-duration": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-urban-renewal-tenant-rights": {
+    "urban-renewal-tenant-rights": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-refuse-tama38-signature": {
+    "refuse-tama38-signature": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-capital-gains-tax-evacuation-reconstruction": {
+    "capital-gains-tax-evacuation-reconstruction": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-buying-from-contractor-checklist": {
+    "buying-from-contractor-checklist": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-second-hand-apartment-sale-agreement": {
+    "second-hand-apartment-sale-agreement": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-lawyer-required-apartment-purchase": {
+    "lawyer-required-apartment-purchase": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-sale-law-guarantee-importance": {
+    "sale-law-guarantee-importance": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-cancel-apartment-purchase-contract": {
+    "cancel-apartment-purchase-contract": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-evict-tenant-nonpayment-rent": {
+    "evict-tenant-nonpayment-rent": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-tenant-rights-israel": {
+    "tenant-rights-israel": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-landlord-security-deposit-return": {
+    "landlord-security-deposit-return": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-unprotected-lease-contract-contents": {
+    "unprotected-lease-contract-contents": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-mid-lease-rent-increase-allowed": {
+    "mid-lease-rent-increase-allowed": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-tabu-rights-registration": {
+    "tabu-rights-registration": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-check-apartment-liens-before-purchase": {
+    "check-apartment-liens-before-purchase": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-tabu-vs-land-registry": {
+    "tabu-vs-land-registry": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-real-estate-appraiser-cost": {
+    "real-estate-appraiser-cost": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-appraisal-required-mortgage": {
+    "appraisal-required-mortgage": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-construction-defects-claim-filing": {
+    "construction-defects-claim-filing": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-construction-defects-claim-deadline": {
+    "construction-defects-claim-deadline": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-water-damage-shared-building-liability": {
+    "water-damage-shared-building-liability": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-neighbor-dispute-shared-building": {
+    "neighbor-dispute-shared-building": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-building-committee-legal-duties": {
+    "building-committee-legal-duties": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-shared-building-tabu-registration": {
+    "shared-building-tabu-registration": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-capital-gains-tax-assessment-appeal": {
+    "capital-gains-tax-assessment-appeal": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-tax-authority-appeal-process": {
+    "tax-authority-appeal-process": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-capital-gains-tax-installment-payment": {
+    "capital-gains-tax-installment-payment": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-additional-tax-who-pays": {
+    "additional-tax-who-pays": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-offset-capital-loss-against-gains": {
+    "offset-capital-loss-against-gains": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-insolvency-vs-bankruptcy-difference": {
+    "insolvency-vs-bankruptcy-difference": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-exit-insolvency-proceedings": {
+    "exit-insolvency-proceedings": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-seize-single-apartment-debts": {
+    "seize-single-apartment-debts": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-lawyer-fee-apartment-sale": {
+    "lawyer-fee-apartment-sale": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-choose-real-estate-lawyer": {
+    "choose-real-estate-lawyer": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-top-law-firms-israel-ranking": {
+    "top-law-firms-israel-ranking": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
     },
-    "guy-avni-class-action-plaintiff-cost": {
+    "class-action-plaintiff-cost": {
       "missing": false,
       "hasUniqueStubToken": false,
       "hasPlaceholderImage": false
