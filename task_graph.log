@@ -196,3 +196,4 @@
 193. add-blog-slug-redirect-middleware , src/middleware.ts task_graph.log
 194. add-blog-slug-prefix-validator , scripts/check-blog-slug-prefix.mjs package.json task_graph.log
 195. add-lawyer-long-tail-keywords-batch , src/lib/seo/site-keywords-batch.ts task_graph.log
+196. restore-remediation-program-state-cap-40-134f , config/remediation-program.json task_graph.log
