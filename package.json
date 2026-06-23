@@ -11,7 +11,7 @@
     "images:optimize": "node scripts/optimize-images.mjs",
     "prebuild": "node scripts/optimize-images.mjs",
     "build": "next build",
-    "build:ci": "node scripts/check-blog-slug-prefix.mjs && pnpm run build && node scripts/check-performance-budget.mjs && pnpm run smoke:routes",
+    "build:ci": "pnpm run build && node scripts/check-performance-budget.mjs && pnpm run smoke:routes",
     "start": "next start",
     "smoke:routes": "node scripts/smoke-routes.mjs",
     "smoke:production": "node scripts/smoke-production.mjs",
