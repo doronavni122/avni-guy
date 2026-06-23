@@ -199,3 +199,4 @@
 196. remove-cursor-tmp-seo-artifacts , .cursor/tmp/bodies/ .cursor/tmp/enhanced_12_data.py task_graph.log
 197. remove-temp-research-draft-files , temp_research/ temp_research_*.md task_graph.log
 198. remove-temp-seo-workfiles , temp-slugs.txt temp_articles_checklist.txt temp_homepage_brand_internal_links_checklist.txt temp_homepage_suggestions.txt temp_internal_links_checklist.txt task_graph.log
+199. restore-remediation-program-state-cap-40-649c , config/remediation-program.json task_graph.log
