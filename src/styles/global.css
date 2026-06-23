@@ -5,89 +5,91 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Swiss / minimal-grid design system (June 2026 redesign).
- * Monochrome ink-on-paper with a single signal accent. Sharp corners,
- * hairline rules, generous grid, no gradients or glass.
+ * "The Avni Review" — editorial law-journal design system (June 2026 rebuild).
+ * Warm parchment paper, deep ink text, a single terracotta accent. Serif display
+ * (Frank Ruhl Libre) over a clean Hebrew sans body (Assistant). Marginalia kickers,
+ * drop caps, ruled lists and pull quotes. Asymmetric, generous, print-inspired.
  */
 :root {
-	--background: oklch(0.985 0 0);
-	--foreground: oklch(0.17 0 0);
-	--card: oklch(1 0 0);
-	--card-foreground: oklch(0.17 0 0);
-	--popover: oklch(1 0 0);
-	--popover-foreground: oklch(0.17 0 0);
-	--primary: oklch(0.55 0.224 27);
-	--primary-foreground: oklch(0.99 0 0);
-	--secondary: oklch(0.96 0 0);
-	--secondary-foreground: oklch(0.22 0 0);
-	--muted: oklch(0.965 0 0);
-	--muted-foreground: oklch(0.44 0 0);
-	--accent: oklch(0.95 0 0);
-	--accent-foreground: oklch(0.22 0 0);
-	--destructive: oklch(0.577 0.245 27.325);
-	--border: oklch(0.9 0 0);
-	--input: oklch(0.9 0 0);
-	--ring: oklch(0.55 0.224 27);
-	--chart-1: oklch(0.55 0.224 27);
-	--chart-2: oklch(0.45 0 0);
-	--chart-3: oklch(0.6 0 0);
-	--chart-4: oklch(0.75 0 0);
-	--chart-5: oklch(0.3 0 0);
-	--radius: 0.25rem;
-	--sidebar: oklch(0.985 0 0);
-	--sidebar-foreground: oklch(0.17 0 0);
-	--sidebar-primary: oklch(0.55 0.224 27);
-	--sidebar-primary-foreground: oklch(0.99 0 0);
-	--sidebar-accent: oklch(0.95 0 0);
-	--sidebar-accent-foreground: oklch(0.22 0 0);
-	--sidebar-border: oklch(0.9 0 0);
-	--sidebar-ring: oklch(0.55 0.224 27);
-	--link: oklch(0.55 0.224 27);
-	--link-hover: oklch(0.45 0.2 27);
-	--grid-line: oklch(0.9 0 0);
+	--background: oklch(0.967 0.011 83);
+	--foreground: oklch(0.23 0.014 64);
+	--card: oklch(0.986 0.009 86);
+	--card-foreground: oklch(0.23 0.014 64);
+	--popover: oklch(0.986 0.009 86);
+	--popover-foreground: oklch(0.23 0.014 64);
+	--primary: oklch(0.53 0.137 40);
+	--primary-foreground: oklch(0.98 0.012 86);
+	--secondary: oklch(0.925 0.014 82);
+	--secondary-foreground: oklch(0.28 0.016 64);
+	--muted: oklch(0.93 0.012 82);
+	--muted-foreground: oklch(0.47 0.018 58);
+	--accent: oklch(0.91 0.018 80);
+	--accent-foreground: oklch(0.28 0.016 64);
+	--destructive: oklch(0.55 0.2 27);
+	--border: oklch(0.85 0.016 72);
+	--input: oklch(0.85 0.016 72);
+	--ring: oklch(0.53 0.137 40);
+	--chart-1: oklch(0.53 0.137 40);
+	--chart-2: oklch(0.6 0.09 60);
+	--chart-3: oklch(0.45 0.04 70);
+	--chart-4: oklch(0.7 0.07 50);
+	--chart-5: oklch(0.35 0.03 64);
+	--radius: 0.125rem;
+	--sidebar: oklch(0.967 0.011 83);
+	--sidebar-foreground: oklch(0.23 0.014 64);
+	--sidebar-primary: oklch(0.53 0.137 40);
+	--sidebar-primary-foreground: oklch(0.98 0.012 86);
+	--sidebar-accent: oklch(0.91 0.018 80);
+	--sidebar-accent-foreground: oklch(0.28 0.016 64);
+	--sidebar-border: oklch(0.85 0.016 72);
+	--sidebar-ring: oklch(0.53 0.137 40);
+	--link: oklch(0.5 0.137 40);
+	--link-hover: oklch(0.42 0.12 38);
+	--paper-line: oklch(0.85 0.016 72);
 }
 
 .dark {
-	--background: oklch(0.16 0 0);
-	--foreground: oklch(0.97 0 0);
-	--card: oklch(0.195 0 0);
-	--card-foreground: oklch(0.97 0 0);
-	--popover: oklch(0.195 0 0);
-	--popover-foreground: oklch(0.97 0 0);
-	--primary: oklch(0.64 0.21 27);
-	--primary-foreground: oklch(0.16 0 0);
-	--secondary: oklch(0.25 0 0);
-	--secondary-foreground: oklch(0.97 0 0);
-	--muted: oklch(0.24 0 0);
-	--muted-foreground: oklch(0.68 0 0);
-	--accent: oklch(0.26 0 0);
-	--accent-foreground: oklch(0.97 0 0);
-	--destructive: oklch(0.704 0.191 22.216);
-	--border: oklch(1 0 0 / 14%);
-	--input: oklch(1 0 0 / 18%);
-	--ring: oklch(0.64 0.21 27);
-	--chart-1: oklch(0.64 0.21 27);
-	--chart-2: oklch(0.7 0 0);
-	--chart-3: oklch(0.55 0 0);
-	--chart-4: oklch(0.4 0 0);
-	--chart-5: oklch(0.85 0 0);
-	--sidebar: oklch(0.16 0 0);
-	--sidebar-foreground: oklch(0.97 0 0);
-	--sidebar-primary: oklch(0.64 0.21 27);
-	--sidebar-primary-foreground: oklch(0.16 0 0);
-	--sidebar-accent: oklch(0.26 0 0);
-	--sidebar-accent-foreground: oklch(0.97 0 0);
-	--sidebar-border: oklch(1 0 0 / 14%);
-	--sidebar-ring: oklch(0.64 0.21 27);
-	--link: oklch(0.72 0.16 27);
-	--link-hover: oklch(0.8 0.14 27);
-	--grid-line: oklch(1 0 0 / 12%);
+	--background: oklch(0.195 0.01 62);
+	--foreground: oklch(0.93 0.012 84);
+	--card: oklch(0.235 0.011 62);
+	--card-foreground: oklch(0.93 0.012 84);
+	--popover: oklch(0.235 0.011 62);
+	--popover-foreground: oklch(0.93 0.012 84);
+	--primary: oklch(0.7 0.123 46);
+	--primary-foreground: oklch(0.19 0.01 62);
+	--secondary: oklch(0.29 0.012 62);
+	--secondary-foreground: oklch(0.93 0.012 84);
+	--muted: oklch(0.28 0.011 62);
+	--muted-foreground: oklch(0.72 0.014 80);
+	--accent: oklch(0.31 0.013 62);
+	--accent-foreground: oklch(0.93 0.012 84);
+	--destructive: oklch(0.7 0.19 22);
+	--border: oklch(0.92 0.02 80 / 16%);
+	--input: oklch(0.92 0.02 80 / 20%);
+	--ring: oklch(0.7 0.123 46);
+	--chart-1: oklch(0.7 0.123 46);
+	--chart-2: oklch(0.7 0.08 60);
+	--chart-3: oklch(0.6 0.05 70);
+	--chart-4: oklch(0.5 0.06 50);
+	--chart-5: oklch(0.85 0.02 84);
+	--sidebar: oklch(0.195 0.01 62);
+	--sidebar-foreground: oklch(0.93 0.012 84);
+	--sidebar-primary: oklch(0.7 0.123 46);
+	--sidebar-primary-foreground: oklch(0.19 0.01 62);
+	--sidebar-accent: oklch(0.31 0.013 62);
+	--sidebar-accent-foreground: oklch(0.93 0.012 84);
+	--sidebar-border: oklch(0.92 0.02 80 / 16%);
+	--sidebar-ring: oklch(0.7 0.123 46);
+	--link: oklch(0.74 0.11 48);
+	--link-hover: oklch(0.82 0.1 52);
+	--paper-line: oklch(0.92 0.02 80 / 16%);
 }
 
 @theme inline {
-	--font-heading: var(--font-sans), system-ui, sans-serif;
 	--font-sans: var(--font-sans), system-ui, sans-serif;
-	--font-mono: var(--font-mono), ui-monospace, monospace;
+	--font-serif: var(--font-serif), Georgia, "Times New Roman", serif;
+	--font-heading: var(--font-serif), Georgia, "Times New Roman", serif;
+	--font-mono: ui-monospace, "SF Mono", monospace;
 	--color-sidebar-ring: var(--sidebar-ring);
 	--color-sidebar-border: var(--sidebar-border);
 	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -119,14 +121,14 @@
 	--color-card: var(--card);
 	--color-foreground: var(--foreground);
 	--color-background: var(--background);
-	--color-grid-line: var(--grid-line);
-	--radius-sm: calc(var(--radius) * 0.5);
-	--radius-md: var(--radius);
-	--radius-lg: calc(var(--radius) * 1.5);
-	--radius-xl: calc(var(--radius) * 2);
-	--radius-2xl: calc(var(--radius) * 2.5);
-	--radius-3xl: calc(var(--radius) * 3);
-	--radius-4xl: calc(var(--radius) * 4);
+	--color-paper-line: var(--paper-line);
+	--radius-sm: calc(var(--radius));
+	--radius-md: calc(var(--radius) * 2);
+	--radius-lg: calc(var(--radius) * 3);
+	--radius-xl: calc(var(--radius) * 4);
+	--radius-2xl: calc(var(--radius) * 5);
+	--radius-3xl: calc(var(--radius) * 6);
+	--radius-4xl: calc(var(--radius) * 8);
 }
 
 @layer base {
@@ -145,24 +147,8 @@
 		overflow-wrap: break-word;
 		direction: rtl;
 		font-size: 1.0625rem;
-		line-height: 1.7;
+		line-height: 1.78;
 		-webkit-font-smoothing: antialiased;
-		font-feature-settings: "ss01", "cv01";
-	}
-	h1 {
-		@apply font-heading text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl;
-	}
-	h2 {
-		@apply font-heading text-2xl font-bold tracking-tight sm:text-3xl;
-	}
-	h3 {
-		@apply font-heading text-xl font-semibold tracking-tight;
-	}
-	h4 {
-		@apply font-heading text-lg font-semibold;
-	}
-	h5 {
-		@apply font-heading text-base font-semibold;
 	}
 	h1,
 	h2,
@@ -170,10 +156,27 @@
 	h4,
 	h5,
 	h6 {
+		@apply font-serif;
 		margin: 0 0 0.5rem 0;
 		color: var(--foreground);
-		line-height: 1.1;
-		letter-spacing: -0.01em;
+		font-weight: 700;
+		line-height: 1.12;
+		letter-spacing: -0.005em;
+	}
+	h1 {
+		@apply text-4xl sm:text-5xl lg:text-6xl;
+	}
+	h2 {
+		@apply text-3xl sm:text-4xl;
+	}
+	h3 {
+		@apply text-2xl;
+	}
+	h4 {
+		@apply text-xl;
+	}
+	h5 {
+		@apply text-lg;
 	}
 }
 
@@ -193,34 +196,30 @@ b {
 main
 	a:not([data-slot="button"]):not([class*="group/button"]):not([class*="group/badge"]):not(
 		:has([data-slot="card"])
-	):not([class*="bg-card"]),
-article .prose-legal
-	a:not([data-slot="button"]):not([class*="group/button"]):not([class*="group/badge"]):not(
-		:has([data-slot="card"])
-	):not([class*="bg-card"]),
+	):not([class*="bg-card"]):not([class*="no-rule"]),
 .prose-legal
 	a:not([data-slot="button"]):not([class*="group/button"]):not([class*="group/badge"]):not(
 		:has([data-slot="card"])
-	):not([class*="bg-card"]) {
+	):not([class*="bg-card"]):not([class*="no-rule"]) {
 	color: var(--link);
-	font-weight: 700;
+	font-weight: 600;
+	text-decoration: underline;
 	text-decoration-thickness: 1px;
 	text-underline-offset: 3px;
+	text-decoration-color: color-mix(in oklab, var(--link) 35%, transparent);
+	transition: text-decoration-color 0.15s ease, color 0.15s ease;
 }
 
 main
 	a:not([data-slot="button"]):not([class*="group/button"]):not([class*="group/badge"]):not(
 		:has([data-slot="card"])
-	):not([class*="bg-card"]):hover,
-article .prose-legal
-	a:not([data-slot="button"]):not([class*="group/button"]):not([class*="group/badge"]):not(
-		:has([data-slot="card"])
-	):not([class*="bg-card"]):hover,
+	):not([class*="bg-card"]):not([class*="no-rule"]):hover,
 .prose-legal
 	a:not([data-slot="button"]):not([class*="group/button"]):not([class*="group/badge"]):not(
 		:has([data-slot="card"])
-	):not([class*="bg-card"]):hover {
+	):not([class*="bg-card"]):not([class*="no-rule"]):hover {
 	color: var(--link-hover);
+	text-decoration-color: var(--link-hover);
 }
 
 :is(button, [data-slot="button"], [class*="group/button"]) :is(a) {
@@ -274,12 +273,15 @@ pre > code {
 }
 
 blockquote {
-	border-right: 3px solid var(--primary);
+	border-right: 2px solid var(--primary);
 	border-left: none;
-	padding: 0 1.25rem 0 0;
+	padding: 0 1.5rem 0 0;
 	margin: 0;
-	font-size: 1.125rem;
-	color: var(--muted-foreground);
+	font-family: var(--font-serif);
+	font-size: 1.375rem;
+	font-style: italic;
+	line-height: 1.5;
+	color: var(--foreground);
 }
 
 hr {
@@ -287,59 +289,89 @@ hr {
 	border-top: 1px solid var(--border);
 }
 
-/* ----- Swiss utilities --------------------------------------------------- */
+/* ---------- Editorial utilities ---------------------------------------- */
 
-/* Mono eyebrow / label: uppercased Latin, tracked out. Used for kickers and indices. */
-.swiss-label {
-	font-family: var(--font-mono);
-	font-size: 0.72rem;
-	font-weight: 500;
-	letter-spacing: 0.18em;
+/* Marginalia kicker: small uppercase tracked label in sans. */
+.kicker {
+	font-family: var(--font-sans);
+	font-size: 0.7rem;
+	font-weight: 600;
+	letter-spacing: 0.22em;
 	text-transform: uppercase;
 	color: var(--muted-foreground);
+	line-height: 1.4;
+}
+
+/* Section number rendered as an editorial serif numeral. */
+.folio {
+	font-family: var(--font-serif);
+	font-style: italic;
+	font-weight: 500;
+	color: var(--primary);
 	line-height: 1;
 }
 
-.swiss-index {
-	font-family: var(--font-mono);
-	font-variant-numeric: tabular-nums;
-	font-weight: 500;
-	letter-spacing: 0.02em;
+/* Drop cap on a lead paragraph (RTL: floats right). */
+.drop-cap::first-letter {
+	font-family: var(--font-serif);
+	font-weight: 700;
+	float: right;
+	font-size: 3.4em;
+	line-height: 0.78;
+	padding: 0.05em 0 0 0.12em;
+	margin-left: 0.08em;
+	color: var(--primary);
 }
 
-/* Hairline rule used to separate grid rows/sections. */
-.swiss-rule {
-	border: none;
+/* Thin top rule used to open editorial blocks. */
+.rule-top {
 	border-top: 1px solid var(--border);
 }
 
-/* Header: solid, bottom hairline, no blur. Class name kept for compatibility. */
+.rule-top-ink {
+	border-top: 2px solid var(--foreground);
+}
+
+/* Legacy aliases (kept so any untouched node still styles cleanly). */
+.swiss-label {
+	font-family: var(--font-sans);
+	font-size: 0.7rem;
+	font-weight: 600;
+	letter-spacing: 0.22em;
+	text-transform: uppercase;
+	color: var(--muted-foreground);
+	line-height: 1.4;
+}
+.swiss-index {
+	font-family: var(--font-serif);
+	font-style: italic;
+	color: var(--primary);
+}
+
+/* Header: solid paper, bottom hairline. Class kept for compatibility. */
 .glass-header {
-	background-color: var(--background);
+	background-color: color-mix(in oklab, var(--background) 88%, transparent);
+	backdrop-filter: saturate(150%) blur(8px);
 	border-color: var(--border);
 }
 
-/* Panels: flat, bordered, no elevation. Class name kept for compatibility. */
+/* Panels: flat, no elevation. Class kept for compatibility. */
 .premium-panel {
 	box-shadow: none;
 }
 
-.premium-panel:hover {
-	box-shadow: none;
-}
-
 .section-gap {
-	scroll-margin-top: 7rem;
+	scroll-margin-top: 8rem;
 }
 
 .page-enter {
-	animation: page-enter 0.3s ease-out both;
+	animation: page-enter 0.4s ease-out both;
 }
 
 @keyframes page-enter {
 	from {
 		opacity: 0;
-		transform: translateY(4px);
+		transform: translateY(6px);
 	}
 	to {
 		opacity: 1;
@@ -348,15 +380,17 @@ hr {
 }
 
 .prose-legal {
-	@apply max-w-none space-y-4 text-right text-base leading-relaxed text-foreground;
+	@apply max-w-none space-y-4 text-right text-foreground;
+	font-size: 1.125rem;
+	line-height: 1.8;
 }
 
 .prose-legal h2 {
-	@apply mt-8;
+	@apply mt-10 text-3xl;
 }
 
 .prose-legal h3 {
-	@apply mt-6;
+	@apply mt-7 text-2xl;
 }
 
 .prose-legal ul,
@@ -395,7 +429,7 @@ hr {
 }
 
 .home-anchor-target {
-	scroll-margin-top: 7rem;
+	scroll-margin-top: 8rem;
 }
 
 .home-deferred-section {
@@ -403,9 +437,9 @@ hr {
 	contain-intrinsic-size: auto 320px;
 }
 
-/* Interactive tiles: flat, accent hairline on hover. No lift. */
+/* Editorial entry: underline title sweep + accent rule on hover. No box lift. */
 .card-interactive {
-	@apply border border-border bg-card transition-colors duration-200;
+	@apply border-border bg-card transition-colors duration-200;
 	box-shadow: none;
 }
 
@@ -413,17 +447,17 @@ hr {
 	@apply border-primary;
 }
 
-/* Inline text link: accent color with a persistent thin underline. */
+/* Inline editorial link with persistent thin rule. */
 .link-underline {
-	color: var(--primary);
-	font-weight: 500;
+	color: var(--link);
+	font-weight: 600;
 	text-decoration: underline;
 	text-decoration-thickness: 1px;
 	text-underline-offset: 3px;
-	text-decoration-color: color-mix(in oklab, var(--primary) 40%, transparent);
+	text-decoration-color: color-mix(in oklab, var(--link) 40%, transparent);
 	transition: text-decoration-color 0.15s ease;
 }
 
 .link-underline:hover {
-	text-decoration-color: var(--primary);
+	text-decoration-color: var(--link);
 }

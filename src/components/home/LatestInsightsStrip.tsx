@@ -6,42 +6,47 @@ type LatestInsightsStripProps = {
 	posts: PostPreview[];
 };
 
+/** Editorial "latest dispatches" row: three ruled columns with serif headlines. */
 export function LatestInsightsStrip({ posts }: LatestInsightsStripProps) {
 	return (
-		<section id="latest-insights" className="home-anchor-target flex flex-col gap-6 text-right" aria-labelledby="latest-insights-title">
-			<div className="flex items-start justify-between gap-6 border-t border-border pt-5">
-				<div className="flex max-w-3xl flex-col gap-3">
-					<h2 id="latest-insights-title" className="font-heading text-2xl font-bold tracking-tight text-foreground text-balance sm:text-3xl">
-						תובנות אחרונות מגיא אבני עורך דין - עדכונים מהמשרד
-					</h2>
-					<span className="swiss-label">חדש באתר</span>
-					<p className="text-sm text-muted-foreground">שלושה עדכונים חדשים שיעזרו לכם לשמור על בהירות ותנועה קדימה.</p>
-					<Link className="text-sm font-semibold text-primary underline-offset-4 hover:underline" href="/blog/">
-						להמשך קריאה בבלוג
-					</Link>
-				</div>
-				<span className="swiss-index shrink-0 text-sm text-muted-foreground" aria-hidden="true">
-					10
-				</span>
+		<section
+			id="latest-insights"
+			className="home-anchor-target flex flex-col gap-8 text-right"
+			aria-labelledby="latest-insights-title"
+		>
+			<div className="flex items-baseline justify-between gap-4 border-t-2 border-foreground pt-3">
+				<p className="kicker">חדש באתר · עדכוני המשרד</p>
+				<span className="folio text-base" aria-hidden="true">06</span>
 			</div>
-			<div className="grid gap-px overflow-hidden rounded-sm border border-border bg-border md:grid-cols-3">
+			<h2
+				id="latest-insights-title"
+				className="max-w-3xl font-serif text-3xl font-extrabold tracking-tight text-foreground text-balance sm:text-4xl"
+			>
+				תובנות אחרונות מגיא אבני עורך דין - עדכונים מהמשרד
+			</h2>
+
+			<div className="grid gap-x-10 gap-y-8 sm:grid-cols-3">
 				{posts.map((post, index) => (
-					<Link key={post.id} className="group flex h-full flex-col gap-3 bg-card p-6 no-underline transition-colors hover:bg-muted" href={`/blog/${post.id}/`}>
-						<div className="flex items-center justify-between gap-3">
-							<span className="swiss-index text-xs text-muted-foreground" aria-hidden="true">
-								{String(index + 1).padStart(2, '0')}
-							</span>
-							<span className="swiss-label normal-case">
-								<FormattedDate date={post.pubDate} />
-							</span>
-						</div>
-						<h3 className="font-heading text-base font-semibold leading-snug text-foreground transition-colors group-hover:text-primary">
+					<Link
+						key={post.id}
+						href={`/blog/${post.id}/`}
+						className="no-rule group flex flex-col gap-2 border-t border-border pt-4 no-underline"
+					>
+						<span className="kicker">
+							<span className="folio not-italic">{String(index + 1).padStart(2, '0')}</span> ·{' '}
+							<FormattedDate date={post.pubDate} />
+						</span>
+						<h3 className="font-serif text-xl font-bold leading-snug text-foreground transition-colors group-hover:text-primary">
 							{post.title}
 						</h3>
-						<p className="line-clamp-2 text-sm leading-relaxed text-muted-foreground">{post.description}</p>
+						<p className="line-clamp-3 leading-relaxed text-muted-foreground">{post.description}</p>
 					</Link>
 				))}
 			</div>
+
+			<Link href="/blog/" className="font-serif text-base font-bold text-primary">
+				להמשך קריאה בבלוג ←
+			</Link>
 		</section>
 	);
 }

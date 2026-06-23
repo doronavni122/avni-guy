@@ -7,18 +7,19 @@ type PremiumPanelProps = {
 	variant?: 'default' | 'accent' | 'hero';
 };
 
-/* Flat, bordered Swiss blocks. No elevation or gradients; hierarchy via borders + fill. */
+/* Editorial paper blocks. Hierarchy via rules and a terracotta margin, not elevation. */
 const variantClasses: Record<NonNullable<PremiumPanelProps['variant']>, string> = {
-	default: 'border-border bg-card',
-	accent: 'border-primary bg-primary/5',
-	hero: 'border-border bg-card',
+	default: 'border-y border-border bg-transparent',
+	accent: 'border-e-2 border-primary bg-primary/[0.06] ps-6',
+	hero: 'border-t-2 border-foreground bg-transparent',
 };
 
 export function PremiumPanel({ children, className, variant = 'default' }: PremiumPanelProps) {
 	return (
 		<div
 			className={cn(
-				'premium-panel relative overflow-hidden rounded-sm border p-6 sm:p-8 lg:p-10',
+				'premium-panel relative py-8 sm:py-10',
+				variant === 'accent' && 'py-6',
 				variantClasses[variant],
 				className,
 			)}

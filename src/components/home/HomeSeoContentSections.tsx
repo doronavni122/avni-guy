@@ -2,8 +2,9 @@ import { OptimizedImage } from '@/components/media/OptimizedImage';
 import Link from 'next/link';
 import { HOME_SEO_SECTION_DEFS, resolveHomeSeoSectionImages } from '@/lib/home/homeSeoSections';
 import type { HomeImage } from '@/lib/home/loadHomeData';
+import { cn } from '@/lib/utils';
 
-const linkClass = 'font-medium text-primary underline-offset-2 hover:underline';
+const linkClass = 'link-underline';
 
 type HomeSeoContentSectionsProps = {
 	homeImages: HomeImage[];
@@ -29,11 +30,15 @@ export function HomeSeoContentSections({ homeImages }: HomeSeoContentSectionsPro
 			className="home-anchor-target flex flex-col gap-10 text-right"
 			aria-labelledby="home-seo-content-title"
 		>
-			<div className="flex flex-col gap-3">
-				<h2 id="home-seo-content-title" className="font-heading text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+			<div className="flex flex-col gap-4">
+				<div className="flex items-baseline justify-between gap-4 border-t-2 border-foreground pt-3">
+					<p className="kicker">מדריך תוכן מקצועי</p>
+					<span className="folio text-base" aria-hidden="true">03</span>
+				</div>
+				<h2 id="home-seo-content-title" className="max-w-3xl font-serif text-3xl font-extrabold tracking-tight text-foreground text-balance sm:text-4xl">
 					מדריך תוכן מקצועי - גיא אבני עורך דין
 				</h2>
-				<p className="max-w-3xl text-pretty text-sm leading-relaxed text-muted-foreground sm:text-base">
+				<p className="max-w-2xl text-pretty leading-relaxed text-muted-foreground">
 					עשרה נושאי ליבה בניסוח ברור, עם קישורים פנימיים למאמרים, קטגוריות ועמודי האתר - כדי להבין את המסלול לפני פנייה.
 					הטקסטים כאן משלימים את כרטיסי המאמרים והמדריכים הקיימים בדף, ומיועדים לגולשים שמחפשים הסבר מלא בפסקה אחת לכל נושא.
 				</p>
@@ -41,26 +46,35 @@ export function HomeSeoContentSections({ homeImages }: HomeSeoContentSectionsPro
 
 			{HOME_SEO_SECTION_DEFS.map((section, index) => {
 				const image = sectionImages[index];
+				const flip = index % 2 === 1;
 				return (
 					<article
 						key={section.id}
 						id={section.id}
-						className="home-anchor-target flex flex-col gap-4 rounded-2xl border border-border/60 bg-card/50 p-6 sm:p-8"
+						className="home-anchor-target grid items-start gap-6 border-t border-border pt-8 lg:grid-cols-12 lg:gap-10"
 						aria-labelledby={`${section.id}-title`}
 					>
-						<h3 id={`${section.id}-title`} className="font-heading text-xl font-semibold text-foreground sm:text-2xl">
-							{section.title}
-						</h3>
-						{renderSectionBody(section.id)}
+						<div className={cn('lg:col-span-7', flip && 'lg:order-2')}>
+							<div className="flex items-baseline gap-3">
+								<span className="folio text-sm" aria-hidden="true">
+									{String(index + 1).padStart(2, '0')}
+								</span>
+								<h3 id={`${section.id}-title`} className="font-serif text-2xl font-extrabold text-foreground text-balance sm:text-3xl">
+									{section.title}
+								</h3>
+							</div>
+							<div className="mt-3">{renderSectionBody(section.id)}</div>
+						</div>
 						{image ? (
-							<figure className="overflow-hidden rounded-xl border border-border/60 bg-background/80">
+							<figure className={cn('lg:col-span-5', flip && 'lg:order-1')}>
 								<OptimizedImage
 									src={image.src}
 									alt={image.alt}
 									title={image.title}
 									priority={index === 0}
-									className="h-48 w-full object-cover sm:h-56"
+									className="h-56 w-full border border-border object-cover sm:h-64"
 								/>
+								<figcaption className="kicker mt-2">איור · {section.title}</figcaption>
 							</figure>
 						) : null}
 					</article>

@@ -4,28 +4,29 @@ type HomeMiniTocProps = {
 	items: TocItem[];
 };
 
+/** Editorial "In this issue" contents index: serif entries with folio numerals and leader rules. */
 export function HomeMiniToc({ items }: HomeMiniTocProps) {
 	return (
-		<nav aria-label="תוכן עניינים לדף הבית" className="rounded-sm border border-border bg-card text-right">
-			<div className="flex items-center justify-between gap-4 border-b border-border px-5 py-3.5 sm:px-6">
-				<p className="text-sm font-semibold text-foreground">תוכן עניינים מהיר</p>
-				<span className="swiss-label">ניווט / Index</span>
-			</div>
-			<ul className="grid sm:grid-cols-2">
+		<nav aria-label="תוכן עניינים לדף הבית" className="border-y-2 border-foreground py-6 text-right">
+			<p className="kicker mb-5">במהדורה הזו · תוכן עניינים</p>
+			<ol className="grid gap-x-12 gap-y-1 sm:grid-cols-2">
 				{items.map((item, index) => (
-					<li key={item.id} className="border-b border-border sm:[&:nth-last-child(-n+1)]:border-b-0 sm:odd:border-s">
+					<li key={item.id}>
 						<a
-							className="flex items-baseline gap-3 px-5 py-3 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:text-primary sm:px-6"
 							href={`#${item.id}`}
+							className="no-rule group flex items-baseline gap-3 py-1.5 no-underline"
 						>
-							<span className="swiss-index text-xs text-muted-foreground" aria-hidden="true">
+							<span className="folio text-sm" aria-hidden="true">
 								{String(index + 1).padStart(2, '0')}
 							</span>
-							{item.label}
+							<span className="font-serif text-lg text-foreground transition-colors group-hover:text-primary">
+								{item.label}
+							</span>
+							<span className="mx-1 h-px flex-1 translate-y-[-0.2em] bg-border" aria-hidden="true" />
 						</a>
 					</li>
 				))}
-			</ul>
+			</ol>
 		</nav>
 	);
 }

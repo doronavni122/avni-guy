@@ -6,26 +6,34 @@ type MainPageHeroProps = {
 	hero: MainPageHeroData;
 	badges?: ReactNode;
 	className?: string;
-	/** Optional mono eyebrow override (defaults to hero.eyebrow). */
+	/** Optional kicker override (defaults to hero.eyebrow). */
 	eyebrow?: string;
-	/** Optional mono section index shown before the eyebrow, e.g. "01". */
+	/** Optional folio marker shown beside the kicker, e.g. "01". */
 	index?: string;
 };
 
-/** Standard main-menu hero: mono eyebrow, single oversized H1, intro paragraph. Swiss grid. */
+/**
+ * Editorial masthead hero: a kicker dateline over an oversized serif headline,
+ * with a lead paragraph set in a comfortable measure and a drop cap.
+ */
 export function MainPageHero({ hero, badges, className, eyebrow, index }: MainPageHeroProps) {
 	return (
-		<div className={cn('relative flex flex-col gap-6 text-right', className)}>
-			<div className="flex items-center justify-end gap-3">
-				<p className="swiss-label">{eyebrow ?? hero.eyebrow}</p>
-				{index ? <span className="swiss-index text-muted-foreground">{index}</span> : null}
-				<span className="h-px w-12 bg-border" aria-hidden="true" />
+		<header className={cn('flex flex-col gap-7 text-right', className)}>
+			<div className="flex items-center gap-3 border-b border-border pb-4">
+				{index ? (
+					<span className="folio text-lg" aria-hidden="true">
+						{index}
+					</span>
+				) : null}
+				<p className="kicker">{eyebrow ?? hero.eyebrow}</p>
 			</div>
-			<h1 className="font-heading text-4xl font-extrabold leading-[1.05] tracking-tight text-foreground text-balance sm:text-5xl lg:text-6xl">
+			<h1 className="font-serif text-5xl font-black leading-[1.04] tracking-tight text-foreground text-balance sm:text-6xl lg:text-7xl">
 				{hero.h1}
 			</h1>
-			{badges ? <div className="flex flex-wrap justify-end gap-2">{badges}</div> : null}
-			<p className="max-w-3xl text-pretty text-lg leading-relaxed text-muted-foreground">{hero.intro}</p>
-		</div>
+			{badges ? <div className="flex flex-wrap gap-2">{badges}</div> : null}
+			<p className="drop-cap max-w-2xl text-pretty text-xl leading-relaxed text-muted-foreground">
+				{hero.intro}
+			</p>
+		</header>
 	);
 }
