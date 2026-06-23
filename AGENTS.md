@@ -60,9 +60,9 @@ node .content-kit/validators/run-gate.mjs R1|A6|P [file] [extra args]
 - Primary keyword must appear in the page `H1`.
 - **Exactly one `<h1>` per page** (blog title via `BlogPostLayout`; MDX body must not start with `#`).
 - **Main-menu pages** (`/`, `/about/`, `/services/`, `/blog/`, `/categories/`, `/tags/`, `/contact/`): hero copy lives in [`src/lib/seo/main-page-heroes.ts`](src/lib/seo/main-page-heroes.ts); render with [`MainPageHero`](src/components/seo/MainPageHero.tsx).
-  - One intro **paragraph** directly under the H1: **130–200 words** (Hebrew word count via `countWordsHe` in [`src/lib/seo/hero-rules.ts`](src/lib/seo/hero-rules.ts)).
+  - One intro **paragraph** directly under the H1: **130–200 Hebrew words**.
   - Intro must include at least one phrase from `SITE_KEYWORDS` in [`src/consts.ts`](src/consts.ts) in natural prose.
-  - **Show, don't tell:** hero copy must not describe its own tone (e.g. meta phrases like `שפה ישירה`, `מגזינית`, `בגובה העיניים`). Conventions in [`src/lib/seo/main-page-style-rules.ts`](src/lib/seo/main-page-style-rules.ts).
+  - **Show, don't tell:** hero copy must not describe its own tone (e.g. meta phrases like `שפה ישירה`, `מגזינית`, `בגובה העיניים`).
   - **No generic/nav boilerplate** in H1 or intro (e.g. `רשימת מאמרים`, `בחירה מהירה לפי נושא`, `קטגוריות תוכן`, `תגיות תוכן`). Use concrete Hebrew, not index labels.
   - Good H1: *גיא אבני: כשצריך תוכן ברור וליווי משפטי בלי רעש*. Bad H1: *קטגוריות תוכן*.
 - **Banned character:** never use the Unicode em dash (U+2014) anywhere in `src/`, `public/`, or content. Use hyphen `-`, colon `:`, or commas instead. See `BANNED_EM_DASH` in [`src/lib/seo/hero-rules.ts`](src/lib/seo/hero-rules.ts).

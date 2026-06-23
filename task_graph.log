@@ -204,3 +204,4 @@
 201. remove-main-page-hero-guardrails , src/lib/seo/hero-rules.ts src/lib/seo/main-page-style-rules.ts src/lib/seo/main-page-heroes.ts src/lib/seo/main-page-heroes.mjs task_graph.log
 202. remove-dead-links-crawl-smoke-hook , scripts/smoke-routes.mjs task_graph.log
 203. sync-content-kit-lock-timestamp , .content-kit/kit.lock.json task_graph.log
+204. remove-stale-seo-doc-refs , AGENTS.md SSOT.md task_graph.log

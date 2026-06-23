@@ -41,7 +41,7 @@ Kit-owned quality law; project wiring in `content-pipeline.profile.json` only.
 
 1. **Uniqueness**: Distinct page `title` and meta description per route.
 2. **Primary keyword**: Each page exposes a primary keyword; keyword in visible `H1` where applicable.
-3. **Main-menu heroes** (`/`, `/about/`, `/services/`, `/blog/`, `/categories/`, `/tags/`, `/contact/`): `src/lib/seo/main-page-heroes.ts`; conventions in `hero-rules.ts` and `main-page-style-rules.ts`.
+3. **Main-menu heroes** (`/`, `/about/`, `/services/`, `/blog/`, `/categories/`, `/tags/`, `/contact/`): `src/lib/seo/main-page-heroes.ts`; conventions in `hero-rules.ts`.
 4. **Banned typography**: Unicode em dash (U+2014) forbidden in `src/`, `public/`, and content. Use `-`, `:`, or commas. See `BANNED_EM_DASH` in `hero-rules.ts`.
 5. **Canonical**: `trailingSlash: true` in `next.config.ts`; `SITE_URL` in `src/consts.ts` matches sitemap/RSS/robots.
 6. **Structured data**: `src/utils/structured-data.ts` for breadcrumbs and article JSON-LD.
