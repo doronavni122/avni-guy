@@ -20,12 +20,14 @@ export function SiteShell({ children, currentPath, extraJsonLd }: SiteShellProps
 			<JsonLd data={globalJsonLd} />
 			<Header currentPath={currentPath} />
 			<main className="flex flex-1 flex-col">
-				<div
-					className={cn(
-						'page-enter container mx-auto w-full max-w-6xl flex-1 px-4 py-10 sm:px-6 sm:py-12 lg:py-16',
-					)}
-				>
-					{children}
+				<div className="mx-auto w-full max-w-screen-xl flex-1 px-4 sm:px-6 lg:px-10">
+					<div
+						className={cn(
+							'page-enter flex-1 border-x border-border px-4 py-12 sm:px-8 sm:py-16 lg:px-12 lg:py-20',
+						)}
+					>
+						{children}
+					</div>
 				</div>
 			</main>
 			<Footer />

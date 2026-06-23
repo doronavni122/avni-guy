@@ -6,20 +6,21 @@ type HomeMiniTocProps = {
 
 export function HomeMiniToc({ items }: HomeMiniTocProps) {
 	return (
-		<nav
-			aria-label="תוכן עניינים לדף הבית"
-			className="rounded-2xl border border-border/60 bg-card/70 p-5 text-right shadow-sm sm:p-6"
-		>
-			<p className="mb-3 text-sm font-semibold text-foreground">תוכן עניינים מהיר</p>
-			<div className="mb-4 flex flex-wrap justify-end gap-2">
-				<span className="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground">
-					ניווט לפי נושאים
-				</span>
+		<nav aria-label="תוכן עניינים לדף הבית" className="rounded-sm border border-border bg-card text-right">
+			<div className="flex items-center justify-between gap-4 border-b border-border px-5 py-3.5 sm:px-6">
+				<p className="text-sm font-semibold text-foreground">תוכן עניינים מהיר</p>
+				<span className="swiss-label">ניווט / Index</span>
 			</div>
-			<ul className="grid gap-2 sm:grid-cols-2">
-				{items.map((item) => (
-					<li key={item.id}>
-						<a className="text-sm font-semibold text-primary underline-offset-2 hover:underline" href={`#${item.id}`}>
+			<ul className="grid sm:grid-cols-2">
+				{items.map((item, index) => (
+					<li key={item.id} className="border-b border-border sm:[&:nth-last-child(-n+1)]:border-b-0 sm:odd:border-s">
+						<a
+							className="flex items-baseline gap-3 px-5 py-3 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:text-primary sm:px-6"
+							href={`#${item.id}`}
+						>
+							<span className="swiss-index text-xs text-muted-foreground" aria-hidden="true">
+								{String(index + 1).padStart(2, '0')}
+							</span>
 							{item.label}
 						</a>
 					</li>

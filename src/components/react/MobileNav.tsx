@@ -23,30 +23,40 @@ export function MobileNav({ currentPath }: MobileNavProps) {
 					<Button
 						variant="outline"
 						size="icon-sm"
-						className="md:hidden"
+						className="rounded-sm md:hidden"
 						aria-label="פתיחת תפריט ניווט"
 					/>
 				}
 			>
 				<MenuIcon />
 			</SheetTrigger>
-			<SheetContent side="right" dir="rtl" className="glass-header w-[min(100%,20rem)] border-s border-border/60">
+			<SheetContent side="right" dir="rtl" className="w-[min(100%,22rem)] border-s border-border bg-background p-0">
 				<SheetTitle className="sr-only">תפריט ניווט ראשי</SheetTitle>
+				<div className="swiss-label border-b border-border px-6 py-5 normal-case">תפריט / Menu</div>
 				<nav aria-label="ניווט ראשי">
-					<ul className="flex flex-col gap-1 pt-8">
-						{SITE_NAV_LINKS.map((item) => {
+					<ul className="flex flex-col">
+						{SITE_NAV_LINKS.map((item, index) => {
 							const isActive = isNavLinkActive(item.href, currentPath);
 							return (
-								<li key={item.href}>
+								<li key={item.href} className="border-b border-border">
 									<Link
 										href={item.href}
 										aria-current={isActive ? 'page' : undefined}
 										onClick={() => setOpen(false)}
 										className={cn(
-											'block rounded-lg px-3 py-2.5 text-right text-sm font-medium transition-colors',
-											isActive ? 'bg-primary/12 text-primary' : 'text-foreground hover:bg-muted/80',
+											'flex items-center gap-3 px-6 py-4 text-right text-base font-semibold transition-colors',
+											isActive ? 'bg-foreground text-background' : 'text-foreground hover:bg-muted',
 										)}
 									>
+										<span
+											className={cn(
+												'swiss-index text-xs',
+												isActive ? 'text-background/70' : 'text-muted-foreground',
+											)}
+											aria-hidden="true"
+										>
+											{String(index + 1).padStart(2, '0')}
+										</span>
 										{item.label}
 									</Link>
 								</li>
