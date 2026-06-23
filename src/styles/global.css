@@ -412,3 +412,18 @@ hr {
 .card-interactive:hover {
 	@apply border-primary;
 }
+
+/* Inline text link: accent color with a persistent thin underline. */
+.link-underline {
+	color: var(--primary);
+	font-weight: 500;
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 3px;
+	text-decoration-color: color-mix(in oklab, var(--primary) 40%, transparent);
+	transition: text-decoration-color 0.15s ease;
+}
+
+.link-underline:hover {
+	text-decoration-color: var(--primary);
+}

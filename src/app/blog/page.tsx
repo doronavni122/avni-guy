@@ -1,7 +1,5 @@
 import Link from 'next/link';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
-import { FormattedDate } from '@/components/FormattedDate';
+import { ArticleList } from '@/components/blog/ArticleList';
 import { MainPageHero } from '@/components/seo/MainPageHero';
 import { SiteShell } from '@/components/layout/SiteShell';
 import { getSortedPosts } from '@/lib/content/posts';
@@ -30,81 +28,64 @@ export default async function BlogIndexPage() {
 
 	return (
 		<SiteShell currentPath="/blog/" extraJsonLd={jsonLd}>
-			<section className="flex flex-col gap-10">
+			<div className="flex flex-col">
 				<BreadcrumbNav items={breadcrumbItems} />
-				<MainPageHero hero={MAIN_PAGE_HEROES['/blog/']} />
-				<Separator className="bg-border/60" />
-				<div className="flex flex-col gap-4 text-right">
-					<h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground">
-						מה כדאי לקרוא השבוע - לפי סדר עדכני
-					</h2>
-					<p className="max-w-3xl text-pretty text-muted-foreground">
-						להעמקה לפי נושא, אפשר לעבור ל־{' '}
-						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/categories/">
-							קטגוריות
-						</Link>
-						,{' '}
-						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/tags/">
-							תגיות
-						</Link>
-						,{' '}
-						<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/services/">
-							שירותים
-						</Link>
-						. מומלץ גם:{' '}
-						<Link
-							className="font-medium text-primary underline-offset-2 hover:underline"
-							href="/blog/lawyer-required-apartment-purchase/"
-						>
-							עורך דין לקניית דירה
-						</Link>
-						,{' '}
-						<Link
-							className="font-medium text-primary underline-offset-2 hover:underline"
-							href="/blog/tax-authority-appeal-process/"
-						>
-							ערעור מול רשות המיסים
-						</Link>
-						,{' '}
-						<Link
-							className="font-medium text-primary underline-offset-2 hover:underline"
-							href="/blog/cancel-apartment-purchase-contract/"
-						>
-							ביטול חוזה רכישת דירה
-						</Link>
-						,{' '}
-						<Link
-							className="font-medium text-primary underline-offset-2 hover:underline"
-							href="/blog/seize-single-apartment-debts/"
-						>
-							עיקול דירה יחידה בחובות
-						</Link>
-						.
-					</p>
-				</div>
-				<div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-					{posts.map((post) => (
-						<Link key={post.slug} className="group block h-full no-underline" href={`/blog/${post.slug}/`}>
-							<Card className="card-interactive h-full group-hover:border-primary/25">
-								<CardHeader className="text-right">
-									<CardDescription className="text-xs text-muted-foreground">
-										<FormattedDate date={post.data.pubDate} />
-									</CardDescription>
-									<CardTitle className="font-heading text-base leading-snug transition-colors group-hover:text-primary">
-										{post.data.title}
-									</CardTitle>
-								</CardHeader>
-								<CardContent className="text-right">
-									<p className="line-clamp-3 text-sm leading-relaxed text-muted-foreground">{post.data.metaDescription}</p>
-								</CardContent>
-							</Card>
-						</Link>
-					))}
-				</div>
-				<p className="text-right text-sm text-muted-foreground">
+				<MainPageHero hero={MAIN_PAGE_HEROES['/blog/']} index="03" eyebrow="מאמרים / Journal" />
+
+				<section className="mt-16 grid gap-8 border-t border-border pt-8 lg:grid-cols-12">
+					<div className="lg:col-span-4">
+						<span className="font-mono text-xs text-muted-foreground">קריאה מומלצת / Reading</span>
+					</div>
+					<div className="flex flex-col gap-4 text-right lg:col-span-8">
+						<h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground">
+							מה כדאי לקרוא השבוע - לפי סדר עדכני
+						</h2>
+						<p className="max-w-3xl text-pretty text-muted-foreground">
+							להעמקה לפי נושא, אפשר לעבור ל־{' '}
+							<Link className="link-underline" href="/categories/">
+								קטגוריות
+							</Link>
+							,{' '}
+							<Link className="link-underline" href="/tags/">
+								תגיות
+							</Link>
+							,{' '}
+							<Link className="link-underline" href="/services/">
+								שירותים
+							</Link>
+							. מומלץ גם:{' '}
+							<Link className="link-underline" href="/blog/lawyer-required-apartment-purchase/">
+								עורך דין לקניית דירה
+							</Link>
+							,{' '}
+							<Link className="link-underline" href="/blog/tax-authority-appeal-process/">
+								ערעור מול רשות המיסים
+							</Link>
+							,{' '}
+							<Link className="link-underline" href="/blog/cancel-apartment-purchase-contract/">
+								ביטול חוזה רכישת דירה
+							</Link>
+							,{' '}
+							<Link className="link-underline" href="/blog/seize-single-apartment-debts/">
+								עיקול דירה יחידה בחובות
+							</Link>
+							.
+						</p>
+					</div>
+				</section>
+
+				<section className="mt-12">
+					<div className="flex items-end justify-between border-b border-border pb-3">
+						<span className="swiss-label">{String(posts.length).padStart(2, '0')} מאמרים</span>
+						<span className="swiss-label">ארכיון</span>
+					</div>
+					<ArticleList posts={posts} showDate excerpt="metaDescription" />
+				</section>
+
+				<p className="mt-8 text-right text-sm text-muted-foreground">
 					בחרו מאמר אחד להתחלה, ואז עברו לפי קישורי ההמשך בכל עמוד כדי לבנות תמונת מצב מלאה ופרקטית.
 				</p>
-			</section>
+			</div>
 		</SiteShell>
 	);
 }
