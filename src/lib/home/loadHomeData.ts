@@ -21,11 +21,6 @@ export interface TocItem {
 	label: string;
 }
 
-export interface QuickStartLink {
-	label: string;
-	href: string;
-}
-
 export interface ProcessStep {
 	title: string;
 	text: string;
@@ -59,7 +54,6 @@ export interface HomeData {
 	faqItems: FaqItem[];
 	homeImages: HomeImage[];
 	tocItems: TocItem[];
-	quickStartLinks: QuickStartLink[];
 	processSteps: ProcessStep[];
 	primarySiteKeyword: string;
 }
@@ -176,7 +170,6 @@ export async function loadHomeData(): Promise<HomeData> {
 	}
 
 	const tocItems: TocItem[] = [
-		{ id: 'quick-start', label: 'מסלול התחלה מהיר' },
 		{ id: 'home-seo-content', label: 'מדריך תוכן מקצועי' },
 		{ id: 'process', label: 'איך התהליך עובד בפועל' },
 		{ id: 'authority', label: 'למה לעבוד עם גיא אבני' },
@@ -185,15 +178,6 @@ export async function loadHomeData(): Promise<HomeData> {
 		{ id: 'long-form-content', label: 'מדריכי עומק' },
 		{ id: 'latest-insights', label: 'תובנות אחרונות' },
 		{ id: 'faq', label: 'שאלות נפוצות' },
-	];
-
-	const quickStartLinks: QuickStartLink[] = [
-		{ label: 'אודות', href: '/about' },
-		{ label: 'שירותים', href: '/services' },
-		{ label: 'מאמרים', href: '/blog' },
-		{ label: 'קטגוריות', href: '/categories' },
-		{ label: 'תגיות', href: '/tags' },
-		{ label: 'יצירת קשר', href: '/contact' },
 	];
 
 	const processSteps: ProcessStep[] = [
@@ -288,7 +272,6 @@ export async function loadHomeData(): Promise<HomeData> {
 		faqItems,
 		homeImages,
 		tocItems,
-		quickStartLinks,
 		processSteps,
 		primarySiteKeyword,
 	};

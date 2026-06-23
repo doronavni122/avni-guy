@@ -44,7 +44,6 @@ export function HomePage({
 	faqItems,
 	homeImages,
 	tocItems,
-	quickStartLinks,
 	processSteps,
 }: HomeData) {
 	return (
@@ -76,92 +75,6 @@ export function HomePage({
 
 			<HomeMiniToc items={tocItems} />
 
-			{/* Quick start */}
-			<section id="quick-start" className="home-anchor-target flex flex-col gap-6 text-right" aria-labelledby="quick-start-title">
-				<HomeSectionHead id="quick-start-title" index="01" title="מסלול התחלה מהיר בפורמט של גיא אבני משרד עורכי דין" />
-				<div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-					<span className={labelClass}>ניווט חכם</span>
-					<span className={labelClass}>פעולות מומלצות</span>
-				</div>
-				<p className="max-w-3xl text-pretty leading-relaxed text-muted-foreground">
-					רוצים להתמצא באתר בדקה? התחילו במסלול המומלץ: הכירו את{' '}
-					<Link className={inlineLink} href="/about/">
-						הגישה המקצועית
-					</Link>
-					, עברו לעמוד{' '}
-					<Link className={inlineLink} href="/services/">
-						השירותים
-					</Link>
-					, דפדפו ב־{' '}
-					<Link className={inlineLink} href="/blog/">
-						מאמרים
-					</Link>
-					, ואז העמיקו דרך{' '}
-					<Link className={inlineLink} href="/categories/">
-						קטגוריות
-					</Link>{' '}
-					ו־{' '}
-					<Link className={inlineLink} href="/tags/">
-						תגיות
-					</Link>
-					. אם תרצו יישום מיידי למצב שלכם, סיימו בעמוד{' '}
-					<Link className={inlineLink} href="/contact/">
-						יצירת קשר
-					</Link>
-					.
-				</p>
-				<ul className="max-w-3xl list-disc space-y-2 pr-5 text-sm leading-relaxed text-muted-foreground">
-					<li>
-						<strong className="text-foreground">שלב 1:</strong> הכירו את{' '}
-						<Link className={inlineLink} href="/about/">
-							הרקע והגישה
-						</Link>{' '}
-						לפני כל החלטה.
-					</li>
-					<li>
-						<strong className="text-foreground">שלב 2:</strong> מיינו נושא דרך{' '}
-						<Link className={inlineLink} href="/blog/">
-							מאמרים
-						</Link>
-						,{' '}
-						<Link className={inlineLink} href="/categories/">
-							קטגוריות
-						</Link>{' '}
-						ו־{' '}
-						<Link className={inlineLink} href="/tags/">
-							תגיות
-						</Link>
-						.
-					</li>
-					<li>
-						<strong className="text-foreground">שלב 3:</strong> עברו ליישום מעשי עם{' '}
-						<Link className={inlineLink} href="/contact/">
-							פנייה ממוקדת
-						</Link>
-						.
-					</li>
-				</ul>
-				<div className="grid gap-px overflow-hidden rounded-sm border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
-					{quickStartLinks.map((link) => (
-						<Link
-							key={link.href}
-							className="bg-card px-4 py-4 text-sm font-semibold text-foreground transition-colors hover:bg-muted hover:text-primary"
-							href={link.href}
-						>
-							{link.label}
-						</Link>
-					))}
-				</div>
-				<figure className={figureClass}>
-					<OptimizedImage
-						src={homeImages[1].src}
-						alt={homeImages[1].alt}
-						title={homeImages[1].title}
-						className="h-52 w-full object-cover sm:h-60"
-					/>
-				</figure>
-			</section>
-
 			{/* Value props */}
 			<div className="grid gap-px overflow-hidden rounded-sm border border-border bg-border lg:grid-cols-3">
 				{[
@@ -183,7 +96,7 @@ export function HomePage({
 
 			{/* Process */}
 			<section id="process" className="home-anchor-target flex flex-col gap-6 text-right" aria-labelledby="process-title">
-				<HomeSectionHead id="process-title" index="02" title="כך עובד התהליך כשמדברים עם גיא אבני עורך דין" />
+				<HomeSectionHead id="process-title" index="01" title="כך עובד התהליך כשמדברים עם גיא אבני עורך דין" />
 				<div className="flex flex-wrap items-center gap-x-6 gap-y-2">
 					<span className={labelClass}>שיטה מודולרית</span>
 					<span className={labelClass}>מדידה ושיפור</span>
@@ -244,7 +157,7 @@ export function HomePage({
 
 			{/* Reading paths */}
 			<section id="reading-paths" className="home-anchor-target flex flex-col gap-6 text-right" aria-labelledby="reading-paths-title">
-				<HomeSectionHead id="reading-paths-title" index="03" title="מסלולי קריאה מומלצים מאתר גיא אבני" />
+				<HomeSectionHead id="reading-paths-title" index="02" title="מסלולי קריאה מומלצים מאתר גיא אבני" />
 				<div className="grid gap-px overflow-hidden rounded-sm border border-border bg-border lg:grid-cols-3">
 					{readingPaths.map((path) => (
 						<div key={path.title} className="flex flex-col gap-3 bg-card p-6 text-right sm:p-7">
@@ -274,7 +187,7 @@ export function HomePage({
 
 			{/* Authority */}
 			<section id="authority" className="home-anchor-target flex flex-col gap-6 text-right" aria-labelledby="authority-title">
-				<HomeSectionHead id="authority-title" index="04" title="למה לעבוד עם גיא אבני" />
+				<HomeSectionHead id="authority-title" index="03" title="למה לעבוד עם גיא אבני" />
 				<div className="grid gap-px overflow-hidden rounded-sm border border-border bg-border md:grid-cols-3">
 					{[
 						{ title: 'בהירות לפני הכול', text: 'כל החלטה מתורגמת לשפה עסקית ברורה: מה עושים עכשיו, מה מרוויחים ומה נמנע.' },
@@ -306,7 +219,7 @@ export function HomePage({
 
 			{/* Audience */}
 			<section id="audience" className="home-anchor-target flex flex-col gap-6 text-right" aria-labelledby="audience-title">
-				<HomeSectionHead id="audience-title" index="05" title="למי גיא אבני עו״ד מלווה בפועל?" />
+				<HomeSectionHead id="audience-title" index="04" title="למי גיא אבני עו״ד מלווה בפועל?" />
 				<div className="grid gap-px overflow-hidden rounded-sm border border-border bg-border md:grid-cols-3">
 					{[
 						{ title: 'לקוחות פרטיים', text: 'כשצריך סדר, הסבר ברור ותוכנית מעשית לפני מהלך משמעותי.', href: '/services/', cta: 'פתרונות ללקוחות פרטיים' },
@@ -326,7 +239,7 @@ export function HomePage({
 
 			{/* Comparison */}
 			<section id="comparison" className="home-anchor-target flex flex-col gap-6 text-right" aria-labelledby="comparison-title">
-				<HomeSectionHead id="comparison-title" index="06" title="לבד מול ליווי משפטי - הפרספקטיבה של גיא אבני עו״ד" />
+				<HomeSectionHead id="comparison-title" index="05" title="לבד מול ליווי משפטי - הפרספקטיבה של גיא אבני עו״ד" />
 				<div className="grid gap-px overflow-hidden rounded-sm border border-border bg-border md:grid-cols-2">
 					<div className="flex flex-col gap-3 bg-card p-6 text-right sm:p-8">
 						<h3 className="font-heading text-lg font-semibold text-foreground">טיפול עצמאי</h3>
@@ -381,7 +294,7 @@ export function HomePage({
 				className="home-anchor-target home-deferred-section flex flex-col gap-6 text-right"
 				aria-labelledby="long-form-content-title"
 			>
-				<HomeSectionHead id="long-form-content-title" index="07" title="מדריכי עומק של גיא אבני לקבלת החלטות טובה יותר" />
+				<HomeSectionHead id="long-form-content-title" index="06" title="מדריכי עומק של גיא אבני לקבלת החלטות טובה יותר" />
 				<p className="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
 					לפני מהלך משמעותי, כדאי לעצור ולהגדיר מטרה, מגבלות וסיכון שאי אפשר לקבל. שלושת אלה מונעים החלטות תחת לחץ ומאפשרים
 					תוכנית ברורה. להעמקה, קראו את{' '}
@@ -416,7 +329,7 @@ export function HomePage({
 
 			{/* Taxonomy */}
 			<section className="home-anchor-target flex flex-col gap-6 text-right" aria-labelledby="taxonomy-title" id="taxonomy-links">
-				<HomeSectionHead id="taxonomy-title" index="08" title="ניווט מהיר לפי נושאים סביב גיא אבני" />
+				<HomeSectionHead id="taxonomy-title" index="07" title="ניווט מהיר לפי נושאים סביב גיא אבני" />
 				<div className="grid gap-px overflow-hidden rounded-sm border border-border bg-border lg:grid-cols-2">
 					<div className="flex flex-col gap-4 bg-card p-6 text-right sm:p-7">
 						<div className="flex flex-col gap-1">
