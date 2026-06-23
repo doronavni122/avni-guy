@@ -9,20 +9,17 @@ export function RelatedArticles({ posts }: RelatedArticlesProps) {
 	if (!posts.length) return null;
 
 	return (
-		<section className="flex flex-col gap-4 text-right" aria-labelledby="related-articles-heading">
-			<div className="flex items-center justify-end gap-3">
-				<span className="swiss-label">המשך קריאה / More</span>
-				<span className="h-px w-12 bg-border" aria-hidden="true" />
+		<section className="flex flex-col gap-2 text-right" aria-labelledby="related-articles-heading">
+			<p className="kicker">המשך קריאה</p>
+			<h2 id="related-articles-heading" className="font-serif text-3xl font-extrabold text-foreground">
+				מאמרים קשורים
+			</h2>
+			<p className="max-w-2xl leading-relaxed text-muted-foreground">
+				מאמרים קשורים לפי נושא - משלימים את הקישורים בתוך גוף המאמר, לא מחליפים אותם.
+			</p>
+			<div className="mt-4">
+				<ArticleList posts={posts} excerpt="metaDescription" />
 			</div>
-			<div className="flex flex-col gap-1">
-				<h2 id="related-articles-heading" className="font-heading text-2xl font-semibold text-foreground">
-					המשך קריאה
-				</h2>
-				<p className="text-sm text-muted-foreground">
-					מאמרים קשורים לפי נושא - משלימים את הקישורים בתוך גוף המאמר, לא מחליפים אותם.
-				</p>
-			</div>
-			<ArticleList posts={posts} excerpt="metaDescription" />
 		</section>
 	);
 }

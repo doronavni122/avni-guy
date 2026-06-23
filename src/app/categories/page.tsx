@@ -30,9 +30,9 @@ export default async function CategoriesIndexPage() {
 		<SiteShell currentPath="/categories/" extraJsonLd={jsonLd}>
 			<div className="flex flex-col">
 				<BreadcrumbNav items={breadcrumbItems} />
-				<MainPageHero hero={MAIN_PAGE_HEROES['/categories/']} index="04" eyebrow="נושאים / Topics" />
+				<MainPageHero hero={MAIN_PAGE_HEROES['/categories/']} eyebrow="נושאים · Topics" />
 
-				<p className="mt-8 max-w-3xl text-pretty text-right leading-relaxed text-muted-foreground">
+				<p className="mt-8 max-w-2xl text-pretty text-right text-lg leading-relaxed text-muted-foreground">
 					בחרו תחום אחד, קראו שני מאמרים שלא חוזרים על אותו מסר, ואז עברו ל־{' '}
 					<Link className="link-underline" href="/tags/">
 						תגיות
@@ -44,27 +44,26 @@ export default async function CategoriesIndexPage() {
 					אם נשארה שאלה פתוחה.
 				</p>
 
-				<section className="mt-12 grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
-					{categories.map((category, index) => (
-						<Link
-							key={category}
-							className="group flex flex-col gap-6 bg-background p-8 no-underline transition-colors hover:bg-card"
-							href={`/categories/${category}/`}
-						>
-							<div className="flex items-center justify-between">
-								<span className="font-mono text-xs text-muted-foreground">
-									{String(index + 1).padStart(2, '0')}
-								</span>
-								<span className="h-px w-8 bg-border transition-colors group-hover:bg-primary" aria-hidden="true" />
-							</div>
-							<div className="flex flex-col gap-1 text-right">
-								<h2 className="font-heading text-lg font-semibold text-foreground transition-colors group-hover:text-primary">
-									{getCategoryLabel(category)}
-								</h2>
-								<span className="text-sm text-muted-foreground">מעבר למאמרים בקטגוריה</span>
-							</div>
-						</Link>
-					))}
+				<section className="mt-14">
+					<p className="kicker mb-2">מדור · נושאי הליבה</p>
+					<ol className="flex flex-col border-t-2 border-foreground">
+						{categories.map((category, index) => (
+							<li key={category} className="border-b border-border">
+								<Link
+									className="group grid grid-cols-[2.5rem_1fr_auto] items-baseline gap-x-5 py-7 no-underline"
+									href={`/categories/${category}/`}
+								>
+									<span className="folio text-2xl text-muted-foreground transition-colors group-hover:text-primary sm:text-3xl">
+										{String(index + 1).padStart(2, '0')}
+									</span>
+									<h2 className="font-serif text-2xl font-extrabold text-foreground transition-colors group-hover:text-primary sm:text-3xl">
+										{getCategoryLabel(category)}
+									</h2>
+									<span className="kicker self-center transition-colors group-hover:text-primary">קריאה ←</span>
+								</Link>
+							</li>
+						))}
+					</ol>
 				</section>
 			</div>
 		</SiteShell>

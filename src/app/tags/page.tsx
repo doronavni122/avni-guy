@@ -30,9 +30,9 @@ export default async function TagsIndexPage() {
 		<SiteShell currentPath="/tags/" extraJsonLd={jsonLd}>
 			<div className="flex flex-col">
 				<BreadcrumbNav items={breadcrumbItems} />
-				<MainPageHero hero={MAIN_PAGE_HEROES['/tags/']} index="05" eyebrow="תגיות / Tags" />
+				<MainPageHero hero={MAIN_PAGE_HEROES['/tags/']} eyebrow="תגיות · Tags" />
 
-				<p className="mt-8 max-w-3xl text-pretty text-right leading-relaxed text-muted-foreground">
+				<p className="mt-8 max-w-2xl text-pretty text-right text-lg leading-relaxed text-muted-foreground">
 					תגית צרה מצמצמת רעש: פתחו נושא אחד, השוו ל־{' '}
 					<Link className="link-underline" href="/categories/">
 						קטגוריה רחבה
@@ -40,16 +40,20 @@ export default async function TagsIndexPage() {
 					רק אם צריך הקשר נוסף, ואז המשיכו למאמר המלא מהארכיון.
 				</p>
 
-				<section className="mt-12 flex flex-wrap justify-end gap-px border border-border bg-border">
-					{tags.map((tag) => (
-						<Link
-							key={tag}
-							className="bg-background px-5 py-3 font-heading text-sm font-semibold text-foreground no-underline transition-colors hover:bg-primary hover:text-primary-foreground"
-							href={`/tags/${tag}/`}
-						>
-							{getTagLabel(tag)}
-						</Link>
-					))}
+				<section className="mt-14">
+					<p className="kicker mb-5">מפתח · תגיות</p>
+					<ul className="flex flex-wrap justify-end gap-x-8 gap-y-4 border-t-2 border-foreground pt-6">
+						{tags.map((tag) => (
+							<li key={tag}>
+								<Link
+									className="font-serif text-xl font-bold text-foreground no-underline transition-colors hover:text-primary sm:text-2xl"
+									href={`/tags/${tag}/`}
+								>
+									{getTagLabel(tag)}
+								</Link>
+							</li>
+						))}
+					</ul>
 				</section>
 			</div>
 		</SiteShell>

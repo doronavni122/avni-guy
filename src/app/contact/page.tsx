@@ -30,14 +30,17 @@ export default function ContactPage() {
 
 	return (
 		<SiteShell currentPath="/contact/" extraJsonLd={jsonLd}>
-			<div className="flex flex-col">
+			<article className="flex flex-col">
 				<BreadcrumbNav items={breadcrumbItems} />
-				<MainPageHero hero={MAIN_PAGE_HEROES['/contact/']} index="07" eyebrow="יצירת קשר / Contact" />
+				<MainPageHero hero={MAIN_PAGE_HEROES['/contact/']} eyebrow="יצירת קשר · Contact" />
 
-				<div className="mt-16 grid gap-px border border-border bg-border lg:grid-cols-12">
-					<div className="flex flex-col gap-6 bg-background p-8 text-right lg:col-span-7 lg:p-10">
-						<h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground">מה להכין לפני פנייה</h2>
-						<p className="text-pretty leading-relaxed text-muted-foreground">
+				<div className="mt-16 grid gap-x-12 gap-y-10 border-t-2 border-foreground pt-10 lg:grid-cols-12">
+					<section className="flex flex-col gap-5 text-right lg:col-span-7">
+						<p className="kicker">לפני שמתחילים</p>
+						<h2 className="font-serif text-3xl font-extrabold tracking-tight text-foreground text-balance">
+							מה להכין לפני פנייה
+						</h2>
+						<p className="drop-cap max-w-2xl text-pretty text-lg leading-relaxed text-foreground">
 							כדאי להכין רקע קצר, מסמכים מרכזיים ושאלות ממוקדות. לפני פנייה מומלץ לעבור על{' '}
 							<Link className="link-underline" href="/services/">
 								השירותים
@@ -68,42 +71,44 @@ export default function ContactPage() {
 							</Link>
 							.
 						</p>
-						<h3 className="mt-2 font-heading text-xl font-semibold text-foreground">ערוץ פנייה</h3>
-						<p className="text-pretty text-sm leading-relaxed text-muted-foreground">
+						<h3 className="mt-4 font-serif text-2xl font-bold text-foreground">ערוץ פנייה</h3>
+						<p className="max-w-2xl text-pretty leading-relaxed text-muted-foreground">
 							בשיחה הראשונה מתמקדים במיפוי עובדות, דחיפות וצעדים לשבוע הקרוב. אין צורך בתיק מושלם; כן כדאי שאלות
 							כתובות ומסמכים מרכזיים.
 						</p>
-						<p className="text-pretty leading-relaxed text-muted-foreground">
+						<p className="max-w-2xl text-pretty leading-relaxed text-muted-foreground">
 							ניתן לפנות בדוא״ל - המענה ניתן במסגרת הזמינות המקצועית, בצורה עניינית ומכבדת.
 						</p>
-					</div>
+					</section>
 
-					<aside className="flex flex-col gap-5 bg-card p-8 text-right lg:col-span-5 lg:p-10">
-						<span className="swiss-label">פנייה ישירה</span>
-						<h2 className="font-heading text-xl font-semibold text-foreground">יצירת קשר</h2>
-						<p className="text-pretty text-sm leading-relaxed text-muted-foreground">
-							כתבו בקצרה את הנושא והמטרה - נחזור עם הצעדים הבאים המתאימים.
-						</p>
-						<div className="swiss-rule" />
-						<p className="text-sm leading-relaxed text-muted-foreground">
-							<strong className="text-foreground">דוא״ל:</strong>{' '}
-							<a className="link-underline" href={mailtoHref}>
-								{SITE_CONTACT_EMAIL}
+					<aside className="lg:col-span-5">
+						<div className="flex flex-col gap-5 border-2 border-foreground bg-card p-8 text-right">
+							<p className="kicker">פנייה ישירה</p>
+							<h2 className="font-serif text-2xl font-extrabold text-foreground">יצירת קשר</h2>
+							<p className="text-pretty leading-relaxed text-muted-foreground">
+								כתבו בקצרה את הנושא והמטרה - נחזור עם הצעדים הבאים המתאימים.
+							</p>
+							<hr className="border-border" />
+							<p className="leading-relaxed text-muted-foreground">
+								<span className="kicker block">דוא״ל</span>
+								<a className="link-underline text-lg" href={mailtoHref}>
+									{SITE_CONTACT_EMAIL}
+								</a>
+							</p>
+							<a
+								className={cn(buttonVariants({ className: 'w-full justify-center' }), 'no-underline')}
+								href={mailtoHref}
+							>
+								פתיחת דוא״ל
 							</a>
-						</p>
-						<a
-							className={cn(buttonVariants({ className: 'w-full justify-center rounded-sm' }), 'no-underline')}
-							href={mailtoHref}
-						>
-							פתיחת דוא״ל
-						</a>
-						<p className="text-xs text-muted-foreground">
-							ניתן לשנות כתובת יעד בפריסה באמצעות משתנה סביבה{' '}
-							<code className="rounded-sm bg-muted px-1">NEXT_PUBLIC_CONTACT_EMAIL</code>.
-						</p>
+							<p className="text-xs leading-relaxed text-muted-foreground">
+								ניתן לשנות כתובת יעד בפריסה באמצעות משתנה סביבה{' '}
+								<code className="bg-muted px-1 font-mono">NEXT_PUBLIC_CONTACT_EMAIL</code>.
+							</p>
+						</div>
 					</aside>
 				</div>
-			</div>
+			</article>
 		</SiteShell>
 	);
 }

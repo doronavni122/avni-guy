@@ -30,59 +30,61 @@ export default async function BlogIndexPage() {
 		<SiteShell currentPath="/blog/" extraJsonLd={jsonLd}>
 			<div className="flex flex-col">
 				<BreadcrumbNav items={breadcrumbItems} />
-				<MainPageHero hero={MAIN_PAGE_HEROES['/blog/']} index="03" eyebrow="מאמרים / Journal" />
+				<MainPageHero hero={MAIN_PAGE_HEROES['/blog/']} eyebrow="מאמרים · Journal" />
 
-				<section className="mt-16 grid gap-8 border-t border-border pt-8 lg:grid-cols-12">
-					<div className="lg:col-span-4">
-						<span className="font-mono text-xs text-muted-foreground">קריאה מומלצת / Reading</span>
-					</div>
-					<div className="flex flex-col gap-4 text-right lg:col-span-8">
-						<h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground">
+				<section className="mt-16 grid gap-x-12 gap-y-6 border-t-2 border-foreground pt-10 lg:grid-cols-12">
+					<header className="lg:col-span-4">
+						<p className="kicker">קריאה מומלצת</p>
+						<h2 className="mt-3 font-serif text-3xl font-extrabold leading-tight tracking-tight text-foreground text-balance">
 							מה כדאי לקרוא השבוע - לפי סדר עדכני
 						</h2>
-						<p className="max-w-3xl text-pretty text-muted-foreground">
-							להעמקה לפי נושא, אפשר לעבור ל־{' '}
-							<Link className="link-underline" href="/categories/">
-								קטגוריות
-							</Link>
-							,{' '}
-							<Link className="link-underline" href="/tags/">
-								תגיות
-							</Link>
-							,{' '}
-							<Link className="link-underline" href="/services/">
-								שירותים
-							</Link>
-							. מומלץ גם:{' '}
-							<Link className="link-underline" href="/blog/lawyer-required-apartment-purchase/">
-								עורך דין לקניית דירה
-							</Link>
-							,{' '}
-							<Link className="link-underline" href="/blog/tax-authority-appeal-process/">
-								ערעור מול רשות המיסים
-							</Link>
-							,{' '}
-							<Link className="link-underline" href="/blog/cancel-apartment-purchase-contract/">
-								ביטול חוזה רכישת דירה
-							</Link>
-							,{' '}
-							<Link className="link-underline" href="/blog/seize-single-apartment-debts/">
-								עיקול דירה יחידה בחובות
-							</Link>
-							.
-						</p>
+					</header>
+					<p className="drop-cap max-w-2xl text-pretty text-lg leading-relaxed text-foreground lg:col-span-8">
+						להעמקה לפי נושא, אפשר לעבור ל־{' '}
+						<Link className="link-underline" href="/categories/">
+							קטגוריות
+						</Link>
+						,{' '}
+						<Link className="link-underline" href="/tags/">
+							תגיות
+						</Link>
+						,{' '}
+						<Link className="link-underline" href="/services/">
+							שירותים
+						</Link>
+						. מומלץ גם:{' '}
+						<Link className="link-underline" href="/blog/lawyer-required-apartment-purchase/">
+							עורך דין לקניית דירה
+						</Link>
+						,{' '}
+						<Link className="link-underline" href="/blog/tax-authority-appeal-process/">
+							ערעור מול רשות המיסים
+						</Link>
+						,{' '}
+						<Link className="link-underline" href="/blog/cancel-apartment-purchase-contract/">
+							ביטול חוזה רכישת דירה
+						</Link>
+						,{' '}
+						<Link className="link-underline" href="/blog/seize-single-apartment-debts/">
+							עיקול דירה יחידה בחובות
+						</Link>
+						.
+					</p>
+				</section>
+
+				<section className="mt-16">
+					<div className="flex items-baseline justify-between">
+						<p className="kicker">הארכיון המלא</p>
+						<span className="folio text-base text-muted-foreground" aria-hidden="true">
+							{String(posts.length).padStart(2, '0')}
+						</span>
+					</div>
+					<div className="mt-4">
+						<ArticleList posts={posts} showDate excerpt="metaDescription" />
 					</div>
 				</section>
 
-				<section className="mt-12">
-					<div className="flex items-end justify-between border-b border-border pb-3">
-						<span className="swiss-label">{String(posts.length).padStart(2, '0')} מאמרים</span>
-						<span className="swiss-label">ארכיון</span>
-					</div>
-					<ArticleList posts={posts} showDate excerpt="metaDescription" />
-				</section>
-
-				<p className="mt-8 text-right text-sm text-muted-foreground">
+				<p className="mt-10 max-w-2xl text-right leading-relaxed text-muted-foreground">
 					בחרו מאמר אחד להתחלה, ואז עברו לפי קישורי ההמשך בכל עמוד כדי לבנות תמונת מצב מלאה ופרקטית.
 				</p>
 			</div>

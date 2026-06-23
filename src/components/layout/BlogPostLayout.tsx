@@ -40,32 +40,29 @@ export function BlogPostLayout({
 
 	return (
 		<SiteShell currentPath={currentPath} extraJsonLd={jsonLd}>
-			<article className="flex flex-col">
+			<article className="mx-auto flex w-full max-w-3xl flex-col">
 				<BreadcrumbNav items={breadcrumbItems} />
 
-				{/* Title block */}
-				<header className="mt-8 flex flex-col gap-6 text-right">
-					<div className="flex items-center justify-end gap-3">
-						<span className="swiss-label text-primary">{mainKeyword}</span>
-						<span className="h-px w-12 bg-border" aria-hidden="true" />
-					</div>
-					<h1 className="font-heading text-3xl font-extrabold leading-[1.1] tracking-tight text-foreground text-balance md:text-5xl">
+				{/* Article masthead */}
+				<header className="mt-8 flex flex-col gap-5 text-right">
+					<p className="kicker text-primary">{mainKeyword}</p>
+					<h1 className="font-serif text-4xl font-extrabold leading-[1.08] tracking-tight text-foreground text-balance md:text-5xl">
 						{title}
 					</h1>
-					<div className="flex flex-wrap items-center justify-end gap-x-4 gap-y-1 border-y border-border py-3 text-sm text-muted-foreground">
-						<span className="swiss-index">
+					<div className="flex flex-wrap items-center justify-end gap-x-4 gap-y-1 border-y border-border py-3">
+						<span className="kicker">
 							<FormattedDate date={pubDate} />
 						</span>
 						{updatedDate ? (
-							<span className="swiss-index">
-								עודכן: <FormattedDate date={updatedDate} />
+							<span className="kicker">
+								<span className="opacity-70">עודכן ·</span> <FormattedDate date={updatedDate} />
 							</span>
 						) : null}
 					</div>
-					<div className="flex flex-wrap items-center justify-end gap-2">
+					<div className="flex flex-wrap items-center justify-end gap-x-4 gap-y-2">
 						<Link
 							href={`/categories/${category}/`}
-							className="border border-border px-3 py-1 font-mono text-xs text-foreground no-underline transition-colors hover:border-primary hover:text-primary"
+							className="kicker no-rule text-primary no-underline transition-opacity hover:opacity-70"
 						>
 							{getCategoryLabel(category)}
 						</Link>
@@ -73,7 +70,7 @@ export function BlogPostLayout({
 							<Link
 								key={tag}
 								href={`/tags/${tag}/`}
-								className="border border-border px-3 py-1 font-mono text-xs text-muted-foreground no-underline transition-colors hover:border-primary hover:text-primary"
+								className="kicker no-rule no-underline transition-colors hover:text-primary"
 							>
 								{getTagLabel(tag)}
 							</Link>
@@ -83,7 +80,7 @@ export function BlogPostLayout({
 
 				{/* Lead image */}
 				{lead ? (
-					<figure className="mt-10 overflow-hidden border border-border">
+					<figure className="mt-10">
 						<OptimizedImage
 							src={lead.src}
 							alt={lead.alt}
@@ -91,33 +88,33 @@ export function BlogPostLayout({
 							priority
 							className="aspect-[16/9] h-auto w-full object-cover"
 						/>
-						<figcaption className="sr-only">{lead.description}</figcaption>
+						<figcaption className="kicker mt-3 border-t border-border pt-2">{lead.title}</figcaption>
 					</figure>
 				) : null}
 
 				{/* Body */}
-				<div className="mt-12 prose-legal [&_a]:underline-offset-2 [&_a]:hover:underline">{children}</div>
+				<div className="mt-12 prose-legal prose-dropcap [&_a]:underline-offset-2 [&_a]:hover:underline">{children}</div>
 
 				{/* Secondary images */}
 				{rest.length > 0 ? (
-					<div className="mt-12 grid gap-px border border-border bg-border sm:grid-cols-2">
+					<div className="mt-12 flex flex-col gap-8">
 						{rest.map((imageItem) => (
-							<figure key={imageItem.src} className="group overflow-hidden bg-background">
+							<figure key={imageItem.src}>
 								<OptimizedImage
 									src={imageItem.src}
 									alt={imageItem.alt}
 									title={imageItem.title}
-									className="aspect-[3/2] h-auto w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+									className="aspect-[3/2] h-auto w-full object-cover"
 								/>
-								<figcaption className="sr-only">{imageItem.description}</figcaption>
+								<figcaption className="kicker mt-3 border-t border-border pt-2">{imageItem.title}</figcaption>
 							</figure>
 						))}
 					</div>
 				) : null}
 
 				{/* Image sources */}
-				<section className="mt-12 border-t border-border pt-6 text-right">
-					<h2 className="swiss-label mb-3">מקורות תמונה חינמיים</h2>
+				<section className="mt-14 border-t border-border pt-6 text-right">
+					<p className="kicker mb-3">מקורות תמונה חינמיים</p>
 					<ul className="flex flex-col gap-1.5 text-sm text-muted-foreground">
 						{images.map((imageItem) => (
 							<li key={imageItem.source}>
@@ -130,12 +127,12 @@ export function BlogPostLayout({
 				</section>
 
 				{relatedPosts.length > 0 ? (
-					<div className="mt-12 border-t border-border pt-10">
+					<div className="mt-14 border-t-2 border-foreground pt-10">
 						<RelatedArticles posts={relatedPosts} />
 					</div>
 				) : null}
 
-				<div className="mt-12 border-t border-border pt-10">
+				<div className="mt-14 border-t border-border pt-10">
 					<AuthorBio />
 				</div>
 			</article>

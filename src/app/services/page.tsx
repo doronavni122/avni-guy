@@ -48,30 +48,39 @@ export default function ServicesPage() {
 
 	return (
 		<SiteShell currentPath="/services/" extraJsonLd={jsonLd}>
-			<div className="flex flex-col">
+			<article className="flex flex-col">
 				<BreadcrumbNav items={breadcrumbItems} />
-				<MainPageHero hero={MAIN_PAGE_HEROES['/services/']} index="02" eyebrow="שירותים / Services" />
+				<MainPageHero hero={MAIN_PAGE_HEROES['/services/']} eyebrow="שירותים · Services" />
 
-				<section className="mt-16 grid gap-px border border-border bg-border sm:grid-cols-2">
-					{SERVICES.map(([num, title, text]) => (
-						<article key={title} className="group flex flex-col gap-4 bg-background p-8 transition-colors hover:bg-card">
-							<div className="flex items-baseline justify-between">
-								<span className="font-mono text-xs text-muted-foreground">{num}</span>
-								<span className="h-px w-8 bg-border transition-colors group-hover:bg-primary" aria-hidden="true" />
-							</div>
-							<h2 className="font-heading text-lg font-semibold text-foreground">{title}</h2>
-							<p className="text-pretty text-sm leading-relaxed text-muted-foreground">{text}</p>
-						</article>
-					))}
+				<section className="mt-16 border-t-2 border-foreground" aria-label="תחומי ליווי">
+					<p className="kicker mb-2 mt-6">מדור · תחומי הליווי</p>
+					<ol className="flex flex-col">
+						{SERVICES.map(([num, title, text]) => (
+							<li
+								key={title}
+								className="group grid items-baseline gap-x-6 gap-y-2 border-b border-border py-7 sm:grid-cols-[auto_1fr] lg:grid-cols-[auto_minmax(0,18rem)_1fr]"
+							>
+								<span className="folio text-3xl leading-none text-muted-foreground transition-colors group-hover:text-primary" aria-hidden="true">
+									{num}
+								</span>
+								<h2 className="font-serif text-2xl font-extrabold text-foreground sm:col-span-1">{title}</h2>
+								<p className="max-w-2xl text-pretty leading-relaxed text-muted-foreground sm:col-span-2 lg:col-span-1">
+									{text}
+								</p>
+							</li>
+						))}
+					</ol>
 				</section>
 
-				<section className="mt-16 grid gap-8 border-t border-border pt-8 lg:grid-cols-12">
-					<div className="lg:col-span-4">
-						<span className="font-mono text-xs text-muted-foreground">05 / מה כולל השירות</span>
-					</div>
-					<div className="flex flex-col gap-4 text-right lg:col-span-8">
-						<h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground">מה כולל השירות</h2>
-						<p className="max-w-3xl text-pretty leading-relaxed text-muted-foreground">
+				<section className="mt-16 grid gap-x-12 gap-y-6 border-t border-border pt-10 lg:grid-cols-12">
+					<header className="lg:col-span-4">
+						<p className="kicker">פירוט</p>
+						<h2 className="mt-3 font-serif text-3xl font-extrabold leading-tight tracking-tight text-foreground text-balance">
+							מה כולל השירות
+						</h2>
+					</header>
+					<div className="flex flex-col gap-5 text-right lg:col-span-8">
+						<p className="drop-cap max-w-2xl text-pretty text-lg leading-relaxed text-foreground">
 							השירות כולל פגישת מיקוד, בניית מפת סיכונים והזדמנויות, הכנת מסמכים וניהול תקשורת מקצועית. מומלץ להמשיך גם ל־{' '}
 							<Link className="link-underline" href="/about/">
 								אודות
@@ -102,14 +111,14 @@ export default function ServicesPage() {
 							</Link>
 							.
 						</p>
-						<h3 className="mt-2 font-heading text-xl font-semibold text-foreground">תוצאה רצויה</h3>
-						<p className="max-w-3xl text-pretty leading-relaxed text-muted-foreground">
+						<h3 className="mt-4 font-serif text-2xl font-bold text-foreground">תוצאה רצויה</h3>
+						<p className="max-w-2xl text-pretty leading-relaxed text-muted-foreground">
 							התהליך שם דגש על בהירות, התנהלות רגועה ופעולות מעשיות שמביאות תוצאה טובה לאורך זמן. אין הבטחות על תוצאה
 							ספציפית; יש תיאור ברור של צעדים, אחריות ותקשורת בין שלב לשלב.
 						</p>
 					</div>
 				</section>
-			</div>
+			</article>
 		</SiteShell>
 	);
 }
