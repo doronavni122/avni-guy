@@ -45,9 +45,6 @@ alwaysApply: true
 **Security**
 - security: No logging secrets; validate external input; no dynamic code execution; encrypt sensitive at rest.
 
-**V0 reference submodule**
-- v0-ui-submodule-port-isolation: `v0-reference-web/` read-only v0 snapshot; no edits/deploy/imports; port UI into `apps/web/` only; see `v0-REFERENCE-ONLY.txt`.
-
 **Anti-patterns & workflow**
 - anti-patterns: No magic numbers (use named constants); no deep nesting; no circular deps; no global mutable state.
 - branch-naming: feature/, bugfix/, hotfix/, release/; semantic tags v<major>.<minor>.<patch>.

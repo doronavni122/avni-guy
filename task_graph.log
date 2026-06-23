@@ -205,3 +205,4 @@
 202. remove-dead-links-crawl-smoke-hook , scripts/smoke-routes.mjs task_graph.log
 203. sync-content-kit-lock-timestamp , .content-kit/kit.lock.json task_graph.log
 204. remove-stale-seo-doc-refs , AGENTS.md SSOT.md task_graph.log
+205. remove-dead-v0-submodule-rules , .cursor/rules/META-RULES.txt .cursor/rules/enforcement-meta.mdc task_graph.log
