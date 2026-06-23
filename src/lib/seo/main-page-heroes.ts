@@ -2,7 +2,7 @@ import type { MainPageHero } from '@/lib/seo/hero-rules';
 import { MAIN_PAGE_HEROES as heroesFromMjs } from './main-page-heroes.mjs';
 
 /**
- * SSOT for main-menu page heroes (H1 + intro). Data in main-page-heroes.mjs for Node guardrails.
+ * SSOT for main-menu page heroes (H1 + intro). Data in main-page-heroes.mjs for shared import.
  */
 export const MAIN_PAGE_HEROES = heroesFromMjs as Record<string, MainPageHero>;
 

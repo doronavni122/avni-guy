@@ -1,4 +1,4 @@
-/** SSOT for main-menu heroes - imported by guardrails and re-exported from main-page-heroes.ts */
+/** SSOT for main-menu heroes - re-exported from main-page-heroes.ts */
 export const MAIN_PAGE_HEROES = {
 	"/": {
 		"path": "/",
