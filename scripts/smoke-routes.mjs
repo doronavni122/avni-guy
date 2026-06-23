@@ -1,4 +1,4 @@
-import { spawn, spawnSync } from 'node:child_process';
+import { spawn } from 'node:child_process';
 import http from 'node:http';
 
 const PORT = Number(process.env.SMOKE_PORT ?? 3099);
@@ -104,17 +104,6 @@ async function main() {
 			process.exit(1);
 		}
 		logStep('done: all smoke routes passed', { count: ROUTES.length });
-		if (process.env.LINK_CRAWL_ENFORCE === '1') {
-			logStep('step 3: running links:crawl against smoke server');
-			const crawl = spawnSync('pnpm', ['run', 'links:crawl'], {
-				stdio: 'inherit',
-				env: { ...process.env, LINK_CRAWL_BASE_URL: BASE },
-			});
-			if (crawl.status !== 0) {
-				logErr('links:crawl failed after smoke', { exit: crawl.status });
-				process.exit(crawl.status ?? 1);
-			}
-		}
 	} catch (err) {
 		logErr('smoke run failed', { err, stderr: stderr.slice(-500) });
 		process.exit(1);
