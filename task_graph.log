@@ -200,3 +200,4 @@
 197. remove-temp-research-draft-files , temp_research/ temp_research_*.md task_graph.log
 198. remove-temp-seo-workfiles , temp-slugs.txt temp_articles_checklist.txt temp_homepage_brand_internal_links_checklist.txt temp_homepage_suggestions.txt temp_internal_links_checklist.txt task_graph.log
 199. remove-blog-slug-prefix-validator , scripts/check-blog-slug-prefix.mjs package.json task_graph.log
+200. remove-dead-skip-seo-guardrails-env , vercel.json task_graph.log
