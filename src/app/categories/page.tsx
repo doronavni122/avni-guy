@@ -1,6 +1,4 @@
 import Link from 'next/link';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
 import { MainPageHero } from '@/components/seo/MainPageHero';
 import { SiteShell } from '@/components/layout/SiteShell';
 import { getCategories } from '@/lib/content/posts';
@@ -30,36 +28,45 @@ export default async function CategoriesIndexPage() {
 
 	return (
 		<SiteShell currentPath="/categories/" extraJsonLd={jsonLd}>
-			<section className="flex flex-col gap-10">
+			<div className="flex flex-col">
 				<BreadcrumbNav items={breadcrumbItems} />
-				<MainPageHero hero={MAIN_PAGE_HEROES['/categories/']} />
-				<Separator className="bg-border/60" />
-				<p className="max-w-3xl text-pretty text-right leading-relaxed text-muted-foreground">
+				<MainPageHero hero={MAIN_PAGE_HEROES['/categories/']} index="04" eyebrow="נושאים / Topics" />
+
+				<p className="mt-8 max-w-3xl text-pretty text-right leading-relaxed text-muted-foreground">
 					בחרו תחום אחד, קראו שני מאמרים שלא חוזרים על אותו מסר, ואז עברו ל־{' '}
-					<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/tags/">
+					<Link className="link-underline" href="/tags/">
 						תגיות
 					</Link>{' '}
 					או ל־{' '}
-					<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/contact/">
+					<Link className="link-underline" href="/contact/">
 						יצירת קשר
 					</Link>{' '}
 					אם נשארה שאלה פתוחה.
 				</p>
-				<div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-					{categories.map((category) => (
-						<Link key={category} className="group block no-underline" href={`/categories/${category}/`}>
-							<Card className="card-interactive transition-all group-hover:border-primary/25">
-								<CardHeader className="text-right">
-									<CardTitle className="font-heading text-lg transition-colors group-hover:text-primary">
-										{getCategoryLabel(category)}
-									</CardTitle>
-								</CardHeader>
-								<CardContent className="text-right text-sm text-muted-foreground">מעבר למאמרים בקטגוריה</CardContent>
-							</Card>
+
+				<section className="mt-12 grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+					{categories.map((category, index) => (
+						<Link
+							key={category}
+							className="group flex flex-col gap-6 bg-background p-8 no-underline transition-colors hover:bg-card"
+							href={`/categories/${category}/`}
+						>
+							<div className="flex items-center justify-between">
+								<span className="font-mono text-xs text-muted-foreground">
+									{String(index + 1).padStart(2, '0')}
+								</span>
+								<span className="h-px w-8 bg-border transition-colors group-hover:bg-primary" aria-hidden="true" />
+							</div>
+							<div className="flex flex-col gap-1 text-right">
+								<h2 className="font-heading text-lg font-semibold text-foreground transition-colors group-hover:text-primary">
+									{getCategoryLabel(category)}
+								</h2>
+								<span className="text-sm text-muted-foreground">מעבר למאמרים בקטגוריה</span>
+							</div>
 						</Link>
 					))}
-				</div>
-			</section>
+				</section>
+			</div>
 		</SiteShell>
 	);
 }

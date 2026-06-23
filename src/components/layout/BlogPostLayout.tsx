@@ -1,14 +1,10 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { OptimizedImage } from '@/components/media/OptimizedImage';
-import { badgeVariants } from '@/components/ui/badge';
-import { Card, CardContent, CardDescription, CardHeader } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
 import { FormattedDate } from '@/components/FormattedDate';
 import { SiteShell } from '@/components/layout/SiteShell';
-import { cn } from '@/lib/utils';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
-import { getTagLabel } from '@/utils/taxonomy-labels';
+import { getTagLabel, getCategoryLabel } from '@/utils/taxonomy-labels';
 import type { BreadcrumbItem } from '@/utils/structured-data';
 import type { BlogFrontmatter } from '@/lib/content/schema';
 import type { SiteKeyword } from '@/consts';
@@ -39,93 +35,109 @@ export function BlogPostLayout({
 	children,
 }: BlogPostLayoutProps) {
 	const { title, pubDate, updatedDate, category, tags, images } = data;
+	const lead = images[0];
+	const rest = images.slice(1);
 
 	return (
 		<SiteShell currentPath={currentPath} extraJsonLd={jsonLd}>
-			<article className="flex flex-col gap-10">
+			<article className="flex flex-col">
 				<BreadcrumbNav items={breadcrumbItems} />
-				<div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-					{images.map((imageItem, index) => (
-						<figure
-							key={imageItem.src}
-							className="group overflow-hidden rounded-xl ring-1 ring-border/60 shadow-sm transition-shadow hover:shadow-md"
-						>
-							<OptimizedImage
-								src={imageItem.src}
-								alt={imageItem.alt}
-								title={imageItem.title}
-								priority={index === 0}
-								className="aspect-[3/2] h-auto w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-							/>
-							<figcaption className="sr-only">{imageItem.description}</figcaption>
-						</figure>
-					))}
-				</div>
 
-				<Card className="card-interactive border-border/60">
-					<CardHeader className="gap-4 text-right">
-						<div className="flex flex-col gap-2 text-sm text-muted-foreground">
-							<FormattedDate date={pubDate} />
-							{updatedDate ? (
-								<p className="text-xs italic">
-									עודכן לאחרונה: <FormattedDate date={updatedDate} />
-								</p>
-							) : null}
-						</div>
-						<CardDescription className="text-xs font-medium uppercase tracking-wide text-primary">
-							{mainKeyword}
-						</CardDescription>
-						<h1 className="font-heading text-3xl font-semibold tracking-tight text-foreground md:text-4xl">{title}</h1>
-						<div className="flex flex-wrap items-center justify-end gap-2">
-							<Link
-								href={`/categories/${category}/`}
-								className={cn(badgeVariants({ variant: 'outline' }), 'no-underline hover:bg-muted')}
-							>
-								קטגוריה: {category}
-							</Link>
-							{tags.map((tag) => (
-								<Link
-									key={tag}
-									href={`/tags/${tag}/`}
-									className={cn(badgeVariants({ variant: 'secondary' }), 'no-underline hover:bg-secondary/80')}
-								>
-									{getTagLabel(tag)}
-								</Link>
-							))}
-						</div>
-					</CardHeader>
-					<Separator />
-					<CardContent className="pt-6">
-						<section className="mb-8 rounded-xl border border-border/50 bg-muted/30 p-4 text-right">
-							<h2 className="mb-2 font-heading text-sm font-semibold text-foreground">מקורות תמונה חינמיים</h2>
-							<ul className="flex flex-col gap-2 text-sm text-muted-foreground">
-								{images.map((imageItem) => (
-									<li key={imageItem.source}>
-										<a
-											className="text-primary underline-offset-2 hover:underline"
-											href={imageItem.source}
-											rel="noopener noreferrer"
-											target="_blank"
-										>
-											{imageItem.source}
-										</a>
-									</li>
-								))}
-							</ul>
-						</section>
-						<div className="prose-legal [&_a]:underline-offset-2 [&_a]:hover:underline">
-							{children}
-						</div>
-					</CardContent>
-					{relatedPosts.length > 0 ? (
-						<div className="border-t border-border/60 px-6 py-6">
-							<RelatedArticles posts={relatedPosts} />
-						</div>
-					) : null}
-					<div className="border-t border-border/60 px-6 py-6">
-						<AuthorBio />
+				{/* Title block */}
+				<header className="mt-8 flex flex-col gap-6 text-right">
+					<div className="flex items-center justify-end gap-3">
+						<span className="swiss-label text-primary">{mainKeyword}</span>
+						<span className="h-px w-12 bg-border" aria-hidden="true" />
 					</div>
-				</Card>
+					<h1 className="font-heading text-3xl font-extrabold leading-[1.1] tracking-tight text-foreground text-balance md:text-5xl">
+						{title}
+					</h1>
+					<div className="flex flex-wrap items-center justify-end gap-x-4 gap-y-1 border-y border-border py-3 text-sm text-muted-foreground">
+						<span className="swiss-index">
+							<FormattedDate date={pubDate} />
+						</span>
+						{updatedDate ? (
+							<span className="swiss-index">
+								עודכן: <FormattedDate date={updatedDate} />
+							</span>
+						) : null}
+					</div>
+					<div className="flex flex-wrap items-center justify-end gap-2">
+						<Link
+							href={`/categories/${category}/`}
+							className="border border-border px-3 py-1 font-mono text-xs text-foreground no-underline transition-colors hover:border-primary hover:text-primary"
+						>
+							{getCategoryLabel(category)}
+						</Link>
+						{tags.map((tag) => (
+							<Link
+								key={tag}
+								href={`/tags/${tag}/`}
+								className="border border-border px-3 py-1 font-mono text-xs text-muted-foreground no-underline transition-colors hover:border-primary hover:text-primary"
+							>
+								{getTagLabel(tag)}
+							</Link>
+						))}
+					</div>
+				</header>
+
+				{/* Lead image */}
+				{lead ? (
+					<figure className="mt-10 overflow-hidden border border-border">
+						<OptimizedImage
+							src={lead.src}
+							alt={lead.alt}
+							title={lead.title}
+							priority
+							className="aspect-[16/9] h-auto w-full object-cover"
+						/>
+						<figcaption className="sr-only">{lead.description}</figcaption>
+					</figure>
+				) : null}
+
+				{/* Body */}
+				<div className="mt-12 prose-legal [&_a]:underline-offset-2 [&_a]:hover:underline">{children}</div>
+
+				{/* Secondary images */}
+				{rest.length > 0 ? (
+					<div className="mt-12 grid gap-px border border-border bg-border sm:grid-cols-2">
+						{rest.map((imageItem) => (
+							<figure key={imageItem.src} className="group overflow-hidden bg-background">
+								<OptimizedImage
+									src={imageItem.src}
+									alt={imageItem.alt}
+									title={imageItem.title}
+									className="aspect-[3/2] h-auto w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+								/>
+								<figcaption className="sr-only">{imageItem.description}</figcaption>
+							</figure>
+						))}
+					</div>
+				) : null}
+
+				{/* Image sources */}
+				<section className="mt-12 border-t border-border pt-6 text-right">
+					<h2 className="swiss-label mb-3">מקורות תמונה חינמיים</h2>
+					<ul className="flex flex-col gap-1.5 text-sm text-muted-foreground">
+						{images.map((imageItem) => (
+							<li key={imageItem.source}>
+								<a className="link-underline" href={imageItem.source} rel="noopener noreferrer" target="_blank">
+									{imageItem.source}
+								</a>
+							</li>
+						))}
+					</ul>
+				</section>
+
+				{relatedPosts.length > 0 ? (
+					<div className="mt-12 border-t border-border pt-10">
+						<RelatedArticles posts={relatedPosts} />
+					</div>
+				) : null}
+
+				<div className="mt-12 border-t border-border pt-10">
+					<AuthorBio />
+				</div>
 			</article>
 		</SiteShell>
 	);

@@ -1,6 +1,4 @@
 import Link from 'next/link';
-import { Card, CardHeader, CardTitle } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
 import { MainPageHero } from '@/components/seo/MainPageHero';
 import { SiteShell } from '@/components/layout/SiteShell';
 import { getTags } from '@/lib/content/posts';
@@ -30,29 +28,30 @@ export default async function TagsIndexPage() {
 
 	return (
 		<SiteShell currentPath="/tags/" extraJsonLd={jsonLd}>
-			<section className="flex flex-col gap-10">
+			<div className="flex flex-col">
 				<BreadcrumbNav items={breadcrumbItems} />
-				<MainPageHero hero={MAIN_PAGE_HEROES['/tags/']} />
-				<Separator className="bg-border/60" />
-				<p className="max-w-3xl text-pretty text-right leading-relaxed text-muted-foreground">
+				<MainPageHero hero={MAIN_PAGE_HEROES['/tags/']} index="05" eyebrow="תגיות / Tags" />
+
+				<p className="mt-8 max-w-3xl text-pretty text-right leading-relaxed text-muted-foreground">
 					תגית צרה מצמצמת רעש: פתחו נושא אחד, השוו ל־{' '}
-					<Link className="font-medium text-primary underline-offset-2 hover:underline" href="/categories/">
+					<Link className="link-underline" href="/categories/">
 						קטגוריה רחבה
 					</Link>{' '}
 					רק אם צריך הקשר נוסף, ואז המשיכו למאמר המלא מהארכיון.
 				</p>
-				<div className="flex flex-wrap justify-end gap-3">
+
+				<section className="mt-12 flex flex-wrap justify-end gap-px border border-border bg-border">
 					{tags.map((tag) => (
-						<Link key={tag} className="no-underline" href={`/tags/${tag}/`}>
-							<Card className="card-interactive transition-all hover:border-primary/25">
-								<CardHeader className="p-0 text-right">
-									<CardTitle className="font-heading text-sm font-semibold text-primary">{getTagLabel(tag)}</CardTitle>
-								</CardHeader>
-							</Card>
+						<Link
+							key={tag}
+							className="bg-background px-5 py-3 font-heading text-sm font-semibold text-foreground no-underline transition-colors hover:bg-primary hover:text-primary-foreground"
+							href={`/tags/${tag}/`}
+						>
+							{getTagLabel(tag)}
 						</Link>
 					))}
-				</div>
-			</section>
+				</section>
+			</div>
 		</SiteShell>
 	);
 }

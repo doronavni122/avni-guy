@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
+import { ArticleList } from '@/components/blog/ArticleList';
 import { SiteShell } from '@/components/layout/SiteShell';
 import { getCategories, getPostsIndex } from '@/lib/content/posts';
 import { buildPageMetadata } from '@/lib/metadata';
@@ -52,42 +51,37 @@ export default async function CategoryPage({ params }: PageProps) {
 
 	return (
 		<SiteShell currentPath={`/categories/${category}/`} extraJsonLd={jsonLd}>
-			<section className="flex flex-col gap-10">
+			<div className="flex flex-col">
 				<BreadcrumbNav items={breadcrumbItems} />
-				<div className="flex flex-col gap-4 text-right">
-					<p className="text-sm font-medium text-primary">אבני גיא</p>
-					<h1 className="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+				<header className="mt-8 flex flex-col gap-6 text-right">
+					<div className="flex items-center justify-end gap-3">
+						<p className="swiss-label">קטגוריה / Category</p>
+						<span className="h-px w-12 bg-border" aria-hidden="true" />
+					</div>
+					<h1 className="font-heading text-4xl font-extrabold leading-[1.05] tracking-tight text-foreground text-balance sm:text-5xl lg:text-6xl">
 						אבני גיא - קטגוריה {categoryHe}
 					</h1>
-					<p className="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
+					<p className="max-w-4xl text-pretty text-lg leading-relaxed text-muted-foreground">
 						{hubIntro.paragraph}{' '}
 						{hubIntro.pillarLinks.map((link, i) => (
 							<span key={link.href}>
 								{i > 0 ? (i === hubIntro.pillarLinks.length - 1 ? ' ו-' : ', ') : ''}
-								<Link className="font-medium text-primary underline-offset-2 hover:underline" href={link.href}>
+								<Link className="link-underline" href={link.href}>
 									{link.label}
 								</Link>
 							</span>
 						))}
 						.
 					</p>
-				</div>
-				<Separator className="bg-border/60" />
-				<div className="grid gap-4 sm:grid-cols-2">
-					{posts.map((post) => (
-						<Link key={post.slug} className="group block no-underline" href={`/blog/${post.slug}/`}>
-							<Card className="card-interactive h-full group-hover:border-primary/25">
-								<CardHeader className="text-right">
-									<CardTitle className="font-heading text-base leading-snug transition-colors group-hover:text-primary">
-										{post.data.title}
-									</CardTitle>
-								</CardHeader>
-								<CardContent className="text-right text-sm text-muted-foreground">{post.data.description}</CardContent>
-							</Card>
-						</Link>
-					))}
-				</div>
-			</section>
+				</header>
+				<section className="mt-12">
+					<div className="flex items-end justify-between border-b border-border pb-3">
+						<span className="swiss-label">{String(posts.length).padStart(2, '0')} מאמרים</span>
+						<span className="swiss-label">{categoryHe}</span>
+					</div>
+					<ArticleList posts={posts} excerpt="description" />
+				</section>
+			</div>
 		</SiteShell>
 	);
 }

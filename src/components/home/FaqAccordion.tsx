@@ -18,23 +18,25 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
 			<PremiumPanel>
 				<SectionHeader
 					id="faq-title"
+					eyebrow="שאלות נפוצות / FAQ"
+					index={11}
 					title="שאלות נפוצות לפני שמדברים עם גיא אבני משרד עורכי דין"
 					description="התשובות הבאות נועדו להסיר חסמים ראשוניים ולתת לכם ודאות לגבי הצעד הראשון."
 					badges={
 						<>
-							<Badge variant="outline">שאלות נפוצות</Badge>
-							<Badge variant="outline">התחלה מהירה</Badge>
+							<Badge variant="outline" className="rounded-sm">שאלות נפוצות</Badge>
+							<Badge variant="outline" className="rounded-sm">התחלה מהירה</Badge>
 						</>
 					}
 				/>
-				<Accordion className="mt-6 flex flex-col gap-3">
+				<Accordion className="mt-6 flex flex-col border-t border-border">
 					{items.map((item) => (
 						<AccordionItem
 							key={item.question}
 							value={item.question}
-							className="rounded-xl border border-border/60 bg-background/60 px-4 shadow-sm last:border-b"
+							className="border-b border-border"
 						>
-							<AccordionTrigger className="text-right font-semibold text-foreground hover:no-underline">
+							<AccordionTrigger className="py-4 text-right font-semibold text-foreground hover:no-underline">
 								<strong>{item.question}</strong>
 							</AccordionTrigger>
 							<AccordionContent className="text-right">
@@ -44,7 +46,7 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
 					))}
 				</Accordion>
 				<div className="mt-6">
-					<Link className={cn(buttonVariants({ size: 'lg' }))} href="/contact/">
+					<Link className={cn(buttonVariants({ size: 'lg' }), 'rounded-sm')} href="/contact/">
 						רוצים תשובה מותאמת? צרו קשר
 					</Link>
 				</div>
