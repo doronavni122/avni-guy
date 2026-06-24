@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { PageSection } from '@/components/layout/PageSection';
+import { SectionHeader } from '@/components/layout/SectionHeader';
 import { ArticleList } from '@/components/blog/ArticleList';
 import { MainPageHero } from '@/components/seo/MainPageHero';
 import { SiteShell } from '@/components/layout/SiteShell';
@@ -32,15 +34,13 @@ export default async function BlogIndexPage() {
 				<BreadcrumbNav items={breadcrumbItems} />
 				<MainPageHero hero={MAIN_PAGE_HEROES['/blog/']} index="03" eyebrow="מאמרים / Journal" />
 
-				<section className="mt-16 grid gap-8 border-t border-border pt-8 lg:grid-cols-12">
-					<div className="lg:col-span-4">
-						<span className="font-mono text-xs text-muted-foreground">קריאה מומלצת / Reading</span>
-					</div>
-					<div className="flex flex-col gap-4 text-right lg:col-span-8">
-						<h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground">
-							מה כדאי לקרוא השבוע - לפי סדר עדכני
-						</h2>
-						<p className="max-w-3xl text-pretty text-muted-foreground">
+				<PageSection className="mt-16">
+					<SectionHeader
+						index={1}
+						eyebrow="קריאה מומלצת / Reading"
+						title="מה כדאי לקרוא השבוע - לפי סדר עדכני"
+					/>
+					<p className="max-w-3xl text-pretty text-muted-foreground">
 							להעמקה לפי נושא, אפשר לעבור ל־{' '}
 							<Link className="link-underline" href="/categories/">
 								קטגוריות
@@ -70,17 +70,16 @@ export default async function BlogIndexPage() {
 								עיקול דירה יחידה בחובות
 							</Link>
 							.
-						</p>
-					</div>
-				</section>
+					</p>
+				</PageSection>
 
-				<section className="mt-12">
+				<PageSection>
 					<div className="flex items-end justify-between border-b border-border pb-3">
 						<span className="swiss-label">{String(posts.length).padStart(2, '0')} מאמרים</span>
 						<span className="swiss-label">ארכיון</span>
 					</div>
 					<ArticleList posts={posts} showDate excerpt="metaDescription" />
-				</section>
+				</PageSection>
 
 				<p className="mt-8 text-right text-sm text-muted-foreground">
 					בחרו מאמר אחד להתחלה, ואז עברו לפי קישורי ההמשך בכל עמוד כדי לבנות תמונת מצב מלאה ופרקטית.

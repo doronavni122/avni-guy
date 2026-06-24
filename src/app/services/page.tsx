@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { PageSection } from '@/components/layout/PageSection';
+import { SectionHeader } from '@/components/layout/SectionHeader';
 import { MainPageHero } from '@/components/seo/MainPageHero';
 import { SiteShell } from '@/components/layout/SiteShell';
 import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
@@ -52,7 +54,9 @@ export default function ServicesPage() {
 				<BreadcrumbNav items={breadcrumbItems} />
 				<MainPageHero hero={MAIN_PAGE_HEROES['/services/']} index="02" eyebrow="שירותים / Services" />
 
-				<section className="mt-16 grid gap-px border border-border bg-border sm:grid-cols-2">
+				<PageSection className="mt-16">
+					<SectionHeader index={1} eyebrow="שירותים / Services" title="מה אנחנו מציעים" />
+					<div className="mt-8 grid gap-px border border-border bg-border sm:grid-cols-2">
 					{SERVICES.map(([num, title, text]) => (
 						<article key={title} className="group flex flex-col gap-4 bg-background p-8 transition-colors hover:bg-card">
 							<div className="flex items-baseline justify-between">
@@ -63,9 +67,11 @@ export default function ServicesPage() {
 							<p className="text-pretty text-sm leading-relaxed text-muted-foreground">{text}</p>
 						</article>
 					))}
-				</section>
+					</div>
+				</PageSection>
 
-				<section className="mt-16 grid gap-8 border-t border-border pt-8 lg:grid-cols-12">
+				<PageSection>
+					<div className="grid gap-8 lg:grid-cols-12">
 					<div className="lg:col-span-4">
 						<span className="font-mono text-xs text-muted-foreground">05 / מה כולל השירות</span>
 					</div>
@@ -108,7 +114,8 @@ export default function ServicesPage() {
 							ספציפית; יש תיאור ברור של צעדים, אחריות ותקשורת בין שלב לשלב.
 						</p>
 					</div>
-				</section>
+					</div>
+				</PageSection>
 			</div>
 		</SiteShell>
 	);

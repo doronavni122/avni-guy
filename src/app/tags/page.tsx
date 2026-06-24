@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { PageSection } from '@/components/layout/PageSection';
+import { SectionHeader } from '@/components/layout/SectionHeader';
 import { MainPageHero } from '@/components/seo/MainPageHero';
 import { SiteShell } from '@/components/layout/SiteShell';
 import { getTags } from '@/lib/content/posts';
@@ -40,7 +42,14 @@ export default async function TagsIndexPage() {
 					רק אם צריך הקשר נוסף, ואז המשיכו למאמר המלא מהארכיון.
 				</p>
 
-				<section className="mt-12 flex flex-wrap justify-end gap-px border border-border bg-border">
+				<PageSection className="mt-12">
+					<SectionHeader
+						index={1}
+						eyebrow="תגיות / Tags"
+						title="נושאים צרים לקריאה מהירה"
+						description="תגית מצמצמת רעש ומובילה ישירות למאמרים רלוונטיים."
+					/>
+					<div className="mt-8 flex flex-wrap justify-end gap-px border border-border bg-border">
 					{tags.map((tag) => (
 						<Link
 							key={tag}
@@ -50,7 +59,8 @@ export default async function TagsIndexPage() {
 							{getTagLabel(tag)}
 						</Link>
 					))}
-				</section>
+					</div>
+				</PageSection>
 			</div>
 		</SiteShell>
 	);

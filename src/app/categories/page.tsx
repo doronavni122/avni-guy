@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { PageSection } from '@/components/layout/PageSection';
+import { SectionHeader } from '@/components/layout/SectionHeader';
 import { MainPageHero } from '@/components/seo/MainPageHero';
 import { SiteShell } from '@/components/layout/SiteShell';
 import { getCategories } from '@/lib/content/posts';
@@ -44,7 +46,14 @@ export default async function CategoriesIndexPage() {
 					אם נשארה שאלה פתוחה.
 				</p>
 
-				<section className="mt-12 grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+				<PageSection className="mt-12">
+					<SectionHeader
+						index={1}
+						eyebrow="קטגוריות / Categories"
+						title="בחרו תחום וקראו מאמרים ממוקדים"
+						description="כל קטגוריה מרכזת מאמרים באותו תחום משפטי."
+					/>
+					<div className="mt-8 grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
 					{categories.map((category, index) => (
 						<Link
 							key={category}
@@ -65,7 +74,8 @@ export default async function CategoriesIndexPage() {
 							</div>
 						</Link>
 					))}
-				</section>
+					</div>
+				</PageSection>
 			</div>
 		</SiteShell>
 	);

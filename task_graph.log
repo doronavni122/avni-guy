@@ -224,3 +224,4 @@
 221. add-source-anchor-validator-to-check-article , .content-kit/validators/lib/parse-article.mjs .content-kit/validators/check-article.mjs task_graph.log
 222. add-assign-article-images-script , scripts/assign-article-images.mjs task_graph.log
 223. add-article-faq-to-blog-layout , src/components/blog/ArticleFaq.tsx src/components/layout/BlogPostLayout.tsx src/app/blog/[slug]/page.tsx task_graph.log
+224. migrate-main-pages-to-page-section-primitives , src/app/about/page.tsx src/app/services/page.tsx src/app/blog/page.tsx src/app/categories/page.tsx src/app/tags/page.tsx task_graph.log

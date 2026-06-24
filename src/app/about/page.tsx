@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { PageSection } from '@/components/layout/PageSection';
+import { SectionHeader } from '@/components/layout/SectionHeader';
 import { MainPageHero } from '@/components/seo/MainPageHero';
 import { SiteShell } from '@/components/layout/SiteShell';
 import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
@@ -42,7 +44,9 @@ export default function AboutPage() {
 				<BreadcrumbNav items={breadcrumbItems} />
 				<MainPageHero hero={MAIN_PAGE_HEROES['/about/']} index="01" eyebrow="אודות / About" />
 
-				<section className="mt-16 grid gap-px border border-border bg-border sm:grid-cols-2">
+				<PageSection className="mt-16">
+					<SectionHeader index={1} eyebrow="עקרונות / Principles" title="ערכים ודרך עבודה" />
+					<div className="mt-8 grid gap-px border border-border bg-border sm:grid-cols-2">
 					{PRINCIPLES.map(([num, title, text]) => (
 						<div key={title} className="flex flex-col gap-4 bg-background p-8">
 							<span className="font-mono text-xs text-muted-foreground">{num}</span>
@@ -50,9 +54,11 @@ export default function AboutPage() {
 							<p className="text-pretty text-sm leading-relaxed text-muted-foreground">{text}</p>
 						</div>
 					))}
-				</section>
+					</div>
+				</PageSection>
 
-				<section className="mt-16 grid gap-8 border-t border-border pt-8 lg:grid-cols-12">
+				<PageSection>
+					<div className="grid gap-8 lg:grid-cols-12">
 					<div className="lg:col-span-4">
 						<span className="font-mono text-xs text-muted-foreground">02 / ערכי העבודה</span>
 					</div>
@@ -97,7 +103,8 @@ export default function AboutPage() {
 							החלטות יומיומיות. התוכן באתר אינו תחליף לייעוץ אישי; כשיש סיכון מהותי, עדיף שיחה ממוקדת.
 						</p>
 					</div>
-				</section>
+					</div>
+				</PageSection>
 			</div>
 		</SiteShell>
 	);
