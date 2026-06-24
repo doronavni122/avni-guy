@@ -144,6 +144,27 @@ export function hasTldrLinkListOnly(tldrText, profile) {
   return pattern.test(tldrText)
 }
 
+/** Sources section anchors must use institution names, not generic labels or slugs. */
+export function validateSourceAnchors(body) {
+  const issues = []
+  const lines = body.split("\n").filter((line) => /מקורות/i.test(line))
+  for (const line of lines) {
+    if (/\|\s*לשכה\s*\]/u.test(line)) {
+      issues.push("sources line uses generic anchor 'לשכה' — use full institution name")
+    }
+    if (/\|\s*מקור\s*רשמי\s*\]/u.test(line)) {
+      issues.push("sources line uses generic anchor 'מקור רשמי'")
+    }
+    if (/\[[a-z0-9-]+\s*\|[^\]]+\]/i.test(line)) {
+      issues.push("sources line uses slug-as-anchor pattern (slug | label)")
+    }
+    if (/\[(https?:\/\/[^\]]+)\]/i.test(line)) {
+      issues.push("sources line uses raw URL as anchor text")
+    }
+  }
+  return { ok: issues.length === 0, messages: issues }
+}
+
 function escapeRegex(s) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
 }

@@ -19,6 +19,7 @@ import {
   pathInBody,
   validateHomepageAnchor,
   hasTldrLinkListOnly,
+  validateSourceAnchors,
 } from "./lib/parse-article.mjs"
 
 function fail(msg) {
@@ -104,6 +105,11 @@ if (homeCount !== 1) fail(`homepage links: ${homeCount} — need exactly 1`)
 
 const anchorCheck = validateHomepageAnchor(body, profile.primaryServiceAnchor)
 if (!anchorCheck.ok) fail(anchorCheck.message)
+
+const sourceCheck = validateSourceAnchors(body)
+if (!sourceCheck.ok) {
+  for (const msg of sourceCheck.messages) fail(msg)
+}
 
 const internal = extractInternalLinks(body)
 if (internal.length < 3) fail(`internal links ${internal.length} < 3`)
