@@ -12,6 +12,16 @@ const ROUTES = [
 
 const BRAND = 'גיא אבני';
 
+test('sitemap.xml is valid and complete', async ({ request }) => {
+	const response = await request.get('/sitemap.xml');
+	expect(response.status()).toBe(200);
+	const body = await response.text();
+	expect(body).toContain('<urlset');
+	const locCount = (body.match(/<loc>/g) ?? []).length;
+	expect(locCount).toBeGreaterThanOrEqual(132);
+	expect(body).not.toContain('/blog/guy-avni-');
+});
+
 for (const route of ROUTES) {
 	test(`loads ${route} with RTL and no console errors`, async ({ page }) => {
 		const consoleErrors: string[] = [];
