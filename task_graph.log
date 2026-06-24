@@ -218,3 +218,4 @@
 215. rename-blog-image-files-strip-legacy-prefix , public/images/blog/ scripts/rename-blog-image-files.mjs task_graph.log
 216. add-inline-article-figures-and-image-resolver , src/lib/content/images.ts src/lib/content/inject-figures.ts src/lib/content/posts.ts src/lib/content/schema.ts src/lib/content/mdx.tsx src/components/blog/ArticleFigure.tsx src/app/blog/[slug]/page.tsx src/components/layout/BlogPostLayout.tsx task_graph.log
 217. harden-sitemap-and-smoke-checks , src/app/sitemap.ts scripts/smoke-routes.mjs task_graph.log
+218. add-kit-sources-images-standards , .content-kit/standards/sources.md .content-kit/standards/images.md scripts/fix-source-anchors.mjs task_graph.log
