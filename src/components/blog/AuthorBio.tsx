@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { OptimizedImage } from '@/components/media/OptimizedImage';
+import { PremiumPanel } from '@/components/layout/PremiumPanel';
 
 const AUTHOR_NAME = 'גיא אבני';
 const AUTHOR_TITLE = 'עורך דין';
@@ -7,10 +8,11 @@ const AUTHOR_LOGO = '/images/branding/guy-avni-avni-guy-law-firm-lawyer-brand-lo
 
 export function AuthorBio() {
 	return (
-		<section
-			className="flex flex-col gap-5 border border-border bg-card p-8 text-right sm:flex-row-reverse sm:items-start"
-			aria-labelledby="author-bio-title"
-		>
+		<PremiumPanel className="text-right">
+			<section
+				className="flex flex-col gap-5 sm:flex-row-reverse sm:items-start"
+				aria-labelledby="author-bio-title"
+			>
 			<OptimizedImage
 				src={AUTHOR_LOGO}
 				alt={`${AUTHOR_NAME} ${AUTHOR_TITLE} - לוגו המשרד`}
@@ -40,6 +42,7 @@ export function AuthorBio() {
 					</Link>
 				</div>
 			</div>
-		</section>
+			</section>
+		</PremiumPanel>
 	);
 }

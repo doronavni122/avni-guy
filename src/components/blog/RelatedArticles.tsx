@@ -1,4 +1,5 @@
 import { ArticleList } from '@/components/blog/ArticleList';
+import { PremiumPanel } from '@/components/layout/PremiumPanel';
 import type { BlogPost } from '@/lib/content/schema';
 
 type RelatedArticlesProps = {
@@ -9,7 +10,8 @@ export function RelatedArticles({ posts }: RelatedArticlesProps) {
 	if (!posts.length) return null;
 
 	return (
-		<section className="flex flex-col gap-4 text-right" aria-labelledby="related-articles-heading">
+		<PremiumPanel variant="accent" className="text-right">
+			<section className="flex flex-col gap-4" aria-labelledby="related-articles-heading">
 			<div className="flex items-center justify-end gap-3">
 				<span className="swiss-label">המשך קריאה / More</span>
 				<span className="h-px w-12 bg-border" aria-hidden="true" />
@@ -23,6 +25,7 @@ export function RelatedArticles({ posts }: RelatedArticlesProps) {
 				</p>
 			</div>
 			<ArticleList posts={posts} excerpt="metaDescription" />
-		</section>
+			</section>
+		</PremiumPanel>
 	);
 }
