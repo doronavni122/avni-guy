@@ -99,6 +99,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 			jsonLd={jsonLd}
 			breadcrumbItems={breadcrumbItems}
 			relatedPosts={relatedPosts}
+			faqItems={faqItems}
 		>
 			{content}
 		</BlogPostLayout>

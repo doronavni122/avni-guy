@@ -8,7 +8,9 @@ import type { BreadcrumbItem } from '@/utils/structured-data';
 import type { BlogFrontmatter } from '@/lib/content/schema';
 import type { SiteKeyword } from '@/consts';
 import type { BlogPost } from '@/lib/content/schema';
+import type { BlogFaqItem } from '@/lib/content/schema';
 import { AuthorBio } from '@/components/blog/AuthorBio';
+import { ArticleFaq } from '@/components/blog/ArticleFaq';
 import { RelatedArticles } from '@/components/blog/RelatedArticles';
 
 type BlogPostLayoutProps = {
@@ -21,6 +23,7 @@ type BlogPostLayoutProps = {
 	jsonLd: Array<Record<string, unknown>>;
 	breadcrumbItems: BreadcrumbItem[];
 	relatedPosts?: BlogPost[];
+	faqItems?: BlogFaqItem[];
 	children: ReactNode;
 };
 
@@ -31,6 +34,7 @@ export function BlogPostLayout({
 	jsonLd,
 	breadcrumbItems,
 	relatedPosts = [],
+	faqItems = [],
 	children,
 }: BlogPostLayoutProps) {
 	const { title, pubDate, updatedDate, category, tags } = data;
@@ -78,6 +82,8 @@ export function BlogPostLayout({
 				</header>
 
 				<div className="mt-12 prose-legal [&_a]:underline-offset-2 [&_a]:hover:underline">{children}</div>
+
+				<ArticleFaq items={faqItems} />
 
 				{relatedPosts.length > 0 ? (
 					<div className="mt-12 border-t border-border pt-10">
