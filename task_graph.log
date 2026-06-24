@@ -208,3 +208,4 @@
 205. remove-dead-v0-submodule-rules , .cursor/rules/META-RULES.txt .cursor/rules/enforcement-meta.mdc task_graph.log
 206. remove-cursor-content-seo-rules , .cursor/rules/content-seo-quality.mdc .cursor/rules/content-kit-commends-todo.mdc task_graph.log
 207. remove-content-seo-pipeline-skill , .cursor/skills/content-seo-pipeline/SKILL.md task_graph.log
+208. remove-seo-pipeline-commends , .commends/TODO_reserch.md .commends/TODO_article_reserch.md .commends/TODO_confidance_full_95.md .commends/TODO_confidance.md task_graph.log
