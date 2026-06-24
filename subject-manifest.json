@@ -1,0 +1,85 @@
+{
+  "date": "2026-06-25",
+  "subjects": [
+    {
+      "nnnn": "0001",
+      "label": "single_apartment_gains_tax_ceiling_2026",
+      "subject": "מה תקרת הפטור ממס שבח לדירה יחידה 2026",
+      "slug": "single-apartment-gains-tax-ceiling-2026",
+      "contentFile": "single-apartment-gains-tax-ceiling-2026.mdx",
+      "category": "tax",
+      "mainKeyword": "גיא אבני עורך דין",
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/capital-gains-exemption-single-apartment-2026/",
+        "/blog/second-apartment-purchase-tax-calculation/",
+        "/blog/capital-gains-tax-evacuation-reconstruction/"
+      ]
+    },
+    {
+      "nnnn": "0002",
+      "label": "undeclared_apartment_sale_tax_penalties",
+      "subject": "מה קורה אם לא מדווחים על מכירת דירה למס",
+      "slug": "undeclared-apartment-sale-tax-penalties",
+      "contentFile": "undeclared-apartment-sale-tax-penalties.mdx",
+      "category": "tax",
+      "mainKeyword": "גיא אבני עורך דין",
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/capital-gains-tax-assessment-appeal/",
+        "/blog/tax-authority-appeal-process/",
+        "/blog/capital-gains-exemption-single-apartment-2026/"
+      ]
+    },
+    {
+      "nnnn": "0003",
+      "label": "inheritance_order_apartment_israel",
+      "subject": "איך מוציאים צו ירושה על דירה",
+      "slug": "inheritance-order-apartment-israel",
+      "contentFile": "inheritance-order-apartment-israel.mdx",
+      "category": "real-estate-law",
+      "mainKeyword": "גיא אבני עורך דין",
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/tabu-rights-registration/",
+        "/blog/check-apartment-liens-before-purchase/",
+        "/blog/lawyer-required-apartment-purchase/"
+      ]
+    },
+    {
+      "nnnn": "0004",
+      "label": "sale_law_contractor_obligations",
+      "subject": "מה חוק המכר מחייב מקבלן לתת",
+      "slug": "sale-law-contractor-obligations",
+      "contentFile": "sale-law-contractor-obligations.mdx",
+      "category": "real-estate-law",
+      "mainKeyword": "גיא אבני עורך דין",
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/sale-law-guarantee-importance/",
+        "/blog/buying-from-contractor-checklist/",
+        "/blog/construction-defects-claim-deadline/"
+      ]
+    },
+    {
+      "nnnn": "0005",
+      "label": "divorce_apartment_sale_tax_rules",
+      "subject": "מה קורה במכירת דירה בזמן גירושין",
+      "slug": "divorce-apartment-sale-tax-rules",
+      "contentFile": "divorce-apartment-sale-tax-rules.mdx",
+      "category": "tax",
+      "mainKeyword": "גיא אבני עורך דין",
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/capital-gains-exemption-single-apartment-2026/",
+        "/blog/split-sale-transaction-tax-savings/",
+        "/blog/second-hand-apartment-sale-agreement/"
+      ]
+    }
+  ]
+}
