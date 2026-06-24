@@ -4,30 +4,6 @@
   "installedAt": "2026-06-15T15:25:55.108Z",
   "profile": "next-guide",
   "files": {
-    ".commends/TODO_article_reserch.md": {
-      "id": "commends-article-reserch",
-      "policy": "managed",
-      "sha256": "83e3e9863a54a6882f11d7c548aeaca44e3cd54c9017ddda8549ae562b3c269c",
-      "kitSha256": "83e3e9863a54a6882f11d7c548aeaca44e3cd54c9017ddda8549ae562b3c269c"
-    },
-    ".commends/TODO_reserch.md": {
-      "id": "commends-reserch",
-      "policy": "managed",
-      "sha256": "74541b5d86502e59b6e51e6332e5a5a3cd617179593818e5ed24900489637f08",
-      "kitSha256": "74541b5d86502e59b6e51e6332e5a5a3cd617179593818e5ed24900489637f08"
-    },
-    ".commends/TODO_confidance_full_95.md": {
-      "id": "commends-confidence-95",
-      "policy": "managed",
-      "sha256": "359428d363ce1235bd04abe77bebfdab3e69794cf594d3f589c098993b44f1c5",
-      "kitSha256": "359428d363ce1235bd04abe77bebfdab3e69794cf594d3f589c098993b44f1c5"
-    },
-    ".commends/TODO_confidance.md": {
-      "id": "commends-confidence",
-      "policy": "managed",
-      "sha256": "15cb9f4ce9257ce3315af97b6e61fda818c075885b880c47c87d9cbe19bc79ee",
-      "kitSha256": "15cb9f4ce9257ce3315af97b6e61fda818c075885b880c47c87d9cbe19bc79ee"
-    },
     ".commends/TODO_suggest.md": {
       "id": "commends-suggest",
       "policy": "managed",
@@ -226,12 +202,6 @@
       "sha256": "b78e53dd15c3f403a1856f34a8fb5da673b05f28e0893a9fa5cd72dc87b7409e",
       "kitSha256": "b78e53dd15c3f403a1856f34a8fb5da673b05f28e0893a9fa5cd72dc87b7409e"
     },
-    ".cursor/skills/content-seo-pipeline/SKILL.md": {
-      "id": "cursor-skill-pipeline",
-      "policy": "managed",
-      "sha256": "6792fa9ffa82c6a1543c3db123514bf9e8581b6dea5567c50b6edd3473cfcbf9",
-      "kitSha256": "6792fa9ffa82c6a1543c3db123514bf9e8581b6dea5567c50b6edd3473cfcbf9"
-    },
     ".content-kit/profiles/default.profile.json": {
       "id": "profile-default",
       "policy": "optional",
@@ -274,18 +244,6 @@
       "sha256": "77a5b7aac380dffe86176b61d91e2b2466340446cad429085022ac0238cc7cbb",
       "kitSha256": "77a5b7aac380dffe86176b61d91e2b2466340446cad429085022ac0238cc7cbb"
     },
-    ".cursor/rules/content-kit-commends-todo.mdc": {
-      "id": "cursor-rule-commends",
-      "policy": "template-once",
-      "sha256": "44d62d75b8c01d3c27760ef957c1ddee0c211afd806c46081bf4a3e2d4a9e6f6",
-      "kitSha256": "44d62d75b8c01d3c27760ef957c1ddee0c211afd806c46081bf4a3e2d4a9e6f6"
-    },
-    ".cursor/rules/content-seo-quality.mdc": {
-      "id": "cursor-rule-quality",
-      "policy": "template-once",
-      "sha256": "c28f3a092f254f429e26d2cf5b6d44a724747b0e649946484b55136e20c45629",
-      "kitSha256": "c28f3a092f254f429e26d2cf5b6d44a724747b0e649946484b55136e20c45629"
-    },
     "content-pipeline.profile.json": {
       "id": "profile-file",
       "policy": "template-once",
@@ -299,5 +257,5 @@
       "kitSha256": "9bc98ddfae58b44a9f390da4c5bb441e7722e3f8ae3d4dd9ee8d5a62a2b36a68"
     }
   },
-  "updatedAt": "2026-06-23T07:50:40.943Z"
+  "updatedAt": "2026-06-24T08:31:00.856Z"
 }

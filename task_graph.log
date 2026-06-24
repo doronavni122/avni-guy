@@ -213,3 +213,4 @@
 210. update-profile-subject-manifest-default , content-pipeline.profile.json task_graph.log
 211. trim-agents-md-seo-pipeline , AGENTS.md task_graph.log
 212. trim-ssot-seo-pipeline-sections , SSOT.md task_graph.log
+213. prune-kit-lock-removed-sync-paths , .content-kit/kit.lock.json task_graph.log
