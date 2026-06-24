@@ -14,7 +14,7 @@ Scope: Hebrew RTL legal content site — premium v0/Vercel-quality look & feel w
 
 ## Constraints (preserve)
 
-- Content: `src/content/blog/`, schema, heroes in `main-page-heroes.ts` (word counts/H1 rules unchanged).
+- Content: `src/content/blog/`, schema, heroes in `main-page-heroes.ts` (unchanged).
 - SEO kit, Keystatic, metadata, JSON-LD, sitemap, RSS.
 - `trailingSlash: true`; port 3001 dev; atomic commits + task_graph.log per change.
 
@@ -72,7 +72,7 @@ Scope: Hebrew RTL legal content site — premium v0/Vercel-quality look & feel w
 ### S8 — Validation gates
 ##todos
 - [ ] Execute `.commends/TODO_validate_true.md` (read-only): every plan ##todo true, confidence >0.95
-- [ ] UI gates (adapted from TODO_confidance_full_95.md, do NOT edit commends):
+- [ ] UI validation gates:
   - **U1** design system: tokens, fonts, globals, primitives exist and render
   - **U2** page migration: all main-menu + blog + taxonomy routes use new primitives
   - **U3** build/smoke: `pnpm build` + dev on :3001 — /, /blog/, /about/, /contact/, sample blog slug

@@ -214,3 +214,4 @@
 211. trim-agents-md-seo-pipeline , AGENTS.md task_graph.log
 212. trim-ssot-seo-pipeline-sections , SSOT.md task_graph.log
 213. prune-kit-lock-removed-sync-paths , .content-kit/kit.lock.json task_graph.log
+214. trim-ui-plan-seo-refs , .cursor/plans/002_ui_ux_redesign_june_2026_j7k2m9nx.plan.md task_graph.log
