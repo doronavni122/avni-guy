@@ -32,6 +32,11 @@ export const blogFrontmatterSchema = z.object({
 				title: z.string(),
 				description: z.string(),
 				source: z.string().url(),
+				placement: z
+					.object({
+						afterParagraph: z.number().int().min(1),
+					})
+					.optional(),
 			}),
 		)
 		.min(3),

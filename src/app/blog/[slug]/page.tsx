@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import { BlogPostLayout } from '@/components/layout/BlogPostLayout';
+import { injectArticleFigures } from '@/lib/content/inject-figures';
 import { renderMdxContent } from '@/lib/content/mdx';
 import { getAllPosts, getPostBySlug } from '@/lib/content/posts';
 import { scoreRelatedPosts } from '@/lib/content/related-posts';
@@ -49,7 +50,8 @@ export default async function BlogPostPage({ params }: PageProps) {
 		notFound();
 	}
 
-	const content = await renderMdxContent(post.content);
+	const contentWithFigures = injectArticleFigures(post.content, post.data.images);
+	const content = await renderMdxContent(contentWithFigures);
 	const allPosts = await getAllPosts();
 	const relatedPosts = scoreRelatedPosts(post, allPosts, 4);
 	const canonicalUrl = new URL(`/blog/${slug}/`, SITE_URL).toString();

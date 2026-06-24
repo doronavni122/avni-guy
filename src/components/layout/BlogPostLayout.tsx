@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
-import { OptimizedImage } from '@/components/media/OptimizedImage';
 import { FormattedDate } from '@/components/FormattedDate';
 import { SiteShell } from '@/components/layout/SiteShell';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
@@ -34,16 +33,13 @@ export function BlogPostLayout({
 	relatedPosts = [],
 	children,
 }: BlogPostLayoutProps) {
-	const { title, pubDate, updatedDate, category, tags, images } = data;
-	const lead = images[0];
-	const rest = images.slice(1);
+	const { title, pubDate, updatedDate, category, tags } = data;
 
 	return (
 		<SiteShell currentPath={currentPath} extraJsonLd={jsonLd}>
 			<article className="flex flex-col">
 				<BreadcrumbNav items={breadcrumbItems} />
 
-				{/* Title block */}
 				<header className="mt-8 flex flex-col gap-6 text-right">
 					<div className="flex items-center justify-end gap-3">
 						<span className="swiss-label text-primary">{mainKeyword}</span>
@@ -81,53 +77,7 @@ export function BlogPostLayout({
 					</div>
 				</header>
 
-				{/* Lead image */}
-				{lead ? (
-					<figure className="mt-10 overflow-hidden border border-border">
-						<OptimizedImage
-							src={lead.src}
-							alt={lead.alt}
-							title={lead.title}
-							priority
-							className="aspect-[16/9] h-auto w-full object-cover"
-						/>
-						<figcaption className="sr-only">{lead.description}</figcaption>
-					</figure>
-				) : null}
-
-				{/* Body */}
 				<div className="mt-12 prose-legal [&_a]:underline-offset-2 [&_a]:hover:underline">{children}</div>
-
-				{/* Secondary images */}
-				{rest.length > 0 ? (
-					<div className="mt-12 grid gap-px border border-border bg-border sm:grid-cols-2">
-						{rest.map((imageItem) => (
-							<figure key={imageItem.src} className="group overflow-hidden bg-background">
-								<OptimizedImage
-									src={imageItem.src}
-									alt={imageItem.alt}
-									title={imageItem.title}
-									className="aspect-[3/2] h-auto w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-								/>
-								<figcaption className="sr-only">{imageItem.description}</figcaption>
-							</figure>
-						))}
-					</div>
-				) : null}
-
-				{/* Image sources */}
-				<section className="mt-12 border-t border-border pt-6 text-right">
-					<h2 className="swiss-label mb-3">מקורות תמונה חינמיים</h2>
-					<ul className="flex flex-col gap-1.5 text-sm text-muted-foreground">
-						{images.map((imageItem) => (
-							<li key={imageItem.source}>
-								<a className="link-underline" href={imageItem.source} rel="noopener noreferrer" target="_blank">
-									{imageItem.source}
-								</a>
-							</li>
-						))}
-					</ul>
-				</section>
 
 				{relatedPosts.length > 0 ? (
 					<div className="mt-12 border-t border-border pt-10">

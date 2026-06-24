@@ -3,6 +3,7 @@ import path from 'node:path';
 import fg from 'fast-glob';
 import matter from 'gray-matter';
 import { cache } from 'react';
+import { normalizePostImages } from './images';
 import { blogFrontmatterSchema, type BlogPost } from './schema';
 
 const CONTENT_DIR = path.join(process.cwd(), 'src/content/blog');
@@ -26,13 +27,14 @@ async function readPostFile(filePath: string): Promise<BlogPost> {
 	const slug = slugFromFilePath(filePath);
 	try {
 		const raw = await fs.readFile(filePath, 'utf8');
-		const { data, content } = matter(raw);
-		const parsed = blogFrontmatterSchema.safeParse(data);
+		const { data: rawData, content } = matter(raw);
+		const parsed = blogFrontmatterSchema.safeParse(rawData);
 		if (!parsed.success) {
 			console.error('[content:posts] frontmatter validation failed', { slug, issues: parsed.error.issues });
 			throw new Error(`Invalid frontmatter for ${slug}`);
 		}
-		return { slug, data: parsed.data, content };
+		const data = { ...parsed.data, images: normalizePostImages(parsed.data.images) };
+		return { slug, data, content };
 	} catch (err) {
 		console.error('[content:posts] readPostFile failed', { filePath, err });
 		throw err;

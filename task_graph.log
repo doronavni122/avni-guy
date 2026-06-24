@@ -216,3 +216,4 @@
 213. prune-kit-lock-removed-sync-paths , .content-kit/kit.lock.json task_graph.log
 214. trim-ui-plan-seo-refs , .cursor/plans/002_ui_ux_redesign_june_2026_j7k2m9nx.plan.md task_graph.log
 215. rename-blog-image-files-strip-legacy-prefix , public/images/blog/ scripts/rename-blog-image-files.mjs task_graph.log
+216. add-inline-article-figures-and-image-resolver , src/lib/content/images.ts src/lib/content/inject-figures.ts src/lib/content/posts.ts src/lib/content/schema.ts src/lib/content/mdx.tsx src/components/blog/ArticleFigure.tsx src/app/blog/[slug]/page.tsx src/components/layout/BlogPostLayout.tsx task_graph.log
