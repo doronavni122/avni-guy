@@ -42,6 +42,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		return [...staticEntries, ...postEntries, ...categoryEntries, ...tagEntries];
 	} catch (err) {
 		console.error('[sitemap] generation failed', err);
-		return [];
+		throw err;
 	}
 }

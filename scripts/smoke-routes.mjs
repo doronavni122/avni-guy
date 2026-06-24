@@ -12,8 +12,11 @@ const ROUTES = [
 	'/categories/contracts/',
 	'/tags/mediation/',
 	'/blog/contract-claim-mediation-four-thousand-six-weeks/',
-	'/blog/court-case-keywords-find-case-90-seconds/',
+	'/blog/tenant-rights-israel/',
 ];
+
+const SITEMAP_MIN_BLOG_URLS = 125;
+const SITEMAP_FORBIDDEN = '/blog/guy-avni-';
 
 function logStep(msg, extra) {
 	if (extra !== undefined) console.log(`[smoke-routes] ${msg}`, extra);
@@ -99,7 +102,45 @@ async function main() {
 			}
 		}
 		if (failures.length) {
-			logStep('step 2: failures', { count: failures.length });
+			logStep('step 2: route failures', { count: failures.length });
+			for (const f of failures) logErr(f);
+			process.exit(1);
+		}
+
+		logStep('step 2: checking sitemap.xml');
+		const sitemapRes = await fetch(`${BASE}/sitemap.xml`, { redirect: 'follow' });
+		const sitemapBody = await sitemapRes.text();
+		if (sitemapRes.status !== 200) {
+			failures.push(`sitemap.xml: expected HTTP 200, got ${sitemapRes.status}`);
+		} else {
+			const locCount = (sitemapBody.match(/<loc>/g) ?? []).length;
+			const blogCount = (sitemapBody.match(/<loc>[^<]*\/blog\/[^<]+<\/loc>/g) ?? []).length;
+			if (locCount < SITEMAP_MIN_BLOG_URLS + 7) {
+				failures.push(`sitemap.xml: too few URLs (${locCount})`);
+			}
+			if (blogCount < SITEMAP_MIN_BLOG_URLS) {
+				failures.push(`sitemap.xml: too few blog URLs (${blogCount})`);
+			}
+			if (sitemapBody.includes(SITEMAP_FORBIDDEN)) {
+				failures.push(`sitemap.xml: contains deprecated ${SITEMAP_FORBIDDEN}`);
+			}
+		}
+
+		logStep('step 3: checking article images on sample route');
+		const sample = await fetchRoute('/blog/tenant-rights-israel/');
+		if (sample.status === 200 && /images\/blog\//.test(sample.body)) {
+			const imgMatch = sample.body.match(/images\/blog\/[^"'\s]+\.jpg/);
+			if (imgMatch) {
+				const imgPath = `/${imgMatch[0]}`;
+				const imgRes = await fetch(`${BASE}${imgPath}`);
+				if (imgRes.status !== 200) {
+					failures.push(`article image ${imgPath}: expected HTTP 200, got ${imgRes.status}`);
+				}
+			}
+		}
+
+		if (failures.length) {
+			logStep('step 4: failures', { count: failures.length });
 			for (const f of failures) logErr(f);
 			process.exit(1);
 		}
