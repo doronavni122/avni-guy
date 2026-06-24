@@ -210,3 +210,4 @@
 207. remove-content-seo-pipeline-skill , .cursor/skills/content-seo-pipeline/SKILL.md task_graph.log
 208. remove-seo-pipeline-commends , .commends/TODO_reserch.md .commends/TODO_article_reserch.md .commends/TODO_confidance_full_95.md .commends/TODO_confidance.md task_graph.log
 209. remove-article-slug-manifest , article-slug-manifest.json task_graph.log
+210. update-profile-subject-manifest-default , content-pipeline.profile.json task_graph.log

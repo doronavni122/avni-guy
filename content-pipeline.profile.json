@@ -18,7 +18,7 @@
   "tldrHeadingAliases": ["בקצרה", "TL;DR"],
   "navSectionLabel": "בלוג",
   "linkDenylist": [],
-  "subjectManifest": "article-slug-manifest.json",
+  "subjectManifest": "subject-manifest.json",
   "registryAdapter": "generic",
   "researchDir": "reserch/",
   "articleDraftDir": "reserch-based-articles/",
