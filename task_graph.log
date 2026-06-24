@@ -215,3 +215,4 @@
 212. trim-ssot-seo-pipeline-sections , SSOT.md task_graph.log
 213. prune-kit-lock-removed-sync-paths , .content-kit/kit.lock.json task_graph.log
 214. trim-ui-plan-seo-refs , .cursor/plans/002_ui_ux_redesign_june_2026_j7k2m9nx.plan.md task_graph.log
+215. rename-blog-image-files-strip-legacy-prefix , public/images/blog/ scripts/rename-blog-image-files.mjs task_graph.log
