@@ -1,0 +1,37 @@
+---
+description: Every site image must be unique per page, article, and homepage slot — no file/URL reuse across surfaces.
+alwaysApply: true
+---
+
+# Unique site images (law)
+
+Every raster image on the live site must be **unique per placement**: one file/URL per page, article, or homepage section slot. Do not reuse the same path across blog posts, main pages, or multiple homepage figures.
+
+## Scope
+
+- Blog inline images: `public/images/blog/`
+- Homepage slots: `public/images/home/` via `src/lib/home/loadHomeData.ts`
+- SEO content sections: `HOME_SEO_SECTION_DEFS` in `src/lib/home/homeSeoSections.ts` — each section gets its own `imageIndex`, no duplicate indices on the homepage
+- Other pages: `public/images/shared/`, hero assets, OG images
+
+## Before adding or assigning an image
+
+1. Search the repo for the basename or URL (`rg 'filename' public/ src/`).
+2. Confirm the file is not already referenced in another MDX frontmatter, `loadHomeData`, or layout metadata.
+3. Prefer a new download with a new filename over copying an existing asset.
+
+## Search and pipeline
+
+- Query prefix: **`super macro photograph`** (English subject term after the prefix).
+- Article pipeline: `scripts/assign-article-images.mjs`
+- Resolver/normalizer: `src/lib/content/images.ts`
+- After adding JPEG/PNG under `public/images/`, run `node scripts/optimize-images.mjs` for WebP/AVIF siblings.
+
+## Homepage
+
+- One distinct image per hero, each `HomeSeoContentSections` article, process, reading-paths, authority, and final CTA figure.
+- Update `homeImages` in `loadHomeData.ts` and matching `imageIndex` in `homeSeoSections.ts` together.
+
+## Attribution
+
+- Store license/source URL in content metadata when applicable; do not duplicate attribution blocks on the live page.

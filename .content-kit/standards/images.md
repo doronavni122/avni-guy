@@ -2,13 +2,20 @@
 
 ## Image type
 
-- **Macro photography only** — close-up, detail-oriented shots; no illustrations, cartoons, or clip art
+- **Super macro photography only** — extreme close-up, detail-oriented shots; no illustrations, cartoons, or clip art
+
+## Site-wide uniqueness (law)
+
+- **One image file/URL per placement** — never reuse the same asset across articles, main pages, or homepage slots
+- Before assigning: grep repo for basename; check `src/lib/home/loadHomeData.ts`, MDX `images` frontmatter, and `public/images/`
+- Homepage: each hero, SEO section, and inline figure in `HomePage.tsx` must reference a distinct path (see `HOME_SEO_SECTION_DEFS` + `homeImages`)
+- Pipeline: `scripts/assign-article-images.mjs`, resolver `src/lib/content/images.ts`, assets `public/images/blog/` and `public/images/home/`
 
 ## Search queries
 
 - **English only** for image search terms
-- **Always** prefix queries with: `macro photograph`
-- Example subject `legal advisor` → search: `macro photograph legal advisor contract signing`
+- **Always** prefix queries with: `super macro photograph`
+- Example subject `legal advisor` → search: `super macro photograph legal advisor contract signing`
 - Use **three distinct search queries** per article (one per image slot) — never reuse the same image three times
 
 ## Per-article slots

@@ -4,14 +4,15 @@
  * Usage: node scripts/assign-article-images.mjs <slug> <term1> <term2> <term3>
  *
  * Search rules (see .content-kit/standards/images.md):
- * - English only, macro photography
- * - Prefix every query: "macro photograph"
+ * - English only, super macro photography
+ * - Prefix every query: "super macro photograph"
+ * - One unique file per article slot; never reuse across site surfaces
  */
 const DEFAULT_PLACEMENTS = [2, 5, 9];
 
 function buildSearchQuery(englishTerm) {
 	const cleaned = englishTerm.trim().replace(/\s+/g, ' ');
-	return `macro photograph ${cleaned}`;
+	return `super macro photograph ${cleaned}`;
 }
 
 function main() {
