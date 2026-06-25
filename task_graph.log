@@ -232,3 +232,4 @@
 229. add-tag-labels-for-new-articles , src/utils/taxonomy-labels.ts task_graph.log
 230. enrich-homepage-hero-text , src/components/seo/MainPageHero.tsx src/lib/seo/main-page-heroes.mjs task_graph.log
 231. add-unique-image-rules , .content-kit/standards/images.md .cursor/rules/unique-site-images.mdc scripts/assign-article-images.mjs task_graph.log
+232. replace-homepage-images , src/lib/home/loadHomeData.ts src/lib/home/homeSeoSections.ts src/components/home/HomePage.tsx public/images/home/ task_graph.log

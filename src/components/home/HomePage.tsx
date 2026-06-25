@@ -145,9 +145,9 @@ export function HomePage({
 				</div>
 				<figure className={figureClass}>
 					<OptimizedImage
-						src={homeImages[2].src}
-						alt={homeImages[2].alt}
-						title={homeImages[2].title}
+						src={homeImages[11].src}
+						alt={homeImages[11].alt}
+						title={homeImages[11].title}
 						className="h-52 w-full object-cover sm:h-60"
 					/>
 				</figure>
@@ -177,9 +177,9 @@ export function HomePage({
 				</div>
 				<figure className={figureClass}>
 					<OptimizedImage
-						src={homeImages[3].src}
-						alt={homeImages[3].alt}
-						title={homeImages[3].title}
+						src={homeImages[12].src}
+						alt={homeImages[12].alt}
+						title={homeImages[12].title}
 						className="h-52 w-full object-cover sm:h-60"
 					/>
 				</figure>
@@ -202,9 +202,9 @@ export function HomePage({
 				</div>
 				<figure className={figureClass}>
 					<OptimizedImage
-						src={homeImages[4].src}
-						alt={homeImages[4].alt}
-						title={homeImages[4].title}
+						src={homeImages[13].src}
+						alt={homeImages[13].alt}
+						title={homeImages[13].title}
 						className="h-52 w-full object-cover sm:h-60"
 					/>
 				</figure>
@@ -374,9 +374,9 @@ export function HomePage({
 
 			<figure className={cn(figureClass, 'home-anchor-target')} id="home-image-final">
 				<OptimizedImage
-					src={homeImages[6].src}
-					alt={homeImages[6].alt}
-					title={homeImages[6].title}
+					src={homeImages[14].src}
+					alt={homeImages[14].alt}
+					title={homeImages[14].title}
 					className="h-56 w-full object-cover sm:h-72"
 				/>
 			</figure>

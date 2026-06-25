@@ -224,39 +224,79 @@ export async function loadHomeData(): Promise<HomeData> {
 
 	const homeImages: HomeImage[] = [
 		{
-			src: '/images/home/guy-avni-avni-guy-law-firm-lawyer-suite-man-portrait-office-photo-1.jpg',
-			alt: `${primarySiteKeyword} - פורטרט מקצועי במשרד עורכי דין, חליפת עסקים ואווירת ליווי משפטי אמין`,
-			title: `${primarySiteKeyword} | פורטרט ראשי בכותרת דף הבית`,
+			src: '/images/home/home-hero-legal-contract-super-macro-photo-0.jpg',
+			alt: `${primarySiteKeyword} - חתימה על חוזה בצילום סופר מקרו, פתיחת דף הבית`,
+			title: `${primarySiteKeyword} | כותרת דף הבית`,
 		},
 		{
-			src: '/images/home/guy-avni-avni-guy-law-firm-lawyer-office-meeting-photo-2.jpg',
-			alt: `${primarySiteKeyword} - פגישת ייעוץ ועבודה משפטית מול שולחן במשרד, שיחה ממוקדת ומסמכים`,
-			title: `${primarySiteKeyword} | פגישת משרד במסלול התחלה מהירה`,
+			src: '/images/home/home-practice-areas-law-books-super-macro-photo-1.jpg',
+			alt: `${primarySiteKeyword} - ספרי משפט בצילום סופר מקרו, תחומי ליווי משפטי`,
+			title: `${primarySiteKeyword} | תחומי ליווי`,
 		},
 		{
-			src: '/images/home/guy-avni-avni-guy-law-firm-lawyer-office-team-photo-3.jpg',
-			alt: `${primarySiteKeyword} - צוות משפטי בשיחת תיאום ליד מחשב ומסמכים, שיתוף פעולה מקצועי`,
-			title: `${primarySiteKeyword} | צוות משפטי בחלק תהליך העבודה`,
+			src: '/images/home/home-israel-context-document-super-macro-photo-2.jpg',
+			alt: `${primarySiteKeyword} - מסמך משפטי בצילום סופר מקרו, ייעוץ בישראל`,
+			title: `${primarySiteKeyword} | הקשר מקומי`,
 		},
 		{
-			src: '/images/home/guy-avni-avni-guy-law-firm-lawyer-boardroom-photo-4.jpg',
-			alt: `${primarySiteKeyword} - חדר ישיבות מקצועי לדיונים משפטיים ועסקיים, סביבת החלטות רגועה`,
-			title: `${primarySiteKeyword} | חדר ישיבות במסלול קריאה מומלצת`,
+			src: '/images/home/home-when-to-call-deadline-super-macro-photo-3.jpg',
+			alt: `${primarySiteKeyword} - שעון ומועד בצילום סופר מקרו, מתי לפנות לעורך דין`,
+			title: `${primarySiteKeyword} | תזמון פנייה`,
 		},
 		{
-			src: '/images/home/guy-avni-avni-guy-law-firm-lawyer-executive-portrait-photo-5.jpg',
-			alt: `${primarySiteKeyword} - פורטרט מנהלי לעורך דין, ליווי לקוחות עסקיים ופרטיים בבהירות`,
-			title: `${primarySiteKeyword} | פורטרט מקצועי בלמה לעבוד עם המשרד`,
+			src: '/images/home/home-transparency-glass-super-macro-photo-4.jpg',
+			alt: `${primarySiteKeyword} - שקיפות וצללית בצילום סופר מקרו, תיאום ציפיות`,
+			title: `${primarySiteKeyword} | שקיפות`,
 		},
 		{
-			src: '/images/home/guy-avni-avni-guy-law-firm-lawyer-office-workspace-photo-6.jpg',
-			alt: `${primarySiteKeyword} - סביבת עבודה משפטית עם מחשב וחומרים, הכנה וארגון לפני מהלך`,
-			title: `${primarySiteKeyword} | סביבת עבודה בחלק מדריכי העומק`,
+			src: '/images/home/home-real-estate-key-super-macro-photo-5.jpg',
+			alt: `${primarySiteKeyword} - מפתח לנכס בצילום סופר מקרו, נדל״ן ועסקאות`,
+			title: `${primarySiteKeyword} | נדל״ן`,
 		},
 		{
-			src: '/images/home/guy-avni-avni-guy-law-firm-lawyer-suite-portrait-photo-7.jpg',
-			alt: `${primarySiteKeyword} - פורטרט רשמי בסביבת משרד עורכי דין, סיום ויזואלי לפני פנייה ללקוח`,
-			title: `${primarySiteKeyword} | פורטרט אחרון לפני קריאה לפעולה בדף הבית`,
+			src: '/images/home/home-choosing-lawyer-handshake-super-macro-photo-6.jpg',
+			alt: `${primarySiteKeyword} - לחיצת יד מקצועית בצילום סופר מקרו, בחירת עורך דין`,
+			title: `${primarySiteKeyword} | בחירת עורך דין`,
+		},
+		{
+			src: '/images/home/home-ethics-scales-super-macro-photo-7.jpg',
+			alt: `${primarySiteKeyword} - מאזני צדק בצילום סופר מקרו, אתיקה מקצועית`,
+			title: `${primarySiteKeyword} | אתיקה`,
+		},
+		{
+			src: '/images/home/home-documents-paper-stack-super-macro-photo-8.jpg',
+			alt: `${primarySiteKeyword} - ערימת מסמכים בצילום סופר מקרו, הכנת תיק`,
+			title: `${primarySiteKeyword} | מסמכים`,
+		},
+		{
+			src: '/images/home/home-counsel-pen-document-super-macro-photo-9.jpg',
+			alt: `${primarySiteKeyword} - עט ומסמך בצילום סופר מקרו, ייעוץ מול ייצוג`,
+			title: `${primarySiteKeyword} | ייעוץ וייצוג`,
+		},
+		{
+			src: '/images/home/home-first-contact-phone-super-macro-photo-10.jpg',
+			alt: `${primarySiteKeyword} - טלפון בצילום סופר מקרו, פנייה ראשונה למשרד`,
+			title: `${primarySiteKeyword} | פנייה ראשונה`,
+		},
+		{
+			src: '/images/home/home-process-workflow-super-macro-photo-11.jpg',
+			alt: `${primarySiteKeyword} - תהליך עבודה בצילום סופר מקרו, שלבי ליווי משפטי`,
+			title: `${primarySiteKeyword} | תהליך העבודה`,
+		},
+		{
+			src: '/images/home/home-reading-paths-open-book-super-macro-photo-12.jpg',
+			alt: `${primarySiteKeyword} - ספר פתוח בצילום סופר מקרו, מסלולי קריאה`,
+			title: `${primarySiteKeyword} | מסלולי קריאה`,
+		},
+		{
+			src: '/images/home/home-authority-badge-super-macro-photo-13.jpg',
+			alt: `${primarySiteKeyword} - סמל מקצועי בצילום סופר מקרו, סמכות ואמינות`,
+			title: `${primarySiteKeyword} | למה לעבוד איתנו`,
+		},
+		{
+			src: '/images/home/home-final-cta-compass-super-macro-photo-14.jpg',
+			alt: `${primarySiteKeyword} - מצפן בצילום סופר מקרו, צעד הבא לפני יצירת קשר`,
+			title: `${primarySiteKeyword} | קריאה לפעולה`,
 		},
 	];
 
