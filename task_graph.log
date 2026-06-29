@@ -247,3 +247,4 @@
 244. add-publish-draft-to-content-script , scripts/publish-draft-to-content.mjs task_graph.log
 245. fix-faq-dedup-and-tag-labels , src/lib/content/faq.ts src/utils/taxonomy-labels.ts src/app/blog/[slug]/page.tsx task_graph.log
 246. add-subject-manifest-tags-0006-0010 , subject-manifest.json task_graph.log
+247. add-tag-labels-rental-combination , src/utils/taxonomy-labels.ts task_graph.log
