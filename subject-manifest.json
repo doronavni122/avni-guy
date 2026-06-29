@@ -90,6 +90,7 @@
       "category": "real-estate",
       "mainKeyword": "גיא אבני עורך דין",
       "date": "2026-06-29",
+      "tags": ["real-estate", "mortgage", "bank-refuses"],
       "internalLinkManifest": [
         "/",
         "/contact/",
@@ -107,6 +108,7 @@
       "category": "tax",
       "mainKeyword": "גיא אבני עורך דין",
       "date": "2026-06-29",
+      "tags": ["tax", "rental", "reporting"],
       "internalLinkManifest": [
         "/",
         "/contact/",
@@ -124,6 +126,7 @@
       "category": "tax",
       "mainKeyword": "גיא אבני עורך דין",
       "date": "2026-06-29",
+      "tags": ["tax", "vat", "real-estate"],
       "internalLinkManifest": [
         "/",
         "/contact/",
@@ -141,6 +144,7 @@
       "category": "real-estate-law",
       "mainKeyword": "גיא אבני עורך דין",
       "date": "2026-06-29",
+      "tags": ["real-estate-law", "combination", "urban-renewal"],
       "internalLinkManifest": [
         "/",
         "/contact/",
@@ -158,6 +162,7 @@
       "category": "tax",
       "mainKeyword": "גיא אבני עורך דין",
       "date": "2026-06-29",
+      "tags": ["tax", "capital-gains", "inheritance"],
       "internalLinkManifest": [
         "/",
         "/contact/",

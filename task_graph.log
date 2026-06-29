@@ -246,3 +246,4 @@
 243. restore-vendor-validators-content-kit , .content-kit/validators/check-article.mjs .content-kit/validators/lib/parse-article.mjs .content-kit/schemas/project-profile.schema.json content-pipeline.profile.json task_graph.log
 244. add-publish-draft-to-content-script , scripts/publish-draft-to-content.mjs task_graph.log
 245. fix-faq-dedup-and-tag-labels , src/lib/content/faq.ts src/utils/taxonomy-labels.ts src/app/blog/[slug]/page.tsx task_graph.log
+246. add-subject-manifest-tags-0006-0010 , subject-manifest.json task_graph.log
