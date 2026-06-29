@@ -252,3 +252,4 @@
 249. publish-rental-income-tax-reporting , src/content/blog/rental-income-tax-reporting.mdx public/images/blog/rental-income-tax-reporting-* task_graph.log
 250. publish-vat-real-estate-transaction , src/content/blog/vat-real-estate-transaction.mdx public/images/blog/vat-real-estate-transaction-* task_graph.log
 251. publish-combination-agreement-risks , src/content/blog/combination-agreement-risks.mdx public/images/blog/combination-agreement-risks-* task_graph.log
+252. publish-capital-gains-tax-inherited-apartment , src/content/blog/capital-gains-tax-inherited-apartment.mdx public/images/blog/capital-gains-tax-inherited-apartment-* task_graph.log
