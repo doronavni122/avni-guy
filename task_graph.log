@@ -244,3 +244,4 @@
 241. sync-kit-commends-and-rules , .commends/TODO_article_reserch.md .commends/TODO_reserch.md .commends/TODO_confidance.md .commends/TODO_confidance_full_95.md .cursor/rules/content-kit-commends-todo.mdc .cursor/rules/content-seo-quality.mdc .cursor/skills/content-seo-pipeline/SKILL.md .content-kit/kit.lock.json task_graph.log
 242. remove-publish-bypass-scripts , scripts/publish-manifest-batch.mjs scripts/fix-source-anchors.mjs task_graph.log
 243. restore-vendor-validators-content-kit , .content-kit/validators/check-article.mjs .content-kit/validators/lib/parse-article.mjs .content-kit/schemas/project-profile.schema.json content-pipeline.profile.json task_graph.log
+244. add-publish-draft-to-content-script , scripts/publish-draft-to-content.mjs task_graph.log
