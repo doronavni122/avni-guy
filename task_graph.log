@@ -235,3 +235,4 @@
 232. replace-homepage-images , src/lib/home/loadHomeData.ts src/lib/home/homeSeoSections.ts src/components/home/HomePage.tsx public/images/home/ task_graph.log
 233. add-parallel-google-entry-e2e-spec , e2e/parallel-google-entry-browse.spec.ts package.json task_graph.log
 234. add-subject-manifest-0006-0010 , subject-manifest.json task_graph.log
+235. add-publish-manifest-batch-script , scripts/publish-manifest-batch.mjs task_graph.log
