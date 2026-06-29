@@ -81,7 +81,7 @@ Agent steps **in order:**
 **Source:** `reserch/NNNN_<subject_label>.md`
 **Output:** `reserch-based-articles/NNNN_<subject_label>.md`
 - [ ] Copy full research content into new file (then edit in place)
-- [ ] **Minimal clean** — remove validation/instruction meta only:
+- [ ] **Superset-minus-meta** — remove validation/instruction meta only (article body must remain a superset of research minus meta):
   - TODO_reserch mapping sections, confidence audit matrices, `.commends` checklist blocks, tool error logs, admin-only version tables
   - **Keep** all research findings, tables, protocols, citations
 - [ ] Translate non-`<PROJECT_LANGUAGE>` headings → `<PROJECT_LANGUAGE>`
@@ -106,7 +106,7 @@ Agent steps **in order:**
 ### Per article file — delegate **one subagent** (parallel N)
 - [ ] Replace all `—` with `:` or `,` (keep `-` hyphens; table N/A placeholders exempt if needed)
 - [ ] Brainstorm improved `#` / `##` / `###` / `####` titles (subject keyword in title; high creativity)
-- [ ] **Implement** chosen titles in file + update `seo.title` in YAML
+- [ ] **Implement** chosen titles in file + update `seo.title` in YAML (**topic only** — no `\| {brand}` suffix; brand is added to live `metaTitle` at publish)
 - [ ] Re-run any failed files individually
 - [ ] No commit unless asked
 ---
@@ -138,11 +138,12 @@ Agent steps **in order:**
 - [ ] No commit unless asked
 ---
 ## PHASE 7 — Publish to site (code + content)
-**Goal:** live pages at `<PUBLISH_PATH_PREFIX><ARTICLE_SLUG_i>` using article markdown **as-is** (YAML kept in file; strip at render per project loader).
-- [ ] Run **Gate P**: `node .content-kit/validators/run-gate.mjs P [--manifest subject-manifest.json] [--pre-publish]` per `.commends/TODO_confidance_full_95.md` (profile paths, registry, build) before copy/publish
-### 7.1 Content copy
-- [ ] For each subject *i*: copy `reserch-based-articles/NNNN_<subject_label>.md` → `<CONTENT_ROOT>/<CONTENT_FILE_i>`
-- [ ] **Do not edit** article body during copy
+**Goal:** live pages at `<PUBLISH_PATH_PREFIX><ARTICLE_SLUG_i>` via **`scripts/publish-draft-to-content.mjs`** (no raw copy, no batch bypass).
+- [ ] Run **Gate P**: `node .content-kit/validators/check-publish.mjs [--manifest subject-manifest.json] --pre-publish` per `.commends/TODO_confidance_full_95.md` before publish
+### 7.1 Publish script (canonical path)
+- [ ] Ensure target `<CONTENT_ROOT>/<CONTENT_FILE_i>` has ≥3 images (`scripts/assign-article-images.mjs` if needed)
+- [ ] Run: `node scripts/publish-draft-to-content.mjs [NNNN ...]` — validates with check-article, maps nested `seo:` → flat frontmatter, strips FAQ + leading H1, sets `title` (topic) and `metaTitle` (with brand)
+- [ ] **Do not** raw-copy draft files to content root; **do not** use deprecated batch/manifest publish shortcuts
 ### 7.2 Code — read before edit
 - [ ] From repo SSOT: existing publish route(s), content registry, sitemap builder, site nav, markdown loader, article page shell
 - [ ] Do not assume fixed paths — match what the project already uses for `<CONTENT_TYPE>` pages

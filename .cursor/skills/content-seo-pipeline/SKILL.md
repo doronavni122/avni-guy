@@ -28,6 +28,16 @@ Before Phase 7 / close-out → run **Gate P** (`check-publish.mjs`).
 
 Report `CONFIDENCE_GATE: PASS|FAIL` with confidence score. Do not proceed on FAIL.
 
+## Publish (Phase 7 — canonical)
+
+```bash
+node .content-kit/validators/check-publish.mjs --pre-publish
+node scripts/publish-draft-to-content.mjs [NNNN ...]   # not raw copy; no batch bypass
+pnpm build
+```
+
+Maps draft `seo.title` → live `title` (topic, brand stripped). Sets `metaTitle` = `{brand} | {subject} | ישראל`.
+
 ## Validators
 
 ```bash

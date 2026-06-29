@@ -25,6 +25,8 @@ node scripts/content-kit-sync.mjs diff
 node scripts/content-kit-sync.mjs update --approve
 ```
 
+**Pipeline:** Phases in `.commends/TODO_article_reserch.md` (Phase 2 = superset-minus-meta). Publish via `node scripts/publish-draft-to-content.mjs [NNNN]`. Skill: `.cursor/skills/content-seo-pipeline/SKILL.md`.
+
 ## Media Rules
 - Use optimized images with descriptive alt text and title text.
 - Keep file names in English and keyword-oriented when local assets are used.
