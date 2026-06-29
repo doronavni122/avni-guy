@@ -6,7 +6,7 @@ import { getAllPosts, getPostBySlug } from '@/lib/content/posts';
 import { scoreRelatedPosts } from '@/lib/content/related-posts';
 import { buildPageMetadata } from '@/lib/metadata';
 import { SITE_URL } from '@/consts';
-import { resolveArticleFaq } from '@/lib/content/faq';
+import { bodyForRender, resolveArticleFaq } from '@/lib/content/faq';
 import {
 	buildBlogPostingSchema,
 	buildBreadcrumbSchema,
@@ -50,7 +50,8 @@ export default async function BlogPostPage({ params }: PageProps) {
 		notFound();
 	}
 
-	const contentWithFigures = injectArticleFigures(post.content, post.data.images);
+	const renderBody = bodyForRender(post.data, post.content);
+	const contentWithFigures = injectArticleFigures(renderBody, post.data.images);
 	const content = await renderMdxContent(contentWithFigures);
 	const allPosts = await getAllPosts();
 	const relatedPosts = scoreRelatedPosts(post, allPosts, 4);

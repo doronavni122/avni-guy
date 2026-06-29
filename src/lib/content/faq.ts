@@ -19,8 +19,23 @@ export function parseFaqFromBody(body: string): BlogFaqItem[] {
 	return items;
 }
 
+const FAQ_SECTION_PATTERN = /##\s+שאלות נפוצות[\s\S]*$/u;
+
+/** Remove in-body FAQ when frontmatter faq drives ArticleFaq (avoids duplicate render). */
+export function stripFaqSectionFromBody(body: string): string {
+	return body.replace(FAQ_SECTION_PATTERN, '').trimEnd();
+}
+
 /** Frontmatter faq array takes precedence; otherwise parse body section. */
 export function resolveArticleFaq(data: BlogFrontmatter, body: string): BlogFaqItem[] {
 	if (data.faq && data.faq.length > 0) return data.faq;
 	return parseFaqFromBody(body);
+}
+
+/** Body passed to MDX: omit FAQ section when frontmatter supplies faq for ArticleFaq. */
+export function bodyForRender(data: BlogFrontmatter, body: string): string {
+	if (data.faq && data.faq.length > 0) {
+		return stripFaqSectionFromBody(body);
+	}
+	return body;
 }
