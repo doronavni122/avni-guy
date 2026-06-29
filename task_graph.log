@@ -249,3 +249,4 @@
 246. add-subject-manifest-tags-0006-0010 , subject-manifest.json task_graph.log
 247. add-tag-labels-rental-combination , src/utils/taxonomy-labels.ts task_graph.log
 248. publish-bank-refuses-mortgage-approval , src/content/blog/bank-refuses-mortgage-approval.mdx public/images/blog/bank-refuses-mortgage-approval-* task_graph.log
+249. publish-rental-income-tax-reporting , src/content/blog/rental-income-tax-reporting.mdx public/images/blog/rental-income-tax-reporting-* task_graph.log
