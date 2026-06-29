@@ -80,6 +80,91 @@
         "/blog/split-sale-transaction-tax-savings/",
         "/blog/second-hand-apartment-sale-agreement/"
       ]
+    },
+    {
+      "nnnn": "0006",
+      "label": "bank_refuses_mortgage",
+      "subject": "מה לעשות כשבנק מסרב להעמיד משכנתא",
+      "slug": "bank-refuses-mortgage-approval",
+      "contentFile": "bank-refuses-mortgage-approval.mdx",
+      "category": "real-estate",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-06-29",
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/appraisal-required-mortgage/",
+        "/blog/bank-financing-private-home-construction/",
+        "/blog/mortgage-pre-approval-process/"
+      ]
+    },
+    {
+      "nnnn": "0007",
+      "label": "rental_income_tax_reporting",
+      "subject": "איך מדווחים על שכירות לרשות המסים",
+      "slug": "rental-income-tax-reporting",
+      "contentFile": "rental-income-tax-reporting.mdx",
+      "category": "tax",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-06-29",
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/undeclared-apartment-sale-tax-penalties/",
+        "/blog/tax-authority-appeal-process/",
+        "/blog/additional-tax-who-pays/"
+      ]
+    },
+    {
+      "nnnn": "0008",
+      "label": "vat_real_estate_transaction",
+      "subject": "מתי משלמים מע\"מ על עסקת נדלן",
+      "slug": "vat-real-estate-transaction",
+      "contentFile": "vat-real-estate-transaction.mdx",
+      "category": "tax",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-06-29",
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/additional-tax-who-pays/",
+        "/blog/purchase-tax-exemption-first-apartment/",
+        "/blog/property-purchase-tax-legal-reduction/"
+      ]
+    },
+    {
+      "nnnn": "0009",
+      "label": "combination_agreement_risks",
+      "subject": "מה זה הסכם קומבינציה ומה הסיכונים",
+      "slug": "combination-agreement-risks",
+      "contentFile": "combination-agreement-risks.mdx",
+      "category": "real-estate-law",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-06-29",
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/capital-gains-tax-evacuation-reconstruction/",
+        "/blog/second-apartment-purchase-tax-calculation/",
+        "/blog/split-sale-transaction-tax-savings/"
+      ]
+    },
+    {
+      "nnnn": "0010",
+      "label": "capital_gains_inherited_apartment",
+      "subject": "איך מחשבים מס שבח על דירה שנקבעה בירושה",
+      "slug": "capital-gains-tax-inherited-apartment",
+      "contentFile": "capital-gains-tax-inherited-apartment.mdx",
+      "category": "tax",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-06-29",
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/inheritance-order-apartment-israel/",
+        "/blog/capital-gains-exemption-single-apartment-2026/",
+        "/blog/capital-gains-tax-installment-payment/"
+      ]
     }
   ]
 }
