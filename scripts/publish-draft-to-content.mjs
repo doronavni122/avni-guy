@@ -1,11 +1,18 @@
 #!/usr/bin/env node
 /**
  * Kit Phase 7 — publish reserch-based-articles draft → src/content/blog (site flat frontmatter).
- * Validates with check-article; maps nested seo: → flat Zod fields; no hardcoded META or FALLBACK_FAQ.
+ *
+ * Canonical publish path (no batch bypass, no raw copy). Flow:
+ *   1. Gate P pre-check: node .content-kit/validators/check-publish.mjs --pre-publish
+ *   2. Images in target MDX (≥3): node scripts/assign-article-images.mjs …
+ *   3. Publish: node scripts/publish-draft-to-content.mjs [NNNN …]
+ *
+ * Maps nested seo: → flat Zod fields. Strips brand suffix from seo.title for on-page title/H1;
+ * metaTitle = `{brand} | {subject} | ישראל`. Validates via check-article; strips FAQ + leading H1 from body.
  *
  * Usage:
- *   node scripts/publish-draft-to-content.mjs [NNNN ...]
- *   node scripts/publish-draft-to-content.mjs 0006 0007
+ *   node scripts/publish-draft-to-content.mjs              # all manifest subjects
+ *   node scripts/publish-draft-to-content.mjs 0006 0007    # specific NNNN ids
  *
  * Preserves images from existing content file (assign via scripts/assign-article-images.mjs first).
  */
@@ -72,6 +79,19 @@ function stripLeadingH1(body) {
 	return body.replace(/^#\s[^\n]+\n+/m, '').trimStart();
 }
 
+/** Remove trailing `| {brand}` from draft seo.title — brand belongs in metaTitle only. */
+function stripBrandFromTitle(rawTitle, brand) {
+	const title = String(rawTitle ?? '').trim();
+	if (!title || !brand) return title;
+	const escaped = brand.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+	const suffix = new RegExp(`\\s*\\|\\s*${escaped}(?:\\s*עו[״"']ד)?\\s*$`, 'u');
+	const stripped = title.replace(suffix, '').trim();
+	if (stripped !== title) {
+		logStep('strip-brand', { before: title, after: stripped });
+	}
+	return stripped || title;
+}
+
 function loadExistingImages(contentPath) {
 	if (!fs.existsSync(contentPath)) return null;
 	try {
@@ -106,8 +126,9 @@ function mapDraftToSiteFrontmatter({ seo, subject, faq, images, profile }) {
 			message: 'need ≥3 tags — add subject.tags in manifest or slug-like seo.keywords',
 		});
 	}
+	const displayTitle = stripBrandFromTitle(seo.title, profile.brand);
 	return {
-		title: seo.title,
+		title: displayTitle,
 		description: seo.description,
 		metaTitle: `${profile.brand} | ${subject.subject} | ישראל`,
 		metaDescription: seo.description,
