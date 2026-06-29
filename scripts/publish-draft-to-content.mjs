@@ -7,7 +7,7 @@
  *   2. Images in target MDX (≥3): node scripts/assign-article-images.mjs …
  *   3. Publish: node scripts/publish-draft-to-content.mjs [NNNN …]
  *
- * Maps nested seo: → flat Zod fields. Strips brand suffix from seo.title for on-page title/H1;
+ * Maps nested seo: → flat Zod fields. Strips brand prefix/suffix from seo.title for on-page title/H1;
  * metaTitle = `{brand} | {subject} | ישראל`. Validates via check-article; strips FAQ + leading H1 from body.
  *
  * Usage:
@@ -79,17 +79,53 @@ function stripLeadingH1(body) {
 	return body.replace(/^#\s[^\n]+\n+/m, '').trimStart();
 }
 
-/** Remove trailing `| {brand}` from draft seo.title — brand belongs in metaTitle only. */
-function stripBrandFromTitle(rawTitle, brand) {
-	const title = String(rawTitle ?? '').trim();
-	if (!title || !brand) return title;
-	const escaped = brand.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-	const suffix = new RegExp(`\\s*\\|\\s*${escaped}(?:\\s*עו[״"']ד)?\\s*$`, 'u');
+/** Brand pipe/colon variants — longest first. Brand belongs in metaTitle only, not display title. */
+const BRAND_TITLE_VARIANTS = [
+	'גיא אבני משרד עורכי דין',
+	'גיא אבני עורך דין',
+	'גיא אבני עו״ד',
+	'גיא אבני עו"ד',
+	'גיא אבני',
+];
+
+function escapeBrandRe(value) {
+	return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+/** Remove leading/trailing brand pipe or colon from draft seo.title. */
+function stripBrandFromTitle(rawTitle, brand = 'גיא אבני') {
+	let title = String(rawTitle ?? '').trim();
+	if (!title) return title;
+
+	for (const variant of BRAND_TITLE_VARIANTS) {
+		const prefixPipe = new RegExp(`^${escapeBrandRe(variant)}\\s*\\|\\s*`, 'u');
+		const prefixColon = new RegExp(`^${escapeBrandRe(variant)}\\s*:\\s*`, 'u');
+		if (prefixPipe.test(title)) {
+			const before = title;
+			title = title.replace(prefixPipe, '').trim();
+			logStep('strip-brand-prefix', { before, after: title });
+			break;
+		}
+		if (prefixColon.test(title)) {
+			const before = title;
+			title = title.replace(prefixColon, '').trim();
+			logStep('strip-brand-prefix-colon', { before, after: title });
+			break;
+		}
+	}
+
+	const escaped = escapeBrandRe(brand);
+	const suffix = new RegExp(
+		`\\s*\\|\\s*${escaped}(?:\\s+(?:עו[״"']ד|עורך\\s+דין|משרד\\s+עורכי\\s+דין))?\\s*$`,
+		'u',
+	);
 	const stripped = title.replace(suffix, '').trim();
 	if (stripped !== title) {
-		logStep('strip-brand', { before: title, after: stripped });
+		logStep('strip-brand-suffix', { before: title, after: stripped });
+		title = stripped;
 	}
-	return stripped || title;
+
+	return title || String(rawTitle ?? '').trim();
 }
 
 function loadExistingImages(contentPath) {
