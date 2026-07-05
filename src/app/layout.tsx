@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist_Mono, Heebo } from 'next/font/google';
 import '@/styles/global.css';
+import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics';
 import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from '@/consts';
 import { cn } from '@/lib/utils';
 
@@ -50,7 +51,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				{googleVerification ? <meta name="google-site-verification" content={googleVerification} /> : null}
 				{bingVerification ? <meta name="msvalidate.01" content={bingVerification} /> : null}
 			</head>
-			<body className={cn(heebo.className, 'flex min-h-dvh flex-col')}>{children}</body>
+			<body className={cn(heebo.className, 'flex min-h-dvh flex-col')}>
+				{children}
+				<GoogleAnalytics />
+			</body>
 		</html>
 	);
 }

@@ -6,6 +6,9 @@ export const SITE_DESCRIPTION =
 
 export const SITE_URL = 'https://avniguy.co.il';
 
+/** Google Analytics 4 measurement ID (gtag.js). */
+export const GOOGLE_ANALYTICS_MEASUREMENT_ID = 'G-Q4R9ZB7J8R';
+
 /** Public inbox; override in Vercel with `PUBLIC_CONTACT_EMAIL`. */
 function readContactEmail(): string {
 	try {
