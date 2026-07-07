@@ -6,15 +6,16 @@ import { SiteShell } from '@/components/layout/SiteShell';
 import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
 import { buildPageMetadata } from '@/lib/metadata';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
-import { buildBreadcrumbSchema } from '@/utils/structured-data';
+import { buildPersonSchema, readPersonSameAsUrls } from '@/lib/seo/schema-person';
+import { buildBreadcrumbSchema, buildFaqSchema } from '@/utils/structured-data';
 
 export const dynamic = 'force-static';
 
 export const metadata = buildPageMetadata({
-	title: 'גיא אבני עו״ד | ערכים, ניסיון ודרך עבודה מקצועית',
+	title: 'גיא אבני | עורך דין',
 	description:
-		'גיא אבני עו״ד מציג ערכים, ניסיון ודרך עבודה: שקיפות, סיכומים אחרי שיחות, מיפוי סיכונים וציפיות ברורות מהיום הראשון. קראו לפני פגישת מיקוד.',
-	keyword: 'גיא אבני עו״ד',
+		'גיא אבני עורך דין — עמוד היישות המקצועי: תחומי ליווי, ניסיון, דרך עבודה ויצירת קשר. נקודת עוגן לחיפוש גיא אבני וגיא אבני עורך דין.',
+	keyword: 'גיא אבני עורך דין',
 	path: '/about/',
 });
 
@@ -31,78 +32,103 @@ const PRINCIPLES = [
 	],
 ] as const;
 
+const KNOWS_ABOUT = [
+	'דיני נדל״ן ומיסוי מקרקעין',
+	'חוזים וסכסוכים אזרחיים',
+	'ליווי עסקי וציות',
+	'תכנון מוקדם לפני תביעה או חתימה',
+] as const;
+
+const BRAND_FAQ = [
+	{
+		question: 'מי זה גיא אבני?',
+		answer:
+			'גיא אבני הוא עורך דין המלווה פרטיים ועסקים בנדל״ן, מיסוי, חוזים וליטיגציה. עמוד זה הוא עמוד היישות המקצועי של avniguy.co.il.',
+	},
+	{
+		question: 'גיא אבני עורך דין — באילו תחומים?',
+		answer:
+			'תחומי ליווי עיקריים: נדל״ן ומיסוי מקרקעין, חוזים, סכסוכים אזרחיים, וליווי שוטף לעסקים. פירוט נוסף בעמוד השירותים ובמאמרי הבלוג.',
+	},
+	{
+		question: 'איך ליצור קשר עם גיא אבני?',
+		answer:
+			'ניתן ליצור קשר דרך עמוד יצירת הקשר באתר לתיאום שיחת מיקוד. מומלץ לקרוא מאמר רלוונטי או עמוד שירות לפני הפנייה.',
+	},
+] as const;
+
 export default function AboutPage() {
 	const breadcrumbItems = [
 		{ name: 'דף הבית', path: '/' },
-		{ name: 'אודות', path: '/about' },
+		{ name: 'גיא אבני עורך דין', path: '/about' },
 	];
-	const jsonLd = buildBreadcrumbSchema(breadcrumbItems);
+	const sameAs = readPersonSameAsUrls();
+	const jsonLd = [
+		buildBreadcrumbSchema(breadcrumbItems),
+		buildPersonSchema({ sameAs: sameAs.length ? sameAs : undefined }),
+		buildFaqSchema([...BRAND_FAQ]),
+	];
 
 	return (
 		<SiteShell currentPath="/about/" extraJsonLd={jsonLd}>
 			<div className="flex flex-col">
 				<BreadcrumbNav items={breadcrumbItems} />
-				<MainPageHero hero={MAIN_PAGE_HEROES['/about/']} index="01" eyebrow="אודות / About" />
+				<MainPageHero hero={MAIN_PAGE_HEROES['/about/']} index="01" eyebrow="גיא אבני · עורך דין" />
 
 				<PageSection className="mt-16">
-					<SectionHeader index={1} eyebrow="עקרונות / Principles" title="ערכים ודרך עבודה" />
+					<SectionHeader index={1} eyebrow="Entity home" title="עמוד יישות — גיא אבני עורך דין" />
+					<p className="mt-6 max-w-3xl text-pretty leading-relaxed text-muted-foreground">
+						עמוד זה הוא עמוד היישות המקצועי של האתר: כאן מרוכזים אותות מותג, סמכות ויצירת קשר עבור חיפושים על גיא אבני
+						ועורך הדין גיא אבני. המאמרים בבלוג, עמוד השירותים ודף הבית מקשרים לכאן כנקודת עוגן אחת.
+					</p>
+				</PageSection>
+
+				<PageSection>
+					<SectionHeader index={2} eyebrow="Credentials" title="תחומי התמחות וניסיון" />
+					<ul className="mt-6 flex max-w-3xl list-disc flex-col gap-2 pr-6 text-muted-foreground">
+						{KNOWS_ABOUT.map((item) => (
+							<li key={item}>{item}</li>
+						))}
+					</ul>
+				</PageSection>
+
+				<PageSection>
+					<SectionHeader index={3} eyebrow="עקרונות / Principles" title="ערכים ודרך עבודה" />
 					<div className="mt-8 grid gap-px border border-border bg-border sm:grid-cols-2">
-					{PRINCIPLES.map(([num, title, text]) => (
-						<div key={title} className="flex flex-col gap-4 bg-background p-8">
-							<span className="font-mono text-xs text-muted-foreground">{num}</span>
-							<h2 className="font-heading text-lg font-semibold text-foreground">{title}</h2>
-							<p className="text-pretty text-sm leading-relaxed text-muted-foreground">{text}</p>
-						</div>
-					))}
+						{PRINCIPLES.map(([num, title, text]) => (
+							<div key={title} className="flex flex-col gap-4 bg-background p-8">
+								<span className="font-mono text-xs text-muted-foreground">{num}</span>
+								<h2 className="font-heading text-lg font-semibold text-foreground">{title}</h2>
+								<p className="text-pretty text-sm leading-relaxed text-muted-foreground">{text}</p>
+							</div>
+						))}
 					</div>
 				</PageSection>
 
 				<PageSection>
 					<div className="grid gap-8 lg:grid-cols-12">
-					<div className="lg:col-span-4">
-						<span className="font-mono text-xs text-muted-foreground">02 / ערכי העבודה</span>
-					</div>
-					<div className="flex flex-col gap-4 text-right lg:col-span-8">
-						<h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground">
-							ערכי העבודה שמובילים את גיא אבני עו״ד
-						</h2>
-						<p className="max-w-3xl text-pretty leading-relaxed text-muted-foreground">
-							העבודה שלי נשענת על שקיפות, זמינות וחשיבה אסטרטגית. אפשר להעמיק דרך עמוד{' '}
-							<Link className="link-underline" href="/services/">
-								השירותים
-							</Link>
-							, לקרוא את{' '}
-							<Link className="link-underline" href="/blog/">
-								הבלוג
-							</Link>
-							, לעיין ב־
-							<Link className="link-underline" href="/categories/">
-								קטגוריות
-							</Link>
-							, לנווט לפי{' '}
-							<Link className="link-underline" href="/tags/">
-								תגיות
-							</Link>
-							, לבדוק את{' '}
-							<Link className="link-underline" href="/">
-								דף הבית
-							</Link>
-							, לעבור ל־{' '}
-							<Link className="link-underline" href="/contact/">
-								יצירת קשר
-							</Link>{' '}
-							ולקרוא על{' '}
-							<Link className="link-underline" href="/blog/document-readiness-guide/">
-								מוכנות מסמכים
-							</Link>
-							.
-						</p>
-						<h3 className="mt-2 font-heading text-xl font-semibold text-foreground">למי זה מתאים</h3>
-						<p className="max-w-3xl text-pretty leading-relaxed text-muted-foreground">
-							האתר מתאים למי שמחפש ליווי מקצועי בשפה פרקטית, עם דגש על תכנון מוקדם, צעדים ישימים ותוכן שמחבר בין ידע משפטי לבין
-							החלטות יומיומיות. התוכן באתר אינו תחליף לייעוץ אישי; כשיש סיכון מהותי, עדיף שיחה ממוקדת.
-						</p>
-					</div>
+						<div className="lg:col-span-4">
+							<span className="font-mono text-xs text-muted-foreground">04 / המשך ביקור</span>
+						</div>
+						<div className="flex flex-col gap-4 text-right lg:col-span-8">
+							<h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground">
+								המשך מעמוד היישות
+							</h2>
+							<p className="max-w-3xl text-pretty leading-relaxed text-muted-foreground">
+								<Link className="link-underline" href="/services/">
+									שירותים
+								</Link>
+								,{' '}
+								<Link className="link-underline" href="/blog/">
+									בלוג
+								</Link>
+								,{' '}
+								<Link className="link-underline" href="/contact/">
+									יצירת קשר
+								</Link>
+								.
+							</p>
+						</div>
 					</div>
 				</PageSection>
 			</div>

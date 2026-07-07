@@ -1,6 +1,6 @@
 import { SITE_KEYWORDS_BATCH } from '@/lib/seo/site-keywords-batch';
 
-export const SITE_TITLE = 'גיא אבני עו״ד: משפטים, כלכלה, נדלן ודין';
+export const SITE_TITLE = 'מאמרים משפטיים, שירותים וייעוץ | גיא אבני';
 export const SITE_DESCRIPTION =
 	'אתר תוכן מקצועי בעברית של גיא אבני עם מאמרים, שירותים ותובנות מעשיות.';
 

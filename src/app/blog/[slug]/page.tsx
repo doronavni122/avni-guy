@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import { BlogPostLayout } from '@/components/layout/BlogPostLayout';
+import { injectEntityLinks } from '@/lib/content/inject-entity-links';
 import { injectArticleFigures } from '@/lib/content/inject-figures';
 import { renderMdxContent } from '@/lib/content/mdx';
 import { getAllPosts, getPostBySlug } from '@/lib/content/posts';
@@ -51,7 +52,8 @@ export default async function BlogPostPage({ params }: PageProps) {
 	}
 
 	const renderBody = bodyForRender(post.data, post.content);
-	const contentWithFigures = injectArticleFigures(renderBody, post.data.images);
+	const withEntityLinks = injectEntityLinks(renderBody, { slug });
+	const contentWithFigures = injectArticleFigures(withEntityLinks, post.data.images);
 	const content = await renderMdxContent(contentWithFigures);
 	const allPosts = await getAllPosts();
 	const relatedPosts = scoreRelatedPosts(post, allPosts, 4);
