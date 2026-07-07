@@ -1,0 +1,31 @@
+{
+  "scope_list_file": "notes/TODO_checklist_full_scopes_YYYY-MM-DD.txt",
+  "mode": "sequential",
+  "integration_branch": "main",
+  "max_parallel_workers": 3,
+  "started_at": "2026-01-01T12:00:00+00:00",
+  "current_scope": "auth-middleware",
+  "inner_iteration": 1,
+  "max_inner_iterations": 3,
+  "escalation_level": 0,
+  "file_claims": {},
+  "workers": {},
+  "scopes": {
+    "auth-middleware": {
+      "status": "IN_PROGRESS",
+      "plan": "001_auth_middleware_lock_a1",
+      "last_gate": "verify_fail",
+      "last_failure": "pnpm build: type error in apps/web",
+      "escalation_count": 0,
+      "rca_files": ["notes/implementations/auth-middleware_escalation_1.txt"]
+    },
+    "ci-verification-gate": {
+      "status": "PENDING",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    }
+  }
+}

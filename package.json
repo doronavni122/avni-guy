@@ -23,7 +23,8 @@
     "cms:dev": "KEYSTATIC_STORAGE_KIND=local next dev -p 3001",
     "hooks:install": "node scripts/tools/install-git-hooks.cjs",
     "atomic:validate-staged": "node scripts/tools/validate-atomic-change-logging.cjs --staged",
-    "atomic:validate-range": "node scripts/tools/validate-atomic-change-logging.cjs --range"
+    "atomic:validate-range": "node scripts/tools/validate-atomic-change-logging.cjs --range",
+    "agent-framework:validate": "bash scripts/tools/validate-agent-framework.sh"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",

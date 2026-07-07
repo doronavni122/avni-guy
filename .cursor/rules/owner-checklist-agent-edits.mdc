@@ -1,0 +1,38 @@
+---
+description: Agent edits allowed on implementaion_progress_checklist.md — checkbox, label, append high-level items only
+alwaysApply: true
+---
+
+# Owner progress checklist — agent edit policy
+
+**File**: `notes/implementations/implementaion_progress_checklist.md`
+
+## Allowed (agents)
+
+1. **Toggle checkbox** — change `[ ]` ↔ `[x]` when the high-level goal is implemented and locked (verify + scope evidence in brief).
+2. **Add optional label on the same line** — append or prefix a short label on the **existing line only**, e.g. `(scope:auth-middleware)` or `[locked-2026-01-01]`. No new lines for labels alone.
+3. **Append new high-level roadmap item** — only when a new **product-level** goal emerges (same bar as product SSOT / journey doc). **One line = one item.**
+
+## Required line format
+
+```
+- [ ] One plain-language high-level goal sentence
+- [x] Completed goal (optional label on same line)
+- [ ] Future: optional prefix for not-yet-started roadmap items
+```
+
+## Forbidden (agents)
+
+- Reorder, delete, or rename existing lines
+- Multiline entries, bullets under bullets, metadata blocks, dates as separate lines
+- Sub-task breakdowns (those belong in scope list files or plans)
+- Editing the file header block except the single `#` title line if owner already changed it — do not replace agent policy header without owner request
+
+## Scope list vs owner checklist
+
+| File | Purpose | Agent edits |
+|------|---------|-------------|
+| Scope list (`notes/TODO_checklist_full_scopes_*.txt`, OWNER-REPORTS scopes) | Implement / validate / lock tasks | Mark `[x]` per scope section |
+| `implementaion_progress_checklist.md` | High-level roadmap done state | Checkbox, same-line label, append roadmap line only |
+
+Both may be updated when a scope completes its mapped high-level goal.

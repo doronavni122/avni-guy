@@ -23,7 +23,7 @@ location (session / no-plan briefs): notes/sessions/
 MUST: make sure all the high level tasks that implemented or in progress are currectly updated in the followig file: @implementaion_progress_checklist.md
 location: notes/implementations/implementaion_progress_checklist.md
 
-MUST: always include the root level END-GOAL-PROJECTS.md in the files to read list.
+MUST: always include the root level SSOT.md in the files to read list.
 MUST: always include task graph rule in the rules to read list
 MUST: always write report creation date in the first section in the following way: date , time, time zone
 

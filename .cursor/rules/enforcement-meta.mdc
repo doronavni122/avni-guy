@@ -12,7 +12,7 @@ alwaysApply: true
 
 **Config & SSOT**
 - configuration-driven-behavior: Limits, thresholds, timeouts in config/SSOT; no hard-coded values in app code.
-- ssot-repo-structure: Repo structure (backend, frontend, deploy, config) in single SSOT (e.g. system-rules/ or meta).
+- ssot-repo-structure: Repo structure in `.cursor/rules/ssot-repo-structure.mdc` + `workspace.config.json`.
 - ssot-location: Shared config/types/client in one canonical place (e.g. packages/); no duplication in apps.
 - ssot-state: No duplicated state; single source of truth.
 
@@ -22,7 +22,7 @@ alwaysApply: true
 - plans-reports-agentic-only: Reports/plans machine-consumable; dense, structured, parseable; no fluff.
 
 **Plans & scripts**
-- plans-directory-and-numbering: Plans in .cursor/plans/ only; name NNN_<scope>_<three_word_slug>_<id>.plan.md; brief in notes/implementations/<base>_brief.txt.
+- plans-directory-and-numbering: `.cursor/plans/NNN_<scope>_<slug>_<id>.plan.md`; brief in `notes/implementations/<base>_brief.txt`. See `enforcement/plans-directory-and-numbering.mdc`.
 - plans-adr-link: Every plan MUST include relevant ADR(s) in exactly this form: `ADR: <pillar> , <ids>` (e.g. `ADR: auth , 0001 0005`). Pillar from ADR ontology; ids = space-separated NNNN from ADR/adr_index.md.
 - scripts-placement: Scripts at repo root: scripts/dev/, scripts/automation/, scripts/tools/, scripts/<package>/; none inside packages/apps.
 
@@ -44,6 +44,11 @@ alwaysApply: true
 
 **Security**
 - security: No logging secrets; validate external input; no dynamic code execution; encrypt sensitive at rest.
+
+**Workflow**
+- read-structure-first, handoff-and-scope-loop, scope-list-completion-loop, scope-list-implementation-loop skill, scope-list-delegation-parallel skill
+- scope orchestration agents: scope-orchestrator, scope-worker, rca-scope, review-scope, scope-loop-runner
+- post-implementation-checklist.mdc, post-implementation-build-dev-verify-loop.mdc, owner-checklist-agent-edits.mdc, implementation-notes-placement.mdc
 
 **Anti-patterns & workflow**
 - anti-patterns: No magic numbers (use named constants); no deep nesting; no circular deps; no global mutable state.

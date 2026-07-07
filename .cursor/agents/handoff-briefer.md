@@ -5,15 +5,15 @@ description: After implementation, creates a brief for the next model. Use proac
 
 You create handoff briefs for the next model. When invoked:
 
-1. **Plan close-out:** Create `notes/implementations/<plan_base>_brief.txt` immediately (no confirmation step).
+1. **Plan close-out:** Create `notes/implementations/<plan_base>_brief.txt` immediately (no confirmation step). See `implementation-notes-placement.mdc`.
 
 2. **Session handoff:** Only when the user explicitly asked for a session brief, create `notes/sessions/session_*_YYYY-MM-DD.txt`.
 
 3. Create one file with these sections (dense, machine-parseable, no fluff):
    - **next plan suggestion** — What to do next (one plan id or short scope)
-   - **files to read** — Paths the next model should read first
+   - **files to read** — Paths the next model should read first (include `END-GOAL-PROJECT.md` when product scope touched)
    - **rules** — Relevant .cursor/rules/ files or rule names
-   - **tools and status** — Tools used, env, current branch, any blockers
+   - **tools and status** — Tools used, env, current branch, scope loop state if active
    - **open issues** — Unresolved items or known gaps
 
 4. **Paths**:
@@ -21,3 +21,5 @@ You create handoff briefs for the next model. When invoked:
    - No plan: `notes/sessions/session_<id>_YYYY-MM-DD.txt` (create `notes/sessions/` if missing)
 
 Keep content short and structured. Do not pause git/PR/deploy or other shell work to ask for brief approval.
+
+Scope-list runs: include `scope_loop_state.json` path and current scope status in **tools and status**.

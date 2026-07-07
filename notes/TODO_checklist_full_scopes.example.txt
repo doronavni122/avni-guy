@@ -1,0 +1,21 @@
+# Scope list example — copy to notes/TODO_checklist_full_scopes_YYYY-MM-DD.txt
+
+Use `## scope-slug` sections. Mark `- [x]` when scope DONE (scope-list loop).
+
+## monorepo-bootstrap
+
+- [ ] Root workspace config and package manager wired
+- [ ] Dev scripts run from repo root
+
+## auth-middleware
+
+Prerequisite: monorepo-bootstrap
+
+- [ ] Auth middleware in apps/web
+- [ ] Env vars in .env.example
+
+## ci-verification-gate
+
+Prerequisite: monorepo-bootstrap
+
+- [ ] CI workflow runs build on PR

@@ -1,0 +1,56 @@
+---
+description: Repo structure SSOT for avni-guy (avniguy.co.il)
+alwaysApply: false
+---
+
+# Repo structure (SSOT)
+
+Machine paths and doc names: `workspace.config.json`.
+
+## Layout (single Next.js app at repo root)
+
+| Area | Path | Role |
+|------|------|------|
+| App | `src/app/` | Next.js App Router pages and API routes |
+| Components | `src/components/` | UI and layout |
+| Content | `src/content/blog/` | Published MDX articles |
+| Content lib | `src/lib/content/` | Schema, loaders, images |
+| SEO | `src/lib/seo/` | JSON-LD, metadata helpers |
+| Public assets | `public/images/` | Blog, home, shared images (unique per slot) |
+| Scripts | `scripts/` | Build, content pipeline, tools |
+| Content SEO Kit | `.content-kit/` | Pipeline template (sync via `scripts/content-kit-sync.mjs`) |
+| Agent stack | `.cursor/rules/`, `.cursor/agents/`, `.cursor/skills/`, `.commends/` | Rules, agents, workflows |
+| Notes | `notes/implementations/`, `notes/sessions/` | Briefs, checklist, scope state |
+| ADR | `ADR/` | Architecture decisions |
+| Owner workfiles | `OWNER-REPORTS/` | Non-authoritative session notes |
+
+## Product SSOT
+
+- `SSOT.md` (`workspace.config.json` → `productSsotDoc`)
+- `AGENTS.md` — agent-facing stack summary
+- `PROJECT_USER_JOURNEY_STEPS.md` (`journeyDoc`) when present
+- `SETUP-INSTRUCTIONS.md` (`setupInstructionsDoc`) when present
+
+## Agent workspace (agentic-workspace-template)
+
+- **Scope-list loops**: skills `scope-list-implementation-loop`, `scope-list-delegation-parallel`
+- **Orchestration agents**: `scope-orchestrator`, `scope-worker`, `rca-scope`, `review-scope`, `scope-loop-runner`
+- **State schemas**: `notes/implementations/scope_loop_state.example.json`, `scope_dag.example.json`
+- **`task_graph.log`** at repo root — append-only OOST
+- **Git hooks**: `scripts/git-hooks/` (pre-commit disabled per owner request)
+
+## Content SEO Kit (project-specific)
+
+- Profile SSOT: `content-pipeline.profile.json`
+- Rules: `content-kit-commends-todo.mdc`, `content-seo-quality.mdc`, `unique-site-images.mdc`
+- Skill: `.cursor/skills/content-seo-pipeline/SKILL.md`
+
+## Scope lists
+
+- Primary: `notes/TODO_checklist_full_scopes_*.txt` (see `notes/TODO_checklist_full_scopes.example.txt`)
+- Spike-driven: `OWNER-REPORTS/*_spike_audit.md` → `## Scopes` section
+
+## Deploy and dev
+
+- Vercel (`vercel.json`); production `https://avniguy.co.il`
+- Dev server: `pnpm run dev` → **http://localhost:3001/**

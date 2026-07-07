@@ -1,0 +1,17 @@
+---
+description: Full post-implementation verify loop — build, dev, optional tests and handoff
+alwaysApply: false
+---
+
+# Post-implementation verify loop
+
+Run after plan or scope implementation (in order):
+
+1. **Build** — `pnpm build` from repo root (skip when docs/plans-only)
+2. **Dev** — `pnpm dev` (or project dev command); check logs for compile/runtime errors
+3. **Tests** — run project test command when scope touched testable code
+4. **Secrets grep** — `node scripts/tools/check-sensitive-log-patterns.js` when scripts or config changed (if present)
+5. **Handoff brief** — per `handoff-and-scope-loop.mdc` when plan close-out applies
+6. **Owner checklist** — update per `owner-checklist-agent-edits.mdc` when applicable; report in brief
+
+Skip steps explicitly N/A. Do not leave verify failures unresolved.

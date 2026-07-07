@@ -7,7 +7,7 @@ alwaysApply: true
 
 After implementation, optionally create a brief for the next model. **Do not block or pause the session to ask for confirmation** — create the plan-tied brief when plan close-out applies (below). Session briefs (`notes/sessions/session_*_YYYY-MM-DD.txt`) only when the user explicitly requests a session handoff.
 
-**Plan close-out:** When finishing work tied to **one** plan file in `.cursor/plans/`, create **without asking** at most **one** plan-tied brief (`notes/implementations/<plan_base>_brief.txt`) **and** at most **one** plan-tied implementation note in `notes/implementations/` sharing the same `<plan_base>` (dense, machine-parseable).
+**Plan close-out:** When finishing work tied to **one** plan file in `.cursor/plans/`, create **without asking** at most **one** plan-tied brief (`notes/implementations/<plan_base>_brief.txt`) and at most **one** plan-tied implementation note in `notes/implementations/` sharing the same `<plan_base>` (dense, machine-parseable), per `implementation-notes-placement.mdc`.
 
 - **Plan-tied**: `notes/implementations/<plan_base>_brief.txt` (same base as plan, e.g. `001_scope_slug_id_brief.txt`).
 - **No plan**: `notes/sessions/session_*_YYYY-MM-DD.txt`.
@@ -25,8 +25,8 @@ After implementation, optionally create a brief for the next model. **Do not blo
 
 For a list of scopes:
 
-1. **For each scope**: Enter plan mode → produce full plan → implement fully → run post-implementation checklist → assess.
-2. **Repeat** until every scope is complete and every checklist item is done.
-3. **Do not stop** until there are no open todos for that list.
+1. **For each scope**: Enter plan mode → produce full plan → implement fully → verify (hard gate) → post-implementation checklist → governance → review-scope (hard gate) → handoff brief → assess. See `.cursor/skills/scope-list-implementation-loop/SKILL.md`.
+2. **Repeat** until every scope is complete and scope-list items are marked `[x]` in the scope list file.
+3. **Do not stop** until there are no open scope-list todos. Escalate (RCA, re-plan) on repeated failure — never skip scope or terminal BLOCKED.
 
 Do not leave a scope half-done or skip the checklist; move to the next scope only after the current one is fully done and assessed.

@@ -11,10 +11,10 @@ enforcement , plans-adr-link , Every plan must include relevant ADR(s) in exactl
 enforcement , plans-reports-agentic-only , Reports plans and documents are machine-consumable only: dense structured parseable; no human fluff or intro prose.
 enforcement , scripts-placement , Scripts at repo root only: scripts/dev/ (local dev migrations seeding), scripts/automation/ (CI releases), scripts/tools/ (one-off), scripts/<package-name>/ (package-specific); no scripts inside packages or apps.
 enforcement , ssot-location , Shared config types and client live in a single canonical location (e.g. packages/); no duplication in apps or elsewhere.
-enforcement , ssot-repo-structure , Repo structure (backend frontend layout deploy config) is defined in a single SSOT file (e.g. system-rules/ JSON or meta-structure).
-workflow , read-structure-first , Before any codebase change read the repo structure rule in system-rules/ (or equivalent) as the first step.
+enforcement , ssot-repo-structure , Repo structure (backend frontend layout deploy config) is defined in .cursor/rules/ssot-repo-structure.mdc and workspace.config.json.
+workflow , read-structure-first , Before any codebase change read ssot-repo-structure.mdc and product SSOT (SSOT.md) as the first step.
 workflow , handoff-brief-after-implementation , After implementation create a brief for next model in notes/implementations/<plan_base>_brief.txt (plan-tied) or notes/sessions/session_*_YYYY-MM-DD.txt (no plan); sections: next plan suggestion files to read rules (.cursor/rules/) tools and status open issues; create plan-tied brief on plan close-out without asking.
-loop , scope-list-completion-loop , For each scope in list: plan mode then full plan then implement fully then run post-implementation checklist then assess; repeat until all scopes complete and all checklist items done; do not stop until no open todos.
+loop , scope-list-completion-loop , For each scope: plan implement verify post-impl governance review handoff assess; repeat until all scopes DONE; inner ceiling triggers RCA escalation not stop; SSOT scope-list-implementation-loop skill and scope-orchestrator agent.
 code-style , import-standards , Use path aliases instead of relative paths; imports ordered builtin then external then workspace then internal alias then relative; alphabetical within group.
 code-style , side-effect-imports , Side-effect imports allowed only for polyfills and global styles; require explicit comment.
 code-style , one-responsibility-per-file , One responsibility per file; folder represents domain or feature; no mixed abstractions in same folder.

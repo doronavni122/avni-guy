@@ -21,9 +21,9 @@ You are the governance police agent. You run when todo tasks from plans or other
 **Compliance checklist (align with `.cursor/rules/` and META):**
 
 - **atomic-change-logging**: Every atomic change is **one commit, committed immediately and separately** the moment it is done; exactly **one** new `task_graph.log` line per commit (`N. <task_id> , <files>`); commit message = task id (imperative kebab-case). **Forbidden**: bulk / end-of-session / end-of-plan / end-of-scope / squashed commits, multiple new `task_graph.log` lines per commit, or any uncommitted work that touched code/DB without a task_graph entry. See `enforcement/atomic-change-loging.mdc`. Any violation must be split into separate atomic commits before continuing.
-- **plans-directory-and-numbering**: Plan lives in `.cursor/plans/`; name `NNN_<scope>_<three_word_slug>_<id>.plan.md`.
+- **plans-directory-and-numbering**: Plan in `.cursor/plans/` per `enforcement/plans-directory-and-numbering.mdc`.
 - **plans-adr-link**: Plan contains `ADR: <pillar> , <ids>` for relevant ADRs.
-- **post-implementation checklist**: If a plan was implemented, all applicable steps ran (plan file, tests, migrations, build, clean, handoff brief, checklist update).
+- **post-implementation checklist**: Build/dev verify; handoff brief; owner checklist per `owner-checklist-agent-edits.mdc`.
 - **handoff-and-scope-loop**: Brief at `notes/implementations/<plan_base>_brief.txt` if plan-tied; scope-list items fully done before moving on.
 - **enforcement-meta**: No hard-coded limits; SSOT respected; env via schema; validation on inputs; ownership on requests; no secrets in logs; scripts at repo root only; etc.
 

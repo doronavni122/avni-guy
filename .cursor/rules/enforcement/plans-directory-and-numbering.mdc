@@ -1,0 +1,29 @@
+---
+description: Plan file location, naming, and matching implementation briefs
+alwaysApply: false
+---
+
+# Plans directory and numbering
+
+**Location**: `.cursor/plans/` only — no plans in `OWNER-REPORTS/`, `notes/`, or repo root.
+
+**Naming**: `NNN_<scope>_<three_word_slug>_<id>.plan.md`
+
+- `NNN` — zero-padded sequential number (001, 002, …); next = max(existing) + 1
+- `<scope>` — short scope slug (e.g. `auth`, `api`, `ci`)
+- `<three_word_slug>` — three-word kebab slug describing the plan
+- `<id>` — short disambiguator when needed
+
+**ADR linkage**: Every plan MUST include when ADRs apply:
+
+```
+ADR: <pillar> , <ids>
+```
+
+Pillar from ADR ontology; ids = space-separated NNNN from `ADR/adr_index.md`.
+
+**Implementation brief**: On plan close-out, create `notes/implementations/<plan_base>_brief.txt` where `<plan_base>` matches the plan filename without `.plan.md` (e.g. plan `001_auth_middleware_lock_a1.plan.md` → brief `001_auth_middleware_lock_a1_brief.txt`).
+
+**Session briefs** (no plan): `notes/sessions/session_*_YYYY-MM-DD.txt` — owner-requested only.
+
+See also: `implementation-notes-placement.mdc`, `post-implementation-checklist.mdc`, `handoff-and-scope-loop.mdc`.

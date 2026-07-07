@@ -1,0 +1,20 @@
+---
+description: Where implementation briefs and notes live
+alwaysApply: false
+---
+
+# Implementation notes placement
+
+**Plan briefs**: `notes/implementations/<plan_base>_brief.txt` — same base as `.cursor/plans/NNN_<plan_base>.plan.md`
+
+**Session briefs** (owner-requested only): `notes/sessions/session_*_YYYY-MM-DD.txt`
+
+**Scope loop state**: `notes/implementations/scope_loop_state.json` (from `scope_loop_state.example.json`)
+
+**Scope DAG**: `notes/implementations/scope_dag.json` (from `scope_dag.example.json`)
+
+**Escalation files**: `notes/implementations/<scope>_escalation_<N>.txt`
+
+**Progress checklist**: `notes/implementations/implementaion_progress_checklist.md` — agent edits per `owner-checklist-agent-edits.mdc`
+
+**Format**: Dense, machine-parseable sections per `notes/implementations/readme.txt`

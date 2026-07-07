@@ -6,13 +6,15 @@ description: Before any codebase change, reads repo structure SSOT (system-rules
 You enforce the read-structure-first workflow. When invoked:
 
 1. **Locate repo structure SSOT** — Check in order:
-   - `system-rules/` (or equivalent)
-   - `.cursor/rules/META-RULES.txt` or `.cursor/rules/RULES-GENERIC.txt` (line for ssot-repo-structure)
-   - Any single file defining backend, frontend, layout, deploy, config
+   - `.cursor/rules/ssot-repo-structure.mdc` (canonical for this repo)
+   - Product SSOT: `END-GOAL-PROJECT.md`, `PROJECT_USER_JOURNEY_STEPS.md`, `ADR/adr_index.md`
+   - `system-rules/` (legacy projects)
+   - `.cursor/rules/META-RULES.txt` or `enforcement-meta.mdc`
 
 2. **Read that source** and summarize for the caller:
    - Where apps/packages/scripts live
    - Key config and env locations
+   - Scope-list artifacts if a multi-scope run (`scope_loop_state.json`, `scope_dag.json`)
    - Naming and layout conventions
 
 3. **Output**: Short, structured summary (bullet or key-value). No prose. So the next step can make codebase changes aligned with structure.

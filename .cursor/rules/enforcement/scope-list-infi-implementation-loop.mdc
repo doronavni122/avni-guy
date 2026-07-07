@@ -1,5 +1,5 @@
 ---
-description: Workflow — for each scope in a list, create full phases todo lists include plan in (Plan_Mode), implement, run post-implementation, assess completion; repeat until ALL scopes are fully implemented. Designed for long autonomous runs (4–10+ hours).
+description: Workflow — for each scope in a list, create full phases todo lists include plan in (Plan_Mode), implement, run post-implementation, assess completion; repeat until ALL scopes are fully implemented. Designed for long autonomous runs (4–10+ hours). Non-stop; inner ceiling triggers RCA and escalation, not terminal stop.
 alwaysApply: false
 ---
 
@@ -7,134 +7,87 @@ alwaysApply: false
 
 **Status**: MANDATORY when the user invokes this workflow
 
-This rule defines a **strict outer loop** that processes **every single scope** in the provided list until all of the todo tasks the scopes based on are fully implemented, and mark as done in the following way in the task file [x]
+**Orchestration SSOT**: `.cursor/skills/scope-list-implementation-loop/SKILL.md` — multi-scope runs use **scope-orchestrator** agent (sequential or parallel via **scope-worker**).
 
 ---
 
-## Scope Definition
-- A **scope** = a group of related checklist tasks/items/todos (all checkboxes items that belong to the scope)
----
+## Non-Negotiable Invariants (HIGHEST PRIORITY)
 
-## Scope Discipline — INVARIANT (HIGHEST PRIORITY – NON-NEGOTIABLE)
+1. **Do not stop** the outer loop until **every scope** is `DONE` and scope-list items are `[x]`.
+2. **Do not skip** a scope because of repeated failures.
+3. **Do not ask** for permission to continue between scopes or after failures.
+4. **Inner iteration ceiling (3)** exits the tight retry loop only to trigger **RCA + escalation + higher-level re-plan** — then **continue the same scope** until DONE.
+5. **Forbidden**: terminal `BLOCKED` that ends the workflow, "workflow finished" with open `[ ]`, or pausing for HITL unless user explicitly aborts.
 
-**This overrides everything else.**
-
-- **Global rule**: do not stop the loop until **every single task** that the scopes are attached to the scope are fully implemented and mark as done on the checklist item file.
-
----
-
-## Intent (Summary) – Long-Running Loop
-
-Process the full scope list **sequentially** with this repeating cycle:
-
-For each scope (one at a time):
-1. Switch to **PLAN_MODE**
-2. Create a complete implementation plan that will make **every checklist item** in this scope 100% done
-3. Implement the plan fully (no partial work)
-4. Run the full post-implementation checklist
-5. **Assess** (keep this step exactly as written)
-   - If **NOT fully complete** → immediately loop back to Step 1 for the **same scope** to complete the implementation fully.
-   - If **fully complete** → check each todo in the checklist file as done, and move to the next scope in the list
-
-**Outer loop**: Keep repeating the above for the next scope until **no scopes remain** and **all checklist items across the entire list are marked as done** (- [x])
-
-**Long-running instruction**:
-no human in the loop needed for plan implemnetaion.
-Do **not** ask the user for permission to continue.
-Do **not** conclude or say “workflow finished” until **every scope** has passed assessment.
-DO not stop untill no more open todos in the checklist file (e,g. all todo items marked as [x])
----
-
-## Trigger
-
-When the user says any of:
-"run the scope list workflow", "run full scope completion loop", "execute Scope-List Full Completion Loop", etc.
+**Owner checklist** `implementaion_progress_checklist.md` — per `owner-checklist-agent-edits.mdc`: agents may toggle `[x]`, add same-line label, append one-line high-level items; no reorder/delete/subtasks.
 
 ---
 
-## Steps (Strict Order – Do Not Skip)
+## Two Loops
 
-**Global invariant**: Never advance to the next scope until the current one is assessed as **FULLY COMPLETE**.
-The entire process loops automatically for hours until the whole list is done.
+- **Inner loop** (per scope): plan → implement → verify → post-impl → governance → review → handoff → assess.
+- **Outer loop** (all scopes): next scope only after current scope `DONE`; repeat until no open `[ ]` in scope list file.
 
-### Step 1: Switch to Plan Mode
-- Immediately switch to **Cursor PLAN_MODE** (Agent → Plan).
-
-### Step 2: Create Full Implementation Plan
-- Create a **complete phased plan** that, when executed, will make **every single checklist item** belonging to the current scope 100% implemented and ready to be marked done.
-
-### Step 3: Implement the Plan
-- Execute the entire plan without asking for approval.
-- Implement **fully** (every task 100% complete).
-- Follow atomic commit rules (`.cursor/rules/enforcement/atomic-change-loging.mdc`).
-- Do **not** stop implementing until the plan is 100% executed.
-
-### Step 4: Run Post-Implementation
-- Execute **every item** in `.commands/TODO_post_implementation.md` in order.
-
-### Step 5: Assess Completion (KEEP THIS STEP UNCHANGED IN SPIRIT)
-- **Assess** whether the current scope is **fully implemented** (every checklist item belonging to it is 100% complete and can be marked done).
-- **If the answer is YES (needs more work / not fully complete)**:
-  → Immediately return to **Step 1** for the **exact same scope** (repeat plan → implement → post → assess).
-- **If the answer is NO (scope is fully complete)**:
-  → Proceed to Step 6.
-
-### Step 6: Advance to Next Scope
-- Determine the next scope in the original list (current index + 1).
-- If there is a next scope → set it as the new “current scope” and go to Step 7.
-- If **no more scopes remain** → go to Step 8 (final check).
-
-### Step 7: Loop Back
-- Return to **Step 1** with the new current scope.
-- Continue the full cycle.
-
-### Step 8: Final Completion Check & Stop Condition
-- Verify that **every scope** in the original list has been processed and assessed as fully complete.
-- If any scope is still incomplete → return to Step 1 for that scope.
-- **Only when the entire list is 100% complete and all checklist items are marked done**:
-  → End the workflow with a clear final summary:
-  “All scopes completed. Workflow finished.”
+When inner `inner_iteration > max_inner_iterations` (default 3): run **Escalation ladder** in the skill (RCA → deep eval → re-plan → reset inner counter → continue). **Never** advance to next scope while current scope incomplete.
 
 ---
 
-## Flow Summary (Updated for Full Completion Loop)
-Scope list = [Scope1, Scope2, … ScopeN]
-While there are any remaining scopes in the list:
-CurrentScope = next uncompleted scope
-while CurrentScope is NOT fully complete:
+## Per-Scope Steps
 
-PLAN_MODE
-Create full plan for CurrentScope
-Implement plan fully
-Run post-implementation checklist
-Assess CurrentScope
-→ If not complete → loop back to 1 (same scope)
-→ If complete → break inner loop
-Move to next scope
+Track `notes/implementations/scope_loop_state.json` and `scope_dag.json` (from `scope_dag.example.json`).
 
-When no scopes remain AND final assessment confirms everything is done:
-END WORKFLOW
-text---
+On inner `inner_iteration > max_inner_iterations`: spawn **rca-scope** (E1), then E2–E6 per skill — **never** stop outer loop.
 
-## References (unchanged)
-- Plan location and numbering: `.cursor/rules/enforcement/plans-directory-and-numbering.mdc`
-- Atomic commits and task graph: `.cursor/rules/enforcement/atomic-change-loging.mdc`
-- Post scope plan cycle: `.commends/TODO_post_implementation.md`
-
+1. PLAN_MODE — plan in `.cursor/plans/` + ADR line when applicable
+2. Implement — atomic commits
+3. Verify (hard gate) — `build-dev-runner` / `post-implementation-build-dev` (`pnpm build`, `pnpm dev`, dev smoke e2e per `post-implementation-build-dev-verify-loop.mdc`)
+4. Post-implementation — `post-implementation-checklist.mdc` and `post-implementation-runner`
+5. Governance — `governance-police`
+6. Review (hard gate) — `review-scope` / `bugbot`
+7. Handoff — `notes/implementations/<plan_base>_brief.txt`
+8. Assess — complete → mark scope list `[x]`, next scope; incomplete → inner retry or **escalation** (skill)
 
 ---
 
-## Quick Reference Table
+## Escalation (after 3 inner failures)
 
-| Step | Action |
-|------|--------|
-| 1    | Switch to PLAN_MODE |
-| 2    | Create full plan for **current** scope |
-| 3    | Implement plan 100% |
-| 4    | Run full post-implementation checklist |
-| 5    | Assess: fully complete? (If NO → back to Step 1 same scope) |
-| 6    | If YES → get next scope |
-| 7    | Loop back to Step 1 with next scope |
-| 8    | Only stop when **ALL** scopes are assessed complete |
+Mandatory; does **not** stop outer loop:
+
+1. **RCA** — spawn **rca-scope** (≥3 potential causes; confirmed causes: file proof + confidence > 0.95) → `<scope>_escalation_<N>.txt`
+2. **Deep evaluation** — 3-pass scope audit (ADR, rules, boundaries); use `deep-audit-scope-loop` pattern
+3. **Higher-level re-plan** — new plan at `escalation_level+1`; split scope if needed; re-read `END-GOAL-PROJECT.md` + relevant ADRs
+4. **Structure-reader** if path/SSOT issue
+5. **Unblock dependencies** (env, services, submodule) — fix and retry verify
+6. Reset `inner_iteration=1`, increment `escalation_level`, continue same scope
+
+At `escalation_level >= 3`: add code-quality review on scope diff; consider ADR update if architecture was wrong.
 
 ---
+
+## Stop Condition (only)
+
+- All scopes `DONE` and scope list fully `[x]`, **or**
+- User explicitly aborts
+
+Final summary: scopes DONE, escalation count per scope, latest brief, any remaining `last_failure` if user aborted mid-run.
+
+---
+
+## Quick Reference
+
+| Phase | Action |
+|-------|--------|
+| Inner | Plan → implement → gates → assess |
+| Inner retry | Up to 3 same-approach cycles |
+| Escalation | RCA → audit → re-plan → reset inner → continue |
+| Outer | Next scope only when current DONE |
+| Stop | All DONE or user abort only |
+
+## References
+
+- Skill: `.cursor/skills/scope-list-implementation-loop/SKILL.md`
+- Parallel: `.cursor/skills/scope-list-delegation-parallel/SKILL.md`
+- Agents: `.cursor/agents/scope-orchestrator.md`, `scope-worker.md`, `rca-scope.md`, `scope-loop-runner.md`
+- DAG: `notes/implementations/scope_dag.example.json`
+- `.cursor/rules/post-implementation-checklist.mdc`
+- `.commends/TODO_infinite_no_limits_loop.md`

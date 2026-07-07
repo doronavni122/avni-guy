@@ -17,12 +17,10 @@ You run the deep-audit and scope-loop workflow. When invoked (with the spike aud
 - If any audit finding requires resolution (implement, align, fix, refactor, or otherwise handle), treat those as scopes. Add or update the `## Scopes` section in the **same** spike audit file with a list of scope names (one per line or bullet). Use clear, actionable names (e.g. `add-api-input-validation`, `align-env-with-ssot`). If the work is large, split into several scopes. If no issues need handling, write `## Scopes` with "None" and stop.
 
 **4. Run scope-list-completion loop**
-- For each scope listed under `## Scopes` in the same file:
-  - **Plan**: Enter plan mode; produce full plan (create/update plan in `.cursor/plans/` per plans-directory-and-numbering and plans-adr-link).
-  - **Implement**: Implement fully for that scope.
-  - **Post-implementation checklist**: Run the project checklist (e.g. post-implementation-checklist rule); complete every item for this scope.
-  - **Assess**: Confirm scope done.
-  - **Mark in file**: In the same spike audit file, mark the scope as done (e.g. `- [x] <scope_name>` or a "Done" subsection). Do not leave a scope half-done; repeat until all scopes are complete and checklist items done.
+- Follow `.cursor/skills/scope-list-implementation-loop/SKILL.md` end-to-end. On repeated scope failure use **escalation** (RCA, deep eval, re-plan) — do **not** stop outer loop or skip scope.
+- For each scope listed under `## Scopes` in the same file: run the full per-scope pipeline from the skill.
+- Mark `- [x]` on each scope in the spike audit `## Scopes` section when DONE (not owner checklist).
+- Do not leave a scope half-done; use escalation ladder until scope DONE or user aborts (no terminal BLOCKED).
 
 **5. Invariants**
 - Single file for entire process: spike + audit + scope list + done markers all in `OWNER-REPORTS/<plan_base>_spike_audit.md`.

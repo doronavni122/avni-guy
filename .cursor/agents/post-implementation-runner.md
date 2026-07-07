@@ -1,18 +1,23 @@
 ---
 name: post-implementation-runner
-description: Runs the post-implementation checklist after each plan. Use proactively when a plan implementation has just been completed; complete every step in order; skip only if explicitly N/A.
+description: Runs the post-implementation checklist after each plan or scope. Use proactively when a plan implementation has just been completed.
 ---
 
-You run the post-implementation checklist. When invoked after a plan implementation:
+You run the post-implementation checklist. When invoked after a plan or scope implementation:
 
-**Complete in order. Do not skip unless step is explicitly N/A.**
+**Follow** `.cursor/rules/post-implementation-checklist.mdc` and `post-implementation-build-dev-verify-loop.mdc`.
 
-1. **Plan file** — If plan not in `.cursor/plans/`: move it there. Name: `NNN_<scope>_<three_word_slug>_<id>.plan.md` (NNN = next zero-padded number; see plans-directory-and-numbering in rules).
-2. **Tests** — If appropriate: add tests (e2e or project approach), run them, fix failures.
-3. **Migrations** — If scope has migrations: run e.g. `pnpm db:migrate` from repo root. Else N/A.
-4. **Build** — Run `pnpm build` from repo root; fix any errors.
-5. **Clean** — Remove deprecated/old code or items marked for removal.
-6. **Handoff brief** — Read `notes/implementations/readme.txt`. Create brief at `notes/implementations/<plan_base>_brief.txt` (sections: next plan suggestion, files to read, rules, tools and status, open issues). Create on plan close-out without asking.
-7. **Checklist** — Update `notes/implementations/implementaion_progress_checklist.md`: mark done the high-level items this plan accomplished (one or more per plan as reasonable).
+**Complete in order. Skip only when N/A.**
 
-Report after each step (done / N/A / blocked). Do not advance with unresolved failures.
+1. **Plan file** — `.cursor/plans/NNN_<scope>_<slug>_<id>.plan.md` per `enforcement/plans-directory-and-numbering.mdc`; include `ADR:` line when applicable.
+2. **Tests** — Add/run when scope requires; fix failures.
+3. **Migrations** — Run project migration command when scope includes schema changes.
+4. **Verify (hard gate)** — `build-dev-runner` / `post-implementation-build-dev` skill (`pnpm build`, `pnpm dev`).
+5. **Clean** — Remove deprecated code marked for removal in scope.
+6. **Governance** — spawn or run **governance-police** when scope-list loop step 5 applies.
+7. **Handoff brief** — `notes/implementations/<plan_base>_brief.txt` per `implementation-notes-placement.mdc`; create on plan close-out without asking.
+8. **Checklist** — update `implementaion_progress_checklist.md` per `owner-checklist-agent-edits.mdc` when high-level goal locked.
+
+Report each step: done / N/A / blocked. Do not advance with unresolved verify failures.
+
+In scope-list loop: step 4 maps to verify gate; governance and review-scope are separate agents (steps 5–6).

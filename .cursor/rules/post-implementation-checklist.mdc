@@ -1,0 +1,19 @@
+---
+description: Post-implementation checklist order for plans and scopes
+alwaysApply: false
+---
+
+# Post-implementation checklist
+
+Complete in order after each plan/scope. Skip only when N/A.
+
+1. Plan file in `.cursor/plans/` with correct `NNN_<scope>_<slug>_<id>.plan.md` naming
+2. Plan includes `ADR: <pillar> , <ids>` when ADRs apply
+3. Build and dev verify per `after-implementation-build-dev.mdc` and `post-implementation-build-dev` skill
+4. Tests — add/run when scope requires; fix failures
+5. Migrations — run when scope includes schema changes
+6. Remove deprecated code marked for removal in scope
+7. Handoff brief in `notes/implementations/<plan_base>_brief.txt` on plan close-out
+8. Update owner checklist per `owner-checklist-agent-edits.mdc` when high-level goal locked (toggle `[x]`, optional same-line label)
+
+No end-of-session bulk commits. One atomic change = one commit + one `task_graph.log` line.

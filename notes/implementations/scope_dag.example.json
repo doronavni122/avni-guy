@@ -1,0 +1,35 @@
+{
+  "scope_list_file": "notes/TODO_checklist_full_scopes_YYYY-MM-DD.txt",
+  "generated_at": "2026-01-01T12:00:00+00:00",
+  "max_parallel_workers": 3,
+  "scopes": {
+    "monorepo-bootstrap": {
+      "depends_on": [],
+      "exclusive_files": [
+        "package.json",
+        "pnpm-workspace.yaml",
+        "turbo.json"
+      ],
+      "parallel_ok": false,
+      "maps_owner_checklist": []
+    },
+    "auth-middleware": {
+      "depends_on": ["monorepo-bootstrap"],
+      "exclusive_files": ["apps/web/middleware.ts", "packages/auth/"],
+      "parallel_ok": false,
+      "maps_owner_checklist": ["Authentication middleware in place"]
+    },
+    "supply-chain-hardening": {
+      "depends_on": ["monorepo-bootstrap"],
+      "exclusive_files": ["renovate.json5", ".github/dependabot.yml"],
+      "parallel_ok": true,
+      "maps_owner_checklist": []
+    },
+    "ci-verification-gate": {
+      "depends_on": ["monorepo-bootstrap"],
+      "exclusive_files": [".github/workflows/"],
+      "parallel_ok": true,
+      "maps_owner_checklist": ["CI verification gate on PR"]
+    }
+  }
+}
