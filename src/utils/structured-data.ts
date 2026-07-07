@@ -1,4 +1,5 @@
 import { SITE_CONTACT_EMAIL, SITE_TITLE, SITE_URL } from '../consts';
+import { buildArticleSchema } from '@/lib/seo/schema-article';
 
 /** Stable JSON-LD @id for the law firm entity (LegalService). */
 export const SITE_ORGANIZATION_ID = `${SITE_URL}#organization`;
@@ -58,6 +59,14 @@ export const buildWebSiteJsonLd = () => ({
 		name: 'גיא אבני',
 		url: absoluteUrl('/about/'),
 	},
+	potentialAction: {
+		'@type': 'SearchAction',
+		target: {
+			'@type': 'EntryPoint',
+			urlTemplate: `${SITE_URL}/search/?q={search_term_string}`,
+		},
+		'query-input': 'required name=search_term_string',
+	},
 });
 
 export type BlogPostingSchemaInput = {
@@ -73,31 +82,7 @@ export type BlogPostingSchemaInput = {
 	authorUrl: string;
 };
 
-export const buildBlogPostingSchema = (input: BlogPostingSchemaInput) => ({
-	'@context': 'https://schema.org',
-	'@type': 'BlogPosting',
-	headline: input.headline,
-	description: input.description,
-	datePublished: input.datePublished,
-	dateModified: input.dateModified,
-	keywords: input.keywords,
-	articleSection: input.articleSection,
-	inLanguage: 'he',
-	url: input.canonicalUrl,
-	image: input.imageUrls,
-	isAccessibleForFree: true,
-	author: {
-		'@type': 'Person',
-		name: input.authorName,
-		url: input.authorUrl,
-	},
-	publisher: { '@id': SITE_ORGANIZATION_ID },
-	mainEntityOfPage: {
-		'@type': 'WebPage',
-		'@id': input.canonicalUrl,
-		url: input.canonicalUrl,
-	},
-});
+export const buildBlogPostingSchema = (input: BlogPostingSchemaInput) => buildArticleSchema(input);
 
 export type BreadcrumbItem = { name: string; path: string };
 
