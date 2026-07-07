@@ -11,6 +11,7 @@
     "images:optimize": "node scripts/optimize-images.mjs",
     "prebuild": "node scripts/optimize-images.mjs",
     "build": "next build",
+    "postbuild": "node scripts/post-deploy-indexnow.mjs",
     "build:ci": "pnpm run build && node scripts/check-performance-budget.mjs && pnpm run smoke:routes",
     "start": "next start",
     "smoke:routes": "node scripts/smoke-routes.mjs",
