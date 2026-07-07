@@ -9,7 +9,7 @@
     "predev": "node scripts/check-dev-port.mjs",
     "dev": "next dev -p 3001",
     "images:optimize": "node scripts/optimize-images.mjs",
-    "prebuild": "node scripts/optimize-images.mjs",
+    "prebuild": "node scripts/optimize-images.mjs && node scripts/write-indexnow-key-file.mjs",
     "build": "next build",
     "postbuild": "node scripts/post-deploy-indexnow.mjs",
     "build:ci": "pnpm run build && node scripts/check-performance-budget.mjs && pnpm run smoke:routes",

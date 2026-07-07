@@ -268,3 +268,4 @@
 264. serp-brand-faq-searchaction , src/app/search/page.tsx src/components/search/SearchResults.tsx src/app/sitemap.ts task_graph.log
 265. serp-gsc-indexnow-loop , src/app/api/indexnow/route.ts scripts/post-deploy-indexnow.mjs scripts/gsc-url-inspection.mjs package.json task_graph.log
 266. mark-serp-seo-scopes-checklist-done , OWNER-REPORTS/002_serp-ranking-site-seo-scopes_2026-07-07.md task_graph.log
+267. add-indexnow-key-file-writer , scripts/write-indexnow-key-file.mjs package.json task_graph.log
