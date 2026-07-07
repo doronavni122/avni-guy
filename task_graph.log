@@ -265,3 +265,4 @@
 261. serp-entity-hub-person-schema , src/lib/seo/schema-person.ts src/app/about/page.tsx src/lib/seo/main-page-heroes.mjs src/consts.ts task_graph.log
 262. serp-blogposting-author-entity-links , src/lib/seo/schema-article.ts src/utils/structured-data.ts src/lib/content/inject-entity-links.ts src/app/blog/[slug]/page.tsx task_graph.log
 263. serp-wikidata-sameas-script , scripts/wikidata-sync.mjs task_graph.log
+264. serp-brand-faq-searchaction , src/app/search/page.tsx src/components/search/SearchResults.tsx src/app/sitemap.ts task_graph.log

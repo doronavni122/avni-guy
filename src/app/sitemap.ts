@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 import { SITE_URL } from '@/consts';
 import { getPostsIndex } from '@/lib/content/posts';
 
-const STATIC_PATHS = ['/', '/about/', '/services/', '/contact/', '/blog/', '/categories/', '/tags/'];
+const STATIC_PATHS = ['/', '/about/', '/search/', '/services/', '/contact/', '/blog/', '/categories/', '/tags/'];
 
 export const dynamic = 'force-static';
 
