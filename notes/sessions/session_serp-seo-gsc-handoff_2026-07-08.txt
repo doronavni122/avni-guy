@@ -1,0 +1,51 @@
+date: 2026-07-08 , 22:42 , UTC+3
+scope: serp-ranking-site-seo (avniguy.co.il brand keywords)
+branch: main @ ea31033c
+
+## status_summary
+- Code scopes 001-005 DONE (PR #181 merged). File-backed checklist OWNER-REPORTS/002 all [x].
+- Source report OWNER-REPORTS/001 committed (6fdae3fc + task_graph 268).
+- Production live: entity hub /about/ (title+H1+Person+FAQ), BlogPosting author @id graph, inject-entity-links runtime, /search/ + SearchAction, sitemap /search/.
+- Vercel production env (confirmed keys exist): WIKIDATA_PERSON_URL, PERSON_LINKEDIN_URL, PERSON_FACEBOOK_URL, INDEXNOW_KEY.
+- Live Person.sameAs (2026-07-08): Q140457357, linkedin.com/in/guy-avni-35b3292b1/, facebook profile id=61591485283276.
+- Wikidata canonical item: Q140457357 (P856 avniguy.co.il, P106 lawyer). Duplicate empty item Q140457342 exists — do not use.
+- Stubs (skip-safe, no build:ci fail): scripts/gsc-url-inspection.mjs, scripts/wikidata-sync.mjs.
+
+## next_plan_suggestion
+Single plan: serp-seo-ops-closure — (1) GSC sitemap + URL inspection loop for /about/ + top-20 blog URLs; (2) verify IndexNow key file + postbuild ping; (3) Wikidata hygiene (merge/delete Q140457342, fix P31→human Q5 on Q140457357 if still wrong); (4) optional PERSON_ISRAEL_BAR_URL if public listing found; (5) wire GSC inspection API in script OR document weekly manual GSC cadence; (6) serp-bar weekly rank check for גיא אבני / גיא אבני עורך דין.
+
+## files_to_read
+- SSOT.md — repo/product SSOT; read first.
+- END-GOAL-PROJECT.md — product law (if ranking goal maps to roadmap).
+- OWNER-REPORTS/002_serp-ranking-site-seo-scopes_2026-07-07.md — completed file-backed scopes + non-regression constraints.
+- OWNER-REPORTS/001_serp-ranking-site-seo-work_2026-07-07.md — narrative source + SERP baseline (#13/#14-17).
+- src/lib/seo/schema-person.ts — Person + readPersonSameAsUrls env keys.
+- src/app/about/page.tsx — entity hub + brand FAQ JSON-LD.
+- scripts/post-deploy-indexnow.mjs , scripts/write-indexnow-key-file.mjs , scripts/gsc-url-inspection.mjs — deploy/index loop.
+- task_graph.log — append-only OOST; last line 268.
+
+## rules_to_read
+- .cursor/rules/enforcement/atomic-change-loging.mdc — one change = one commit + one task_graph line.
+- .cursor/rules/read-structure-first.mdc — structure before edits.
+- .cursor/rules/owner-reports-non-authoritative.mdc — OWNER-REPORTS are working notes not SSOT.
+- .cursor/rules/unique-site-images.mdc — if content work resumes.
+- .cursor/rules/after-implementation-build-dev.mdc — build:ci after code changes.
+
+## tools_and_status
+Vercel CLI authenticated (doronavni122); project avni-guy. Production deploy via vercel deploy --prod. GSC/Bing sitemap ping endpoints deprecated (404/410). Rich Results Test + GSC UI required for indexing requests (no GSC_SERVICE_ACCOUNT_JSON in Vercel). SERP monitor: https://serp-bar-kw-report.surge.sh/ . smoke:production passes.
+
+## open_issues
+- P1_human_gsc: Submit sitemap.xml in Search Console; Request indexing on https://avniguy.co.il/about/ then top blog URLs from sitemap (agent cannot auth Google).
+- P1_verify_indexnow: Confirm https://avniguy.co.il/{INDEXNOW_KEY}.txt serves key; check postbuild logs for post-deploy-indexnow:ok.
+- P2_wikidata: Remove/merge duplicate Q140457342; verify Q140457357 P31=human (Q5) not Q21503252.
+- P3_sameAs_gap: PERSON_ISRAEL_BAR_URL unset — only add verified individual bar listing URL, not generic israelbar.org.il.
+- P4_automation_optional: Implement real GSC URL Inspection API in gsc-url-inspection.mjs; Wikibase API in wikidata-sync.mjs.
+- P5_measure: Re-check serp-bar ranks weekly; baseline avniguy #13 (גיא אבני), #14/#17 (גיא אבני עורך דין) as of 2026-07-07.
+
+## acceptance_manual (post-ops)
+- action: GSC URL Inspection on /about/ → Request indexing
+  expected: coverageState moves toward Indexed; brand queries show /about/ in Performance within 2-4 weeks (not guaranteed).
+- action: View-source /about/ Person JSON-LD
+  expected: sameAs array with Wikidata first + verified social URLs.
+- action: Rich Results Test on /about/ and one /blog/ slug
+  expected: Person, FAQPage, BlogPosting author @id valid, no critical errors.
