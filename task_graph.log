@@ -276,3 +276,4 @@
 272. add-hero-subhead-home-entity-copy , src/lib/seo/hero-rules.ts src/components/seo/MainPageHero.tsx src/lib/seo/main-page-heroes.mjs task_graph.log
 273. add-home-webpage-itemlist-howto-schema , src/utils/structured-data.ts task_graph.log
 274. update-home-page-metadata-jsonld , src/app/page.tsx task_graph.log
+275. rewrite-home-faq-dedupe-latest-posts , src/lib/home/loadHomeData.ts task_graph.log
