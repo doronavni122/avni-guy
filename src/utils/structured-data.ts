@@ -1,11 +1,15 @@
 import { SITE_CONTACT_EMAIL, SITE_TITLE, SITE_URL } from '../consts';
 import { buildArticleSchema } from '@/lib/seo/schema-article';
+import { SITE_PERSON_ID } from '@/lib/seo/schema-person';
 
 /** Stable JSON-LD @id for the law firm entity (LegalService). */
 export const SITE_ORGANIZATION_ID = `${SITE_URL}#organization`;
 
 /** Stable JSON-LD @id for the site (WebSite). */
 export const SITE_WEBSITE_ID = `${SITE_URL}#website`;
+
+/** Stable JSON-LD @id for the homepage WebPage entity. */
+export const SITE_HOME_WEBPAGE_ID = `${SITE_URL}#webpage`;
 
 const BRAND_LOGO_PATH = '/images/branding/guy-avni-avni-guy-law-firm-lawyer-brand-logo.svg';
 
@@ -41,9 +45,15 @@ export const buildOrganizationSchema = () => ({
 	},
 	founder: {
 		'@type': 'Person',
+		'@id': SITE_PERSON_ID,
 		name: 'גיא אבני',
 		url: absoluteUrl('/about/'),
 	},
+	areaServed: {
+		'@type': 'Country',
+		name: 'Israel',
+	},
+	knowsAbout: ['דיני נדל״ן', 'מיסוי מקרקעין', 'חוזים', 'ליטיגציה אזרחית', 'ייעוץ משפטי לעסקים'],
 });
 
 export const buildWebSiteJsonLd = () => ({
@@ -107,5 +117,54 @@ export const buildFaqSchema = (items: Array<{ question: string; answer: string }
 			'@type': 'Answer',
 			text: item.answer,
 		},
+	})),
+});
+
+export type HomeWebPageSchemaInput = {
+	name: string;
+	description: string;
+	dateModified: string;
+};
+
+export const buildHomeWebPageSchema = (input: HomeWebPageSchemaInput) => ({
+	'@context': 'https://schema.org',
+	'@type': 'WebPage',
+	'@id': SITE_HOME_WEBPAGE_ID,
+	url: SITE_URL,
+	name: input.name,
+	description: input.description,
+	inLanguage: 'he',
+	isPartOf: { '@id': SITE_WEBSITE_ID },
+	about: { '@id': SITE_PERSON_ID },
+	mainEntity: { '@id': SITE_PERSON_ID },
+	dateModified: input.dateModified,
+});
+
+export type ItemListEntry = { name: string; url: string };
+
+export const buildItemListSchema = (items: ItemListEntry[]) => ({
+	'@context': 'https://schema.org',
+	'@type': 'ItemList',
+	itemListElement: items.map((item, index) => ({
+		'@type': 'ListItem',
+		position: index + 1,
+		name: item.name,
+		url: item.url,
+	})),
+});
+
+export type HowToStepInput = { name: string; text: string };
+
+export const buildHowToSchema = (input: { name: string; description: string; steps: HowToStepInput[] }) => ({
+	'@context': 'https://schema.org',
+	'@type': 'HowTo',
+	name: input.name,
+	description: input.description,
+	inLanguage: 'he',
+	step: input.steps.map((step, index) => ({
+		'@type': 'HowToStep',
+		position: index + 1,
+		name: step.name,
+		text: step.text,
 	})),
 });
