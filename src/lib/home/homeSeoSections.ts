@@ -7,16 +7,16 @@ export type HomeSeoSectionDef = {
 };
 
 export const HOME_SEO_SECTION_DEFS: HomeSeoSectionDef[] = [
-	{ id: 'seo-practice-areas', title: 'תחומי ליווי משפטי לפרטיים ולעסקים', imageIndex: 1 },
-	{ id: 'seo-israel-context', title: 'ייעוץ משפטי בישראל - הקשר המקומי', imageIndex: 2 },
-	{ id: 'seo-when-to-call', title: 'מתי כדאי לפנות לעורך דין לפני מהלך', imageIndex: 3 },
-	{ id: 'seo-transparency', title: 'שקיפות, זמינות ותיאום ציפיות', imageIndex: 4 },
-	{ id: 'seo-real-estate', title: 'נדל״ן ועסקאות - מבט משפטי מעשי', imageIndex: 5 },
-	{ id: 'seo-choosing-lawyer', title: 'איך בוחרים עורך דין מתאים', imageIndex: 6 },
-	{ id: 'seo-ethics', title: 'אתיקה מקצועית והחלטות אחראיות', imageIndex: 7 },
-	{ id: 'seo-documents', title: 'מסמכים שכדאי להכין מראש', imageIndex: 8 },
-	{ id: 'seo-counsel-vs-representation', title: 'ייעוץ מול ייצוג - מה ההבדל בפועל', imageIndex: 9 },
-	{ id: 'seo-first-contact', title: 'מה קורה אחרי פנייה ראשונה', imageIndex: 10 },
+	{ id: 'seo-practice-areas', title: 'באילו תחומים מלווה גיא אבני עורך דין?', imageIndex: 1 },
+	{ id: 'seo-israel-context', title: 'למה חשוב ייעוץ משפטי בישראל?', imageIndex: 2 },
+	{ id: 'seo-when-to-call', title: 'מתי כדאי לפנות לעורך דין לפני מהלך?', imageIndex: 3 },
+	{ id: 'seo-transparency', title: 'איך נראית שקיפות ותיאום ציפיות עם המשרד?', imageIndex: 4 },
+	{ id: 'seo-real-estate', title: 'מה חשוב לדעת על נדל״ן ועסקאות?', imageIndex: 5 },
+	{ id: 'seo-choosing-lawyer', title: 'איך בוחרים עורך דין מתאים בישראל?', imageIndex: 6 },
+	{ id: 'seo-ethics', title: 'מה תפקיד האתיקה בהחלטה משפטית?', imageIndex: 7 },
+	{ id: 'seo-documents', title: 'אילו מסמכים כדאי להכין מראש?', imageIndex: 8 },
+	{ id: 'seo-counsel-vs-representation', title: 'מה ההבדל בין ייעוץ לייצוג מלא?', imageIndex: 9 },
+	{ id: 'seo-first-contact', title: 'מה קורה אחרי פנייה ראשונה למשרד?', imageIndex: 10 },
 ];
 
 export function resolveHomeSeoSectionImages(homeImages: HomeImage[]): HomeImage[] {

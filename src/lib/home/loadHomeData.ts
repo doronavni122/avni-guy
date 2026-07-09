@@ -87,7 +87,13 @@ export async function loadHomeData(): Promise<HomeData> {
 
 	let latestPosts: PostPreview[] = [];
 	try {
-		latestPosts = posts.slice(0, 3);
+		latestPosts = posts.slice(6, 9);
+		if (latestPosts.length < 3) {
+			latestPosts = posts.slice(3, 6);
+		}
+		if (latestPosts.length === 0) {
+			latestPosts = posts.slice(0, 3);
+		}
 	} catch (error) {
 		console.error('[home:index] failed to build latest insights posts', error);
 	}
@@ -189,22 +195,27 @@ export async function loadHomeData(): Promise<HomeData> {
 
 	const faqItems: FaqItem[] = [
 		{
-			question: 'איך יודעים אם צריך ייעוץ כבר עכשיו?',
+			question: 'מי זה גיא אבני עורך דין?',
 			answer:
-				'אם יש החלטה עם השלכה כספית, חוזית או תפעולית, עדיף לעצור לבדיקה קצרה לפני פעולה. ייעוץ מוקדם לרוב חוסך זמן, כסף ומחלוקות.',
+				'גיא אבני הוא עורך דין (עו״ד גיא אבני) המלווה פרטיים ועסקים בנדל״ן, מיסוי, חוזים וליטיגציה. פרטים נוספים בעמוד האודות.',
 		},
 		{
-			question: 'מה להכין לפני שיחת היכרות?',
+			question: 'מתי כדאי לפנות לעו״ד גיא אבני?',
+			answer:
+				'כשיש החלטה עם השלכה כספית, חוזית או תפעולית, עדיף לעצור לבדיקה קצרה לפני פעולה. ייעוץ מוקדם לרוב חוסך זמן, כסף ומחלוקות.',
+		},
+		{
+			question: 'מה להכין לפני שיחת היכרות עם גיא אבני?',
 			answer:
 				'כדאי להביא תיאור קצר של המצב, מסמכים רלוונטיים ושתי מטרות ברורות. כך אפשר להגיע להמלצה ממוקדת כבר בשיחה הראשונה.',
 		},
 		{
-			question: 'האם הליווי מתאים גם לעסקים קטנים?',
+			question: 'האם גיא אבני מלווה גם עסקים קטנים?',
 			answer:
 				'כן. המודל נבנה כך שיתאים גם לעסקים בתנועה מהירה: הגדרת עדיפויות, שלבים ברורים ושגרה פרקטית שמפחיתה סיכון לאורך זמן.',
 		},
 		{
-			question: 'איך נראה הצעד הראשון אחרי יצירת קשר?',
+			question: 'איך נראה הצעד הראשון אחרי יצירת קשר עם המשרד?',
 			answer:
 				'מתבצעת שיחת מיקוד קצרה, אחריה מקבלים תמונת מצב, המלצה אופרטיבית ומסלול פעולה שמתאים ליכולת וליעד שלכם.',
 		},
@@ -222,11 +233,13 @@ export async function loadHomeData(): Promise<HomeData> {
 		console.error('[home:index] failed to resolve primary keyword from SITE_KEYWORDS', error);
 	}
 
+	const brandKeyword = 'גיא אבני עורך דין';
+
 	const homeImages: HomeImage[] = [
 		{
 			src: '/images/home/home-hero-legal-contract-super-macro-photo-0.jpg',
-			alt: `${primarySiteKeyword} - חתימה על חוזה בצילום סופר מקרו, פתיחת דף הבית`,
-			title: `${primarySiteKeyword} | כותרת דף הבית`,
+			alt: `${brandKeyword} - חתימה על חוזה בצילום סופר מקרו, פתיחת דף הבית`,
+			title: `${brandKeyword} | כותרת דף הבית`,
 		},
 		{
 			src: '/images/home/home-practice-areas-law-books-super-macro-photo-1.jpg',

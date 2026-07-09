@@ -272,3 +272,10 @@
 268. add-serp-ranking-site-seo-source-report , OWNER-REPORTS/001_serp-ranking-site-seo-work_2026-07-07.md task_graph.log
 269. add-wikidata-cleanup-script , scripts/wikidata-cleanup.mjs task_graph.log
 270. add-serp-seo-gsc-session-brief , notes/sessions/session_serp-seo-gsc-handoff_2026-07-08.txt task_graph.log
+271. extend-page-metadata-keywords-array , src/lib/metadata.ts task_graph.log
+272. add-hero-subhead-home-entity-copy , src/lib/seo/hero-rules.ts src/components/seo/MainPageHero.tsx src/lib/seo/main-page-heroes.mjs task_graph.log
+273. add-home-webpage-itemlist-howto-schema , src/utils/structured-data.ts task_graph.log
+274. update-home-page-metadata-jsonld , src/app/page.tsx task_graph.log
+275. rewrite-home-faq-dedupe-latest-posts , src/lib/home/loadHomeData.ts task_graph.log
+276. update-home-seo-section-question-titles , src/lib/home/homeSeoSections.ts task_graph.log
+277. add-home-practice-areas-taxonomy-ui-polish , src/components/home/HomePage.tsx task_graph.log

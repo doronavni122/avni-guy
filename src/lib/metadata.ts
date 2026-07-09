@@ -8,6 +8,8 @@ export type PageMetaInput = {
 	title: string;
 	description: string;
 	keyword: SiteKeyword;
+	/** When set, replaces single `keyword` in meta keywords. */
+	keywords?: SiteKeyword[];
 	path: string;
 	type?: 'website' | 'article';
 	image?: string;
@@ -20,7 +22,7 @@ export function buildPageMetadata(input: PageMetaInput): Metadata {
 		return {
 			title: input.title,
 			description: input.description,
-			keywords: [input.keyword],
+			keywords: input.keywords ?? [input.keyword],
 			authors: [{ name: 'גיא אבני' }],
 			alternates: { canonical },
 			openGraph: {
