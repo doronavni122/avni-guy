@@ -273,3 +273,4 @@
 269. add-wikidata-cleanup-script , scripts/wikidata-cleanup.mjs task_graph.log
 270. add-serp-seo-gsc-session-brief , notes/sessions/session_serp-seo-gsc-handoff_2026-07-08.txt task_graph.log
 271. extend-page-metadata-keywords-array , src/lib/metadata.ts task_graph.log
+272. add-hero-subhead-home-entity-copy , src/lib/seo/hero-rules.ts src/components/seo/MainPageHero.tsx src/lib/seo/main-page-heroes.mjs task_graph.log

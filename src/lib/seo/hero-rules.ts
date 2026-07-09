@@ -7,6 +7,8 @@ export type MainPageHero = {
 	path: string;
 	eyebrow: string;
 	h1: string;
+	/** Optional line under H1 for brand/profession without competing with entity hub H1. */
+	subhead?: string;
 	intro: string;
 	keyword: SiteKeyword;
 };

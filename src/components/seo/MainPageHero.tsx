@@ -24,6 +24,9 @@ export function MainPageHero({ hero, badges, className, eyebrow, index }: MainPa
 			<h1 className="font-heading text-4xl font-extrabold leading-[1.05] tracking-tight text-foreground text-balance sm:text-5xl lg:text-6xl">
 				{hero.h1}
 			</h1>
+			{hero.subhead ? (
+				<p className="max-w-3xl font-heading text-lg font-semibold text-foreground sm:text-xl">{hero.subhead}</p>
+			) : null}
 			{badges ? <div className="flex flex-wrap justify-end gap-2">{badges}</div> : null}
 			<div className="flex max-w-3xl flex-col gap-4">
 				{hero.intro.split('\n\n').map((paragraph) => (
