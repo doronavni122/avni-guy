@@ -272,3 +272,4 @@
 268. add-serp-ranking-site-seo-source-report , OWNER-REPORTS/001_serp-ranking-site-seo-work_2026-07-07.md task_graph.log
 269. add-wikidata-cleanup-script , scripts/wikidata-cleanup.mjs task_graph.log
 270. add-serp-seo-gsc-session-brief , notes/sessions/session_serp-seo-gsc-handoff_2026-07-08.txt task_graph.log
+271. extend-page-metadata-keywords-array , src/lib/metadata.ts task_graph.log
