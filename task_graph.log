@@ -277,3 +277,4 @@
 273. add-home-webpage-itemlist-howto-schema , src/utils/structured-data.ts task_graph.log
 274. update-home-page-metadata-jsonld , src/app/page.tsx task_graph.log
 275. rewrite-home-faq-dedupe-latest-posts , src/lib/home/loadHomeData.ts task_graph.log
+276. update-home-seo-section-question-titles , src/lib/home/homeSeoSections.ts task_graph.log
