@@ -11,8 +11,16 @@ import { MainPageHero } from '@/components/seo/MainPageHero';
 import type { HomeData } from '@/lib/home/loadHomeData';
 import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
 import { cn } from '@/lib/utils';
+import { getCategoryLabel, getTagLabel } from '@/utils/taxonomy-labels';
 
 const homeHero = MAIN_PAGE_HEROES['/'];
+
+const PRACTICE_AREA_LINKS = [
+	{ label: 'נדל״ן ומיסוי', href: '/categories/real-estate/' },
+	{ label: 'חוזים', href: '/categories/contracts/' },
+	{ label: 'ליטיגציה', href: '/categories/litigation/' },
+	{ label: 'עסקים', href: '/categories/business/' },
+] as const;
 
 const labelClass = 'swiss-label';
 const figureClass = 'overflow-hidden rounded-sm border border-border bg-card';
@@ -45,12 +53,41 @@ export function HomePage({
 	homeImages,
 	tocItems,
 	processSteps,
-}: HomeData) {
+	lastUpdatedLabel,
+}: HomeData & { lastUpdatedLabel?: string }) {
 	return (
 		<section className="relative flex flex-col gap-14 pb-24 md:pb-6 lg:gap-20">
 			{/* Hero */}
 			<div className="flex flex-col gap-8">
 				<MainPageHero hero={homeHero} />
+				{lastUpdatedLabel ? (
+					<p className="text-sm text-muted-foreground" id="home-last-updated">
+						עודכן לאחרונה: {lastUpdatedLabel}
+					</p>
+				) : null}
+				<p id="home-summary" className="max-w-3xl text-pretty text-base leading-relaxed text-foreground">
+					<strong>גיא אבני</strong> הוא <strong>עורך דין</strong> (<strong>עו״ד גיא אבני</strong>) המלווה פרטיים ועסקים.
+					האתר מחבר בין מאמרים משפטיים, שירותים ו{' '}
+					<Link className={inlineLink} href="/about/">
+						עמוד האודות של גיא אבני עורך דין
+					</Link>
+					.
+				</p>
+				<div className="flex flex-col gap-3">
+					<p className="swiss-label">תחומי התמחות עיקריים</p>
+					<ul className="flex flex-wrap gap-2">
+						{PRACTICE_AREA_LINKS.map((item) => (
+							<li key={item.href}>
+								<Link
+									className="inline-flex rounded-sm border border-border bg-card px-3 py-1.5 text-sm font-medium text-foreground transition-colors hover:border-primary hover:text-primary"
+									href={item.href}
+								>
+									{item.label}
+								</Link>
+							</li>
+						))}
+					</ul>
+				</div>
 				<div className="flex flex-wrap items-center gap-3">
 					<Link className={cn(buttonVariants({ size: 'lg' }), 'rounded-sm')} href="/contact/">
 						תיאום שיחה
@@ -60,6 +97,9 @@ export function HomePage({
 						href="/blog/"
 					>
 						למאמרים
+					</Link>
+					<Link className={cn(inlineLink, 'text-sm')} href="/about/">
+						עו״ד גיא אבני - אודות
 					</Link>
 				</div>
 				<figure className={cn(figureClass, 'mt-2')}>
@@ -343,7 +383,7 @@ export function HomePage({
 									className="inline-flex items-center gap-1.5 rounded-sm border border-border bg-background px-3 py-1.5 text-sm font-medium text-foreground transition-colors hover:border-primary hover:text-primary"
 									href={`/categories/${category.name}/`}
 								>
-									{category.name}
+									{getCategoryLabel(category.name)}
 									<span className="swiss-index text-xs text-muted-foreground">({category.count})</span>
 								</Link>
 							))}
@@ -361,7 +401,7 @@ export function HomePage({
 									className="inline-flex items-center gap-1.5 rounded-sm border border-border bg-background px-3 py-1.5 text-sm font-medium text-foreground transition-colors hover:border-primary hover:text-primary"
 									href={`/tags/${tag.name}/`}
 								>
-									{tag.name}
+									{getTagLabel(tag.name)}
 									<span className="swiss-index text-xs text-muted-foreground">({tag.count})</span>
 								</Link>
 							))}
@@ -387,7 +427,7 @@ export function HomePage({
 				id="premium-cta"
 			>
 				<div className="flex flex-col gap-2">
-					<span className="swiss-label">מוכנים להתחיל / Start</span>
+					<span className="swiss-label">מוכנים להתחיל</span>
 					<p className="font-heading text-xl font-bold text-foreground">מוכנים לעבור משאלות לתוכנית עבודה ברורה?</p>
 					<p className="text-sm text-muted-foreground">
 						נמפה את המצב, נגדיר סדר עדיפויות, ונצא לדרך עם צעדים פרקטיים שמתאימים בדיוק למטרות שלכם.

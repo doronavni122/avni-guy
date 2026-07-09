@@ -278,3 +278,4 @@
 274. update-home-page-metadata-jsonld , src/app/page.tsx task_graph.log
 275. rewrite-home-faq-dedupe-latest-posts , src/lib/home/loadHomeData.ts task_graph.log
 276. update-home-seo-section-question-titles , src/lib/home/homeSeoSections.ts task_graph.log
+277. add-home-practice-areas-taxonomy-ui-polish , src/components/home/HomePage.tsx task_graph.log
