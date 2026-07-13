@@ -192,6 +192,25 @@
         "/categories/service/",
         "/categories/"
       ]
+    },
+    {
+      "nnnn": "0012",
+      "label": "guy_avni_lawyer_entity_about",
+      "subject": "גיא אבני עורך דין - עמוד יישות מקצועי ופרופיל משרד",
+      "slug": "about",
+      "contentFile": "src/app/about/page.tsx",
+      "category": "service",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-07-13",
+      "tags": ["lawyer", "entity", "about"],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/services/",
+        "/blog/",
+        "/blog/find-winning-lawyer-israel-bar-members/",
+        "/categories/tax/"
+      ]
     }
   ]
 }
