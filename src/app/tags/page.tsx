@@ -4,7 +4,9 @@ import { SectionHeader } from '@/components/layout/SectionHeader';
 import { MainPageHero } from '@/components/seo/MainPageHero';
 import { EntityByline } from '@/components/seo/EntityByline';
 import { SiteShell } from '@/components/layout/SiteShell';
+import { TagsCloudGrouped } from '@/components/tags/TagsCloudGrouped';
 import { getPostsIndex, getTags } from '@/lib/content/posts';
+import { buildTagCloudGroups, dedupeTagCloudGroups } from '@/lib/seo/tag-cloud-groups';
 import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
 import { buildPageMetadata } from '@/lib/metadata';
 import { replaceEmDashDeep } from '@/lib/content/sanitize-user-facing-text';
@@ -92,6 +94,10 @@ export default async function TagsIndexPage() {
 		intro: `${DIRECT_ANSWER}\n\n${MAIN_PAGE_HEROES['/tags/'].intro}`,
 	};
 
+	const tagGroups = dedupeTagCloudGroups(
+		buildTagCloudGroups(tags, posts, countByTag, getTagLabel),
+	);
+
 	return (
 		<SiteShell currentPath="/tags/" extraJsonLd={jsonLd}>
 			<div className="flex flex-col">
@@ -111,22 +117,11 @@ export default async function TagsIndexPage() {
 					<SectionHeader
 						index={1}
 						eyebrow="תגיות"
-						title="נושאים צרים לקריאה מהירה"
-						description="תגית מצמצמת רעש ומובילה ישירות למאמרים רלוונטיים."
+						title="נושאים צרים לפי תחום"
+						description="תגיות מקובצות לפי נושא רחב. השתמשו בחיפוש למציאה מהירה."
 					/>
-					<div className="mt-8 flex flex-wrap justify-end gap-px border border-border bg-border">
-						{tags.map((tag) => {
-							const count = countByTag.get(tag) ?? 0;
-							return (
-								<Link
-									key={tag}
-									className="bg-background px-5 py-3 font-heading text-sm font-semibold text-foreground no-underline transition-colors hover:bg-primary hover:text-primary-foreground"
-									href={`/tags/${tag}/`}
-								>
-									{getTagLabel(tag)} ({count})
-								</Link>
-							);
-						})}
+					<div className="mt-8">
+						<TagsCloudGrouped groups={tagGroups} />
 					</div>
 				</PageSection>
 
