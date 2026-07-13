@@ -296,3 +296,4 @@
 291. seo-tags-hub-indexation-july2026-audit , src/app/tags/page.tsx src/app/tags/[tag]/page.tsx task_graph.log
 292. update-sitemap-remove-tag-slugs , src/app/sitemap.ts task_graph.log
 293. enrich-llms-txt-about-entity-hub , public/llms.txt task_graph.log
+294. add-category-index-blurbs-ssot , src/lib/seo/category-index-blurbs.ts src/app/categories/page.tsx task_graph.log

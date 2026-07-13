@@ -11,6 +11,7 @@ import { buildPageMetadata } from '@/lib/metadata';
 import { replaceEmDashDeep } from '@/lib/content/sanitize-user-facing-text';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
 import { SITE_URL } from '@/consts';
+import { getCategoryIndexBlurb } from '@/lib/seo/category-index-blurbs';
 import {
 	buildBreadcrumbSchema,
 	buildFaqSchema,
@@ -160,6 +161,9 @@ export default async function CategoriesIndexPage() {
 									<h3 className="font-heading text-lg font-semibold text-foreground transition-colors group-hover:text-primary">
 										{getCategoryLabel(category)}
 									</h3>
+									<p className="text-sm leading-relaxed text-muted-foreground">
+										{getCategoryIndexBlurb(category)}
+									</p>
 									<span className="text-sm text-muted-foreground">
 										{countByCategory.get(category) ?? 0} מאמרים
 									</span>
