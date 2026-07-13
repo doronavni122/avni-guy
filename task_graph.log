@@ -285,3 +285,4 @@
 280. add-em-dash-sanitize-helper-and-clean-live-content , .content-kit/adapters/shared/replace-em-dash.mjs .content-kit/adapters/next/replace-em-dash.ts src/lib/content/sanitize-user-facing-text.ts scripts/sanitize-live-em-dash.mjs scripts/publish-draft-to-content.mjs src/lib/content/posts.ts src/lib/metadata.ts src/lib/nav/site-nav.ts src/lib/seo/main-page-heroes.ts src/lib/seo/main-page-heroes.mjs src/lib/content/inject-entity-links.ts src/app/about/page.tsx src/content/blog/rental-income-tax-reporting.mdx .content-kit/standards/typography.md .content-kit/standards/article-structure.md .content-kit/vendor task_graph.log
 281. research-and-expand-about-page-guy-avni-entity , reserch/0012_guy_avni_lawyer_entity_about.md src/app/about/page.tsx src/lib/seo/main-page-heroes.mjs subject-manifest.json task_graph.log
 282. add-absolute-title-metadata-option , src/lib/metadata.ts task_graph.log
+283. set-he-il-html-lang , src/app/layout.tsx task_graph.log

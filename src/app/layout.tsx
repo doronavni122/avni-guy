@@ -36,7 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 	return (
 		<html
-			lang="he"
+			lang="he-IL"
 			dir="rtl"
 			suppressHydrationWarning
 			className={cn(heebo.variable, geistMono.variable, 'bg-background font-sans')}
