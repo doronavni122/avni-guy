@@ -7,6 +7,7 @@ type ArticleListItem = {
 	title: string;
 	description: string;
 	date?: Date;
+	updatedDate?: Date;
 };
 
 type ArticleListProps = {
@@ -23,6 +24,7 @@ function toItem(post: BlogPost, excerpt: 'metaDescription' | 'description'): Art
 		title: post.data.title,
 		description: excerpt === 'metaDescription' ? post.data.metaDescription : post.data.description,
 		date: post.data.pubDate,
+		updatedDate: post.data.updatedDate,
 	};
 }
 
@@ -38,27 +40,35 @@ export function ArticleList({ posts, showDate = false, excerpt = 'metaDescriptio
 		<ol className="flex flex-col border-t border-border">
 			{items.map((item, index) => (
 				<li key={item.slug} className="border-b border-border">
-					<Link
-						href={`/blog/${item.slug}/`}
-						className="group grid grid-cols-[auto_1fr] gap-x-5 gap-y-2 py-6 no-underline transition-colors sm:grid-cols-[3rem_1fr_auto] sm:items-baseline"
-					>
-						<span className="swiss-index pt-1 text-muted-foreground transition-colors group-hover:text-primary">
-							{String(index + 1).padStart(2, '0')}
-						</span>
-						<div className="flex flex-col gap-1.5 text-right">
-							<h3 className="font-heading text-lg font-semibold leading-snug text-foreground transition-colors group-hover:text-primary">
-								{item.title}
-							</h3>
-							<p className="line-clamp-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-								{item.description}
-							</p>
-						</div>
-						{showDate && item.date ? (
-							<span className="swiss-index col-span-2 text-muted-foreground sm:col-span-1 sm:text-left">
-								<FormattedDate date={item.date} />
+					<article>
+						<Link
+							href={`/blog/${item.slug}/`}
+							className="group grid grid-cols-[auto_1fr] gap-x-5 gap-y-2 py-6 no-underline transition-colors sm:grid-cols-[3rem_1fr_auto] sm:items-baseline"
+						>
+							<span className="swiss-index pt-1 text-muted-foreground transition-colors group-hover:text-primary">
+								{String(index + 1).padStart(2, '0')}
 							</span>
-						) : null}
-					</Link>
+							<div className="flex flex-col gap-1.5 text-right">
+								<h3 className="font-heading text-lg font-semibold leading-snug text-foreground transition-colors group-hover:text-primary">
+									{item.title}
+								</h3>
+								<p className="line-clamp-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+									{item.description}
+								</p>
+							</div>
+							{showDate && item.date ? (
+								<span className="swiss-index col-span-2 text-muted-foreground sm:col-span-1 sm:text-left">
+									{item.updatedDate && item.updatedDate > item.date ? (
+										<>
+											עודכן <FormattedDate date={item.updatedDate} />
+										</>
+									) : (
+										<FormattedDate date={item.date} />
+									)}
+								</span>
+							) : null}
+						</Link>
+					</article>
 				</li>
 			))}
 		</ol>
