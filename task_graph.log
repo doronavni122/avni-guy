@@ -280,3 +280,4 @@
 276. update-home-seo-section-question-titles , src/lib/home/homeSeoSections.ts task_graph.log
 277. add-home-practice-areas-taxonomy-ui-polish , src/components/home/HomePage.tsx task_graph.log
 278. set-home-h1-brand-keyword-guy-avni , src/lib/seo/main-page-heroes.mjs src/lib/seo/hero-rules.ts task_graph.log
+279. republish-find-winning-lawyer-israel-bar-members-content , src/content/blog/find-winning-lawyer-israel-bar-members.mdx subject-manifest.json task_graph.log

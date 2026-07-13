@@ -170,6 +170,28 @@
         "/blog/capital-gains-exemption-single-apartment-2026/",
         "/blog/capital-gains-tax-installment-payment/"
       ]
+    },
+    {
+      "nnnn": "0011",
+      "label": "find_winning_lawyer_israel_bar_members",
+      "subject": "בלשכת עורכי הדין רשומים 87,000 חברים, איך מוצאים את האחד שבאמת ינצח לך את התיק",
+      "slug": "find-winning-lawyer-israel-bar-members",
+      "contentFile": "find-winning-lawyer-israel-bar-members.mdx",
+      "category": "service",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-07-13",
+      "tags": ["lawyer", "israel-bar", "choosing"],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/jurist-vs-lawyer-israel-licensing-guide/",
+        "/blog/lawyer-types-israel-specialties-full-guide/",
+        "/blog/choosing-lawyer-israel-comprehensive-guide/",
+        "/blog/lawyer-dual-representation-ethics-complaint/",
+        "/services/",
+        "/categories/service/",
+        "/categories/"
+      ]
     }
   ]
 }
