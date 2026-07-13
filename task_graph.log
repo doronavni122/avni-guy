@@ -300,3 +300,4 @@
 295. add-tag-cloud-grouping-and-search , src/lib/seo/tag-cloud-groups.ts src/components/tags/TagsCloudGrouped.tsx src/app/tags/page.tsx task_graph.log
 296. add-unified-jsonld-graph , src/utils/structured-data.ts src/components/layout/SiteShell.tsx src/components/seo/JsonLd.tsx task_graph.log
 297. add-env-schema-indexnow-production-warning , src/env.ts scripts/write-indexnow-key-file.mjs task_graph.log
+298. add-indexnow-key-env-examples , .env.example .env.development.example task_graph.log
