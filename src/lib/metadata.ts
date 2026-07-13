@@ -14,6 +14,8 @@ export type PageMetaInput = {
 	path: string;
 	type?: 'website' | 'article';
 	image?: string;
+	/** Skip root layout title.template suffix (hub pages with self-contained titles). */
+	absoluteTitle?: boolean;
 };
 
 export function buildPageMetadata(input: PageMetaInput): Metadata {
@@ -28,7 +30,7 @@ export function buildPageMetadata(input: PageMetaInput): Metadata {
 		const canonical = new URL(sanitized.path, SITE_URL).toString();
 		const ogImage = sanitized.image ?? FALLBACK_OG_IMAGE;
 		return {
-			title: sanitized.title,
+			title: sanitized.absoluteTitle ? { absolute: sanitized.title } : sanitized.title,
 			description: sanitized.description,
 			keywords: sanitized.keywords ?? [sanitized.keyword],
 			authors: [{ name: 'גיא אבני' }],
