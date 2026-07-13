@@ -2,40 +2,56 @@ import Link from 'next/link';
 import { PageSection } from '@/components/layout/PageSection';
 import { SectionHeader } from '@/components/layout/SectionHeader';
 import { MainPageHero } from '@/components/seo/MainPageHero';
+import { AttorneyCredentialBlock } from '@/components/seo/AttorneyCredentialBlock';
 import { SiteShell } from '@/components/layout/SiteShell';
 import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
 import { buildPageMetadata } from '@/lib/metadata';
 import { replaceEmDashDeep } from '@/lib/content/sanitize-user-facing-text';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
 import { buildPersonSchema, readPersonSameAsUrls } from '@/lib/seo/schema-person';
-import { buildBreadcrumbSchema, buildFaqSchema } from '@/utils/structured-data';
+import { SITE_URL } from '@/consts';
+import {
+	buildBreadcrumbSchema,
+	buildFaqSchema,
+	buildHowToSchema,
+	buildWebPageSchema,
+} from '@/utils/structured-data';
 
 export const dynamic = 'force-static';
 
+const ABOUT_OG_IMAGE = `${SITE_URL}/images/shared/guy-avni-avni-guy-law-firm-lawyer-og-law-fallback-photo-1.jpg`;
+const ABOUT_DATE_MODIFIED = '2026-07-13';
+
 export const metadata = buildPageMetadata({
-	title: 'גיא אבני | עורך דין',
+	title: 'גיא אבני עורך דין | משרד גיא אבני',
 	description:
 		'גיא אבני עורך דין - עמוד היישות המקצועי: ליווי בנדל״ן, מיסוי מקרקעין, חוזים וליטיגציה. שקיפות, פגישת מיקוד ומדריכים בעברית לפני ייעוץ אישי.',
 	keyword: 'גיא אבני עורך דין',
 	path: '/about/',
+	absoluteTitle: true,
+	image: ABOUT_OG_IMAGE,
 });
 
 const PRACTICE_AREAS = [
 	{
 		title: 'נדל״ן ומיסוי מקרקעין',
 		text: 'ליווי במכירה ורכישה, פטורי מס שבח, מס רכישה, דיווח הכנסות משכירות, ירושות ורישום - עם דגש על הכנה מוקדמת ומסמכים מסודרים.',
+		href: '/categories/tax/',
 	},
 	{
 		title: 'חוזים וסכסוכים אזרחיים',
 		text: 'בדיקה וניסוח חוזים לפני חתימה, סימון סיכונים וליווי מו״מ - כדי להיכנס לעסקה או להליך עם תמונה ברורה.',
+		href: '/categories/contracts/',
 	},
 	{
 		title: 'ליווי עסקי וציות',
 		text: 'מסלול מיקוד-תכנון-מעקב לעסקים: חוזים, תקשורת מול גורמים חיצוניים ועדכונים רק כשיש מה לדווח.',
+		href: '/categories/business/',
 	},
 	{
 		title: 'ליטיגציה אזרחית',
 		text: 'הכנה לפני תביעה, איסוף חומרים ואסטרטגיה מציאותית - עם בחינת עלות מול תועלת, לא קפיצה אוטומטית להליך.',
+		href: '/categories/litigation/',
 	},
 ] as const;
 
@@ -103,13 +119,31 @@ const BRAND_FAQ = replaceEmDashDeep([
 export default function AboutPage() {
 	const breadcrumbItems = [
 		{ name: 'דף הבית', path: '/' },
-		{ name: 'גיא אבני עורך דין', path: '/about' },
+		{ name: 'גיא אבני עורך דין', path: '/about/' },
 	];
 	const sameAs = readPersonSameAsUrls();
 	const jsonLd = [
 		buildBreadcrumbSchema(breadcrumbItems),
+		buildWebPageSchema({
+			'@id': `${SITE_URL}/about/#webpage`,
+			url: `${SITE_URL}/about/`,
+			name: 'גיא אבני עורך דין | משרד גיא אבני',
+			description:
+				'עמוד היישות המקצועי של גיא אבני, עורך דין: נדל״ן, מיסוי, חוזים וליטיגציה.',
+			dateModified: ABOUT_DATE_MODIFIED,
+			'@type': 'AboutPage',
+			mainEntity: { '@id': `${SITE_URL}/about/#person` },
+		}),
 		buildPersonSchema({ sameAs: sameAs.length ? sameAs : undefined }),
 		buildFaqSchema([...BRAND_FAQ]),
+		buildHowToSchema({
+			name: 'איך מתחילים לעבוד עם גיא אבני עורך דין',
+			description: 'מסלול מיקוד, תמונת סיכונים וליווי מסודר.',
+			steps: WORKFLOW_STEPS.map((step, index) => ({
+				name: `שלב ${index + 1}`,
+				text: step,
+			})),
+		}),
 	];
 
 	return (
@@ -117,14 +151,11 @@ export default function AboutPage() {
 			<div className="flex flex-col">
 				<BreadcrumbNav items={breadcrumbItems} />
 				<MainPageHero hero={MAIN_PAGE_HEROES['/about/']} index="01" eyebrow="גיא אבני · עורך דין" />
+				<AttorneyCredentialBlock />
 
 				<PageSection className="mt-16">
-					<SectionHeader index={1} eyebrow="Entity home" title="עמוד יישות - גיא אבני עורך דין" />
+					<SectionHeader index={1} eyebrow="עמוד יישות" title="עמוד יישות - גיא אבני עורך דין" />
 					<div className="mt-6 flex max-w-3xl flex-col gap-4 text-pretty leading-relaxed text-muted-foreground">
-						<p>
-							גיא אבני עורך דין מלווה פרטיים ועסקים בישראל בתחומי נדל״ן, מיסוי מקרקעין, חוזים וליטיגציה אזרחית.
-							עמוד זה מרכז את הפרופיל המקצועי של המשרד: מי העו״ד, באילו מצבים פונים אליו, ואיך נראית דרך העבודה.
-						</p>
 						<p>
 							אם הגעתם מחיפוש על &quot;גיא אבני&quot; או &quot;גיא אבני עורך דין&quot;, כאן תמצאו תשובה ישירה לפני שעוברים ל
 							<Link className="link-underline" href="/services/">
@@ -138,21 +169,21 @@ export default function AboutPage() {
 							<Link className="link-underline" href="/contact/">
 								יצירת קשר
 							</Link>
-							. המאמרים באתר, עמוד השירותים ודף הבית מקשרים לכאן כנקודת עוגן אחת.
-						</p>
-						<p>
-							הגישה במשרד מדגישה שקיפות ותקשורת ברורה: פגישת מיקוד, סיכומים אחרי שיחות, ומיפוי סיכונים לפני צעדים
-							יקרים. אין כאן הבטחת תוצאה; יש תיאור מפורש של איך מתקדמים כשיש מספיק עובדות.
+							.
 						</p>
 					</div>
 				</PageSection>
 
 				<PageSection>
-					<SectionHeader index={2} eyebrow="Practice" title="תחומי ליווי מעשיים" />
+					<SectionHeader index={2} eyebrow="תחומי ליווי" title="תחומי ליווי מעשיים" />
 					<div className="mt-8 grid gap-px border border-border bg-border sm:grid-cols-2">
-						{PRACTICE_AREAS.map(({ title, text }) => (
+						{PRACTICE_AREAS.map(({ title, text, href }) => (
 							<div key={title} className="flex flex-col gap-3 bg-background p-8">
-								<h2 className="font-heading text-lg font-semibold text-foreground">{title}</h2>
+								<h3 className="font-heading text-lg font-semibold text-foreground">
+									<Link className="link-underline text-foreground" href={href}>
+										{title}
+									</Link>
+								</h3>
 								<p className="text-pretty text-sm leading-relaxed text-muted-foreground">{text}</p>
 							</div>
 						))}
@@ -160,7 +191,7 @@ export default function AboutPage() {
 				</PageSection>
 
 				<PageSection>
-					<SectionHeader index={3} eyebrow="Clients" title="למי הליווי מתאים" />
+					<SectionHeader index={3} eyebrow="לקוחות" title="למי הליווי מתאים" />
 					<ul className="mt-6 flex max-w-3xl list-disc flex-col gap-2 pr-6 text-muted-foreground">
 						{CLIENT_PROFILES.map((item) => (
 							<li key={item}>{item}</li>
@@ -181,7 +212,7 @@ export default function AboutPage() {
 				</PageSection>
 
 				<PageSection>
-					<SectionHeader index={4} eyebrow="Process" title="איך מתחילים לעבוד יחד" />
+					<SectionHeader index={4} eyebrow="תהליך" title="איך מתחילים לעבוד יחד" />
 					<ol className="mt-6 flex max-w-3xl list-decimal flex-col gap-3 pr-6 text-muted-foreground">
 						{WORKFLOW_STEPS.map((step) => (
 							<li key={step} className="text-pretty leading-relaxed">
@@ -192,12 +223,12 @@ export default function AboutPage() {
 				</PageSection>
 
 				<PageSection>
-					<SectionHeader index={5} eyebrow="עקרונות / Principles" title="ערכים ודרך עבודה" />
+					<SectionHeader index={5} eyebrow="עקרונות" title="ערכים ודרך עבודה" />
 					<div className="mt-8 grid gap-px border border-border bg-border sm:grid-cols-2">
 						{PRINCIPLES.map(([num, title, text]) => (
 							<div key={title} className="flex flex-col gap-4 bg-background p-8">
 								<span className="font-mono text-xs text-muted-foreground">{num}</span>
-								<h2 className="font-heading text-lg font-semibold text-foreground">{title}</h2>
+								<h3 className="font-heading text-lg font-semibold text-foreground">{title}</h3>
 								<p className="text-pretty text-sm leading-relaxed text-muted-foreground">{text}</p>
 							</div>
 						))}
@@ -205,11 +236,11 @@ export default function AboutPage() {
 				</PageSection>
 
 				<PageSection>
-					<SectionHeader index={6} eyebrow="FAQ" title="שאלות נפוצות על גיא אבני עורך דין" />
+					<SectionHeader index={6} eyebrow="שאלות נפוצות" title="שאלות נפוצות על גיא אבני עורך דין" />
 					<div className="mt-8 flex max-w-3xl flex-col gap-6">
 						{BRAND_FAQ.map(({ question, answer }) => (
 							<div key={question} className="border-b border-border pb-6 last:border-b-0">
-								<h2 className="font-heading text-lg font-semibold text-foreground">{question}</h2>
+								<h3 className="font-heading text-lg font-semibold text-foreground">{question}</h3>
 								<p className="mt-3 text-pretty text-sm leading-relaxed text-muted-foreground">{answer}</p>
 							</div>
 						))}
@@ -237,7 +268,7 @@ export default function AboutPage() {
 								<Link className="link-underline" href="/contact/">
 									יצירת קשר
 								</Link>
-								. רוצים לתאם שיחת מיקוד? עברו לעמוד יצירת הקשר או כתבו ל-info@avniguy.co.il.
+								.
 							</p>
 						</div>
 					</div>

@@ -289,3 +289,4 @@
 284. add-webpage-schema-and-org-sameas , src/utils/structured-data.ts task_graph.log
 285. add-entity-byline-and-attorney-credential , src/components/seo/EntityByline.tsx src/components/seo/AttorneyCredentialBlock.tsx task_graph.log
 286. add-blog-archive-pagination-lib , src/lib/blog/archive.ts task_graph.log
+287. seo-about-page-july2026-audit , src/app/about/page.tsx task_graph.log
