@@ -292,3 +292,4 @@
 287. seo-about-page-july2026-audit , src/app/about/page.tsx task_graph.log
 288. seo-services-page-july2026-audit , src/app/services/page.tsx task_graph.log
 289. seo-blog-archive-pagination-and-schema , src/app/blog/page.tsx src/app/blog/page/ src/components/blog/BlogArchiveView.tsx src/components/blog/BlogPagination.tsx src/components/blog/ArticleList.tsx task_graph.log
+290. seo-categories-hub-july2026-audit , src/app/categories/page.tsx task_graph.log
