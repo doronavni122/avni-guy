@@ -9,8 +9,17 @@ function logStep(step, detail) {
 	console.error(`[write-indexnow-key:${step}]`, detail);
 }
 
+function warnProductionIndexNowUnset() {
+	if (process.env.NODE_ENV === 'production' && !process.env.INDEXNOW_KEY?.trim()) {
+		console.warn(
+			'[env] INDEXNOW_KEY is empty in production — IndexNow key file and post-deploy pings are skipped. Owner: set INDEXNOW_KEY in Vercel project environment variables.',
+		);
+	}
+}
+
 function main() {
 	try {
+		warnProductionIndexNowUnset();
 		const key = process.env.INDEXNOW_KEY?.trim();
 		if (!key) {
 			logStep('skip', 'INDEXNOW_KEY unset');
