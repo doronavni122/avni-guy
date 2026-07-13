@@ -1,6 +1,6 @@
 import { SITE_CONTACT_EMAIL, SITE_TITLE, SITE_URL } from '../consts';
 import { buildArticleSchema } from '@/lib/seo/schema-article';
-import { SITE_PERSON_ID } from '@/lib/seo/schema-person';
+import { readPersonSameAsUrls, SITE_PERSON_ID } from '@/lib/seo/schema-person';
 
 /** Stable JSON-LD @id for the law firm entity (LegalService). */
 export const SITE_ORGANIZATION_ID = `${SITE_URL}#organization`;
@@ -26,35 +26,39 @@ function absoluteUrl(pathOrUrl: string): string {
 	}
 }
 
-export const buildOrganizationSchema = () => ({
-	'@context': 'https://schema.org',
-	'@type': 'LegalService',
-	'@id': SITE_ORGANIZATION_ID,
-	name: 'גיא אבני משרד עורכי דין',
-	url: SITE_URL,
-	inLanguage: 'he',
-	logo: {
-		'@type': 'ImageObject',
-		url: absoluteUrl(BRAND_LOGO_PATH),
-	},
-	contactPoint: {
-		'@type': 'ContactPoint',
-		contactType: 'customer service',
-		email: SITE_CONTACT_EMAIL,
-		availableLanguage: ['Hebrew'],
-	},
-	founder: {
-		'@type': 'Person',
-		'@id': SITE_PERSON_ID,
-		name: 'גיא אבני',
-		url: absoluteUrl('/about/'),
-	},
-	areaServed: {
-		'@type': 'Country',
-		name: 'Israel',
-	},
-	knowsAbout: ['דיני נדל״ן', 'מיסוי מקרקעין', 'חוזים', 'ליטיגציה אזרחית', 'ייעוץ משפטי לעסקים'],
-});
+export const buildOrganizationSchema = () => {
+	const sameAs = readPersonSameAsUrls();
+	return {
+		'@context': 'https://schema.org',
+		'@type': 'LegalService',
+		'@id': SITE_ORGANIZATION_ID,
+		name: 'גיא אבני משרד עורכי דין',
+		url: SITE_URL,
+		inLanguage: 'he',
+		logo: {
+			'@type': 'ImageObject',
+			url: absoluteUrl(BRAND_LOGO_PATH),
+		},
+		contactPoint: {
+			'@type': 'ContactPoint',
+			contactType: 'customer service',
+			email: SITE_CONTACT_EMAIL,
+			availableLanguage: ['Hebrew'],
+		},
+		founder: {
+			'@type': 'Person',
+			'@id': SITE_PERSON_ID,
+			name: 'גיא אבני',
+			url: absoluteUrl('/about/'),
+		},
+		areaServed: {
+			'@type': 'Country',
+			name: 'Israel',
+		},
+		knowsAbout: ['דיני נדל״ן', 'מיסוי מקרקעין', 'חוזים', 'ליטיגציה אזרחית', 'ייעוץ משפטי לעסקים'],
+		...(sameAs.length ? { sameAs } : {}),
+	};
+};
 
 export const buildWebSiteJsonLd = () => ({
 	'@context': 'https://schema.org',
@@ -118,6 +122,31 @@ export const buildFaqSchema = (items: Array<{ question: string; answer: string }
 			text: item.answer,
 		},
 	})),
+});
+
+export type WebPageSchemaInput = {
+	'@id': string;
+	url: string;
+	name: string;
+	description: string;
+	dateModified: string;
+	'@type'?: 'WebPage' | 'CollectionPage' | 'AboutPage';
+	mainEntity?: { '@id': string };
+};
+
+export const buildWebPageSchema = (input: WebPageSchemaInput) => ({
+	'@context': 'https://schema.org',
+	'@type': input['@type'] ?? 'WebPage',
+	'@id': input['@id'],
+	url: input.url,
+	name: input.name,
+	description: input.description,
+	inLanguage: 'he',
+	isPartOf: { '@id': SITE_WEBSITE_ID },
+	about: { '@id': SITE_ORGANIZATION_ID },
+	publisher: { '@id': SITE_ORGANIZATION_ID },
+	...(input.mainEntity ? { mainEntity: input.mainEntity } : {}),
+	dateModified: input.dateModified,
 });
 
 export type HomeWebPageSchemaInput = {
