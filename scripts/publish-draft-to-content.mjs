@@ -24,6 +24,7 @@ import { loadManifest, loadProfile } from '../.content-kit/validators/lib/load-p
 import { validateSeoFrontmatter } from '../.content-kit/validators/lib/parse-frontmatter.mjs';
 import { splitArticle, parseH2Sections } from '../.content-kit/validators/lib/parse-article.mjs';
 import { faqHeadings, escapeRegex, matchesHeading } from '../.content-kit/validators/lib/heading-aliases.mjs';
+import { replaceEmDashDeep, replaceEmDashInText } from '../.content-kit/adapters/shared/replace-em-dash.mjs';
 
 const ROOT = process.cwd();
 const CHECK_ARTICLE = path.join(ROOT, '.content-kit/validators/check-article.mjs');
@@ -190,7 +191,8 @@ function publishSubject(subject, profile) {
 	runCheckArticle(draftPath, subject.nnnn);
 
 	const raw = fs.readFileSync(draftPath, 'utf8');
-	const { yaml, body, error } = splitArticle(raw);
+	const sanitizedRaw = replaceEmDashInText(raw);
+	const { yaml, body, error } = splitArticle(sanitizedRaw);
 	if (error) fail('parse', error);
 
 	const { seo, errors: fmErrors } = validateSeoFrontmatter(yaml, profile);
@@ -215,10 +217,12 @@ function publishSubject(subject, profile) {
 	}
 
 	const publishBody = stripLeadingH1(stripFaqSection(body, profile));
-	const frontmatter = mapDraftToSiteFrontmatter({ seo, subject, faq, images, profile });
+	const frontmatter = replaceEmDashDeep(
+		mapDraftToSiteFrontmatter({ seo, subject, faq, images, profile }),
+	);
 
 	fs.mkdirSync(path.dirname(outPath), { recursive: true });
-	fs.writeFileSync(outPath, matter.stringify(`\n${publishBody}\n`, frontmatter), 'utf8');
+	fs.writeFileSync(outPath, matter.stringify(`\n${replaceEmDashInText(publishBody)}\n`, frontmatter), 'utf8');
 	logStep('write', { outPath, faq: faq.length, chars: publishBody.length });
 }
 

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import type { SiteKeyword } from '@/consts';
 import { SITE_TITLE, SITE_URL } from '@/consts';
+import { replaceEmDashDeep, replaceEmDashInText } from '@/lib/content/sanitize-user-facing-text';
 
 const FALLBACK_OG_IMAGE = `${SITE_URL}/images/shared/guy-avni-avni-guy-law-firm-lawyer-og-law-fallback-photo-1.jpg`;
 
@@ -17,33 +18,40 @@ export type PageMetaInput = {
 
 export function buildPageMetadata(input: PageMetaInput): Metadata {
 	try {
-		const canonical = new URL(input.path, SITE_URL).toString();
-		const ogImage = input.image ?? FALLBACK_OG_IMAGE;
+		const sanitized = replaceEmDashDeep({
+			...input,
+			title: replaceEmDashInText(input.title),
+			description: replaceEmDashInText(input.description),
+			keywords: input.keywords?.map((keyword) => replaceEmDashInText(keyword)),
+			keyword: replaceEmDashInText(input.keyword),
+		});
+		const canonical = new URL(sanitized.path, SITE_URL).toString();
+		const ogImage = sanitized.image ?? FALLBACK_OG_IMAGE;
 		return {
-			title: input.title,
-			description: input.description,
-			keywords: input.keywords ?? [input.keyword],
+			title: sanitized.title,
+			description: sanitized.description,
+			keywords: sanitized.keywords ?? [sanitized.keyword],
 			authors: [{ name: 'גיא אבני' }],
 			alternates: { canonical },
 			openGraph: {
-				type: input.type ?? 'website',
+				type: sanitized.type ?? 'website',
 				locale: 'he_IL',
 				url: canonical,
-				title: input.title,
-				description: input.description,
+				title: sanitized.title,
+				description: sanitized.description,
 				siteName: SITE_TITLE,
 				images: [{ url: ogImage }],
 			},
 			twitter: {
 				card: 'summary_large_image',
-				title: input.title,
-				description: input.description,
+				title: sanitized.title,
+				description: sanitized.description,
 				images: [ogImage],
 			},
 			robots: { index: true, follow: true },
 		};
 	} catch (err) {
 		console.error('[metadata] buildPageMetadata failed', { input, err });
-		return { title: input.title, description: input.description };
+		return { title: replaceEmDashInText(input.title), description: replaceEmDashInText(input.description) };
 	}
 }

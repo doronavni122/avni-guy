@@ -1,5 +1,5 @@
 {
-  "kitVersion": "1.3.1",
+  "kitVersion": "1.4.1",
   "description": "Sync policy per kit file. managed = kit-owned, updatable with approval. template-once = copy on init only. optional = copy if missing, never auto-update.",
   "entries": [
     {
@@ -54,6 +54,12 @@
       "id": "standards-links",
       "kitPath": "standards/internal-linking.md",
       "projectPath": ".content-kit/standards/internal-linking.md",
+      "policy": "managed"
+    },
+    {
+      "id": "standards-typography",
+      "kitPath": "standards/typography.md",
+      "projectPath": ".content-kit/standards/typography.md",
       "policy": "managed"
     },
     {
@@ -270,6 +276,18 @@
       "id": "adapter-strip-guillemets",
       "kitPath": "adapters/next/strip-guillemets.ts",
       "projectPath": ".content-kit/adapters/next/strip-guillemets.ts",
+      "policy": "optional"
+    },
+    {
+      "id": "adapter-replace-em-dash-shared",
+      "kitPath": "adapters/shared/replace-em-dash.mjs",
+      "projectPath": ".content-kit/adapters/shared/replace-em-dash.mjs",
+      "policy": "optional"
+    },
+    {
+      "id": "adapter-replace-em-dash-next",
+      "kitPath": "adapters/next/replace-em-dash.ts",
+      "projectPath": ".content-kit/adapters/next/replace-em-dash.ts",
       "policy": "optional"
     },
     {

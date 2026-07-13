@@ -1,5 +1,7 @@
+import { replaceEmDashDeep } from '@/lib/content/sanitize-user-facing-text';
+
 /** Single source of truth for primary site navigation links. */
-export const SITE_NAV_LINKS: ReadonlyArray<{ href: string; label: string }> = [
+const SITE_NAV_LINKS_RAW = [
 	{ href: '/', label: 'בית' },
 	{ href: '/about/', label: 'אודות' },
 	{ href: '/services/', label: 'שירותים' },
@@ -9,7 +11,7 @@ export const SITE_NAV_LINKS: ReadonlyArray<{ href: string; label: string }> = [
 	{ href: '/contact/', label: 'יצירת קשר' },
 ] as const;
 
-export const FOOTER_NAV_LINKS: ReadonlyArray<{ href: string; label: string }> = [
+const FOOTER_NAV_LINKS_RAW = [
 	{ href: '/about/', label: 'אודות' },
 	{ href: '/services/', label: 'שירותים' },
 	{ href: '/blog/', label: 'מאמרים' },
@@ -17,3 +19,7 @@ export const FOOTER_NAV_LINKS: ReadonlyArray<{ href: string; label: string }> = 
 	{ href: '/tags/', label: 'תגיות' },
 	{ href: '/contact/', label: 'יצירת קשר' },
 ] as const;
+
+export const SITE_NAV_LINKS = replaceEmDashDeep(SITE_NAV_LINKS_RAW);
+
+export const FOOTER_NAV_LINKS = replaceEmDashDeep(FOOTER_NAV_LINKS_RAW);

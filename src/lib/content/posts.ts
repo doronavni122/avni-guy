@@ -5,6 +5,7 @@ import matter from 'gray-matter';
 import { cache } from 'react';
 import { normalizePostImages } from './images';
 import { blogFrontmatterSchema, type BlogPost } from './schema';
+import { replaceEmDashDeep, replaceEmDashInText } from './sanitize-user-facing-text';
 
 const CONTENT_DIR = path.join(process.cwd(), 'src/content/blog');
 
@@ -33,8 +34,8 @@ async function readPostFile(filePath: string): Promise<BlogPost> {
 			console.error('[content:posts] frontmatter validation failed', { slug, issues: parsed.error.issues });
 			throw new Error(`Invalid frontmatter for ${slug}`);
 		}
-		const data = { ...parsed.data, images: normalizePostImages(parsed.data.images) };
-		return { slug, data, content };
+		const data = replaceEmDashDeep({ ...parsed.data, images: normalizePostImages(parsed.data.images) });
+		return { slug, data, content: replaceEmDashInText(content) };
 	} catch (err) {
 		console.error('[content:posts] readPostFile failed', { filePath, err });
 		throw err;

@@ -39,4 +39,5 @@ node .content-kit/validators/check-publish.mjs [--pre-publish|--post-publish]
 node .content-kit/validators/run-gate.mjs R1|A6|P [file] [extra args]
 ```
 
-**v1.3.1:** nested `seo:` frontmatter required; `primaryServiceAnchor` on homepage link; optional `buildCommand` on `--post-publish`.
+**v1.4.1:** `replace-em-dash` adapters auto-normalize `—` → `-` at publish/render (see `standards/typography.md`).
+**v1.4.0:** gates registry, `kit.meta.json`, framework alignment docs.

@@ -5,6 +5,7 @@ import { MainPageHero } from '@/components/seo/MainPageHero';
 import { SiteShell } from '@/components/layout/SiteShell';
 import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
 import { buildPageMetadata } from '@/lib/metadata';
+import { replaceEmDashDeep } from '@/lib/content/sanitize-user-facing-text';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
 import { buildPersonSchema, readPersonSameAsUrls } from '@/lib/seo/schema-person';
 import { buildBreadcrumbSchema, buildFaqSchema } from '@/utils/structured-data';
@@ -14,7 +15,7 @@ export const dynamic = 'force-static';
 export const metadata = buildPageMetadata({
 	title: 'גיא אבני | עורך דין',
 	description:
-		'גיא אבני עורך דין — עמוד היישות המקצועי: תחומי ליווי, ניסיון, דרך עבודה ויצירת קשר. נקודת עוגן לחיפוש גיא אבני וגיא אבני עורך דין.',
+		'גיא אבני עורך דין - עמוד היישות המקצועי: תחומי ליווי, ניסיון, דרך עבודה ויצירת קשר. נקודת עוגן לחיפוש גיא אבני וגיא אבני עורך דין.',
 	keyword: 'גיא אבני עורך דין',
 	path: '/about/',
 });
@@ -39,14 +40,14 @@ const KNOWS_ABOUT = [
 	'תכנון מוקדם לפני תביעה או חתימה',
 ] as const;
 
-const BRAND_FAQ = [
+const BRAND_FAQ = replaceEmDashDeep([
 	{
 		question: 'מי זה גיא אבני?',
 		answer:
 			'גיא אבני הוא עורך דין המלווה פרטיים ועסקים בנדל״ן, מיסוי, חוזים וליטיגציה. עמוד זה הוא עמוד היישות המקצועי של avniguy.co.il.',
 	},
 	{
-		question: 'גיא אבני עורך דין — באילו תחומים?',
+		question: 'גיא אבני עורך דין - באילו תחומים?',
 		answer:
 			'תחומי ליווי עיקריים: נדל״ן ומיסוי מקרקעין, חוזים, סכסוכים אזרחיים, וליווי שוטף לעסקים. פירוט נוסף בעמוד השירותים ובמאמרי הבלוג.',
 	},
@@ -55,7 +56,7 @@ const BRAND_FAQ = [
 		answer:
 			'ניתן ליצור קשר דרך עמוד יצירת הקשר באתר לתיאום שיחת מיקוד. מומלץ לקרוא מאמר רלוונטי או עמוד שירות לפני הפנייה.',
 	},
-] as const;
+]);
 
 export default function AboutPage() {
 	const breadcrumbItems = [
@@ -76,7 +77,7 @@ export default function AboutPage() {
 				<MainPageHero hero={MAIN_PAGE_HEROES['/about/']} index="01" eyebrow="גיא אבני · עורך דין" />
 
 				<PageSection className="mt-16">
-					<SectionHeader index={1} eyebrow="Entity home" title="עמוד יישות — גיא אבני עורך דין" />
+					<SectionHeader index={1} eyebrow="Entity home" title="עמוד יישות - גיא אבני עורך דין" />
 					<p className="mt-6 max-w-3xl text-pretty leading-relaxed text-muted-foreground">
 						עמוד זה הוא עמוד היישות המקצועי של האתר: כאן מרוכזים אותות מותג, סמכות ויצירת קשר עבור חיפושים על גיא אבני
 						ועורך הדין גיא אבני. המאמרים בבלוג, עמוד השירותים ודף הבית מקשרים לכאן כנקודת עוגן אחת.

@@ -17,7 +17,7 @@ Keep: all findings, tables, protocols, citations.
 
 ## Phase 4 — typography & titles
 
-- Replace `—` with `:` or `,` (table N/A placeholders exempt if already `—`)
+- Auto-replace `—` (U+2014) with `-` at publish and render via `adapters/shared/replace-em-dash.mjs` (see `standards/typography.md`)
 - No `«` or `»` in live output (strip at render or in source)
 - `#` / `##` / `###` titles: subject keyword present; update `seo.title` to match
 

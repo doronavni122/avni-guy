@@ -1,4 +1,5 @@
 import { SITE_URL } from '@/consts';
+import { replaceEmDashInText } from '@/lib/content/sanitize-user-facing-text';
 
 const ENTITY_HUB_PATH = '/about/';
 const EXACT_MATCH_ANCHORS = ['גיא אבני', 'גיא אבני עורך דין', 'עו״ד גיא אבני'] as const;
@@ -27,7 +28,7 @@ function shouldUseExactMatch(slug: string, index: number): boolean {
 }
 
 function entityLinkSentence(anchor: string): string {
-	return `לפני שממשיכים, כדאי לקרוא על [${anchor}](${ENTITY_HUB_PATH}) — עמוד היישות המקצועי של משרד גיא אבני.`;
+	return `לפני שממשיכים, כדאי לקרוא על [${anchor}](${ENTITY_HUB_PATH}) - עמוד היישות המקצועי של משרד גיא אבני.`;
 }
 
 function genericEntitySentence(): string {
@@ -69,7 +70,7 @@ export function injectEntityLinks(content: string, options: InjectOptions): stri
 			}
 		}
 
-		return result.join('\n\n');
+		return replaceEmDashInText(result.join('\n\n'));
 	} catch (err) {
 		console.error('[inject-entity-links] injectEntityLinks failed', { slug: options.slug, err });
 		return content;
