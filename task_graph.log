@@ -288,3 +288,4 @@
 283. set-he-il-html-lang , src/app/layout.tsx task_graph.log
 284. add-webpage-schema-and-org-sameas , src/utils/structured-data.ts task_graph.log
 285. add-entity-byline-and-attorney-credential , src/components/seo/EntityByline.tsx src/components/seo/AttorneyCredentialBlock.tsx task_graph.log
+286. add-blog-archive-pagination-lib , src/lib/blog/archive.ts task_graph.log
