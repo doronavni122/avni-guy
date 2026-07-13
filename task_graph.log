@@ -301,3 +301,4 @@
 296. add-unified-jsonld-graph , src/utils/structured-data.ts src/components/layout/SiteShell.tsx src/components/seo/JsonLd.tsx task_graph.log
 297. add-env-schema-indexnow-production-warning , src/env.ts scripts/write-indexnow-key-file.mjs task_graph.log
 298. add-indexnow-key-env-examples , .env.example .env.development.example task_graph.log
+299. update-seo-audit-merged-july2026-final , notes/temp/seo-audit-july2026/audit-merged-july2026.md task_graph.log
