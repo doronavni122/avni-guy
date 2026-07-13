@@ -7,7 +7,7 @@ export type MainPageHero = {
 	path: string;
 	eyebrow: string;
 	h1: string;
-	/** Optional line under H1 for brand/profession without competing with entity hub H1. */
+	/** Optional supporting line under H1 (value prop or keyword variant). */
 	subhead?: string;
 	intro: string;
 	keyword: SiteKeyword;
