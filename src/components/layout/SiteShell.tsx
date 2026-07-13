@@ -3,7 +3,7 @@ import { Analytics } from '@vercel/analytics/react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { buildOrganizationSchema, buildWebSiteJsonLd } from '@/utils/structured-data';
+import { buildJsonLdGraph, buildOrganizationSchema, buildWebSiteJsonLd } from '@/utils/structured-data';
 import { cn } from '@/lib/utils';
 
 type SiteShellProps = {
@@ -13,11 +13,16 @@ type SiteShellProps = {
 };
 
 export function SiteShell({ children, currentPath, extraJsonLd }: SiteShellProps) {
-	const globalJsonLd = [buildOrganizationSchema(), buildWebSiteJsonLd(), ...(extraJsonLd ? (Array.isArray(extraJsonLd) ? extraJsonLd : [extraJsonLd]) : [])];
+	const nodes = [
+		buildOrganizationSchema(),
+		buildWebSiteJsonLd(),
+		...(extraJsonLd ? (Array.isArray(extraJsonLd) ? extraJsonLd : [extraJsonLd]) : []),
+	];
+	const jsonLdGraph = buildJsonLdGraph(nodes);
 
 	return (
 		<>
-			<JsonLd data={globalJsonLd} />
+			<JsonLd data={jsonLdGraph} />
 			<Header currentPath={currentPath} />
 			<main className="flex flex-1 flex-col">
 				<div className="mx-auto w-full max-w-screen-xl flex-1 px-4 sm:px-6 lg:px-10">

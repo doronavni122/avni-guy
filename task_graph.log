@@ -298,3 +298,4 @@
 293. enrich-llms-txt-about-entity-hub , public/llms.txt task_graph.log
 294. add-category-index-blurbs-ssot , src/lib/seo/category-index-blurbs.ts src/app/categories/page.tsx task_graph.log
 295. add-tag-cloud-grouping-and-search , src/lib/seo/tag-cloud-groups.ts src/components/tags/TagsCloudGrouped.tsx src/app/tags/page.tsx task_graph.log
+296. add-unified-jsonld-graph , src/utils/structured-data.ts src/components/layout/SiteShell.tsx src/components/seo/JsonLd.tsx task_graph.log

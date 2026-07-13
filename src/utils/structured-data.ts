@@ -197,3 +197,15 @@ export const buildHowToSchema = (input: { name: string; description: string; ste
 		text: step.text,
 	})),
 });
+
+/** Merge schema nodes into a single JSON-LD @graph document (TAG-013). */
+export function buildJsonLdGraph(entries: Record<string, unknown>[]): Record<string, unknown> {
+	const graph = entries.map((entry) => {
+		const { '@context': _context, ...node } = entry;
+		return node;
+	});
+	return {
+		'@context': 'https://schema.org',
+		'@graph': graph,
+	};
+}
