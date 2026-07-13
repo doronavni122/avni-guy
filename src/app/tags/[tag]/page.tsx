@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { ArticleList } from '@/components/blog/ArticleList';
 import { SiteShell } from '@/components/layout/SiteShell';
@@ -16,15 +17,19 @@ export async function generateStaticParams() {
 	return tags.map((tag) => ({ tag }));
 }
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
 	const { tag } = await params;
 	const tagHe = getTagLabel(tag);
-	return buildPageMetadata({
+	const base = buildPageMetadata({
 		title: buildTagPageTitle(tagHe),
 		description: buildTagMetaDescription(tagHe),
 		keyword: 'גיא אבני עו״ד',
 		path: `/tags/${tag}/`,
 	});
+	return {
+		...base,
+		robots: { index: false, follow: true },
+	};
 }
 
 export default async function TagPage({ params }: PageProps) {
@@ -37,7 +42,7 @@ export default async function TagPage({ params }: PageProps) {
 	const tagHe = getTagLabel(tag);
 	const breadcrumbItems = [
 		{ name: 'דף הבית', path: '/' },
-		{ name: 'תגיות', path: '/tags' },
+		{ name: 'תגיות', path: '/tags/' },
 		{ name: tagHe, path: `/tags/${tag}/` },
 	];
 	const jsonLd = buildBreadcrumbSchema(breadcrumbItems);
