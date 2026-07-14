@@ -569,3 +569,5 @@
 436. add-about-fan-out-h2-clusters , src/app/about/page.tsx task_graph.log
 
 437. add-services-fan-out-h2-clusters , src/app/services/page.tsx task_graph.log
+
+438. mark-scope-fan-out-h2-maps-on-hubs-done , notes/TODO_checklist_full_scopes_2026-07-14.txt OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log
