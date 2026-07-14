@@ -96,7 +96,7 @@ Maps-005: editorial-policy-page
 
 ## media-appearances-index
 Prerequisite: none
-- [ ] Indexable /media/ or about section + sitemap if route
+- [x] Indexable /media/ or about section + sitemap if route
 Maps-005: media-appearances-index
 
 ## mcp-citation-bait
@@ -116,7 +116,7 @@ Maps-005: indexnow-deletes-redirects-completeness
 
 ## indexnow-gsc-one-shot
 Prerequisite: indexnow-deletes-redirects-completeness
-- [ ] Top-20 IndexNow expand; real GSC client or manual path; one-shot ops
+- [x] Top-20 IndexNow expand; real GSC client or manual path; one-shot ops
 Maps-005: indexnow-gsc-one-shot
 
 ## inject-entity-links-smoke

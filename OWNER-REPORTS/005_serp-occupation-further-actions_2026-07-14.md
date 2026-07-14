@@ -167,10 +167,10 @@
 
 ## media-appearances-index
 
-- [ ] Choose surface (`/media/` vs about section)
-- [ ] Create indexable media/appearances content
-- [ ] Link surface from about/nav as needed
-- [ ] Add URL to sitemap when standalone route
+- [x] Choose surface (`/media/` vs about section)
+- [x] Create indexable media/appearances content
+- [x] Link surface from about/nav as needed
+- [x] Add URL to sitemap when standalone route
 
 ## home-heroes-entity-role-split
 
@@ -312,11 +312,11 @@
 
 ## indexnow-gsc-one-shot
 
-- [ ] Extend `scripts/post-deploy-indexnow.mjs` beyond static 6 paths (`/`, `/about/`, `/search/`, `/services/`, `/contact/`, `/blog/`) to include top 20 blog URLs — current script does **not** ping top 20
-- [ ] Run `scripts/post-deploy-indexnow.mjs` after deploy (static set, then extended set when shipped)
-- [ ] Implement real GSC URL Inspection client in `scripts/gsc-url-inspection.mjs` (today returns `SKIPPED_NO_API_CLIENT` stub) — or ops: manual GSC until client ships
-- [ ] Run GSC inspection for `/`, `/about/`, top 20 only after client exists (or manual)
-- [ ] ops: Ticket only non-indexed URLs; one run per deploy
+- [x] Extend `scripts/post-deploy-indexnow.mjs` beyond static 6 paths (`/`, `/about/`, `/search/`, `/services/`, `/contact/`, `/blog/`) to include top 20 blog URLs — current script does **not** ping top 20
+- [x] Run `scripts/post-deploy-indexnow.mjs` after deploy (static set, then extended set when shipped)
+- [x] Implement real GSC URL Inspection client in `scripts/gsc-url-inspection.mjs` (today returns `SKIPPED_NO_API_CLIENT` stub) — or ops: manual GSC until client ships
+- [x] Run GSC inspection for `/`, `/about/`, top 20 only after client exists (or manual)
+- [x] ops: Ticket only non-indexed URLs; one run per deploy
 
 ## inject-entity-links-smoke
 
