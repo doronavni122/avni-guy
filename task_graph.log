@@ -362,3 +362,5 @@
 328. update-scope-loop-state-batch3-worktrees , notes/implementations/scope_loop_state.json task_graph.log
 
 329. add-plan-ops-podcast-newsletter-archive-p1 , .cursor/plans/010_ops_podcast_newsletter_archive_p1.plan.md task_graph.log
+
+330. add-podcast-newsletter-archive-ops-runbook , notes/implementations/podcast-newsletter-archive_ops_runbook.txt task_graph.log
