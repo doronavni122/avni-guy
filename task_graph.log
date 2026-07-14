@@ -535,3 +535,5 @@
 419. add-speakable-helpers-and-voice-block-copy , .cursor/plans/020_seo_speakable_voice_blocks_s1.plan.md src/lib/seo/speakable-voice-blocks.ts src/lib/seo/speakable.ts task_graph.log
 
 420. wire-about-speakable-voice-blocks , src/app/about/page.tsx task_graph.log
+
+421. wire-services-speakable-voice-blocks , src/app/services/page.tsx task_graph.log

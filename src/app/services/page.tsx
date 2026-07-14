@@ -5,6 +5,8 @@ import { MainPageHero } from '@/components/seo/MainPageHero';
 import { EntityByline } from '@/components/seo/EntityByline';
 import { SiteShell } from '@/components/layout/SiteShell';
 import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
+import { attachSpeakable, SPEAKABLE_VOICE_CLASS } from '@/lib/seo/speakable';
+import { SERVICES_SPEAKABLE_VOICE_BLOCKS } from '@/lib/seo/speakable-voice-blocks';
 import { buildPageMetadata } from '@/lib/metadata';
 import { replaceEmDashDeep } from '@/lib/content/sanitize-user-facing-text';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
@@ -119,13 +121,15 @@ export default function ServicesPage() {
 
 	const jsonLd = [
 		buildBreadcrumbSchema(breadcrumbItems),
-		buildWebPageSchema({
-			'@id': `${SITE_URL}/services/#webpage`,
-			url: `${SITE_URL}/services/`,
-			name: 'גיא אבני | שירותים - ייעוץ, ליווי ותכנון משפטי',
-			description: DIRECT_ANSWER,
-			dateModified: SERVICES_DATE_MODIFIED,
-		}),
+		attachSpeakable(
+			buildWebPageSchema({
+				'@id': `${SITE_URL}/services/#webpage`,
+				url: `${SITE_URL}/services/`,
+				name: 'גיא אבני | שירותים - ייעוץ, ליווי ותכנון משפטי',
+				description: DIRECT_ANSWER,
+				dateModified: SERVICES_DATE_MODIFIED,
+			}),
+		),
 		buildItemListSchema(itemListEntries),
 		buildFaqSchema([...SERVICES_FAQ]),
 		buildHowToSchema({
@@ -145,8 +149,24 @@ export default function ServicesPage() {
 				</p>
 				<EntityByline lastUpdatedLabel="יולי 2026" />
 
-				<PageSection className="mt-16">
-					<SectionHeader index={1} eyebrow="שירותים" title="מה אנחנו מציעים" />
+				<PageSection id="speakable" className="mt-16">
+					<SectionHeader index={1} eyebrow="תשובות קצרות" title="תשובות קוליות קצרות על השירותים" />
+					<div className="mt-8 flex max-w-3xl flex-col gap-6">
+						{SERVICES_SPEAKABLE_VOICE_BLOCKS.map(({ id, question, answer }) => (
+							<div key={id} id={`speakable-${id}`} className="border-b border-border pb-6 last:border-b-0">
+								<h3 className="font-heading text-lg font-semibold text-foreground">{question}</h3>
+								<p
+									className={`${SPEAKABLE_VOICE_CLASS} mt-3 text-pretty text-sm leading-relaxed text-muted-foreground`}
+								>
+									{answer}
+								</p>
+							</div>
+						))}
+					</div>
+				</PageSection>
+
+				<PageSection>
+					<SectionHeader index={2} eyebrow="שירותים" title="מה אנחנו מציעים" />
 					<div className="mt-8 grid gap-px border border-border bg-border sm:grid-cols-2">
 						{SERVICES.map(({ num, title, text }) => (
 							<article key={title} id={title} className="group flex flex-col gap-4 bg-background p-8 transition-colors hover:bg-card">
@@ -162,7 +182,7 @@ export default function ServicesPage() {
 				</PageSection>
 
 				<PageSection>
-					<SectionHeader index={2} eyebrow="תחומים" title="תחומי ליווי" />
+					<SectionHeader index={3} eyebrow="תחומים" title="תחומי ליווי" />
 					<ul className="mt-6 flex max-w-3xl flex-wrap justify-end gap-x-4 gap-y-2 text-sm">
 						{PRACTICE_AREAS.map(({ title, href }) => (
 							<li key={title}>
@@ -175,7 +195,7 @@ export default function ServicesPage() {
 				</PageSection>
 
 				<PageSection>
-					<SectionHeader index={3} eyebrow="שאלות נפוצות" title="שאלות על השירותים" />
+					<SectionHeader index={4} eyebrow="שאלות נפוצות" title="שאלות על השירותים" />
 					<div className="mt-8 flex max-w-3xl flex-col gap-6">
 						{SERVICES_FAQ.map(({ question, answer }) => (
 							<div key={question} className="border-b border-border pb-6 last:border-b-0">
@@ -189,7 +209,7 @@ export default function ServicesPage() {
 				<PageSection>
 					<div className="grid gap-8 lg:grid-cols-12">
 						<div className="lg:col-span-4">
-							<span className="font-mono text-xs text-muted-foreground">04 / המשך</span>
+							<span className="font-mono text-xs text-muted-foreground">05 / המשך</span>
 						</div>
 						<div className="flex flex-col gap-4 text-right lg:col-span-8">
 							<h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground">מה כולל השירות</h2>
