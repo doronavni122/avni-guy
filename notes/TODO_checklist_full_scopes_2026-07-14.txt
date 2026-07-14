@@ -181,7 +181,7 @@ Maps-005: gate-g1..g4, kill-switch-three-flat-cycles, dual-property-rank-matrix
 
 ## ai-citation-measure-loop
 Prerequisite: mcp-citation-bait, brand-query-home-about-ownership
-- [ ] ops: Bing AI / GSC GenAI / citation-bait / hallucination battery → patch about
+- [x] ops: Bing AI / GSC GenAI / citation-bait / hallucination battery → patch about
 Maps-005: bing-ai-performance-loop, gsc-genai-monthly-brand-serp, citation-bait-ai-prompts, hallucination-battery
 
 ## deferred-moonshots
