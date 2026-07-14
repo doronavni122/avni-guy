@@ -6,12 +6,16 @@
   "isolation": "git_worktree_only",
   "primary_worktree": "/Users/doronavni/avni-guy",
   "started_at": "2026-07-14T14:05:00+00:00",
-  "updated_at": "2026-07-14T14:20:00+00:00",
-  "current_scope": "parallel-batch-2",
+  "updated_at": "2026-07-14T14:17:00+00:00",
+  "current_scope": "parallel-batch-3",
   "inner_iteration": 1,
   "max_inner_iterations": 3,
   "escalation_level": 0,
-  "parallel_batch": ["inject-entity-links-smoke", "editorial-policy-page", "earned-offsite-bios-network"],
+  "parallel_batch": [
+    "sheelot-paa-factory",
+    "podcast-newsletter-archive",
+    "non-commodity-ymyl-originals"
+  ],
   "merge_queue": [],
   "file_claims": {
     "src/app/page.tsx": "parent:home-title-brand-portal",
@@ -21,72 +25,340 @@
     "src/app/about/page.tsx": "parent:brand-query",
     "src/lib/nav/site-nav.ts": "parent:sitelink-candidate-freeze",
     "src/components/layout/": "parent:sitelink-candidate-freeze",
-    "src/lib/content/inject-entity-links.ts": "inject-entity-links-smoke",
-    "src/app/editorial-policy/": "editorial-policy-page",
-    "src/app/sitemap.ts": "editorial-policy-page",
-    "notes/implementations/earned-offsite-bios-network_ops_runbook.txt": "earned-offsite-bios-network"
+    "src/app/sheelot/": "sheelot-paa-factory",
+    "src/app/sitemap.ts": "sheelot-paa-factory",
+    "src/content/blog/": "non-commodity-ymyl-originals",
+    "notes/implementations/podcast-newsletter-archive_ops_runbook.txt": "podcast-newsletter-archive"
   },
   "workers": {
-    "inject-entity-links-smoke": {
+    "sheelot-paa-factory": {
       "status": "IN_PROGRESS",
-      "branch": "feature/scope-inject-entity-links-smoke",
-      "worktree": "/Users/doronavni/avni-guy-wt-inject-entity-links-smoke",
-      "plan": "006_seo_inject_entity_links_smoke_i1",
-      "exclusive_files": ["src/lib/content/inject-entity-links.ts"]
+      "branch": "feature/scope-sheelot-paa-factory",
+      "worktree": "/Users/doronavni/avni-guy-wt-sheelot-paa-factory",
+      "plan": "009_seo_sheelot_paa_factory_s1",
+      "exclusive_files": [
+        "src/app/sheelot/",
+        "src/app/sitemap.ts"
+      ]
     },
-    "editorial-policy-page": {
+    "podcast-newsletter-archive": {
       "status": "IN_PROGRESS",
-      "branch": "feature/scope-editorial-policy-page",
-      "worktree": "/Users/doronavni/avni-guy-wt-editorial-policy-page",
-      "plan": "007_seo_editorial_policy_page_e1",
-      "exclusive_files": ["src/app/editorial-policy/", "src/app/sitemap.ts"]
-    },
-    "earned-offsite-bios-network": {
-      "status": "IN_PROGRESS",
-      "branch": "feature/scope-earned-offsite-bios-network",
-      "worktree": "/Users/doronavni/avni-guy-wt-earned-offsite-bios-network",
-      "plan": "008_ops_earned_offsite_bios_network_o1",
-      "exclusive_files": ["notes/implementations/earned-offsite-bios-network_ops_runbook.txt"],
+      "branch": "feature/scope-podcast-newsletter-archive",
+      "worktree": "/Users/doronavni/avni-guy-wt-podcast-newsletter-archive",
+      "plan": "010_ops_podcast_newsletter_archive_p1",
       "ops_heavy": true
+    },
+    "non-commodity-ymyl-originals": {
+      "status": "IN_PROGRESS",
+      "branch": "feature/scope-non-commodity-ymyl-originals",
+      "worktree": "/Users/doronavni/avni-guy-wt-non-commodity-ymyl-originals",
+      "plan": "011_seo_non_commodity_ymyl_originals_n1",
+      "exclusive_files": [
+        "src/content/blog/"
+      ]
     }
   },
   "scopes": {
-    "home-h1-demote-non-entity": { "status": "DONE", "plan": "003_seo_home_h1_demote_g0", "last_gate": "parent_merged", "last_failure": null, "escalation_count": 0, "rca_files": [], "claimed_by": "parent" },
-    "home-title-brand-portal": { "status": "IN_PROGRESS", "plan": null, "last_gate": "parent_claimed", "last_failure": null, "escalation_count": 0, "rca_files": [], "claimed_by": "parent" },
-    "brand-query-home-about-ownership": { "status": "IN_PROGRESS", "plan": null, "last_gate": "parent_claimed", "last_failure": null, "escalation_count": 0, "rca_files": [], "claimed_by": "parent" },
-    "home-internal-link-weight-to-about": { "status": "IN_PROGRESS", "plan": null, "last_gate": "parent_claimed", "last_failure": null, "escalation_count": 0, "rca_files": [], "claimed_by": "parent" },
-    "sitelink-candidate-freeze": { "status": "IN_PROGRESS", "plan": null, "last_gate": "parent_claimed", "last_failure": null, "escalation_count": 0, "rca_files": [], "claimed_by": "parent" },
-    "about-section-ranking-surface": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
-    "home-heroes-entity-role-split": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
-    "about-eeat-nap-license": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
-    "person-schema-edges-truthful": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
-    "entity-federation-guyavni": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
-    "brand-image-pack": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
-    "richer-rss": { "status": "DONE", "plan": "005_rss_enrich_feed_r1", "last_gate": "merged", "last_failure": null, "escalation_count": 0, "rca_files": [] },
-    "sheelot-paa-factory": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
-    "speakable-voice-blocks": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
-    "transliteration-bridge-routes": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
-    "practice-bridge-landings": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
-    "fan-out-h2-maps-on-hubs": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
-    "editorial-policy-page": { "status": "IN_PROGRESS", "plan": "007_seo_editorial_policy_page_e1", "last_gate": "worker_spawned", "last_failure": null, "escalation_count": 0, "rca_files": [] },
-    "media-appearances-index": { "status": "PENDING", "plan": null, "last_gate": "blocked_sitemap_claim", "last_failure": null, "escalation_count": 0, "rca_files": [] },
-    "mcp-citation-bait": { "status": "DONE", "plan": "004_mcp_citation_bait_agent_n1", "last_gate": "merged", "last_failure": null, "escalation_count": 0, "rca_files": [] },
-    "well-known-person-json": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
-    "indexnow-deletes-redirects-completeness": { "status": "PENDING", "plan": null, "last_gate": "blocked_sitemap_claim", "last_failure": null, "escalation_count": 0, "rca_files": [] },
-    "indexnow-gsc-one-shot": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
-    "inject-entity-links-smoke": { "status": "IN_PROGRESS", "plan": "006_seo_inject_entity_links_smoke_i1", "last_gate": "worker_spawned", "last_failure": null, "escalation_count": 0, "rca_files": [] },
-    "prod-sameas-bar-assert": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
-    "high-intent-owned-url-gated": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
-    "youtube-short-form-embed": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
-    "non-commodity-ymyl-originals": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
-    "owned-page1-asset-pack": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
-    "chaptered-youtube": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
-    "wikidata-hebrew-kp-loop": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
-    "google-business-profile": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
-    "earned-offsite-bios-network": { "status": "IN_PROGRESS", "plan": "008_ops_earned_offsite_bios_network_o1", "last_gate": "worker_spawned", "last_failure": null, "escalation_count": 0, "rca_files": [] },
-    "podcast-newsletter-archive": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
-    "measure-gates-g1-g4": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
-    "ai-citation-measure-loop": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
-    "deferred-moonshots": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] }
+    "home-h1-demote-non-entity": {
+      "status": "DONE",
+      "plan": "003_seo_home_h1_demote_g0",
+      "last_gate": "parent_merged",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": [],
+      "claimed_by": "parent"
+    },
+    "home-title-brand-portal": {
+      "status": "IN_PROGRESS",
+      "plan": null,
+      "last_gate": "parent_claimed",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": [],
+      "claimed_by": "parent"
+    },
+    "brand-query-home-about-ownership": {
+      "status": "IN_PROGRESS",
+      "plan": null,
+      "last_gate": "parent_claimed",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": [],
+      "claimed_by": "parent"
+    },
+    "home-internal-link-weight-to-about": {
+      "status": "IN_PROGRESS",
+      "plan": null,
+      "last_gate": "parent_claimed",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": [],
+      "claimed_by": "parent"
+    },
+    "sitelink-candidate-freeze": {
+      "status": "IN_PROGRESS",
+      "plan": null,
+      "last_gate": "parent_claimed",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": [],
+      "claimed_by": "parent"
+    },
+    "about-section-ranking-surface": {
+      "status": "PENDING",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "home-heroes-entity-role-split": {
+      "status": "PENDING",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "about-eeat-nap-license": {
+      "status": "PENDING",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "person-schema-edges-truthful": {
+      "status": "PENDING",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "entity-federation-guyavni": {
+      "status": "PENDING",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "brand-image-pack": {
+      "status": "PENDING",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "richer-rss": {
+      "status": "DONE",
+      "plan": "005_rss_enrich_feed_r1",
+      "last_gate": "merged",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "sheelot-paa-factory": {
+      "status": "IN_PROGRESS",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "speakable-voice-blocks": {
+      "status": "PENDING",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "transliteration-bridge-routes": {
+      "status": "PENDING",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "practice-bridge-landings": {
+      "status": "PENDING",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "fan-out-h2-maps-on-hubs": {
+      "status": "PENDING",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "editorial-policy-page": {
+      "status": "DONE",
+      "plan": "007_seo_editorial_policy_page_e1",
+      "last_gate": "worker_spawned",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "media-appearances-index": {
+      "status": "PENDING",
+      "plan": null,
+      "last_gate": "blocked_sitemap_claim",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "mcp-citation-bait": {
+      "status": "DONE",
+      "plan": "004_mcp_citation_bait_agent_n1",
+      "last_gate": "merged",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "well-known-person-json": {
+      "status": "PENDING",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "indexnow-deletes-redirects-completeness": {
+      "status": "PENDING",
+      "plan": null,
+      "last_gate": "blocked_sitemap_claim",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "indexnow-gsc-one-shot": {
+      "status": "PENDING",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "inject-entity-links-smoke": {
+      "status": "DONE",
+      "plan": "006_seo_inject_entity_links_smoke_i1",
+      "last_gate": "worker_spawned",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "prod-sameas-bar-assert": {
+      "status": "PENDING",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "high-intent-owned-url-gated": {
+      "status": "PENDING",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "youtube-short-form-embed": {
+      "status": "PENDING",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "non-commodity-ymyl-originals": {
+      "status": "IN_PROGRESS",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "owned-page1-asset-pack": {
+      "status": "PENDING",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "chaptered-youtube": {
+      "status": "PENDING",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "wikidata-hebrew-kp-loop": {
+      "status": "PENDING",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "google-business-profile": {
+      "status": "PENDING",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "earned-offsite-bios-network": {
+      "status": "DONE",
+      "plan": "008_ops_earned_offsite_bios_network_o1",
+      "last_gate": "worker_spawned",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "podcast-newsletter-archive": {
+      "status": "IN_PROGRESS",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "measure-gates-g1-g4": {
+      "status": "PENDING",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "ai-citation-measure-loop": {
+      "status": "PENDING",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "deferred-moonshots": {
+      "status": "PENDING",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    }
   }
 }
