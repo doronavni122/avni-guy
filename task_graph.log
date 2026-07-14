@@ -336,3 +336,5 @@
 315. mark-scopes-richer-rss-and-mcp-citation-bait-done , notes/TODO_checklist_full_scopes_2026-07-14.txt OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log
 
 316. update-scope-loop-state-worktree-isolation-batch2 , notes/implementations/scope_loop_state.json task_graph.log
+
+317. add-plan-inject-entity-links-smoke-i1 , .cursor/plans/006_seo_inject_entity_links_smoke_i1.plan.md task_graph.log
