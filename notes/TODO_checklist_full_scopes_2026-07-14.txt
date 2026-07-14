@@ -66,7 +66,7 @@ Maps-005: richer-rss
 
 ## sheelot-paa-factory
 Prerequisite: none
-- [ ] /sheelot/ H2=PAA + schema + sitemap + IndexNow
+- [x] /sheelot/ H2=PAA + schema + sitemap + IndexNow
 Maps-005: sheelot-paa-factory
 
 ## speakable-voice-blocks
@@ -171,7 +171,7 @@ Maps-005: earned-bio-placements, positive-co-occurrence-network, civic-directory
 
 ## podcast-newsletter-archive
 Prerequisite: richer-rss
-- [ ] ops: podcast feeds + newsletter public archive
+- [x] ops: podcast feeds + newsletter public archive
 Maps-005: podcast-owned-feeds, newsletter-public-archive
 
 ## measure-gates-g1-g4

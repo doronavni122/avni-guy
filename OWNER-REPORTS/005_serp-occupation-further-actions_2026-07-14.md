@@ -96,12 +96,12 @@
 
 ## sheelot-paa-factory
 
-- [ ] Create `/sheelot/` route shell
-- [ ] Add one H2 per real HE PAA-style question on `/sheelot/`
-- [ ] Write visible answers matching intended schema text
-- [ ] Emit matching Q&A schema for `/sheelot/`
-- [ ] Add `/sheelot/` to sitemap
-- [ ] Ping IndexNow for `/sheelot/` after deploy
+- [x] Create `/sheelot/` route shell
+- [x] Add one H2 per real HE PAA-style question on `/sheelot/`
+- [x] Write visible answers matching intended schema text
+- [x] Emit matching Q&A schema for `/sheelot/`
+- [x] Add `/sheelot/` to sitemap
+- [x] Ping IndexNow for `/sheelot/` after deploy
 
 ## speakable-voice-blocks
 
@@ -253,9 +253,9 @@
 
 ## podcast-owned-feeds
 
-- [ ] ops: Launch owned podcast with name in show title
-- [ ] ops: Publish Apple/Spotify/Google feed URLs
-- [ ] Expose indexable archive via enriched RSS or host archive (on-site when RSS ship done)
+- [x] ops: Launch owned podcast with name in show title
+- [x] ops: Publish Apple/Spotify/Google feed URLs
+- [x] Expose indexable archive via enriched RSS or host archive (on-site when RSS ship done)
 
 ## civic-directory-nap
 
@@ -278,9 +278,9 @@
 
 ## newsletter-public-archive
 
-- [ ] ops: Launch owned newsletter
-- [ ] ops: Publish public archive URLs
-- [ ] ops: Validate archive URLs are indexable brand-adjacent freshness surfaces
+- [x] ops: Launch owned newsletter
+- [x] ops: Publish public archive URLs
+- [x] ops: Validate archive URLs are indexable brand-adjacent freshness surfaces
 
 ## positive-co-occurrence-network
 

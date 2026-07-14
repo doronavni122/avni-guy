@@ -372,3 +372,5 @@
 333. add-sheelot-paa-h2-qa-page , src/app/sheelot/ task_graph.log
 
 334. add-sheelot-path-to-sitemap , src/app/sitemap.ts task_graph.log
+
+335. mark-scopes-podcast-newsletter-and-sheelot-done , notes/TODO_checklist_full_scopes_2026-07-14.txt OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log
