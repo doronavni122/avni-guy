@@ -6,7 +6,7 @@
 
 ## home-h1-demote-non-entity
 Prerequisite: none
-- [ ] Demote `/` H1 off exact brand-lawyer string; keep `/about/` H1; G0 H1 assert
+- [x] Demote `/` H1 off exact brand-lawyer string; keep `/about/` H1; G0 H1 assert
 Maps-005: home-h1-demote-non-entity, gate-g0-h1-title-split(H1)
 
 ## home-title-brand-portal
