@@ -1,27 +1,53 @@
-plan_base: 020_seo_speakable_voice_blocks_s1
 scope: speakable-voice-blocks
-status: NEEDS_MERGE
-branch: feature/scope-speakable-fanout
-worktree: /Users/doronavni/avni-guy-wt-speakable-fanout
-ADR: none , cite SSOT.md
+plan: 020_seo_speakable_voice_blocks_s1
+status: MERGED_ON_MAIN
+branch: feature/scope-speakable-voice-blocks
+worktree: /Users/doronavni/avni-guy-wt-speakable-voice-blocks
+adr: none , cite SSOT.md
 
-next_plan_suggestion: merge speakable-fanout then reconcile parallel feature/scope-speakable-voice-blocks if still open
+next_plan_suggestion: fan-out-h2-maps-on-hubs (about/services ownership overlap — merge speakable first)
 
 files_to_read:
-- src/lib/seo/schema-speakable.ts
+- src/lib/seo/speakable.ts
+- src/lib/seo/speakable-voice-blocks.ts
 - src/app/about/page.tsx
 - src/app/services/page.tsx
-- .cursor/plans/020_seo_speakable_voice_blocks_s1.plan.md
+- src/app/categories/[category]/page.tsx
+- SSOT.md
 
 rules:
-- exclusive_files: src/lib/seo/ schema-speakable + about/services hubs
-- Speakable cssSelector must match visible HE voice nodes only
-- no task_graph.log append on worker (orchestrator post-merge)
+- .cursor/rules/ssot-repo-structure.mdc
+- .cursor/rules/enforcement/atomic-change-loging.mdc (orchestrator appends task_graph post-merge)
+- .cursor/rules/unique-site-images.mdc (N/A)
 
 tools_and_status:
-- commits: 1174bc0b add-plan-020-speakable-voice-blocks ; ac8d15c2 add-schema-speakable-helper ; e58e99e3 add-about-speakable-voice-blocks ; e6b8c8c3 add-services-fanout-h2-and-speakable ; d64c4eff add-media-keyword-to-site-batch-for-build
-- verify: PASS — pnpm exec next build (node 22) exit 0; routes ○ /about ○ /services; dev smoke :3031 SpeakableSpecification + speakable-voice present on /about/ and /services/
+- verify: pnpm exec next build PASS (node v22.22.2); tsc --noEmit PASS
+- prebuild optimize-images: skipped in verify path (sharp approve-builds / worktree cold install); write-indexnow skipped (INDEXNOW_KEY unset)
+- no task_graph.log append (worker rule)
+- no merge (orchestrator)
 
 open_issues:
-- parallel worktree feature/scope-speakable-voice-blocks may overlap; orchestrator merge gate must reconcile
-- media keyword batch add was build unblock for pre-existing /media/ SiteKeyword typing gap
+- Speakable attaches only when `.speakable-voice` DOM nodes exist; category hubs without CATEGORY_SPEAKABLE_VOICE_BLOCKS entry get WebPage without speakable
+- Existing FAQ on about/services unchanged (not theater; already visible-matched)
+- Build unblock in exclusive seo/: practice-bridge SiteKeyword + requirePracticeBridge; site-keywords-batch added 'גיא אבני מדיה'
+
+implementation:
+- ABOUT_SPEAKABLE_VOICE_BLOCKS / SERVICES_SPEAKABLE_VOICE_BLOCKS / CATEGORY_SPEAKABLE_VOICE_BLOCKS → visible HE short answers
+- attachSpeakable(WebPage) → SpeakableSpecification cssSelector: [".speakable-voice"]
+- no new FAQPage schema
+
+exclusive_files_touched:
+- src/lib/seo/speakable.ts
+- src/lib/seo/speakable-voice-blocks.ts
+- src/lib/seo/practice-bridge-pages.ts
+- src/lib/seo/site-keywords-batch.ts
+- src/app/about/page.tsx
+- src/app/services/page.tsx
+- src/app/categories/[category]/page.tsx
+- src/app/contracts-lawyer-guy-avni/page.tsx
+- src/app/nedlan-lawyer-guy-avni/page.tsx
+- .cursor/plans/020_seo_speakable_voice_blocks_s1.plan.md
+- notes/implementations/020_seo_speakable_voice_blocks_s1_brief.txt
+
+checklist_lines:
+- Speakable/visible short HE answers on about + top hubs
