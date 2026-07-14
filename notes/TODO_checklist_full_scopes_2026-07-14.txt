@@ -61,7 +61,7 @@ Maps-005: brand-image-pack, image-search-rank-panel
 
 ## richer-rss
 Prerequisite: none
-- [ ] author + content:encoded + media:content on /rss.xml
+- [x] author + content:encoded + media:content on /rss.xml
 Maps-005: richer-rss
 
 ## sheelot-paa-factory
@@ -101,7 +101,7 @@ Maps-005: media-appearances-index
 
 ## mcp-citation-bait
 Prerequisite: none
-- [ ] Document site-mcp-server.mjs; agent card; not Google SEO theater
+- [x] Document site-mcp-server.mjs; agent card; not Google SEO theater
 Maps-005: mcp-citation-bait
 
 ## well-known-person-json

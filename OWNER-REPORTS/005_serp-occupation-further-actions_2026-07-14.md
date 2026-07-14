@@ -88,11 +88,11 @@
 
 ## richer-rss
 
-- [ ] Read current `/rss.xml` generator
-- [ ] Add author fields to RSS items
-- [ ] Add `content:encoded` (or equivalent) to RSS items
-- [ ] Add `media:content` (or equivalent) to RSS items
-- [ ] Validate RSS still builds under `pnpm run build:ci`
+- [x] Read current `/rss.xml` generator
+- [x] Add author fields to RSS items
+- [x] Add `content:encoded` (or equivalent) to RSS items
+- [x] Add `media:content` (or equivalent) to RSS items
+- [x] Validate RSS still builds under `pnpm run build:ci`
 
 ## sheelot-paa-factory
 
@@ -129,10 +129,10 @@
 
 ## mcp-citation-bait
 
-- [ ] Validate `public/llms.txt` still documents `POST /api/search/` + `GET /api/search/?q=` + `POST /api/mcp/` (already shipped)
-- [ ] Document `scripts/site-mcp-server.mjs` (stdio) in `llms.txt`/agent surface (HTTP `/api/mcp/` is documented; script path is not)
+- [x] Validate `public/llms.txt` still documents `POST /api/search/` + `GET /api/search/?q=` + `POST /api/mcp/` (already shipped)
+- [x] Document `scripts/site-mcp-server.mjs` (stdio) in `llms.txt`/agent surface (HTTP `/api/mcp/` is documented; script path is not)
 - [ ] ops: Publish “who is גיא אבני” agent card to external MCP/agent registries
-- [ ] Validate this surface is not framed as Google SEO
+- [x] Validate this surface is not framed as Google SEO
 
 ## fan-out-h2-maps-on-hubs
 

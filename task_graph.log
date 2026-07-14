@@ -332,3 +332,5 @@
 313. add-mcp-citation-bait-ops-runbook , notes/implementations/mcp-citation-bait_ops_runbook.txt task_graph.log
 
 314. add-richer-rss-plan-brief , notes/implementations/005_rss_enrich_feed_r1_brief.txt task_graph.log
+
+315. mark-scopes-richer-rss-and-mcp-citation-bait-done , notes/TODO_checklist_full_scopes_2026-07-14.txt OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log
