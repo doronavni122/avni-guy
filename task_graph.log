@@ -400,3 +400,5 @@
 347. mark-scopes-indexnow-and-ymyl-done , notes/TODO_checklist_full_scopes_2026-07-14.txt OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log
 
 348. mark-scope-home-h1-demote-done-on-main , notes/TODO_checklist_full_scopes_2026-07-14.txt task_graph.log
+
+349. update-scope-loop-state-batch4 , notes/implementations/scope_loop_state.json task_graph.log

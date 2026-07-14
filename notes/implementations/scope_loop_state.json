@@ -6,14 +6,15 @@
   "isolation": "git_worktree_only",
   "primary_worktree": "/Users/doronavni/avni-guy",
   "started_at": "2026-07-14T14:05:00+00:00",
-  "updated_at": "2026-07-14T14:20:00+00:00",
-  "current_scope": "parallel-batch-3b",
+  "updated_at": "2026-07-14T14:30:00+00:00",
+  "current_scope": "parallel-batch-4",
   "inner_iteration": 1,
   "max_inner_iterations": 3,
   "escalation_level": 0,
   "parallel_batch": [
-    "non-commodity-ymyl-originals",
-    "indexnow-deletes-redirects-completeness"
+    "indexnow-gsc-one-shot",
+    "brand-image-pack",
+    "media-appearances-index"
   ],
   "merge_queue": [],
   "file_claims": {
@@ -30,25 +31,23 @@
     "src/app/api/indexnow/": "indexnow-deletes-redirects-completeness"
   },
   "workers": {
-    "non-commodity-ymyl-originals": {
+    "indexnow-gsc-one-shot": {
       "status": "IN_PROGRESS",
-      "branch": "feature/scope-non-commodity-ymyl-originals",
-      "worktree": "/Users/doronavni/avni-guy-wt-non-commodity-ymyl-originals",
-      "plan": "011_seo_non_commodity_ymyl_originals_n1",
-      "exclusive_files": [
-        "src/content/blog/"
-      ]
+      "worktree": "/Users/doronavni/avni-guy-wt-indexnow-gsc-one-shot",
+      "branch": "feature/scope-indexnow-gsc-one-shot",
+      "plan": "013_ops_indexnow_gsc_one_shot_g1"
     },
-    "indexnow-deletes-redirects-completeness": {
+    "brand-image-pack": {
       "status": "IN_PROGRESS",
-      "branch": "feature/scope-indexnow-deletes-redirects-completeness",
-      "worktree": "/Users/doronavni/avni-guy-wt-indexnow-deletes-redirects-completeness",
-      "plan": "012_seo_indexnow_deletes_redirects_i1",
-      "exclusive_files": [
-        "scripts/post-deploy-indexnow.mjs",
-        "src/app/sitemap.ts",
-        "src/app/api/indexnow/"
-      ]
+      "worktree": "/Users/doronavni/avni-guy-wt-brand-image-pack",
+      "branch": "feature/scope-brand-image-pack",
+      "plan": "014_seo_brand_image_pack_b1"
+    },
+    "media-appearances-index": {
+      "status": "IN_PROGRESS",
+      "worktree": "/Users/doronavni/avni-guy-wt-media-appearances-index",
+      "branch": "feature/scope-media-appearances-index",
+      "plan": "015_seo_media_appearances_index_m1"
     }
   },
   "scopes": {
@@ -138,7 +137,7 @@
       "rca_files": []
     },
     "brand-image-pack": {
-      "status": "PENDING",
+      "status": "IN_PROGRESS",
       "plan": null,
       "last_gate": null,
       "last_failure": null,
@@ -202,7 +201,7 @@
       "rca_files": []
     },
     "media-appearances-index": {
-      "status": "PENDING",
+      "status": "IN_PROGRESS",
       "plan": null,
       "last_gate": "blocked_sitemap_claim",
       "last_failure": null,
@@ -226,7 +225,7 @@
       "rca_files": []
     },
     "indexnow-deletes-redirects-completeness": {
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "plan": null,
       "last_gate": "blocked_sitemap_claim",
       "last_failure": null,
@@ -234,7 +233,7 @@
       "rca_files": []
     },
     "indexnow-gsc-one-shot": {
-      "status": "PENDING",
+      "status": "IN_PROGRESS",
       "plan": null,
       "last_gate": null,
       "last_failure": null,
@@ -274,7 +273,7 @@
       "rca_files": []
     },
     "non-commodity-ymyl-originals": {
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "plan": null,
       "last_gate": null,
       "last_failure": null,
