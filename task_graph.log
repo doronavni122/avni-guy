@@ -340,3 +340,5 @@
 317. add-plan-inject-entity-links-smoke-i1 , .cursor/plans/006_seo_inject_entity_links_smoke_i1.plan.md task_graph.log
 
 318. document-inject-entity-links-smoke-evidence , notes/implementations/006_seo_inject_entity_links_smoke_i1_brief.txt task_graph.log
+
+319. mark-scope-inject-entity-links-smoke-done , notes/TODO_checklist_full_scopes_2026-07-14.txt OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log

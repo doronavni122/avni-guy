@@ -320,10 +320,10 @@
 
 ## inject-entity-links-smoke
 
-- [ ] ops: Sample 3 live posts for `href="/about/"`
-- [ ] Count entity-hub anchors per sampled post
-- [ ] Close scope when ≥2 anchors/post
-- [ ] Redesign inject only when <1 link/post
+- [x] ops: Sample 3 live posts for `href="/about/"`
+- [x] Count entity-hub anchors per sampled post
+- [x] Close scope when ≥2 anchors/post
+- [x] Redesign inject only when <1 link/post
 
 ## about-eeat-visible-photo-credentials
 
