@@ -5,6 +5,8 @@ import { MainPageHero } from '@/components/seo/MainPageHero';
 import { AttorneyCredentialBlock } from '@/components/seo/AttorneyCredentialBlock';
 import { SiteShell } from '@/components/layout/SiteShell';
 import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
+import { attachSpeakable, SPEAKABLE_VOICE_CLASS } from '@/lib/seo/speakable';
+import { ABOUT_SPEAKABLE_VOICE_BLOCKS } from '@/lib/seo/speakable-voice-blocks';
 import { buildPageMetadata } from '@/lib/metadata';
 import { replaceEmDashDeep } from '@/lib/content/sanitize-user-facing-text';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
@@ -124,16 +126,18 @@ export default function AboutPage() {
 	const sameAs = readPersonSameAsUrls();
 	const jsonLd = [
 		buildBreadcrumbSchema(breadcrumbItems),
-		buildWebPageSchema({
-			'@id': `${SITE_URL}/about/#webpage`,
-			url: `${SITE_URL}/about/`,
-			name: 'גיא אבני עורך דין | משרד גיא אבני',
-			description:
-				'עמוד היישות המקצועי של גיא אבני, עורך דין: נדל״ן, מיסוי, חוזים וליטיגציה.',
-			dateModified: ABOUT_DATE_MODIFIED,
-			'@type': 'AboutPage',
-			mainEntity: { '@id': `${SITE_URL}/about/#person` },
-		}),
+		attachSpeakable(
+			buildWebPageSchema({
+				'@id': `${SITE_URL}/about/#webpage`,
+				url: `${SITE_URL}/about/`,
+				name: 'גיא אבני עורך דין | משרד גיא אבני',
+				description:
+					'עמוד היישות המקצועי של גיא אבני, עורך דין: נדל״ן, מיסוי, חוזים וליטיגציה.',
+				dateModified: ABOUT_DATE_MODIFIED,
+				'@type': 'AboutPage',
+				mainEntity: { '@id': `${SITE_URL}/about/#person` },
+			}),
+		),
 		buildPersonSchema({ sameAs: sameAs.length ? sameAs : undefined }),
 		buildFaqSchema([...BRAND_FAQ]),
 		buildHowToSchema({
@@ -181,8 +185,24 @@ export default function AboutPage() {
 					</div>
 				</PageSection>
 
+				<PageSection id="speakable">
+					<SectionHeader index={2} eyebrow="תשובות קצרות" title="תשובות קוליות קצרות על גיא אבני" />
+					<div className="mt-8 flex max-w-3xl flex-col gap-6">
+						{ABOUT_SPEAKABLE_VOICE_BLOCKS.map(({ id, question, answer }) => (
+							<div key={id} id={`speakable-${id}`} className="border-b border-border pb-6 last:border-b-0">
+								<h3 className="font-heading text-lg font-semibold text-foreground">{question}</h3>
+								<p
+									className={`${SPEAKABLE_VOICE_CLASS} mt-3 text-pretty text-sm leading-relaxed text-muted-foreground`}
+								>
+									{answer}
+								</p>
+							</div>
+						))}
+					</div>
+				</PageSection>
+
 				<PageSection id="practice">
-					<SectionHeader index={2} eyebrow="תחומי ליווי" title="תחומי ליווי מעשיים של גיא אבני עורך דין" />
+					<SectionHeader index={3} eyebrow="תחומי ליווי" title="תחומי ליווי מעשיים של גיא אבני עורך דין" />
 					<p className="mt-4 max-w-3xl text-pretty text-sm leading-relaxed text-muted-foreground">
 						גיא אבני עורך דין מתמקד בליווי שמחבר בין מסמכים, מס וסיכון תפעולי - לא ברשימת תחומים גנרית. כל מקבץ
 						להלן מוביל לקטגוריה או מדריך רלוונטי באתר, כדי להעמיק לפני שיחת מיקוד.
@@ -202,7 +222,7 @@ export default function AboutPage() {
 				</PageSection>
 
 				<PageSection id="audience">
-					<SectionHeader index={3} eyebrow="לקוחות" title="למי הליווי של גיא אבני מתאים" />
+					<SectionHeader index={4} eyebrow="לקוחות" title="למי הליווי של גיא אבני מתאים" />
 					<ul className="mt-6 flex max-w-3xl list-disc flex-col gap-2 pr-6 text-muted-foreground">
 						{CLIENT_PROFILES.map((item) => (
 							<li key={item}>{item}</li>
@@ -223,7 +243,7 @@ export default function AboutPage() {
 				</PageSection>
 
 				<PageSection id="workflow">
-					<SectionHeader index={4} eyebrow="תהליך" title="איך מתחילים לעבוד עם גיא אבני" />
+					<SectionHeader index={5} eyebrow="תהליך" title="איך מתחילים לעבוד עם גיא אבני" />
 					<p className="mt-4 max-w-3xl text-pretty text-sm leading-relaxed text-muted-foreground">
 						המסלול קבוע וברור: מיקוד לפני מסמכים, תמונת סיכונים לפני התחייבות, ועדכונים רק כשיש מה לדווח. כך נמנעים
 						מעומס תקשורת ומקבלים החלטות בזמן אמת.
@@ -238,7 +258,7 @@ export default function AboutPage() {
 				</PageSection>
 
 				<PageSection id="principles">
-					<SectionHeader index={5} eyebrow="עקרונות" title="ערכים ודרך עבודה אצל גיא אבני" />
+					<SectionHeader index={6} eyebrow="עקרונות" title="ערכים ודרך עבודה אצל גיא אבני" />
 					<div className="mt-8 grid gap-px border border-border bg-border sm:grid-cols-2">
 						{PRINCIPLES.map(([num, title, text]) => (
 							<div key={title} className="flex flex-col gap-4 bg-background p-8">
@@ -251,7 +271,7 @@ export default function AboutPage() {
 				</PageSection>
 
 				<PageSection id="faq">
-					<SectionHeader index={6} eyebrow="שאלות נפוצות" title="שאלות נפוצות על גיא אבני עורך דין" />
+					<SectionHeader index={7} eyebrow="שאלות נפוצות" title="שאלות נפוצות על גיא אבני עורך דין" />
 					<div className="mt-8 flex max-w-3xl flex-col gap-6">
 						{BRAND_FAQ.map(({ question, answer }) => (
 							<div key={question} className="border-b border-border pb-6 last:border-b-0">
@@ -265,7 +285,7 @@ export default function AboutPage() {
 				<PageSection id="next">
 					<div className="grid gap-8 lg:grid-cols-12">
 						<div className="lg:col-span-4">
-							<span className="font-mono text-xs text-muted-foreground">07 / המשך ביקור</span>
+							<span className="font-mono text-xs text-muted-foreground">08 / המשך ביקור</span>
 						</div>
 						<div className="flex flex-col gap-4 text-right lg:col-span-8">
 							<h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground">
