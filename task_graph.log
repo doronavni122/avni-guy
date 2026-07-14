@@ -418,3 +418,5 @@
 356. add-media-appearances-index-page , src/app/media/page.tsx task_graph.log
 
 357. add-media-path-to-sitemap , src/app/sitemap.ts task_graph.log
+
+358. plan-ops-indexnow-gsc-one-shot-g1 , .cursor/plans/013_ops_indexnow_gsc_one_shot_g1.plan.md task_graph.log
