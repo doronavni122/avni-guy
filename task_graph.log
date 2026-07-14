@@ -629,3 +629,5 @@
 466. mark-plan-home-heroes-verify-pass , .cursor/plans/017_seo_home_heroes_entity_role_h1.plan.md task_graph.log
 
 467. add-brief-seo-home-heroes-entity-role-h1 , notes/implementations/017_seo_home_heroes_entity_role_h1_brief.txt task_graph.log
+
+468. mark-home-heroes-entity-role-split-merged-in-loop-state , notes/implementations/scope_loop_state.json task_graph.log
