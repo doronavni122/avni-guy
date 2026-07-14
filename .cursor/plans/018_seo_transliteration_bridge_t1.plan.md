@@ -3,11 +3,11 @@
 ADR: none , cite SSOT.md
 
 ##todos
-- [ ] Create `src/app/guy-avni/page.tsx` — Hebrew-first entity card (not thin spam; not full /about/ clone)
-- [ ] Primary CTA + schema `mainEntity` → `/about/`; practice links → services/blog/contact
-- [ ] Add `/guy-avni/` to `src/app/sitemap.ts` STATIC_PATH_LASTMOD
-- [ ] Decide HE unicode: skip `/גיא-אבני/` (ASCII bridge sufficient; `/about/` owns HE brand queries)
-- [ ] Verify: `pnpm build` in worktree
+- [x] Create `src/app/guy-avni/page.tsx` — Hebrew-first entity card (not thin spam; not full /about/ clone)
+- [x] Primary CTA + schema `mainEntity` → `/about/`; practice links → services/blog/contact
+- [x] Add `/guy-avni/` to `src/app/sitemap.ts` STATIC_PATH_LASTMOD
+- [x] Decide HE unicode: skip `/גיא-אבני/` (ASCII bridge sufficient; `/about/` owns HE brand queries)
+- [x] Verify: `pnpm build` in worktree
 
 ## Goal
 Indexable Latin transliteration bridge `/guy-avni/` for “guy avni” / Latin SERP demand. Short real entity card that clarifies identity (גיא אבני עורך דין) and routes readers to canonical entity home `/about/`. Sitemap inclusion.

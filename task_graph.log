@@ -613,3 +613,5 @@
 458. mark-speakable-voice-blocks-merged-in-loop-state , notes/implementations/scope_loop_state.json task_graph.log
 
 459. add-transliteration-bridge-implementation-brief , notes/implementations/018_seo_transliteration_bridge_t1_brief.txt task_graph.log
+
+460. mark-plan-transliteration-bridge-todos-done , .cursor/plans/018_seo_transliteration_bridge_t1.plan.md task_graph.log
