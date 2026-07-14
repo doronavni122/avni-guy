@@ -159,11 +159,11 @@
 
 ## editorial-policy-page
 
-- [ ] Create public methodology/editorial-policy page
-- [ ] Include review process + bar affiliation + disclaimer
-- [ ] Link page from `/about/`
-- [ ] Link page from footer
-- [ ] Add page path to sitemap
+- [x] Create public methodology/editorial-policy page
+- [x] Include review process + bar affiliation + disclaimer
+- [x] Link page from `/about/`
+- [x] Link page from footer
+- [x] Add page path to sitemap
 
 ## media-appearances-index
 
@@ -247,9 +247,9 @@
 
 ## earned-bio-placements
 
-- [ ] ops: Brief bios for bar district / conferences / podcasts
-- [ ] ops: Seed placements with exact descriptor + `/about/` link
-- [ ] ops: Log placement URLs for KP/AIO corroboration
+- [x] ops: Brief bios for bar district / conferences / podcasts
+- [x] ops: Seed placements with exact descriptor + `/about/` link
+- [x] ops: Log placement URLs for KP/AIO corroboration
 
 ## podcast-owned-feeds
 
@@ -259,9 +259,9 @@
 
 ## civic-directory-nap
 
-- [ ] ops: List Haifa/local civic/chamber/alumni directories
-- [ ] ops: Set consistent NAP on each listing
-- [ ] ops: Set dual HE/EN spelling on each listing
+- [x] ops: List Haifa/local civic/chamber/alumni directories
+- [x] ops: Set consistent NAP on each listing
+- [x] ops: Set dual HE/EN spelling on each listing
 
 ## open-library-ssrn-cle-deposit
 

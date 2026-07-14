@@ -91,7 +91,7 @@ Maps-005: fan-out-h2-maps-on-hubs
 
 ## editorial-policy-page
 Prerequisite: none
-- [ ] Methodology/editorial-policy page + about/footer links + sitemap
+- [x] Methodology/editorial-policy page + about/footer links + sitemap
 Maps-005: editorial-policy-page
 
 ## media-appearances-index
@@ -166,7 +166,7 @@ Maps-005: google-business-profile
 
 ## earned-offsite-bios-network
 Prerequisite: none
-- [ ] ops: earned bios + co-occurrence + civic NAP
+- [x] ops: earned bios + co-occurrence + civic NAP
 Maps-005: earned-bio-placements, positive-co-occurrence-network, civic-directory-nap
 
 ## podcast-newsletter-archive
