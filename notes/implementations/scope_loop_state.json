@@ -136,7 +136,7 @@
     "transliteration-bridge-routes": {
       "status": "DONE",
       "plan": null,
-      "last_gate": null,
+      "last_gate": "merged",
       "last_failure": null,
       "escalation_count": 0,
       "rca_files": []
