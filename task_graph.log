@@ -350,3 +350,5 @@
 322. add-editorial-policy-to-sitemap , src/app/sitemap.ts task_graph.log
 
 323. add-plan-ops-earned-offsite-bios-network-o1 , .cursor/plans/008_ops_earned_offsite_bios_network_o1.plan.md task_graph.log
+
+324. add-earned-offsite-bios-network-ops-runbook , notes/implementations/earned-offsite-bios-network_ops_runbook.txt task_graph.log
