@@ -462,3 +462,5 @@
 378. extend-env-schema-office-nap-keys , src/env.ts task_graph.log
 
 379. add-plan-ops-measure-gates-g1-g4-m1 , .cursor/plans/019_ops_measure_gates_g1_g4_m1.plan.md task_graph.log
+
+380. add-measure-gates-g1-g4-ops-runbook , notes/implementations/measure-gates-g1-g4_ops_runbook.txt task_graph.log

@@ -1,0 +1,140 @@
+scope: measure-gates-g1-g4
+type: ops-measure+human-serp
+status: runbook_ready; live_serp_ranks_unchecked
+plan_base: 019_ops_measure_gates_g1_g4_m1
+ssot: SSOT.md
+adr: none
+depends_on: home-h1-demote-non-entity (DONE), home-title-brand-portal (DONE), home-internal-link-weight-to-about (DONE)
+maps_005: gate-g1-about-lawyer-query, gate-g2-two-owned-slots, gate-g3-bare-name-foothold, gate-g4-globes-off-page1, kill-switch-three-flat-cycles, dual-property-rank-matrix
+forbid: invent_serp_ranks | claim_gate_pass_without_log_row | mark_live_checkbox_without_operator_measure
+
+# entity_lock
+site: https://avniguy.co.il/
+entity_hub: https://avniguy.co.il/about/
+competitor_globes_pattern: globes.co.il
+office_property: guyavni (track only; win ≠ beating guyavni)
+locale: he-IL
+serp_engine: Google (primary); Bing optional annotate only
+
+# query_lock
+Q_LAWYER: גיא אבני עורך דין
+Q_BARE: גיא אבני
+measure_window_after_deploy_days: 7-14
+device_modes: desktop | mobile
+incognito: required (or clean profile; no personalization cookies)
+location: IL (Israel) — set country IL; city optional Tel Aviv or blank
+rank_rule: organic positions 1–10 only; ignore ads/people-also-ask/maps_pack for slot count unless noted
+owned_host: avniguy.co.il
+owned_url_distinct: path+query; trailing slash normalize before compare
+
+# preroll_checklist (code deps — already DONE on main; re-confirm before first measure cycle)
+- [x] home H1 demoted off exact brand-lawyer string (G0 split)
+- [x] /about/ H1 remains lawyer entity string
+- [x] home title brand/portal + absoluteTitle
+- [x] home internal links weight to /about/ with exact anchors גיא אבני + גיא אבני עורך דין
+- [ ] production deploy after those deps indexed (operator; IndexNow/GSC per 013 runbook)
+
+# measure_cycle_protocol
+mc1: Wait 7–14 days after meaningful production deploy OR schedule fixed cadence (pick one; log choice)
+mc2: Open clean Google search; set language Hebrew; country IL
+mc3: For each query × each device: record top-10 organic URLs in order
+mc4: Capture screenshot path (local only) — path into log sheet; do not invent path if no capture
+mc5: Fill ONE log row per query×device×date — leave blank cells blank; never fill “approx”
+mc6: Compute gates from that row only; check live boxes only after row exists
+
+# gate_g1_about_lawyer_query
+query: Q_LAWYER
+pass_rule: (/about/ organic_rank <= 10) OR (home `/` organic_rank <= 8 AND /about/ organic_rank <= 15)
+fail_action: fix links/titles on existing pages only — NO new pages in this gate
+unlock: none beyond on-site title/link repairs
+live_checks:
+- [ ] desktop Q_LAWYER ranks logged
+- [ ] mobile Q_LAWYER ranks logged
+- [ ] G1 pass/fail decided from logged ranks (not estimated)
+
+# gate_g2_two_owned_slots
+query: Q_LAWYER
+pass_rule: count(distinct owned_host URLs with organic_rank <= 10) >= 2
+stall_def: G1 pass_rule true AND owned_slot_count_top10 == 1 after >=1 full measure_cycle
+unlock_extra_url: ONLY when stall_def true → then high-intent-owned-url-gated scope may proceed
+halt_extra_url: when G1–G2 NOT stalled (G2 unmet OR still measuring)
+live_checks:
+- [ ] desktop owned URLs <=10 listed
+- [ ] mobile owned URLs <=10 listed
+- [ ] G2 pass/fail decided from logged ranks
+- [ ] stall_def evaluated Y/N (blank until G1 row exists)
+
+# gate_g3_bare_name_foothold
+query: Q_BARE
+pass_rule: any owned_host URL organic_rank <= 10
+fail_action: on-site entity consistency + off-site bios (other scopes); no endless home rewrites
+live_checks:
+- [ ] desktop Q_BARE ranks logged
+- [ ] mobile Q_BARE ranks logged
+- [ ] G3 pass/fail decided from logged ranks
+
+# gate_g4_globes_off_page1
+queries: Q_LAWYER + Q_BARE
+pass_rule: zero organic results matching competitor_globes_pattern with rank <= 10 on BOTH queries for BOTH devices
+on_pass: stop agent SEO on-site changes for SERP-occupation S1–S3; mark S1–S3 complete in owner tracking (orchestrator)
+on_fail: continue off-site / federation / measure loops — not random copy churn
+live_checks:
+- [ ] desktop Q_LAWYER Globes positions logged (or "none<=10")
+- [ ] mobile Q_LAWYER Globes positions logged (or "none<=10")
+- [ ] desktop Q_BARE Globes positions logged (or "none<=10")
+- [ ] mobile Q_BARE Globes positions logged (or "none<=10")
+- [ ] G4 pass/fail decided from logged ranks
+
+# kill_switch_three_flat_cycles
+flat_def: after a measured deploy cycle, G1 AND G2 AND G3 each show no improvement vs prior logged cycle (same pass/fail or worse ranks; no new owned slot)
+cycle_counter: increment flat_count only when mc protocol completed and ranks compared to previous sheet row
+fire_rule: flat_count >= 3 consecutive measured cycles
+on_fire:
+  k1: STOP endless on-site rewrites / agent title-H1 churn
+  k2: Escalate off-site earned bios + entity-federation-guyavni + high-intent URL only if stall_def
+  k3: Escalate guyavni conflict / dual-home competition review
+  k4: Log kill_switch_fired=Y with cycle ids
+live_checks:
+- [ ] cycle_1 ranks logged + compared
+- [ ] cycle_2 ranks logged + compared
+- [ ] cycle_3 ranks logged + compared
+- [ ] kill_switch fired Y/N (default N until three flats documented)
+
+# dual_property_rank_matrix
+purpose: track competition surfaces; S4 win = Globes >10 on brand keywords — NOT avniguy beating guyavni
+properties_to_track:
+  P1: avniguy.co.il (owned authority)
+  P2: guyavni (office/conversion — ownership confirm in federation scope)
+  P3: globes.co.il
+  P4: facebook.com (or FB profile URL when known)
+matrix_queries: Q_LAWYER | Q_BARE
+matrix_devices: desktop | mobile
+per_cell: best organic_rank or NR (not in top10)
+score_win_s4: Globes organic_rank > 10 (or NR) on Q_LAWYER and Q_BARE — independent of guyavni vs avniguy order
+forbid_score: do not mark “SEO win” solely because avniguy outranks guyavni
+live_checks:
+- [ ] matrix row filled: date | device | query | avniguy_best | guyavni_best | globes_best | fb_best
+- [ ] S4 Globes-off-page1 scored from matrix (aligns with G4)
+- [ ] guyavni positions annotated (ownership TBD if NR)
+
+# log_sheet_template (operator fills; never invent)
+# date | cycle_id | device | query | top10_urls_pipe | about_rank | home_rank | owned_le10_count | globes_best | guyavni_best | fb_best | g1 | g2 | g3 | g4 | flat_vs_prev | notes
+# ____ | ______ | ______ | ______ | _______________ | _________ | ________ | ______________ | __________ | ___________ | _______ | __ | __ | __ | __ | ___________ | _____
+
+# agent_quick_rules
+aq1: Never check a live box in this file without a dated log_sheet row with real URLs
+aq2: Never paste fabricated SERP positions into chat or briefs
+aq3: G2 stall unlock is a written Y on stall_def — required before extra-URL scope work
+aq4: G4 pass stops agent SERP-occupation code churn; remaining work = off-site / AI citation / moonshots per DAG
+aq5: Kill-switch after 3 flat cycles redirects effort off endless on-site rewrites
+
+# post_measure_orchestrator
+- [ ] When live passes documented: scope list ## measure-gates-g1-g4 → [x] (orchestrator after merge+log)
+- [ ] deferred-moonshots / high-intent remain gated on stall or G4 per their prereqs
+- [ ] Do not claim G1–G4 DONE from this runbook ship alone
+
+# verify_gate_this_scope
+artifact: this runbook exists + machine-parseable headers
+build: SKIP (ops-only)
+dev: SKIP (ops-only)
+live_serp: intentionally unchecked
