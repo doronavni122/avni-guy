@@ -136,7 +136,7 @@ Maps-005: high-intent-owned-url-gated
 
 ## youtube-short-form-embed
 Prerequisite: none
-- [ ] Embed HE short-form Q&A on about/services
+- [x] Embed HE short-form Q&A on about/services
 Maps-005: youtube-short-form-embed
 
 ## non-commodity-ymyl-originals
