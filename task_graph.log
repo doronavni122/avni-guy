@@ -302,3 +302,5 @@
 297. add-env-schema-indexnow-production-warning , src/env.ts scripts/write-indexnow-key-file.mjs task_graph.log
 298. add-indexnow-key-env-examples , .env.example .env.development.example task_graph.log
 299. update-seo-audit-merged-july2026-final , notes/temp/seo-audit-july2026/audit-merged-july2026.md task_graph.log
+
+300. add-owner-report-globes-serp-occupation-handoff , OWNER-REPORTS/003_globes-serp-nuke-occupation_2026-07-14.md OWNER-REPORTS/001_serp-ranking-site-seo-work_2026-07-07.md task_graph.log
