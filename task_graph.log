@@ -621,3 +621,5 @@
 462. mark-fan-out-plan-todos-done , .cursor/plans/023_seo_fan_out_h2_maps_on_hubs_f1.plan.md task_graph.log
 
 463. add-fan-out-h2-hubs-brief , notes/implementations/023_seo_fan_out_h2_maps_on_hubs_f1_brief.txt task_graph.log
+
+464. mark-fan-out-h2-maps-on-hubs-merged-in-loop-state , notes/implementations/scope_loop_state.json task_graph.log
