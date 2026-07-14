@@ -6,7 +6,7 @@
   "isolation": "git_worktree_only",
   "primary_worktree": "/Users/doronavni/avni-guy",
   "started_at": "2026-07-14T14:05:00+00:00",
-  "updated_at": "2026-07-14T14:42:52+00:00",
+  "updated_at": "2026-07-14T14:42:53+00:00",
   "current_scope": "parallel-batch-6",
   "inner_iteration": 1,
   "max_inner_iterations": 3,
@@ -291,9 +291,9 @@
       "rca_files": []
     },
     "google-business-profile": {
-      "status": "PENDING",
+      "status": "DONE",
       "plan": null,
-      "last_gate": null,
+      "last_gate": "ops_runbook_agentic",
       "last_failure": null,
       "escalation_count": 0,
       "rca_files": []

@@ -161,7 +161,7 @@ Maps-005: wikidata-q-hebrew-kp-loop, hebrew-name-disambiguation-offsite
 
 ## google-business-profile
 Prerequisite: owned-page1-asset-pack
-- [ ] ops: GBP name/posts/Q&A refresh
+- [x] ops: GBP name/posts/Q&A refresh
 Maps-005: google-business-profile
 
 ## earned-offsite-bios-network
