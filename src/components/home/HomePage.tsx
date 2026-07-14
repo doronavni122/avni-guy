@@ -9,6 +9,7 @@ import { buttonVariants } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { MainPageHero } from '@/components/seo/MainPageHero';
 import type { HomeData } from '@/lib/home/loadHomeData';
+import { ABOUT_RANKING_INBOUND } from '@/lib/home/homeSeoSections';
 import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
 import { cn } from '@/lib/utils';
 import { getCategoryLabel, getTagLabel } from '@/utils/taxonomy-labels';
@@ -67,11 +68,11 @@ export function HomePage({
 				) : null}
 				<p id="home-summary" className="max-w-3xl text-pretty text-base leading-relaxed text-foreground">
 					פורטל המשרד: מאמרים משפטיים, שירותים ומסלול לייעוץ. ליישות המקצועית של{' '}
-					<Link className={inlineLink} href="/about/">
+					<Link className={inlineLink} href={ABOUT_RANKING_INBOUND.person}>
 						גיא אבני
 					</Link>
 					{' '}(
-					<Link className={inlineLink} href="/about/">
+					<Link className={inlineLink} href={ABOUT_RANKING_INBOUND.person}>
 						גיא אבני עורך דין
 					</Link>
 					) · עמוד האודות.
@@ -101,8 +102,8 @@ export function HomePage({
 					>
 						למאמרים
 					</Link>
-					<Link className={cn(inlineLink, 'text-sm')} href="/about/">
-						גיא אבני עורך דין
+					<Link className={cn(inlineLink, 'text-sm')} href={ABOUT_RANKING_INBOUND.practice}>
+						תחומי ליווי של גיא אבני עורך דין
 					</Link>
 				</div>
 				<figure className={cn(figureClass, 'mt-2')}>
@@ -252,9 +253,17 @@ export function HomePage({
 					/>
 				</figure>
 				<p className="text-sm text-muted-foreground">
-					רוצים להכיר את הרקע המקצועי והגישה המלאה?{' '}
-					<Link className={inlineLink} href="/about/">
-						לעמוד אודות
+					רוצים להכיר את הרקע המקצועי והגישה המלאה של{' '}
+					<Link className={inlineLink} href={ABOUT_RANKING_INBOUND.person}>
+						גיא אבני עורך דין
+					</Link>
+					? ראו גם את{' '}
+					<Link className={inlineLink} href={ABOUT_RANKING_INBOUND.principles}>
+						עקרונות העבודה
+					</Link>{' '}
+					ואת{' '}
+					<Link className={inlineLink} href={ABOUT_RANKING_INBOUND.workflow}>
+						מסלול העבודה עם גיא אבני
 					</Link>
 					.
 				</p>

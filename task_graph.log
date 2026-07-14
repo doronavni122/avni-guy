@@ -476,3 +476,5 @@
 385. add-about-stable-section-ids-and-content , src/app/about/page.tsx task_graph.log
 
 386. export-about-ranking-fragment-href-ssot , src/lib/home/homeSeoSections.ts task_graph.log
+
+387. wire-home-query-bearing-about-inbound-anchors , src/components/home/HomePage.tsx task_graph.log
