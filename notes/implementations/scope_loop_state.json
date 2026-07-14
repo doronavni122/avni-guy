@@ -216,7 +216,7 @@
     "prod-sameas-bar-assert": {
       "status": "DONE",
       "plan": null,
-      "last_gate": "ops_runbook_agentic",
+      "last_gate": "merged",
       "last_failure": null,
       "escalation_count": 0,
       "rca_files": []
