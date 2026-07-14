@@ -5,15 +5,24 @@ import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
 import { SITE_URL } from '@/consts';
 import { buildPageMetadata } from '@/lib/metadata';
 import { buildPersonSchema, readPersonSameAsUrls } from '@/lib/seo/schema-person';
-import { getPracticeBridge } from '@/lib/seo/practice-bridge-pages';
+import {
+	getPracticeBridge,
+	type PracticeBridgeDef,
+} from '@/lib/seo/practice-bridge-pages';
 import { buildBreadcrumbSchema, buildWebPageSchema } from '@/utils/structured-data';
 
 export const dynamic = 'force-static';
 
-const def = getPracticeBridge('/nedlan-lawyer-guy-avni/');
-if (!def) {
-	throw new Error('practice bridge missing /nedlan-lawyer-guy-avni/');
+function requireBridge(path: string): PracticeBridgeDef {
+	const found = getPracticeBridge(path);
+	if (!found) {
+		console.error('[practice-bridge] missing def', { path });
+		throw new Error(`practice bridge missing ${path}`);
+	}
+	return found;
 }
+
+const def = requireBridge('/nedlan-lawyer-guy-avni/');
 
 export const metadata = buildPageMetadata({
 	title: def.title,

@@ -551,3 +551,5 @@
 427. mark-scopes-speakable-and-prod-sameas-done , notes/TODO_checklist_full_scopes_2026-07-14.txt OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log
 
 428. fix-practice-bridge-sitekeyword-typing , src/lib/seo/practice-bridge-pages.ts task_graph.log
+
+429. fix-practice-bridge-def-narrowing , src/app/nedlan-lawyer-guy-avni/page.tsx src/app/contracts-lawyer-guy-avni/page.tsx task_graph.log
