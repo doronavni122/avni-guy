@@ -7,6 +7,11 @@ const serverEnvSchema = z.object({
 	PERSON_LINKEDIN_URL: z.string().url().optional().or(z.literal('')),
 	PERSON_ISRAEL_BAR_URL: z.string().url().optional().or(z.literal('')),
 	PERSON_FACEBOOK_URL: z.string().url().optional().or(z.literal('')),
+	PERSON_OFFICE_SITE_URL: z.string().url().optional().or(z.literal('')),
+	NEXT_PUBLIC_OFFICE_LOCALITY: z.string().optional(),
+	NEXT_PUBLIC_OFFICE_STREET: z.string().optional(),
+	NEXT_PUBLIC_OFFICE_PHONE: z.string().optional(),
+	NEXT_PUBLIC_BAR_LICENSE_ID: z.string().optional(),
 	SITE_URL: z.string().url().optional(),
 });
 
