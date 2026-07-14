@@ -168,7 +168,7 @@
     "media-appearances-index": {
       "status": "DONE",
       "plan": null,
-      "last_gate": "blocked_sitemap_claim",
+      "last_gate": "merged",
       "last_failure": null,
       "escalation_count": 0,
       "rca_files": []
