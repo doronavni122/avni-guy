@@ -4,6 +4,7 @@
 **Created:** 2026-07-07  
 **Source:** serp-bar keyword report run 2026-07-07 (read-only input)  
 **Companion (pipeline work):** `serp-bar/OWNER-REPORTS/001_serp-ranking-pipeline-work_2026-07-07.md`  
+**Continue (2026-07-14):** `OWNER-REPORTS/003_globes-serp-nuke-occupation_2026-07-14.md` — #3 agentic Globes page-1 occupation loop  
 **Status:** owner checklist — not SSOT (see `OWNER-REPORTS/README.md`)
 
 ## Goal
