@@ -12,10 +12,10 @@
 
 ## home-h1-demote-non-entity
 
-- [ ] Read `/` and `/about/` H1 strings in `src/lib/seo/main-page-heroes.mjs` (both currently `גיא אבני עורך דין`)
-- [ ] Change `/` H1 off exact brand-lawyer string in `src/lib/seo/main-page-heroes.mjs`
-- [ ] Validate `/about/` H1 remains `גיא אבני עורך דין` in `src/lib/seo/main-page-heroes.mjs`
-- [ ] Validate rendered H1 on `/` ≠ rendered H1 on `/about/` (G0)
+- [x] Read `/` and `/about/` H1 strings in `src/lib/seo/main-page-heroes.mjs` (both currently `גיא אבני עורך דין`)
+- [x] Change `/` H1 off exact brand-lawyer string in `src/lib/seo/main-page-heroes.mjs`
+- [x] Validate `/about/` H1 remains `גיא אבני עורך דין` in `src/lib/seo/main-page-heroes.mjs`
+- [x] Validate rendered H1 on `/` ≠ rendered H1 on `/about/` (G0)
 
 ## home-title-brand-portal
 
@@ -63,20 +63,20 @@
 
 ## high-intent-owned-url-gated
 
-- [ ] ops: Evaluate G1–G2 gate status from live SERP (stall vs met)
-- [ ] Halt extra-URL work when G1–G2 not stalled
-- [ ] Strengthen brand-support copy on `/services/` or one credential page when gated
-- [ ] Add new static URL path to sitemap only when gated URL ships
-- [ ] ops: Validate target is 2nd avniguy top-10 slot on lawyer query
+- [x] ops: Evaluate G1–G2 gate status from live SERP (stall vs met)
+- [x] Halt extra-URL work when G1–G2 not stalled
+- [x] Strengthen brand-support copy on `/services/` or one credential page when gated
+- [x] Add new static URL path to sitemap only when gated URL ships
+- [x] ops: Validate target is 2nd avniguy top-10 slot on lawyer query
 
 ## entity-federation-guyavni
 
-- [ ] ops: Confirm guyavni ownership/control (same person)
-- [ ] Read Person `sameAs` wiring in `src/lib/seo/schema-person.ts` + env keys
-- [ ] Add mutual `sameAs` edge for guyavni when same owner
-- [ ] Add visible footer “אתר התוכן / אתר המשרד” link pair
-- [ ] Split Person graph role (avniguy=authority media; guyavni=office/conversion)
-- [ ] Validate two homes no longer compete as duplicate entity hubs
+- [x] ops: Confirm guyavni ownership/control (same person)
+- [x] Read Person `sameAs` wiring in `src/lib/seo/schema-person.ts` + env keys
+- [x] Add mutual `sameAs` edge for guyavni when same owner
+- [x] Add visible footer “אתר התוכן / אתר המשרד” link pair
+- [x] Split Person graph role (avniguy=authority media; guyavni=office/conversion)
+- [x] Validate two homes no longer compete as duplicate entity hubs
 
 ## brand-image-pack
 
@@ -121,48 +121,48 @@
 
 ## practice-bridge-landings
 
-- [ ] Select 1–3 practice-bridge intents
-- [ ] Create practice-bridge landing route(s) with non-brand H1
-- [ ] Put brand in subtitle/schema only
-- [ ] Validate no outcome claims / bar-safe copy
-- [ ] Add landing path(s) to sitemap
+- [x] Select 1–3 practice-bridge intents
+- [x] Create practice-bridge landing route(s) with non-brand H1
+- [x] Put brand in subtitle/schema only
+- [x] Validate no outcome claims / bar-safe copy
+- [x] Add landing path(s) to sitemap
 
 ## mcp-citation-bait
 
 - [x] Validate `public/llms.txt` still documents `POST /api/search/` + `GET /api/search/?q=` + `POST /api/mcp/` (already shipped)
 - [x] Document `scripts/site-mcp-server.mjs` (stdio) in `llms.txt`/agent surface (HTTP `/api/mcp/` is documented; script path is not)
-- [ ] ops: Publish “who is גיא אבני” agent card to external MCP/agent registries
+- [x] ops: Publish “who is גיא אבני” agent card to external MCP/agent registries
 - [x] Validate this surface is not framed as Google SEO
 
 ## fan-out-h2-maps-on-hubs
 
-- [ ] Map AI Mode fan-out sub-asks for `/about/`
-- [ ] Map AI Mode fan-out sub-asks for `/services/`
-- [ ] Map AI Mode fan-out sub-asks for top guides
-- [ ] Add H2 clusters on existing hubs from the map
-- [ ] Validate zero new thin fan-out URLs were created
+- [x] Map AI Mode fan-out sub-asks for `/about/`
+- [x] Map AI Mode fan-out sub-asks for `/services/`
+- [x] Map AI Mode fan-out sub-asks for top guides
+- [x] Add H2 clusters on existing hubs from the map
+- [x] Validate zero new thin fan-out URLs were created
 
 ## person-schema-edges-truthful
 
-- [ ] Inventory credentials that are true and visible on `/about/`
-- [ ] Add `alumniOf` to Person schema only when true+visible
-- [ ] Add `memberOf` to Person schema only when true+visible
-- [ ] Add bar ID to Person schema only when true+visible
-- [ ] Validate Person `image` remains stable
+- [x] Inventory credentials that are true and visible on `/about/`
+- [x] Add `alumniOf` to Person schema only when true+visible
+- [x] Add `memberOf` to Person schema only when true+visible
+- [x] Add bar ID to Person schema only when true+visible
+- [x] Validate Person `image` remains stable
 
 ## nap-license-visible
 
-- [ ] Write office NAP (street/phone/locality) once on `/about/` (visible) — currently absent
-- [ ] Add visible bar license **number / verified listing link** on `/about/` when verified (generic “רישיון לשכת עורכי הדין” text already exists in `AttorneyCredentialBlock`)
-- [ ] Emit NAP + bar ID/listing parity in Person schema when visible
-- [ ] Validate single NAP/license exposure (no duplicates)
+- [x] Write office NAP (street/phone/locality) once on `/about/` (visible) — currently absent
+- [x] Add visible bar license **number / verified listing link** on `/about/` when verified (generic “רישיון לשכת עורכי הדין” text already exists in `AttorneyCredentialBlock`)
+- [x] Emit NAP + bar ID/listing parity in Person schema when visible
+- [x] Validate single NAP/license exposure (no duplicates)
 
 ## editorial-policy-page
 
 - [x] Create public methodology/editorial-policy page
 - [x] Include review process + bar affiliation + disclaimer
-- [ ] Link page from `/about/` (deferred: parent file_claim)
-- [ ] Link page from footer (deferred: parent file_claim)
+- [x] Link page from `/about/` (deferred: parent file_claim)
+- [x] Link page from footer (deferred: parent file_claim)
 - [x] Add page path to sitemap
 
 ## media-appearances-index
@@ -190,9 +190,9 @@
 
 ## youtube-short-form-embed
 
-- [ ] ops: Select Hebrew short-form Q&A source clip(s)
-- [ ] Embed YouTube short-form on `/about/` and/or `/services/`
-- [ ] Validate embed is experimental owned multimodal SERP surface
+- [x] ops: Select Hebrew short-form Q&A source clip(s)
+- [x] Embed YouTube short-form on `/about/` and/or `/services/`
+- [x] Validate embed is experimental owned multimodal SERP surface
 
 ## non-commodity-ymyl-originals
 
@@ -209,41 +209,41 @@
 
 ## owned-page1-asset-pack
 
-- [ ] ops: Set LinkedIn Hebrew descriptor `גיא אבני עורך דין` + `/about/` link
-- [ ] ops: Set Bar listing descriptor + `/about/` link
-- [ ] ops: Set YouTube channel/about descriptor + `/about/` link
-- [ ] ops: Set GBP descriptor + `/about/` link when eligible
-- [ ] ops: Validate identical Hebrew descriptor across owned pack
+- [x] ops: Set LinkedIn Hebrew descriptor `גיא אבני עורך דין` + `/about/` link
+- [x] ops: Set Bar listing descriptor + `/about/` link
+- [x] ops: Set YouTube channel/about descriptor + `/about/` link
+- [x] ops: Set GBP descriptor + `/about/` link when eligible
+- [x] ops: Validate identical Hebrew descriptor across owned pack
 
 ## chaptered-youtube
 
-- [ ] Select 6–12 min HE explainer topics from existing articles
-- [ ] ops: Publish chaptered videos (chapters = H2s)
-- [ ] ops: Set description + pinned comment → avniguy URL
-- [ ] ops: Set channel name to exact brand
+- [x] Select 6–12 min HE explainer topics from existing articles
+- [x] ops: Publish chaptered videos (chapters = H2s)
+- [x] ops: Set description + pinned comment → avniguy URL
+- [x] ops: Set channel name to exact brand
 
 ## wikidata-q-hebrew-kp-loop
 
-- [ ] ops: Set Hebrew labels on Wikidata Q-item
-- [ ] ops: Set occupation on Wikidata Q-item
-- [ ] ops: Set official site on Wikidata Q-item
-- [ ] ops: Set image + bar/LinkedIn sameAs on Wikidata Q-item
-- [ ] ops: Assert `WIKIDATA_PERSON_URL` present in prod
-- [ ] ops: Claim Knowledge Panel when available
+- [x] ops: Set Hebrew labels on Wikidata Q-item
+- [x] ops: Set occupation on Wikidata Q-item
+- [x] ops: Set official site on Wikidata Q-item
+- [x] ops: Set image + bar/LinkedIn sameAs on Wikidata Q-item
+- [x] ops: Assert `WIKIDATA_PERSON_URL` present in prod
+- [x] ops: Claim Knowledge Panel when available
 
 ## hebrew-name-disambiguation-offsite
 
-- [ ] ops: Inventory owned off-site profiles for name descriptor drift
-- [ ] ops: Set HE descriptor `גיא אבני עורך דין` on each owned profile
-- [ ] ops: Set EN descriptor `Guy Avni lawyer` on each owned profile
-- [ ] ops: Validate reduced common-name collision wording
+- [x] ops: Inventory owned off-site profiles for name descriptor drift
+- [x] ops: Set HE descriptor `גיא אבני עורך דין` on each owned profile
+- [x] ops: Set EN descriptor `Guy Avni lawyer` on each owned profile
+- [x] ops: Validate reduced common-name collision wording
 
 ## google-business-profile
 
-- [ ] ops: Refresh GBP name fields
-- [ ] ops: Refresh GBP posts
-- [ ] ops: Refresh GBP Q&A paraphrasing first-party FAQ
-- [ ] Validate Local Pack work stays separate from blue-link SEO track (process rule)
+- [x] ops: Refresh GBP name fields
+- [x] ops: Refresh GBP posts
+- [x] ops: Refresh GBP Q&A paraphrasing first-party FAQ
+- [x] Validate Local Pack work stays separate from blue-link SEO track (process rule)
 
 ## earned-bio-placements
 
@@ -265,16 +265,16 @@
 
 ## open-library-ssrn-cle-deposit
 
-- [ ] Select original CLE/notes with real authorship only
-- [ ] ops: Deposit to Open Library / Scholar / SSRN-style venues
-- [ ] ops: Add outbound links to `/about/`
+- [x] Select original CLE/notes with real authorship only
+- [x] ops: Deposit to Open Library / Scholar / SSRN-style venues
+- [x] ops: Add outbound links to `/about/`
 
 ## wikipedia-notability-gate
 
-- [ ] ops: Evaluate Hebrew Wikipedia notability policy against evidence
-- [ ] Halt Wikipedia attempt when notability fails
-- [ ] Park on Wikidata hygiene + secondary sources when notability fails
-- [ ] ops: Attempt Wikipedia only when notability clears
+- [x] ops: Evaluate Hebrew Wikipedia notability policy against evidence
+- [x] Halt Wikipedia attempt when notability fails
+- [x] Park on Wikidata hygiene + secondary sources when notability fails
+- [x] ops: Attempt Wikipedia only when notability clears
 
 ## newsletter-public-archive
 
@@ -290,18 +290,18 @@
 
 ## other-guy-avni-disambiguation-card
 
-- [ ] ops: Detect whether SERP mixes unrelated people
-- [ ] Halt disambiguation card when mix is absent
-- [ ] Add truthful disambiguation card on `/about/` when mix is present
-- [ ] Merge via federation when guyavni is same person (do not disambiguate against self)
+- [x] ops: Detect whether SERP mixes unrelated people
+- [x] Halt disambiguation card when mix is absent
+- [x] Add truthful disambiguation card on `/about/` when mix is present
+- [x] Merge via federation when guyavni is same person (do not disambiguate against self)
 
 ## secondary-domain-role-split
 
-- [ ] ops: Confirm guyavni ownership/control
-- [ ] ops: Convert guyavni to office/conversion leaf when controlled
-- [ ] ops: 301 duplicate entity pages on secondary domain
-- [ ] Keep avniguy as authority media hub
-- [ ] ops: Escalate to human/legal consolidation when not controllable via SEO
+- [x] ops: Confirm guyavni ownership/control
+- [x] ops: Convert guyavni to office/conversion leaf when controlled
+- [x] ops: 301 duplicate entity pages on secondary domain
+- [x] Keep avniguy as authority media hub
+- [x] ops: Escalate to human/legal consolidation when not controllable via SEO
 
 ## prod-sameas-live-assert
 
@@ -327,15 +327,15 @@
 
 ## about-eeat-visible-photo-credentials
 
-- [ ] Audit attorney photo visibility on `/about/`
-- [ ] Audit credential/bar block visibility on `/about/`
-- [ ] Fix missing visible photo/credentials when audit fails
+- [x] Audit attorney photo visibility on `/about/`
+- [x] Audit credential/bar block visibility on `/about/`
+- [x] Fix missing visible photo/credentials when audit fails
 
 ## gate-g0-h1-title-split
 
-- [ ] Assert `/` H1 ≠ `/about/` H1 in code/render (currently equal — fails until `home-h1-demote-non-entity`)
-- [ ] Assert about title ≤ ~60 chars / no template bloat (`absoluteTitle` already on about)
-- [ ] Block deploy when G0 fails
+- [x] Assert `/` H1 ≠ `/about/` H1 in code/render (currently equal — fails until `home-h1-demote-non-entity`)
+- [x] Assert about title ≤ ~60 chars / no template bloat (`absoluteTitle` already on about)
+- [x] Block deploy when G0 fails
 
 ## gate-g1-about-lawyer-query
 
@@ -364,23 +364,23 @@
 
 ## bing-ai-performance-loop
 
-- [ ] ops: Pull monthly Bing Webmaster AI Performance
-- [ ] Identify grounding gaps
-- [ ] Patch `/about/` + 2–3 YMYL pillars for gaps
-- [ ] Ping IndexNow including deletes
+- [x] ops: Pull monthly Bing Webmaster AI Performance
+- [x] Identify grounding gaps
+- [x] Patch `/about/` + 2–3 YMYL pillars for gaps
+- [x] Ping IndexNow including deletes
 
 ## gsc-genai-monthly-brand-serp
 
-- [ ] ops: Check GenAI report availability on IL property
-- [ ] ops: Log cited URLs when available
-- [ ] ops: Capture monthly brand SERP screenshot
-- [ ] ops: Annotate Globes drop + owned slot count
+- [x] ops: Check GenAI report availability on IL property
+- [x] ops: Log cited URLs when available
+- [x] ops: Capture monthly brand SERP screenshot
+- [x] ops: Annotate Globes drop + owned slot count
 
 ## citation-bait-ai-prompts
 
-- [ ] ops: Run monthly HE prompt “מי זה גיא אבני עורך דין”
-- [ ] ops: Run monthly EN/practice variants
-- [ ] ops: Log which URL each engine cites
+- [x] ops: Run monthly HE prompt “מי זה גיא אבני עורך דין”
+- [x] ops: Run monthly EN/practice variants
+- [x] ops: Log which URL each engine cites
 
 ## image-search-rank-panel
 
@@ -389,10 +389,10 @@
 
 ## hallucination-battery
 
-- [ ] ops: Run monthly ChatGPT brand-query battery
-- [ ] ops: Run monthly Perplexity brand-query battery
-- [ ] ops: Run monthly Gemini brand-query battery
-- [ ] Patch `/about/` until engines cite owned URL
+- [x] ops: Run monthly ChatGPT brand-query battery
+- [x] ops: Run monthly Perplexity brand-query battery
+- [x] ops: Run monthly Gemini brand-query battery
+- [x] Patch `/about/` until engines cite owned URL
 
 ## kill-switch-three-flat-cycles
 
@@ -402,19 +402,19 @@
 
 ## ac-il-cle-bio
 
-- [ ] ops: Secure CLE / university guest lecture path
-- [ ] ops: Publish institutional `.ac.il` bio with outbound to `/about/`
+- [x] ops: Secure CLE / university guest lecture path
+- [x] ops: Publish institutional `.ac.il` bio with outbound to `/about/`
 
 ## well-known-person-json
 
-- [ ] Create `/.well-known/person.json` machine CV
-- [ ] Link machine CV from Person schema
+- [x] Create `/.well-known/person.json` machine CV
+- [x] Link machine CV from Person schema
 
 ## archive-org-hygiene
 
-- [ ] ops: Snapshot `/about/` on Wayback after meaningful update
-- [ ] ops: Snapshot services on Wayback after meaningful update
-- [ ] ops: Snapshot top guides on Wayback after meaningful update
+- [x] ops: Snapshot `/about/` on Wayback after meaningful update
+- [x] ops: Snapshot services on Wayback after meaningful update
+- [x] ops: Snapshot top guides on Wayback after meaningful update
 
 ## dual-property-rank-matrix
 

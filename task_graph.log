@@ -559,3 +559,5 @@
 431. add-fan-out-h2-clusters-about-services , src/app/about/page.tsx src/app/services/page.tsx task_graph.log
 
 432. mark-scopes-speakable-and-fanout-done , notes/TODO_checklist_full_scopes_2026-07-14.txt notes/implementations/scope_loop_state.json task_graph.log
+
+433. add-editorial-policy-page-brief , notes/implementations/007_seo_editorial_policy_page_e1_brief.txt task_graph.log
