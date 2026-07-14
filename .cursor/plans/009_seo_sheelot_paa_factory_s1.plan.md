@@ -3,11 +3,11 @@
 ADR: none , cite SSOT.md
 
 ##todos
-- [ ] Create `src/app/sheelot/page.tsx` — H1 hub, one H2 per HE PAA question, visible HE answers
-- [ ] Emit FAQPage JSON-LD via `buildFaqSchema` with text identical to visible Q&A
-- [ ] Add `/sheelot/` to `src/app/sitemap.ts` STATIC_PATHS
-- [ ] Verify: `pnpm build` (+ optional `pnpm dev` on free port)
-- [ ] Brief: IndexNow ping for `/sheelot/` is post-deploy ops (do not invent ping success)
+- [x] Create `src/app/sheelot/page.tsx` — H1 hub, one H2 per HE PAA question, visible HE answers
+- [x] Emit FAQPage JSON-LD via `buildFaqSchema` with text identical to visible Q&A
+- [x] Add `/sheelot/` to `src/app/sitemap.ts` STATIC_PATHS
+- [x] Verify: `pnpm build` (+ optional `pnpm dev` on free port)
+- [x] Brief: IndexNow ping for `/sheelot/` is post-deploy ops (do not invent ping success)
 
 ## Goal
 Dedicated `/sheelot/` surface for People-Also-Ask style Hebrew questions: each question is an H2, answers are visible, FAQPage schema matches visible text, sitemap inclusion for crawl. IndexNow is ops-after-deploy only.
