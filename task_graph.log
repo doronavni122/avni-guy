@@ -579,3 +579,5 @@
 441. update-brief-seo-brand-image-pack-verify , notes/implementations/014_seo_brand_image_pack_b1_brief.txt task_graph.log
 
 442. export-brand-image-rank-panel-and-dual-imageobject , src/lib/seo/schema-person.ts task_graph.log
+
+443. brief-indexnow-gsc-one-shot , notes/implementations/013_ops_indexnow_gsc_one_shot_g1_brief.txt task_graph.log
