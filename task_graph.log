@@ -408,3 +408,5 @@
 351. set-home-title-portal-absolute , src/app/page.tsx task_graph.log
 
 352. demote-home-bio-exact-about-anchors , src/components/home/HomePage.tsx src/lib/home/loadHomeData.ts task_graph.log
+
+353. freeze-nav-footer-sitelink-candidates , src/lib/nav/site-nav.ts task_graph.log
