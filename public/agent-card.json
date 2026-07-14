@@ -1,0 +1,76 @@
+{
+  "name": "גיא אבני — avniguy.co.il",
+  "description": "Who is גיא אבני: Israeli attorney (עורך דין) focused on real estate, land taxation, contracts, and civil litigation. Canonical entity page https://avniguy.co.il/about/. Site content and tools for AI agents and MCP clients — not a Google ranking mechanism.",
+  "version": "1.0.0",
+  "url": "https://avniguy.co.il/",
+  "provider": {
+    "organization": "משרד גיא אבני",
+    "url": "https://avniguy.co.il/"
+  },
+  "whoIs": {
+    "queryExamples": ["מי זה גיא אבני", "who is גיא אבני", "גיא אבני עורך דין"],
+    "person": {
+      "name": "גיא אבני",
+      "jobTitle": "עורך דין",
+      "url": "https://avniguy.co.il/about/",
+      "knowsAbout": [
+        "דיני נדל״ן",
+        "מיסוי מקרקעין",
+        "חוזים",
+        "ליטיגציה אזרחית",
+        "ייעוץ משפטי לעסקים"
+      ]
+    }
+  },
+  "documentationUrl": "https://avniguy.co.il/llms.txt",
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "extendedAgentCard": false
+  },
+  "defaultInputModes": ["text/plain", "application/json"],
+  "defaultOutputModes": ["application/json", "text/plain"],
+  "skills": [
+    {
+      "id": "search_site",
+      "name": "Search site",
+      "description": "Semantic search over avniguy.co.il articles and pages.",
+      "tags": ["search", "hebrew", "legal-content"],
+      "examples": ["פטור ממס שבח דירה יחידה", "who is גיא אבני"]
+    },
+    {
+      "id": "list_site_urls",
+      "name": "List site URLs",
+      "description": "List indexed URLs (blog or main sections).",
+      "tags": ["urls", "index"],
+      "examples": ["list blog URLs", "list main section URLs"]
+    }
+  ],
+  "interfaces": {
+    "mcpHttp": {
+      "url": "https://avniguy.co.il/api/mcp/",
+      "transport": "streamable-http",
+      "method": "POST",
+      "tools": ["search_site", "list_site_urls"]
+    },
+    "mcpStdio": {
+      "command": "pnpm mcp:site",
+      "script": "scripts/site-mcp-server.mjs",
+      "env": {
+        "SITE_URL": "https://avniguy.co.il"
+      },
+      "tools": ["search_site", "list_site_urls"]
+    },
+    "searchRest": {
+      "post": {
+        "url": "https://avniguy.co.il/api/search/",
+        "body": { "query": "..." }
+      },
+      "get": "https://avniguy.co.il/api/search/?q=..."
+    },
+    "siteUrls": "https://avniguy.co.il/api/site-urls/?section=blog",
+    "llmsTxt": "https://avniguy.co.il/llms.txt",
+    "llmsFullTxt": "https://avniguy.co.il/llms-full.txt"
+  },
+  "disclaimer": "Informational only; not personal legal advice. Discovery file for AI/MCP agents — Google Search/AI Overviews do not use this card for ranking."
+}
