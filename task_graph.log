@@ -306,3 +306,5 @@
 300. add-owner-report-globes-serp-occupation-handoff , OWNER-REPORTS/003_globes-serp-nuke-occupation_2026-07-14.md OWNER-REPORTS/001_serp-ranking-site-seo-work_2026-07-07.md task_graph.log
 
 301. add-owner-report-serp-occupation-atomic-checklist , OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log
+
+302. validate-true-owner-report-005-serp-occupation-atomic , OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log

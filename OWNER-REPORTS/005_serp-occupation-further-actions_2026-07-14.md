@@ -5,72 +5,74 @@
 **Source:** `OWNER-REPORTS/004_serp-occupation-further-actions_2026-07-14.md`  
 **Derived via:** `.commends/TODO_convert_atomic.md`  
 **Status:** owner checklist — not SSOT  
-**Filter:** open `[ ]` scopes only; already-done + do-not excluded
+**Filter:** open `[ ]` scopes only; already-done + do-not excluded  
+**Validated:** `.commends/TODO_validate_true.md` 2026-07-14 — false items corrected; ops/off-site marked `ops:` (cannot code-verify >0.95)
 
 ---
 
 ## home-h1-demote-non-entity
 
-- [ ] Read `/` and `/about/` H1 strings in `src/lib/seo/main-page-heroes.mjs`
+- [ ] Read `/` and `/about/` H1 strings in `src/lib/seo/main-page-heroes.mjs` (both currently `גיא אבני עורך דין`)
 - [ ] Change `/` H1 off exact brand-lawyer string in `src/lib/seo/main-page-heroes.mjs`
-- [ ] Validate `/about/` H1 equals `גיא אבני עורך דין` in `src/lib/seo/main-page-heroes.mjs`
+- [ ] Validate `/about/` H1 remains `גיא אבני עורך דין` in `src/lib/seo/main-page-heroes.mjs`
 - [ ] Validate rendered H1 on `/` ≠ rendered H1 on `/about/` (G0)
 
 ## home-title-brand-portal
 
-- [ ] Read homepage metadata title + template behavior in `src/app/page.tsx`
+- [ ] Read homepage metadata title in `src/app/page.tsx` (currently lawyer/entity framing; no `absoluteTitle`)
+- [ ] Read root layout title template `%s | …` that appends to non-absolute titles
 - [ ] Set homepage metadata title to firm/portal framing in `src/app/page.tsx`
-- [ ] Detect whether site-name template still appends to homepage title
-- [ ] Set `absoluteTitle: true` on homepage metadata in `src/app/page.tsx` when template bloat remains
+- [ ] Set `absoluteTitle: true` on homepage metadata in `src/app/page.tsx` to prevent template bloat
 
 ## about-title-lawyer-query
 
-- [ ] Read current `/about/` metadata title in `src/app/about/page.tsx`
-- [ ] Set `/about/` title to one primary lawyer-query form in `src/app/about/page.tsx`
+- [ ] Validate `/about/` title is locked to `גיא אבני עורך דין | משרד גיא אבני` with `absoluteTitle: true` in `src/app/about/page.tsx` (already shipped — do not re-set)
 - [ ] Validate title is not bare-name-only stuffing
-- [ ] Write first ~100 words on `/about/` answering both brand queries
+- [ ] Validate `/about/` hero intro in `src/lib/seo/main-page-heroes.mjs` still answers both brand queries; edit only if gaps remain
 
 ## brand-query-answer-ownership-about
 
-- [ ] Read current `/about/` lead copy in `src/app/about/page.tsx`
-- [ ] Write extractable “מי זה גיא אבני” block as first 100–150 words on `/about/`
-- [ ] Validate home does not host a second competing bio block
-- [ ] Add home deep-link targeting `/about/` as entity destination
+- [ ] Read `/about/` lead in `src/lib/seo/main-page-heroes.mjs` (+ `AttorneyCredentialBlock` / FAQ on `src/app/about/page.tsx`)
+- [ ] Validate extractability of existing hero intro + visible FAQ `מי זה גיא אבני?`; tighten copy only if gaps remain
+- [ ] Demote/remove competing home bio (`#home-summary` + home FAQ) so home is not a second entity bio
+- [ ] Validate existing home → `/about/` deep-links in `src/components/home/HomePage.tsx` (already present; exact-anchor work stays in `home-internal-link-weight-to-about`)
 
 ## home-internal-link-weight-to-about
 
 - [ ] Locate first-viewport + HomeSeo authority link slots on home
-- [ ] Add `/about/` link with anchor `גיא אבני` in first-viewport/HomeSeo
-- [ ] Add `/about/` link with anchor `גיא אבני עורך דין` in first-viewport/HomeSeo
-- [ ] Validate anchors are not only “אודות”
+- [ ] Add `/about/` link with exact anchor `גיא אבני` in first-viewport/HomeSeo
+- [ ] Add `/about/` link with exact anchor `גיא אבני עורך דין` in first-viewport/HomeSeo
+- [ ] Validate anchors are not only “אודות” / soft paraphrases
 
 ## sitelink-candidate-freeze
 
-- [ ] Read nav anchors in `src/lib/nav/site-nav.ts`
+- [ ] Read nav anchors in `src/lib/nav/site-nav.ts` (currently includes נושאים/תגיות; footer uses קטגוריות vs נושאים mismatch)
 - [ ] Freeze nav sitelink candidates to אודות / שירותים / מאמרים / יצירת קשר in `src/lib/nav/site-nav.ts`
-- [ ] Read footer sitelink anchors
+- [ ] Read footer sitelink anchors (`FOOTER_NAV_LINKS` / footer component)
 - [ ] Align footer Hebrew anchors to identical nav labels
-- [ ] Validate thin tags remain noindex so they cannot steal sitelinks
+- [ ] Validate thin tag pages remain noindex (`/tags/[tag]/`); note `/tags/` hub may still be indexed
 
 ## about-section-ranking-surface
 
-- [ ] Inventory visible `/about/#…` section headings/ids
-- [ ] Strengthen visible section content on `/about/` for query-bearing surfaces
-- [ ] Add inbound query-bearing anchors from home to about sections
-- [ ] Add inbound query-bearing anchors from services to about sections
+- [ ] Inventory visible `/about/` sections — note: `/about/#person` inbound exists but HTML `id="person"` is currently absent
+- [ ] Add stable section `id`s on `/about/` for query-bearing surfaces
+- [ ] Strengthen visible section content on `/about/` for those surfaces
+- [ ] Add inbound query-bearing anchors from home to about section fragments
+- [ ] Add inbound query-bearing anchors from services to about section fragments
 - [ ] Validate no new thin entity URLs were added for this scope
 
 ## high-intent-owned-url-gated
 
-- [ ] Evaluate G1–G2 gate status (stall vs met)
+- [ ] ops: Evaluate G1–G2 gate status from live SERP (stall vs met)
 - [ ] Halt extra-URL work when G1–G2 not stalled
 - [ ] Strengthen brand-support copy on `/services/` or one credential page when gated
 - [ ] Add new static URL path to sitemap only when gated URL ships
-- [ ] Validate target is 2nd avniguy top-10 slot on lawyer query (measure later)
+- [ ] ops: Validate target is 2nd avniguy top-10 slot on lawyer query
 
 ## entity-federation-guyavni
 
-- [ ] Read live Person `sameAs` emission for avniguy
+- [ ] ops: Confirm guyavni ownership/control (same person)
+- [ ] Read Person `sameAs` wiring in `src/lib/seo/schema-person.ts` + env keys
 - [ ] Add mutual `sameAs` edge for guyavni when same owner
 - [ ] Add visible footer “אתר התוכן / אתר המשרד” link pair
 - [ ] Split Person graph role (avniguy=authority media; guyavni=office/conversion)
@@ -127,9 +129,9 @@
 
 ## mcp-citation-bait
 
-- [ ] Document `POST /api/search/` discoverability in `llms.txt`/agent surface
-- [ ] Document `scripts/site-mcp-server.mjs` in MCP/agent registries surface
-- [ ] Ship “who is גיא אבני” agent card for non-Google engines
+- [ ] Validate `public/llms.txt` still documents `POST /api/search/` + `GET /api/search/?q=` + `POST /api/mcp/` (already shipped)
+- [ ] Document `scripts/site-mcp-server.mjs` (stdio) in `llms.txt`/agent surface (HTTP `/api/mcp/` is documented; script path is not)
+- [ ] ops: Publish “who is גיא אבני” agent card to external MCP/agent registries
 - [ ] Validate this surface is not framed as Google SEO
 
 ## fan-out-h2-maps-on-hubs
@@ -150,9 +152,9 @@
 
 ## nap-license-visible
 
-- [ ] Write office NAP once on `/about/` (visible)
-- [ ] Write bar license once on `/about/` (visible)
-- [ ] Emit NAP/license parity in schema
+- [ ] Write office NAP (street/phone/locality) once on `/about/` (visible) — currently absent
+- [ ] Add visible bar license **number / verified listing link** on `/about/` when verified (generic “רישיון לשכת עורכי הדין” text already exists in `AttorneyCredentialBlock`)
+- [ ] Emit NAP + bar ID/listing parity in Person schema when visible
 - [ ] Validate single NAP/license exposure (no duplicates)
 
 ## editorial-policy-page
@@ -188,7 +190,7 @@
 
 ## youtube-short-form-embed
 
-- [ ] Select Hebrew short-form Q&A source clip(s)
+- [ ] ops: Select Hebrew short-form Q&A source clip(s)
 - [ ] Embed YouTube short-form on `/about/` and/or `/services/`
 - [ ] Validate embed is experimental owned multimodal SERP surface
 
@@ -196,128 +198,129 @@
 
 - [ ] Select claim→evidence YMYL pieces to publish/refresh
 - [ ] Refresh first-person evidence + primary cites + dated refresh
-- [ ] Audit brand-prefix title spam CTR on brand SERP
+- [ ] ops: Audit brand-prefix title spam CTR on brand SERP
 - [ ] Stop brand-prefix title spam when CTR audit shows no lift
 
 ## bar-listing-sameas
 
-- [ ] Claim verified Israel Bar individual listing URL (human/ops)
-- [ ] Set `PERSON_ISRAEL_BAR_URL` in prod env
-- [ ] Validate live Person `sameAs` emits Bar URL
+- [ ] ops: Claim verified Israel Bar individual listing URL
+- [ ] Set `PERSON_ISRAEL_BAR_URL` in prod env (key exists in `src/env.ts` / `schema-person.ts`)
+- [ ] ops: Validate live Person `sameAs` emits Bar URL
 
 ## owned-page1-asset-pack
 
-- [ ] Set LinkedIn Hebrew descriptor `גיא אבני עורך דין` + `/about/` link
-- [ ] Set Bar listing descriptor + `/about/` link
-- [ ] Set YouTube channel/about descriptor + `/about/` link
-- [ ] Set GBP descriptor + `/about/` link when eligible
-- [ ] Validate identical Hebrew descriptor across owned pack
+- [ ] ops: Set LinkedIn Hebrew descriptor `גיא אבני עורך דין` + `/about/` link
+- [ ] ops: Set Bar listing descriptor + `/about/` link
+- [ ] ops: Set YouTube channel/about descriptor + `/about/` link
+- [ ] ops: Set GBP descriptor + `/about/` link when eligible
+- [ ] ops: Validate identical Hebrew descriptor across owned pack
 
 ## chaptered-youtube
 
 - [ ] Select 6–12 min HE explainer topics from existing articles
-- [ ] Publish chaptered videos (chapters = H2s)
-- [ ] Set description + pinned comment → avniguy URL
-- [ ] Set channel name to exact brand
+- [ ] ops: Publish chaptered videos (chapters = H2s)
+- [ ] ops: Set description + pinned comment → avniguy URL
+- [ ] ops: Set channel name to exact brand
 
 ## wikidata-q-hebrew-kp-loop
 
-- [ ] Set Hebrew labels on Wikidata Q-item
-- [ ] Set occupation on Wikidata Q-item
-- [ ] Set official site on Wikidata Q-item
-- [ ] Set image + bar/LinkedIn sameAs on Wikidata Q-item
-- [ ] Assert `WIKIDATA_PERSON_URL` present in prod
-- [ ] Claim Knowledge Panel when available
+- [ ] ops: Set Hebrew labels on Wikidata Q-item
+- [ ] ops: Set occupation on Wikidata Q-item
+- [ ] ops: Set official site on Wikidata Q-item
+- [ ] ops: Set image + bar/LinkedIn sameAs on Wikidata Q-item
+- [ ] ops: Assert `WIKIDATA_PERSON_URL` present in prod
+- [ ] ops: Claim Knowledge Panel when available
 
 ## hebrew-name-disambiguation-offsite
 
-- [ ] Inventory owned off-site profiles for name descriptor drift
-- [ ] Set HE descriptor `גיא אבני עורך דין` on each owned profile
-- [ ] Set EN descriptor `Guy Avni lawyer` on each owned profile
-- [ ] Validate reduced common-name collision wording
+- [ ] ops: Inventory owned off-site profiles for name descriptor drift
+- [ ] ops: Set HE descriptor `גיא אבני עורך דין` on each owned profile
+- [ ] ops: Set EN descriptor `Guy Avni lawyer` on each owned profile
+- [ ] ops: Validate reduced common-name collision wording
 
 ## google-business-profile
 
-- [ ] Refresh GBP name fields
-- [ ] Refresh GBP posts
-- [ ] Refresh GBP Q&A paraphrasing first-party FAQ
-- [ ] Validate Local Pack work stays separate from blue-link SEO track
+- [ ] ops: Refresh GBP name fields
+- [ ] ops: Refresh GBP posts
+- [ ] ops: Refresh GBP Q&A paraphrasing first-party FAQ
+- [ ] Validate Local Pack work stays separate from blue-link SEO track (process rule)
 
 ## earned-bio-placements
 
-- [ ] Brief bios for bar district / conferences / podcasts
-- [ ] Seed placements with exact descriptor + `/about/` link
-- [ ] Log placement URLs for KP/AIO corroboration
+- [ ] ops: Brief bios for bar district / conferences / podcasts
+- [ ] ops: Seed placements with exact descriptor + `/about/` link
+- [ ] ops: Log placement URLs for KP/AIO corroboration
 
 ## podcast-owned-feeds
 
-- [ ] Launch owned podcast with name in show title
-- [ ] Publish Apple/Spotify/Google feed URLs
-- [ ] Expose indexable archive via enriched RSS or host archive
+- [ ] ops: Launch owned podcast with name in show title
+- [ ] ops: Publish Apple/Spotify/Google feed URLs
+- [ ] Expose indexable archive via enriched RSS or host archive (on-site when RSS ship done)
 
 ## civic-directory-nap
 
-- [ ] List Haifa/local civic/chamber/alumni directories
-- [ ] Set consistent NAP on each listing
-- [ ] Set dual HE/EN spelling on each listing
+- [ ] ops: List Haifa/local civic/chamber/alumni directories
+- [ ] ops: Set consistent NAP on each listing
+- [ ] ops: Set dual HE/EN spelling on each listing
 
 ## open-library-ssrn-cle-deposit
 
 - [ ] Select original CLE/notes with real authorship only
-- [ ] Deposit to Open Library / Scholar / SSRN-style venues
-- [ ] Add outbound links to `/about/`
+- [ ] ops: Deposit to Open Library / Scholar / SSRN-style venues
+- [ ] ops: Add outbound links to `/about/`
 
 ## wikipedia-notability-gate
 
-- [ ] Evaluate Hebrew Wikipedia notability policy against evidence
+- [ ] ops: Evaluate Hebrew Wikipedia notability policy against evidence
 - [ ] Halt Wikipedia attempt when notability fails
 - [ ] Park on Wikidata hygiene + secondary sources when notability fails
-- [ ] Attempt Wikipedia only when notability clears
+- [ ] ops: Attempt Wikipedia only when notability clears
 
 ## newsletter-public-archive
 
-- [ ] Launch owned newsletter
-- [ ] Publish public archive URLs
-- [ ] Validate archive URLs are indexable brand-adjacent freshness surfaces
+- [ ] ops: Launch owned newsletter
+- [ ] ops: Publish public archive URLs
+- [ ] ops: Validate archive URLs are indexable brand-adjacent freshness surfaces
 
 ## positive-co-occurrence-network
 
-- [ ] Identify CLE / panel / NPO bio placement targets
-- [ ] Earn placements with name + practice only
-- [ ] Validate no Globes attack narrative / bar-safe copy
+- [ ] ops: Identify CLE / panel / NPO bio placement targets
+- [ ] ops: Earn placements with name + practice only
+- [ ] Validate no Globes attack narrative / bar-safe copy (content rule)
 
 ## other-guy-avni-disambiguation-card
 
-- [ ] Detect whether SERP mixes unrelated people
+- [ ] ops: Detect whether SERP mixes unrelated people
 - [ ] Halt disambiguation card when mix is absent
 - [ ] Add truthful disambiguation card on `/about/` when mix is present
 - [ ] Merge via federation when guyavni is same person (do not disambiguate against self)
 
 ## secondary-domain-role-split
 
-- [ ] Confirm guyavni ownership/control
-- [ ] Convert guyavni to office/conversion leaf when controlled
-- [ ] 301 duplicate entity pages on secondary domain
+- [ ] ops: Confirm guyavni ownership/control
+- [ ] ops: Convert guyavni to office/conversion leaf when controlled
+- [ ] ops: 301 duplicate entity pages on secondary domain
 - [ ] Keep avniguy as authority media hub
-- [ ] Escalate to human/legal consolidation when not controllable via SEO
+- [ ] ops: Escalate to human/legal consolidation when not controllable via SEO
 
 ## prod-sameas-live-assert
 
-- [ ] Curl live `/about/` JSON-LD
-- [ ] Assert `sameAs` includes Wikidata
-- [ ] Assert `sameAs` includes Bar when env set
+- [ ] ops: Curl live `/about/` JSON-LD
+- [ ] ops: Assert `sameAs` includes Wikidata
+- [ ] ops: Assert `sameAs` includes Bar when env set
 - [ ] Fix missing edges via Vercel env only
 
 ## indexnow-gsc-one-shot
 
-- [ ] Run `scripts/post-deploy-indexnow.mjs` for `/`, `/about/`, top 20
-- [ ] Run `scripts/gsc-url-inspection.mjs` for `/`, `/about/`, top 20
-- [ ] Ticket only non-indexed URLs
-- [ ] Enforce one run per deploy
+- [ ] Extend `scripts/post-deploy-indexnow.mjs` beyond static 6 paths (`/`, `/about/`, `/search/`, `/services/`, `/contact/`, `/blog/`) to include top 20 blog URLs — current script does **not** ping top 20
+- [ ] Run `scripts/post-deploy-indexnow.mjs` after deploy (static set, then extended set when shipped)
+- [ ] Implement real GSC URL Inspection client in `scripts/gsc-url-inspection.mjs` (today returns `SKIPPED_NO_API_CLIENT` stub) — or ops: manual GSC until client ships
+- [ ] Run GSC inspection for `/`, `/about/`, top 20 only after client exists (or manual)
+- [ ] ops: Ticket only non-indexed URLs; one run per deploy
 
 ## inject-entity-links-smoke
 
-- [ ] Sample 3 live posts for `href="/about/"`
+- [ ] ops: Sample 3 live posts for `href="/about/"`
 - [ ] Count entity-hub anchors per sampled post
 - [ ] Close scope when ≥2 anchors/post
 - [ ] Redesign inject only when <1 link/post
@@ -330,77 +333,77 @@
 
 ## gate-g0-h1-title-split
 
-- [ ] Assert `/` H1 ≠ `/about/` H1 in code/render
-- [ ] Assert about title ≤ ~60 chars / no template bloat
+- [ ] Assert `/` H1 ≠ `/about/` H1 in code/render (currently equal — fails until `home-h1-demote-non-entity`)
+- [ ] Assert about title ≤ ~60 chars / no template bloat (`absoluteTitle` already on about)
 - [ ] Block deploy when G0 fails
 
 ## gate-g1-about-lawyer-query
 
-- [ ] Measure `גיא אבני עורך דין` ranks after 7–14d
-- [ ] Pass when `/about/` ≤10 or (home ≤8 and `/about/` ≤15)
+- [ ] ops: Measure `גיא אבני עורך דין` ranks after 7–14d
+- [ ] ops: Pass when `/about/` ≤10 or (home ≤8 and `/about/` ≤15)
 - [ ] Fix links/titles when fail (no new pages in this gate)
 
 ## gate-g2-two-owned-slots
 
-- [ ] Measure distinct `avniguy.co.il` URLs ≤10 on lawyer query
-- [ ] Pass when ≥2 owned URLs ≤10
+- [ ] ops: Measure distinct `avniguy.co.il` URLs ≤10 on lawyer query
+- [ ] ops: Pass when ≥2 owned URLs ≤10
 - [ ] Unlock extra URL work only if G1 met and still 1 slot
 
 ## gate-g3-bare-name-foothold
 
-- [ ] Measure `גיא אבני` ranks
-- [ ] Pass when any avniguy URL ≤10
+- [ ] ops: Measure `גיא אבני` ranks
+- [ ] ops: Pass when any avniguy URL ≤10
 
 ## gate-g4-globes-off-page1
 
-- [ ] Measure Globes ranks on both keywords (desktop)
-- [ ] Measure Globes ranks on both keywords (mobile)
-- [ ] Pass when zero `globes.co.il` ≤10
+- [ ] ops: Measure Globes ranks on both keywords (desktop)
+- [ ] ops: Measure Globes ranks on both keywords (mobile)
+- [ ] ops: Pass when zero `globes.co.il` ≤10
 - [ ] Stop agent SEO changes when G4 passes
 - [ ] Mark S1–S3 complete when G4 passes
 
 ## bing-ai-performance-loop
 
-- [ ] Pull monthly Bing Webmaster AI Performance
+- [ ] ops: Pull monthly Bing Webmaster AI Performance
 - [ ] Identify grounding gaps
 - [ ] Patch `/about/` + 2–3 YMYL pillars for gaps
 - [ ] Ping IndexNow including deletes
 
 ## gsc-genai-monthly-brand-serp
 
-- [ ] Check GenAI report availability on IL property
-- [ ] Log cited URLs when available
-- [ ] Capture monthly brand SERP screenshot
-- [ ] Annotate Globes drop + owned slot count
+- [ ] ops: Check GenAI report availability on IL property
+- [ ] ops: Log cited URLs when available
+- [ ] ops: Capture monthly brand SERP screenshot
+- [ ] ops: Annotate Globes drop + owned slot count
 
 ## citation-bait-ai-prompts
 
-- [ ] Run monthly HE prompt “מי זה גיא אבני עורך דין”
-- [ ] Run monthly EN/practice variants
-- [ ] Log which URL each engine cites
+- [ ] ops: Run monthly HE prompt “מי זה גיא אבני עורך דין”
+- [ ] ops: Run monthly EN/practice variants
+- [ ] ops: Log which URL each engine cites
 
 ## image-search-rank-panel
 
 - [ ] Confirm brand-image-pack shipped
-- [ ] Track brand image-pack ranks separately from text SERP
+- [ ] ops: Track brand image-pack ranks separately from text SERP
 
 ## hallucination-battery
 
-- [ ] Run monthly ChatGPT brand-query battery
-- [ ] Run monthly Perplexity brand-query battery
-- [ ] Run monthly Gemini brand-query battery
+- [ ] ops: Run monthly ChatGPT brand-query battery
+- [ ] ops: Run monthly Perplexity brand-query battery
+- [ ] ops: Run monthly Gemini brand-query battery
 - [ ] Patch `/about/` until engines cite owned URL
 
 ## kill-switch-three-flat-cycles
 
-- [ ] Count measured deploy cycles with G1–G3 flat
-- [ ] Escalate off-site/#1/#2/guyavni conflict after 3 flat cycles
+- [ ] ops: Count measured deploy cycles with G1–G3 flat
+- [ ] ops: Escalate off-site/#1/#2/guyavni conflict after 3 flat cycles
 - [ ] Stop endless on-site rewrites after kill-switch fires
 
 ## ac-il-cle-bio
 
-- [ ] Secure CLE / university guest lecture path
-- [ ] Publish institutional `.ac.il` bio with outbound to `/about/`
+- [ ] ops: Secure CLE / university guest lecture path
+- [ ] ops: Publish institutional `.ac.il` bio with outbound to `/about/`
 
 ## well-known-person-json
 
@@ -409,13 +412,13 @@
 
 ## archive-org-hygiene
 
-- [ ] Snapshot `/about/` on Wayback after meaningful update
-- [ ] Snapshot services on Wayback after meaningful update
-- [ ] Snapshot top guides on Wayback after meaningful update
+- [ ] ops: Snapshot `/about/` on Wayback after meaningful update
+- [ ] ops: Snapshot services on Wayback after meaningful update
+- [ ] ops: Snapshot top guides on Wayback after meaningful update
 
 ## dual-property-rank-matrix
 
-- [ ] Track guyavni ranks on brand keywords
-- [ ] Track avniguy ranks on brand keywords
-- [ ] Track Globes + FB ranks on brand keywords
+- [ ] ops: Track guyavni ranks on brand keywords
+- [ ] ops: Track avniguy ranks on brand keywords
+- [ ] ops: Track Globes + FB ranks on brand keywords
 - [ ] Score win as Globes >10, not avniguy beating guyavni (S4)
