@@ -156,7 +156,7 @@ Maps-005: chaptered-youtube
 
 ## wikidata-hebrew-kp-loop
 Prerequisite: prod-sameas-bar-assert
-- [ ] ops: Wikidata HE + sameAs + KP; offsite name descriptor hygiene
+- [x] ops: Wikidata HE + sameAs + KP; offsite name descriptor hygiene
 Maps-005: wikidata-q-hebrew-kp-loop, hebrew-name-disambiguation-offsite
 
 ## google-business-profile
