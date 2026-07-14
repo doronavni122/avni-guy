@@ -1,0 +1,50 @@
+scope: wikidata-hebrew-kp-loop
+type: ops-external+vercel-env
+status: runbook_ready; q_item_pending
+ssot: SSOT.md
+adr: none
+depends_on: prod-sameas-bar-assert
+maps_005: wikidata-q-hebrew-kp-loop | hebrew-name-disambiguation-offsite
+forbid: invent_wikidata_q | create_spam_item | set_WIKIDATA_PERSON_URL_without_live_Q
+
+# entity_lock
+person_name_he: גיא אבני
+person_name_en: Guy Avni
+descriptor_he: גיא אבני עורך דין
+descriptor_en: Guy Avni lawyer
+occupation_he: עורך דין
+official_site: https://avniguy.co.il/about/
+site_home: https://avniguy.co.il/
+env_key: WIKIDATA_PERSON_URL
+
+# A. wikidata-q-hebrew-kp-loop
+maps_005_id: wikidata-q-hebrew-kp-loop
+ops:
+- [ ] W0. Search Wikidata for existing Q covering this person; reuse if true match — never duplicate
+- [ ] W1. HE label = person_name_he; HE description includes עורך דין / descriptor_he sense
+- [ ] W2. EN label = person_name_en; occupation = lawyer (or local equivalent property)
+- [ ] W3. official website / P856 → official_site (prefer /about/)
+- [ ] W4. image: only if free+eligible portrait already on Commons or skip image
+- [ ] W5. Identifiers / stated-in: link Bar and LinkedIn only when those URLs are live+owned
+- [ ] W6. Set Vercel Production WIKIDATA_PERSON_URL = https://www.wikidata.org/wiki/Q… (exact)
+- [ ] W7. Redeploy/assert via prod-sameas-bar-assert curl C3–C4
+- [ ] W8. Knowledge Panel: claim/verify in Google when panel appears; do not invent KP claim ID
+- [ ] W9. Halt Wikipedia article creation here (deferred-moonshots / wikipedia-notability-gate)
+
+# B. hebrew-name-disambiguation-offsite
+maps_005_id: hebrew-name-disambiguation-offsite
+ops:
+- [ ] D1. Inventory owned off-site profiles (LinkedIn, FB, YT, Bar, GBP, civic)
+- [ ] D2. Set HE display/descriptor = descriptor_he wherever field allows
+- [ ] D3. Set EN display/descriptor = descriptor_en on EN fields
+- [ ] D4. Strip common-name-collision wording (other professions / other people) when not truthful
+- [ ] D5. Log each profile URL + descriptor_match
+
+# placement_log
+# date_iso | maps_005_id | url | action | pass_Y_N | notes
+placement_log_path: notes/implementations/wikidata-hebrew-kp-loop_placement_log.txt
+
+# close_gate
+scope_agentic_DONE when this runbook merged + checklist [x]
+live Q-item + KP + WIKIDATA_PERSON_URL remain human/ops
+do_not_fake: WIKIDATA_PERSON_URL
