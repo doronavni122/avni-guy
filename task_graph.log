@@ -360,3 +360,5 @@
 327. fix-005-editorial-link-defer-and-cooccurrence-marks , OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log
 
 328. update-scope-loop-state-batch3-worktrees , notes/implementations/scope_loop_state.json task_graph.log
+
+329. add-plan-ops-podcast-newsletter-archive-p1 , .cursor/plans/010_ops_podcast_newsletter_archive_p1.plan.md task_graph.log
