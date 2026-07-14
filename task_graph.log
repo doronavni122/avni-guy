@@ -388,3 +388,5 @@
 341. add-plan-non-commodity-ymyl-originals , .cursor/plans/011_seo_non_commodity_ymyl_originals_n1.plan.md task_graph.log
 
 342. refresh-ymyl-buying-from-contractor-claim-evidence , src/content/blog/buying-from-contractor-checklist.mdx task_graph.log
+
+343. refresh-ymyl-capital-gains-single-apartment-claim-evidence , src/content/blog/capital-gains-exemption-single-apartment-2026.mdx task_graph.log
