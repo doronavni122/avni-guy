@@ -12,8 +12,7 @@
   "max_inner_iterations": 3,
   "escalation_level": 0,
   "parallel_batch": [
-    "speakable-voice-blocks",
-    "owned-page1-asset-pack"
+    "speakable-voice-blocks"
   ],
   "merge_queue": [],
   "file_claims": {
@@ -32,7 +31,7 @@
       "branch": "feature/scope-prod-sameas-bar-assert"
     },
     "owned-page1-asset-pack": {
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "worktree": "/Users/doronavni/avni-guy-wt-owned-page1-asset-pack",
       "branch": "feature/scope-owned-page1-asset-pack"
     }
@@ -268,9 +267,9 @@
       "rca_files": []
     },
     "owned-page1-asset-pack": {
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "plan": null,
-      "last_gate": null,
+      "last_gate": "ops_runbook_agentic",
       "last_failure": null,
       "escalation_count": 0,
       "rca_files": []

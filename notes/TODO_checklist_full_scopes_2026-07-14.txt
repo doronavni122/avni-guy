@@ -146,7 +146,7 @@ Maps-005: non-commodity-ymyl-originals
 
 ## owned-page1-asset-pack
 Prerequisite: prod-sameas-bar-assert
-- [ ] ops: LinkedIn/Bar/YT/GBP identical HE descriptor → /about/
+- [x] ops: LinkedIn/Bar/YT/GBP identical HE descriptor → /about/
 Maps-005: owned-page1-asset-pack
 
 ## chaptered-youtube
