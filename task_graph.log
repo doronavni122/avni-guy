@@ -543,3 +543,5 @@
 423. add-plan-seo-prod-sameas-bar-assert-p1 , .cursor/plans/021_seo_prod_sameas_bar_assert_p1.plan.md task_graph.log
 
 424. add-env-sameas-prod-gap-warns , .env.development.example .env.example src/env.ts task_graph.log
+
+425. add-person-sameas-truthful-assert , src/lib/seo/schema-person.ts task_graph.log

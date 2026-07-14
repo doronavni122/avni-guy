@@ -1,14 +1,18 @@
 import { SITE_URL } from '@/consts';
+import { PERSON_SAMEAS_ENV_KEYS, warnProductionEnvGaps } from '@/env';
 
 /** Stable JSON-LD @id for the person entity (canonical entity home). */
 export const SITE_PERSON_ID = `${SITE_URL}/about/#person`;
 
 const PERSON_IMAGE_PATH = '/images/shared/guy-avni-avni-guy-law-firm-lawyer-brand-portrait-photo-2.jpg';
 const SITE_ORGANIZATION_ID = `${SITE_URL}#organization`;
+const DEFAULT_OFFICE_SAMEAS = 'https://guyavni.co.il/';
 
 export type PersonSchemaOptions = {
 	sameAs?: string[];
 };
+
+let productionSameAsWarnOnce = false;
 
 function absoluteUrl(pathOrUrl: string): string {
 	try {
@@ -21,6 +25,109 @@ function absoluteUrl(pathOrUrl: string): string {
 		console.error('[schema-person] absoluteUrl failed', { pathOrUrl, err });
 		return new URL(PERSON_IMAGE_PATH, SITE_URL).toString();
 	}
+}
+
+function isPlaceholderSameAsUrl(url: string): boolean {
+	return /example\.com|localhost|127\.0\.0\.1|placeholder|your-|\.local(?:\/|$)/i.test(url);
+}
+
+/** Generic Israel Bar portal home pages are not individual listings — never emit as sameAs. */
+function isGenericIsraelBarPortalUrl(url: string): boolean {
+	try {
+		const u = new URL(url);
+		const host = u.hostname.toLowerCase().replace(/^www\./, '');
+		if (host !== 'israelbar.org.il' && host !== 'israelbar.biz') {
+			return false;
+		}
+		const path = u.pathname.replace(/\/+$/, '') || '/';
+		return path === '/' || path === '/home';
+	} catch (err) {
+		console.error('[schema-person] isGenericIsraelBarPortalUrl parse failed', { url, err });
+		return true;
+	}
+}
+
+/**
+ * Truthful sameAs edge gate.
+ * PERSON_ISRAEL_BAR_URL must be a claimed individual listing — not a portal home.
+ */
+export function isTruthfulPersonSameAsUrl(url: string, envKey?: string): boolean {
+	try {
+		if (!url.startsWith('http://') && !url.startsWith('https://')) {
+			return false;
+		}
+		if (isPlaceholderSameAsUrl(url)) {
+			console.error('[schema-person] rejecting placeholder sameAs URL', { envKey, url });
+			return false;
+		}
+		if (envKey === 'PERSON_ISRAEL_BAR_URL' && isGenericIsraelBarPortalUrl(url)) {
+			console.error(
+				'[schema-person] PERSON_ISRAEL_BAR_URL rejects generic Israel Bar portal — claim individual listing or leave empty',
+				{ url },
+			);
+			return false;
+		}
+		return true;
+	} catch (err) {
+		console.error('[schema-person] isTruthfulPersonSameAsUrl failed', { envKey, url, err });
+		return false;
+	}
+}
+
+function readClaimedEnvHttpUrl(key: string): string | undefined {
+	try {
+		const v = process.env[key]?.trim();
+		if (!v?.startsWith('http')) {
+			return undefined;
+		}
+		return isTruthfulPersonSameAsUrl(v, key) ? v : undefined;
+	} catch (err) {
+		console.error('[schema-person] readClaimedEnvHttpUrl failed', { key, err });
+		return undefined;
+	}
+}
+
+/**
+ * Assert every claimed Person sameAs env URL appears in the emitted list.
+ * Returns missing claimed URLs (empty = pass).
+ */
+export function assertClaimedPersonSameAsEdges(sameAs: string[]): string[] {
+	const missing: string[] = [];
+	try {
+		for (const key of PERSON_SAMEAS_ENV_KEYS) {
+			if (key === 'PERSON_OFFICE_SITE_URL') {
+				const raw = process.env.PERSON_OFFICE_SITE_URL;
+				// Explicit empty opt-out: do not require office in sameAs.
+				if (raw?.trim() === '') {
+					continue;
+				}
+			}
+			const claimed = readClaimedEnvHttpUrl(key);
+			if (!claimed) {
+				continue;
+			}
+			if (!sameAs.includes(claimed)) {
+				missing.push(claimed);
+				console.error('[schema-person] claimed sameAs env URL missing from emitted list', {
+					key,
+					claimed,
+					sameAs,
+				});
+			}
+		}
+		// Default office when PERSON_OFFICE_SITE_URL unset (not opt-out).
+		const officeRaw = process.env.PERSON_OFFICE_SITE_URL;
+		if (officeRaw === undefined && !sameAs.includes(DEFAULT_OFFICE_SAMEAS)) {
+			missing.push(DEFAULT_OFFICE_SAMEAS);
+			console.error('[schema-person] default office sameAs missing from emitted list', {
+				expected: DEFAULT_OFFICE_SAMEAS,
+				sameAs,
+			});
+		}
+	} catch (err) {
+		console.error('[schema-person] assertClaimedPersonSameAsEdges failed', { err });
+	}
+	return missing;
 }
 
 export const buildPersonSchema = (options: PersonSchemaOptions = {}) => {
@@ -56,8 +163,8 @@ export const buildPersonSchema = (options: PersonSchemaOptions = {}) => {
 		},
 	};
 
-	const barUrl = process.env.PERSON_ISRAEL_BAR_URL?.trim();
-	if (barUrl?.startsWith('http')) {
+	const barUrl = readClaimedEnvHttpUrl('PERSON_ISRAEL_BAR_URL');
+	if (barUrl) {
 		schema.memberOf = {
 			'@type': 'Organization',
 			name: 'לשכת עורכי הדין בישראל',
@@ -91,8 +198,17 @@ export const buildPersonSchema = (options: PersonSchemaOptions = {}) => {
 export function readPersonSameAsUrls(): string[] {
 	const urls: string[] = [];
 
-	const wikidata = process.env.WIKIDATA_PERSON_URL?.trim();
-	if (wikidata?.startsWith('http')) {
+	try {
+		if (!productionSameAsWarnOnce && process.env.NODE_ENV === 'production') {
+			productionSameAsWarnOnce = true;
+			warnProductionEnvGaps();
+		}
+	} catch (err) {
+		console.error('[schema-person] production env warn hook failed', { err });
+	}
+
+	const wikidata = readClaimedEnvHttpUrl('WIKIDATA_PERSON_URL');
+	if (wikidata) {
 		urls.push(wikidata);
 	}
 
@@ -103,8 +219,8 @@ export function readPersonSameAsUrls(): string[] {
 		'PERSON_OFFICE_SITE_URL',
 	] as const) {
 		try {
-			const v = process.env[key]?.trim();
-			if (v?.startsWith('http') && !urls.includes(v)) {
+			const v = readClaimedEnvHttpUrl(key);
+			if (v && !urls.includes(v)) {
 				urls.push(v);
 			}
 		} catch (err) {
@@ -116,10 +232,17 @@ export function readPersonSameAsUrls(): string[] {
 	if (officeExplicit === '') {
 		// Owner opted out of office sameAs.
 	} else {
-		const office = officeExplicit?.startsWith('http') ? officeExplicit : 'https://guyavni.co.il/';
-		if (!urls.includes(office)) {
+		const office = officeExplicit?.startsWith('http')
+			? readClaimedEnvHttpUrl('PERSON_OFFICE_SITE_URL')
+			: DEFAULT_OFFICE_SAMEAS;
+		if (office && isTruthfulPersonSameAsUrl(office, 'PERSON_OFFICE_SITE_URL') && !urls.includes(office)) {
 			urls.push(office);
 		}
+	}
+
+	const missing = assertClaimedPersonSameAsEdges(urls);
+	if (missing.length) {
+		console.error('[schema-person] sameAs claim assert failed', { missing, urls });
 	}
 
 	return urls;
