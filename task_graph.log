@@ -609,3 +609,5 @@
 456. close-speakable-voice-blocks-plan , .cursor/plans/020_seo_speakable_voice_blocks_s1.plan.md task_graph.log
 
 457. close-speakable-voice-blocks-brief , notes/implementations/020_seo_speakable_voice_blocks_s1_brief.txt task_graph.log
+
+458. mark-speakable-voice-blocks-merged-in-loop-state , notes/implementations/scope_loop_state.json task_graph.log

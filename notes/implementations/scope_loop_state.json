@@ -128,7 +128,7 @@
     "speakable-voice-blocks": {
       "status": "DONE",
       "plan": null,
-      "last_gate": "verify",
+      "last_gate": "merged",
       "last_failure": null,
       "escalation_count": 0,
       "rca_files": []
