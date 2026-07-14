@@ -13,6 +13,7 @@ const STATIC_PATHS = [
 	'/categories/',
 	'/tags/',
 	'/editorial-policy/',
+	'/sheelot/',
 ];
 
 export const dynamic = 'force-static';
