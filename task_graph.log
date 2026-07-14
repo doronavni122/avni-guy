@@ -420,3 +420,5 @@
 357. add-media-path-to-sitemap , src/app/sitemap.ts task_graph.log
 
 358. plan-ops-indexnow-gsc-one-shot-g1 , .cursor/plans/013_ops_indexnow_gsc_one_shot_g1.plan.md task_graph.log
+
+359. expand-indexnow-oneshot-top20-mode , scripts/post-deploy-indexnow.mjs task_graph.log
