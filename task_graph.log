@@ -456,3 +456,5 @@
 375. add-about-nap-and-person-html-id , src/components/seo/AttorneyCredentialBlock.tsx task_graph.log
 
 376. extend-person-schema-edges-and-office-sameas , src/lib/seo/schema-person.ts task_graph.log
+
+377. add-footer-dual-property-role-links , src/components/Footer.tsx task_graph.log
