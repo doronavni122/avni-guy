@@ -7,8 +7,8 @@ ssot: SSOT.md
 maps_005: prod-sameas-live-assert | bar-listing-sameas
 
 ## next plan suggestion
-owned-page1-asset-pack (depends_on this scope) — identical HE descriptor pack after live sameAs assert pass
-wikidata-hebrew-kp-loop — after Bar/Wikidata sameAs live
+owned-page1-asset-pack (depends_on this scope)
+wikidata-hebrew-kp-loop (depends_on this scope)
 
 ## files to read
 src/lib/seo/schema-person.ts
@@ -22,42 +22,33 @@ enforcement/atomic-change-loging.mdc (orchestrator appends task_graph post-merge
 env-files-agent-permission.mdc
 ssot-repo-structure.mdc
 handoff-and-scope-loop.mdc
-post-implementation-build-dev-verify.mdc / after-implementation-build-dev.mdc
+after-implementation-build-dev.mdc
 
 ## tools and status
 git_worktree: /Users/doronavni/avni-guy-wt-prod-sameas-bar-assert
-commits:
+commits_scope:
   2fe4d403 add-plan-seo-prod-sameas-bar-assert-p1
   e3037e1c add-env-sameas-prod-gap-warns
   0d4a9f3c add-person-sameas-truthful-assert
-  (brief commit follows)
-verify: pnpm build (worktree) — see verify_log in SCOPE_WORKER_RESULT
-task_graph: orchestrator only (worker forbidden)
+  946e6530 add-brief-seo-prod-sameas-bar-assert-p1
+  651f891a use-global-once-for-person-sameas-prod-warn
+commits_verify_sync_non_exclusive_already_on_main:
+  af5cfea4 sync-typecheck-fixes-from-main-for-verify
+  061ab5cb sync-practice-bridge-sitekeyword-from-main
+verify: pass — pnpm exec next build (Node 22.22.2); 365 static pages; typecheck ok
+task_graph: orchestrator only
 no_merge: worker
 
 ## implemented
-env:
-  PERSON_SAMEAS_ENV_KEYS export
-  warnProductionEnvGaps — WIKIDATA + PERSON_ISRAEL_BAR_URL empty/generic portal warns in production
-  PERSON_OFFICE_SITE_URL documented in schema + .env.example + .env.development.example
-schema-person:
-  isTruthfulPersonSameAsUrl — reject placeholder + generic israelbar portal home
-  assertClaimedPersonSameAsEdges — claimed env URLs must appear in emitted sameAs; default office when unset
-  readPersonSameAsUrls — truthful filter; once-hook warnProductionEnvGaps; Bar in sameAs only when claimed truthful URL
-  memberOf bar url uses same claim gate
-
-## ops assert runbook (live prod fetch)
-path: notes/implementations/prod-sameas-bar-assert_ops_runbook.txt
-curl: C1 well-known person.json | C2–C3 /about/ JSON-LD Person.sameAs | C4–C8 claimed env ⊆ sameAs | C9 negatives | C10 optional validator
-vercel keys: WIKIDATA_PERSON_URL PERSON_LINKEDIN_URL PERSON_ISRAEL_BAR_URL PERSON_FACEBOOK_URL PERSON_OFFICE_SITE_URL
-bar_claim: leave PERSON_ISRAEL_BAR_URL empty until individual listing verified — never invent
-live_baseline_2026-07-14: sameAs = Wikidata Q140457357 | LinkedIn | Facebook ; Bar ABSENT (env empty) = expected
+env: PERSON_SAMEAS_ENV_KEYS; warnProductionEnvGaps for WIKIDATA + Bar-when-claimed; PERSON_OFFICE_SITE_URL in examples
+schema-person: isTruthfulPersonSameAsUrl; assertClaimedPersonSameAsEdges; Bar sameAs/memberOf only when truthful claimed URL; reject portal home + placeholders
+ops_runbook: notes/implementations/prod-sameas-bar-assert_ops_runbook.txt (curl C1–C10; Vercel V1–V5)
 
 ## open issues
-live_pass: human must run C1–C10 after next deploy with this code
-PERSON_ISRAEL_BAR_URL: still unset in prod until owner claims listing
-orchestrator: merge branch → append task_graph lines for 4 commits → tick scope list [x]
+live_pass: human C1–C10 after deploy
+PERSON_ISRAEL_BAR_URL still empty until owner claims individual listing
+orchestrator: drop or squash verify-sync commits if already on main; append task_graph for scope commits only
 
 ## checklist_lines
-notes/TODO_checklist_full_scopes_2026-07-14.txt ## prod-sameas-bar-assert item → [x] after merge+verify
-implementaion_progress_checklist: none mapped (SEO ops subgoal; no owner checklist line invented)
+notes/TODO_checklist_full_scopes_2026-07-14.txt ## prod-sameas-bar-assert → [x] after merge
+implementaion_progress_checklist: none
