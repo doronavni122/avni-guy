@@ -1,0 +1,7 @@
+plan_base: 012_seo_indexnow_deletes_redirects_i1
+scope: indexnow-deletes-redirects-completeness
+status: DONE_MERGED
+branch: feature/scope-indexnow-deletes-redirects-completeness
+files: scripts/post-deploy-indexnow.mjs src/app/api/indexnow/route.ts src/app/sitemap.ts
+next: indexnow-gsc-one-shot
+open: live IndexNow ping is post-deploy ops

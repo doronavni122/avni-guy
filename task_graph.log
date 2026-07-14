@@ -394,3 +394,5 @@
 344. refresh-ymyl-landlord-deposit-keyword-and-evidence , src/content/blog/landlord-security-deposit-return.mdx task_graph.log
 
 345. strip-unsafe-repeated-brand-spam-in-blog-bodies , src/content/blog/ task_graph.log
+
+346. add-briefs-indexnow-and-ymyl-scopes , notes/implementations/012_seo_indexnow_deletes_redirects_i1_brief.txt notes/implementations/011_seo_non_commodity_ymyl_originals_n1_brief.txt task_graph.log

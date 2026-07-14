@@ -1,0 +1,7 @@
+plan_base: 011_seo_non_commodity_ymyl_originals_n1
+scope: non-commodity-ymyl-originals
+status: DONE_MERGED
+branch: feature/scope-non-commodity-ymyl-originals
+files: 3 YMYL claim→evidence refreshes + brand-spam strip on 6 posts
+non_regression: no entity-link MDX injects; runtime inject remains
+next: measure CTR before further title de-prefix
