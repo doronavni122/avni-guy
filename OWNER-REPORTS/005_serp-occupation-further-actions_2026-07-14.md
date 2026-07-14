@@ -161,8 +161,8 @@
 
 - [x] Create public methodology/editorial-policy page
 - [x] Include review process + bar affiliation + disclaimer
-- [x] Link page from `/about/`
-- [x] Link page from footer
+- [ ] Link page from `/about/` (deferred: parent file_claim)
+- [ ] Link page from footer (deferred: parent file_claim)
 - [x] Add page path to sitemap
 
 ## media-appearances-index
@@ -284,9 +284,9 @@
 
 ## positive-co-occurrence-network
 
-- [ ] ops: Identify CLE / panel / NPO bio placement targets
-- [ ] ops: Earn placements with name + practice only
-- [ ] Validate no Globes attack narrative / bar-safe copy (content rule)
+- [x] ops: Identify CLE / panel / NPO bio placement targets
+- [x] ops: Earn placements with name + practice only
+- [x] Validate no Globes attack narrative / bar-safe copy (content rule)
 
 ## other-guy-avni-disambiguation-card
 

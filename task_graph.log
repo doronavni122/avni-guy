@@ -356,3 +356,5 @@
 325. add-earned-offsite-bios-network-plan-brief , notes/implementations/008_ops_earned_offsite_bios_network_o1_brief.txt task_graph.log
 
 326. mark-scopes-editorial-policy-and-earned-offsite-done , notes/TODO_checklist_full_scopes_2026-07-14.txt OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log
+
+327. fix-005-editorial-link-defer-and-cooccurrence-marks , OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log
