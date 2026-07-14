@@ -18,6 +18,7 @@ const STATIC_PATH_LASTMOD: Record<string, string> = {
 	'/tags/': '2026-07-13',
 	'/editorial-policy/': '2026-07-14',
 	'/sheelot/': '2026-07-14',
+	'/media/': '2026-07-14',
 };
 
 const STATIC_PATHS = Object.keys(STATIC_PATH_LASTMOD).concat(['/blog/']);
