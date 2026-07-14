@@ -1,0 +1,42 @@
+plan_base: 010_ops_podcast_newsletter_archive_p1
+scope: podcast-newsletter-archive
+status: NEEDS_MERGE
+branch: feature/scope-podcast-newsletter-archive
+worktree: /Users/doronavni/avni-guy-wt-podcast-newsletter-archive
+
+next_plan_suggestion: human ops execute A (podcast host + Apple/Spotify/Google) and B (newsletter public archive) checklists; log real URLs only; optional blog-mirror episodes into richer /rss.xml later
+
+files_to_read:
+- notes/implementations/podcast-newsletter-archive_ops_runbook.txt
+- .cursor/plans/010_ops_podcast_newsletter_archive_p1.plan.md
+- SSOT.md
+- src/app/rss.xml/route.ts
+- notes/implementations/005_rss_enrich_feed_r1_brief.txt
+
+rules:
+- SSOT.md
+- .cursor/rules/owner-reports-non-authoritative.mdc
+- scope-worker file isolation (runbook + plan + brief only)
+- no task_graph.log on worker branch
+- ADR: none , cite SSOT.md
+
+tools_and_status:
+- verify: ops artifact only; skip pnpm build/dev
+- runbook: machine-parseable entity_lock + show_title_he (גיא אבני) + website → /about/ + rss_blog_url https://avniguy.co.il/rss.xml
+- depends_on richer-rss: DONE on main
+- no fake Apple/Spotify/Google/newsletter URLs
+
+open_issues:
+- live podcast host + directory publishes remain operator
+- live newsletter + public archive URLs remain operator
+- site /rss.xml is blog enrich feed — not Apple enclosure feed unless host RSS used
+- scope list [x] + owner checklist tick → orchestrator after merge
+
+commits:
+- ddf8ccf23985707e4597b47a6de89db4a704d493 add-plan-ops-podcast-newsletter-archive-p1
+- 24c0f94879ae3c309f0ace93fbe4a87a04ebf985 add-podcast-newsletter-archive-ops-runbook
+- (this brief commit)
+
+checklist_lines:
+- notes/TODO_checklist_full_scopes_2026-07-14.txt ## podcast-newsletter-archive ops line → [x] after merge+log
+- OWNER-REPORTS maps-005 podcast-owned-feeds + newsletter-public-archive agentic ops via runbook (live boxes stay human)

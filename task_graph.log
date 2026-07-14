@@ -364,3 +364,5 @@
 329. add-plan-ops-podcast-newsletter-archive-p1 , .cursor/plans/010_ops_podcast_newsletter_archive_p1.plan.md task_graph.log
 
 330. add-podcast-newsletter-archive-ops-runbook , notes/implementations/podcast-newsletter-archive_ops_runbook.txt task_graph.log
+
+331. add-brief-ops-podcast-newsletter-archive-p1 , notes/implementations/010_ops_podcast_newsletter_archive_p1_brief.txt task_graph.log
