@@ -1,0 +1,30 @@
+plan_base: 004_mcp_citation_bait_agent_n1
+scope: mcp-citation-bait
+status: NEEDS_MERGE
+branch: feature/scope-mcp-citation-bait
+worktree: /Users/doronavni/avni-guy-wt-mcp-citation-bait
+
+next_plan_suggestion: ops-publish agent-card to external MCP registries (out of exclusive_files); well-known-person-json may optionally symlink/redirect if desired
+
+files_to_read:
+- public/llms.txt
+- public/agent-card.json
+- scripts/site-mcp-server.mjs
+- .cursor/plans/004_mcp_citation_bait_agent_n1.plan.md
+
+rules:
+- .cursor/rules/owner-reports-non-authoritative.mdc
+- scope-worker file isolation (no .well-known/)
+
+tools_and_status:
+- verify: skipped build (static public only); agent-card.json parses
+- task_graph.log: orchestrator post-merge append (worker did not touch)
+
+open_issues:
+- external registry publish remains ops
+- shared root must never checkout this feature branch; merge via worktree only
+
+commits:
+- c8c53704 add-plan-mcp-citation-bait-agent-n1
+- 8dc45fe0 add-public-who-is-agent-card-json
+- e29f2520 document-stdio-mcp-and-agent-card-in-llms-txt
