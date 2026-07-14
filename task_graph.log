@@ -555,3 +555,5 @@
 429. fix-practice-bridge-def-narrowing , src/app/nedlan-lawyer-guy-avni/page.tsx src/app/contracts-lawyer-guy-avni/page.tsx task_graph.log
 
 430. fix-media-page-keywords-sitekeyword , src/app/media/page.tsx task_graph.log
+
+431. add-fan-out-h2-clusters-about-services , src/app/about/page.tsx src/app/services/page.tsx task_graph.log

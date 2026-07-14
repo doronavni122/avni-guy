@@ -270,8 +270,41 @@ export default function AboutPage() {
 					</div>
 				</PageSection>
 
+				<PageSection id="fan-out">
+					<SectionHeader index={7} eyebrow="שאלות משנה" title="שאלות נפוצות סביב חיפוש על גיא אבני" />
+					<div className="mt-8 flex max-w-3xl flex-col gap-8">
+						<section>
+							<h3 className="font-heading text-lg font-semibold text-foreground">מי זה גיא אבני בפועל?</h3>
+							<p className="mt-3 text-pretty text-sm leading-relaxed text-muted-foreground">
+								עורך דין ישראלי. עמוד זה הוא עמוד היישות: ניסיון, תחומי ליווי, ומסלול לפגישת מיקוד - לפני שירותים או
+								בלוג.
+							</p>
+						</section>
+						<section>
+							<h3 className="font-heading text-lg font-semibold text-foreground">באילו תחומים גיא אבני מלווה?</h3>
+							<p className="mt-3 text-pretty text-sm leading-relaxed text-muted-foreground">
+								נדל״ן ומיסוי מקרקעין, חוזים, סכסוכים אזרחיים, ליטיגציה וליווי עסקי. פירוט ב
+								<Link className="link-underline" href="/services/">
+									שירותים
+								</Link>{' '}
+								ובקטגוריות הבלוג.
+							</p>
+						</section>
+						<section>
+							<h3 className="font-heading text-lg font-semibold text-foreground">איך מתחילים שיחה בלי הבטחת תוצאה?</h3>
+							<p className="mt-3 text-pretty text-sm leading-relaxed text-muted-foreground">
+								קוראים מדריך רלוונטי, מארגנים שאלות ומסמכים מרכזיים, ופונים דרך{' '}
+								<Link className="link-underline" href="/contact/">
+									יצירת קשר
+								</Link>
+								. התוכן באתר אינו ייעוץ אישי.
+							</p>
+						</section>
+					</div>
+				</PageSection>
+
 				<PageSection id="faq">
-					<SectionHeader index={7} eyebrow="שאלות נפוצות" title="שאלות נפוצות על גיא אבני עורך דין" />
+					<SectionHeader index={8} eyebrow="שאלות נפוצות" title="שאלות נפוצות על גיא אבני עורך דין" />
 					<div className="mt-8 flex max-w-3xl flex-col gap-6">
 						{BRAND_FAQ.map(({ question, answer }) => (
 							<div key={question} className="border-b border-border pb-6 last:border-b-0">

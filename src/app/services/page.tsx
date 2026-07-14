@@ -194,8 +194,36 @@ export default function ServicesPage() {
 					</ul>
 				</PageSection>
 
+				<PageSection id="fan-out">
+					<SectionHeader index={4} eyebrow="שאלות משנה" title="מה שואלים לפני שבוחרים מסלול שירות" />
+					<div className="mt-8 flex max-w-3xl flex-col gap-8">
+						<section>
+							<h3 className="font-heading text-lg font-semibold text-foreground">מתי פגישת מיקוד מספיקה?</h3>
+							<p className="mt-3 text-pretty text-sm leading-relaxed text-muted-foreground">
+								כשצריך מיון דחיפות ותמונת סיכונים לפני מסמכים או הליך. לא כל פנייה הופכת לליווי מלא.
+							</p>
+						</section>
+						<section>
+							<h3 className="font-heading text-lg font-semibold text-foreground">מה מקבלים אחרי השיחה הראשונה?</h3>
+							<p className="mt-3 text-pretty text-sm leading-relaxed text-muted-foreground">
+								סיכום קצר, סדר עדיפויות, והמלצה אם להמשיך לייעוץ ממוקד או לקריאה עצמית באתר. אין הבטחת תוצאה.
+							</p>
+						</section>
+						<section>
+							<h3 className="font-heading text-lg font-semibold text-foreground">איך זה קשור לעמוד האודות?</h3>
+							<p className="mt-3 text-pretty text-sm leading-relaxed text-muted-foreground">
+								השירותים הם מסלולי עבודה;{' '}
+								<Link className="link-underline" href="/about/">
+									עמוד האודות
+								</Link>{' '}
+								הוא עמוד היישות (מי העו״ד). כדאי לקרוא את שניהם לפני פנייה.
+							</p>
+						</section>
+					</div>
+				</PageSection>
+
 				<PageSection>
-					<SectionHeader index={4} eyebrow="שאלות נפוצות" title="שאלות על השירותים" />
+					<SectionHeader index={5} eyebrow="שאלות נפוצות" title="שאלות על השירותים" />
 					<div className="mt-8 flex max-w-3xl flex-col gap-6">
 						{SERVICES_FAQ.map(({ question, answer }) => (
 							<div key={question} className="border-b border-border pb-6 last:border-b-0">
@@ -209,7 +237,7 @@ export default function ServicesPage() {
 				<PageSection>
 					<div className="grid gap-8 lg:grid-cols-12">
 						<div className="lg:col-span-4">
-							<span className="font-mono text-xs text-muted-foreground">05 / המשך</span>
+							<span className="font-mono text-xs text-muted-foreground">06 / המשך</span>
 						</div>
 						<div className="flex flex-col gap-4 text-right lg:col-span-8">
 							<h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground">מה כולל השירות</h2>
