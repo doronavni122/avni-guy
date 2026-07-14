@@ -322,3 +322,5 @@
 308. add-plan-mcp-citation-bait-agent-n1 , .cursor/plans/004_mcp_citation_bait_agent_n1.plan.md task_graph.log
 
 309. add-public-who-is-agent-card-json , public/agent-card.json task_graph.log
+
+310. document-stdio-mcp-and-agent-card-in-llms-txt , public/llms.txt task_graph.log
