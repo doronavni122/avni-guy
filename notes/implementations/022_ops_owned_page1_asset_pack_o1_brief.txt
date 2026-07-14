@@ -33,7 +33,7 @@ open_issues:
 commits:
 - df63e482 add-plan-ops-owned-page1-asset-pack-o1
 - fc0999e2 add-owned-page1-asset-pack-ops-runbook
-- (this brief commit)
+- f07da2ed add-brief-ops-owned-page1-asset-pack-o1
 
 checklist_lines:
 - notes/TODO_checklist_full_scopes_2026-07-14.txt ## owned-page1-asset-pack ops line → [x] after merge+log
