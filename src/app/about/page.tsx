@@ -20,7 +20,7 @@ import {
 export const dynamic = 'force-static';
 
 const ABOUT_OG_IMAGE = `${SITE_URL}/images/shared/guy-avni-avni-guy-law-firm-lawyer-og-law-fallback-photo-1.jpg`;
-const ABOUT_DATE_MODIFIED = '2026-07-13';
+const ABOUT_DATE_MODIFIED = '2026-07-14';
 
 export const metadata = buildPageMetadata({
 	title: 'גיא אבני עורך דין | משרד גיא אבני',
@@ -151,9 +151,11 @@ export default function AboutPage() {
 			<div className="flex flex-col">
 				<BreadcrumbNav items={breadcrumbItems} />
 				<MainPageHero hero={MAIN_PAGE_HEROES['/about/']} index="01" eyebrow="גיא אבני · עורך דין" />
-				<AttorneyCredentialBlock />
+				<div id="person" className="home-anchor-target">
+					<AttorneyCredentialBlock />
+				</div>
 
-				<PageSection className="mt-16">
+				<PageSection id="entity" className="mt-16">
 					<SectionHeader index={1} eyebrow="עמוד יישות" title="עמוד יישות - גיא אבני עורך דין" />
 					<div className="mt-6 flex max-w-3xl flex-col gap-4 text-pretty leading-relaxed text-muted-foreground">
 						<p>
@@ -171,11 +173,20 @@ export default function AboutPage() {
 							</Link>
 							.
 						</p>
+						<p>
+							עמוד זה הוא נקודת העוגן המקצועית באתר avniguy.co.il: מי זה גיא אבני, באילו תחומים הוא מלווה, איך
+							נראית פגישת מיקוד, ואיך להמשיך למאמרים או לשירותים בלי ליצור עמודי יישות דקים נפרדים. כל הסעיפים
+							כאן ניתנים לעיגון ישיר מהבית ומדפי האתר - אל היישות, אל תחומי הליווי ואל מסלול העבודה.
+						</p>
 					</div>
 				</PageSection>
 
-				<PageSection>
-					<SectionHeader index={2} eyebrow="תחומי ליווי" title="תחומי ליווי מעשיים" />
+				<PageSection id="practice">
+					<SectionHeader index={2} eyebrow="תחומי ליווי" title="תחומי ליווי מעשיים של גיא אבני עורך דין" />
+					<p className="mt-4 max-w-3xl text-pretty text-sm leading-relaxed text-muted-foreground">
+						גיא אבני עורך דין מתמקד בליווי שמחבר בין מסמכים, מס וסיכון תפעולי - לא ברשימת תחומים גנרית. כל מקבץ
+						להלן מוביל לקטגוריה או מדריך רלוונטי באתר, כדי להעמיק לפני שיחת מיקוד.
+					</p>
 					<div className="mt-8 grid gap-px border border-border bg-border sm:grid-cols-2">
 						{PRACTICE_AREAS.map(({ title, text, href }) => (
 							<div key={title} className="flex flex-col gap-3 bg-background p-8">
@@ -190,8 +201,8 @@ export default function AboutPage() {
 					</div>
 				</PageSection>
 
-				<PageSection>
-					<SectionHeader index={3} eyebrow="לקוחות" title="למי הליווי מתאים" />
+				<PageSection id="audience">
+					<SectionHeader index={3} eyebrow="לקוחות" title="למי הליווי של גיא אבני מתאים" />
 					<ul className="mt-6 flex max-w-3xl list-disc flex-col gap-2 pr-6 text-muted-foreground">
 						{CLIENT_PROFILES.map((item) => (
 							<li key={item}>{item}</li>
@@ -207,12 +218,16 @@ export default function AboutPage() {
 							{' '}
 							קטגוריית המיסוי
 						</Link>{' '}
-						אם הנושא שלכם קשור למקרקעין או מס.
+						אם הנושא שלכם קשור למקרקעין או מס. המטרה: להגיע לפגישה עם שאלות חדות, לא עם רשימת מונחים בלבד.
 					</p>
 				</PageSection>
 
-				<PageSection>
-					<SectionHeader index={4} eyebrow="תהליך" title="איך מתחילים לעבוד יחד" />
+				<PageSection id="workflow">
+					<SectionHeader index={4} eyebrow="תהליך" title="איך מתחילים לעבוד עם גיא אבני" />
+					<p className="mt-4 max-w-3xl text-pretty text-sm leading-relaxed text-muted-foreground">
+						המסלול קבוע וברור: מיקוד לפני מסמכים, תמונת סיכונים לפני התחייבות, ועדכונים רק כשיש מה לדווח. כך נמנעים
+						מעומס תקשורת ומקבלים החלטות בזמן אמת.
+					</p>
 					<ol className="mt-6 flex max-w-3xl list-decimal flex-col gap-3 pr-6 text-muted-foreground">
 						{WORKFLOW_STEPS.map((step) => (
 							<li key={step} className="text-pretty leading-relaxed">
@@ -222,8 +237,8 @@ export default function AboutPage() {
 					</ol>
 				</PageSection>
 
-				<PageSection>
-					<SectionHeader index={5} eyebrow="עקרונות" title="ערכים ודרך עבודה" />
+				<PageSection id="principles">
+					<SectionHeader index={5} eyebrow="עקרונות" title="ערכים ודרך עבודה אצל גיא אבני" />
 					<div className="mt-8 grid gap-px border border-border bg-border sm:grid-cols-2">
 						{PRINCIPLES.map(([num, title, text]) => (
 							<div key={title} className="flex flex-col gap-4 bg-background p-8">
@@ -235,7 +250,7 @@ export default function AboutPage() {
 					</div>
 				</PageSection>
 
-				<PageSection>
+				<PageSection id="faq">
 					<SectionHeader index={6} eyebrow="שאלות נפוצות" title="שאלות נפוצות על גיא אבני עורך דין" />
 					<div className="mt-8 flex max-w-3xl flex-col gap-6">
 						{BRAND_FAQ.map(({ question, answer }) => (
@@ -247,14 +262,14 @@ export default function AboutPage() {
 					</div>
 				</PageSection>
 
-				<PageSection>
+				<PageSection id="next">
 					<div className="grid gap-8 lg:grid-cols-12">
 						<div className="lg:col-span-4">
 							<span className="font-mono text-xs text-muted-foreground">07 / המשך ביקור</span>
 						</div>
 						<div className="flex flex-col gap-4 text-right lg:col-span-8">
 							<h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground">
-								המשך מעמוד היישות
+								המשך מעמוד היישות של גיא אבני
 							</h2>
 							<p className="max-w-3xl text-pretty leading-relaxed text-muted-foreground">
 								<Link className="link-underline" href="/services/">

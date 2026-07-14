@@ -472,3 +472,5 @@
 383. mark-scopes-nap-schema-federation-wellknown-done , notes/TODO_checklist_full_scopes_2026-07-14.txt notes/implementations/scope_loop_state.json task_graph.log
 
 384. add-plan-016-about-section-ranking-surface , .cursor/plans/016_seo_about_section_ranking_a1.plan.md task_graph.log
+
+385. add-about-stable-section-ids-and-content , src/app/about/page.tsx task_graph.log
