@@ -531,3 +531,5 @@
 417. add-brief-ops-owned-page1-asset-pack-o1 , notes/implementations/022_ops_owned_page1_asset_pack_o1_brief.txt task_graph.log
 
 418. fill-brief-commit-sha-owned-page1-asset-pack , notes/implementations/022_ops_owned_page1_asset_pack_o1_brief.txt task_graph.log
+
+419. add-speakable-helpers-and-voice-block-copy , .cursor/plans/020_seo_speakable_voice_blocks_s1.plan.md src/lib/seo/speakable-voice-blocks.ts src/lib/seo/speakable.ts task_graph.log
