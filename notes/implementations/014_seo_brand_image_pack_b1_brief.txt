@@ -4,16 +4,16 @@ status: NEEDS_MERGE
 branch: feature/scope-brand-image-pack
 adr: none , cite SSOT.md
 exclusive_files: public/images/shared/ src/lib/seo/schema-person.ts
-commits: 4de8aae5 8a340596 ae13ad94 bdba79c2 062fc2ac
+commits: 4de8aae5 8a340596 ae13ad94 bdba79c2 062fc2ac 3923b57d
 files:
 - public/images/shared/guy-avni-avni-guy-law-firm-lawyer-brand-portrait-photo-2.{jpg,webp,avif}
 - public/images/shared/guy-avni-avni-guy-law-firm-lawyer-office-interior-photo-3.{jpg,webp,avif}
 - src/lib/seo/schema-person.ts
 - notes/implementations/brand-image-pack_ops_runbook.txt
-verify: pending_build_dev
-next_plan_suggestion: image-search-rank-panel ops GSC baseline after merge/deploy
+verify: pass_dev_smoke_about_3014 ImageObject+portrait+office; next_build_fail_out_of_scope media/page.tsx keyword type (not exclusive); no schema-person tsc errors
+next_plan_suggestion: image-search-rank-panel ops GSC baseline after merge/deploy; media keyword union fix in media scope
 files_to_read: src/lib/seo/schema-person.ts notes/implementations/brand-image-pack_ops_runbook.txt .cursor/rules/unique-site-images.mdc
 rules: unique-site-images.mdc ssot-repo-structure.mdc SSOT.md
-tools_and_status: optimize-images targeted on new rasters; about page not edited (parent)
-open_issues: parent may wire portrait into visible about/AttorneyCredentialBlock later; OG fallback consumers unchanged
+tools_and_status: optimize-images targeted on new rasters; about page not edited (parent); BRAND_IMAGE_RANK_PANEL exported
+open_issues: pnpm/next build blocked by sibling media/page.tsx keyword until that scope fixes consts union
 checklist_lines: none mapped on owner checklist
