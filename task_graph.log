@@ -344,3 +344,5 @@
 319. mark-scope-inject-entity-links-smoke-done , notes/TODO_checklist_full_scopes_2026-07-14.txt OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log
 
 320. add-editorial-policy-page-plan , .cursor/plans/007_seo_editorial_policy_page_e1.plan.md task_graph.log
+
+321. add-editorial-policy-page , src/app/editorial-policy/page.tsx task_graph.log
