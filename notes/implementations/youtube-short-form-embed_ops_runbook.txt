@@ -1,0 +1,52 @@
+scope: youtube-short-form-embed
+type: ops-publish+embed-wiring
+status: runbook_ready; video_url_pending
+ssot: SSOT.md
+adr: none
+depends_on: none
+maps_005: youtube-short-form-embed
+forbid: invent_youtube_url | invent_video_id | commit_placeholder_embed | edit_about_while_claimed
+
+# entity_lock
+descriptor_he: גיא אבני עורך דין
+canonical_entity_url: https://avniguy.co.il/about/
+services_url: https://avniguy.co.il/services/
+embed_targets: /about/ and/or /services/
+locale: he-IL
+file_claims: src/app/about/page.tsx may be claimed — prefer /services/ embed or queue about patch
+
+# phase_A_publish (human; required before any code embed)
+- [ ] A1. Select Hebrew short-form Q&A clip (real recording; bar-safe)
+- [ ] A2. Upload to owned YouTube channel (Shorts or short horizontal)
+- [ ] A3. Title/description: descriptor_he; link → canonical_entity_url
+- [ ] A4. Set video public (or unlisted only if intentional; log visibility)
+- [ ] A5. Copy REAL public URL: https://www.youtube.com/watch?v=… or https://youtu.be/… or Shorts URL
+- [ ] A6. Append placement_log with video_url — NEVER invent
+
+# phase_B_embed_wiring (code; ONLY after A5 real URL)
+- [ ] B1. Confirm video_url from placement_log exists (operator paste)
+- [ ] B2. Prefer embed on /services/ if about page file-claimed in scope_loop_state.json
+- [ ] B3. Implement privacy-friendly embed (youtube-nocookie) with title=descriptor_he context
+- [ ] B4. Do NOT hardcode example.com / YOUR_VIDEO_ID / fake 11-char ids
+- [ ] B5. Env-optional pattern (recommended): NEXT_PUBLIC_YOUTUBE_SHORT_EMBED_URL or similar — empty in prod until set; warn if production empty when feature flagged
+- [ ] B6. Build+dev verify; no broken iframe
+
+# phase_C_validate
+- [ ] C1. Prod: page shows embed only when env/URL set
+- [ ] C2. Mark experimental owned multimodal SERP surface (not Local Pack)
+- [ ] C3. Curl/HTML check: no placeholder video id strings in HTML
+
+# placement_log
+# date_iso | video_url | visibility | embed_page | env_key_set_Y_N | notes
+placement_log_path: notes/implementations/youtube-short-form-embed_placement_log.txt
+placement_log_status: create_on_first_real_upload
+
+# agent_quick_rules
+aq1: Agentic close = this runbook only — no fake URL in src/
+aq2: Code embed is a FOLLOW-UP atomic change after real URL logged
+aq3: chaptered-youtube depends on real publish habit; short-form is the first clip path
+
+# close_gate
+scope_agentic_DONE when this runbook merged + checklist [x]
+embed code+URL remain pending operator publish
+do_not_fake: any youtube.com / youtu.be URL in repository until A5

@@ -506,3 +506,4 @@
 403. add-ai-citation-measure-loop-ops-runbook , notes/implementations/ai-citation-measure-loop_ops_runbook.txt task_graph.log
 404. add-deferred-moonshots-ops-runbook , notes/implementations/deferred-moonshots_ops_runbook.txt task_graph.log
 405. add-high-intent-owned-url-gated-ops-runbook , notes/implementations/high-intent-owned-url-gated_ops_runbook.txt task_graph.log
+406. add-youtube-short-form-embed-ops-runbook , notes/implementations/youtube-short-form-embed_ops_runbook.txt task_graph.log
