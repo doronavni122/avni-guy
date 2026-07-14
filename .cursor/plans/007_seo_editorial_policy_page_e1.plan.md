@@ -3,10 +3,10 @@
 ADR: none , cite SSOT.md
 
 ##todos
-- [ ] Create `src/app/editorial-policy/page.tsx` (Hebrew-first, SiteShell, review process, bar affiliation, disclaimer)
-- [ ] Add `/editorial-policy/` to `src/app/sitemap.ts` STATIC_PATHS
-- [ ] Body links to `/about/`, `/blog/`, `/contact/`; note parent must wire about/footer nav after P0
-- [ ] Verify: `pnpm build` + `pnpm dev` in worktree
+- [x] Create `src/app/editorial-policy/page.tsx` (Hebrew-first, SiteShell, review process, bar affiliation, disclaimer)
+- [x] Add `/editorial-policy/` to `src/app/sitemap.ts` STATIC_PATHS
+- [x] Body links to `/about/`, `/blog/`, `/contact/`; note parent must wire about/footer nav after P0
+- [x] Verify: `pnpm build` + `pnpm dev` in worktree
 
 ## Goal
 Public methodology/editorial-policy URL for YMYL trust signals: how content is researched/reviewed, Israel Bar affiliation, and clear non-advice disclaimer. Sitemap inclusion for crawl.
