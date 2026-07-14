@@ -6,36 +6,15 @@
   "isolation": "git_worktree_only",
   "primary_worktree": "/Users/doronavni/avni-guy",
   "started_at": "2026-07-14T14:05:00+00:00",
-  "updated_at": "2026-07-14T14:42:53+00:00",
-  "current_scope": "parallel-batch-6",
+  "updated_at": "2026-07-14T14:56:00+00:00",
+  "current_scope": null,
   "inner_iteration": 1,
   "max_inner_iterations": 3,
   "escalation_level": 0,
-  "parallel_batch": [
-    "speakable-voice-blocks"
-  ],
+  "parallel_batch": [],
   "merge_queue": [],
-  "file_claims": {
-    "src/app/about/page.tsx": "speakable-voice-blocks",
-    "src/lib/seo/": "speakable-voice-blocks"
-  },
-  "workers": {
-    "speakable-voice-blocks": {
-      "status": "IN_PROGRESS",
-      "worktree": "/Users/doronavni/avni-guy-wt-speakable-voice-blocks",
-      "branch": "feature/scope-speakable-voice-blocks"
-    },
-    "prod-sameas-bar-assert": {
-      "status": "DONE",
-      "worktree": "/Users/doronavni/avni-guy-wt-prod-sameas-bar-assert",
-      "branch": "feature/scope-prod-sameas-bar-assert"
-    },
-    "owned-page1-asset-pack": {
-      "status": "DONE",
-      "worktree": "/Users/doronavni/avni-guy-wt-owned-page1-asset-pack",
-      "branch": "feature/scope-owned-page1-asset-pack"
-    }
-  },
+  "file_claims": {},
+  "workers": {},
   "scopes": {
     "home-h1-demote-non-entity": {
       "status": "DONE",
