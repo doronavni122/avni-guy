@@ -37,7 +37,7 @@ export const metadata = buildPageMetadata({
 	description:
 		'מדיה והופעות של גיא אבני עורך דין: ערוצים בבעלות המשרד, מדריכים בעברית, והופעות מתועדות בלבד. מידע כללי - לא ייעוץ משפטי אישי.',
 	keyword: 'גיא אבני עורך דין',
-	keywords: ['גיא אבני עורך דין', 'גיא אבני', 'גיא אבני מדיה'],
+	keywords: ['גיא אבני עורך דין', 'גיא אבני', 'גיא אבני עו״ד'],
 	path: PAGE_PATH,
 	absoluteTitle: true,
 	image: PAGE_OG_IMAGE,
