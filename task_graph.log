@@ -601,3 +601,5 @@
 452. mark-prod-sameas-bar-assert-merged-in-loop-state , notes/implementations/scope_loop_state.json task_graph.log
 
 453. add-require-practice-bridge-accessor , src/lib/seo/practice-bridge-pages.ts task_graph.log
+
+454. use-require-practice-bridge-on-landings , src/app/contracts-lawyer-guy-avni/page.tsx src/app/nedlan-lawyer-guy-avni/page.tsx task_graph.log
