@@ -316,3 +316,5 @@
 305. add-plan-home-h1-demote-g0 , .cursor/plans/003_seo_home_h1_demote_g0.plan.md task_graph.log
 
 306. add-plan-rss-enrich-feed-r1 , .cursor/plans/005_rss_enrich_feed_r1.plan.md task_graph.log
+
+307. enrich-rss-author-content-media , src/app/rss.xml/route.ts task_graph.log
