@@ -19,8 +19,8 @@ rules:
 - no MDX blog rewrites
 
 tools_and_status:
-- commits: e24118a3 plan-sheelot-paa-factory-s1 ; 9557ad19 add-sheelot-paa-h2-qa-page ; 3dace2f8 add-sheelot-path-to-sitemap
-- verify: next build via /tmp archive (worktree lock race)
+- commits: e24118a3 plan-sheelot-paa-factory-s1 ; 9557ad19 add-sheelot-paa-h2-qa-page ; 3dace2f8 add-sheelot-path-to-sitemap ; 815101b6 brief-sheelot-paa-factory-s1
+- verify: PASS — next build archive /tmp/sheelot-paa-verify; route ○ /sheelot in build; compiled successfully; BUILD exit 0
 - IndexNow: POST-DEPLOY OPS — after production deploy, ping `/sheelot/` via scripts/post-deploy-indexnow.mjs (extend STATIC_PATHS) or POST /api/indexnow with urls including https://avniguy.co.il/sheelot/ ; do NOT treat as done until that run succeeds in prod. No local ping success claimed.
 
 open_issues:
