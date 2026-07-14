@@ -494,3 +494,7 @@
 394. mark-scopes-about-heroes-translit-done , notes/TODO_checklist_full_scopes_2026-07-14.txt OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log
 
 395. update-scope-loop-state-batch6-speakable-sameas-owned , notes/implementations/scope_loop_state.json task_graph.log
+
+396. add-practice-bridge-landings-nedlan-contracts , src/lib/seo/practice-bridge-pages.ts src/app/nedlan-lawyer-guy-avni/page.tsx src/app/contracts-lawyer-guy-avni/page.tsx src/app/sitemap.ts task_graph.log
+
+397. mark-scope-practice-bridge-landings-done , notes/TODO_checklist_full_scopes_2026-07-14.txt notes/implementations/scope_loop_state.json task_graph.log

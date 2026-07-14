@@ -167,9 +167,9 @@
       "rca_files": []
     },
     "practice-bridge-landings": {
-      "status": "PENDING",
+      "status": "DONE",
       "plan": null,
-      "last_gate": null,
+      "last_gate": "merge",
       "last_failure": null,
       "escalation_count": 0,
       "rca_files": []

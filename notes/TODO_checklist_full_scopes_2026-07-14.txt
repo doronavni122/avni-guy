@@ -81,7 +81,7 @@ Maps-005: transliteration-bridge-routes
 
 ## practice-bridge-landings
 Prerequisite: high-intent-owned-url-gated
-- [ ] 1–3 practice-bridge landings; bar-safe; sitemap
+- [x] 1–3 practice-bridge landings; bar-safe; sitemap
 Maps-005: practice-bridge-landings
 
 ## fan-out-h2-maps-on-hubs
