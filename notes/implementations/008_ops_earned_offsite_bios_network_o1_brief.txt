@@ -1,0 +1,38 @@
+plan_base: 008_ops_earned_offsite_bios_network_o1
+scope: earned-offsite-bios-network
+status: NEEDS_MERGE
+branch: feature/scope-earned-offsite-bios-network
+worktree: /Users/doronavni/avni-guy-wt-earned-offsite-bios-network
+
+next_plan_suggestion: human ops execute A/B/C checklists in runbook; after /about/ NAP visible (nap-license-visible), fill COPY_FROM_ABOUT_WHEN_VISIBLE fields; optional placement_log file on first real URL
+
+files_to_read:
+- notes/implementations/earned-offsite-bios-network_ops_runbook.txt
+- .cursor/plans/008_ops_earned_offsite_bios_network_o1.plan.md
+- SSOT.md
+- src/consts.ts (SITE_CONTACT_EMAIL)
+- src/lib/seo/schema-person.ts (canonical /about/)
+
+rules:
+- SSOT.md
+- .cursor/rules/owner-reports-non-authoritative.mdc
+- scope-worker file isolation (runbook + plan + brief only)
+- no task_graph.log on worker branch
+
+tools_and_status:
+- verify: ops artifact only; skip pnpm build/dev
+- runbook: machine-parseable entity_lock + A/B/C external_ops_checklist unchecked for live publishes
+- no fake listing URLs
+
+open_issues:
+- street/phone/locality absent on /about/ — runbook gates NAP address/phone until visible
+- live bios / chamber / bar publishes remain operator
+- scope list [x] + owner checklist tick → orchestrator after merge
+
+commits:
+- c348c0f6 add-plan-ops-earned-offsite-bios-network-o1
+- 05da2e7a add-earned-offsite-bios-network-ops-runbook
+- (this brief commit)
+
+checklist_lines:
+- notes/TODO_checklist_full_scopes_2026-07-14.txt ## earned-offsite-bios-network ops line → [x] after merge+log
