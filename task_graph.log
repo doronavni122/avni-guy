@@ -557,3 +557,5 @@
 430. fix-media-page-keywords-sitekeyword , src/app/media/page.tsx task_graph.log
 
 431. add-fan-out-h2-clusters-about-services , src/app/about/page.tsx src/app/services/page.tsx task_graph.log
+
+432. mark-scopes-speakable-and-fanout-done , notes/TODO_checklist_full_scopes_2026-07-14.txt notes/implementations/scope_loop_state.json task_graph.log

@@ -147,9 +147,9 @@
       "rca_files": []
     },
     "speakable-voice-blocks": {
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "plan": null,
-      "last_gate": null,
+      "last_gate": "verify",
       "last_failure": null,
       "escalation_count": 0,
       "rca_files": []
@@ -171,9 +171,9 @@
       "rca_files": []
     },
     "fan-out-h2-maps-on-hubs": {
-      "status": "PENDING",
+      "status": "DONE",
       "plan": null,
-      "last_gate": null,
+      "last_gate": "verify",
       "last_failure": null,
       "escalation_count": 0,
       "rca_files": []

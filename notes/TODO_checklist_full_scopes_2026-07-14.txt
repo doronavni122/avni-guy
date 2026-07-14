@@ -86,7 +86,7 @@ Maps-005: practice-bridge-landings
 
 ## fan-out-h2-maps-on-hubs
 Prerequisite: about-section-ranking-surface
-- [ ] Fan-out H2 clusters on existing hubs; zero thin URLs
+- [x] Fan-out H2 clusters on existing hubs; zero thin URLs
 Maps-005: fan-out-h2-maps-on-hubs
 
 ## editorial-policy-page
