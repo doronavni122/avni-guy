@@ -6,44 +6,38 @@
   "isolation": "git_worktree_only",
   "primary_worktree": "/Users/doronavni/avni-guy",
   "started_at": "2026-07-14T14:05:00+00:00",
-  "updated_at": "2026-07-14T14:40:00+00:00",
-  "current_scope": "parallel-batch-5",
+  "updated_at": "2026-07-14T14:45:00+00:00",
+  "current_scope": "parallel-batch-6",
   "inner_iteration": 1,
   "max_inner_iterations": 3,
   "escalation_level": 0,
   "parallel_batch": [
-    "about-section-ranking-surface",
-    "home-heroes-entity-role-split",
-    "transliteration-bridge-routes"
+    "speakable-voice-blocks",
+    "prod-sameas-bar-assert",
+    "owned-page1-asset-pack"
   ],
   "merge_queue": [],
   "file_claims": {
-    "src/app/about/page.tsx": "about-section-ranking-surface",
-    "src/components/home/HomePage.tsx": "about-section-ranking-surface",
-    "src/lib/home/homeSeoSections.ts": "about-section-ranking-surface",
-    "src/lib/seo/main-page-heroes.mjs": "home-heroes-entity-role-split",
-    "src/lib/home/loadHomeData.ts": "home-heroes-entity-role-split",
-    "src/app/guy-avni/": "transliteration-bridge-routes",
-    "src/app/sitemap.ts": "transliteration-bridge-routes"
+    "src/app/about/page.tsx": "speakable-voice-blocks",
+    "src/lib/seo/": "speakable-voice-blocks",
+    "src/lib/seo/schema-person.ts": "prod-sameas-bar-assert",
+    "src/env.ts": "prod-sameas-bar-assert"
   },
   "workers": {
-    "about-section-ranking-surface": {
+    "speakable-voice-blocks": {
       "status": "IN_PROGRESS",
-      "worktree": "/Users/doronavni/avni-guy-wt-about-section-ranking-surface",
-      "branch": "feature/scope-about-section-ranking-surface",
-      "plan": "016_seo_about_section_ranking_a1"
+      "worktree": "/Users/doronavni/avni-guy-wt-speakable-voice-blocks",
+      "branch": "feature/scope-speakable-voice-blocks"
     },
-    "home-heroes-entity-role-split": {
+    "prod-sameas-bar-assert": {
       "status": "IN_PROGRESS",
-      "worktree": "/Users/doronavni/avni-guy-wt-home-heroes-entity-role-split",
-      "branch": "feature/scope-home-heroes-entity-role-split",
-      "plan": "017_seo_home_heroes_entity_role_h1"
+      "worktree": "/Users/doronavni/avni-guy-wt-prod-sameas-bar-assert",
+      "branch": "feature/scope-prod-sameas-bar-assert"
     },
-    "transliteration-bridge-routes": {
+    "owned-page1-asset-pack": {
       "status": "IN_PROGRESS",
-      "worktree": "/Users/doronavni/avni-guy-wt-transliteration-bridge-routes",
-      "branch": "feature/scope-transliteration-bridge-routes",
-      "plan": "018_seo_transliteration_bridge_t1"
+      "worktree": "/Users/doronavni/avni-guy-wt-owned-page1-asset-pack",
+      "branch": "feature/scope-owned-page1-asset-pack"
     }
   },
   "scopes": {
@@ -93,7 +87,7 @@
       "claimed_by": "parent"
     },
     "about-section-ranking-surface": {
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "plan": null,
       "last_gate": null,
       "last_failure": null,
@@ -101,7 +95,7 @@
       "rca_files": []
     },
     "home-heroes-entity-role-split": {
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "plan": null,
       "last_gate": null,
       "last_failure": null,
@@ -157,7 +151,7 @@
       "rca_files": []
     },
     "speakable-voice-blocks": {
-      "status": "PENDING",
+      "status": "IN_PROGRESS",
       "plan": null,
       "last_gate": null,
       "last_failure": null,
@@ -165,7 +159,7 @@
       "rca_files": []
     },
     "transliteration-bridge-routes": {
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "plan": null,
       "last_gate": null,
       "last_failure": null,
@@ -245,7 +239,7 @@
       "rca_files": []
     },
     "prod-sameas-bar-assert": {
-      "status": "PENDING",
+      "status": "IN_PROGRESS",
       "plan": null,
       "last_gate": null,
       "last_failure": null,
@@ -277,7 +271,7 @@
       "rca_files": []
     },
     "owned-page1-asset-pack": {
-      "status": "PENDING",
+      "status": "IN_PROGRESS",
       "plan": null,
       "last_gate": null,
       "last_failure": null,
@@ -325,7 +319,7 @@
       "rca_files": []
     },
     "measure-gates-g1-g4": {
-      "status": "PENDING",
+      "status": "DONE",
       "plan": null,
       "last_gate": null,
       "last_failure": null,
