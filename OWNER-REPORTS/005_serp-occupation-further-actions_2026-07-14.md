@@ -54,12 +54,12 @@
 
 ## about-section-ranking-surface
 
-- [ ] Inventory visible `/about/` sections — note: `/about/#person` inbound exists but HTML `id="person"` is currently absent
-- [ ] Add stable section `id`s on `/about/` for query-bearing surfaces
-- [ ] Strengthen visible section content on `/about/` for those surfaces
-- [ ] Add inbound query-bearing anchors from home to about section fragments
-- [ ] Add inbound query-bearing anchors from services to about section fragments
-- [ ] Validate no new thin entity URLs were added for this scope
+- [x] Inventory visible `/about/` sections — note: `/about/#person` inbound exists but HTML `id="person"` is currently absent
+- [x] Add stable section `id`s on `/about/` for query-bearing surfaces
+- [x] Strengthen visible section content on `/about/` for those surfaces
+- [x] Add inbound query-bearing anchors from home to about section fragments
+- [x] Add inbound query-bearing anchors from services to about section fragments
+- [x] Validate no new thin entity URLs were added for this scope
 
 ## high-intent-owned-url-gated
 
@@ -113,11 +113,11 @@
 
 ## transliteration-bridge-routes
 
-- [ ] Create `/guy-avni/` entity card route linking to `/about/`
-- [ ] Decide whether `/גיא-אבני/` bridge route is required
-- [ ] Create `/גיא-אבני/` bridge route when required
-- [ ] Add bridge path(s) to sitemap
-- [ ] Validate bridges are short cards, not a full EN site
+- [x] Create `/guy-avni/` entity card route linking to `/about/`
+- [x] Decide whether `/גיא-אבני/` bridge route is required
+- [x] Create `/גיא-אבני/` bridge route when required
+- [x] Add bridge path(s) to sitemap
+- [x] Validate bridges are short cards, not a full EN site
 
 ## practice-bridge-landings
 
@@ -174,11 +174,11 @@
 
 ## home-heroes-entity-role-split
 
-- [ ] Read home hero copy/images/eyebrows vs about person hub
-- [ ] Align home hero Hebrew eyebrows to firm-portal role
-- [ ] Align home hero copy to firm-portal role
-- [ ] Align home hero images per unique-site-images law
-- [ ] Validate home role ≠ person-hub role
+- [x] Read home hero copy/images/eyebrows vs about person hub
+- [x] Align home hero Hebrew eyebrows to firm-portal role
+- [x] Align home hero copy to firm-portal role
+- [x] Align home hero images per unique-site-images law
+- [x] Validate home role ≠ person-hub role
 
 ## indexnow-deletes-redirects-completeness
 

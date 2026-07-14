@@ -31,12 +31,12 @@ Maps-005: sitelink-candidate-freeze
 
 ## about-section-ranking-surface
 Prerequisite: brand-query-home-about-ownership
-- [ ] Stable about section ids; query-bearing inbound anchors; no thin entity URLs
+- [x] Stable about section ids; query-bearing inbound anchors; no thin entity URLs
 Maps-005: about-section-ranking-surface
 
 ## home-heroes-entity-role-split
 Prerequisite: home-h1-demote-non-entity, home-title-brand-portal
-- [ ] Align home hero copy/images/eyebrows to firm-portal vs person hub
+- [x] Align home hero copy/images/eyebrows to firm-portal vs person hub
 Maps-005: home-heroes-entity-role-split
 
 ## about-eeat-nap-license
@@ -76,7 +76,7 @@ Maps-005: speakable-voice-blocks
 
 ## transliteration-bridge-routes
 Prerequisite: brand-query-home-about-ownership
-- [ ] /guy-avni/ (+ optional HE) entity cards → /about/ + sitemap
+- [x] /guy-avni/ (+ optional HE) entity cards → /about/ + sitemap
 Maps-005: transliteration-bridge-routes
 
 ## practice-bridge-landings
