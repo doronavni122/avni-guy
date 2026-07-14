@@ -1,0 +1,64 @@
+scope: ai-citation-measure-loop
+type: ops-measure+patch-loop
+status: runbook_ready; live_measure_pending
+ssot: SSOT.md
+adr: none
+depends_on: mcp-citation-bait (DONE) | brand-query-home-about-ownership (DONE)
+maps_005: bing-ai-performance-loop | gsc-genai-monthly-brand-serp | citation-bait-ai-prompts | hallucination-battery
+forbid: invent_citations | invent_screenshots | patch_about_without_logged_gap | edit_about_while_file_claimed
+
+# entity_lock
+canonical_entity_url: https://avniguy.co.il/about/
+prompts_he_primary: מי זה גיא אבני עורך דין
+prompts_he_alt: גיא אבני עורך דין | מי זה גיא אבני
+cadence: monthly (pick fixed day; log)
+patch_target_priority: /about/ then 2–3 YMYL pillars with real gaps only
+file_claim_rule: do NOT edit src/app/about/page.tsx while claimed by another worker; queue patch notes instead
+
+# A. bing-ai-performance-loop
+maps_005_id: bing-ai-performance-loop
+ops:
+- [ ] B1. Bing Webmaster Tools → AI Performance (or equivalent) for avniguy.co.il
+- [ ] B2. Export/log month: impressions/citations/grounding gaps (leave blank if UI absent)
+- [ ] B3. Map gaps → owned URL missing facts
+- [ ] B4. Patch /about/ + up to 3 pillars only for logged gaps
+- [ ] B5. Ping IndexNow (incl deletes) after material URL changes — see 013_ops_indexnow_gsc_one_shot_g1_ops_runbook.txt
+
+# B. gsc-genai-monthly-brand-serp
+maps_005_id: gsc-genai-monthly-brand-serp
+ops:
+- [ ] G1. GSC IL property: check GenAI / AI features report availability
+- [ ] G2. If available: log cited URLs for brand queries
+- [ ] G3. Capture monthly brand SERP screenshot path (local); never invent path
+- [ ] G4. Annotate: Globes rank drop? owned slot count? (align measure-gates log_sheet)
+
+# C. citation-bait-ai-prompts
+maps_005_id: citation-bait-ai-prompts
+ops:
+- [ ] C1. Run monthly HE prompt prompts_he_primary across engines under test
+- [ ] C2. Run EN/practice variants (operator list; bar-safe)
+- [ ] C3. Log engine | prompt | cited_url | cites_about_Y_N | date
+- [ ] C4. Success signal: engines cite canonical_entity_url (or owned pillar)
+
+# D. hallucination-battery
+maps_005_id: hallucination-battery
+ops:
+- [ ] H1. Monthly ChatGPT battery: brand-lawyer prompts; log facts claimed vs /about/
+- [ ] H2. Monthly Perplexity battery: same
+- [ ] H3. Monthly Gemini battery: same
+- [ ] H4. Patch /about/ until engines cite owned URL / stop inventing bio facts
+- [ ] H5. Never add unverified bio claims to “satisfy” engines
+
+# log_sheet_template
+# date_iso | maps_005_id | engine_or_console | prompt_or_report | cited_urls_pipe | gap | patch_urls | notes
+
+placement_log_path: notes/implementations/ai-citation-measure-loop_placement_log.txt
+
+# agent_quick_rules
+aq1: No live checkbox without dated log row
+aq2: About patches only after gap logged; respect file_claims in scope_loop_state.json
+aq3: mcp-citation-bait is prerequisite surface — not a substitute for this monthly loop
+
+# close_gate
+scope_agentic_DONE when this runbook merged + checklist [x]
+live monthly measures remain human/ops
