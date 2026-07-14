@@ -382,3 +382,5 @@
 338. honest-sitemap-static-lastmod , src/app/sitemap.ts task_graph.log
 
 339. harden-indexnow-api-host-action , src/app/api/indexnow/route.ts task_graph.log
+
+340. extend-post-deploy-indexnow-updates-deletes-redirects , scripts/post-deploy-indexnow.mjs task_graph.log
