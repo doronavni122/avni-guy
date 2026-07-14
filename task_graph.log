@@ -312,3 +312,5 @@
 303. add-serp-occupation-scope-list-dag-state , notes/TODO_checklist_full_scopes_2026-07-14.txt notes/implementations/scope_dag.json notes/implementations/scope_loop_state.json task_graph.log
 
 304. demote-home-h1-off-brand-lawyer-string , src/lib/seo/main-page-heroes.mjs task_graph.log
+
+305. add-plan-home-h1-demote-g0 , .cursor/plans/003_seo_home_h1_demote_g0.plan.md task_graph.log
