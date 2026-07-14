@@ -386,3 +386,5 @@
 340. extend-post-deploy-indexnow-updates-deletes-redirects , scripts/post-deploy-indexnow.mjs task_graph.log
 
 341. add-plan-non-commodity-ymyl-originals , .cursor/plans/011_seo_non_commodity_ymyl_originals_n1.plan.md task_graph.log
+
+342. refresh-ymyl-buying-from-contractor-claim-evidence , src/content/blog/buying-from-contractor-checklist.mdx task_graph.log
