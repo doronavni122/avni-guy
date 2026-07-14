@@ -446,3 +446,5 @@
 370. update-sheelot-brief-verify-pass , notes/implementations/009_seo_sheelot_paa_factory_s1_brief.txt  task_graph.log
 
 371. check-sheelot-plan-todos-done , .cursor/plans/009_seo_sheelot_paa_factory_s1.plan.md  task_graph.log
+
+372. brief-indexnow-deletes-redirects-completeness , notes/implementations/012_seo_indexnow_deletes_redirects_i1_brief.txt task_graph.log
