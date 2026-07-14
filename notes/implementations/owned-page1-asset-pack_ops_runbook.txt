@@ -1,0 +1,49 @@
+scope: owned-page1-asset-pack
+type: ops-external
+status: runbook_ready; external_publish_pending
+ssot: SSOT.md
+adr: none
+depends_on: prod-sameas-bar-assert (runbook+assert flow)
+maps_005: owned-page1-asset-pack
+forbid: invent_profile_urls | drift_descriptor | link_homepage_instead_of_about_when_website_field_allows
+
+# entity_lock
+person_name_he: גיא אבני
+descriptor_he: גיא אבני עורך דין
+descriptor_en: Guy Avni lawyer
+canonical_entity_url: https://avniguy.co.il/about/
+site_url: https://avniguy.co.il
+rule: identical HE descriptor across LinkedIn | Bar | YouTube | GBP → website/link = canonical_entity_url
+
+# pack_surfaces
+S1: LinkedIn (person profile)
+S2: Israel Bar public listing (PERSON_ISRAEL_BAR_URL target when claimed)
+S3: YouTube channel About / description
+S4: Google Business Profile (when eligible; else SKIP+date)
+
+# ops_checklist
+- [ ] P0. Open https://avniguy.co.il/about/ — confirm descriptor_he visible in title/H1 cluster
+- [ ] P1. LinkedIn: headline/about = descriptor_he (or person_name_he + עורך דין); website = canonical_entity_url
+- [ ] P2. Bar listing: display/bio website = canonical_entity_url; descriptor_he where field allows
+- [ ] P3. YouTube channel: name/about contains descriptor_he OR exact brand; website/link = canonical_entity_url (no fake video URL required here)
+- [ ] P4. GBP: business description uses descriptor_he; website = canonical_entity_url (eligible accounts only)
+- [ ] P5. Parity audit: copy descriptor_he string identical across S1–S4 that exist; log drift
+- [ ] P6. Append placement_log rows with live profile URLs only
+
+# console_paths
+- LinkedIn: Profile → Edit intro / About → Headline + Website
+- Bar: https://www.israelbar.biz/home/ → member public card → website/bio
+- YouTube Studio: Customization → Basic info → Description + links
+- GBP: Google Business Profile Manager → Info → Website + Description
+
+# acceptance
+- ≥1 owned surface updated with descriptor_he + /about/ OR operator logs “account_pending” with date
+- no invented listing URLs in log
+
+# placement_log
+# date_iso | surface | profile_url | descriptor_match_Y_N | about_link_Y_N | notes
+placement_log_path: notes/implementations/owned-page1-asset-pack_placement_log.txt
+
+# close_gate
+scope_agentic_DONE when this runbook merged + checklist [x]
+live pack updates remain human/ops-external
