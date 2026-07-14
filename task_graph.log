@@ -484,3 +484,5 @@
 389. align-home-hero-copy-firm-portal-role , src/lib/seo/main-page-heroes.mjs task_graph.log
 
 390. align-home-hero-image-alts-firm-portal , src/lib/home/loadHomeData.ts task_graph.log
+
+391. add-plan-seo-transliteration-bridge-t1 , .cursor/plans/018_seo_transliteration_bridge_t1.plan.md task_graph.log
