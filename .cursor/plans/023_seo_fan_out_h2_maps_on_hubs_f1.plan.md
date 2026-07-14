@@ -3,11 +3,11 @@
 ADR: none , cite SSOT.md
 
 ##todos
-- [ ] Document AI Mode fan-out map for `/about/`, `/services/`, top guides → existing hubs only
-- [ ] Add H2 (+ H3) fan-out clusters on `src/app/about/page.tsx`
-- [ ] Add H2 (+ H3) fan-out clusters on `src/app/services/page.tsx`
-- [ ] Link clusters to existing top guides / categories / bridges (no new routes)
-- [ ] Verify: `pnpm build` in worktree; confirm zero new thin URLs under `src/app/`
+- [x] Document AI Mode fan-out map for `/about/`, `/services/`, top guides → existing hubs only
+- [x] Add H2 (+ H3) fan-out clusters on `src/app/about/page.tsx`
+- [x] Add H2 (+ H3) fan-out clusters on `src/app/services/page.tsx`
+- [x] Link clusters to existing top guides / categories / bridges (no new routes)
+- [x] Verify: `pnpm build` in worktree; confirm zero new thin URLs under `src/app/`
 
 ## Goal
 Capture Google AI Mode–style fan-out sub-asks as **visible H2 clusters on existing hubs** (`/about/`, `/services/`). Map top-guide intents into those hubs via deep links. **Zero thin fan-out landing URLs.**

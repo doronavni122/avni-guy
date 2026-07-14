@@ -617,3 +617,5 @@
 460. mark-plan-transliteration-bridge-todos-done , .cursor/plans/018_seo_transliteration_bridge_t1.plan.md task_graph.log
 
 461. mark-transliteration-bridge-routes-merged-in-loop-state , notes/implementations/scope_loop_state.json task_graph.log
+
+462. mark-fan-out-plan-todos-done , .cursor/plans/023_seo_fan_out_h2_maps_on_hubs_f1.plan.md task_graph.log
