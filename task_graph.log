@@ -474,3 +474,5 @@
 384. add-plan-016-about-section-ranking-surface , .cursor/plans/016_seo_about_section_ranking_a1.plan.md task_graph.log
 
 385. add-about-stable-section-ids-and-content , src/app/about/page.tsx task_graph.log
+
+386. export-about-ranking-fragment-href-ssot , src/lib/home/homeSeoSections.ts task_graph.log
