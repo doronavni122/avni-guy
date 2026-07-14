@@ -1,0 +1,98 @@
+scope: prod-sameas-bar-assert
+type: ops-verify+vercel-env
+status: runbook_ready; live_assert_pending
+ssot: SSOT.md
+adr: none
+depends_on: person-schema-edges-truthful (DONE)
+maps_005: prod-sameas-live-assert | bar-listing-sameas
+code_ssot: src/lib/seo/schema-person.ts | src/env.ts | public/.well-known/person.json
+forbid: invent_bar_url | invent_wikidata_q | set_env_to_placeholder | claim_pass_without_curl_output
+
+# entity_lock
+site: https://avniguy.co.il
+about: https://avniguy.co.il/about/
+wellknown_person: https://avniguy.co.il/.well-known/person.json
+office_default_sameas: https://guyavni.co.il/
+bar_portal: https://www.israelbar.biz/home/
+descriptor_he: גיא אבני עורך דין
+
+# vercel_env_keys (Production + Preview; empty = omit that sameAs edge except office default)
+# Set via: vercel env add <KEY> production  (and preview if used)
+# Schema: src/env.ts serverEnvSchema
+V1: WIKIDATA_PERSON_URL          # https://www.wikidata.org/wiki/Q… only when Q-item exists+owned
+V2: PERSON_LINKEDIN_URL          # public LinkedIn profile URL only
+V3: PERSON_ISRAEL_BAR_URL        # verified individual Bar listing URL only — NEVER invent
+V4: PERSON_FACEBOOK_URL          # public FB profile/page URL only
+V5: PERSON_OFFICE_SITE_URL       # empty string = opt-out office sameAs; unset = default guyavni.co.il; http URL = that office
+V6: NEXT_PUBLIC_OFFICE_LOCALITY  # NAP locality when verified visible
+V7: NEXT_PUBLIC_OFFICE_STREET    # NAP street when verified visible
+V8: NEXT_PUBLIC_OFFICE_PHONE     # NAP phone when verified visible
+V9: NEXT_PUBLIC_BAR_LICENSE_ID   # bar license id when verified
+
+# bar_listing_sameas
+maps_005_id: bar-listing-sameas
+ops:
+- [ ] B1. Owner claims/verifies individual Israel Bar listing URL (login https://www.israelbar.biz/home/ → public member card)
+- [ ] B2. Copy listing URL char-for-char into PERSON_ISRAEL_BAR_URL on Vercel Production
+- [ ] B3. Redeploy or wait for env to apply to runtime
+- [ ] B4. Run curl checklist C3–C5; PERSON_ISRAEL_BAR_URL must appear in Person.sameAs
+- [ ] B5. If listing not claimable yet: leave PERSON_ISRAEL_BAR_URL empty; do NOT fake URL
+
+# prod_sameas_live_assert
+maps_005_id: prod-sameas-live-assert
+ops:
+- [ ] A1. Confirm latest production deploy includes schema-person sameAs wiring
+- [ ] A2. For each claimed edge (Wikidata/LinkedIn/Bar/FB/office): confirm URL live in browser before setting env
+- [ ] A3. Set only truthful Vercel keys (V1–V5); redeploy if needed
+- [ ] A4. Execute curl_checklist below; paste outputs into placement_log (operator only)
+- [ ] A5. Pass rule: every set env URL appears in emitted Person.sameAs; no unset/fake URLs appear
+- [ ] A6. Office rule: if PERSON_OFFICE_SITE_URL unset → expect https://guyavni.co.il/ in sameAs; if set to "" → expect office absent
+
+# curl_checklist (run against production; replace nothing with invented values)
+# Require: jq recommended; python3 -c json ok as fallback
+C1: curl -fsSL -o /tmp/avniguy-person.json -w '%{http_code}\n' https://avniguy.co.il/.well-known/person.json
+    expect: http_code=200 ; JSON parses ; @type includes Person (or equivalent machine CV)
+C2: curl -fsSL https://avniguy.co.il/about/ | tee /tmp/avniguy-about.html | rg -n 'application/ld\+json' -n
+    expect: ≥1 JSON-LD script block
+C3: python3 - <<'PY'
+import re,json,sys
+html=open('/tmp/avniguy-about.html',encoding='utf-8').read()
+blocks=re.findall(r'<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>',html,re.S|re.I)
+people=[]
+for b in blocks:
+  try: data=json.loads(b)
+  except Exception as e: print('JSON_FAIL',e); continue
+  stack=data if isinstance(data,list) else [data]
+  for node in stack:
+    if isinstance(node,dict) and node.get('@graph'):
+      stack.extend(node['@graph'])
+    t=node.get('@type') if isinstance(node,dict) else None
+    types=t if isinstance(t,list) else ([t] if t else [])
+    if 'Person' in types: people.append(node)
+print('PERSON_COUNT',len(people))
+for p in people:
+  print('SAMEAS',json.dumps(p.get('sameAs'),ensure_ascii=False))
+  print('URL',p.get('url')); print('ID',p.get('@id'))
+if not people: sys.exit(2)
+PY
+C4: Assert set: if WIKIDATA_PERSON_URL set in Vercel → SAMEAS list contains that exact URL
+C5: Assert set: if PERSON_ISRAEL_BAR_URL set → SAMEAS contains that exact URL
+C6: Assert set: if PERSON_LINKEDIN_URL set → SAMEAS contains that exact URL
+C7: Assert set: if PERSON_FACEBOOK_URL set → SAMEAS contains that exact URL
+C8: Assert office default/opt-out per A6
+C9: Negative: SAMEAS must NOT contain example.com | localhost | placeholder | invented bar paths
+C10: Optional schema.org validator paste of Person node (human); do not invent validation IDs
+
+# placement_log (operator)
+# date_iso | check_id | http_code | sameAs_pipe | pass_Y_N | notes
+placement_log_path: notes/implementations/prod-sameas-bar-assert_placement_log.txt
+placement_log_status: create_on_first_real_curl
+
+# agentic_shipped
+- this runbook: curl checklist + vercel env key inventory
+- code already has readPersonSameAsUrls + env schema (other scopes)
+
+# close_gate
+scope_agentic_DONE when this runbook merged + checklist [x]
+live_pass remains human: C1–C10 + Vercel keys only when URLs verified
+do_not_fake: PERSON_ISRAEL_BAR_URL | WIKIDATA_PERSON_URL | any sameAs URL
