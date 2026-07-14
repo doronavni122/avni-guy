@@ -131,7 +131,7 @@ Maps-005: prod-sameas-live-assert, bar-listing-sameas
 
 ## high-intent-owned-url-gated
 Prerequisite: gate measure stall (gate-g1/g2)
-- [ ] Extra strong URL only after G1–G2 stall
+- [x] Extra strong URL only after G1–G2 stall
 Maps-005: high-intent-owned-url-gated
 
 ## youtube-short-form-embed

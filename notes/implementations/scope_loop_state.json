@@ -244,9 +244,9 @@
       "rca_files": []
     },
     "high-intent-owned-url-gated": {
-      "status": "PENDING",
+      "status": "DONE",
       "plan": null,
-      "last_gate": null,
+      "last_gate": "ops_runbook_agentic",
       "last_failure": null,
       "escalation_count": 0,
       "rca_files": []
