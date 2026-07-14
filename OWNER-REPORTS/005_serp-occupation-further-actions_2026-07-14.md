@@ -105,11 +105,11 @@
 
 ## speakable-voice-blocks
 
-- [ ] Identify speakable short-answer blocks on `/about/`
-- [ ] Identify speakable short-answer blocks on top hubs
-- [ ] Add visible HE voice-answer copy on those surfaces
-- [ ] Add Speakable markup only where visible text matches
-- [ ] Validate schema text == visible text
+- [x] Identify speakable short-answer blocks on `/about/`
+- [x] Identify speakable short-answer blocks on top hubs
+- [x] Add visible HE voice-answer copy on those surfaces
+- [x] Add Speakable markup only where visible text matches
+- [x] Validate schema text == visible text
 
 ## transliteration-bridge-routes
 
@@ -203,9 +203,9 @@
 
 ## bar-listing-sameas
 
-- [ ] ops: Claim verified Israel Bar individual listing URL
-- [ ] Set `PERSON_ISRAEL_BAR_URL` in prod env (key exists in `src/env.ts` / `schema-person.ts`)
-- [ ] ops: Validate live Person `sameAs` emits Bar URL
+- [x] ops: Claim verified Israel Bar individual listing URL
+- [x] Set `PERSON_ISRAEL_BAR_URL` in prod env (key exists in `src/env.ts` / `schema-person.ts`)
+- [x] ops: Validate live Person `sameAs` emits Bar URL
 
 ## owned-page1-asset-pack
 
@@ -305,10 +305,10 @@
 
 ## prod-sameas-live-assert
 
-- [ ] ops: Curl live `/about/` JSON-LD
-- [ ] ops: Assert `sameAs` includes Wikidata
-- [ ] ops: Assert `sameAs` includes Bar when env set
-- [ ] Fix missing edges via Vercel env only
+- [x] ops: Curl live `/about/` JSON-LD
+- [x] ops: Assert `sameAs` includes Wikidata
+- [x] ops: Assert `sameAs` includes Bar when env set
+- [x] Fix missing edges via Vercel env only
 
 ## indexnow-gsc-one-shot
 

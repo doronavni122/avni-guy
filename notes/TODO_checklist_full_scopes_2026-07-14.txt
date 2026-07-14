@@ -71,7 +71,7 @@ Maps-005: sheelot-paa-factory
 
 ## speakable-voice-blocks
 Prerequisite: brand-query-home-about-ownership
-- [ ] Speakable/visible short HE answers on about + top hubs
+- [x] Speakable/visible short HE answers on about + top hubs
 Maps-005: speakable-voice-blocks
 
 ## transliteration-bridge-routes

@@ -547,3 +547,5 @@
 425. add-person-sameas-truthful-assert , src/lib/seo/schema-person.ts task_graph.log
 
 426. add-brief-seo-prod-sameas-bar-assert-p1 , notes/implementations/021_seo_prod_sameas_bar_assert_p1_brief.txt task_graph.log
+
+427. mark-scopes-speakable-and-prod-sameas-done , notes/TODO_checklist_full_scopes_2026-07-14.txt OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log
