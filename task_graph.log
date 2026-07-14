@@ -380,3 +380,5 @@
 337. plan-seo-indexnow-deletes-redirects-i1 , .cursor/plans/012_seo_indexnow_deletes_redirects_i1.plan.md task_graph.log
 
 338. honest-sitemap-static-lastmod , src/app/sitemap.ts task_graph.log
+
+339. harden-indexnow-api-host-action , src/app/api/indexnow/route.ts task_graph.log
