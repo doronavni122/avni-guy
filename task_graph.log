@@ -480,3 +480,5 @@
 387. wire-home-query-bearing-about-inbound-anchors , src/components/home/HomePage.tsx task_graph.log
 
 388. add-plan-seo-home-heroes-entity-role-h1 , .cursor/plans/017_seo_home_heroes_entity_role_h1.plan.md task_graph.log
+
+389. align-home-hero-copy-firm-portal-role , src/lib/seo/main-page-heroes.mjs task_graph.log
