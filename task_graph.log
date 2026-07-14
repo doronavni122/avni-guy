@@ -434,3 +434,5 @@
 364. add-unique-brand-portrait-and-office-image-pack , public/images/shared/ task_graph.log
 
 365. wire-person-schema-brand-portrait-imageobject , src/lib/seo/schema-person.ts task_graph.log
+
+366. add-brand-image-pack-ops-runbook-image-rank , notes/implementations/brand-image-pack_ops_runbook.txt task_graph.log
