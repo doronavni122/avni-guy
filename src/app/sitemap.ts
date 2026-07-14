@@ -3,7 +3,17 @@ import { SITE_URL } from '@/consts';
 import { getArchiveDateModified, getBlogArchivePageCount } from '@/lib/blog/archive';
 import { getPostsIndex } from '@/lib/content/posts';
 
-const STATIC_PATHS = ['/', '/about/', '/search/', '/services/', '/contact/', '/blog/', '/categories/', '/tags/'];
+const STATIC_PATHS = [
+	'/',
+	'/about/',
+	'/search/',
+	'/services/',
+	'/contact/',
+	'/blog/',
+	'/categories/',
+	'/tags/',
+	'/editorial-policy/',
+];
 
 export const dynamic = 'force-static';
 

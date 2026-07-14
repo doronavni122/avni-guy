@@ -346,3 +346,5 @@
 320. add-editorial-policy-page-plan , .cursor/plans/007_seo_editorial_policy_page_e1.plan.md task_graph.log
 
 321. add-editorial-policy-page , src/app/editorial-policy/page.tsx task_graph.log
+
+322. add-editorial-policy-to-sitemap , src/app/sitemap.ts task_graph.log
