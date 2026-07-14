@@ -402,3 +402,5 @@
 348. mark-scope-home-h1-demote-done-on-main , notes/TODO_checklist_full_scopes_2026-07-14.txt task_graph.log
 
 349. update-scope-loop-state-batch4 , notes/implementations/scope_loop_state.json task_graph.log
+
+350. add-plan-home-title-portal-g0 , .cursor/plans/013_seo_home_title_portal_g0.plan.md task_graph.log
