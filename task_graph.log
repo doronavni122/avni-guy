@@ -406,3 +406,5 @@
 350. add-plan-home-title-portal-g0 , .cursor/plans/013_seo_home_title_portal_g0.plan.md task_graph.log
 
 351. set-home-title-portal-absolute , src/app/page.tsx task_graph.log
+
+352. demote-home-bio-exact-about-anchors , src/components/home/HomePage.tsx src/lib/home/loadHomeData.ts task_graph.log

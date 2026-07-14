@@ -66,12 +66,15 @@ export function HomePage({
 					</p>
 				) : null}
 				<p id="home-summary" className="max-w-3xl text-pretty text-base leading-relaxed text-foreground">
-					<strong>גיא אבני</strong> הוא <strong>עורך דין</strong> (<strong>עו״ד גיא אבני</strong>) המלווה פרטיים ועסקים.
-					האתר מחבר בין מאמרים משפטיים, שירותים ו{' '}
+					פורטל המשרד: מאמרים משפטיים, שירותים ומסלול לייעוץ. ליישות המקצועית של{' '}
 					<Link className={inlineLink} href="/about/">
-						עמוד האודות של גיא אבני עורך דין
+						גיא אבני
 					</Link>
-					.
+					{' '}(
+					<Link className={inlineLink} href="/about/">
+						גיא אבני עורך דין
+					</Link>
+					) · עמוד האודות.
 				</p>
 				<div className="flex flex-col gap-3">
 					<p className="swiss-label">תחומי התמחות עיקריים</p>
@@ -99,7 +102,7 @@ export function HomePage({
 						למאמרים
 					</Link>
 					<Link className={cn(inlineLink, 'text-sm')} href="/about/">
-						עו״ד גיא אבני - אודות
+						גיא אבני עורך דין
 					</Link>
 				</div>
 				<figure className={cn(figureClass, 'mt-2')}>
