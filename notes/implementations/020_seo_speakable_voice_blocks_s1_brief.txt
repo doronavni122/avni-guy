@@ -1,0 +1,27 @@
+plan_base: 020_seo_speakable_voice_blocks_s1
+scope: speakable-voice-blocks
+status: NEEDS_MERGE
+branch: feature/scope-speakable-fanout
+worktree: /Users/doronavni/avni-guy-wt-speakable-fanout
+ADR: none , cite SSOT.md
+
+next_plan_suggestion: merge speakable-fanout then reconcile parallel feature/scope-speakable-voice-blocks if still open
+
+files_to_read:
+- src/lib/seo/schema-speakable.ts
+- src/app/about/page.tsx
+- src/app/services/page.tsx
+- .cursor/plans/020_seo_speakable_voice_blocks_s1.plan.md
+
+rules:
+- exclusive_files: src/lib/seo/ schema-speakable + about/services hubs
+- Speakable cssSelector must match visible HE voice nodes only
+- no task_graph.log append on worker (orchestrator post-merge)
+
+tools_and_status:
+- commits: 1174bc0b add-plan-020-speakable-voice-blocks ; ac8d15c2 add-schema-speakable-helper ; e58e99e3 add-about-speakable-voice-blocks ; e6b8c8c3 add-services-fanout-h2-and-speakable ; d64c4eff add-media-keyword-to-site-batch-for-build
+- verify: PASS — pnpm exec next build (node 22) exit 0; routes ○ /about ○ /services; dev smoke :3031 SpeakableSpecification + speakable-voice present on /about/ and /services/
+
+open_issues:
+- parallel worktree feature/scope-speakable-voice-blocks may overlap; orchestrator merge gate must reconcile
+- media keyword batch add was build unblock for pre-existing /media/ SiteKeyword typing gap

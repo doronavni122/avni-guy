@@ -591,3 +591,5 @@
 447. add-brief-016-about-section-ranking-surface , notes/implementations/016_seo_about_section_ranking_a1_brief.txt task_graph.log
 
 448. mark-plan-016-about-section-ranking-todos-done , .cursor/plans/016_seo_about_section_ranking_a1.plan.md task_graph.log
+
+449. import-speakable-fanout-worker-plans-briefs , .cursor/plans/020_seo_speakable_voice_blocks_s1.plan.md .cursor/plans/021_seo_fan_out_h2_maps_h1.plan.md notes/implementations/020_seo_speakable_voice_blocks_s1_brief.txt notes/implementations/021_seo_fan_out_h2_maps_h1_brief.txt task_graph.log
