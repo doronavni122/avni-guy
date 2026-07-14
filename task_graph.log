@@ -432,3 +432,5 @@
 363. plan-seo-brand-image-pack-b1 , .cursor/plans/014_seo_brand_image_pack_b1.plan.md task_graph.log
 
 364. add-unique-brand-portrait-and-office-image-pack , public/images/shared/ task_graph.log
+
+365. wire-person-schema-brand-portrait-imageobject , src/lib/seo/schema-person.ts task_graph.log

@@ -3,7 +3,7 @@ import { SITE_URL } from '@/consts';
 /** Stable JSON-LD @id for the person entity (canonical entity home). */
 export const SITE_PERSON_ID = `${SITE_URL}/about/#person`;
 
-const PERSON_IMAGE_PATH = '/images/shared/guy-avni-avni-guy-law-firm-lawyer-og-law-fallback-photo-1.jpg';
+const PERSON_IMAGE_PATH = '/images/shared/guy-avni-avni-guy-law-firm-lawyer-brand-portrait-photo-2.jpg';
 const SITE_ORGANIZATION_ID = `${SITE_URL}#organization`;
 
 export type PersonSchemaOptions = {
@@ -31,7 +31,13 @@ export const buildPersonSchema = (options: PersonSchemaOptions = {}) => {
 		name: 'גיא אבני',
 		jobTitle: 'עורך דין',
 		url: absoluteUrl('/about/'),
-		image: absoluteUrl(PERSON_IMAGE_PATH),
+		image: {
+			'@type': 'ImageObject',
+			url: absoluteUrl(PERSON_IMAGE_PATH),
+			contentUrl: absoluteUrl(PERSON_IMAGE_PATH),
+			caption: 'גיא אבני עורך דין',
+			name: 'גיא אבני עורך דין',
+		},
 		worksFor: { '@id': SITE_ORGANIZATION_ID },
 		knowsAbout: ['דיני נדל״ן', 'מיסוי מקרקעין', 'חוזים', 'ליטיגציה אזרחית', 'ייעוץ משפטי לעסקים'],
 		hasCredential: {
