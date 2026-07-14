@@ -1,0 +1,45 @@
+plan_base: 015_seo_media_appearances_index_m1
+scope: media-appearances-index
+status: NEEDS_MERGE
+branch: feature/scope-media-appearances-index
+worktree: /Users/doronavni/avni-guy-wt-media-appearances-index
+ssot: SSOT.md
+adr: none
+
+next_plan_suggestion: parent wires /media/ link from about (+ nav/footer if claimed); ops append real earned appearances to DOCUMENTED_APPEARANCES when listing_url live
+
+files_to_read:
+- src/app/media/page.tsx
+- src/app/sitemap.ts
+- .cursor/plans/015_seo_media_appearances_index_m1.plan.md
+
+rules:
+- .cursor/rules/ssot-repo-structure.mdc
+- .cursor/rules/unique-site-images.mdc (no new images this scope)
+- SSOT.md Hebrew-first SSG SiteShell
+
+tools_and_status:
+- next build (skip slow prebuild optimize-images hang): PASS; route ○ /media
+- next dev :3027: PASS; GET /media/ 200; GET /sitemap.xml includes https://avniguy.co.il/media/
+- pnpm build full prebuild: FAIL-ENV slow/OOM on optimize 421 images in worktree (not code); verify used next build
+
+open_issues:
+- deferred: link /media/ from /about/ (parent file_claim — do not edit about in this worker)
+- deferred: footer/nav link (parent file_claim)
+- DOCUMENTED_APPEARANCES empty until ops-verified earned URLs exist (intentional; no invented press links)
+
+exclusive_files_touched:
+- src/app/media/page.tsx
+- src/app/sitemap.ts
+- .cursor/plans/015_seo_media_appearances_index_m1.plan.md
+- notes/implementations/015_seo_media_appearances_index_m1_brief.txt
+
+commits:
+- 239ef670 add-plan-seo-media-appearances-index-m1
+- dcca1a38 add-media-appearances-index-page
+- e6d1d9b1 add-media-path-to-sitemap
+- df84ffa7 fix-media-page-allowed-keywords
+
+checklist_lines:
+- notes/TODO_checklist_full_scopes_2026-07-14.txt ## media-appearances-index → [x] after merge
+- OWNER-REPORTS/005 media-appearances-index: surface chosen /media/; indexable content; sitemap; about/nav deferred parent
