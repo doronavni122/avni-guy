@@ -1,0 +1,43 @@
+scope: google-business-profile
+type: ops-external
+status: runbook_ready; gbp_console_pending
+ssot: SSOT.md
+adr: none
+depends_on: owned-page1-asset-pack
+maps_005: google-business-profile
+forbid: invent_nap | mix_local_pack_with_blue_link_seo_churn | fake_reviews
+
+# entity_lock
+business_name_he: גיא אבני משרד עורכי דין
+descriptor_he: גיא אבני עורך דין
+canonical_entity_url: https://avniguy.co.il/about/
+site_url: https://avniguy.co.il
+nap_rule: COPY_FROM_ABOUT_WHEN_VISIBLE — never invent street/phone
+process_rule: Local Pack work SEPARATE from blue-link SERP SEO track (measure-gates)
+
+# ops_checklist
+- [ ] G0. Confirm GBP ownership/manager access for this practice (else STOP + date)
+- [ ] G1. Name fields: business_name_he; categories = Lawyer / עורך דין (accurate only)
+- [ ] G2. Website = canonical_entity_url (prefer /about/ over bare home if UI allows one URL)
+- [ ] G3. NAP: copy street/phone/locality from live /about/ only when visible; else leave blank / prior verified
+- [ ] G4. Description refresh: descriptor_he + practice areas; bar-safe; no Globes-attack
+- [ ] G5. Posts: refresh with practice FAQs / owned article links → avniguy URLs only
+- [ ] G6. Q&A: paraphrase first-party FAQ from site (about/services/sheelot); answers cite owned facts only
+- [ ] G7. Photos: use unique owned brand assets (brand-image-pack); no stolen stock as “office”
+- [ ] G8. Log GBP public maps URL when known; do not invent Place ID
+
+# console_path
+Google Business Profile Manager → Info | Posts | Q&A | Photos
+URL pattern (operator fills when known): https://business.google.com/…
+
+# acceptance
+- name + website + description refreshed OR account_pending logged
+- Local Pack changes not used as excuse for on-site title/H1 churn
+
+# placement_log
+# date_iso | field | value_or_url | nap_from_about_Y_N | notes
+placement_log_path: notes/implementations/google-business-profile_placement_log.txt
+
+# close_gate
+scope_agentic_DONE when this runbook merged + checklist [x]
+live GBP edits remain human/ops-external
