@@ -627,3 +627,5 @@
 465. import-fan-out-worker-plan-brief , .cursor/plans/023_seo_fan_out_h2_maps_f1.plan.md notes/implementations/023_seo_fan_out_h2_maps_f1_brief.txt task_graph.log
 
 466. mark-plan-home-heroes-verify-pass , .cursor/plans/017_seo_home_heroes_entity_role_h1.plan.md task_graph.log
+
+467. add-brief-seo-home-heroes-entity-role-h1 , notes/implementations/017_seo_home_heroes_entity_role_h1_brief.txt task_graph.log
