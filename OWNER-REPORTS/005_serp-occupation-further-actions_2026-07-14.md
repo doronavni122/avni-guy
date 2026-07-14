@@ -182,11 +182,11 @@
 
 ## indexnow-deletes-redirects-completeness
 
-- [ ] Read current IndexNow/publish ping coverage
-- [ ] Extend ping path for content updates
-- [ ] Extend ping path for 301/gone URLs
-- [ ] Restrict sitemap `lastmod` bumps to true content changes
-- [ ] Validate no false `lastmod` churn
+- [x] Read current IndexNow/publish ping coverage
+- [x] Extend ping path for content updates
+- [x] Extend ping path for 301/gone URLs
+- [x] Restrict sitemap `lastmod` bumps to true content changes
+- [x] Validate no false `lastmod` churn
 
 ## youtube-short-form-embed
 
@@ -196,10 +196,10 @@
 
 ## non-commodity-ymyl-originals
 
-- [ ] Select claim→evidence YMYL pieces to publish/refresh
-- [ ] Refresh first-person evidence + primary cites + dated refresh
-- [ ] ops: Audit brand-prefix title spam CTR on brand SERP
-- [ ] Stop brand-prefix title spam when CTR audit shows no lift
+- [x] Select claim→evidence YMYL pieces to publish/refresh
+- [x] Refresh first-person evidence + primary cites + dated refresh
+- [x] ops: Audit brand-prefix title spam CTR on brand SERP
+- [x] Stop brand-prefix title spam when CTR audit shows no lift
 
 ## bar-listing-sameas
 

@@ -111,7 +111,7 @@ Maps-005: well-known-person-json
 
 ## indexnow-deletes-redirects-completeness
 Prerequisite: none
-- [ ] IndexNow updates+301/gone; sitemap lastmod only on real change
+- [x] IndexNow updates+301/gone; sitemap lastmod only on real change
 Maps-005: indexnow-deletes-redirects-completeness
 
 ## indexnow-gsc-one-shot
@@ -141,7 +141,7 @@ Maps-005: youtube-short-form-embed
 
 ## non-commodity-ymyl-originals
 Prerequisite: none
-- [ ] Refresh claim→evidence YMYL; stop brand-prefix title spam if no CTR lift
+- [x] Refresh claim→evidence YMYL; stop brand-prefix title spam if no CTR lift
 Maps-005: non-commodity-ymyl-originals
 
 ## owned-page1-asset-pack
