@@ -482,3 +482,5 @@
 388. add-plan-seo-home-heroes-entity-role-h1 , .cursor/plans/017_seo_home_heroes_entity_role_h1.plan.md task_graph.log
 
 389. align-home-hero-copy-firm-portal-role , src/lib/seo/main-page-heroes.mjs task_graph.log
+
+390. align-home-hero-image-alts-firm-portal , src/lib/home/loadHomeData.ts task_graph.log
