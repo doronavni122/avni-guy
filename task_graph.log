@@ -605,3 +605,5 @@
 454. use-require-practice-bridge-on-landings , src/app/contracts-lawyer-guy-avni/page.tsx src/app/nedlan-lawyer-guy-avni/page.tsx task_graph.log
 
 455. add-media-keyword-to-site-keywords-batch , src/lib/seo/site-keywords-batch.ts task_graph.log
+
+456. close-speakable-voice-blocks-plan , .cursor/plans/020_seo_speakable_voice_blocks_s1.plan.md task_graph.log
