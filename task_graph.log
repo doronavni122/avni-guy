@@ -565,3 +565,5 @@
 434. mark-editorial-policy-plan-todos-done , .cursor/plans/007_seo_editorial_policy_page_e1.plan.md task_graph.log
 
 435. add-fan-out-h2-hubs-plan , .cursor/plans/023_seo_fan_out_h2_maps_on_hubs_f1.plan.md task_graph.log
+
+436. add-about-fan-out-h2-clusters , src/app/about/page.tsx task_graph.log

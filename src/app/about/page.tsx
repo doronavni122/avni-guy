@@ -85,6 +85,82 @@ const PRINCIPLES = [
 	],
 ] as const;
 
+/** AI Mode–style fan-out clusters: H2 intents answered on this hub (no thin URLs). */
+const FANOUT_NEDLAN = [
+	{
+		title: 'האם גיא אבני מלווה עסקאות מקרקעין?',
+		body: 'כן. ליווי בעסקאות דירה, בדיקות לפני חתימה, תיאום מול מיסוי ורישום - דרך המסלול הקבוע של פגישת מיקוד ואז מסמכים. לפירוט מסלול נדל״ן:',
+		href: '/nedlan-lawyer-guy-avni/',
+		linkLabel: 'עורך דין נדל״ן - גיא אבני',
+	},
+	{
+		title: 'מה הקשר בין נדל״ן למיסוי מקרקעין בליווי?',
+		body: 'עסקה בלי תמונת מס מסודרת יוצרת הפתעות אחרי חתימה. המדריכים בקטגוריית המיסוי מסבירים מס שבח, מס רכישה ופטורים לפני שיחת מיקוד.',
+		href: '/categories/tax/',
+		linkLabel: 'קטגוריית מיסוי מקרקעין',
+	},
+	{
+		title: 'איך בוחרים עורך דין מקרקעין לפני פנייה?',
+		body: 'בודקים ניסיון בעסקאות דומות, שקיפות בשכר טרחה, ומה כלול בליווי. מדריך קצר על בחירת עו״ד מקרקעין:',
+		href: '/blog/choose-real-estate-lawyer/',
+		linkLabel: 'בחירת עורך דין מקרקעין',
+	},
+] as const;
+
+const FANOUT_CHOOSE_LAWYER = [
+	{
+		title: 'איך מוצאים עורך דין מתאים מתוך אלפי חברי לשכה?',
+		body: 'מסננים לפי תחום, רישוי פעיל, שאלות בפגישה ודגלים אדומים - לא לפי הבטחת תוצאה. מדריך מפורט:',
+		href: '/blog/find-winning-lawyer-israel-bar-members/',
+		linkLabel: 'איך למצוא עורך דין שיכול לנצח בתיק',
+	},
+	{
+		title: 'מה לבדוק לפני חתימה על ייצוג?',
+		body: 'היקף השירות, שכר טרחה, לוחות זמנים, ומה קורה אם העסקה או ההליך משתנים. מדריך מקיף לבחירת עורך דין בישראל:',
+		href: '/blog/choosing-lawyer-israel-comprehensive-guide/',
+		linkLabel: 'מדריך מקיף לבחירת עורך דין',
+	},
+	{
+		title: 'יש שאלות קצרות בסגנון חיפוש לפני פגישה?',
+		body: 'עמוד השאלות מרכז תשובות קצרות על דירה, מסים, חוזים ובחירת עו״ד - כהכנה, לא כתחליף לייעוץ אישי.',
+		href: '/sheelot/',
+		linkLabel: 'שאלות נפוצות - נדל״ן ומיסוי',
+	},
+] as const;
+
+const FANOUT_GUIDES = [
+	{
+		title: 'קניית דירה - מסמכים ובדיקות',
+		href: '/blog/apartment-buyer-required-documents/',
+		linkLabel: 'מסמכים נדרשים לקונה דירה',
+	},
+	{
+		title: 'דירה מקבלן',
+		href: '/blog/buying-from-contractor-checklist/',
+		linkLabel: 'צ׳קליסט רכישה מקבלן',
+	},
+	{
+		title: 'מס שבח - דירה יחידה',
+		href: '/blog/capital-gains-exemption-single-apartment-2026/',
+		linkLabel: 'פטור ממס שבח לדירה יחידה',
+	},
+	{
+		title: 'מס שבח - דירה שנייה',
+		href: '/blog/capital-gains-tax-second-apartment/',
+		linkLabel: 'מס שבח על דירה שנייה',
+	},
+	{
+		title: 'חוזים לפני חתימה',
+		href: '/categories/contracts/',
+		linkLabel: 'קטגוריית חוזים',
+	},
+	{
+		title: 'ליטיגציה והכנה להליך',
+		href: '/categories/litigation/',
+		linkLabel: 'קטגוריית ליטיגציה',
+	},
+] as const;
+
 const BRAND_FAQ = replaceEmDashDeep([
 	{
 		question: 'מי זה גיא אבני?',
@@ -270,41 +346,80 @@ export default function AboutPage() {
 					</div>
 				</PageSection>
 
-				<PageSection id="fan-out">
-					<SectionHeader index={7} eyebrow="שאלות משנה" title="שאלות נפוצות סביב חיפוש על גיא אבני" />
-					<div className="mt-8 flex max-w-3xl flex-col gap-8">
-						<section>
-							<h3 className="font-heading text-lg font-semibold text-foreground">מי זה גיא אבני בפועל?</h3>
-							<p className="mt-3 text-pretty text-sm leading-relaxed text-muted-foreground">
-								עורך דין ישראלי. עמוד זה הוא עמוד היישות: ניסיון, תחומי ליווי, ומסלול לפגישת מיקוד - לפני שירותים או
-								בלוג.
-							</p>
-						</section>
-						<section>
-							<h3 className="font-heading text-lg font-semibold text-foreground">באילו תחומים גיא אבני מלווה?</h3>
-							<p className="mt-3 text-pretty text-sm leading-relaxed text-muted-foreground">
-								נדל״ן ומיסוי מקרקעין, חוזים, סכסוכים אזרחיים, ליטיגציה וליווי עסקי. פירוט ב
-								<Link className="link-underline" href="/services/">
-									שירותים
-								</Link>{' '}
-								ובקטגוריות הבלוג.
-							</p>
-						</section>
-						<section>
-							<h3 className="font-heading text-lg font-semibold text-foreground">איך מתחילים שיחה בלי הבטחת תוצאה?</h3>
-							<p className="mt-3 text-pretty text-sm leading-relaxed text-muted-foreground">
-								קוראים מדריך רלוונטי, מארגנים שאלות ומסמכים מרכזיים, ופונים דרך{' '}
-								<Link className="link-underline" href="/contact/">
-									יצירת קשר
-								</Link>
-								. התוכן באתר אינו ייעוץ אישי.
-							</p>
-						</section>
+				<PageSection id="fanout-nedlan">
+					<SectionHeader
+						index={7}
+						eyebrow="המשך חיפוש"
+						title="גיא אבני עורך דין מקרקעין ומיסוי"
+					/>
+					<p className="mt-4 max-w-3xl text-pretty text-sm leading-relaxed text-muted-foreground">
+						חיפושים על גיא אבני מתפצלים לעיתים לשאלות על נדל״ן ומיסוי. התשובות כאן נשארות בעמוד היישות - בלי עמודי
+						משנה דקים - עם קישור למסלולים ולמדריכים שכבר קיימים באתר.
+					</p>
+					<div className="mt-8 flex max-w-3xl flex-col gap-6">
+						{FANOUT_NEDLAN.map(({ title, body, href, linkLabel }) => (
+							<div key={title} className="border-b border-border pb-6 last:border-b-0">
+								<h3 className="font-heading text-lg font-semibold text-foreground">{title}</h3>
+								<p className="mt-3 text-pretty text-sm leading-relaxed text-muted-foreground">
+									{body}{' '}
+									<Link className="link-underline" href={href}>
+										{linkLabel}
+									</Link>
+									.
+								</p>
+							</div>
+						))}
 					</div>
 				</PageSection>
 
+				<PageSection id="fanout-choose-lawyer">
+					<SectionHeader
+						index={8}
+						eyebrow="המשך חיפוש"
+						title="איך לבחור עורך דין לפני פנייה לגיא אבני"
+					/>
+					<p className="mt-4 max-w-3xl text-pretty text-sm leading-relaxed text-muted-foreground">
+						שאלות על בחירת ייצוג, לשכה ודגלים אדומים שייכות למדריכים הקיימים - לא לעמודי תוכן של משפט אחד. כאן
+						ממופה מה לקרוא לפני שיחת מיקוד.
+					</p>
+					<div className="mt-8 flex max-w-3xl flex-col gap-6">
+						{FANOUT_CHOOSE_LAWYER.map(({ title, body, href, linkLabel }) => (
+							<div key={title} className="border-b border-border pb-6 last:border-b-0">
+								<h3 className="font-heading text-lg font-semibold text-foreground">{title}</h3>
+								<p className="mt-3 text-pretty text-sm leading-relaxed text-muted-foreground">
+									{body}{' '}
+									<Link className="link-underline" href={href}>
+										{linkLabel}
+									</Link>
+									.
+								</p>
+							</div>
+						))}
+					</div>
+				</PageSection>
+
+				<PageSection id="fanout-guides">
+					<SectionHeader index={9} eyebrow="המשך חיפוש" title="מדריכים מובילים להעמקה לפני פגישה" />
+					<p className="mt-4 max-w-3xl text-pretty text-sm leading-relaxed text-muted-foreground">
+						כוונות חיפוש על מסמכים, קבלן, מס שבח וחוזים ממופות למדריכים ולקטגוריות קיימים - בלי ליצור כתובות
+						חדשות לכל תת-שאלה.
+					</p>
+					<ul className="mt-6 grid max-w-3xl gap-3 sm:grid-cols-2">
+						{FANOUT_GUIDES.map(({ title, href, linkLabel }) => (
+							<li key={href} className="border border-border bg-background p-4">
+								<h3 className="font-heading text-base font-semibold text-foreground">{title}</h3>
+								<p className="mt-2 text-sm">
+									<Link className="link-underline" href={href}>
+										{linkLabel}
+									</Link>
+								</p>
+							</li>
+						))}
+					</ul>
+				</PageSection>
+
 				<PageSection id="faq">
-					<SectionHeader index={8} eyebrow="שאלות נפוצות" title="שאלות נפוצות על גיא אבני עורך דין" />
+					<SectionHeader index={10} eyebrow="שאלות נפוצות" title="שאלות נפוצות על גיא אבני עורך דין" />
 					<div className="mt-8 flex max-w-3xl flex-col gap-6">
 						{BRAND_FAQ.map(({ question, answer }) => (
 							<div key={question} className="border-b border-border pb-6 last:border-b-0">
@@ -318,7 +433,7 @@ export default function AboutPage() {
 				<PageSection id="next">
 					<div className="grid gap-8 lg:grid-cols-12">
 						<div className="lg:col-span-4">
-							<span className="font-mono text-xs text-muted-foreground">08 / המשך ביקור</span>
+							<span className="font-mono text-xs text-muted-foreground">11 / המשך ביקור</span>
 						</div>
 						<div className="flex flex-col gap-4 text-right lg:col-span-8">
 							<h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground">
