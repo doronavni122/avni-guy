@@ -28,3 +28,5 @@ commits:
 - c8c53704 add-plan-mcp-citation-bait-agent-n1
 - 8dc45fe0 add-public-who-is-agent-card-json
 - e29f2520 document-stdio-mcp-and-agent-card-in-llms-txt
+- 88b7a984 mark-scope-mcp-citation-bait-done-in-checklist
+- e6e3ce99 add-mcp-citation-bait-plan-brief

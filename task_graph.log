@@ -326,3 +326,5 @@
 310. document-stdio-mcp-and-agent-card-in-llms-txt , public/llms.txt task_graph.log
 
 311. add-mcp-citation-bait-plan-brief , notes/implementations/004_mcp_citation_bait_agent_n1_brief.txt task_graph.log
+
+312. update-mcp-citation-bait-brief-commit-shas , notes/implementations/004_mcp_citation_bait_agent_n1_brief.txt task_graph.log
