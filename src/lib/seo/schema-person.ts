@@ -4,9 +4,50 @@ import { PERSON_SAMEAS_ENV_KEYS, warnProductionEnvGaps } from '@/env';
 /** Stable JSON-LD @id for the person entity (canonical entity home). */
 export const SITE_PERSON_ID = `${SITE_URL}/about/#person`;
 
-const PERSON_IMAGE_PATH = '/images/shared/guy-avni-avni-guy-law-firm-lawyer-brand-portrait-photo-2.jpg';
+/** Brand-query alt / ImageObject name for image-search rank tracking. */
+export const PERSON_BRAND_IMAGE_ALT = 'גיא אבני עורך דין';
+
+/** Unique Person portrait (do not reuse OG fallback for this placement). */
+export const PERSON_PORTRAIT_IMAGE_PATH =
+	'/images/shared/guy-avni-avni-guy-law-firm-lawyer-brand-portrait-photo-2.jpg';
+
+/** Unique office/interior asset for brand image-rank panel (distinct URL). */
+export const PERSON_OFFICE_IMAGE_PATH =
+	'/images/shared/guy-avni-avni-guy-law-firm-lawyer-office-interior-photo-3.jpg';
+
+/** @deprecated Prefer PERSON_PORTRAIT_IMAGE_PATH — kept as alias for call sites. */
+const PERSON_IMAGE_PATH = PERSON_PORTRAIT_IMAGE_PATH;
+
 const SITE_ORGANIZATION_ID = `${SITE_URL}#organization`;
+const SITE_PERSON_IMAGE_ID = `${SITE_URL}/about/#person-image`;
+const SITE_OFFICE_IMAGE_ID = `${SITE_URL}/about/#office-image`;
 const DEFAULT_OFFICE_SAMEAS = 'https://guyavni.co.il/';
+
+export type BrandImageRankPanelEntry = {
+	id: 'portrait' | 'office';
+	path: string;
+	alt: string;
+	role: 'person-portrait' | 'office-interior';
+};
+
+/**
+ * Image-rank panel: stable pack of brand assets to track in GSC/Bing image reports
+ * separately from text SERP (maps-005: image-search-rank-panel).
+ */
+export const BRAND_IMAGE_RANK_PANEL: readonly BrandImageRankPanelEntry[] = [
+	{
+		id: 'portrait',
+		path: PERSON_PORTRAIT_IMAGE_PATH,
+		alt: PERSON_BRAND_IMAGE_ALT,
+		role: 'person-portrait',
+	},
+	{
+		id: 'office',
+		path: PERSON_OFFICE_IMAGE_PATH,
+		alt: PERSON_BRAND_IMAGE_ALT,
+		role: 'office-interior',
+	},
+] as const;
 
 export type PersonSchemaOptions = {
 	sameAs?: string[];
@@ -25,6 +66,35 @@ function absoluteUrl(pathOrUrl: string): string {
 		console.error('[schema-person] absoluteUrl failed', { pathOrUrl, err });
 		return new URL(PERSON_IMAGE_PATH, SITE_URL).toString();
 	}
+}
+
+function buildPersonPortraitImageObject(): Record<string, unknown> {
+	const url = absoluteUrl(PERSON_PORTRAIT_IMAGE_PATH);
+	return {
+		'@type': 'ImageObject',
+		'@id': SITE_PERSON_IMAGE_ID,
+		url,
+		contentUrl: url,
+		name: PERSON_BRAND_IMAGE_ALT,
+		caption: PERSON_BRAND_IMAGE_ALT,
+		description: PERSON_BRAND_IMAGE_ALT,
+		inLanguage: 'he',
+		representativeOfPage: true,
+	};
+}
+
+function buildOfficeImageObject(): Record<string, unknown> {
+	const url = absoluteUrl(PERSON_OFFICE_IMAGE_PATH);
+	return {
+		'@type': 'ImageObject',
+		'@id': SITE_OFFICE_IMAGE_ID,
+		url,
+		contentUrl: url,
+		name: PERSON_BRAND_IMAGE_ALT,
+		caption: PERSON_BRAND_IMAGE_ALT,
+		description: PERSON_BRAND_IMAGE_ALT,
+		inLanguage: 'he',
+	};
 }
 
 function isPlaceholderSameAsUrl(url: string): boolean {
@@ -138,13 +208,7 @@ export const buildPersonSchema = (options: PersonSchemaOptions = {}) => {
 		name: 'גיא אבני',
 		jobTitle: 'עורך דין',
 		url: absoluteUrl('/about/'),
-		image: {
-			'@type': 'ImageObject',
-			url: absoluteUrl(PERSON_IMAGE_PATH),
-			contentUrl: absoluteUrl(PERSON_IMAGE_PATH),
-			caption: 'גיא אבני עורך דין',
-			name: 'גיא אבני עורך דין',
-		},
+		image: [buildPersonPortraitImageObject(), buildOfficeImageObject()],
 		worksFor: { '@id': SITE_ORGANIZATION_ID },
 		knowsAbout: ['דיני נדל״ן', 'מיסוי מקרקעין', 'חוזים', 'ליטיגציה אזרחית', 'ייעוץ משפטי לעסקים'],
 		hasCredential: {
