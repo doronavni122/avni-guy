@@ -151,7 +151,7 @@ Maps-005: owned-page1-asset-pack
 
 ## chaptered-youtube
 Prerequisite: youtube-short-form-embed
-- [ ] ops: chaptered HE explainers + pinned → avniguy
+- [x] ops: chaptered HE explainers + pinned → avniguy
 Maps-005: chaptered-youtube
 
 ## wikidata-hebrew-kp-loop
