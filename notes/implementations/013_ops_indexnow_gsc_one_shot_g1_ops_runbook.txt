@@ -1,0 +1,79 @@
+scope: indexnow-gsc-one-shot
+type: ops-agentic+human-console
+status: scripts_ready; live_ping_and_gsc_require_secrets
+plan_base: 013_ops_indexnow_gsc_one_shot_g1
+ssot: SSOT.md
+adr: none
+depends_on: indexnow-deletes-redirects-completeness (DONE)
+maps_005: indexnow-gsc-one-shot
+
+# target_set (locked)
+home: https://avniguy.co.il/
+entity_hub: https://avniguy.co.il/about/
+blog_top_n: 20 (newest by pubDate from src/content/blog/)
+rule: one run per deploy; ticket ONLY non-indexed / IndexNow batch-fail URLs
+forbid: fake live IndexNow or GSC success without API/console confirmation
+
+# env_keys
+SITE_URL=https://avniguy.co.il
+INDEXNOW_KEY=<vercel_secret>
+INDEXNOW_PING=1
+INDEXNOW_ONESHOT_TOP20=1
+INDEXNOW_GONE_URLS=<optional comma paths for full mode>
+VERCEL=1
+GSC_SERVICE_ACCOUNT_JSON=<absolute_path_to_sa.json>
+GSC_SITE_URL=sc-domain:avniguy.co.il
+# alt GSC_SITE_URL=https://avniguy.co.il/
+GSC_FORCE_MANUAL=1
+
+# gsc_sa_setup (human, once)
+gsc1: Create GCP service account + download JSON key
+gsc2: Enable "Google Search Console API" on the GCP project
+gsc3: Search Console → Settings → Users → add sa client_email as Full user (or Owner)
+gsc4: Prefer domain property sc-domain:avniguy.co.il when DNS verified
+gsc5: Store JSON off-repo; set GSC_SERVICE_ACCOUNT_JSON to absolute path locally / CI secret file
+gsc6: Never commit SA JSON; never claim inspect success without results file
+
+# indexnow_oneshot (after production deploy)
+in1: Confirm production INDEXNOW_KEY set in Vercel (empty = skip)
+in2: Dry-run first (no live claim):
+  INDEXNOW_ONESHOT_TOP20=1 node scripts/post-deploy-indexnow.mjs
+  expect: mode=top20-oneshot; dry-run or skip if key unset
+in3: Live oneshot (owner machine or CI with secrets):
+  INDEXNOW_KEY=$INDEXNOW_KEY INDEXNOW_PING=1 INDEXNOW_ONESHOT_TOP20=1 SITE_URL=https://avniguy.co.il node scripts/post-deploy-indexnow.mjs
+  expect logs: batch-ok or batch-fail; only batch-ok counts as ping success
+in4: Full postbuild (already in package.json postbuild) uses mode=full when INDEXNOW_ONESHOT_TOP20 unset
+in5: Artifact: .next/indexnow-last-run.txt (livePing + batchesOk)
+
+# gsc_api_path (when SA + GSC_SITE_URL set)
+ga1: GSC_SERVICE_ACCOUNT_JSON=/abs/path/sa.json GSC_SITE_URL=sc-domain:avniguy.co.il node scripts/gsc-url-inspection.mjs
+ga2: Artifacts: .next/gsc-url-inspection-last.json
+ga3: Alert lines = non-indexed / API fail → open owner tickets
+ga4: successCount in artifact = API responded OK, NOT "URL is indexed"
+
+# gsc_manual_path (default when secrets unset)
+gm1: node scripts/gsc-url-inspection.mjs
+  expect: MANUAL reason + artifact .next/gsc-manual-urls.json
+gm2: Open https://search.google.com/search-console → property avniguy.co.il
+gm3: URL Inspection → paste each URL from artifact.urls[]
+gm4: Request indexing only when not indexed / URL is unknown to Google
+gm5: Force manual even with creds: GSC_FORCE_MANUAL=1 node scripts/gsc-url-inspection.mjs
+gm6: Log sheet: date | url | coverage | requested_indexing Y/N | notes — fill only after console
+
+# post_deploy_checklist
+- [ ] Deploy production (Vercel)
+- [ ] IndexNow oneshot TOP20 (live or dry-run logged)
+- [ ] GSC API run OR manual console for / + /about/ + top20
+- [ ] Ticket non-indexed only
+- [ ] Do not mark indexing "done" without console/API coverage evidence
+
+# agent_commands_quick
+dry_indexnow: INDEXNOW_ONESHOT_TOP20=1 node scripts/post-deploy-indexnow.mjs
+live_indexnow: INDEXNOW_PING=1 INDEXNOW_ONESHOT_TOP20=1 node scripts/post-deploy-indexnow.mjs
+gsc_manual: node scripts/gsc-url-inspection.mjs
+gsc_api: GSC_SERVICE_ACCOUNT_JSON=$HOME/secrets/gsc-sa.json GSC_SITE_URL=sc-domain:avniguy.co.il node scripts/gsc-url-inspection.mjs
+
+# log_sheet (operator fills; never invent)
+# date | channel | urls_count | live_ok | alerts | artifact_path
+# ____ | indexnow_oneshot | | | |
+# ____ | gsc_api_or_manual | | | |
