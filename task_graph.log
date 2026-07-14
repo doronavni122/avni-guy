@@ -318,3 +318,5 @@
 306. add-plan-rss-enrich-feed-r1 , .cursor/plans/005_rss_enrich_feed_r1.plan.md task_graph.log
 
 307. enrich-rss-author-content-media , src/app/rss.xml/route.ts task_graph.log
+
+308. add-plan-mcp-citation-bait-agent-n1 , .cursor/plans/004_mcp_citation_bait_agent_n1.plan.md task_graph.log
