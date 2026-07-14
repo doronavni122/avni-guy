@@ -18,6 +18,8 @@ const STATIC_PATH_LASTMOD: Record<string, string> = {
 	'/tags/': '2026-07-13',
 	'/editorial-policy/': '2026-07-14',
 	'/sheelot/': '2026-07-14',
+	'/nedlan-lawyer-guy-avni/': '2026-07-14',
+	'/contracts-lawyer-guy-avni/': '2026-07-14',
 	'/media/': '2026-07-14',
 	'/guy-avni/': '2026-07-14',
 };
