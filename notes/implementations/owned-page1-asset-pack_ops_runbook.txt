@@ -1,49 +1,183 @@
 scope: owned-page1-asset-pack
 type: ops-external
-status: runbook_ready; external_publish_pending
+status: agentic_done; external_publish_pending
+plan_base: 022_ops_owned_page1_asset_pack_o1
 ssot: SSOT.md
 adr: none
-depends_on: prod-sameas-bar-assert (runbook+assert flow)
+depends_on: prod-sameas-bar-assert
 maps_005: owned-page1-asset-pack
-forbid: invent_profile_urls | drift_descriptor | link_homepage_instead_of_about_when_website_field_allows
+prerequisite_note: Bar sameAs env may still be empty until operator claims listing; do not invent PERSON_ISRAEL_BAR_URL
 
-# entity_lock
+# entity_lock (copy exactly; never improvise — IDENTICAL across LinkedIn/Bar/YT/GBP)
 person_name_he: גיא אבני
+person_name_en: Guy Avni
 descriptor_he: גיא אבני עורך דין
 descriptor_en: Guy Avni lawyer
+firm_name_he: גיא אבני משרד עורכי דין
+job_title_he: עורך דין
 canonical_entity_url: https://avniguy.co.il/about/
+canonical_contact_url: https://avniguy.co.il/contact/
 site_url: https://avniguy.co.il
-rule: identical HE descriptor across LinkedIn | Bar | YouTube | GBP → website/link = canonical_entity_url
+email_public: info@avniguy.co.il
+content_rule: name + practice only; bar-safe; NO Globes-attack narrative; NO unrelated biography claims
+practice_topics_he: נדל״ן | מיסוי מקרקעין | חוזים | ליטיגציה אזרחית
 
-# pack_surfaces
-S1: LinkedIn (person profile)
-S2: Israel Bar public listing (PERSON_ISRAEL_BAR_URL target when claimed)
-S3: YouTube channel About / description
-S4: Google Business Profile (when eligible; else SKIP+date)
+# identical_he_descriptor_pack (paste char-for-char into every profile)
+headline_or_tagline_he: גיא אבני עורך דין
+about_blurb_he: גיא אבני עורך דין — משרד עורכי דין בעברית. ליווי בנדל״ן, מיסוי מקרקעין, חוזים וליטיגציה אזרחית. עמוד היישות המקצועי: https://avniguy.co.il/about/
+about_blurb_en: Guy Avni lawyer — Hebrew legal practice: real estate, property tax, contracts, civil litigation. Canonical profile: https://avniguy.co.il/about/
+website_field: https://avniguy.co.il/about/
+# Never set website/homepage field to bare https://avniguy.co.il/ when /about/ is accepted
 
-# ops_checklist
-- [ ] P0. Open https://avniguy.co.il/about/ — confirm descriptor_he visible in title/H1 cluster
-- [ ] P1. LinkedIn: headline/about = descriptor_he (or person_name_he + עורך דין); website = canonical_entity_url
-- [ ] P2. Bar listing: display/bio website = canonical_entity_url; descriptor_he where field allows
-- [ ] P3. YouTube channel: name/about contains descriptor_he OR exact brand; website/link = canonical_entity_url (no fake video URL required here)
-- [ ] P4. GBP: business description uses descriptor_he; website = canonical_entity_url (eligible accounts only)
-- [ ] P5. Parity audit: copy descriptor_he string identical across S1–S4 that exist; log drift
-- [ ] P6. Append placement_log rows with live profile URLs only
+# env_wiring (only AFTER operator confirms live profile URL — other scope owns assert)
+person_linkedin_env: PERSON_LINKEDIN_URL
+person_bar_env: PERSON_ISRAEL_BAR_URL
+# YouTube/GBP are not currently sameAs env keys in src/env.ts — keep offsite hygiene only unless ADR/env extends later
+do_not_set_env_without_live_url: true
 
-# console_paths
-- LinkedIn: Profile → Edit intro / About → Headline + Website
-- Bar: https://www.israelbar.biz/home/ → member public card → website/bio
-- YouTube Studio: Customization → Basic info → Description + links
-- GBP: Google Business Profile Manager → Info → Website + Description
-
-# acceptance
-- ≥1 owned surface updated with descriptor_he + /about/ OR operator logs “account_pending” with date
-- no invented listing URLs in log
-
-# placement_log
-# date_iso | surface | profile_url | descriptor_match_Y_N | about_link_Y_N | notes
+# log_sheet (operator fills after each real console save; never invent URLs)
+# columns: date_iso | surface | profile_url | descriptor_he(Y/N) | about_link(Y/N) | identical_to_lock(Y/N) | notes
 placement_log_path: notes/implementations/owned-page1-asset-pack_placement_log.txt
+placement_log_status: not_created_by_agent; create on first real console save
 
-# close_gate
-scope_agentic_DONE when this runbook merged + checklist [x]
-live pack updates remain human/ops-external
+---
+## A. LinkedIn
+maps_005_id: owned-page1-asset-pack
+surface: linkedin
+goal: Hebrew descriptor identical + website → /about/
+
+external_ops_checklist:
+- [ ] A0. Open https://avniguy.co.il/about/ — confirm H1/title cluster includes descriptor_he; copy entity_lock strings (do not paraphrase)
+- [ ] A1. Sign in to LinkedIn as the person account (not a random company page unless that is the sole owned surface)
+- [ ] A2. Console path: https://www.linkedin.com/in/me/ → Edit public profile & URL OR pencil on Intro
+- [ ] A3. Headline field: paste headline_or_tagline_he exactly → `גיא אבני עורך דין` (if char limit forces truncation, keep this exact string first; drop suffixes only)
+- [ ] A4. About / Summary: paste about_blurb_he; ensure URL https://avniguy.co.il/about/ appears as plain link or “Website” contact
+- [ ] A5. Contact info → Website: https://avniguy.co.il/about/ (type Website / Personal website; not homepage-only)
+- [ ] A6. First name / Last name HE if UI allows: person_name_he split as First=גיא Last=אבני; EN twin Guy / Avni where dual locale exists
+- [ ] A7. Save → view public profile as anonymous / logged-out; confirm descriptor_he visible + about link works
+- [ ] A8. Log profile_url in placement_log_path (real URL only)
+- [ ] A9. Optional sameAs: only after A7–A8 — set PERSON_LINKEDIN_URL in Vercel to that exact profile URL (prod-sameas / env owner); never invent
+
+console_paths:
+- Me → Profile: https://www.linkedin.com/in/me/
+- Edit intro: Profile → pencil on name/headline card → Headline + Contact info → Edit contact info → Website
+- Public view check: open public /in/<slug>/ in private window
+
+acceptance:
+- headline shows descriptor_he char-for-char (or exact string as prefix)
+- website = https://avniguy.co.il/about/
+- placement_log has real LinkedIn URL
+
+---
+## B. Israel Bar listing
+maps_005_id: owned-page1-asset-pack
+surface: israel_bar
+goal: Bar public card descriptor + website → /about/
+depends_on_note: claim verified individual listing first (bar-listing-sameas / prod-sameas-bar-assert); do not use generic portal home as PERSON_ISRAEL_BAR_URL
+
+external_ops_checklist:
+- [ ] B0. Open https://avniguy.co.il/about/ — copy descriptor_he + website_field from entity_lock
+- [ ] B1. Portal login: https://www.israelbar.biz/home/ (legacy https://www.israelbar.org.il/ redirects here)
+- [ ] B2. Find individual member public profile / card edit (member area → פרופיל / פרטים אישיים / אתר אישי — labels vary)
+- [ ] B3. Display name / title fields: prefer descriptor_he `גיא אבני עורך דין` when a free-text profession/title field exists; else person_name_he + job_title_he
+- [ ] B4. Website / קישור / דף הבית field: https://avniguy.co.il/about/ only (never generic israelbar URL; never invent)
+- [ ] B5. Bio/notes if present: about_blurb_he (truncate only at end if hard limit; keep descriptor_he + URL intact)
+- [ ] B6. Save → open PUBLIC listing URL (the claimable individual page, not portal home) as logged-out
+- [ ] B7. Validate: public page shows name+עורך דין cluster AND link to https://avniguy.co.il/about/
+- [ ] B8. Log public listing_url in placement_log_path
+- [ ] B9. Only then set PERSON_ISRAEL_BAR_URL in Vercel to that exact public URL; re-check Person sameAs on prod (prod-sameas-bar-assert)
+
+console_paths:
+- Bar portal home: https://www.israelbar.biz/home/
+- Member edit: after login → profile / personal details / website fields (UI HE labels)
+- Forbidden sameAs targets: https://www.israelbar.org.il/ | https://www.israelbar.biz/home/ (portal roots — not individual listing)
+
+acceptance:
+- public individual listing_url logged
+- website → https://avniguy.co.il/about/
+- PERSON_ISRAEL_BAR_URL unset until B6–B8 proven
+
+---
+## C. YouTube channel / About
+maps_005_id: owned-page1-asset-pack
+surface: youtube
+goal: channel name + About descriptor + website → /about/
+note: chaptered explainer videos = separate scope chaptered-youtube; here only pack identity hygiene
+
+external_ops_checklist:
+- [ ] C0. Open https://avniguy.co.il/about/ — copy entity_lock
+- [ ] C1. YouTube Studio: https://studio.youtube.com/ → select owned channel
+- [ ] C2. Customization → Layout / Basic info (Customization → Basic info): https://studio.youtube.com/channel/UC.../editing/details (open via Studio → Customization → Basic info)
+- [ ] C3. Channel name: exact brand — prefer `גיא אבני עורך דין` if character/policy allows; else `גיא אבני` and put descriptor_he in Description first line
+- [ ] C4. Description (About): first line = descriptor_he; then about_blurb_he body including https://avniguy.co.il/about/
+- [ ] C5. Links / Website: add link title `עמוד אודות` or descriptor_he → URL https://avniguy.co.il/about/
+- [ ] C6. Contact email for business (if shown): info@avniguy.co.il
+- [ ] C7. Publish / Publish changes → open channel About tab public URL; confirm descriptor_he + about link
+- [ ] C8. Log channel_url + about tab confirmed in placement_log_path
+- [ ] C9. Do not invent channel URL here; do not add YouTube to sameAs env unless env schema later includes it
+
+console_paths:
+- Studio home: https://studio.youtube.com/
+- Basic info: Studio → Customization → Basic info → Name + Description + Links
+- Public About: youtube.com/@handle/about OR youtube.com/channel/CHANNEL_ID/about
+
+acceptance:
+- About text starts with or contains exact descriptor_he
+- website/link = https://avniguy.co.il/about/
+- no fake channel URL in logs
+
+---
+## D. Google Business Profile (when eligible)
+maps_005_id: owned-page1-asset-pack
+surface: gbp
+goal: GBP name/description/website → identical HE descriptor pack + /about/
+note: full posts/Q&A refresh = scope google-business-profile; eligibility may require verified location + visible NAP on /about/
+
+external_ops_checklist:
+- [ ] D0. Eligibility gate: confirmed GBP ownership/verify for this practice; if no GBP yet, mark `gbp_status=not_eligible_or_unclaimed` with date and SKIP D1–D9 (do not fake a Maps URL)
+- [ ] D1. NAP gate: open https://avniguy.co.il/about/ — if street/phone/locality absent, do NOT invent address/phone on GBP; edit only name/description/website until nap-license-visible
+- [ ] D2. Business Profile Manager: https://business.google.com/locations
+- [ ] D3. Select location → Edit profile → Business name: firm_name_he `גיא אבני משרד עורכי דין` (Maps display name rules) — keep person descriptor in Description
+- [ ] D4. Description / short description: paste about_blurb_he (must include exact descriptor_he and https://avniguy.co.il/about/)
+- [ ] D5. Website: https://avniguy.co.il/about/ (Business Profile → Contact → Website)
+- [ ] D6. Category: עורך דין / Attorney (primary legal category only; no spam categories)
+- [ ] D7. Save → Preview in Search/Maps; confirm website CTA lands on /about/
+- [ ] D8. Descriptor identity check vs A/B/C: descriptor_he string identical; website identical
+- [ ] D9. Log Maps/Share place URL in placement_log_path only when live+owned
+
+console_paths:
+- GBP locations list: https://business.google.com/locations
+- Edit info: location → Edit profile → Business information / Contact
+- Forbidden: inventing NAP; claiming unrelated Pins; faking review responses for this scope
+
+acceptance:
+- if eligible: website = https://avniguy.co.il/about/ AND description contains descriptor_he
+- if not eligible: logged skip with date (still scope agentic_done via runbook)
+
+---
+## E. Cross-pack identity validation
+maps_005_id: owned-page1-asset-pack
+goal: identical Hebrew descriptor across owned pack surfaces that exist
+
+external_ops_checklist:
+- [ ] E1. Build matrix (operator): surface | profile_url | descriptor_he_exact(Y/N) | website_about(Y/N)
+- [ ] E2. Require Y/Y for every surface that has a live profile_url in placement_log
+- [ ] E3. Diff fail: any paraphrase of descriptor_he (e.g. "עו״ד גיא אבני" alone without exact pack string where field allows) → fix to entity_lock
+- [ ] E4. Diff fail: website homepage-only → change to https://avniguy.co.il/about/
+- [ ] E5. Do not mark live_ops_DONE until E2 passes for all claimed surfaces
+
+acceptance:
+- all claimed surfaces share identical descriptor_he + canonical_entity_url
+- unchecked A–D boxes remain until operator executes consoles
+
+---
+## agentic_shipped
+- this runbook with entity_lock + LinkedIn/Bar/YT/GBP → /about/ steps
+- plan: .cursor/plans/022_ops_owned_page1_asset_pack_o1.plan.md
+- brief: notes/implementations/022_ops_owned_page1_asset_pack_o1_brief.txt
+
+## close_gate
+scope_agentic_DONE when this runbook + plan + brief merged.
+live_profile_edits remain human/ops-external; unchecked boxes above stay pending until operator logs real URLs.
+do_not_fake: any profile_url / PERSON_* env without operator confirmation
+downstream: google-business-profile may refresh posts/Q&A after D eligibility
