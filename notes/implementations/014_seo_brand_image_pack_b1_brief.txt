@@ -1,0 +1,19 @@
+plan_base: 014_seo_brand_image_pack_b1
+scope: brand-image-pack
+status: NEEDS_MERGE
+branch: feature/scope-brand-image-pack
+adr: none , cite SSOT.md
+exclusive_files: public/images/shared/ src/lib/seo/schema-person.ts
+commits: 4de8aae5 8a340596 ae13ad94 bdba79c2 062fc2ac
+files:
+- public/images/shared/guy-avni-avni-guy-law-firm-lawyer-brand-portrait-photo-2.{jpg,webp,avif}
+- public/images/shared/guy-avni-avni-guy-law-firm-lawyer-office-interior-photo-3.{jpg,webp,avif}
+- src/lib/seo/schema-person.ts
+- notes/implementations/brand-image-pack_ops_runbook.txt
+verify: pending_build_dev
+next_plan_suggestion: image-search-rank-panel ops GSC baseline after merge/deploy
+files_to_read: src/lib/seo/schema-person.ts notes/implementations/brand-image-pack_ops_runbook.txt .cursor/rules/unique-site-images.mdc
+rules: unique-site-images.mdc ssot-repo-structure.mdc SSOT.md
+tools_and_status: optimize-images targeted on new rasters; about page not edited (parent)
+open_issues: parent may wire portrait into visible about/AttorneyCredentialBlock later; OG fallback consumers unchanged
+checklist_lines: none mapped on owner checklist
