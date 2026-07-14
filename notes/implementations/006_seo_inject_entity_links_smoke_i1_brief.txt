@@ -1,0 +1,41 @@
+plan_base: 006_seo_inject_entity_links_smoke_i1
+scope: inject-entity-links-smoke
+status: NEEDS_MERGE
+branch: feature/scope-inject-entity-links-smoke
+worktree: /Users/doronavni/avni-guy-wt-inject-entity-links-smoke
+
+next_plan_suggestion: next open 005 scope (about-eeat-visible-photo-credentials or gate-g0)
+
+files_to_read:
+- src/lib/content/inject-entity-links.ts
+- src/app/blog/[slug]/page.tsx
+- .cursor/plans/006_seo_inject_entity_links_smoke_i1.plan.md
+
+rules:
+- ADR: none , (SSOT.md)
+- exclusive: src/lib/content/inject-entity-links.ts only if redesign
+- non-regression: no MDX rewrites in src/content/blog/; runtime inject only
+
+tools_and_status:
+- redesign: SKIP (smoke ≥2/post; min injected=3)
+- code_change: none to inject-entity-links.ts
+- verify_build: N/A (smoke-only; no code change)
+- mdx_git_diff: clean (no src/content/blog/ edits)
+
+smoke_runtime_inject:
+- method: mirror injectEntityLinks on stripped MDX body (blocks split \n\n+)
+- gate_close: >=2/post; redesign_if: <1/post
+- choosing-lawyer-israel-comprehensive-guide: blocks=70 source_about=0 injected_md_]/about/)=3 PASS
+- tenant-rights-israel: blocks=80 source_about=0 injected_md_]/about/)=3 PASS
+- legal-counsel-israel-2026-guide: blocks=70 source_about=0 injected_md_]/about/)=3 PASS
+- MIN_INJECTED=3 PASS_CLOSE=true NEED_REDESIGN=false
+
+smoke_live_html_2026-07-14:
+- method: curl https://www.avniguy.co.il/blog/<slug>/ count href="/about/"
+- choosing-lawyer-israel-comprehensive-guide: count=5 PASS
+- tenant-rights-israel: count=6 PASS
+- legal-counsel-israel-2026-guide: count=6 PASS
+- note: live counts include byline/author/nav entity links plus injected body anchors
+
+open_issues: none
+checklist_lines: inject-entity-links-smoke (005 ## inject-entity-links-smoke all four ops/close items)
