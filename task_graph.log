@@ -539,3 +539,5 @@
 421. wire-services-speakable-voice-blocks , src/app/services/page.tsx task_graph.log
 
 422. wire-category-hub-speakable-voice-blocks , src/app/categories/[category]/page.tsx task_graph.log
+
+423. add-plan-seo-prod-sameas-bar-assert-p1 , .cursor/plans/021_seo_prod_sameas_bar_assert_p1.plan.md task_graph.log
