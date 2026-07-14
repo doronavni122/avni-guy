@@ -378,3 +378,5 @@
 336. update-scope-loop-state-after-podcast-sheelot-merge , notes/implementations/scope_loop_state.json task_graph.log
 
 337. plan-seo-indexnow-deletes-redirects-i1 , .cursor/plans/012_seo_indexnow_deletes_redirects_i1.plan.md task_graph.log
+
+338. honest-sitemap-static-lastmod , src/app/sitemap.ts task_graph.log

@@ -3,20 +3,38 @@ import { SITE_URL } from '@/consts';
 import { getArchiveDateModified, getBlogArchivePageCount } from '@/lib/blog/archive';
 import { getPostsIndex } from '@/lib/content/posts';
 
-const STATIC_PATHS = [
-	'/',
-	'/about/',
-	'/search/',
-	'/services/',
-	'/contact/',
-	'/blog/',
-	'/categories/',
-	'/tags/',
-	'/editorial-policy/',
-	'/sheelot/',
-];
+/**
+ * Honest lastmod for static routes — bump only when that page’s content genuinely
+ * changes (mirrors page-level DATE_MODIFIED where those exist). Never use new Date()
+ * at build time for unchanging pages.
+ */
+const STATIC_PATH_LASTMOD: Record<string, string> = {
+	'/': '2026-07-09',
+	'/about/': '2026-07-13',
+	'/search/': '2026-07-01',
+	'/services/': '2026-07-13',
+	'/contact/': '2026-07-01',
+	'/categories/': '2026-07-13',
+	'/tags/': '2026-07-13',
+	'/editorial-policy/': '2026-07-14',
+	'/sheelot/': '2026-07-14',
+};
+
+const STATIC_PATHS = Object.keys(STATIC_PATH_LASTMOD).concat(['/blog/']);
 
 export const dynamic = 'force-static';
+
+function staticLastModified(path: string, blogArchiveModified: Date): Date {
+	if (path === '/blog/') {
+		return blogArchiveModified;
+	}
+	const iso = STATIC_PATH_LASTMOD[path];
+	if (!iso) {
+		console.error('[sitemap] missing STATIC_PATH_LASTMOD for path', { path });
+		return blogArchiveModified;
+	}
+	return new Date(iso);
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	try {
@@ -26,7 +44,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
 		const staticEntries: MetadataRoute.Sitemap = STATIC_PATHS.map((path) => ({
 			url: new URL(path, SITE_URL).toString(),
-			lastModified: path === '/blog/' ? blogArchiveModified : new Date(),
+			lastModified: staticLastModified(path, blogArchiveModified),
 			changeFrequency: path === '/' ? 'weekly' : 'monthly',
 			priority: path === '/' ? 1 : 0.8,
 		}));
