@@ -48,7 +48,37 @@ export const buildPersonSchema = (options: PersonSchemaOptions = {}) => {
 				name: 'לשכת עורכי הדין בישראל',
 			},
 		},
+		mainEntityOfPage: absoluteUrl('/about/'),
+		subjectOf: {
+			'@type': 'CreativeWork',
+			url: absoluteUrl('/.well-known/person.json'),
+			name: 'Machine-readable person CV',
+		},
 	};
+
+	const barUrl = process.env.PERSON_ISRAEL_BAR_URL?.trim();
+	if (barUrl?.startsWith('http')) {
+		schema.memberOf = {
+			'@type': 'Organization',
+			name: 'לשכת עורכי הדין בישראל',
+			url: barUrl,
+		};
+	}
+
+	const officeLocality = process.env.NEXT_PUBLIC_OFFICE_LOCALITY?.trim();
+	const officeStreet = process.env.NEXT_PUBLIC_OFFICE_STREET?.trim();
+	const officePhone = process.env.NEXT_PUBLIC_OFFICE_PHONE?.trim();
+	if (officeLocality || officeStreet || officePhone) {
+		schema.address = {
+			'@type': 'PostalAddress',
+			...(officeStreet ? { streetAddress: officeStreet } : {}),
+			addressCountry: 'IL',
+			...(officeLocality ? { addressLocality: officeLocality } : {}),
+		};
+		if (officePhone) {
+			schema.telephone = officePhone;
+		}
+	}
 
 	if (options.sameAs?.length) {
 		schema.sameAs = options.sameAs;
@@ -66,7 +96,12 @@ export function readPersonSameAsUrls(): string[] {
 		urls.push(wikidata);
 	}
 
-	for (const key of ['PERSON_LINKEDIN_URL', 'PERSON_ISRAEL_BAR_URL', 'PERSON_FACEBOOK_URL'] as const) {
+	for (const key of [
+		'PERSON_LINKEDIN_URL',
+		'PERSON_ISRAEL_BAR_URL',
+		'PERSON_FACEBOOK_URL',
+		'PERSON_OFFICE_SITE_URL',
+	] as const) {
 		try {
 			const v = process.env[key]?.trim();
 			if (v?.startsWith('http') && !urls.includes(v)) {
@@ -74,6 +109,16 @@ export function readPersonSameAsUrls(): string[] {
 			}
 		} catch (err) {
 			console.error('[schema-person] readPersonSameAsUrls env read failed', { key, err });
+		}
+	}
+
+	const officeExplicit = process.env.PERSON_OFFICE_SITE_URL?.trim();
+	if (officeExplicit === '') {
+		// Owner opted out of office sameAs.
+	} else {
+		const office = officeExplicit?.startsWith('http') ? officeExplicit : 'https://guyavni.co.il/';
+		if (!urls.includes(office)) {
+			urls.push(office);
 		}
 	}
 
