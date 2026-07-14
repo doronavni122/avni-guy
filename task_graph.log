@@ -450,3 +450,5 @@
 372. brief-indexnow-deletes-redirects-completeness , notes/implementations/012_seo_indexnow_deletes_redirects_i1_brief.txt task_graph.log
 
 373. add-brief-non-commodity-ymyl-originals , notes/implementations/011_seo_non_commodity_ymyl_originals_n1_brief.txt task_graph.log
+
+374. ship-well-known-person-json , public/.well-known/person.json task_graph.log
