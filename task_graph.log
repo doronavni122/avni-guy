@@ -537,3 +537,5 @@
 420. wire-about-speakable-voice-blocks , src/app/about/page.tsx task_graph.log
 
 421. wire-services-speakable-voice-blocks , src/app/services/page.tsx task_graph.log
+
+422. wire-category-hub-speakable-voice-blocks , src/app/categories/[category]/page.tsx task_graph.log
