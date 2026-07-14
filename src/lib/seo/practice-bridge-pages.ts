@@ -54,3 +54,13 @@ export const PRACTICE_BRIDGE_PAGES: PracticeBridgeDef[] = [
 export function getPracticeBridge(path: string): PracticeBridgeDef | undefined {
 	return PRACTICE_BRIDGE_PAGES.find((p) => p.path === path);
 }
+
+/** Fail-fast accessor for static practice-bridge routes (narrows for metadata + page). */
+export function requirePracticeBridge(path: string): PracticeBridgeDef {
+	const def = getPracticeBridge(path);
+	if (!def) {
+		console.error('[practice-bridge-pages] missing bridge definition', { path });
+		throw new Error(`practice bridge missing ${path}`);
+	}
+	return def;
+}

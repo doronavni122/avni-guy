@@ -599,3 +599,5 @@
 451. update-brief-seo-prod-sameas-bar-assert-verify-pass , notes/implementations/021_seo_prod_sameas_bar_assert_p1_brief.txt task_graph.log
 
 452. mark-prod-sameas-bar-assert-merged-in-loop-state , notes/implementations/scope_loop_state.json task_graph.log
+
+453. add-require-practice-bridge-accessor , src/lib/seo/practice-bridge-pages.ts task_graph.log
