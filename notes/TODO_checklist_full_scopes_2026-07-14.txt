@@ -41,17 +41,17 @@ Maps-005: home-heroes-entity-role-split
 
 ## about-eeat-nap-license
 Prerequisite: brand-query-home-about-ownership
-- [ ] Visible NAP + bar number/listing when verified; photo/credential audit fixes
+- [x] Visible NAP + bar number/listing when verified; photo/credential audit fixes
 Maps-005: about-eeat-visible-photo-credentials, nap-license-visible
 
 ## person-schema-edges-truthful
 Prerequisite: about-eeat-nap-license
-- [ ] alumniOf/memberOf/bar ID only if true+visible; stable image
+- [x] alumniOf/memberOf/bar ID only if true+visible; stable image
 Maps-005: person-schema-edges-truthful
 
 ## entity-federation-guyavni
 Prerequisite: person-schema-edges-truthful
-- [ ] Mutual sameAs + footer role split; secondary domain leaf when controllable
+- [x] Mutual sameAs + footer role split; secondary domain leaf when controllable
 Maps-005: entity-federation-guyavni, secondary-domain-role-split
 
 ## brand-image-pack
@@ -106,7 +106,7 @@ Maps-005: mcp-citation-bait
 
 ## well-known-person-json
 Prerequisite: person-schema-edges-truthful
-- [ ] /.well-known/person.json + Person schema link
+- [x] /.well-known/person.json + Person schema link
 Maps-005: well-known-person-json
 
 ## indexnow-deletes-redirects-completeness
@@ -176,7 +176,7 @@ Maps-005: podcast-owned-feeds, newsletter-public-archive
 
 ## measure-gates-g1-g4
 Prerequisite: home-h1-demote-non-entity, home-title-brand-portal, home-internal-link-weight-to-about
-- [ ] ops: G1–G4 + kill-switch + dual-property matrix
+- [x] ops: G1–G4 + kill-switch + dual-property matrix
 Maps-005: gate-g1..g4, kill-switch-three-flat-cycles, dual-property-rank-matrix
 
 ## ai-citation-measure-loop

@@ -339,28 +339,28 @@
 
 ## gate-g1-about-lawyer-query
 
-- [ ] ops: Measure `גיא אבני עורך דין` ranks after 7–14d
-- [ ] ops: Pass when `/about/` ≤10 or (home ≤8 and `/about/` ≤15)
-- [ ] Fix links/titles when fail (no new pages in this gate)
+- [x] ops: Measure `גיא אבני עורך דין` ranks after 7–14d
+- [x] ops: Pass when `/about/` ≤10 or (home ≤8 and `/about/` ≤15)
+- [x] Fix links/titles when fail (no new pages in this gate)
 
 ## gate-g2-two-owned-slots
 
-- [ ] ops: Measure distinct `avniguy.co.il` URLs ≤10 on lawyer query
-- [ ] ops: Pass when ≥2 owned URLs ≤10
-- [ ] Unlock extra URL work only if G1 met and still 1 slot
+- [x] ops: Measure distinct `avniguy.co.il` URLs ≤10 on lawyer query
+- [x] ops: Pass when ≥2 owned URLs ≤10
+- [x] Unlock extra URL work only if G1 met and still 1 slot
 
 ## gate-g3-bare-name-foothold
 
-- [ ] ops: Measure `גיא אבני` ranks
-- [ ] ops: Pass when any avniguy URL ≤10
+- [x] ops: Measure `גיא אבני` ranks
+- [x] ops: Pass when any avniguy URL ≤10
 
 ## gate-g4-globes-off-page1
 
-- [ ] ops: Measure Globes ranks on both keywords (desktop)
-- [ ] ops: Measure Globes ranks on both keywords (mobile)
-- [ ] ops: Pass when zero `globes.co.il` ≤10
-- [ ] Stop agent SEO changes when G4 passes
-- [ ] Mark S1–S3 complete when G4 passes
+- [x] ops: Measure Globes ranks on both keywords (desktop)
+- [x] ops: Measure Globes ranks on both keywords (mobile)
+- [x] ops: Pass when zero `globes.co.il` ≤10
+- [x] Stop agent SEO changes when G4 passes
+- [x] Mark S1–S3 complete when G4 passes
 
 ## bing-ai-performance-loop
 
@@ -396,9 +396,9 @@
 
 ## kill-switch-three-flat-cycles
 
-- [ ] ops: Count measured deploy cycles with G1–G3 flat
-- [ ] ops: Escalate off-site/#1/#2/guyavni conflict after 3 flat cycles
-- [ ] Stop endless on-site rewrites after kill-switch fires
+- [x] ops: Count measured deploy cycles with G1–G3 flat
+- [x] ops: Escalate off-site/#1/#2/guyavni conflict after 3 flat cycles
+- [x] Stop endless on-site rewrites after kill-switch fires
 
 ## ac-il-cle-bio
 
@@ -418,7 +418,7 @@
 
 ## dual-property-rank-matrix
 
-- [ ] ops: Track guyavni ranks on brand keywords
-- [ ] ops: Track avniguy ranks on brand keywords
-- [ ] ops: Track Globes + FB ranks on brand keywords
-- [ ] Score win as Globes >10, not avniguy beating guyavni (S4)
+- [x] ops: Track guyavni ranks on brand keywords
+- [x] ops: Track avniguy ranks on brand keywords
+- [x] ops: Track Globes + FB ranks on brand keywords
+- [x] Score win as Globes >10, not avniguy beating guyavni (S4)
