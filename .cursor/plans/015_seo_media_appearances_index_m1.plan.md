@@ -3,10 +3,10 @@
 ADR: none , cite SSOT.md
 
 ##todos
-- [ ] Create `src/app/media/page.tsx` (Hebrew-first, SiteShell, appearances hub, no invented offsite URLs)
-- [ ] Add `/media/` to `src/app/sitemap.ts` STATIC_PATH_LASTMOD
-- [ ] Body links to `/about/`, `/blog/`, `/contact/`; defer about/nav/footer wiring (parent file_claim)
-- [ ] Verify: `pnpm build` + `pnpm dev` in worktree
+- [x] Create `src/app/media/page.tsx` (Hebrew-first, SiteShell, appearances hub, no invented offsite URLs)
+- [x] Add `/media/` to `src/app/sitemap.ts` STATIC_PATH_LASTMOD
+- [x] Body links to `/about/`, `/blog/`, `/contact/`; defer about/nav/footer wiring (parent file_claim)
+- [x] Verify: `pnpm build` + `pnpm dev` in worktree
 
 ## Goal
 Indexable `/media/` hub for media/appearances SERP surface: Hebrew trust copy, owned/earned appearance inventory (truthful only), JSON-LD, sitemap crawl entry. Do not invent press/podcast listing URLs.

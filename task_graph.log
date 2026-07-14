@@ -583,3 +583,5 @@
 443. brief-indexnow-gsc-one-shot , notes/implementations/013_ops_indexnow_gsc_one_shot_g1_brief.txt task_graph.log
 
 444. add-brief-media-appearances-index-m1 , notes/implementations/015_seo_media_appearances_index_m1_brief.txt task_graph.log
+
+445. mark-plan-media-appearances-todos-done , .cursor/plans/015_seo_media_appearances_index_m1.plan.md task_graph.log
