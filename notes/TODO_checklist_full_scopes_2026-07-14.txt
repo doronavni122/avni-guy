@@ -11,22 +11,22 @@ Maps-005: home-h1-demote-non-entity, gate-g0-h1-title-split(H1)
 
 ## home-title-brand-portal
 Prerequisite: none
-- [ ] Home title firm/portal + absoluteTitle; G0 title assert
+- [x] Home title firm/portal + absoluteTitle; G0 title assert
 Maps-005: home-title-brand-portal, gate-g0-h1-title-split(title)
 
 ## brand-query-home-about-ownership
 Prerequisite: home-h1-demote-non-entity
-- [ ] Validate about title/intro; demote home competing bio; keep about as entity answer
+- [x] Validate about title/intro; demote home competing bio; keep about as entity answer
 Maps-005: about-title-lawyer-query, brand-query-answer-ownership-about
 
 ## home-internal-link-weight-to-about
 Prerequisite: brand-query-home-about-ownership
-- [ ] Exact anchors `גיא אבני` + `גיא אבני עורך דין` → `/about/` in first-viewport/HomeSeo
+- [x] Exact anchors `גיא אבני` + `גיא אבני עורך דין` → `/about/` in first-viewport/HomeSeo
 Maps-005: home-internal-link-weight-to-about
 
 ## sitelink-candidate-freeze
 Prerequisite: none
-- [ ] Freeze nav+footer to אודות/שירותים/מאמרים/יצירת קשר; tags stay noindex
+- [x] Freeze nav+footer to אודות/שירותים/מאמרים/יצירת קשר; tags stay noindex
 Maps-005: sitelink-candidate-freeze
 
 ## about-section-ranking-surface

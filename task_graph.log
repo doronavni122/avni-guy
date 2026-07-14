@@ -410,3 +410,5 @@
 352. demote-home-bio-exact-about-anchors , src/components/home/HomePage.tsx src/lib/home/loadHomeData.ts task_graph.log
 
 353. freeze-nav-footer-sitelink-candidates , src/lib/nav/site-nav.ts task_graph.log
+
+354. mark-parent-p0-scopes-home-title-brand-links-sitelink-done , notes/TODO_checklist_full_scopes_2026-07-14.txt OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md notes/implementations/scope_loop_state.json task_graph.log

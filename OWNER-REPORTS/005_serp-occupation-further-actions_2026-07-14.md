@@ -19,38 +19,38 @@
 
 ## home-title-brand-portal
 
-- [ ] Read homepage metadata title in `src/app/page.tsx` (currently lawyer/entity framing; no `absoluteTitle`)
-- [ ] Read root layout title template `%s | …` that appends to non-absolute titles
-- [ ] Set homepage metadata title to firm/portal framing in `src/app/page.tsx`
-- [ ] Set `absoluteTitle: true` on homepage metadata in `src/app/page.tsx` to prevent template bloat
+- [x] Read homepage metadata title in `src/app/page.tsx` (currently lawyer/entity framing; no `absoluteTitle`)
+- [x] Read root layout title template `%s | …` that appends to non-absolute titles
+- [x] Set homepage metadata title to firm/portal framing in `src/app/page.tsx`
+- [x] Set `absoluteTitle: true` on homepage metadata in `src/app/page.tsx` to prevent template bloat
 
 ## about-title-lawyer-query
 
-- [ ] Validate `/about/` title is locked to `גיא אבני עורך דין | משרד גיא אבני` with `absoluteTitle: true` in `src/app/about/page.tsx` (already shipped — do not re-set)
-- [ ] Validate title is not bare-name-only stuffing
-- [ ] Validate `/about/` hero intro in `src/lib/seo/main-page-heroes.mjs` still answers both brand queries; edit only if gaps remain
+- [x] Validate `/about/` title is locked to `גיא אבני עורך דין | משרד גיא אבני` with `absoluteTitle: true` in `src/app/about/page.tsx` (already shipped — do not re-set)
+- [x] Validate title is not bare-name-only stuffing
+- [x] Validate `/about/` hero intro in `src/lib/seo/main-page-heroes.mjs` still answers both brand queries; edit only if gaps remain
 
 ## brand-query-answer-ownership-about
 
-- [ ] Read `/about/` lead in `src/lib/seo/main-page-heroes.mjs` (+ `AttorneyCredentialBlock` / FAQ on `src/app/about/page.tsx`)
-- [ ] Validate extractability of existing hero intro + visible FAQ `מי זה גיא אבני?`; tighten copy only if gaps remain
-- [ ] Demote/remove competing home bio (`#home-summary` + home FAQ) so home is not a second entity bio
-- [ ] Validate existing home → `/about/` deep-links in `src/components/home/HomePage.tsx` (already present; exact-anchor work stays in `home-internal-link-weight-to-about`)
+- [x] Read `/about/` lead in `src/lib/seo/main-page-heroes.mjs` (+ `AttorneyCredentialBlock` / FAQ on `src/app/about/page.tsx`)
+- [x] Validate extractability of existing hero intro + visible FAQ `מי זה גיא אבני?`; tighten copy only if gaps remain
+- [x] Demote/remove competing home bio (`#home-summary` + home FAQ) so home is not a second entity bio
+- [x] Validate existing home → `/about/` deep-links in `src/components/home/HomePage.tsx` (already present; exact-anchor work stays in `home-internal-link-weight-to-about`)
 
 ## home-internal-link-weight-to-about
 
-- [ ] Locate first-viewport + HomeSeo authority link slots on home
-- [ ] Add `/about/` link with exact anchor `גיא אבני` in first-viewport/HomeSeo
-- [ ] Add `/about/` link with exact anchor `גיא אבני עורך דין` in first-viewport/HomeSeo
-- [ ] Validate anchors are not only “אודות” / soft paraphrases
+- [x] Locate first-viewport + HomeSeo authority link slots on home
+- [x] Add `/about/` link with exact anchor `גיא אבני` in first-viewport/HomeSeo
+- [x] Add `/about/` link with exact anchor `גיא אבני עורך דין` in first-viewport/HomeSeo
+- [x] Validate anchors are not only “אודות” / soft paraphrases
 
 ## sitelink-candidate-freeze
 
-- [ ] Read nav anchors in `src/lib/nav/site-nav.ts` (currently includes נושאים/תגיות; footer uses קטגוריות vs נושאים mismatch)
-- [ ] Freeze nav sitelink candidates to אודות / שירותים / מאמרים / יצירת קשר in `src/lib/nav/site-nav.ts`
-- [ ] Read footer sitelink anchors (`FOOTER_NAV_LINKS` / footer component)
-- [ ] Align footer Hebrew anchors to identical nav labels
-- [ ] Validate thin tag pages remain noindex (`/tags/[tag]/`); note `/tags/` hub may still be indexed
+- [x] Read nav anchors in `src/lib/nav/site-nav.ts` (currently includes נושאים/תגיות; footer uses קטגוריות vs נושאים mismatch)
+- [x] Freeze nav sitelink candidates to אודות / שירותים / מאמרים / יצירת קשר in `src/lib/nav/site-nav.ts`
+- [x] Read footer sitelink anchors (`FOOTER_NAV_LINKS` / footer component)
+- [x] Align footer Hebrew anchors to identical nav labels
+- [x] Validate thin tag pages remain noindex (`/tags/[tag]/`); note `/tags/` hub may still be indexed
 
 ## about-section-ranking-surface
 
