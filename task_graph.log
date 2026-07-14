@@ -438,3 +438,5 @@
 366. add-brand-image-pack-ops-runbook-image-rank , notes/implementations/brand-image-pack_ops_runbook.txt task_graph.log
 
 367. mark-scope-brand-image-pack-done , notes/TODO_checklist_full_scopes_2026-07-14.txt OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log
+
+368. update-scope-loop-state-batch5-about-heroes-translit , notes/implementations/scope_loop_state.json task_graph.log

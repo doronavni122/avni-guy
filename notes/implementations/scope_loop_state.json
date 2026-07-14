@@ -6,41 +6,44 @@
   "isolation": "git_worktree_only",
   "primary_worktree": "/Users/doronavni/avni-guy",
   "started_at": "2026-07-14T14:05:00+00:00",
-  "updated_at": "2026-07-14T14:36:00+00:00",
-  "current_scope": "parallel-batch-4",
+  "updated_at": "2026-07-14T14:40:00+00:00",
+  "current_scope": "parallel-batch-5",
   "inner_iteration": 1,
   "max_inner_iterations": 3,
   "escalation_level": 0,
   "parallel_batch": [
-    "indexnow-gsc-one-shot",
-    "brand-image-pack",
-    "media-appearances-index"
+    "about-section-ranking-surface",
+    "home-heroes-entity-role-split",
+    "transliteration-bridge-routes"
   ],
   "merge_queue": [],
   "file_claims": {
-    "src/content/blog/": "non-commodity-ymyl-originals",
-    "scripts/post-deploy-indexnow.mjs": "indexnow-deletes-redirects-completeness",
-    "src/app/sitemap.ts": "indexnow-deletes-redirects-completeness",
-    "src/app/api/indexnow/": "indexnow-deletes-redirects-completeness"
+    "src/app/about/page.tsx": "about-section-ranking-surface",
+    "src/components/home/HomePage.tsx": "about-section-ranking-surface",
+    "src/lib/home/homeSeoSections.ts": "about-section-ranking-surface",
+    "src/lib/seo/main-page-heroes.mjs": "home-heroes-entity-role-split",
+    "src/lib/home/loadHomeData.ts": "home-heroes-entity-role-split",
+    "src/app/guy-avni/": "transliteration-bridge-routes",
+    "src/app/sitemap.ts": "transliteration-bridge-routes"
   },
   "workers": {
-    "indexnow-gsc-one-shot": {
+    "about-section-ranking-surface": {
       "status": "IN_PROGRESS",
-      "worktree": "/Users/doronavni/avni-guy-wt-indexnow-gsc-one-shot",
-      "branch": "feature/scope-indexnow-gsc-one-shot",
-      "plan": "013_ops_indexnow_gsc_one_shot_g1"
+      "worktree": "/Users/doronavni/avni-guy-wt-about-section-ranking-surface",
+      "branch": "feature/scope-about-section-ranking-surface",
+      "plan": "016_seo_about_section_ranking_a1"
     },
-    "brand-image-pack": {
+    "home-heroes-entity-role-split": {
       "status": "IN_PROGRESS",
-      "worktree": "/Users/doronavni/avni-guy-wt-brand-image-pack",
-      "branch": "feature/scope-brand-image-pack",
-      "plan": "014_seo_brand_image_pack_b1"
+      "worktree": "/Users/doronavni/avni-guy-wt-home-heroes-entity-role-split",
+      "branch": "feature/scope-home-heroes-entity-role-split",
+      "plan": "017_seo_home_heroes_entity_role_h1"
     },
-    "media-appearances-index": {
+    "transliteration-bridge-routes": {
       "status": "IN_PROGRESS",
-      "worktree": "/Users/doronavni/avni-guy-wt-media-appearances-index",
-      "branch": "feature/scope-media-appearances-index",
-      "plan": "015_seo_media_appearances_index_m1"
+      "worktree": "/Users/doronavni/avni-guy-wt-transliteration-bridge-routes",
+      "branch": "feature/scope-transliteration-bridge-routes",
+      "plan": "018_seo_transliteration_bridge_t1"
     }
   },
   "scopes": {
@@ -90,7 +93,7 @@
       "claimed_by": "parent"
     },
     "about-section-ranking-surface": {
-      "status": "PENDING",
+      "status": "IN_PROGRESS",
       "plan": null,
       "last_gate": null,
       "last_failure": null,
@@ -98,7 +101,7 @@
       "rca_files": []
     },
     "home-heroes-entity-role-split": {
-      "status": "PENDING",
+      "status": "IN_PROGRESS",
       "plan": null,
       "last_gate": null,
       "last_failure": null,
@@ -130,7 +133,7 @@
       "rca_files": []
     },
     "brand-image-pack": {
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "plan": null,
       "last_gate": null,
       "last_failure": null,
@@ -162,7 +165,7 @@
       "rca_files": []
     },
     "transliteration-bridge-routes": {
-      "status": "PENDING",
+      "status": "IN_PROGRESS",
       "plan": null,
       "last_gate": null,
       "last_failure": null,
@@ -194,7 +197,7 @@
       "rca_files": []
     },
     "media-appearances-index": {
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "plan": null,
       "last_gate": "blocked_sitemap_claim",
       "last_failure": null,
@@ -226,7 +229,7 @@
       "rca_files": []
     },
     "indexnow-gsc-one-shot": {
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "plan": null,
       "last_gate": null,
       "last_failure": null,
