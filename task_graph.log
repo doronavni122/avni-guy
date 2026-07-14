@@ -436,3 +436,5 @@
 365. wire-person-schema-brand-portrait-imageobject , src/lib/seo/schema-person.ts task_graph.log
 
 366. add-brand-image-pack-ops-runbook-image-rank , notes/implementations/brand-image-pack_ops_runbook.txt task_graph.log
+
+367. mark-scope-brand-image-pack-done , notes/TODO_checklist_full_scopes_2026-07-14.txt OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log

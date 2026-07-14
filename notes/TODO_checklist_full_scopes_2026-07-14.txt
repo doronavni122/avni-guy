@@ -56,7 +56,7 @@ Maps-005: entity-federation-guyavni, secondary-domain-role-split
 
 ## brand-image-pack
 Prerequisite: none
-- [ ] Unique portrait/office assets + alt/ImageObject; image-rank panel setup
+- [x] Unique portrait/office assets + alt/ImageObject; image-rank panel setup
 Maps-005: brand-image-pack, image-search-rank-panel
 
 ## richer-rss

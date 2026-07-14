@@ -80,11 +80,11 @@
 
 ## brand-image-pack
 
-- [ ] Search repo for existing portrait/office basename collisions
-- [ ] Add unique portrait/office assets under allowed image paths
-- [ ] Set filename/`alt`/`ImageObject` to `גיא אבני עורך דין`
-- [ ] Run image optimize pipeline for new assets
-- [ ] Validate unique-site-images law for each placement
+- [x] Search repo for existing portrait/office basename collisions
+- [x] Add unique portrait/office assets under allowed image paths
+- [x] Set filename/`alt`/`ImageObject` to `גיא אבני עורך דין`
+- [x] Run image optimize pipeline for new assets
+- [x] Validate unique-site-images law for each placement
 
 ## richer-rss
 
@@ -384,8 +384,8 @@
 
 ## image-search-rank-panel
 
-- [ ] Confirm brand-image-pack shipped
-- [ ] ops: Track brand image-pack ranks separately from text SERP
+- [x] Confirm brand-image-pack shipped
+- [x] ops: Track brand image-pack ranks separately from text SERP
 
 ## hallucination-battery
 
