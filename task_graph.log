@@ -414,3 +414,5 @@
 354. mark-parent-p0-scopes-home-title-brand-links-sitelink-done , notes/TODO_checklist_full_scopes_2026-07-14.txt OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md notes/implementations/scope_loop_state.json task_graph.log
 
 355. add-plan-seo-media-appearances-index-m1 , .cursor/plans/015_seo_media_appearances_index_m1.plan.md task_graph.log
+
+356. add-media-appearances-index-page , src/app/media/page.tsx task_graph.log
