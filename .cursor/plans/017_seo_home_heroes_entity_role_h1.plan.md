@@ -3,11 +3,11 @@
 ADR: none , cite SSOT.md
 
 ##todos
-- [ ] Refine `/` hero eyebrow/subhead/keyword/intro to firm-portal role in `main-page-heroes.mjs`
-- [ ] Keep `/` H1 firm/portal string; keep `/about/` person hub untouched
-- [ ] Align home hero image alt/title in `loadHomeData.ts` to firm-portal keyword
-- [ ] Validate home role ≠ about person-hub role (H1/eyebrow/keyword)
-- [ ] Verify: `pnpm build` in worktree
+- [x] Refine `/` hero eyebrow/subhead/keyword/intro to firm-portal role in `main-page-heroes.mjs`
+- [x] Keep `/` H1 firm/portal string; keep `/about/` person hub untouched
+- [x] Align home hero image alt/title in `loadHomeData.ts` to firm-portal keyword
+- [x] Validate home role ≠ about person-hub role (H1/eyebrow/keyword)
+- [x] Verify: `pnpm build` in worktree (PASS; media keywords verify-unblock synced from main)
 
 ## Goal
 Align home hero copy/images/eyebrows to firm-portal vs person hub. Home already has portal title + demoted H1 — keep those; refine remaining hero fields so `/` reads as office portal and `/about/` remains person entity hub.
