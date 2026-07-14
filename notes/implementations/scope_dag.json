@@ -1,0 +1,238 @@
+{
+  "scope_list_file": "notes/TODO_checklist_full_scopes_2026-07-14.txt",
+  "generated_at": "2026-07-14T14:05:00+00:00",
+  "max_parallel_workers": 3,
+  "scopes": {
+    "home-h1-demote-non-entity": {
+      "depends_on": [],
+      "exclusive_files": ["src/lib/seo/main-page-heroes.mjs"],
+      "parallel_ok": false,
+      "maps_owner_checklist": []
+    },
+    "home-title-brand-portal": {
+      "depends_on": [],
+      "exclusive_files": ["src/app/page.tsx"],
+      "parallel_ok": true,
+      "maps_owner_checklist": []
+    },
+    "brand-query-home-about-ownership": {
+      "depends_on": ["home-h1-demote-non-entity"],
+      "exclusive_files": ["src/app/about/page.tsx", "src/components/home/HomePage.tsx", "src/lib/home/loadHomeData.ts"],
+      "parallel_ok": false,
+      "maps_owner_checklist": []
+    },
+    "home-internal-link-weight-to-about": {
+      "depends_on": ["brand-query-home-about-ownership"],
+      "exclusive_files": ["src/components/home/HomePage.tsx", "src/lib/home/homeSeoSections.ts"],
+      "parallel_ok": false,
+      "maps_owner_checklist": []
+    },
+    "sitelink-candidate-freeze": {
+      "depends_on": [],
+      "exclusive_files": ["src/lib/nav/site-nav.ts", "src/components/layout/"],
+      "parallel_ok": true,
+      "maps_owner_checklist": []
+    },
+    "about-section-ranking-surface": {
+      "depends_on": ["brand-query-home-about-ownership"],
+      "exclusive_files": ["src/app/about/page.tsx"],
+      "parallel_ok": false,
+      "maps_owner_checklist": []
+    },
+    "home-heroes-entity-role-split": {
+      "depends_on": ["home-h1-demote-non-entity", "home-title-brand-portal"],
+      "exclusive_files": ["src/lib/seo/main-page-heroes.mjs", "src/lib/home/loadHomeData.ts"],
+      "parallel_ok": false,
+      "maps_owner_checklist": []
+    },
+    "about-eeat-nap-license": {
+      "depends_on": ["brand-query-home-about-ownership"],
+      "exclusive_files": ["src/components/seo/AttorneyCredentialBlock.tsx", "src/app/about/page.tsx"],
+      "parallel_ok": false,
+      "maps_owner_checklist": []
+    },
+    "person-schema-edges-truthful": {
+      "depends_on": ["about-eeat-nap-license"],
+      "exclusive_files": ["src/lib/seo/schema-person.ts"],
+      "parallel_ok": false,
+      "maps_owner_checklist": []
+    },
+    "entity-federation-guyavni": {
+      "depends_on": ["person-schema-edges-truthful"],
+      "exclusive_files": ["src/lib/seo/schema-person.ts", "src/components/layout/"],
+      "parallel_ok": false,
+      "maps_owner_checklist": []
+    },
+    "brand-image-pack": {
+      "depends_on": [],
+      "exclusive_files": ["public/images/shared/", "src/lib/seo/schema-person.ts"],
+      "parallel_ok": false,
+      "maps_owner_checklist": []
+    },
+    "richer-rss": {
+      "depends_on": [],
+      "exclusive_files": ["src/app/rss.xml/route.ts"],
+      "parallel_ok": true,
+      "maps_owner_checklist": []
+    },
+    "sheelot-paa-factory": {
+      "depends_on": [],
+      "exclusive_files": ["src/app/sheelot/", "src/app/sitemap.ts"],
+      "parallel_ok": true,
+      "maps_owner_checklist": []
+    },
+    "speakable-voice-blocks": {
+      "depends_on": ["brand-query-home-about-ownership"],
+      "exclusive_files": ["src/lib/seo/", "src/app/about/page.tsx"],
+      "parallel_ok": false,
+      "maps_owner_checklist": []
+    },
+    "transliteration-bridge-routes": {
+      "depends_on": ["brand-query-home-about-ownership"],
+      "exclusive_files": ["src/app/guy-avni/", "src/app/sitemap.ts"],
+      "parallel_ok": true,
+      "maps_owner_checklist": []
+    },
+    "practice-bridge-landings": {
+      "depends_on": ["high-intent-owned-url-gated"],
+      "exclusive_files": ["src/app/", "src/app/sitemap.ts"],
+      "parallel_ok": false,
+      "maps_owner_checklist": []
+    },
+    "fan-out-h2-maps-on-hubs": {
+      "depends_on": ["about-section-ranking-surface"],
+      "exclusive_files": ["src/app/about/page.tsx", "src/app/services/"],
+      "parallel_ok": false,
+      "maps_owner_checklist": []
+    },
+    "editorial-policy-page": {
+      "depends_on": [],
+      "exclusive_files": ["src/app/editorial-policy/", "src/app/sitemap.ts"],
+      "parallel_ok": true,
+      "maps_owner_checklist": []
+    },
+    "media-appearances-index": {
+      "depends_on": [],
+      "exclusive_files": ["src/app/media/", "src/app/about/page.tsx", "src/app/sitemap.ts"],
+      "parallel_ok": true,
+      "maps_owner_checklist": []
+    },
+    "mcp-citation-bait": {
+      "depends_on": [],
+      "exclusive_files": ["public/llms.txt"],
+      "parallel_ok": true,
+      "maps_owner_checklist": []
+    },
+    "well-known-person-json": {
+      "depends_on": ["person-schema-edges-truthful"],
+      "exclusive_files": ["public/.well-known/", "src/lib/seo/schema-person.ts"],
+      "parallel_ok": false,
+      "maps_owner_checklist": []
+    },
+    "indexnow-deletes-redirects-completeness": {
+      "depends_on": [],
+      "exclusive_files": ["scripts/post-deploy-indexnow.mjs", "src/app/sitemap.ts", "src/app/api/indexnow/"],
+      "parallel_ok": true,
+      "maps_owner_checklist": []
+    },
+    "indexnow-gsc-one-shot": {
+      "depends_on": ["indexnow-deletes-redirects-completeness"],
+      "exclusive_files": ["scripts/post-deploy-indexnow.mjs", "scripts/gsc-url-inspection.mjs"],
+      "parallel_ok": false,
+      "maps_owner_checklist": []
+    },
+    "inject-entity-links-smoke": {
+      "depends_on": [],
+      "exclusive_files": ["src/lib/content/inject-entity-links.ts"],
+      "parallel_ok": true,
+      "maps_owner_checklist": []
+    },
+    "prod-sameas-bar-assert": {
+      "depends_on": ["person-schema-edges-truthful"],
+      "exclusive_files": ["src/lib/seo/schema-person.ts", "src/env.ts"],
+      "parallel_ok": false,
+      "maps_owner_checklist": []
+    },
+    "high-intent-owned-url-gated": {
+      "depends_on": ["measure-gates-g1-g4"],
+      "exclusive_files": ["src/app/services/", "src/app/sitemap.ts"],
+      "parallel_ok": false,
+      "maps_owner_checklist": []
+    },
+    "youtube-short-form-embed": {
+      "depends_on": [],
+      "exclusive_files": ["src/app/about/page.tsx", "src/app/services/"],
+      "parallel_ok": false,
+      "maps_owner_checklist": []
+    },
+    "non-commodity-ymyl-originals": {
+      "depends_on": [],
+      "exclusive_files": ["src/content/blog/"],
+      "parallel_ok": false,
+      "maps_owner_checklist": []
+    },
+    "owned-page1-asset-pack": {
+      "depends_on": ["prod-sameas-bar-assert"],
+      "exclusive_files": [],
+      "parallel_ok": true,
+      "maps_owner_checklist": [],
+      "ops_heavy": true
+    },
+    "chaptered-youtube": {
+      "depends_on": ["youtube-short-form-embed"],
+      "exclusive_files": [],
+      "parallel_ok": true,
+      "maps_owner_checklist": [],
+      "ops_heavy": true
+    },
+    "wikidata-hebrew-kp-loop": {
+      "depends_on": ["prod-sameas-bar-assert"],
+      "exclusive_files": ["scripts/wikidata-sync.mjs"],
+      "parallel_ok": true,
+      "maps_owner_checklist": [],
+      "ops_heavy": true
+    },
+    "google-business-profile": {
+      "depends_on": ["owned-page1-asset-pack"],
+      "exclusive_files": [],
+      "parallel_ok": true,
+      "maps_owner_checklist": [],
+      "ops_heavy": true
+    },
+    "earned-offsite-bios-network": {
+      "depends_on": [],
+      "exclusive_files": [],
+      "parallel_ok": true,
+      "maps_owner_checklist": [],
+      "ops_heavy": true
+    },
+    "podcast-newsletter-archive": {
+      "depends_on": ["richer-rss"],
+      "exclusive_files": [],
+      "parallel_ok": true,
+      "maps_owner_checklist": [],
+      "ops_heavy": true
+    },
+    "measure-gates-g1-g4": {
+      "depends_on": ["home-h1-demote-non-entity", "home-title-brand-portal", "home-internal-link-weight-to-about"],
+      "exclusive_files": [],
+      "parallel_ok": false,
+      "maps_owner_checklist": [],
+      "ops_heavy": true
+    },
+    "ai-citation-measure-loop": {
+      "depends_on": ["mcp-citation-bait", "brand-query-home-about-ownership"],
+      "exclusive_files": ["src/app/about/page.tsx"],
+      "parallel_ok": false,
+      "maps_owner_checklist": [],
+      "ops_heavy": true
+    },
+    "deferred-moonshots": {
+      "depends_on": ["measure-gates-g1-g4"],
+      "exclusive_files": ["src/app/about/page.tsx"],
+      "parallel_ok": false,
+      "maps_owner_checklist": [],
+      "ops_heavy": true
+    }
+  }
+}

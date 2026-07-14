@@ -308,3 +308,5 @@
 301. add-owner-report-serp-occupation-atomic-checklist , OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log
 
 302. validate-true-owner-report-005-serp-occupation-atomic , OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log
+
+303. add-serp-occupation-scope-list-dag-state , notes/TODO_checklist_full_scopes_2026-07-14.txt notes/implementations/scope_dag.json notes/implementations/scope_loop_state.json task_graph.log
