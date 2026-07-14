@@ -507,3 +507,5 @@
 404. add-deferred-moonshots-ops-runbook , notes/implementations/deferred-moonshots_ops_runbook.txt task_graph.log
 405. add-high-intent-owned-url-gated-ops-runbook , notes/implementations/high-intent-owned-url-gated_ops_runbook.txt task_graph.log
 406. add-youtube-short-form-embed-ops-runbook , notes/implementations/youtube-short-form-embed_ops_runbook.txt task_graph.log
+
+407. mark-scope-prod-sameas-bar-assert-done , notes/TODO_checklist_full_scopes_2026-07-14.txt notes/implementations/scope_loop_state.json task_graph.log

@@ -126,7 +126,7 @@ Maps-005: inject-entity-links-smoke
 
 ## prod-sameas-bar-assert
 Prerequisite: person-schema-edges-truthful
-- [ ] Prod sameAs assert; PERSON_ISRAEL_BAR_URL when claimed
+- [x] Prod sameAs assert; PERSON_ISRAEL_BAR_URL when claimed
 Maps-005: prod-sameas-live-assert, bar-listing-sameas
 
 ## high-intent-owned-url-gated

@@ -6,22 +6,19 @@
   "isolation": "git_worktree_only",
   "primary_worktree": "/Users/doronavni/avni-guy",
   "started_at": "2026-07-14T14:05:00+00:00",
-  "updated_at": "2026-07-14T14:45:00+00:00",
+  "updated_at": "2026-07-14T14:42:51+00:00",
   "current_scope": "parallel-batch-6",
   "inner_iteration": 1,
   "max_inner_iterations": 3,
   "escalation_level": 0,
   "parallel_batch": [
     "speakable-voice-blocks",
-    "prod-sameas-bar-assert",
     "owned-page1-asset-pack"
   ],
   "merge_queue": [],
   "file_claims": {
     "src/app/about/page.tsx": "speakable-voice-blocks",
-    "src/lib/seo/": "speakable-voice-blocks",
-    "src/lib/seo/schema-person.ts": "prod-sameas-bar-assert",
-    "src/env.ts": "prod-sameas-bar-assert"
+    "src/lib/seo/": "speakable-voice-blocks"
   },
   "workers": {
     "speakable-voice-blocks": {
@@ -30,7 +27,7 @@
       "branch": "feature/scope-speakable-voice-blocks"
     },
     "prod-sameas-bar-assert": {
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "worktree": "/Users/doronavni/avni-guy-wt-prod-sameas-bar-assert",
       "branch": "feature/scope-prod-sameas-bar-assert"
     },
@@ -239,9 +236,9 @@
       "rca_files": []
     },
     "prod-sameas-bar-assert": {
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "plan": null,
-      "last_gate": null,
+      "last_gate": "ops_runbook_agentic",
       "last_failure": null,
       "escalation_count": 0,
       "rca_files": []
