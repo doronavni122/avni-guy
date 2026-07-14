@@ -6,15 +6,14 @@
   "isolation": "git_worktree_only",
   "primary_worktree": "/Users/doronavni/avni-guy",
   "started_at": "2026-07-14T14:05:00+00:00",
-  "updated_at": "2026-07-14T14:17:00+00:00",
-  "current_scope": "parallel-batch-3",
+  "updated_at": "2026-07-14T14:20:00+00:00",
+  "current_scope": "parallel-batch-3b",
   "inner_iteration": 1,
   "max_inner_iterations": 3,
   "escalation_level": 0,
   "parallel_batch": [
-    "sheelot-paa-factory",
-    "podcast-newsletter-archive",
-    "non-commodity-ymyl-originals"
+    "non-commodity-ymyl-originals",
+    "indexnow-deletes-redirects-completeness"
   ],
   "merge_queue": [],
   "file_claims": {
@@ -25,29 +24,12 @@
     "src/app/about/page.tsx": "parent:brand-query",
     "src/lib/nav/site-nav.ts": "parent:sitelink-candidate-freeze",
     "src/components/layout/": "parent:sitelink-candidate-freeze",
-    "src/app/sheelot/": "sheelot-paa-factory",
-    "src/app/sitemap.ts": "sheelot-paa-factory",
     "src/content/blog/": "non-commodity-ymyl-originals",
-    "notes/implementations/podcast-newsletter-archive_ops_runbook.txt": "podcast-newsletter-archive"
+    "scripts/post-deploy-indexnow.mjs": "indexnow-deletes-redirects-completeness",
+    "src/app/sitemap.ts": "indexnow-deletes-redirects-completeness",
+    "src/app/api/indexnow/": "indexnow-deletes-redirects-completeness"
   },
   "workers": {
-    "sheelot-paa-factory": {
-      "status": "IN_PROGRESS",
-      "branch": "feature/scope-sheelot-paa-factory",
-      "worktree": "/Users/doronavni/avni-guy-wt-sheelot-paa-factory",
-      "plan": "009_seo_sheelot_paa_factory_s1",
-      "exclusive_files": [
-        "src/app/sheelot/",
-        "src/app/sitemap.ts"
-      ]
-    },
-    "podcast-newsletter-archive": {
-      "status": "IN_PROGRESS",
-      "branch": "feature/scope-podcast-newsletter-archive",
-      "worktree": "/Users/doronavni/avni-guy-wt-podcast-newsletter-archive",
-      "plan": "010_ops_podcast_newsletter_archive_p1",
-      "ops_heavy": true
-    },
     "non-commodity-ymyl-originals": {
       "status": "IN_PROGRESS",
       "branch": "feature/scope-non-commodity-ymyl-originals",
@@ -55,6 +37,17 @@
       "plan": "011_seo_non_commodity_ymyl_originals_n1",
       "exclusive_files": [
         "src/content/blog/"
+      ]
+    },
+    "indexnow-deletes-redirects-completeness": {
+      "status": "IN_PROGRESS",
+      "branch": "feature/scope-indexnow-deletes-redirects-completeness",
+      "worktree": "/Users/doronavni/avni-guy-wt-indexnow-deletes-redirects-completeness",
+      "plan": "012_seo_indexnow_deletes_redirects_i1",
+      "exclusive_files": [
+        "scripts/post-deploy-indexnow.mjs",
+        "src/app/sitemap.ts",
+        "src/app/api/indexnow/"
       ]
     }
   },
@@ -161,7 +154,7 @@
       "rca_files": []
     },
     "sheelot-paa-factory": {
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "plan": null,
       "last_gate": null,
       "last_failure": null,
@@ -233,7 +226,7 @@
       "rca_files": []
     },
     "indexnow-deletes-redirects-completeness": {
-      "status": "PENDING",
+      "status": "IN_PROGRESS",
       "plan": null,
       "last_gate": "blocked_sitemap_claim",
       "last_failure": null,
@@ -329,7 +322,7 @@
       "rca_files": []
     },
     "podcast-newsletter-archive": {
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "plan": null,
       "last_gate": null,
       "last_failure": null,
