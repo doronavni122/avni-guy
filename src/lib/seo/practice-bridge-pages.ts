@@ -1,3 +1,5 @@
+import type { SiteKeyword } from '@/consts';
+
 /** Practice-bridge landings: non-brand H1; brand in subtitle/schema only. Bar-safe, no outcome claims. */
 export type PracticeBridgeDef = {
 	path: string;
@@ -5,7 +7,7 @@ export type PracticeBridgeDef = {
 	subtitle: string;
 	title: string;
 	description: string;
-	keyword: string;
+	keyword: SiteKeyword;
 	intro: string[];
 	nextLinks: { href: string; label: string }[];
 };
@@ -18,7 +20,7 @@ export const PRACTICE_BRIDGE_PAGES: PracticeBridgeDef[] = [
 		title: 'עורך דין נדל״ן ומיסוי | גיא אבני',
 		description:
 			'מדריך כניסה לליווי נדל״ן ומיסוי מקרקעין: מה לבדוק לפני חתימה, איך נראית פגישת מיקוד, ואיך ממשיכים לעמוד היישות ולשירותים.',
-		keyword: 'עורך דין נדל״ן',
+		keyword: 'גיא אבני עורך דין',
 		intro: [
 			'לפני עסקת מכר או רכישה כדאי לדעת איזה מסמכים רלוונטיים, מה בודקים מול רישום, ואיך נראית שיחת מיקוד בלי הבטחת תוצאה.',
 			'העמוד הזה הוא גשר נושאי: מיקוד פרקטי בנושא, עם קישור ליישות המקצועית ולשירותים. אין כאן ייעוץ אישי לתיק שלכם.',
@@ -36,7 +38,7 @@ export const PRACTICE_BRIDGE_PAGES: PracticeBridgeDef[] = [
 		title: 'עורך דין חוזים | גיא אבני',
 		description:
 			'מה לבדוק בחוזה לפני חתימה, איך מארגנים שאלות לפגישת מיקוד, ואיך ממשיכים לעמוד היישות של המשרד.',
-		keyword: 'עורך דין חוזים',
+		keyword: 'גיא אבני עורך דין',
 		intro: [
 			'חוזה טוב מתחיל בשאלות ברורות: מה מסוכן, מה חסר, ומה אפשר לדחות. העמוד מסביר סדר עבודה - לא מבטיח תוצאה בהליך.',
 			'אחרי קריאה קצרה אפשר לעבור לאודות לשירותים או למאמרי חוזים. התוכן כללי ואינו תחליף לייעוץ אישי.',
