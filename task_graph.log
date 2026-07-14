@@ -589,3 +589,5 @@
 446. mark-media-appearances-index-merged-in-loop-state , notes/implementations/scope_loop_state.json task_graph.log
 
 447. add-brief-016-about-section-ranking-surface , notes/implementations/016_seo_about_section_ranking_a1_brief.txt task_graph.log
+
+448. mark-plan-016-about-section-ranking-todos-done , .cursor/plans/016_seo_about_section_ranking_a1.plan.md task_graph.log

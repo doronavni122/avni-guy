@@ -3,10 +3,10 @@
 ADR: none , cite SSOT.md
 
 ##todos
-- [ ] Add stable HTML section ids on `/about/` (`person`, `practice`, `audience`, `workflow`, `principles`, `faq`, `entity`) matching inbound `#person`
-- [ ] Strengthen visible section content on those surfaces (no new thin entity URLs)
-- [ ] Export about fragment href SSOT in `homeSeoSections.ts`; wire query-bearing inbound from `HomePage.tsx`
-- [ ] Verify: `pnpm build` in worktree; no Globes pages; no FAQ schema theater; no MDX entity-link rewrites
+- [x] Add stable HTML section ids on `/about/` (`person`, `practice`, `audience`, `workflow`, `principles`, `faq`, `entity`) matching inbound `#person`
+- [x] Strengthen visible section content on those surfaces (no new thin entity URLs)
+- [x] Export about fragment href SSOT in `homeSeoSections.ts`; wire query-bearing inbound from `HomePage.tsx`
+- [x] Verify: `pnpm build` in worktree; no Globes pages; no FAQ schema theater; no MDX entity-link rewrites
 
 ## Goal
 Make `/about/` a durable entity ranking surface: HTML fragment ids match schema/inbound (`/about/#person`), sections are query-bearing and content-rich, home links to fragments with brand/lawyer anchor text. Prefer home inbound; services deferred (not exclusive).
