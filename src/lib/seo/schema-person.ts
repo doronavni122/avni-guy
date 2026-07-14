@@ -53,7 +53,7 @@ export type PersonSchemaOptions = {
 	sameAs?: string[];
 };
 
-let productionSameAsWarnOnce = false;
+type SameAsWarnGlobal = typeof globalThis & { __avniPersonSameAsProdWarn?: boolean };
 
 function absoluteUrl(pathOrUrl: string): string {
 	try {
@@ -263,8 +263,9 @@ export function readPersonSameAsUrls(): string[] {
 	const urls: string[] = [];
 
 	try {
-		if (!productionSameAsWarnOnce && process.env.NODE_ENV === 'production') {
-			productionSameAsWarnOnce = true;
+		const g = globalThis as SameAsWarnGlobal;
+		if (!g.__avniPersonSameAsProdWarn && process.env.NODE_ENV === 'production') {
+			g.__avniPersonSameAsProdWarn = true;
 			warnProductionEnvGaps();
 		}
 	} catch (err) {
