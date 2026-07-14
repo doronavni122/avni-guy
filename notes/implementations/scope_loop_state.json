@@ -331,9 +331,9 @@
       "rca_files": []
     },
     "deferred-moonshots": {
-      "status": "PENDING",
+      "status": "DONE",
       "plan": null,
-      "last_gate": null,
+      "last_gate": "ops_runbook_agentic",
       "last_failure": null,
       "escalation_count": 0,
       "rca_files": []

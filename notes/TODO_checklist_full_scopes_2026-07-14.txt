@@ -186,5 +186,5 @@ Maps-005: bing-ai-performance-loop, gsc-genai-monthly-brand-serp, citation-bait-
 
 ## deferred-moonshots
 Prerequisite: measure-gates-g1-g4 (stall unlock)
-- [ ] wikipedia-notability-gate, open-library-ssrn-cle-deposit, ac-il-cle-bio, archive-org-hygiene, other-guy-avni-disambiguation-card
+- [x] wikipedia-notability-gate, open-library-ssrn-cle-deposit, ac-il-cle-bio, archive-org-hygiene, other-guy-avni-disambiguation-card
 Maps-005: moonshots + disambiguation
