@@ -1,0 +1,59 @@
+scope: high-intent-owned-url-gated
+type: ops-gate-criteria-only
+status: runbook_ready; URL_DEFERRED
+ssot: SSOT.md
+adr: none
+depends_on: measure-gates-g1-g4 (G1–G2 stall_def)
+maps_005: high-intent-owned-url-gated
+forbid: invent_new_static_path | ship_url_before_stall_Y | sitemap_add_before_gate | edit_about_page_claimed_elsewhere
+
+# purpose
+Document GATE CRITERIA only. Do NOT invent or ship a new owned URL in this agentic close.
+Default: DEFER URL work until G1–G2 stall is documented.
+
+# gate_criteria (from measure-gates-g1-g4_ops_runbook.txt)
+source_runbook: notes/implementations/measure-gates-g1-g4_ops_runbook.txt
+queries:
+  Q_LAWYER: גיא אבני עורך דין
+owned_host: avniguy.co.il
+
+# unlock_rule (ALL must be true)
+U1: ≥1 full measure_cycle completed per measure-gates protocol (log_sheet row exists)
+U2: G1 pass_rule true for the logged row (see source_runbook #gate_g1_about_lawyer_query)
+U3: stall_def true: G1 pass AND owned_slot_count_top10 == 1 (still only one owned URL in top-10)
+U4: stall_def written Y in measure-gates live_checks / log_sheet (not estimated in chat)
+U5: device considered: evaluate desktop OR both devices per operator policy; document which
+
+# halt_rule (ANY true → do NOT create extra URL)
+H1: G1 not yet passed on logged row
+H2: G2 already pass (owned_slot_count_top10 >= 2) — no need for extra URL for slot goal
+H3: still measuring / no log_sheet row
+H4: operator marks halt_extra_url
+H5: kill-switch fired but owner redirects effort elsewhere without stall_def
+
+# when_unlocked_then (future code/ops — NOT this close)
+F1: Choose ONE high-intent owned path (e.g. strengthen /services/ credential page OR one new static credential URL)
+F2: Brand-support copy only; bar-safe; links back to /about/
+F3: Add path to sitemap only when URL ships
+F4: Validate target becomes 2nd avniguy top-10 slot on Q_LAWYER after index+measure
+F5: Never invent the URL string in this runbook as “shipped”
+
+# live_checks (gate evaluation only)
+- [ ] gate_eval_date logged
+- [ ] measure_cycle_id referenced
+- [ ] stall_def Y/N (blank until measure log exists)
+- [ ] unlock decision: DEFER (default) | UNLOCK
+- [ ] if DEFER: no new path created (confirm)
+
+# decision_log
+# date_iso | cycle_id | g1 | owned_le10_count | stall_def | decision | notes
+placement_log_path: notes/implementations/high-intent-owned-url-gated_decision_log.txt
+
+# agent_quick_rules
+aq1: This scope closes agentically on GATE DOCS ONLY — URL remains deferred
+aq2: Do not edit src/ to add routes until unlock decision=UNLOCK with logged stall_def=Y
+aq3: Cross-check dual-property matrix: win ≠ beating guyavni
+
+# close_gate
+scope_agentic_DONE when this runbook merged + checklist [x]
+URL shipping remains blocked until unlock_rule satisfied
