@@ -468,3 +468,5 @@
 381. brief-ops-measure-gates-g1-g4-m1 , notes/implementations/019_ops_measure_gates_g1_g4_m1_brief.txt task_graph.log
 
 382. mark-scope-measure-gates-g1-g4-done , notes/TODO_checklist_full_scopes_2026-07-14.txt OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log
+
+383. mark-scopes-nap-schema-federation-wellknown-done , notes/TODO_checklist_full_scopes_2026-07-14.txt notes/implementations/scope_loop_state.json task_graph.log
