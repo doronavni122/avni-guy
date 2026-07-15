@@ -1,0 +1,44 @@
+scope: chaptered-youtube
+type: ops-external
+status: runbook_ready; publish_pending
+ssot: SSOT.md
+adr: none
+depends_on: youtube-short-form-embed (runbook; real video URL must exist first)
+maps_005: chaptered-youtube
+forbid: invent_youtube_url | invent_video_id | embed_placeholder_in_src
+
+# entity_lock
+descriptor_he: גיא אבני עורך דין
+channel_brand_rule: channel display name = exact brand / person legal brand (no SEO spam suffix spam)
+canonical_entity_url: https://avniguy.co.il/about/
+pin_target_rule: pinned comment + description primary link → avniguy owned URL (prefer /about/ or source article)
+locale: he-IL
+length_target_min: 6
+length_target_max: 12
+
+# topic_selection
+- [ ] T1. Pick topics only from published articles under src/content/blog/ (real authorship)
+- [ ] T2. Chapters = article H2 headings (order preserved); do not invent chapter titles off-topic
+- [ ] T3. Record HE explainer 6–12 min; upload to owned YouTube channel only
+
+# publish_ops
+- [ ] Y1. YouTube Studio → Upload → set title with descriptor_he or practice + name (bar-safe)
+- [ ] Y2. Description: first line descriptor_he; second line canonical or article URL; no Globes-attack narrative
+- [ ] Y3. Chapters: paste timestamp list matching H2s (00:00 Intro required by YT)
+- [ ] Y4. Cards/end screen → avniguy URL
+- [ ] Y5. Pin comment: link → avniguy (canonical_entity_url or article)
+- [ ] Y6. Channel name check: exact brand; About links → canonical_entity_url
+- [ ] Y7. Log real watch URL only after public
+
+# placement_log
+# date_iso | video_url | source_article_slug | chapters_Y_N | pinned_avniguy_Y_N | notes
+placement_log_path: notes/implementations/chaptered-youtube_placement_log.txt
+
+# agent_rules
+aq1: Never write a YouTube URL into src/ until operator provides public watch URL
+aq2: Embed wiring (if any) is youtube-short-form-embed scope — this scope is publish+chapters+pin
+aq3: No fake video IDs in code, env, or MDX
+
+# close_gate
+scope_agentic_DONE when this runbook merged + checklist [x]
+live videos remain human/ops-external

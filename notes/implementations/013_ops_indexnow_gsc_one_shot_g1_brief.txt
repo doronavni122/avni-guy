@@ -1,0 +1,37 @@
+plan_base: 013_ops_indexnow_gsc_one_shot_g1
+scope: indexnow-gsc-one-shot
+status: NEEDS_MERGE
+branch: feature/scope-indexnow-gsc-one-shot
+worktree: /Users/doronavni/avni-guy-wt-indexnow-gsc-one-shot
+ssot: SSOT.md
+adr: none
+
+# next plan suggestion
+next: prod-sameas-bar-assert OR inject-entity-links-smoke (per scope_dag)
+human_ops: set INDEXNOW_KEY + optional GSC_SERVICE_ACCOUNT_JSON; run oneshot after deploy per ops runbook
+
+# files to read
+scripts/post-deploy-indexnow.mjs
+scripts/gsc-url-inspection.mjs
+notes/implementations/013_ops_indexnow_gsc_one_shot_g1_ops_runbook.txt
+.cursor/plans/013_ops_indexnow_gsc_one_shot_g1.plan.md
+SSOT.md
+
+# rules (.cursor/rules/)
+ssot-repo-structure.mdc
+enforcement/plans-directory-and-numbering.mdc
+post-implementation-checklist.mdc
+handoff-and-scope-loop.mdc
+owner-reports-non-authoritative.mdc
+
+# tools and status
+INDEXNOW_ONESHOT_TOP20=1 → mode=top20-oneshot update=22 (/, /about/, top20) + redirect=20; dry-run/skip without key
+default postbuild → mode=full update=145 redirect=135; no fake live ping
+gsc-url-inspection → JWT+fetch API when GSC_SERVICE_ACCOUNT_JSON+GSC_SITE_URL; else MANUAL artifact .next/gsc-manual-urls.json exit 0
+verify: next build exit 0 (361 static); post-deploy+gsc dry-run exit 0; pnpm dev -p 3001 EADDRINUSE (other process); next dev -p 3015 Ready + HTTP 200 /
+no task_graph.log (worker); orchestrator logs after merge
+
+# open issues
+live IndexNow/GSC still require owner secrets — scripts refuse to fake success
+GSC_SITE_URL property access for SA email is human one-time setup
+checklist_lines: notes/TODO_checklist_full_scopes_2026-07-14.txt ## indexnow-gsc-one-shot goal line → [x] after merge

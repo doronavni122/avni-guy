@@ -304,3 +304,330 @@
 299. update-seo-audit-merged-july2026-final , notes/temp/seo-audit-july2026/audit-merged-july2026.md task_graph.log
 
 300. add-owner-report-globes-serp-occupation-handoff , OWNER-REPORTS/003_globes-serp-nuke-occupation_2026-07-14.md OWNER-REPORTS/001_serp-ranking-site-seo-work_2026-07-07.md task_graph.log
+
+301. add-owner-report-serp-occupation-atomic-checklist , OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log
+
+302. validate-true-owner-report-005-serp-occupation-atomic , OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log
+
+303. add-serp-occupation-scope-list-dag-state , notes/TODO_checklist_full_scopes_2026-07-14.txt notes/implementations/scope_dag.json notes/implementations/scope_loop_state.json task_graph.log
+
+304. demote-home-h1-off-brand-lawyer-string , src/lib/seo/main-page-heroes.mjs task_graph.log
+
+305. add-plan-home-h1-demote-g0 , .cursor/plans/003_seo_home_h1_demote_g0.plan.md task_graph.log
+
+306. add-plan-rss-enrich-feed-r1 , .cursor/plans/005_rss_enrich_feed_r1.plan.md task_graph.log
+
+307. enrich-rss-author-content-media , src/app/rss.xml/route.ts task_graph.log
+
+308. add-plan-mcp-citation-bait-agent-n1 , .cursor/plans/004_mcp_citation_bait_agent_n1.plan.md task_graph.log
+
+309. add-public-who-is-agent-card-json , public/agent-card.json task_graph.log
+
+310. document-stdio-mcp-and-agent-card-in-llms-txt , public/llms.txt task_graph.log
+
+311. add-mcp-citation-bait-plan-brief , notes/implementations/004_mcp_citation_bait_agent_n1_brief.txt task_graph.log
+
+312. update-mcp-citation-bait-brief-commit-shas , notes/implementations/004_mcp_citation_bait_agent_n1_brief.txt task_graph.log
+
+313. add-mcp-citation-bait-ops-runbook , notes/implementations/mcp-citation-bait_ops_runbook.txt task_graph.log
+
+314. add-richer-rss-plan-brief , notes/implementations/005_rss_enrich_feed_r1_brief.txt task_graph.log
+
+315. mark-scopes-richer-rss-and-mcp-citation-bait-done , notes/TODO_checklist_full_scopes_2026-07-14.txt OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log
+
+316. update-scope-loop-state-worktree-isolation-batch2 , notes/implementations/scope_loop_state.json task_graph.log
+
+317. add-plan-inject-entity-links-smoke-i1 , .cursor/plans/006_seo_inject_entity_links_smoke_i1.plan.md task_graph.log
+
+318. document-inject-entity-links-smoke-evidence , notes/implementations/006_seo_inject_entity_links_smoke_i1_brief.txt task_graph.log
+
+319. mark-scope-inject-entity-links-smoke-done , notes/TODO_checklist_full_scopes_2026-07-14.txt OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log
+
+320. add-editorial-policy-page-plan , .cursor/plans/007_seo_editorial_policy_page_e1.plan.md task_graph.log
+
+321. add-editorial-policy-page , src/app/editorial-policy/page.tsx task_graph.log
+
+322. add-editorial-policy-to-sitemap , src/app/sitemap.ts task_graph.log
+
+323. add-plan-ops-earned-offsite-bios-network-o1 , .cursor/plans/008_ops_earned_offsite_bios_network_o1.plan.md task_graph.log
+
+324. add-earned-offsite-bios-network-ops-runbook , notes/implementations/earned-offsite-bios-network_ops_runbook.txt task_graph.log
+
+325. add-earned-offsite-bios-network-plan-brief , notes/implementations/008_ops_earned_offsite_bios_network_o1_brief.txt task_graph.log
+
+326. mark-scopes-editorial-policy-and-earned-offsite-done , notes/TODO_checklist_full_scopes_2026-07-14.txt OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log
+
+327. fix-005-editorial-link-defer-and-cooccurrence-marks , OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log
+
+328. update-scope-loop-state-batch3-worktrees , notes/implementations/scope_loop_state.json task_graph.log
+
+329. add-plan-ops-podcast-newsletter-archive-p1 , .cursor/plans/010_ops_podcast_newsletter_archive_p1.plan.md task_graph.log
+
+330. add-podcast-newsletter-archive-ops-runbook , notes/implementations/podcast-newsletter-archive_ops_runbook.txt task_graph.log
+
+331. add-brief-ops-podcast-newsletter-archive-p1 , notes/implementations/010_ops_podcast_newsletter_archive_p1_brief.txt task_graph.log
+
+332. plan-sheelot-paa-factory-s1 , .cursor/plans/009_seo_sheelot_paa_factory_s1.plan.md task_graph.log
+
+333. add-sheelot-paa-h2-qa-page , src/app/sheelot/ task_graph.log
+
+334. add-sheelot-path-to-sitemap , src/app/sitemap.ts task_graph.log
+
+335. mark-scopes-podcast-newsletter-and-sheelot-done , notes/TODO_checklist_full_scopes_2026-07-14.txt OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log
+
+336. update-scope-loop-state-after-podcast-sheelot-merge , notes/implementations/scope_loop_state.json task_graph.log
+
+337. plan-seo-indexnow-deletes-redirects-i1 , .cursor/plans/012_seo_indexnow_deletes_redirects_i1.plan.md task_graph.log
+
+338. honest-sitemap-static-lastmod , src/app/sitemap.ts task_graph.log
+
+339. harden-indexnow-api-host-action , src/app/api/indexnow/route.ts task_graph.log
+
+340. extend-post-deploy-indexnow-updates-deletes-redirects , scripts/post-deploy-indexnow.mjs task_graph.log
+
+341. add-plan-non-commodity-ymyl-originals , .cursor/plans/011_seo_non_commodity_ymyl_originals_n1.plan.md task_graph.log
+
+342. refresh-ymyl-buying-from-contractor-claim-evidence , src/content/blog/buying-from-contractor-checklist.mdx task_graph.log
+
+343. refresh-ymyl-capital-gains-single-apartment-claim-evidence , src/content/blog/capital-gains-exemption-single-apartment-2026.mdx task_graph.log
+
+344. refresh-ymyl-landlord-deposit-keyword-and-evidence , src/content/blog/landlord-security-deposit-return.mdx task_graph.log
+
+345. strip-unsafe-repeated-brand-spam-in-blog-bodies , src/content/blog/ task_graph.log
+
+346. add-briefs-indexnow-and-ymyl-scopes , notes/implementations/012_seo_indexnow_deletes_redirects_i1_brief.txt notes/implementations/011_seo_non_commodity_ymyl_originals_n1_brief.txt task_graph.log
+
+347. mark-scopes-indexnow-and-ymyl-done , notes/TODO_checklist_full_scopes_2026-07-14.txt OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log
+
+348. mark-scope-home-h1-demote-done-on-main , notes/TODO_checklist_full_scopes_2026-07-14.txt task_graph.log
+
+349. update-scope-loop-state-batch4 , notes/implementations/scope_loop_state.json task_graph.log
+
+350. add-plan-home-title-portal-g0 , .cursor/plans/013_seo_home_title_portal_g0.plan.md task_graph.log
+
+351. set-home-title-portal-absolute , src/app/page.tsx task_graph.log
+
+352. demote-home-bio-exact-about-anchors , src/components/home/HomePage.tsx src/lib/home/loadHomeData.ts task_graph.log
+
+353. freeze-nav-footer-sitelink-candidates , src/lib/nav/site-nav.ts task_graph.log
+
+354. mark-parent-p0-scopes-home-title-brand-links-sitelink-done , notes/TODO_checklist_full_scopes_2026-07-14.txt OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md notes/implementations/scope_loop_state.json task_graph.log
+
+355. add-plan-seo-media-appearances-index-m1 , .cursor/plans/015_seo_media_appearances_index_m1.plan.md task_graph.log
+
+356. add-media-appearances-index-page , src/app/media/page.tsx task_graph.log
+
+357. add-media-path-to-sitemap , src/app/sitemap.ts task_graph.log
+
+358. plan-ops-indexnow-gsc-one-shot-g1 , .cursor/plans/013_ops_indexnow_gsc_one_shot_g1.plan.md task_graph.log
+
+359. expand-indexnow-oneshot-top20-mode , scripts/post-deploy-indexnow.mjs task_graph.log
+
+360. implement-gsc-url-inspection-jwt-or-manual , scripts/gsc-url-inspection.mjs task_graph.log
+
+361. add-ops-runbook-indexnow-gsc-one-shot , notes/implementations/013_ops_indexnow_gsc_one_shot_g1_ops_runbook.txt task_graph.log
+
+362. mark-scopes-media-appearances-and-indexnow-gsc-done , notes/TODO_checklist_full_scopes_2026-07-14.txt OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log
+
+363. plan-seo-brand-image-pack-b1 , .cursor/plans/014_seo_brand_image_pack_b1.plan.md task_graph.log
+
+364. add-unique-brand-portrait-and-office-image-pack , public/images/shared/ task_graph.log
+
+365. wire-person-schema-brand-portrait-imageobject , src/lib/seo/schema-person.ts task_graph.log
+
+366. add-brand-image-pack-ops-runbook-image-rank , notes/implementations/brand-image-pack_ops_runbook.txt task_graph.log
+
+367. mark-scope-brand-image-pack-done , notes/TODO_checklist_full_scopes_2026-07-14.txt OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log
+
+368. update-scope-loop-state-batch5-about-heroes-translit , notes/implementations/scope_loop_state.json task_graph.log
+
+369. brief-sheelot-paa-factory-s1 , notes/implementations/009_seo_sheelot_paa_factory_s1_brief.txt task_graph.log
+
+370. update-sheelot-brief-verify-pass , notes/implementations/009_seo_sheelot_paa_factory_s1_brief.txt  task_graph.log
+
+371. check-sheelot-plan-todos-done , .cursor/plans/009_seo_sheelot_paa_factory_s1.plan.md  task_graph.log
+
+372. brief-indexnow-deletes-redirects-completeness , notes/implementations/012_seo_indexnow_deletes_redirects_i1_brief.txt task_graph.log
+
+373. add-brief-non-commodity-ymyl-originals , notes/implementations/011_seo_non_commodity_ymyl_originals_n1_brief.txt task_graph.log
+
+374. ship-well-known-person-json , public/.well-known/person.json task_graph.log
+
+375. add-about-nap-and-person-html-id , src/components/seo/AttorneyCredentialBlock.tsx task_graph.log
+
+376. extend-person-schema-edges-and-office-sameas , src/lib/seo/schema-person.ts task_graph.log
+
+377. add-footer-dual-property-role-links , src/components/Footer.tsx task_graph.log
+
+378. extend-env-schema-office-nap-keys , src/env.ts task_graph.log
+
+379. add-plan-ops-measure-gates-g1-g4-m1 , .cursor/plans/019_ops_measure_gates_g1_g4_m1.plan.md task_graph.log
+
+380. add-measure-gates-g1-g4-ops-runbook , notes/implementations/measure-gates-g1-g4_ops_runbook.txt task_graph.log
+
+381. brief-ops-measure-gates-g1-g4-m1 , notes/implementations/019_ops_measure_gates_g1_g4_m1_brief.txt task_graph.log
+
+382. mark-scope-measure-gates-g1-g4-done , notes/TODO_checklist_full_scopes_2026-07-14.txt OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log
+
+383. mark-scopes-nap-schema-federation-wellknown-done , notes/TODO_checklist_full_scopes_2026-07-14.txt notes/implementations/scope_loop_state.json task_graph.log
+
+384. add-plan-016-about-section-ranking-surface , .cursor/plans/016_seo_about_section_ranking_a1.plan.md task_graph.log
+
+385. add-about-stable-section-ids-and-content , src/app/about/page.tsx task_graph.log
+
+386. export-about-ranking-fragment-href-ssot , src/lib/home/homeSeoSections.ts task_graph.log
+
+387. wire-home-query-bearing-about-inbound-anchors , src/components/home/HomePage.tsx task_graph.log
+
+388. add-plan-seo-home-heroes-entity-role-h1 , .cursor/plans/017_seo_home_heroes_entity_role_h1.plan.md task_graph.log
+
+389. align-home-hero-copy-firm-portal-role , src/lib/seo/main-page-heroes.mjs task_graph.log
+
+390. align-home-hero-image-alts-firm-portal , src/lib/home/loadHomeData.ts task_graph.log
+
+391. add-plan-seo-transliteration-bridge-t1 , .cursor/plans/018_seo_transliteration_bridge_t1.plan.md task_graph.log
+
+392. add-guy-avni-transliteration-entity-card , src/app/guy-avni/page.tsx task_graph.log
+
+393. add-guy-avni-path-to-sitemap , src/app/sitemap.ts task_graph.log
+
+394. mark-scopes-about-heroes-translit-done , notes/TODO_checklist_full_scopes_2026-07-14.txt OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log
+
+395. update-scope-loop-state-batch6-speakable-sameas-owned , notes/implementations/scope_loop_state.json task_graph.log
+
+396. add-practice-bridge-landings-nedlan-contracts , src/lib/seo/practice-bridge-pages.ts src/app/nedlan-lawyer-guy-avni/page.tsx src/app/contracts-lawyer-guy-avni/page.tsx src/app/sitemap.ts task_graph.log
+
+397. mark-scope-practice-bridge-landings-done , notes/TODO_checklist_full_scopes_2026-07-14.txt notes/implementations/scope_loop_state.json task_graph.log
+398. add-prod-sameas-bar-assert-ops-runbook , notes/implementations/prod-sameas-bar-assert_ops_runbook.txt task_graph.log
+399. add-owned-page1-asset-pack-ops-runbook , notes/implementations/owned-page1-asset-pack_ops_runbook.txt task_graph.log
+400. add-chaptered-youtube-ops-runbook , notes/implementations/chaptered-youtube_ops_runbook.txt task_graph.log
+401. add-wikidata-hebrew-kp-loop-ops-runbook , notes/implementations/wikidata-hebrew-kp-loop_ops_runbook.txt task_graph.log
+402. add-google-business-profile-ops-runbook , notes/implementations/google-business-profile_ops_runbook.txt task_graph.log
+403. add-ai-citation-measure-loop-ops-runbook , notes/implementations/ai-citation-measure-loop_ops_runbook.txt task_graph.log
+404. add-deferred-moonshots-ops-runbook , notes/implementations/deferred-moonshots_ops_runbook.txt task_graph.log
+405. add-high-intent-owned-url-gated-ops-runbook , notes/implementations/high-intent-owned-url-gated_ops_runbook.txt task_graph.log
+406. add-youtube-short-form-embed-ops-runbook , notes/implementations/youtube-short-form-embed_ops_runbook.txt task_graph.log
+
+407. mark-scope-prod-sameas-bar-assert-done , notes/TODO_checklist_full_scopes_2026-07-14.txt notes/implementations/scope_loop_state.json task_graph.log
+
+408. mark-scope-high-intent-owned-url-gated-done , notes/TODO_checklist_full_scopes_2026-07-14.txt notes/implementations/scope_loop_state.json task_graph.log
+
+409. mark-scope-youtube-short-form-embed-done , notes/TODO_checklist_full_scopes_2026-07-14.txt notes/implementations/scope_loop_state.json task_graph.log
+
+410. mark-scope-owned-page1-asset-pack-done , notes/TODO_checklist_full_scopes_2026-07-14.txt notes/implementations/scope_loop_state.json task_graph.log
+
+411. mark-scope-chaptered-youtube-done , notes/TODO_checklist_full_scopes_2026-07-14.txt notes/implementations/scope_loop_state.json task_graph.log
+
+412. mark-scope-wikidata-hebrew-kp-loop-done , notes/TODO_checklist_full_scopes_2026-07-14.txt notes/implementations/scope_loop_state.json task_graph.log
+
+413. mark-scope-google-business-profile-done , notes/TODO_checklist_full_scopes_2026-07-14.txt notes/implementations/scope_loop_state.json task_graph.log
+
+414. mark-scope-ai-citation-measure-loop-done , notes/TODO_checklist_full_scopes_2026-07-14.txt notes/implementations/scope_loop_state.json task_graph.log
+
+415. mark-scope-deferred-moonshots-done , notes/TODO_checklist_full_scopes_2026-07-14.txt notes/implementations/scope_loop_state.json task_graph.log
+
+416. add-plan-ops-owned-page1-asset-pack-o1 , .cursor/plans/022_ops_owned_page1_asset_pack_o1.plan.md task_graph.log
+
+417. add-brief-ops-owned-page1-asset-pack-o1 , notes/implementations/022_ops_owned_page1_asset_pack_o1_brief.txt task_graph.log
+
+418. fill-brief-commit-sha-owned-page1-asset-pack , notes/implementations/022_ops_owned_page1_asset_pack_o1_brief.txt task_graph.log
+
+419. add-speakable-helpers-and-voice-block-copy , .cursor/plans/020_seo_speakable_voice_blocks_s1.plan.md src/lib/seo/speakable-voice-blocks.ts src/lib/seo/speakable.ts task_graph.log
+
+420. wire-about-speakable-voice-blocks , src/app/about/page.tsx task_graph.log
+
+421. wire-services-speakable-voice-blocks , src/app/services/page.tsx task_graph.log
+
+422. wire-category-hub-speakable-voice-blocks , src/app/categories/[category]/page.tsx task_graph.log
+
+423. add-plan-seo-prod-sameas-bar-assert-p1 , .cursor/plans/021_seo_prod_sameas_bar_assert_p1.plan.md task_graph.log
+
+424. add-env-sameas-prod-gap-warns , .env.development.example .env.example src/env.ts task_graph.log
+
+425. add-person-sameas-truthful-assert , src/lib/seo/schema-person.ts task_graph.log
+
+426. add-brief-seo-prod-sameas-bar-assert-p1 , notes/implementations/021_seo_prod_sameas_bar_assert_p1_brief.txt task_graph.log
+
+427. mark-scopes-speakable-and-prod-sameas-done , notes/TODO_checklist_full_scopes_2026-07-14.txt OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log
+
+428. fix-practice-bridge-sitekeyword-typing , src/lib/seo/practice-bridge-pages.ts task_graph.log
+
+429. fix-practice-bridge-def-narrowing , src/app/nedlan-lawyer-guy-avni/page.tsx src/app/contracts-lawyer-guy-avni/page.tsx task_graph.log
+
+430. fix-media-page-keywords-sitekeyword , src/app/media/page.tsx task_graph.log
+
+431. add-fan-out-h2-clusters-about-services , src/app/about/page.tsx src/app/services/page.tsx task_graph.log
+
+432. mark-scopes-speakable-and-fanout-done , notes/TODO_checklist_full_scopes_2026-07-14.txt notes/implementations/scope_loop_state.json task_graph.log
+
+433. add-editorial-policy-page-brief , notes/implementations/007_seo_editorial_policy_page_e1_brief.txt task_graph.log
+
+434. mark-editorial-policy-plan-todos-done , .cursor/plans/007_seo_editorial_policy_page_e1.plan.md task_graph.log
+
+435. add-fan-out-h2-hubs-plan , .cursor/plans/023_seo_fan_out_h2_maps_on_hubs_f1.plan.md task_graph.log
+
+436. add-about-fan-out-h2-clusters , src/app/about/page.tsx task_graph.log
+
+437. add-services-fan-out-h2-clusters , src/app/services/page.tsx task_graph.log
+
+438. mark-scope-fan-out-h2-maps-on-hubs-done , notes/TODO_checklist_full_scopes_2026-07-14.txt OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md task_graph.log
+
+439. mark-all-serp-scopes-done-in-loop-state , notes/implementations/scope_loop_state.json task_graph.log
+
+440. brief-seo-brand-image-pack-b1 , notes/implementations/014_seo_brand_image_pack_b1_brief.txt task_graph.log
+
+441. update-brief-seo-brand-image-pack-verify , notes/implementations/014_seo_brand_image_pack_b1_brief.txt task_graph.log
+
+442. export-brand-image-rank-panel-and-dual-imageobject , src/lib/seo/schema-person.ts task_graph.log
+
+443. brief-indexnow-gsc-one-shot , notes/implementations/013_ops_indexnow_gsc_one_shot_g1_brief.txt task_graph.log
+
+444. add-brief-media-appearances-index-m1 , notes/implementations/015_seo_media_appearances_index_m1_brief.txt task_graph.log
+
+445. mark-plan-media-appearances-todos-done , .cursor/plans/015_seo_media_appearances_index_m1.plan.md task_graph.log
+
+446. mark-media-appearances-index-merged-in-loop-state , notes/implementations/scope_loop_state.json task_graph.log
+
+447. add-brief-016-about-section-ranking-surface , notes/implementations/016_seo_about_section_ranking_a1_brief.txt task_graph.log
+
+448. mark-plan-016-about-section-ranking-todos-done , .cursor/plans/016_seo_about_section_ranking_a1.plan.md task_graph.log
+
+449. import-speakable-fanout-worker-plans-briefs , .cursor/plans/020_seo_speakable_voice_blocks_s1.plan.md .cursor/plans/021_seo_fan_out_h2_maps_h1.plan.md notes/implementations/020_seo_speakable_voice_blocks_s1_brief.txt notes/implementations/021_seo_fan_out_h2_maps_h1_brief.txt task_graph.log
+
+450. use-global-once-for-person-sameas-prod-warn , src/lib/seo/schema-person.ts task_graph.log
+
+451. update-brief-seo-prod-sameas-bar-assert-verify-pass , notes/implementations/021_seo_prod_sameas_bar_assert_p1_brief.txt task_graph.log
+
+452. mark-prod-sameas-bar-assert-merged-in-loop-state , notes/implementations/scope_loop_state.json task_graph.log
+
+453. add-require-practice-bridge-accessor , src/lib/seo/practice-bridge-pages.ts task_graph.log
+
+454. use-require-practice-bridge-on-landings , src/app/contracts-lawyer-guy-avni/page.tsx src/app/nedlan-lawyer-guy-avni/page.tsx task_graph.log
+
+455. add-media-keyword-to-site-keywords-batch , src/lib/seo/site-keywords-batch.ts task_graph.log
+
+456. close-speakable-voice-blocks-plan , .cursor/plans/020_seo_speakable_voice_blocks_s1.plan.md task_graph.log
+
+457. close-speakable-voice-blocks-brief , notes/implementations/020_seo_speakable_voice_blocks_s1_brief.txt task_graph.log
+
+458. mark-speakable-voice-blocks-merged-in-loop-state , notes/implementations/scope_loop_state.json task_graph.log
+
+459. add-transliteration-bridge-implementation-brief , notes/implementations/018_seo_transliteration_bridge_t1_brief.txt task_graph.log
+
+460. mark-plan-transliteration-bridge-todos-done , .cursor/plans/018_seo_transliteration_bridge_t1.plan.md task_graph.log
+
+461. mark-transliteration-bridge-routes-merged-in-loop-state , notes/implementations/scope_loop_state.json task_graph.log
+
+462. mark-fan-out-plan-todos-done , .cursor/plans/023_seo_fan_out_h2_maps_on_hubs_f1.plan.md task_graph.log
+
+463. add-fan-out-h2-hubs-brief , notes/implementations/023_seo_fan_out_h2_maps_on_hubs_f1_brief.txt task_graph.log
+
+464. mark-fan-out-h2-maps-on-hubs-merged-in-loop-state , notes/implementations/scope_loop_state.json task_graph.log
+
+465. import-fan-out-worker-plan-brief , .cursor/plans/023_seo_fan_out_h2_maps_f1.plan.md notes/implementations/023_seo_fan_out_h2_maps_f1_brief.txt task_graph.log
+
+466. mark-plan-home-heroes-verify-pass , .cursor/plans/017_seo_home_heroes_entity_role_h1.plan.md task_graph.log
+
+467. add-brief-seo-home-heroes-entity-role-h1 , notes/implementations/017_seo_home_heroes_entity_role_h1_brief.txt task_graph.log
+
+468. mark-home-heroes-entity-role-split-merged-in-loop-state , notes/implementations/scope_loop_state.json task_graph.log

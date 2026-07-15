@@ -1,0 +1,21 @@
+plan_base: 005_rss_enrich_feed_r1
+scope: richer-rss
+status: DONE_MERGED
+branch: feature/scope-richer-rss
+worktree: /Users/doronavni/avni-guy-wt-richer-rss
+
+next_plan_suggestion: podcast-newsletter-archive (depends_on richer-rss)
+
+files_to_read:
+- src/app/rss.xml/route.ts
+- .cursor/plans/005_rss_enrich_feed_r1.plan.md
+
+rules:
+- ADR: none , (SSOT.md)
+- no MDX entity-link rewrites in src/content/blog/
+
+tools_and_status:
+- merged to main with task_graph 306-307
+- verify: pending build-dev-runner on integration
+
+open_issues: none

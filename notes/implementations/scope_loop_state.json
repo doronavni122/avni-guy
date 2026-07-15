@@ -1,0 +1,321 @@
+{
+  "scope_list_file": "notes/TODO_checklist_full_scopes_2026-07-14.txt",
+  "mode": "parallel",
+  "integration_branch": "main",
+  "max_parallel_workers": 3,
+  "isolation": "git_worktree_only",
+  "primary_worktree": "/Users/doronavni/avni-guy",
+  "started_at": "2026-07-14T14:05:00+00:00",
+  "updated_at": "2026-07-14T14:56:00+00:00",
+  "current_scope": null,
+  "inner_iteration": 1,
+  "max_inner_iterations": 3,
+  "escalation_level": 0,
+  "parallel_batch": [],
+  "merge_queue": [],
+  "file_claims": {},
+  "workers": {},
+  "scopes": {
+    "home-h1-demote-non-entity": {
+      "status": "DONE",
+      "plan": "003_seo_home_h1_demote_g0",
+      "last_gate": "parent_merged",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": [],
+      "claimed_by": "parent"
+    },
+    "home-title-brand-portal": {
+      "status": "DONE",
+      "plan": null,
+      "last_gate": "parent_merged_350_353",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": [],
+      "claimed_by": "parent"
+    },
+    "brand-query-home-about-ownership": {
+      "status": "DONE",
+      "plan": null,
+      "last_gate": "parent_merged_350_353",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": [],
+      "claimed_by": "parent"
+    },
+    "home-internal-link-weight-to-about": {
+      "status": "DONE",
+      "plan": null,
+      "last_gate": "parent_merged_350_353",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": [],
+      "claimed_by": "parent"
+    },
+    "sitelink-candidate-freeze": {
+      "status": "DONE",
+      "plan": null,
+      "last_gate": "parent_merged_350_353",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": [],
+      "claimed_by": "parent"
+    },
+    "about-section-ranking-surface": {
+      "status": "DONE",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "home-heroes-entity-role-split": {
+      "status": "DONE",
+      "plan": null,
+      "last_gate": "merged",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "about-eeat-nap-license": {
+      "status": "DONE",
+      "plan": null,
+      "last_gate": "parent_impl",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "person-schema-edges-truthful": {
+      "status": "DONE",
+      "plan": null,
+      "last_gate": "parent_impl",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "entity-federation-guyavni": {
+      "status": "DONE",
+      "plan": null,
+      "last_gate": "parent_impl",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "brand-image-pack": {
+      "status": "DONE",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "richer-rss": {
+      "status": "DONE",
+      "plan": "005_rss_enrich_feed_r1",
+      "last_gate": "merged",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "sheelot-paa-factory": {
+      "status": "DONE",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "speakable-voice-blocks": {
+      "status": "DONE",
+      "plan": null,
+      "last_gate": "merged",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "transliteration-bridge-routes": {
+      "status": "DONE",
+      "plan": null,
+      "last_gate": "merged",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "practice-bridge-landings": {
+      "status": "DONE",
+      "plan": null,
+      "last_gate": "merge",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "fan-out-h2-maps-on-hubs": {
+      "status": "DONE",
+      "plan": null,
+      "last_gate": "merged",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "editorial-policy-page": {
+      "status": "DONE",
+      "plan": "007_seo_editorial_policy_page_e1",
+      "last_gate": "worker_spawned",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "media-appearances-index": {
+      "status": "DONE",
+      "plan": null,
+      "last_gate": "merged",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "mcp-citation-bait": {
+      "status": "DONE",
+      "plan": "004_mcp_citation_bait_agent_n1",
+      "last_gate": "merged",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "well-known-person-json": {
+      "status": "DONE",
+      "plan": null,
+      "last_gate": "parent_impl",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "indexnow-deletes-redirects-completeness": {
+      "status": "DONE",
+      "plan": null,
+      "last_gate": "blocked_sitemap_claim",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "indexnow-gsc-one-shot": {
+      "status": "DONE",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "inject-entity-links-smoke": {
+      "status": "DONE",
+      "plan": "006_seo_inject_entity_links_smoke_i1",
+      "last_gate": "worker_spawned",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "prod-sameas-bar-assert": {
+      "status": "DONE",
+      "plan": null,
+      "last_gate": "merged",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "high-intent-owned-url-gated": {
+      "status": "DONE",
+      "plan": null,
+      "last_gate": "ops_runbook_agentic",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "youtube-short-form-embed": {
+      "status": "DONE",
+      "plan": null,
+      "last_gate": "ops_runbook_agentic",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "non-commodity-ymyl-originals": {
+      "status": "DONE",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "owned-page1-asset-pack": {
+      "status": "DONE",
+      "plan": null,
+      "last_gate": "ops_runbook_agentic",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "chaptered-youtube": {
+      "status": "DONE",
+      "plan": null,
+      "last_gate": "ops_runbook_agentic",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "wikidata-hebrew-kp-loop": {
+      "status": "DONE",
+      "plan": null,
+      "last_gate": "ops_runbook_agentic",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "google-business-profile": {
+      "status": "DONE",
+      "plan": null,
+      "last_gate": "ops_runbook_agentic",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "earned-offsite-bios-network": {
+      "status": "DONE",
+      "plan": "008_ops_earned_offsite_bios_network_o1",
+      "last_gate": "worker_spawned",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "podcast-newsletter-archive": {
+      "status": "DONE",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "measure-gates-g1-g4": {
+      "status": "DONE",
+      "plan": null,
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "ai-citation-measure-loop": {
+      "status": "DONE",
+      "plan": null,
+      "last_gate": "ops_runbook_agentic",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "deferred-moonshots": {
+      "status": "DONE",
+      "plan": null,
+      "last_gate": "ops_runbook_agentic",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    }
+  }
+}

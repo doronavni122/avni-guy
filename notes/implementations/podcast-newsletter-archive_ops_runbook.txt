@@ -1,0 +1,191 @@
+scope: podcast-newsletter-archive
+type: ops-external
+status: agentic_done; external_publish_pending
+plan_base: 010_ops_podcast_newsletter_archive_p1
+ssot: SSOT.md
+adr: none
+depends_on: richer-rss (DONE; src/app/rss.xml/route.ts)
+maps_005: podcast-owned-feeds | newsletter-public-archive
+
+# entity_lock (copy exactly; never improvise)
+person_name_he: גיא אבני
+person_name_en: Guy Avni
+descriptor_he: גיא אבני עורך דין
+descriptor_en: Guy Avni lawyer
+firm_name_he: גיא אבני משרד עורכי דין
+job_title_he: עורך דין
+canonical_entity_url: https://avniguy.co.il/about/
+canonical_contact_url: https://avniguy.co.il/contact/
+site_url: https://avniguy.co.il
+email_public: info@avniguy.co.il
+content_rule: name + practice only; bar-safe; NO Globes-attack narrative; NO unrelated biography claims
+practice_topics_he: נדל״ן | מיסוי מקרקעין | חוזים | ליטיגציה אזרחית
+
+# show_title_lock (podcast — HE name REQUIRED in show title)
+show_title_he: גיא אבני עורך דין — פודקאסט משפטי
+show_title_en: Guy Avni Lawyer — Legal Podcast
+show_subtitle_he: ראיונות ותובנות בעברית על נדל״ן, מיסוי מקרקעין, חוזים וליטיגציה אזרחית
+author_byline_he: גיא אבני
+website_field: https://avniguy.co.il/about/
+# Never use homepage-only as primary website field when /about/ is accepted
+
+# on_site_rss (richer-rss already live — use as blog freshness + optional episode-landing mirror)
+rss_blog_url: https://avniguy.co.il/rss.xml
+rss_local_dev: http://localhost:3001/rss.xml
+rss_route: src/app/rss.xml/route.ts
+rss_link_rel: layout alternate type=application/rss+xml href=/rss.xml
+rss_enriched_fields: dc:creator | author | content:encoded | media:content
+rss_author_name: גיא אבני
+# Podcast host RSS (Buzzsprout/Transistor/etc.) is SEPARATE from site /rss.xml.
+# Site /rss.xml = blog ingest. Host feed URL = Apple/Spotify/Google submit target.
+
+# newsletter_lock
+newsletter_name_he: ניוזלטר גיא אבני עורך דין
+newsletter_name_en: Guy Avni Lawyer Newsletter
+newsletter_from_name: גיא אבני
+newsletter_reply_to: info@avniguy.co.il
+newsletter_footer_must_include: descriptor_he OR person_name_he + link https://avniguy.co.il/about/
+newsletter_archive_public: REQUIRED (indexable HTML list + per-issue URLs; no login wall)
+
+# log_sheet (operator fills after each real publish; never invent URLs)
+# columns: date_iso | maps_005_id | venue | listing_url | about_link(Y/N) | he_name_in_title(Y/N) | notes
+placement_log_path: notes/implementations/podcast-newsletter-archive_placement_log.txt
+placement_log_status: not_created_by_agent; create on first real publish
+
+---
+## A. podcast-owned-feeds
+maps_005_id: podcast-owned-feeds
+goal: launch owned podcast with HE name in show title; publish Apple/Spotify/Google feed URLs; expose indexable archive via host + site richer RSS
+
+### A0. preflight (do before any host signup)
+- [ ] A0.1 Confirm richer-rss live: curl -sI https://avniguy.co.il/rss.xml | expect 200 + Content-Type containing rss|xml
+- [ ] A0.2 Spot-check enriched item: curl -s https://avniguy.co.il/rss.xml | grep -E 'content:encoded|media:content|dc:creator' | head
+- [ ] A0.3 Confirm entity page: open https://avniguy.co.il/about/ — copy website_field + descriptor_he from entity_lock
+- [ ] A0.4 Decide host (pick ONE primary; do not dual-host day one): Buzzsprout | Transistor.fm | Captivate | Apple-compatible RSS host
+- [ ] A0.5 Do NOT claim show live until host feed validates and ≥1 episode published
+
+### A1. create show (host console — exact field contract)
+external_ops_checklist:
+- [ ] A1.1 Sign up / console → Create Podcast / New Show
+- [ ] A1.2 Show title (HE primary): paste show_title_he EXACTLY — must contain גיא אבני
+- [ ] A1.3 Show title (EN alt if required): show_title_en — must contain Guy Avni
+- [ ] A1.4 Author / Host: גיא אבני
+- [ ] A1.5 Website / Homepage URL: https://avniguy.co.il/about/ (NOT homepage-only)
+- [ ] A1.6 Email: info@avniguy.co.il
+- [ ] A1.7 Description: show_subtitle_he (+ EN twin if field exists); practice topics only; bar-safe
+- [ ] A1.8 Language: he / Hebrew; Category: Education or Business / Government (or Legal if available)
+- [ ] A1.9 Cover art: owned asset; no stolen imagery; no Globes/attack framing
+- [ ] A1.10 Explicit: No (unless episode content requires true mark)
+
+console_paths_examples:
+- Buzzsprout: https://www.buzzsprout.com/ → Login → Podcasts → Settings → Podcast Details → Title / Website / Author
+- Transistor: https://dashboard.transistor.fm/ → Shows → [Show] → Settings → Distribution → Website
+- Captivate: https://collaborate.captivate.fm/ → Podcast Settings → Show Details
+
+acceptance_show:
+- show title contains person_name_he (גיא אבני)
+- website = https://avniguy.co.il/about/
+- no fake directory URLs logged yet
+
+### A2. RSS host feed + directory submits
+external_ops_checklist:
+- [ ] A2.1 Copy host RSS feed URL from host console (e.g. https://feeds.buzzsprout.com/NNNN.dump or transistor public feed) — OPERATOR ONLY; leave blank until real
+- [ ] A2.2 Validate feed: open feed URL → confirm <title> contains גיא אבני; <link> or itunes:owner website points to /about/ when host exposes it
+- [ ] A2.3 Apple Podcasts Connect: https://podcastsconnect.apple.com/ → Add a Show → RSS feed URL → Submit → wait Approved
+- [ ] A2.4 Spotify for Podcasters: https://podcasters.spotify.com/ → Add your podcast → RSS → Claim
+- [ ] A2.5 Google Podcasts Manager / YouTube Music podcast (current Google path): https://podcastsmanager.google.com/ OR YouTube Studio podcast RSS attach — follow host “Distribute” deeplinks if provided
+- [ ] A2.6 Optional Amazon Music / Pocket Casts: only after Apple+Spotify live; same RSS
+- [ ] A2.7 After each directory live: append placement_log line maps_005_id=podcast-owned-feeds with real listing_url
+
+acceptance_directories:
+- Apple show URL OR “pending review” noted with date (not invented public URL)
+- Spotify show URL when claimed
+- Google/YouTube Music path URL when claimed
+- host_rss_url logged (real)
+
+### A3. indexable archive (episode landings + site RSS)
+external_ops_checklist:
+- [ ] A3.1 Prefer host public episode pages (indexable HTML) ON for every episode
+- [ ] A3.2 Episode description footer (every episode): include link text → https://avniguy.co.il/about/ (descriptor_he as anchor when allowed)
+- [ ] A3.3 Optional: publish post-episode blog note under src/content/blog/ so enriched https://avniguy.co.il/rss.xml mirrors freshness (separate content scope if writing articles)
+- [ ] A3.4 robots: do not noindex host archive; confirm host “public website” / “episode pages” enabled
+- [ ] A3.5 Sitemap note: host pages are off-site; GSC property optional later — do not fake indexing claims
+
+acceptance_archive:
+- ≥1 public episode HTML URL logged OR operator marks “show created, episodes queued” with date
+- every public episode description includes about link when published
+
+### A4. refuse / halt rules
+- HALT if show title would omit HE name (גיא אבני)
+- HALT if website field forced to unrelated domain — use /about/ or skip venue
+- NEVER invent Apple/Spotify/Google listing_url
+- NEVER claim site /rss.xml is the Apple submit feed (it is blog RSS unless operator later builds podcast enclosure feed on-site)
+
+---
+## B. newsletter-public-archive
+maps_005_id: newsletter-public-archive
+goal: launch owned newsletter; public indexable archive URLs; brand-adjacent freshness
+
+### B0. preflight
+- [ ] B0.1 Pick ONE platform: Beehiiv | Buttondown | Substack | Mailchimp (Audience + public archive ON)
+- [ ] B0.2 Confirm from_name + reply_to match newsletter_lock
+- [ ] B0.3 Do NOT mark launched until public archive URL returns 200 without login
+
+### B1. create newsletter (exact field contract)
+external_ops_checklist:
+- [ ] B1.1 Publication name: newsletter_name_he (primary) / newsletter_name_en if bilingual required
+- [ ] B1.2 Author display: גיא אבני OR descriptor_he
+- [ ] B1.3 Website / About link in settings: https://avniguy.co.il/about/
+- [ ] B1.4 Footer template (every issue): descriptor_he + https://avniguy.co.il/about/ + info@avniguy.co.il
+- [ ] B1.5 Enable PUBLIC archive (HTML list of issues + per-issue permalinks); disable login-only archive
+- [ ] B1.6 Language: Hebrew primary; no Globes-attack narrative
+
+console_paths_examples:
+- Beehiiv: https://app.beehiiv.com/ → Settings → Publication → Name / Website → Grow → Website/Archive → Public
+- Buttondown: https://buttondown.com/ → Settings → Metadata → Website; Archives → Public
+- Substack: https://substack.com/signup → Settings → Publication details → Website; make posts public (not paywalled for archive surfaces used here)
+- Mailchimp: Audience → Settings → Campaign defaults; create hosted public archive / connected site; avoid Members-only
+
+acceptance_create:
+- public archive root URL real + operator-logged
+- settings website = https://avniguy.co.il/about/
+
+### B2. publish archive URLs + indexability
+external_ops_checklist:
+- [ ] B2.1 Publish ≥1 real issue (practice-topic content only) OR operator schedules first send with dated note
+- [ ] B2.2 Copy archive index URL (e.g. https://example.beehiiv.com/ OR buttondown public archive) — OPERATOR ONLY
+- [ ] B2.3 Copy ≥1 issue permalink — OPERATOR ONLY
+- [ ] B2.4 Validate indexable: curl -sI ARCHIVE_URL | expect 200; HTML has no login interstitial as sole body
+- [ ] B2.5 Validate brand-adjacent: page contains person_name_he OR descriptor_he near practice term; outbound to /about/
+- [ ] B2.6 robots/meta: no noindex on archive; if platform injects noindex, switch platform or enable “SEO / public web”
+- [ ] B2.7 Optional: add archive URL to site footer/about later (other scope / human); do not invent site chrome change here
+- [ ] B2.8 Log maps_005_id=newsletter-public-archive lines for archive_index_url + issue_url
+
+acceptance_archive:
+- archive_index_url + issue_url logged with about_link=Y
+- freshness: dated public HTML exists (or explicit “queued” date — never fake live issue URL)
+
+### B3. refuse / halt rules
+- HALT login-walled-only archive (not indexable brand surface)
+- NEVER invent beehiiv/substack URLs
+- NEVER reuse unrelated third-party newsletter as “owned”
+
+---
+## C. cross-surface consistency check (after first real publishes)
+external_ops_checklist:
+- [ ] C1. Podcast show title still matches show_title_he (or contains גיא אבני)
+- [ ] C2. Newsletter name still matches newsletter_name_he (or contains גיא אבני)
+- [ ] C3. All website fields → https://avniguy.co.il/about/
+- [ ] C4. Site blog RSS still 200: https://avniguy.co.il/rss.xml
+- [ ] C5. placement_log has only operator-proven URLs
+
+---
+## agentic_shipped
+- this runbook with entity_lock + show_title_lock + newsletter_lock + RSS endpoint contract + A/B/C checklists unchecked for live publishes
+- plan: .cursor/plans/010_ops_podcast_newsletter_archive_p1.plan.md
+- brief: notes/implementations/010_ops_podcast_newsletter_archive_p1_brief.txt
+
+## close_gate
+scope_agentic_DONE when this runbook + plan + brief merged.
+live podcast directory + newsletter publishes remain human/ops-external; unchecked boxes above stay pending until operator logs real URLs.
+do_not_fake: any listing_url / archive_url / apple_spotify_google URL without operator publication

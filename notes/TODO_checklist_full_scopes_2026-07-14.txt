@@ -1,0 +1,190 @@
+# SERP occupation — estimated PLAN_MODE scopes (from 005)
+# Source: OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md
+# Derived estimate chat 2026-07-14 → 36 merged plans
+# Status: owner scope list — not SSOT
+# Loop: .commends/TODO_scope_list_implement.md
+
+## home-h1-demote-non-entity
+Prerequisite: none
+- [x] Demote `/` H1 off exact brand-lawyer string; keep `/about/` H1; G0 H1 assert
+Maps-005: home-h1-demote-non-entity, gate-g0-h1-title-split(H1)
+
+## home-title-brand-portal
+Prerequisite: none
+- [x] Home title firm/portal + absoluteTitle; G0 title assert
+Maps-005: home-title-brand-portal, gate-g0-h1-title-split(title)
+
+## brand-query-home-about-ownership
+Prerequisite: home-h1-demote-non-entity
+- [x] Validate about title/intro; demote home competing bio; keep about as entity answer
+Maps-005: about-title-lawyer-query, brand-query-answer-ownership-about
+
+## home-internal-link-weight-to-about
+Prerequisite: brand-query-home-about-ownership
+- [x] Exact anchors `גיא אבני` + `גיא אבני עורך דין` → `/about/` in first-viewport/HomeSeo
+Maps-005: home-internal-link-weight-to-about
+
+## sitelink-candidate-freeze
+Prerequisite: none
+- [x] Freeze nav+footer to אודות/שירותים/מאמרים/יצירת קשר; tags stay noindex
+Maps-005: sitelink-candidate-freeze
+
+## about-section-ranking-surface
+Prerequisite: brand-query-home-about-ownership
+- [x] Stable about section ids; query-bearing inbound anchors; no thin entity URLs
+Maps-005: about-section-ranking-surface
+
+## home-heroes-entity-role-split
+Prerequisite: home-h1-demote-non-entity, home-title-brand-portal
+- [x] Align home hero copy/images/eyebrows to firm-portal vs person hub
+Maps-005: home-heroes-entity-role-split
+
+## about-eeat-nap-license
+Prerequisite: brand-query-home-about-ownership
+- [x] Visible NAP + bar number/listing when verified; photo/credential audit fixes
+Maps-005: about-eeat-visible-photo-credentials, nap-license-visible
+
+## person-schema-edges-truthful
+Prerequisite: about-eeat-nap-license
+- [x] alumniOf/memberOf/bar ID only if true+visible; stable image
+Maps-005: person-schema-edges-truthful
+
+## entity-federation-guyavni
+Prerequisite: person-schema-edges-truthful
+- [x] Mutual sameAs + footer role split; secondary domain leaf when controllable
+Maps-005: entity-federation-guyavni, secondary-domain-role-split
+
+## brand-image-pack
+Prerequisite: none
+- [x] Unique portrait/office assets + alt/ImageObject; image-rank panel setup
+Maps-005: brand-image-pack, image-search-rank-panel
+
+## richer-rss
+Prerequisite: none
+- [x] author + content:encoded + media:content on /rss.xml
+Maps-005: richer-rss
+
+## sheelot-paa-factory
+Prerequisite: none
+- [x] /sheelot/ H2=PAA + schema + sitemap + IndexNow
+Maps-005: sheelot-paa-factory
+
+## speakable-voice-blocks
+Prerequisite: brand-query-home-about-ownership
+- [x] Speakable/visible short HE answers on about + top hubs
+Maps-005: speakable-voice-blocks
+
+## transliteration-bridge-routes
+Prerequisite: brand-query-home-about-ownership
+- [x] /guy-avni/ (+ optional HE) entity cards → /about/ + sitemap
+Maps-005: transliteration-bridge-routes
+
+## practice-bridge-landings
+Prerequisite: high-intent-owned-url-gated
+- [x] 1–3 practice-bridge landings; bar-safe; sitemap
+Maps-005: practice-bridge-landings
+
+## fan-out-h2-maps-on-hubs
+Prerequisite: about-section-ranking-surface
+- [x] Fan-out H2 clusters on existing hubs; zero thin URLs
+Maps-005: fan-out-h2-maps-on-hubs
+
+## editorial-policy-page
+Prerequisite: none
+- [x] Methodology/editorial-policy page + about/footer links + sitemap
+Maps-005: editorial-policy-page
+
+## media-appearances-index
+Prerequisite: none
+- [x] Indexable /media/ or about section + sitemap if route
+Maps-005: media-appearances-index
+
+## mcp-citation-bait
+Prerequisite: none
+- [x] Document site-mcp-server.mjs; agent card; not Google SEO theater
+Maps-005: mcp-citation-bait
+
+## well-known-person-json
+Prerequisite: person-schema-edges-truthful
+- [x] /.well-known/person.json + Person schema link
+Maps-005: well-known-person-json
+
+## indexnow-deletes-redirects-completeness
+Prerequisite: none
+- [x] IndexNow updates+301/gone; sitemap lastmod only on real change
+Maps-005: indexnow-deletes-redirects-completeness
+
+## indexnow-gsc-one-shot
+Prerequisite: indexnow-deletes-redirects-completeness
+- [x] Top-20 IndexNow expand; real GSC client or manual path; one-shot ops
+Maps-005: indexnow-gsc-one-shot
+
+## inject-entity-links-smoke
+Prerequisite: none
+- [x] Live sample inject anchors; redesign only if <1/post
+Maps-005: inject-entity-links-smoke
+
+## prod-sameas-bar-assert
+Prerequisite: person-schema-edges-truthful
+- [x] Prod sameAs assert; PERSON_ISRAEL_BAR_URL when claimed
+Maps-005: prod-sameas-live-assert, bar-listing-sameas
+
+## high-intent-owned-url-gated
+Prerequisite: gate measure stall (gate-g1/g2)
+- [x] Extra strong URL only after G1–G2 stall
+Maps-005: high-intent-owned-url-gated
+
+## youtube-short-form-embed
+Prerequisite: none
+- [x] Embed HE short-form Q&A on about/services
+Maps-005: youtube-short-form-embed
+
+## non-commodity-ymyl-originals
+Prerequisite: none
+- [x] Refresh claim→evidence YMYL; stop brand-prefix title spam if no CTR lift
+Maps-005: non-commodity-ymyl-originals
+
+## owned-page1-asset-pack
+Prerequisite: prod-sameas-bar-assert
+- [x] ops: LinkedIn/Bar/YT/GBP identical HE descriptor → /about/
+Maps-005: owned-page1-asset-pack
+
+## chaptered-youtube
+Prerequisite: youtube-short-form-embed
+- [x] ops: chaptered HE explainers + pinned → avniguy
+Maps-005: chaptered-youtube
+
+## wikidata-hebrew-kp-loop
+Prerequisite: prod-sameas-bar-assert
+- [x] ops: Wikidata HE + sameAs + KP; offsite name descriptor hygiene
+Maps-005: wikidata-q-hebrew-kp-loop, hebrew-name-disambiguation-offsite
+
+## google-business-profile
+Prerequisite: owned-page1-asset-pack
+- [x] ops: GBP name/posts/Q&A refresh
+Maps-005: google-business-profile
+
+## earned-offsite-bios-network
+Prerequisite: none
+- [x] ops: earned bios + co-occurrence + civic NAP
+Maps-005: earned-bio-placements, positive-co-occurrence-network, civic-directory-nap
+
+## podcast-newsletter-archive
+Prerequisite: richer-rss
+- [x] ops: podcast feeds + newsletter public archive
+Maps-005: podcast-owned-feeds, newsletter-public-archive
+
+## measure-gates-g1-g4
+Prerequisite: home-h1-demote-non-entity, home-title-brand-portal, home-internal-link-weight-to-about
+- [x] ops: G1–G4 + kill-switch + dual-property matrix
+Maps-005: gate-g1..g4, kill-switch-three-flat-cycles, dual-property-rank-matrix
+
+## ai-citation-measure-loop
+Prerequisite: mcp-citation-bait, brand-query-home-about-ownership
+- [x] ops: Bing AI / GSC GenAI / citation-bait / hallucination battery → patch about
+Maps-005: bing-ai-performance-loop, gsc-genai-monthly-brand-serp, citation-bait-ai-prompts, hallucination-battery
+
+## deferred-moonshots
+Prerequisite: measure-gates-g1-g4 (stall unlock)
+- [x] wikipedia-notability-gate, open-library-ssrn-cle-deposit, ac-il-cle-bio, archive-org-hygiene, other-guy-avni-disambiguation-card
+Maps-005: moonshots + disambiguation

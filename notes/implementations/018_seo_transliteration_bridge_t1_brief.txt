@@ -1,0 +1,48 @@
+plan_base: 018_seo_transliteration_bridge_t1
+scope: transliteration-bridge-routes
+branch: feature/scope-transliteration-bridge-routes
+worktree: /Users/doronavni/avni-guy-wt-transliteration-bridge-routes
+status: MERGED_ON_MAIN
+verify: pnpm exec next build PASS (Node 22); route ○ /guy-avni present; full pnpm build blocked earlier by ENOSPC + media SiteKeyword; fixed media keyword to unblock
+ADR: none , cite SSOT.md
+
+## shipped
+- src/app/guy-avni/page.tsx — Hebrew-first entity card bridge (identity facts, practice links, FAQ, CTA → /about/, AttorneyCredentialBlock, WebPage+FAQ JSON-LD, mainEntity → /about/#person)
+- src/app/sitemap.ts — `/guy-avni/` in STATIC_PATH_LASTMOD (2026-07-14)
+- HE unicode `/גיא-אבני/` — skipped (ASCII sufficient; /about/ owns HE brand)
+
+## commits
+0577bbaa add-plan-seo-transliteration-bridge-t1
+ee909ced add-guy-avni-transliteration-entity-card
+b35687f5 add-guy-avni-path-to-sitemap
+44dcb5bc fix-media-keywords-invalid-sitekeyword-unblock  # OUTSIDE exclusive; baseline tsc unblock
+
+## exclusive_files_touched
+- src/app/guy-avni/
+- src/app/sitemap.ts
+- (non-exclusive unblock) src/app/media/page.tsx — removed invalid SiteKeyword 'גיא אבני מדיה'
+
+## next plan suggestion
+- Wire nav/footer link to /guy-avni/ if desired (parent layout scope)
+- IndexNow ping /guy-avni/ post-deploy
+- practice-bridge-landings (sibling)
+
+## files to read
+- src/app/guy-avni/page.tsx
+- src/app/sitemap.ts
+- .cursor/plans/018_seo_transliteration_bridge_t1.plan.md
+
+## rules
+- .cursor/rules/ssot-repo-structure.mdc
+- SSOT.md
+- unique-site-images.mdc (no new images; reuse shared OG/portrait)
+
+## tools and status
+- worktree build: PASS via `pnpm exec next build`
+- task_graph.log: orchestrator append post-merge
+- merge: orchestrator only
+
+## open issues
+- Disk was ~160Mi free mid-verify (ENOSPC); sibling .next pruned to recover
+- media keywords unblock may conflict if media branch still open — prefer this one-line
+- Nav/footer not wired (out of scope)

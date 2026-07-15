@@ -1,0 +1,42 @@
+date: 2026-07-14 , 18:00 , Asia/Jerusalem
+plan_base: 017_seo_home_heroes_entity_role_h1
+scope: home-heroes-entity-role-split
+status: MERGED_ON_MAIN
+branch: feature/scope-home-heroes-entity-role-split
+worktree: /Users/doronavni/avni-guy-wt-home-heroes-entity-role-split
+ADR: none , cite SSOT.md
+
+## next plan suggestion
+- Orchestrator: merge this branch; map atomic commits into task_graph.log; tick home-heroes-entity-role-split [x].
+- Next SERP scope: about-section-ranking-surface or about-eeat-nap-license.
+
+## files to read
+- SSOT.md — product/workflow SSOT; cite when ADR none.
+- src/lib/seo/main-page-heroes.mjs — home firm-portal vs about person hub heroes.
+- src/lib/home/loadHomeData.ts — home hero image[0] firmPortalKeyword alts.
+- src/app/page.tsx — keep portal title/H1 alignment (out of claim; already done).
+- src/app/media/page.tsx — pre-existing SiteKeyword typebreak on worktree base (blocks build).
+- notes/TODO_checklist_full_scopes_2026-07-14.txt — scope checkbox.
+
+## rules (.cursor/rules/)
+- enforcement/atomic-change-loging.mdc — orchestrator maps commits to task_graph after merge.
+- unique-site-images.mdc — alt/title framing only; no new raster in this scope.
+- enforcement/plans-directory-and-numbering.mdc
+- implementation-notes-placement.mdc
+- handoff-and-scope-loop.mdc
+- ssot-repo-structure.mdc
+
+## tools and status
+- Implemented: `/` eyebrow→firm portal, subhead→office portal, keyword→`גיא אבני משרד עורכי דין`, intro demoted bio→points to /about/; extended H1 kept; `/about/` unchanged person hub; homeImages[0] firmPortalKeyword alts.
+- Commits: 9e4d691d add-plan ; cd63eb95 hero-copy ; 6febaf05 hero-image-alts ; 2a4bb68d plan-todos ; 70a0084b brief ; d5bb9bd8 media-keywords-verify-unblock (out of exclusive_files; synced from main)
+- Role-split asserts: home.h1≠about.h1 ; home.keyword≠about.keyword ; about.h1=`גיא אבני עורך דין` ; no U+2014.
+- Verify: `pnpm build` PASS (node 22.22.2) after media SiteKeyword unblock.
+- Review: home firm-portal vs about person hub; H1/title portal kept; exclusive hero files only for scope intent.
+- No task_graph.log append (worker). No merge.
+
+## open issues
+- none for scope; orchestrator should note d5bb9bd8 is verify-unblock outside exclusive_files claim.
+
+## accepted results
+- action: load `/` and `/about/` heroes after merge/deploy
+- expected: home eyebrow/keyword/subhead/intro firm-portal; about remains person hub H1 `גיא אבני עורך דין`; hero img alt uses משרד עורכי דין

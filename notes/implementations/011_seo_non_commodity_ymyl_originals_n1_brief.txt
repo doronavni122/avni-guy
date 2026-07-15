@@ -1,0 +1,38 @@
+plan_base: 011_seo_non_commodity_ymyl_originals_n1
+scope: non-commodity-ymyl-originals
+status: NEEDS_MERGE
+branch: feature/scope-non-commodity-ymyl-originals
+worktree: /Users/doronavni/avni-guy-wt-non-commodity-ymyl-originals
+maps_005: non-commodity-ymyl-originals
+
+next_plan_suggestion: corpus CTR audit then batch metaTitle brand-prefix→suffix if no lift; next open 005 scope
+
+files_to_read:
+- .cursor/plans/011_seo_non_commodity_ymyl_originals_n1.plan.md
+- src/content/blog/buying-from-contractor-checklist.mdx
+- src/content/blog/capital-gains-exemption-single-apartment-2026.mdx
+- src/content/blog/landlord-security-deposit-return.mdx
+- SSOT.md
+
+rules:
+- ADR: none , cite SSOT.md
+- exclusive: src/content/blog/ (+ plan/brief deliverables)
+- non-regression: no mass /about/ entity MDX anchors; no Globes rebuttal; no FAQ schema theater
+- brand_prefix_ctr_gate: OPEN — no GSC/CTR in session; do not invent metrics; corpus ~134 metaTitle brand-prefix left untouched
+
+tools_and_status:
+- refresh_claim_evidence: DONE (3 posts)
+- buying-from-contractor-checklist: rewritten checklist + gov cites; mainKeyword topic; metaTitle topic-first + brand suffix; FAQ 4 real
+- capital-gains-exemption-single-apartment-2026: rewritten claim→evidence; brand-H2 spam removed; mainKeyword=פטור ממס שבח במכירת דירה יחידה 2026
+- landlord-security-deposit-return: keyword/meta fix; first-person evidence; dedupe trailer fluff; updatedDate 2026-07-14
+- strip_body_brand_repeat: DONE (6 files: wrongful-termination, driving-license-suspension, evidence-prioritization, risk-management, long-term-legal-strategy, legal-content-writing)
+- verify: pnpm exec next build PASS (skipped package prebuild optimize-images — disk 98% / worktree thrash risk); Node 22.22.2
+- commits: 485bd03b 3129b2ce 2938ff24 65a1486c a915b2f7 + brief commit
+
+open_issues:
+- brand_prefix_ctr_gate: ops must pull brand SERP CTR before corpus metaTitle de-prefix
+- disk_pressure: worktree deleted mid prebuild twice at ~11Gi free; prefer next build without optimize-images in thin worktrees
+- FAQPage schema: still emits when faq.length>=4; refreshed posts use real Q&A only (not theater)
+
+checklist_lines:
+- notes/TODO_checklist_full_scopes_2026-07-14.txt ## non-commodity-ymyl-originals → mark complete after merge

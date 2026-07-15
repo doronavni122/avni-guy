@@ -1,0 +1,34 @@
+plan_base: 007_seo_editorial_policy_page_e1
+scope: editorial-policy-page
+branch: feature/scope-editorial-policy-page
+status: NEEDS_MERGE
+ADR: none , cite SSOT.md
+
+## next plan suggestion
+Wire /editorial-policy/ into about + footer/nav after P0 site-nav/layout merge (parent-claimed files). Optionally point categories page "מדיניות עריכה" link from /about/ to /editorial-policy/.
+
+## files to read
+src/app/editorial-policy/page.tsx
+src/app/sitemap.ts
+.cursor/plans/007_seo_editorial_policy_page_e1.plan.md
+
+## rules (.cursor/rules/)
+ssot-repo-structure.mdc
+enforcement/atomic-change-loging.mdc
+unique-site-images.mdc (no new images)
+handoff-and-scope-loop.mdc
+
+## tools and status
+pnpm exec next build: PASS (route ○ /editorial-policy)
+pnpm exec next dev -p 3011: PASS HTTP 200; sitemap contains editorial-policy; disclaimer+bar copy present
+task_graph.log: orchestrator post-merge (worker did not append)
+
+## open issues
+about/footer/nav links NOT wired: exclusive isolation; parent claims site-nav/layout. Body links to /about/ /blog/ /contact/ /services/ /categories/ only.
+orchestrator: mark scope list editorial-policy-page [x]; append task_graph after merge of SHAs below.
+worktree was wiped mid-run by external prune; recreated+locked for verify. unlock after merge if still locked.
+
+## commits
+a3ea11885c45dd52583521ba1e3e7ae73a56208e add-editorial-policy-page-plan
+014a455d12ad74ae59ddb08ccb871289b9b73404 add-editorial-policy-page
+8beb0dbc3b4c6d70d2a82b5c4312e8f71cd59fc8 add-editorial-policy-to-sitemap

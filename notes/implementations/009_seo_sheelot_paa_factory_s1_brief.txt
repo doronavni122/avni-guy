@@ -1,0 +1,27 @@
+plan_base: 009_seo_sheelot_paa_factory_s1
+scope: sheelot-paa-factory
+status: NEEDS_MERGE
+branch: feature/scope-sheelot-paa-factory
+worktree: /Users/doronavni/avni-guy-wt-sheelot-paa-factory
+ADR: none , cite SSOT.md
+
+next_plan_suggestion: speakable-voice-blocks (depends_on sheelot-paa-factory optional)
+
+files_to_read:
+- src/app/sheelot/page.tsx
+- src/app/sitemap.ts
+- .cursor/plans/009_seo_sheelot_paa_factory_s1.plan.md
+
+rules:
+- exclusive_files only: src/app/sheelot/ , src/app/sitemap.ts
+- no FAQ schema theater on brand pages
+- no Globes rebuttal
+- no MDX blog rewrites
+
+tools_and_status:
+- commits: e24118a3 plan-sheelot-paa-factory-s1 ; 9557ad19 add-sheelot-paa-h2-qa-page ; 3dace2f8 add-sheelot-path-to-sitemap ; 815101b6 brief-sheelot-paa-factory-s1
+- verify: PASS — next build archive /tmp/sheelot-paa-verify; route ○ /sheelot in build; compiled successfully; BUILD exit 0
+- IndexNow: POST-DEPLOY OPS — after production deploy, ping `/sheelot/` via scripts/post-deploy-indexnow.mjs (extend STATIC_PATHS) or POST /api/indexnow with urls including https://avniguy.co.il/sheelot/ ; do NOT treat as done until that run succeeds in prod. No local ping success claimed.
+
+open_issues:
+- scripts/post-deploy-indexnow.mjs STATIC_PATHS does not yet include /sheelot/ (out of exclusive_files; parent/indexnow scope should add)
