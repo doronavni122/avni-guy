@@ -5,6 +5,8 @@ import { MainPageHero } from '@/components/seo/MainPageHero';
 import { EntityByline } from '@/components/seo/EntityByline';
 import { SiteShell } from '@/components/layout/SiteShell';
 import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
+import { attachSpeakable, SPEAKABLE_VOICE_CLASS } from '@/lib/seo/speakable';
+import { SERVICES_SPEAKABLE_VOICE_BLOCKS } from '@/lib/seo/speakable-voice-blocks';
 import { buildPageMetadata } from '@/lib/metadata';
 import { replaceEmDashDeep } from '@/lib/content/sanitize-user-facing-text';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
@@ -20,7 +22,7 @@ import {
 export const dynamic = 'force-static';
 
 const SERVICES_OG_IMAGE = `${SITE_URL}/images/shared/guy-avni-avni-guy-law-firm-lawyer-og-law-fallback-photo-1.jpg`;
-const SERVICES_DATE_MODIFIED = '2026-07-13';
+const SERVICES_DATE_MODIFIED = '2026-07-14';
 
 export const metadata = buildPageMetadata({
 	title: 'גיא אבני | שירותים - ייעוץ, ליווי ותכנון משפטי',
@@ -73,6 +75,90 @@ const PRACTICE_AREAS = [
 	{ title: 'ליווי עסקי', href: '/categories/business/' },
 ] as const;
 
+/** AI Mode–style fan-out clusters: H2 intents on services hub (no thin URLs). */
+const FANOUT_ENGAGEMENT: {
+	title: string;
+	body: string;
+	href?: string;
+	linkLabel?: string;
+}[] = [
+	{
+		title: 'מתי מספיק ייעוץ חד-פעמי?',
+		body: 'כשיש שאלה אחת ברורה, מסמך לבדיקה, או החלטה לפני חתימה - בלי צורך במעקב שוטף. מתחילים בפגישת מיקוד ומגדירים מה בפנים ומה בחוץ.',
+	},
+	{
+		title: 'מתי כדאי ליווי מלא?',
+		body: 'כשיש עסקה מתגלגלת, מו״מ מול צדדים, דיווחים לרשויות, או הליך שדורש תיעוד ועדכונים לאורך זמן. כאן נכנסים ניסוח, תקשורת ומעקב.',
+	},
+	{
+		title: 'איך מחליטים במסלול העבודה?',
+		body: 'בעמוד האודות מפורט מסלול מיקוד-סיכונים-ליווי. אחרי קריאה קצרה אפשר לתאם פנייה עם נושא מדויק.',
+		href: '/about/#workflow',
+		linkLabel: 'מסלול העבודה בעמוד אודות',
+	},
+];
+
+const FANOUT_PRACTICE_MAP = [
+	{
+		title: 'נדל״ן ומיסוי',
+		body: 'קנייה, מכירה, מס שבח ומס רכישה - דרך קטגוריית המיסוי ומסלול נדל״ן באתר.',
+		links: [
+			{ href: '/nedlan-lawyer-guy-avni/', label: 'מסלול נדל״ן' },
+			{ href: '/categories/tax/', label: 'קטגוריית מיסוי' },
+			{ href: '/categories/real-estate/', label: 'קטגוריית נדל״ן' },
+		],
+	},
+	{
+		title: 'חוזים לפני חתימה',
+		body: 'בדיקת טיוטה, סימון סיכונים וביטול עסקה - בלי עמוד נפרד לכל סוג חוזה.',
+		links: [
+			{ href: '/contracts-lawyer-guy-avni/', label: 'מסלול חוזים' },
+			{ href: '/categories/contracts/', label: 'קטגוריית חוזים' },
+		],
+	},
+	{
+		title: 'ליטיגציה וליווי עסקי',
+		body: 'הכנה להליך אזרחי, או ליווי שוטף לעסק - לפי דחיפות ותקציב שנקבעים בפגישת מיקוד.',
+		links: [
+			{ href: '/categories/litigation/', label: 'קטגוריית ליטיגציה' },
+			{ href: '/categories/business/', label: 'קטגוריית עסקים' },
+		],
+	},
+] as const;
+
+const FANOUT_GUIDES = [
+	{
+		title: 'בחירת עורך דין',
+		href: '/blog/find-winning-lawyer-israel-bar-members/',
+		linkLabel: 'מדריך בחירת עורך דין',
+	},
+	{
+		title: 'עורך דין מקרקעין',
+		href: '/blog/choose-real-estate-lawyer/',
+		linkLabel: 'בחירת עו״ד מקרקעין',
+	},
+	{
+		title: 'מסמכי קונה דירה',
+		href: '/blog/apartment-buyer-required-documents/',
+		linkLabel: 'מסמכים לקונה דירה',
+	},
+	{
+		title: 'רכישה מקבלן',
+		href: '/blog/buying-from-contractor-checklist/',
+		linkLabel: 'צ׳קליסט רכישה מקבלן',
+	},
+	{
+		title: 'מס שבח דירה יחידה',
+		href: '/blog/capital-gains-exemption-single-apartment-2026/',
+		linkLabel: 'פטור מס שבח דירה יחידה',
+	},
+	{
+		title: 'מס שבח דירה שנייה',
+		href: '/blog/capital-gains-tax-second-apartment/',
+		linkLabel: 'מס שבח דירה שנייה',
+	},
+] as const;
+
 const SERVICES_FAQ = replaceEmDashDeep([
 	{
 		question: 'מה כוללת פגישת מיקוד?',
@@ -119,13 +205,15 @@ export default function ServicesPage() {
 
 	const jsonLd = [
 		buildBreadcrumbSchema(breadcrumbItems),
-		buildWebPageSchema({
-			'@id': `${SITE_URL}/services/#webpage`,
-			url: `${SITE_URL}/services/`,
-			name: 'גיא אבני | שירותים - ייעוץ, ליווי ותכנון משפטי',
-			description: DIRECT_ANSWER,
-			dateModified: SERVICES_DATE_MODIFIED,
-		}),
+		attachSpeakable(
+			buildWebPageSchema({
+				'@id': `${SITE_URL}/services/#webpage`,
+				url: `${SITE_URL}/services/`,
+				name: 'גיא אבני | שירותים - ייעוץ, ליווי ותכנון משפטי',
+				description: DIRECT_ANSWER,
+				dateModified: SERVICES_DATE_MODIFIED,
+			}),
+		),
 		buildItemListSchema(itemListEntries),
 		buildFaqSchema([...SERVICES_FAQ]),
 		buildHowToSchema({
@@ -145,8 +233,24 @@ export default function ServicesPage() {
 				</p>
 				<EntityByline lastUpdatedLabel="יולי 2026" />
 
-				<PageSection className="mt-16">
-					<SectionHeader index={1} eyebrow="שירותים" title="מה אנחנו מציעים" />
+				<PageSection id="speakable" className="mt-16">
+					<SectionHeader index={1} eyebrow="תשובות קצרות" title="תשובות קוליות קצרות על השירותים" />
+					<div className="mt-8 flex max-w-3xl flex-col gap-6">
+						{SERVICES_SPEAKABLE_VOICE_BLOCKS.map(({ id, question, answer }) => (
+							<div key={id} id={`speakable-${id}`} className="border-b border-border pb-6 last:border-b-0">
+								<h3 className="font-heading text-lg font-semibold text-foreground">{question}</h3>
+								<p
+									className={`${SPEAKABLE_VOICE_CLASS} mt-3 text-pretty text-sm leading-relaxed text-muted-foreground`}
+								>
+									{answer}
+								</p>
+							</div>
+						))}
+					</div>
+				</PageSection>
+
+				<PageSection>
+					<SectionHeader index={2} eyebrow="שירותים" title="מה אנחנו מציעים" />
 					<div className="mt-8 grid gap-px border border-border bg-border sm:grid-cols-2">
 						{SERVICES.map(({ num, title, text }) => (
 							<article key={title} id={title} className="group flex flex-col gap-4 bg-background p-8 transition-colors hover:bg-card">
@@ -162,7 +266,7 @@ export default function ServicesPage() {
 				</PageSection>
 
 				<PageSection>
-					<SectionHeader index={2} eyebrow="תחומים" title="תחומי ליווי" />
+					<SectionHeader index={3} eyebrow="תחומים" title="תחומי ליווי" />
 					<ul className="mt-6 flex max-w-3xl flex-wrap justify-end gap-x-4 gap-y-2 text-sm">
 						{PRACTICE_AREAS.map(({ title, href }) => (
 							<li key={title}>
@@ -174,8 +278,86 @@ export default function ServicesPage() {
 					</ul>
 				</PageSection>
 
+				<PageSection id="fanout-engagement">
+					<SectionHeader
+						index={4}
+						eyebrow="המשך חיפוש"
+						title="מתי ייעוץ חד-פעמי ומתי ליווי מלא"
+					/>
+					<p className="mt-4 max-w-3xl text-pretty text-sm leading-relaxed text-muted-foreground">
+						שאלות על היקף התקשרות נענות כאן בעמוד השירותים - כדי שלא ייווצרו עמודי מכירה דקים לכל סוג חבילה.
+					</p>
+					<div className="mt-8 flex max-w-3xl flex-col gap-6">
+						{FANOUT_ENGAGEMENT.map(({ title, body, href, linkLabel }) => (
+							<div key={title} className="border-b border-border pb-6 last:border-b-0">
+								<h3 className="font-heading text-lg font-semibold text-foreground">{title}</h3>
+								<p className="mt-3 text-pretty text-sm leading-relaxed text-muted-foreground">
+									{body}
+									{href && linkLabel ? (
+										<>
+											{' '}
+											<Link className="link-underline" href={href}>
+												{linkLabel}
+											</Link>
+											.
+										</>
+									) : null}
+								</p>
+							</div>
+						))}
+					</div>
+				</PageSection>
+
+				<PageSection id="fanout-practice-map">
+					<SectionHeader
+						index={5}
+						eyebrow="המשך חיפוש"
+						title="מפת מסלולים: נדל״ן, חוזים, ליטיגציה ועסקים"
+					/>
+					<p className="mt-4 max-w-3xl text-pretty text-sm leading-relaxed text-muted-foreground">
+						פיצול חיפוש לפי תחום מוביל לקטגוריות ולגשרי תרגול קיימים - לא לעמודי כוונה חדשים לכל מילת מפתח.
+					</p>
+					<div className="mt-8 flex max-w-3xl flex-col gap-6">
+						{FANOUT_PRACTICE_MAP.map(({ title, body, links }) => (
+							<div key={title} className="border-b border-border pb-6 last:border-b-0">
+								<h3 className="font-heading text-lg font-semibold text-foreground">{title}</h3>
+								<p className="mt-3 text-pretty text-sm leading-relaxed text-muted-foreground">{body}</p>
+								<ul className="mt-3 flex flex-wrap justify-end gap-x-4 gap-y-2 text-sm">
+									{links.map((link) => (
+										<li key={link.href}>
+											<Link className="link-underline" href={link.href}>
+												{link.label}
+											</Link>
+										</li>
+									))}
+								</ul>
+							</div>
+						))}
+					</div>
+				</PageSection>
+
+				<PageSection id="fanout-guides">
+					<SectionHeader index={6} eyebrow="המשך חיפוש" title="מדריכים לפי שלב בעסקה או בסכסוך" />
+					<p className="mt-4 max-w-3xl text-pretty text-sm leading-relaxed text-muted-foreground">
+						כוונות על מסמכים, קבלן ומס שבח ממופות למדריכי הבלוג הקיימים - אותם מדריכים מופיעים גם בעמוד האודות,
+						בלי כפילות של כתובות דקות.
+					</p>
+					<ul className="mt-6 grid max-w-3xl gap-3 sm:grid-cols-2">
+						{FANOUT_GUIDES.map(({ title, href, linkLabel }) => (
+							<li key={href} className="border border-border bg-background p-4">
+								<h3 className="font-heading text-base font-semibold text-foreground">{title}</h3>
+								<p className="mt-2 text-sm">
+									<Link className="link-underline" href={href}>
+										{linkLabel}
+									</Link>
+								</p>
+							</li>
+						))}
+					</ul>
+				</PageSection>
+
 				<PageSection>
-					<SectionHeader index={3} eyebrow="שאלות נפוצות" title="שאלות על השירותים" />
+					<SectionHeader index={7} eyebrow="שאלות נפוצות" title="שאלות על השירותים" />
 					<div className="mt-8 flex max-w-3xl flex-col gap-6">
 						{SERVICES_FAQ.map(({ question, answer }) => (
 							<div key={question} className="border-b border-border pb-6 last:border-b-0">
@@ -189,7 +371,7 @@ export default function ServicesPage() {
 				<PageSection>
 					<div className="grid gap-8 lg:grid-cols-12">
 						<div className="lg:col-span-4">
-							<span className="font-mono text-xs text-muted-foreground">04 / המשך</span>
+							<span className="font-mono text-xs text-muted-foreground">08 / המשך</span>
 						</div>
 						<div className="flex flex-col gap-4 text-right lg:col-span-8">
 							<h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground">מה כולל השירות</h2>

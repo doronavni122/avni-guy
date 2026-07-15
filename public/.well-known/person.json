@@ -1,0 +1,26 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://avniguy.co.il/about/#person",
+  "name": "גיא אבני",
+  "alternateName": ["Guy Avni", "עו״ד גיא אבני", "גיא אבני עורך דין"],
+  "jobTitle": "עורך דין",
+  "url": "https://avniguy.co.il/about/",
+  "image": "https://avniguy.co.il/images/shared/guy-avni-avni-guy-law-firm-lawyer-brand-portrait-photo-2.jpg",
+  "email": "info@avniguy.co.il",
+  "knowsAbout": [
+    "דיני נדל״ן",
+    "מיסוי מקרקעין",
+    "חוזים",
+    "ליטיגציה אזרחית",
+    "ייעוץ משפטי לעסקים"
+  ],
+  "worksFor": {
+    "@type": "LegalService",
+    "@id": "https://avniguy.co.il/#organization",
+    "name": "משרד גיא אבני",
+    "url": "https://avniguy.co.il/"
+  },
+  "mainEntityOfPage": "https://avniguy.co.il/about/",
+  "description": "עורך דין ישראלי. עמוד יישות מקצועי ב-avniguy.co.il (אתר תוכן/סמכות). אתר המשרד להמרה: guyavni.co.il כאשר בבעלות אותה ישות."
+}
