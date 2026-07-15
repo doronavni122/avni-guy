@@ -1,0 +1,35 @@
+plan: 023_seo_fan_out_h2_maps_on_hubs_f1
+scope: fan-out-h2-maps-on-hubs
+status: MERGED_ON_MAIN
+branch: feature/scope-fan-out-h2-maps-on-hubs
+ADR: none , cite SSOT.md
+
+next plan suggestion
+- person-schema-edges-truthful or nap-license-visible (about credentials) if not locked
+
+files to read
+- src/app/about/page.tsx (ids: fanout-nedlan, fanout-choose-lawyer, fanout-guides)
+- src/app/services/page.tsx (ids: fanout-engagement, fanout-practice-map, fanout-guides)
+- .cursor/plans/023_seo_fan_out_h2_maps_on_hubs_f1.plan.md
+- SSOT.md
+
+rules (.cursor/rules/)
+- ssot-repo-structure.mdc
+- unique-site-images.mdc (no new images this scope)
+- enforcement/atomic-change-loging.mdc (orchestrator appends task_graph after merge)
+- implementation-notes-placement.mdc
+
+tools and status
+- worktree: /Users/doronavni/avni-guy-wt-fan-out-h2-maps-on-hubs
+- exclusive diffs already present on main (upstream commits d246b8de 8f3f38c9 c9e03fbf); worker close-out plan+brief only if branch ahead
+- zero new src/app routes for fan-out
+- verify: pass — `pnpm exec next build` exit 0 (365 static pages; types OK). Full `pnpm build` prebuild image re-encode skipped (no exclusive image changes; avoid binary dirt).
+
+open issues
+- none for hub H2 fan-out content
+- optional: keep plan todos synced if another worker unmarked them
+
+evidence
+- about H2 clusters map nedlan/choose-lawyer/top-guides intents → existing bridges+blog+categories
+- services H2 clusters map engagement/practice-map/guides → same existing URLs
+- checklist notes/TODO_checklist_full_scopes_2026-07-14.txt ## fan-out-h2-maps-on-hubs already [x] on main

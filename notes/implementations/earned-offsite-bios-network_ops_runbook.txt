@@ -1,0 +1,124 @@
+scope: earned-offsite-bios-network
+type: ops-external
+status: agentic_done; external_publish_pending
+plan_base: 008_ops_earned_offsite_bios_network_o1
+ssot: SSOT.md
+adr: none
+maps_005: earned-bio-placements | positive-co-occurrence-network | civic-directory-nap
+
+# entity_lock (copy exactly; never improvise)
+person_name_he: גיא אבני
+person_name_en: Guy Avni
+descriptor_he: גיא אבני עורך דין
+descriptor_en: Guy Avni lawyer
+firm_name_he: גיא אבני משרד עורכי דין
+job_title_he: עורך דין
+canonical_entity_url: https://avniguy.co.il/about/
+canonical_contact_url: https://avniguy.co.il/contact/
+site_url: https://avniguy.co.il
+email_public: info@avniguy.co.il
+# NAP street/phone/locality: as of 2026-07-14 NOT visible on /about/ (nap-license-visible gap).
+# Rule: never invent street/phone. After /about/ shows NAP, copy char-for-char into every listing.
+nap_street: COPY_FROM_ABOUT_WHEN_VISIBLE
+nap_locality: COPY_FROM_ABOUT_WHEN_VISIBLE
+nap_region: COPY_FROM_ABOUT_WHEN_VISIBLE
+nap_postal: COPY_FROM_ABOUT_WHEN_VISIBLE
+nap_country: Israel | ישראל
+nap_phone: COPY_FROM_ABOUT_WHEN_VISIBLE
+nap_email: info@avniguy.co.il
+bar_org: לשכת עורכי הדין בישראל
+bar_portal: https://www.israelbar.biz/home/
+bar_legacy_redirect: https://www.israelbar.org.il/ → https://www.israelbar.biz/home/
+content_rule: name + practice only; bar-safe; NO Globes-attack narrative; NO unrelated biography claims
+
+# bio_blurb_he (≤500 chars; use on earned bios)
+bio_blurb_he: גיא אבני עורך דין — משרד עורכי דין בעברית. ליווי בנדל״ן, מיסוי מקרקעין, חוזים וליטיגציה אזרחית. עמוד היישות המקצועי: https://avniguy.co.il/about/
+bio_blurb_en: Guy Avni lawyer — Hebrew legal practice: real estate, property tax, contracts, civil litigation. Canonical profile: https://avniguy.co.il/about/
+
+# log_sheet (operator fills after each real publish; never invent URLs)
+# columns: date_iso | maps_005_id | venue | listing_url | nap_match(Y/N) | descriptor_he(Y/N) | about_link(Y/N) | notes
+placement_log_path: notes/implementations/earned-offsite-bios-network_placement_log.txt
+placement_log_status: not_created_by_agent; create on first real publish
+
+---
+## A. earned-bio-placements
+maps_005_id: earned-bio-placements
+goal: brief bios on bar-district / conference / podcast guest pages with exact descriptor + /about/ link
+
+external_ops_checklist:
+- [ ] A1. Open canonical entity: https://avniguy.co.il/about/ — confirm descriptor_he appears in title/H1 cluster; copy blurb from entity_lock
+- [ ] A2. Inventory owned or invite-confirmed bio slots (bar district page, CLE speaker bio, podcast guest page). Do not pitch cold SEO spam.
+- [ ] A3. For each slot: set display name = person_name_he OR descriptor_he (prefer descriptor_he when field allows long form)
+- [ ] A4. Paste bio_blurb_he (or bio_blurb_en for EN seats); ensure sole outbound entity link is canonical_entity_url
+- [ ] A5. If venue asks website field: prefer https://avniguy.co.il/about/ over homepage
+- [ ] A6. After publish: append one line to placement_log_path with live listing_url (operator proof only)
+- [ ] A7. Refuse Wikipedia article creation here (other scope: wikipedia-notability-gate)
+
+console_paths_examples:
+- Israel Bar member home: https://www.israelbar.biz/home/ → login → member/profile edit if available → bio + website = canonical_entity_url
+- Podcast host guest form: use host CMS “Guest bio” / “Website” fields → website = https://avniguy.co.il/about/
+- Conference speaker kit: Speakers → [Name] → Biography / Profile URL → same entity_lock strings
+
+acceptance:
+- listing shows descriptor_he OR person_name_he + job_title_he
+- listing links to https://avniguy.co.il/about/
+- placement_log has real URL
+
+---
+## B. positive-co-occurrence-network
+maps_005_id: positive-co-occurrence-network
+goal: earn CLE / panel / NPO bios where name co-occurs with practice topics only
+
+external_ops_checklist:
+- [ ] B1. Target list (fill URLs when venues confirm; do not invent): CLE organizers | bar committees | NPO legal clinics | local panels Haifa/north
+- [ ] B2. Pitch rule: offer speaking/writing on practice areas only (נדל״ן / מיסוי מקרקעין / חוזים / ליטיגציה אזרחית); never attack/defense of press narratives
+- [ ] B3. On accept: speaker bio = bio_blurb_he; byline = descriptor_he; profile URL = canonical_entity_url
+- [ ] B4. Co-occurrence check after live: page must contain person_name_he AND at least one practice term near name; must NOT contain Globes-attack framing
+- [ ] B5. Log listing_url in placement_log_path with maps_005_id=positive-co-occurrence-network
+- [ ] B6. Optional sameAs later: only after URL is live + truthful; do not set PERSON_* env until human confirms
+
+acceptance:
+- ≥1 earned co-occurrence URL logged OR operator marks “queue empty / no accept yet” with date
+- copy is bar-safe
+
+---
+## C. civic-directory-nap
+maps_005_id: civic-directory-nap
+goal: Haifa/local civic/chamber/alumni listings with consistent NAP + dual HE/EN spelling
+
+external_ops_checklist:
+- [ ] C0. NAP gate: open https://avniguy.co.il/about/ — if street/phone/locality still absent, STOP street/phone fills; use only nap_email + website + names; resume address/phone fills after nap-license-visible ships visible NAP
+- [ ] C1. List targets (operator marks which exist / account held):
+  - Haifa Chamber of Commerce site: https://haifachamber.org.il/ → Business directory / מדריך עסקים → Add/Edit listing
+  - Federation of Israeli Chambers: https://www.chamber.org.il/ → member/directory entry if affiliated
+  - Israel Bar portal: https://www.israelbar.biz/home/ → member public card website → canonical_entity_url
+  - Alumni directory of verified alma mater (only if alumniOf true+visible on /about/) — else SKIP
+  - Local Haifa civic business list / municipality directory (only official form; no fake scrapers)
+- [ ] C2. For each listing form fill:
+  name_he: גיא אבני
+  name_en: Guy Avni
+  business_he: גיא אבני משרד עורכי דין
+  category: עורך דין / Legal services
+  website: https://avniguy.co.il/about/
+  email: info@avniguy.co.il
+  phone: COPY_FROM_ABOUT_WHEN_VISIBLE
+  street/city/postal: COPY_FROM_ABOUT_WHEN_VISIBLE
+  description: bio_blurb_he (or EN twin)
+- [ ] C3. Dual-spelling check: HE + EN name fields both set where UI allows; never mix Latin into HE name field
+- [ ] C4. NAP parity check across listings: email/website identical; phone/street identical only when copied from /about/
+- [ ] C5. Log each live directory URL in placement_log_path with maps_005_id=civic-directory-nap
+
+acceptance:
+- each claimed listing has listing_url + nap_match=Y for fields that were filled
+- no invented street/phone
+
+---
+## agentic_shipped
+- this runbook with entity_lock + exact console paths + HE descriptor → /about/
+- plan: .cursor/plans/008_ops_earned_offsite_bios_network_o1.plan.md
+- brief: notes/implementations/008_ops_earned_offsite_bios_network_o1_brief.txt
+
+## close_gate
+scope_agentic_DONE when this runbook + plan + brief merged.
+live_offsite_publishes remain human/ops-external; unchecked boxes above stay pending until operator logs real URLs.
+do_not_fake: any listing_url without operator publication

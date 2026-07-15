@@ -1,0 +1,47 @@
+plan: 016_seo_about_section_ranking_a1
+scope: about-section-ranking-surface
+status: NEEDS_MERGE
+branch: feature/scope-about-section-ranking-surface
+worktree: /Users/doronavni/avni-guy-wt-about-section-ranking-surface
+ADR: none , cite SSOT.md
+
+## next plan suggestion
+home-heroes-entity-role-split OR speakable-voice-blocks (after about ids merge); services inbound anchors /about/#person|#practice if claimed.
+
+## files to read
+src/app/about/page.tsx
+src/components/home/HomePage.tsx
+src/lib/home/homeSeoSections.ts
+SSOT.md
+OWNER-REPORTS/005_serp-occupation_further_actions_2026-07-14.md (context only)
+
+## rules (.cursor/rules/)
+unique-site-images.mdc (no change)
+ssot-repo-structure.mdc
+enforcement/atomic-change-loging.mdc (orchestrator appends task_graph post-merge)
+handoff-and-scope-loop.mdc
+
+## tools and status
+pnpm build: PASS (Node 22; prebuild optimize skipped all 423)
+verify_log: pass — pnpm build green after media SiteKeyword unblock
+no Globes pages; no FAQ schema theater added; no MDX entity-link rewrites
+
+## open issues
+services inbound deferred (not exclusive); HomeSeoContentSections body anchors not wired (file unclaimed — aboutFragment SSOT ready in homeSeoSections)
+build unblock commit touched src/app/media/page.tsx (ancestor type error; not in current file_claims)
+
+## commits
+5b5cf830 add-plan-016-about-section-ranking-surface
+1dabfed0 add-about-stable-section-ids-and-content
+87b36854 export-about-ranking-fragment-href-ssot
+5c7a80cc wire-home-query-bearing-about-inbound-anchors
+47bc9390 fix-media-page-invalid-sitekeyword-for-build
+
+## exclusive_files_touched
+src/app/about/page.tsx
+src/components/home/HomePage.tsx
+src/lib/home/homeSeoSections.ts
+(+ unblock: src/app/media/page.tsx)
+
+## checklist_lines
+notes/TODO_checklist_full_scopes_2026-07-14.txt ## about-section-ranking-surface → [x] Stable about section ids; query-bearing inbound anchors; no thin entity URLs

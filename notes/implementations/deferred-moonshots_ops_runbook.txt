@@ -1,0 +1,70 @@
+scope: deferred-moonshots
+type: ops-deferred-gate
+status: runbook_ready; unlock_pending_measure_stall
+ssot: SSOT.md
+adr: none
+depends_on: measure-gates-g1-g4 (stall unlock / kill-switch / G4 context)
+maps_005: wikipedia-notability-gate | open-library-ssrn-cle-deposit | ac-il-cle-bio | archive-org-hygiene | other-guy-avni-disambiguation-card
+forbid: start_moonshot_before_unlock | invent_notability | create_spam_wikipedia | disambiguate_against_self_guyavni
+
+# unlock_gate (must evaluate before any moonshot publish)
+unlock_sources: notes/implementations/measure-gates-g1-g4_ops_runbook.txt
+unlock_any_of:
+  U1: kill_switch_fired=Y (flat_count>=3) — escalate off-site/moonshots
+  U2: G4 pass documented — on-site SERP-occupation churn stopped; moonshots optional for corroboration
+  U3: explicit owner unlock note dated in placement_log
+halt_default: all moonshot external publishes HALTED until U1|U2|U3
+live_checks:
+- [ ] unlock_eval date logged
+- [ ] unlock_id U1|U2|U3|NONE
+
+# entity_lock
+canonical_entity_url: https://avniguy.co.il/about/
+descriptor_he: גיא אבני עורך דין
+guyavni_rule: same-person office leaf — do NOT disambiguate avniguy vs guyavni as two people
+
+# M1. wikipedia-notability-gate
+maps_005_id: wikipedia-notability-gate
+ops:
+- [ ] WP1. Evaluate he.wikipedia notability vs independent reliable sources (not self-pub alone)
+- [ ] WP2. If fail: HALT article; park on Wikidata hygiene (wikidata-hebrew-kp-loop)
+- [ ] WP3. If pass: draft only with secondary sources; link official_site → /about/
+- [ ] WP4. Never paid/spam page creation
+
+# M2. open-library-ssrn-cle-deposit
+maps_005_id: open-library-ssrn-cle-deposit
+ops:
+- [ ] OL1. Select original CLE/notes with real authorship only
+- [ ] OL2. Deposit Open Library / Scholar / SSRN-style venue when eligible
+- [ ] OL3. Outbound → /about/ + source article on avniguy
+- [ ] OL4. Log deposit URL; never invent DOI
+
+# M3. ac-il-cle-bio
+maps_005_id: ac-il-cle-bio
+ops:
+- [ ] AC1. Secure CLE / university guest path (invite only)
+- [ ] AC2. Publish institutional .ac.il bio with outbound → /about/
+- [ ] AC3. Copy = descriptor_he + bar-safe practice only
+
+# M4. archive-org-hygiene
+maps_005_id: archive-org-hygiene
+ops:
+- [ ] AR1. After meaningful /about/ update: Save Page Now → https://avniguy.co.il/about/
+- [ ] AR2. Snapshot /services/ + top guides after material updates
+- [ ] AR3. Log archive.org URL only after save succeeds
+
+# M5. other-guy-avni-disambiguation-card
+maps_005_id: other-guy-avni-disambiguation-card
+ops:
+- [ ] DG1. Measure bare-name SERP: unrelated people mixed? Y/N (log)
+- [ ] DG2. If N: HALT card
+- [ ] DG3. If Y: add truthful disambiguation on /about/ (code scope; respect file claims)
+- [ ] DG4. If guyavni is same person: merge via federation — never “other guy” against self
+
+# placement_log
+# date_iso | unlock_id | maps_005_id | action | url | halt_or_ship | notes
+placement_log_path: notes/implementations/deferred-moonshots_placement_log.txt
+
+# close_gate
+scope_agentic_DONE when this runbook merged + checklist [x]
+external moonshots remain halted until unlock_gate passes

@@ -1,0 +1,38 @@
+plan_base: 019_ops_measure_gates_g1_g4_m1
+scope: measure-gates-g1-g4
+status: NEEDS_MERGE
+branch: feature/scope-measure-gates-g1-g4
+worktree: /Users/doronavni/avni-guy-wt-measure-gates-g1-g4
+
+next_plan_suggestion: operator runs measure_cycle_protocol 7–14d post-deploy; fill log_sheet; only then tick live G1–G4 boxes; on 3 flat cycles fire kill-switch → off-site/federation; unlock high-intent URL only if stall_def Y; next code scope unlocked by DAG (ai-citation-measure-loop / deferred-moonshots)
+
+files_to_read:
+- notes/implementations/measure-gates-g1-g4_ops_runbook.txt
+- .cursor/plans/019_ops_measure_gates_g1_g4_m1.plan.md
+- SSOT.md
+- OWNER-REPORTS/005_serp-occupation-further-actions_2026-07-14.md (historical gates only; non-authoritative)
+
+rules:
+- SSOT.md
+- .cursor/rules/owner-reports-non-authoritative.mdc
+- scope-worker file isolation (plan + runbook + brief only)
+- no task_graph.log on worker branch
+- never invent live SERP ranks
+
+tools_and_status:
+- verify: ops artifact only; skip pnpm build/dev
+- runbook: G1–G4 pass_rules + kill-switch flat_count>=3 + dual-property matrix; all live_checks [ ]
+- deps home-h1/title/links DONE on main (preroll [x])
+
+open_issues:
+- live SERP measure + log_sheet rows remain operator
+- stall_def / G4 pass / kill_switch_fired require dated evidence before any scope unlock claims
+- scope list [x] + owner checklist tick → orchestrator after merge+log
+
+commits:
+- cafa4c1a add-plan-ops-measure-gates-g1-g4-m1
+- fd1f2fb7 add-measure-gates-g1-g4-ops-runbook
+- (this brief commit)
+
+checklist_lines:
+- notes/TODO_checklist_full_scopes_2026-07-14.txt ## measure-gates-g1-g4 ops line → [x] after merge+log

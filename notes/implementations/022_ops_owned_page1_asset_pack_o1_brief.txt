@@ -1,0 +1,39 @@
+plan_base: 022_ops_owned_page1_asset_pack_o1
+scope: owned-page1-asset-pack
+status: NEEDS_MERGE
+branch: feature/scope-owned-page1-asset-pack
+worktree: /Users/doronavni/avni-guy-wt-owned-page1-asset-pack
+
+next_plan_suggestion: human ops execute A–E checklists in runbook (LinkedIn/Bar/YT/GBP); log real profile URLs; set PERSON_LINKEDIN_URL / PERSON_ISRAEL_BAR_URL only after live proof; then google-business-profile for posts/Q&A
+
+files_to_read:
+- notes/implementations/owned-page1-asset-pack_ops_runbook.txt
+- .cursor/plans/022_ops_owned_page1_asset_pack_o1.plan.md
+- SSOT.md
+- src/env.ts (PERSON_LINKEDIN_URL PERSON_ISRAEL_BAR_URL)
+- src/lib/seo/schema-person.ts (canonical /about/)
+
+rules:
+- SSOT.md
+- .cursor/rules/owner-reports-non-authoritative.mdc
+- scope-worker file isolation (runbook + plan + brief only)
+- no task_graph.log on worker branch
+
+tools_and_status:
+- verify: ops artifact only; skip pnpm build/dev
+- runbook: machine-parseable entity_lock + identical descriptor_he → https://avniguy.co.il/about/ for LinkedIn/Bar/YT/GBP
+- no fake profile URLs
+
+open_issues:
+- live LinkedIn/Bar/YT/GBP console edits remain operator
+- PERSON_ISRAEL_BAR_URL must stay unset until individual listing claimed
+- GBP skip allowed when not eligible; do not invent Maps URL
+- scope list [x] + owner checklist → orchestrator after merge
+
+commits:
+- df63e482 add-plan-ops-owned-page1-asset-pack-o1
+- fc0999e2 add-owned-page1-asset-pack-ops-runbook
+- f07da2ed add-brief-ops-owned-page1-asset-pack-o1
+
+checklist_lines:
+- notes/TODO_checklist_full_scopes_2026-07-14.txt ## owned-page1-asset-pack ops line → [x] after merge+log

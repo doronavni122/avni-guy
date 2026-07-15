@@ -1,0 +1,16 @@
+scope: mcp-citation-bait
+type: ops-external
+status: agentic_done; external_publish_pending
+
+agentic_shipped:
+- public/llms.txt documents scripts/site-mcp-server.mjs (stdio) + existing HTTP /api/mcp/ + /api/search/
+- public/agent-card.json “who is גיא אבני” card
+- framing: agent/citation surface — not Google SEO theater
+
+external_ops_checklist:
+- [ ] Publish agent-card.json URL https://avniguy.co.il/agent-card.json to chosen MCP/agent registry(ies)
+- [ ] Confirm registry listing points at /about/ as canonical entity page
+- [ ] Smoke: fetch /llms.txt and /agent-card.json on production after deploy
+- [ ] Do NOT pitch this as Google SEO / rich-result schema
+
+close_gate: scope DONE when agentic files merged + this runbook shipped; registry publish remains human/ops-external

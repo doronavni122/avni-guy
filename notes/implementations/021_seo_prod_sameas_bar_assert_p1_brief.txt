@@ -1,0 +1,54 @@
+scope: prod-sameas-bar-assert
+plan_base: 021_seo_prod_sameas_bar_assert_p1
+status: NEEDS_MERGE
+branch: feature/scope-prod-sameas-bar-assert
+adr: none
+ssot: SSOT.md
+maps_005: prod-sameas-live-assert | bar-listing-sameas
+
+## next plan suggestion
+owned-page1-asset-pack (depends_on this scope)
+wikidata-hebrew-kp-loop (depends_on this scope)
+
+## files to read
+src/lib/seo/schema-person.ts
+src/env.ts
+.env.example
+notes/implementations/prod-sameas-bar-assert_ops_runbook.txt
+SSOT.md
+
+## rules (.cursor/rules/)
+enforcement/atomic-change-loging.mdc (orchestrator appends task_graph post-merge)
+env-files-agent-permission.mdc
+ssot-repo-structure.mdc
+handoff-and-scope-loop.mdc
+after-implementation-build-dev.mdc
+
+## tools and status
+git_worktree: /Users/doronavni/avni-guy-wt-prod-sameas-bar-assert
+commits_scope:
+  2fe4d403 add-plan-seo-prod-sameas-bar-assert-p1
+  e3037e1c add-env-sameas-prod-gap-warns
+  0d4a9f3c add-person-sameas-truthful-assert
+  946e6530 add-brief-seo-prod-sameas-bar-assert-p1
+  651f891a use-global-once-for-person-sameas-prod-warn
+commits_verify_sync_non_exclusive_already_on_main:
+  af5cfea4 sync-typecheck-fixes-from-main-for-verify
+  061ab5cb sync-practice-bridge-sitekeyword-from-main
+verify: pass — pnpm exec next build (Node 22.22.2); 365 static pages; typecheck ok
+task_graph: orchestrator only
+no_merge: worker
+
+## implemented
+env: PERSON_SAMEAS_ENV_KEYS; warnProductionEnvGaps for WIKIDATA + Bar-when-claimed; PERSON_OFFICE_SITE_URL in examples
+schema-person: isTruthfulPersonSameAsUrl; assertClaimedPersonSameAsEdges; Bar sameAs/memberOf only when truthful claimed URL; reject portal home + placeholders
+ops_runbook: notes/implementations/prod-sameas-bar-assert_ops_runbook.txt (curl C1–C10; Vercel V1–V5)
+
+## open issues
+live_pass: human C1–C10 after deploy
+PERSON_ISRAEL_BAR_URL still empty until owner claims individual listing
+orchestrator: drop or squash verify-sync commits if already on main; append task_graph for scope commits only
+
+## checklist_lines
+notes/TODO_checklist_full_scopes_2026-07-14.txt ## prod-sameas-bar-assert → [x] after merge
+implementaion_progress_checklist: none

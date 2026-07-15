@@ -1,0 +1,42 @@
+plan_base: 012_seo_indexnow_deletes_redirects_i1
+scope: indexnow-deletes-redirects-completeness
+status: NEEDS_MERGE
+branch: feature/scope-indexnow-deletes-redirects-completeness
+worktree: /Users/doronavni/avni-guy-wt-indexnow-deletes-redirects-completeness
+ADR: none , cite SSOT.md
+
+next_plan_suggestion: indexnow-gsc-one-shot (depends_on indexnow-deletes-redirects-completeness; top-20 expand + GSC)
+
+files_to_read:
+- scripts/post-deploy-indexnow.mjs
+- src/app/sitemap.ts
+- src/app/api/indexnow/route.ts
+- .cursor/plans/012_seo_indexnow_deletes_redirects_i1.plan.md
+
+rules:
+- SSOT.md §A–E
+- unique-site-images / FAQ/Globes/MDX entity-link non-regression (no touch)
+- no task_graph on worker; orchestrator post-merge
+
+tools_and_status:
+- IndexNow update set: static paths + all blog slugs
+- IndexNow redirect set: /blog/guy-avni-{slug}/ sources (middleware 301/308)
+- IndexNow gone: previous-live delta via .next/indexnow-url-state.json + INDEXNOW_GONE_URLS
+- Live ping only when VERCEL=1 or INDEXNOW_PING=1; INDEXNOW_KEY unset → skip exit 0
+- sitemap static lastmod: STATIC_PATH_LASTMOD (no per-build new Date())
+- verify: next build (types/compile) after exclusive-file changes
+
+ops_ping_external:
+- Set INDEXNOW_KEY in Vercel production
+- Confirm https://avniguy.co.il/{KEY}.txt serves key
+- After deploy (VERCEL=1): review postbuild logs for post-deploy-indexnow batch-ok
+- Optional one-shot: INDEXNOW_PING=1 INDEXNOW_GONE_URLS=/path/retired/ node scripts/post-deploy-indexnow.mjs
+- Do not treat local dry-run as live IndexNow success
+
+open_issues:
+- contact/search lastmod baselines (2026-07-01) until those pages get DATE_MODIFIED exports
+- top-20 blog URL expand deferred to indexnow-gsc-one-shot
+
+checklist_lines:
+- notes/TODO_checklist_full_scopes_2026-07-14.txt ## indexnow-deletes-redirects-completeness
+- OWNER-REPORTS/005 ## indexnow-deletes-redirects-completeness (5 bullets)

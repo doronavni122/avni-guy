@@ -1,0 +1,36 @@
+plan_base: 023_seo_fan_out_h2_maps_f1
+scope: fan-out-h2-maps-on-hubs
+status: NEEDS_MERGE
+branch: feature/scope-fan-out-h2-maps
+worktree: /Users/doronavni/avni-guy-wt-fanout
+
+next_plan_suggestion: none — last open scope in TODO_checklist_full_scopes_2026-07-14.txt; orchestrator merge + task_graph append
+
+files_to_read:
+- src/lib/seo/fan-out-h2-maps.ts
+- src/app/services/FanOutH2Clusters.tsx
+- src/app/about/page.tsx
+- src/app/services/page.tsx
+- .cursor/plans/023_seo_fan_out_h2_maps_f1.plan.md
+
+rules:
+- .cursor/rules/enforcement/atomic-change-loging.mdc (orchestrator appends task_graph post-merge)
+- .cursor/rules/unique-site-images.mdc (N/A — no new images)
+- handoff-and-scope-loop.mdc
+
+tools_and_status:
+- worktree isolation: pass (primary stayed on main)
+- zero_new_routes: pass (no new App Router pages)
+- speakable_nonregression: pass (about+services speakable blocks unchanged)
+- typecheck_fanout_files: pass
+- verify_build: pass (`pnpm exec next build --no-lint` after tsc clean; /about + /services static)
+
+open_issues:
+- low_disk: host ~6Gi free; other worktree node_modules pruned for space
+- verify_unblock_committed: practice-bridge SiteKeyword typing + media keywords array trim (pre-existing main break)
+- owner_checklist: no high-level line mapped for this scope in implementaion_progress_checklist.md
+
+evidence:
+- ABOUT_FAN_OUT_H2_CLUSTERS + TOP_GUIDE_FAN_OUT_H2_CLUSTERS on /about/#fan-out and #fan-out-guides
+- SERVICES_FAN_OUT_H2_CLUSTERS + TOP_GUIDE_FAN_OUT_H2_CLUSTERS on /services/#fan-out and #fan-out-guides
+- guide links only to existing /blog/* /categories/* /sheelot/ /services/ /about/

@@ -1,0 +1,6 @@
+scope: brand-image-pack
+agentic_done: unique portrait+office under public/images/shared/; Person ImageObject caption גיא אבני עורך דין
+ops_external:
+- [ ] GSC / Bing image report: baseline query גיא אבני עורך דין
+- [ ] Confirm image URLs unique per placement (unique-site-images)
+- [ ] Optional: submit /about/ after deploy IndexNow
