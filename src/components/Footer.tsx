@@ -67,6 +67,16 @@ export function Footer() {
 						>
 							X / Twitter
 						</a>
+						<p className="swiss-label mt-2">נכסים / Properties</p>
+						<p className="text-sm text-muted-foreground">אתר התוכן (סמכות): avniguy.co.il</p>
+						<a
+							className="text-sm font-medium text-foreground transition-colors hover:text-primary"
+							href="https://guyavni.co.il/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							אתר המשרד (המרה): guyavni.co.il
+						</a>
 					</div>
 				</div>
 
