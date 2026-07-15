@@ -16,13 +16,14 @@ const HOME_OG_IMAGE = `${SITE_URL}/images/home/home-hero-legal-contract-super-ma
 const HOME_DATE_MODIFIED = '2026-07-09';
 
 export const metadata = buildPageMetadata({
-	title: 'גיא אבני עורך דין | עו״ד גיא אבני - מאמרים, שירותים וייעוץ',
+	title: 'משרד גיא אבני · מאמרים, שירותים וייעוץ',
 	description:
 		'עו״ד גיא אבני (גיא אבני עורך דין) - מאמרים משפטיים בעברית, שירותים לפרטיים ולעסקים, ומסלול ברור לפגישת ייעוץ ראשונה. האתר הרשמי של המשרד.',
 	keyword: 'גיא אבני',
 	keywords: ['גיא אבני', 'גיא אבני עורך דין', 'גיא אבני עו״ד', 'גיא אבני משרד עורכי דין'],
 	path: '/',
 	image: HOME_OG_IMAGE,
+	absoluteTitle: true,
 });
 
 export default async function Home() {
@@ -35,7 +36,7 @@ export default async function Home() {
 
 	const jsonLd = [
 		buildHomeWebPageSchema({
-			name: 'גיא אבני עורך דין | עו״ד גיא אבני - דף הבית',
+			name: 'משרד גיא אבני · מאמרים, שירותים וייעוץ',
 			description:
 				'עו״ד גיא אבני (גיא אבני עורך דין) מלווה פרטיים ועסקים. מאמרים, שירותים וייעוץ ראשון.',
 			dateModified: HOME_DATE_MODIFIED,

@@ -195,9 +195,9 @@ export async function loadHomeData(): Promise<HomeData> {
 
 	const faqItems: FaqItem[] = [
 		{
-			question: 'מי זה גיא אבני עורך דין?',
+			question: 'איך מגיעים לעמוד היישות של המשרד?',
 			answer:
-				'גיא אבני הוא עורך דין (עו״ד גיא אבני) המלווה פרטיים ועסקים בנדל״ן, מיסוי, חוזים וליטיגציה. פרטים נוספים בעמוד האודות.',
+				'עמוד האודות הוא נקודת העוגן ליישות: מי העו״ד, תחומי ליווי ומסלול לייעוץ. מדף הבית מקשרים לשם כפורטל למאמרים ולשירותים.',
 		},
 		{
 			question: 'מתי כדאי לפנות לעו״ד גיא אבני?',
@@ -233,13 +233,14 @@ export async function loadHomeData(): Promise<HomeData> {
 		console.error('[home:index] failed to resolve primary keyword from SITE_KEYWORDS', error);
 	}
 
-	const brandKeyword = 'גיא אבני עורך דין';
+	/** Firm/portal framing for home hero slot; person-hub keyword stays on `/about/`. */
+	const firmPortalKeyword = 'גיא אבני משרד עורכי דין';
 
 	const homeImages: HomeImage[] = [
 		{
 			src: '/images/home/home-hero-legal-contract-super-macro-photo-0.jpg',
-			alt: `${brandKeyword} - חתימה על חוזה בצילום סופר מקרו, פתיחת דף הבית`,
-			title: `${brandKeyword} | כותרת דף הבית`,
+			alt: `${firmPortalKeyword} - חתימה על חוזה בצילום סופר מקרו, פתיחת פורטל המשרד`,
+			title: `${firmPortalKeyword} | פורטל דף הבית`,
 		},
 		{
 			src: '/images/home/home-practice-areas-law-books-super-macro-photo-1.jpg',
