@@ -5,8 +5,11 @@ import { SiteShell } from '@/components/layout/SiteShell';
 import { getCategories, getPostsIndex } from '@/lib/content/posts';
 import { buildPageMetadata } from '@/lib/metadata';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
-import { buildBreadcrumbSchema } from '@/utils/structured-data';
+import { attachSpeakable, SPEAKABLE_VOICE_CLASS } from '@/lib/seo/speakable';
+import { getCategorySpeakableVoiceBlock } from '@/lib/seo/speakable-voice-blocks';
 import { getCategoryHubIntro } from '@/lib/seo/category-hub-intros';
+import { SITE_URL } from '@/consts';
+import { buildBreadcrumbSchema, buildWebPageSchema } from '@/utils/structured-data';
 import {
 	buildCategoryMetaDescription,
 	buildCategoryPageTitle,
@@ -42,12 +45,26 @@ export default async function CategoryPage({ params }: PageProps) {
 	}
 	const categoryHe = getCategoryLabel(category);
 	const hubIntro = getCategoryHubIntro(category);
+	const speakableBlock = getCategorySpeakableVoiceBlock(category);
 	const breadcrumbItems = [
 		{ name: 'דף הבית', path: '/' },
 		{ name: 'קטגוריות', path: '/categories' },
 		{ name: categoryHe, path: `/categories/${category}/` },
 	];
-	const jsonLd = buildBreadcrumbSchema(breadcrumbItems);
+	const pageTitle = buildCategoryPageTitle(categoryHe);
+	const pageDescription = buildCategoryMetaDescription(categoryHe);
+	const webPageNode = buildWebPageSchema({
+		'@id': `${SITE_URL}/categories/${category}/#webpage`,
+		url: `${SITE_URL}/categories/${category}/`,
+		name: pageTitle,
+		description: speakableBlock?.answer ?? pageDescription,
+		dateModified: '2026-07-14',
+		'@type': 'CollectionPage',
+	});
+	const jsonLd = [
+		buildBreadcrumbSchema(breadcrumbItems),
+		speakableBlock ? attachSpeakable(webPageNode) : webPageNode,
+	];
 
 	return (
 		<SiteShell currentPath={`/categories/${category}/`} extraJsonLd={jsonLd}>
@@ -61,6 +78,14 @@ export default async function CategoryPage({ params }: PageProps) {
 					<h1 className="font-heading text-4xl font-extrabold leading-[1.05] tracking-tight text-foreground text-balance sm:text-5xl lg:text-6xl">
 						אבני גיא - קטגוריה {categoryHe}
 					</h1>
+					{speakableBlock ? (
+						<p
+							id={`speakable-${speakableBlock.id}`}
+							className={`${SPEAKABLE_VOICE_CLASS} max-w-4xl text-pretty text-base font-medium leading-relaxed text-foreground`}
+						>
+							{speakableBlock.answer}
+						</p>
+					) : null}
 					<p className="max-w-4xl text-pretty text-lg leading-relaxed text-muted-foreground">
 						{hubIntro.paragraph}{' '}
 						{hubIntro.pillarLinks.map((link, i) => (
