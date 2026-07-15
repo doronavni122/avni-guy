@@ -38,11 +38,15 @@
 
 ## ממשקים למערכות AI
 
+> שכבת גילוי לסוכני AI / MCP בלבד. Google Search ו-AI Overviews לא משתמשים בקבצים אלה לדירוג — לא SEO theater.
+
 - [llms-full.txt](https://avniguy.co.il/llms-full.txt): כל התוכן בקובץ markdown אחד.
+- [agent-card.json](https://avniguy.co.il/agent-card.json): כרטיס who-is / גילוי סוכן עבור "גיא אבני" + קישורי MCP/חיפוש.
 - חיפוש סמנטי: POST https://avniguy.co.il/api/search/ body {"query":"..."}
 - חיפוש GET: https://avniguy.co.il/api/search/?q=...
 - רשימת URLs: GET https://avniguy.co.il/api/site-urls/?section=blog
 - MCP (Streamable HTTP): POST https://avniguy.co.il/api/mcp/
+- MCP (stdio מקומי): `scripts/site-mcp-server.mjs` — הרצה: `pnpm mcp:site` (או `node scripts/site-mcp-server.mjs`); env `SITE_URL` (ברירת מחדל `http://localhost:3001`, לפרודקשן `https://avniguy.co.il`).
 - כלים: search_site, list_site_urls
 
 ## Optional
