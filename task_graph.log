@@ -632,3 +632,4 @@
 
 468. mark-home-heroes-entity-role-split-merged-in-loop-state , notes/implementations/scope_loop_state.json task_graph.log
 469. add-instagram-youtube-footer-links , src/lib/nav/site-social.ts src/components/Footer.tsx task_graph.log
+470. add-social-profiles-to-person-sameas , src/lib/seo/schema-person.ts task_graph.log

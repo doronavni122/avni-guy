@@ -1,5 +1,6 @@
 import { SITE_URL } from '@/consts';
 import { PERSON_SAMEAS_ENV_KEYS, warnProductionEnvGaps } from '@/env';
+import { SITE_SOCIAL_LINKS } from '@/lib/nav/site-social';
 
 /** Stable JSON-LD @id for the person entity (canonical entity home). */
 export const SITE_PERSON_ID = `${SITE_URL}/about/#person`;
@@ -302,6 +303,16 @@ export function readPersonSameAsUrls(): string[] {
 			: DEFAULT_OFFICE_SAMEAS;
 		if (office && isTruthfulPersonSameAsUrl(office, 'PERSON_OFFICE_SITE_URL') && !urls.includes(office)) {
 			urls.push(office);
+		}
+	}
+
+	for (const link of SITE_SOCIAL_LINKS) {
+		try {
+			if (isTruthfulPersonSameAsUrl(link.href, 'SITE_SOCIAL_LINKS') && !urls.includes(link.href)) {
+				urls.push(link.href);
+			}
+		} catch (err) {
+			console.error('[schema-person] claimed social sameAs push failed', { href: link.href, err });
 		}
 	}
 
