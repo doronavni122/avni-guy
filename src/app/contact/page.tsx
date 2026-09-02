@@ -19,6 +19,7 @@ export const metadata = buildPageMetadata({
 		'גיא אבני: תיאום שיחה בדוא״ל, מה להכין לפני פנייה, ומה צפוי בשיחה הראשונה - סיכום קצר, צעדים ברורים וללא הבטחות בלתי אפשריות. התוכן באתר אינו תחליף לייעוץ.',
 	keyword: 'גיא אבני',
 	path: '/contact/',
+	absoluteTitle: true,
 });
 
 export default function ContactPage() {

@@ -13,6 +13,7 @@ export const metadata = buildPageMetadata({
 	description: 'חיפוש מאמרים ותוכן משפטי באתר avniguy.co.il.',
 	keyword: 'גיא אבני',
 	path: '/search/',
+	absoluteTitle: true,
 });
 
 export default function SearchPage() {
