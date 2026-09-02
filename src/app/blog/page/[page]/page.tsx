@@ -34,7 +34,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 		description: `ארכיון מאמרים משפטיים - עמוד ${page}.`,
 		keyword: 'גיא אבני עו״ד',
 		path: `/blog/page/${page}/`,
+		canonicalPath: '/blog/',
 		absoluteTitle: true,
+		robots: { index: false, follow: true },
 	});
 }
 
