@@ -656,3 +656,4 @@
 491. kill-template-leftovers-on-polluted-posts , src/content/blog/time-management-for-legal-work.mdx src/content/blog/process-improvement-for-legal-teams.mdx src/content/blog task_graph.log
 492. hebrew-descriptive-alts-on-polluted-posts , src/content/blog/time-management-for-legal-work.mdx src/content/blog task_graph.log
 493. point-sheelot-answers-to-unique-articles , src/app/sheelot/page.tsx src/app/sitemap.ts task_graph.log
+494. add-money-page-lead-answers , src/content/blog/purchase-tax-exemption-first-apartment.mdx src/content/blog/second-apartment-purchase-tax-calculation.mdx src/content/blog/capital-gains-exemption-single-apartment-2026.mdx src/content/blog/tama38-vs-evacuation-reconstruction.mdx task_graph.log
