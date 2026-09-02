@@ -6,6 +6,8 @@ import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
 import { cn } from '@/lib/utils';
 import { SITE_CONTACT_EMAIL } from '@/consts';
 import { buildPageMetadata } from '@/lib/metadata';
+import { hasVisibleOfficeNap, readOfficeNap } from '@/lib/seo/office-nap';
+import { buildPersonSchema, readPersonSameAsUrls } from '@/lib/seo/schema-person';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
 import { buildBreadcrumbSchema } from '@/utils/structured-data';
 
@@ -27,7 +29,12 @@ export default function ContactPage() {
 		{ name: 'דף הבית', path: '/' },
 		{ name: 'יצירת קשר', path: '/contact' },
 	];
-	const jsonLd = buildBreadcrumbSchema(breadcrumbItems);
+	const officeNap = readOfficeNap();
+	const sameAs = readPersonSameAsUrls();
+	const jsonLd = [
+		buildBreadcrumbSchema(breadcrumbItems),
+		buildPersonSchema({ sameAs: sameAs.length ? sameAs : undefined }),
+	];
 
 	return (
 		<SiteShell currentPath="/contact/" extraJsonLd={jsonLd}>
@@ -86,6 +93,28 @@ export default function ContactPage() {
 							כתבו בקצרה את הנושא והמטרה - נחזור עם הצעדים הבאים המתאימים.
 						</p>
 						<div className="swiss-rule" />
+						{hasVisibleOfficeNap(officeNap) ? (
+							<address className="not-italic text-sm leading-relaxed text-muted-foreground">
+								{officeNap.street ? (
+									<span className="block">
+										<strong className="text-foreground">כתובת:</strong> {officeNap.street}
+									</span>
+								) : null}
+								{officeNap.locality ? (
+									<span className="block">
+										<strong className="text-foreground">יישוב:</strong> {officeNap.locality}
+									</span>
+								) : null}
+								{officeNap.phone ? (
+									<span className="block">
+										<strong className="text-foreground">טלפון:</strong>{' '}
+										<a className="link-underline" href={`tel:${officeNap.phone.replace(/\s+/g, '')}`}>
+											{officeNap.phone}
+										</a>
+									</span>
+								) : null}
+							</address>
+						) : null}
 						<p className="text-sm leading-relaxed text-muted-foreground">
 							<strong className="text-foreground">דוא״ל:</strong>{' '}
 							<a className="link-underline" href={mailtoHref}>
