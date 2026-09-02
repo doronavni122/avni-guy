@@ -638,3 +638,4 @@
 473. add-template-commend-parallel-analysis , .commends/TODO_parallel_analysis.md task_graph.log
 474. add-template-commend-pr-merge-cleanup , .commends/TODO_pr_merge_cleanup.md task_graph.log
 475. add-pr-merge-cleanup-skill , .cursor/skills/pr-merge-cleanup/SKILL.md task_graph.log
+476. add-pr-merge-cleanup-agent , .cursor/agents/pr-merge-cleanup-runner.md task_graph.log
