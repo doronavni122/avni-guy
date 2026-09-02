@@ -661,3 +661,4 @@
 496. quote-safe-hebrew-alts-on-polluted-posts , src/content/blog/legal-retainer-eight-deliverables.mdx src/content/blog task_graph.log
 
 497. set-category-hub-absolute-title , src/app/categories/[category]/page.tsx task_graph.log
+498. add-seo-indexation-smoke-assertions , scripts/smoke-routes.mjs task_graph.log
