@@ -1,0 +1,12 @@
+---
+description: When user asks to open PR, merge, push, and delete branch — run pr-merge-cleanup
+alwaysApply: true
+---
+
+# PR merge cleanup trigger
+
+When the user asks to **open PR, merge, push, and delete branch** (or equivalent: ship branch, merge and cleanup, `@TODO_pr_merge_cleanup`, `@.commends/TODO_pr_merge_cleanup.md`, `@pr-merge-cleanup`):
+
+1. Follow the **pr-merge-cleanup** skill (`.cursor/skills/pr-merge-cleanup/SKILL.md`).
+2. Prefer spawning the **pr-merge-cleanup-runner** subagent for the full flow.
+3. Do not stop after opening the PR unless the user asked for open-only or merge is blocked.

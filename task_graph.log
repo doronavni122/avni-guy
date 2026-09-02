@@ -639,3 +639,4 @@
 474. add-template-commend-pr-merge-cleanup , .commends/TODO_pr_merge_cleanup.md task_graph.log
 475. add-pr-merge-cleanup-skill , .cursor/skills/pr-merge-cleanup/SKILL.md task_graph.log
 476. add-pr-merge-cleanup-agent , .cursor/agents/pr-merge-cleanup-runner.md task_graph.log
+477. add-pr-merge-cleanup-rule , .cursor/rules/pr-merge-cleanup.mdc task_graph.log
