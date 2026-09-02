@@ -644,3 +644,4 @@
 479. add-check-sensitive-log-patterns-script , scripts/tools/check-sensitive-log-patterns.js task_graph.log
 480. add-install-git-hooks-script , scripts/tools/install-git-hooks.js task_graph.log
 481. add-validate-atomic-change-logging-script , scripts/tools/validate-atomic-change-logging.js task_graph.log
+482. move-blog-archive-metadata-to-page , src/app/blog/page.tsx src/components/blog/BlogArchiveView.tsx src/lib/blog/archive-metadata.ts task_graph.log
