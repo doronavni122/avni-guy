@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { buttonVariants } from '@/components/ui/button';
 import { FOOTER_NAV_LINKS } from '@/lib/nav/site-nav';
+import { SITE_SOCIAL_LINKS } from '@/lib/nav/site-social';
 import { SITE_CONTACT_EMAIL } from '@/consts';
 import { cn } from '@/lib/utils';
 
@@ -59,13 +60,26 @@ export function Footer() {
 						>
 							{SITE_CONTACT_EMAIL}
 						</a>
+						{SITE_SOCIAL_LINKS.map((link) => (
+							<a
+								key={link.href}
+								className="text-sm font-medium text-foreground transition-colors hover:text-primary"
+								href={link.href}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								{link.label}
+							</a>
+						))}
+						<p className="swiss-label mt-2">נכסים / Properties</p>
+						<p className="text-sm text-muted-foreground">אתר התוכן (סמכות): avniguy.co.il</p>
 						<a
 							className="text-sm font-medium text-foreground transition-colors hover:text-primary"
-							href="https://x.com/AvniGuy11492"
+							href="https://guyavni.co.il/"
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							X / Twitter
+							אתר המשרד (המרה): guyavni.co.il
 						</a>
 						<p className="swiss-label mt-2">נכסים / Properties</p>
 						<p className="text-sm text-muted-foreground">אתר התוכן (סמכות): avniguy.co.il</p>
