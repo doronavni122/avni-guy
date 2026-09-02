@@ -640,3 +640,4 @@
 475. add-pr-merge-cleanup-skill , .cursor/skills/pr-merge-cleanup/SKILL.md task_graph.log
 476. add-pr-merge-cleanup-agent , .cursor/agents/pr-merge-cleanup-runner.md task_graph.log
 477. add-pr-merge-cleanup-rule , .cursor/rules/pr-merge-cleanup.mdc task_graph.log
+478. add-seo-work-graph-example , notes/implementations/seo_work_graph.example.json task_graph.log
