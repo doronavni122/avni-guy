@@ -11,7 +11,6 @@ import { getPostsIndex } from '@/lib/content/posts';
 const STATIC_PATH_LASTMOD: Record<string, string> = {
 	'/': '2026-07-09',
 	'/about/': '2026-07-13',
-	'/search/': '2026-07-01',
 	'/services/': '2026-07-13',
 	'/contact/': '2026-07-01',
 	'/categories/': '2026-07-13',

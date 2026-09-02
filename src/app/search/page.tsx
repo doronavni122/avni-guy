@@ -14,6 +14,7 @@ export const metadata = buildPageMetadata({
 	keyword: 'גיא אבני',
 	path: '/search/',
 	absoluteTitle: true,
+	robots: { index: false, follow: true },
 });
 
 export default function SearchPage() {
