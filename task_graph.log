@@ -652,3 +652,4 @@
 487. noindex-thin-and-overlap-category-hubs , src/lib/seo/indexation.ts src/app/categories/[category]/page.tsx src/app/sitemap.ts task_graph.log
 488. emit-person-schema-on-guy-avni , src/app/guy-avni/page.tsx task_graph.log
 489. wire-contact-nap-from-office-env , src/app/contact/page.tsx src/env.ts src/lib/seo/office-nap.ts .env.example .env.development.example task_graph.log
+490. quarantine-template-polluted-blog-slugs , src/lib/seo/indexation.ts src/app/blog/[slug]/page.tsx src/app/sitemap.ts task_graph.log

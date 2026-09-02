@@ -7,6 +7,7 @@ import { getAllPosts, getPostBySlug } from '@/lib/content/posts';
 import { scoreRelatedPosts } from '@/lib/content/related-posts';
 import { buildPageMetadata } from '@/lib/metadata';
 import { articleDocumentTitle } from '@/lib/seo/article-document-title';
+import { isQuarantinedBlogSlug } from '@/lib/seo/indexation';
 import { resolveArticleKeyword } from '@/lib/seo/resolve-article-keyword';
 import { SITE_URL } from '@/consts';
 import { bodyForRender, resolveArticleFaq } from '@/lib/content/faq';
@@ -36,6 +37,7 @@ export async function generateMetadata({ params }: PageProps) {
 	const post = await getPostBySlug(slug);
 	if (!post) return {};
 	const topicKeyword = resolveArticleKeyword(post.data);
+	const quarantined = isQuarantinedBlogSlug(slug);
 	return buildPageMetadata({
 		title: articleDocumentTitle(post.data.title),
 		description: post.data.metaDescription,
@@ -44,6 +46,7 @@ export async function generateMetadata({ params }: PageProps) {
 		type: 'article',
 		image: post.data.images[0]?.src,
 		absoluteTitle: true,
+		robots: { index: !quarantined, follow: true },
 	});
 }
 

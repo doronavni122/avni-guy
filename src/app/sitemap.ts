@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 import { SITE_URL } from '@/consts';
 import { getArchiveDateModified } from '@/lib/blog/archive';
 import { getPostsIndex } from '@/lib/content/posts';
-import { shouldIndexCategory } from '@/lib/seo/indexation';
+import { isQuarantinedBlogSlug, shouldIndexCategory } from '@/lib/seo/indexation';
 
 /**
  * Honest lastmod for static routes — bump only when that page’s content genuinely
@@ -52,12 +52,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			priority: path === '/' ? 1 : 0.8,
 		}));
 
-		const postEntries: MetadataRoute.Sitemap = posts.map((post) => ({
-			url: new URL(`/blog/${post.slug}/`, SITE_URL).toString(),
-			lastModified: post.data.updatedDate ?? post.data.pubDate,
-			changeFrequency: 'monthly',
-			priority: 0.7,
-		}));
+		const postEntries: MetadataRoute.Sitemap = posts
+			.filter((post) => !isQuarantinedBlogSlug(post.slug))
+			.map((post) => ({
+				url: new URL(`/blog/${post.slug}/`, SITE_URL).toString(),
+				lastModified: post.data.updatedDate ?? post.data.pubDate,
+				changeFrequency: 'monthly' as const,
+				priority: 0.7,
+			}));
 
 		const categoryEntries: MetadataRoute.Sitemap = categories
 			.filter((category) => {
