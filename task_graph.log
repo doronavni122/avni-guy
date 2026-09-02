@@ -637,3 +637,4 @@
 472. add-template-commend-human-out , .commends/TODO_human_out.md task_graph.log
 473. add-template-commend-parallel-analysis , .commends/TODO_parallel_analysis.md task_graph.log
 474. add-template-commend-pr-merge-cleanup , .commends/TODO_pr_merge_cleanup.md task_graph.log
+475. add-pr-merge-cleanup-skill , .cursor/skills/pr-merge-cleanup/SKILL.md task_graph.log
