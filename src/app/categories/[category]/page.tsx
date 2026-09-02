@@ -43,6 +43,7 @@ export async function generateMetadata({ params }: PageProps) {
 		description: buildCategoryMetaDescription(categoryHe),
 		keyword: 'אבני גיא',
 		path: `/categories/${category}/`,
+		absoluteTitle: true,
 		robots: { index: indexable, follow: true },
 	});
 }
