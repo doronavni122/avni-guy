@@ -649,3 +649,4 @@
 484. set-article-absolute-title-once-brand , src/app/blog/[slug]/page.tsx src/app/search/page.tsx src/app/contact/page.tsx src/lib/seo/article-document-title.ts src/lib/seo/resolve-article-keyword.ts task_graph.log
 485. noindex-search-and-drop-from-sitemap , src/app/search/page.tsx src/app/sitemap.ts task_graph.log
 486. noindex-blog-pagers-canonical-to-index , src/app/blog/page/[page]/page.tsx src/app/sitemap.ts task_graph.log
+487. noindex-thin-and-overlap-category-hubs , src/lib/seo/indexation.ts src/app/categories/[category]/page.tsx src/app/sitemap.ts task_graph.log

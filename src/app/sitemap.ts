@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next';
 import { SITE_URL } from '@/consts';
 import { getArchiveDateModified } from '@/lib/blog/archive';
 import { getPostsIndex } from '@/lib/content/posts';
+import { shouldIndexCategory } from '@/lib/seo/indexation';
 
 /**
  * Honest lastmod for static routes — bump only when that page’s content genuinely
@@ -58,12 +59,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			priority: 0.7,
 		}));
 
-		const categoryEntries: MetadataRoute.Sitemap = categories.map((category) => ({
-			url: new URL(`/categories/${category}/`, SITE_URL).toString(),
-			lastModified: blogArchiveModified,
-			changeFrequency: 'weekly',
-			priority: 0.6,
-		}));
+		const categoryEntries: MetadataRoute.Sitemap = categories
+			.filter((category) => {
+				const postCount = posts.filter((post) => post.data.category === category).length;
+				return shouldIndexCategory(category, postCount);
+			})
+			.map((category) => ({
+				url: new URL(`/categories/${category}/`, SITE_URL).toString(),
+				lastModified: blogArchiveModified,
+				changeFrequency: 'weekly' as const,
+				priority: 0.6,
+			}));
 
 		return [...staticEntries, ...postEntries, ...categoryEntries];
 	} catch (err) {
