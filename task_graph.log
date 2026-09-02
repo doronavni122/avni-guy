@@ -650,3 +650,4 @@
 485. noindex-search-and-drop-from-sitemap , src/app/search/page.tsx src/app/sitemap.ts task_graph.log
 486. noindex-blog-pagers-canonical-to-index , src/app/blog/page/[page]/page.tsx src/app/sitemap.ts task_graph.log
 487. noindex-thin-and-overlap-category-hubs , src/lib/seo/indexation.ts src/app/categories/[category]/page.tsx src/app/sitemap.ts task_graph.log
+488. emit-person-schema-on-guy-avni , src/app/guy-avni/page.tsx task_graph.log

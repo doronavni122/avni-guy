@@ -9,7 +9,7 @@ import { buildPageMetadata } from '@/lib/metadata';
 import { replaceEmDashDeep } from '@/lib/content/sanitize-user-facing-text';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
 import { SITE_URL } from '@/consts';
-import { SITE_PERSON_ID } from '@/lib/seo/schema-person';
+import { buildPersonSchema, readPersonSameAsUrls, SITE_PERSON_ID } from '@/lib/seo/schema-person';
 import type { MainPageHero as MainPageHeroData } from '@/lib/seo/hero-rules';
 import {
 	buildBreadcrumbSchema,
@@ -107,9 +107,11 @@ export default function GuyAvniBridgePage() {
 			{ name: 'דף הבית', path: '/' },
 			{ name: 'Guy Avni', path: PAGE_PATH },
 		];
+		const sameAs = readPersonSameAsUrls();
 
 		jsonLd = [
 			buildBreadcrumbSchema(breadcrumbItems),
+			buildPersonSchema({ sameAs: sameAs.length ? sameAs : undefined }),
 			buildWebPageSchema({
 				'@id': `${SITE_URL}${PAGE_PATH}#webpage`,
 				url: `${SITE_URL}${PAGE_PATH}`,
