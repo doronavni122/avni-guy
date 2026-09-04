@@ -32,6 +32,7 @@ export const QUARANTINED_BLOG_SLUGS = new Set<string>([
 	'debt-collection-claim-minimum-amount',
 	'criminal-record-sealing-seven-years',
 	'criminal-case-closure-no-record',
+	'client-trust-roadmap',
 ]);
 
 export function isQuarantinedBlogSlug(slug: string): boolean {

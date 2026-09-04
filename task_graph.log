@@ -667,3 +667,5 @@
 500. add-entity-hub-public-record-ssot , src/lib/seo/public-record.mjs src/lib/seo/public-record.ts scripts/assert-public-record.mjs task_graph.log
 
 501. wire-public-record-on-entity-hub , src/app/about/page.tsx src/lib/seo/main-page-heroes.mjs src/lib/seo/speakable-voice-blocks.ts src/lib/seo/public-record.ts task_graph.log
+
+502. quarantine-trustee-stem-collision-post , src/lib/seo/indexation.ts task_graph.log
