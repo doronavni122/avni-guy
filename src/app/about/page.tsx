@@ -5,6 +5,15 @@ import { MainPageHero } from '@/components/seo/MainPageHero';
 import { AttorneyCredentialBlock } from '@/components/seo/AttorneyCredentialBlock';
 import { SiteShell } from '@/components/layout/SiteShell';
 import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
+import {
+	PUBLIC_RECORD_DISCLAIMER,
+	PUBLIC_RECORD_FAQ,
+	PUBLIC_RECORD_LEAD,
+	PUBLIC_RECORD_META_DESCRIPTION,
+	PUBLIC_RECORD_PARAGRAPHS,
+	PUBLIC_RECORD_SOURCES,
+	PUBLIC_RECORD_TITLE,
+} from '@/lib/seo/public-record';
 import { attachSpeakable, SPEAKABLE_VOICE_CLASS } from '@/lib/seo/speakable';
 import { ABOUT_SPEAKABLE_VOICE_BLOCKS } from '@/lib/seo/speakable-voice-blocks';
 import { buildPageMetadata } from '@/lib/metadata';
@@ -22,12 +31,11 @@ import {
 export const dynamic = 'force-static';
 
 const ABOUT_OG_IMAGE = `${SITE_URL}/images/shared/guy-avni-avni-guy-law-firm-lawyer-og-law-fallback-photo-1.jpg`;
-const ABOUT_DATE_MODIFIED = '2026-07-14';
+const ABOUT_DATE_MODIFIED = '2026-09-04';
 
 export const metadata = buildPageMetadata({
 	title: 'גיא אבני עורך דין | משרד גיא אבני',
-	description:
-		'גיא אבני עורך דין - עמוד היישות המקצועי: ליווי בנדל״ן, מיסוי מקרקעין, חוזים וליטיגציה. שקיפות, פגישת מיקוד ומדריכים בעברית לפני ייעוץ אישי.',
+	description: PUBLIC_RECORD_META_DESCRIPTION,
 	keyword: 'גיא אבני עורך דין',
 	path: '/about/',
 	absoluteTitle: true,
@@ -162,11 +170,7 @@ const FANOUT_GUIDES = [
 ] as const;
 
 const BRAND_FAQ = replaceEmDashDeep([
-	{
-		question: 'מי זה גיא אבני?',
-		answer:
-			'גיא אבני הוא עורך דין ישראלי המלווה פרטיים ועסקים בנדל״ן, מיסוי מקרקעין, חוזים וליטיגציה אזרחית. עמוד זה הוא עמוד היישות המקצועי של avniguy.co.il - נקודת העוגן לחיפושים על גיא אבני וגיא אבני עורך דין.',
-	},
+	...PUBLIC_RECORD_FAQ,
 	{
 		question: 'גיא אבני עורך דין - באילו תחומים?',
 		answer:
@@ -208,7 +212,7 @@ export default function AboutPage() {
 				url: `${SITE_URL}/about/`,
 				name: 'גיא אבני עורך דין | משרד גיא אבני',
 				description:
-					'עמוד היישות המקצועי של גיא אבני, עורך דין: נדל״ן, מיסוי, חוזים וליטיגציה.',
+					'עמוד היישות הרשמי של גיא אבני, עורך דין: רשומה ציבורית לפרשת בראשית, נדל״ן, מיסוי, חוזים וליטיגציה.',
 				dateModified: ABOUT_DATE_MODIFIED,
 				'@type': 'AboutPage',
 				mainEntity: { '@id': `${SITE_URL}/about/#person` },
@@ -235,8 +239,34 @@ export default function AboutPage() {
 					<AttorneyCredentialBlock />
 				</div>
 
-				<PageSection id="entity" className="mt-16">
-					<SectionHeader index={1} eyebrow="עמוד יישות" title="עמוד יישות - גיא אבני עורך דין" />
+				<PageSection id="public-record" className="mt-16">
+					<SectionHeader index={1} eyebrow="רשומה ציבורית" title={PUBLIC_RECORD_TITLE} />
+					<div className="mt-6 flex max-w-3xl flex-col gap-4 text-pretty leading-relaxed text-muted-foreground">
+						<p>{PUBLIC_RECORD_LEAD}</p>
+						{PUBLIC_RECORD_PARAGRAPHS.map((paragraph) => (
+							<p key={paragraph.slice(0, 40)}>{paragraph}</p>
+						))}
+						<p>{PUBLIC_RECORD_DISCLAIMER}</p>
+						<ul className="mt-2 flex list-disc flex-col gap-2 pr-6">
+							{PUBLIC_RECORD_SOURCES.map((source) => (
+								<li key={source.id}>
+									<a
+										className="link-underline"
+										href={source.href}
+										rel="noopener noreferrer"
+										target="_blank"
+									>
+										{source.label}
+									</a>
+									{` - ${source.court}`}
+								</li>
+							))}
+						</ul>
+					</div>
+				</PageSection>
+
+				<PageSection id="entity">
+					<SectionHeader index={2} eyebrow="עמוד יישות" title="עמוד יישות - גיא אבני עורך דין" />
 					<div className="mt-6 flex max-w-3xl flex-col gap-4 text-pretty leading-relaxed text-muted-foreground">
 						<p>
 							אם הגעתם מחיפוש על &quot;גיא אבני&quot; או &quot;גיא אבני עורך דין&quot;, כאן תמצאו תשובה ישירה לפני שעוברים ל
@@ -262,7 +292,7 @@ export default function AboutPage() {
 				</PageSection>
 
 				<PageSection id="speakable">
-					<SectionHeader index={2} eyebrow="תשובות קצרות" title="תשובות קוליות קצרות על גיא אבני" />
+					<SectionHeader index={3} eyebrow="תשובות קצרות" title="תשובות קוליות קצרות על גיא אבני" />
 					<div className="mt-8 flex max-w-3xl flex-col gap-6">
 						{ABOUT_SPEAKABLE_VOICE_BLOCKS.map(({ id, question, answer }) => (
 							<div key={id} id={`speakable-${id}`} className="border-b border-border pb-6 last:border-b-0">
@@ -278,7 +308,7 @@ export default function AboutPage() {
 				</PageSection>
 
 				<PageSection id="practice">
-					<SectionHeader index={3} eyebrow="תחומי ליווי" title="תחומי ליווי מעשיים של גיא אבני עורך דין" />
+					<SectionHeader index={4} eyebrow="תחומי ליווי" title="תחומי ליווי מעשיים של גיא אבני עורך דין" />
 					<p className="mt-4 max-w-3xl text-pretty text-sm leading-relaxed text-muted-foreground">
 						גיא אבני עורך דין מתמקד בליווי שמחבר בין מסמכים, מס וסיכון תפעולי - לא ברשימת תחומים גנרית. כל מקבץ
 						להלן מוביל לקטגוריה או מדריך רלוונטי באתר, כדי להעמיק לפני שיחת מיקוד.
@@ -298,7 +328,7 @@ export default function AboutPage() {
 				</PageSection>
 
 				<PageSection id="audience">
-					<SectionHeader index={4} eyebrow="לקוחות" title="למי הליווי של גיא אבני מתאים" />
+					<SectionHeader index={5} eyebrow="לקוחות" title="למי הליווי של גיא אבני מתאים" />
 					<ul className="mt-6 flex max-w-3xl list-disc flex-col gap-2 pr-6 text-muted-foreground">
 						{CLIENT_PROFILES.map((item) => (
 							<li key={item}>{item}</li>
@@ -319,7 +349,7 @@ export default function AboutPage() {
 				</PageSection>
 
 				<PageSection id="workflow">
-					<SectionHeader index={5} eyebrow="תהליך" title="איך מתחילים לעבוד עם גיא אבני" />
+					<SectionHeader index={6} eyebrow="תהליך" title="איך מתחילים לעבוד עם גיא אבני" />
 					<p className="mt-4 max-w-3xl text-pretty text-sm leading-relaxed text-muted-foreground">
 						המסלול קבוע וברור: מיקוד לפני מסמכים, תמונת סיכונים לפני התחייבות, ועדכונים רק כשיש מה לדווח. כך נמנעים
 						מעומס תקשורת ומקבלים החלטות בזמן אמת.
@@ -334,7 +364,7 @@ export default function AboutPage() {
 				</PageSection>
 
 				<PageSection id="principles">
-					<SectionHeader index={6} eyebrow="עקרונות" title="ערכים ודרך עבודה אצל גיא אבני" />
+					<SectionHeader index={7} eyebrow="עקרונות" title="ערכים ודרך עבודה אצל גיא אבני" />
 					<div className="mt-8 grid gap-px border border-border bg-border sm:grid-cols-2">
 						{PRINCIPLES.map(([num, title, text]) => (
 							<div key={title} className="flex flex-col gap-4 bg-background p-8">
@@ -348,7 +378,7 @@ export default function AboutPage() {
 
 				<PageSection id="fanout-nedlan">
 					<SectionHeader
-						index={7}
+						index={8}
 						eyebrow="המשך חיפוש"
 						title="גיא אבני עורך דין מקרקעין ומיסוי"
 					/>
@@ -374,7 +404,7 @@ export default function AboutPage() {
 
 				<PageSection id="fanout-choose-lawyer">
 					<SectionHeader
-						index={8}
+						index={9}
 						eyebrow="המשך חיפוש"
 						title="איך לבחור עורך דין לפני פנייה לגיא אבני"
 					/>
@@ -399,7 +429,7 @@ export default function AboutPage() {
 				</PageSection>
 
 				<PageSection id="fanout-guides">
-					<SectionHeader index={9} eyebrow="המשך חיפוש" title="מדריכים מובילים להעמקה לפני פגישה" />
+					<SectionHeader index={10} eyebrow="המשך חיפוש" title="מדריכים מובילים להעמקה לפני פגישה" />
 					<p className="mt-4 max-w-3xl text-pretty text-sm leading-relaxed text-muted-foreground">
 						כוונות חיפוש על מסמכים, קבלן, מס שבח וחוזים ממופות למדריכים ולקטגוריות קיימים - בלי ליצור כתובות
 						חדשות לכל תת-שאלה.
@@ -419,7 +449,7 @@ export default function AboutPage() {
 				</PageSection>
 
 				<PageSection id="faq">
-					<SectionHeader index={10} eyebrow="שאלות נפוצות" title="שאלות נפוצות על גיא אבני עורך דין" />
+					<SectionHeader index={11} eyebrow="שאלות נפוצות" title="שאלות נפוצות על גיא אבני עורך דין" />
 					<div className="mt-8 flex max-w-3xl flex-col gap-6">
 						{BRAND_FAQ.map(({ question, answer }) => (
 							<div key={question} className="border-b border-border pb-6 last:border-b-0">
@@ -433,7 +463,7 @@ export default function AboutPage() {
 				<PageSection id="next">
 					<div className="grid gap-8 lg:grid-cols-12">
 						<div className="lg:col-span-4">
-							<span className="font-mono text-xs text-muted-foreground">11 / המשך ביקור</span>
+							<span className="font-mono text-xs text-muted-foreground">12 / המשך ביקור</span>
 						</div>
 						<div className="flex flex-col gap-4 text-right lg:col-span-8">
 							<h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground">

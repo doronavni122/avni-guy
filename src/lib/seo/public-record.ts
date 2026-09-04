@@ -1,5 +1,3 @@
-import type { SpeakableVoiceBlock } from '@/lib/seo/speakable-voice-blocks';
-
 export {
 	PUBLIC_RECORD_CLUSTER_TOKENS,
 	PUBLIC_RECORD_DISCLAIMER,
@@ -28,5 +26,3 @@ export type PublicRecordFaqItem = {
 	question: string;
 	answer: string;
 };
-
-export type PublicRecordSpeakable = SpeakableVoiceBlock;

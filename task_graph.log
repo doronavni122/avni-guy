@@ -665,3 +665,5 @@
 499. lower-sitemap-smoke-floor-for-quarantine , scripts/smoke-routes.mjs task_graph.log
 
 500. add-entity-hub-public-record-ssot , src/lib/seo/public-record.mjs src/lib/seo/public-record.ts scripts/assert-public-record.mjs task_graph.log
+
+501. wire-public-record-on-entity-hub , src/app/about/page.tsx src/lib/seo/main-page-heroes.mjs src/lib/seo/speakable-voice-blocks.ts src/lib/seo/public-record.ts task_graph.log
