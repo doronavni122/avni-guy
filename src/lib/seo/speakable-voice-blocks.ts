@@ -1,3 +1,5 @@
+import { PUBLIC_RECORD_SPEAKABLE } from '@/lib/seo/public-record';
+
 /**
  * Short Hebrew voice-answer blocks for Speakable surfaces.
  * Visible text on the page MUST match `answer` exactly when Speakable is emitted.
@@ -17,6 +19,7 @@ export const ABOUT_SPEAKABLE_VOICE_BLOCKS: SpeakableVoiceBlock[] = [
 		answer:
 			'גיא אבני הוא עורך דין ישראלי המלווה פרטיים ועסקים בנדל״ן, מיסוי מקרקעין, חוזים וליטיגציה אזרחית.',
 	},
+	PUBLIC_RECORD_SPEAKABLE,
 	{
 		id: 'practice',
 		question: 'באילו תחומים גיא אבני מלווה?',

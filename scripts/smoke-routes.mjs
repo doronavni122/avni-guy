@@ -1,5 +1,6 @@
 import { spawn } from 'node:child_process';
 import http from 'node:http';
+import { assertPublicRecordCopy, buildPublicRecordIndexText } from '../src/lib/seo/public-record.mjs';
 
 const PORT = Number(process.env.SMOKE_PORT ?? 3099);
 const BASE = `http://127.0.0.1:${PORT}`;
@@ -16,10 +17,12 @@ const ROUTES = [
 ];
 
 /** Indexed posts only — quarantined template slugs are omitted from sitemap. */
-const SITEMAP_MIN_BLOG_URLS = 109;
+const SITEMAP_MIN_BLOG_URLS = 108;
 const SITEMAP_FORBIDDEN = '/blog/guy-avni-';
 const LAYOUT_TITLE_SUFFIX = 'מאמרים משפטיים, שירותים וייעוץ | גיא אבני';
 const QUARANTINED_SAMPLE = '/blog/time-management-for-legal-work/';
+const TRUSTEE_STEM_SAMPLE = '/blog/client-trust-roadmap/';
+const ABOUT_CLUSTER_TOKENS = ['קבוצת בראשית', 'נאמן', 'מוכר החלומות', 'כתב אישום אינו הרשעה'];
 const THIN_CATEGORY_SAMPLE = '/categories/medical/';
 const INDEXABLE_CATEGORY_SAMPLE = '/categories/tax/';
 const MONEY_PAGE_SAMPLE = '/blog/purchase-tax-exemption-first-apartment/';
@@ -142,6 +145,14 @@ async function main() {
 	});
 
 	try {
+		try {
+			assertPublicRecordCopy(buildPublicRecordIndexText());
+			logStep('step 0b: public-record SSOT ok');
+		} catch (err) {
+			console.error('[smoke-routes] public-record SSOT failed', err);
+			process.exit(1);
+		}
+
 		await waitForServer();
 		logStep('step 1: server ready', { base: BASE });
 		const failures = [];
@@ -190,6 +201,9 @@ async function main() {
 			if (sitemapBody.includes('/blog/time-management-for-legal-work/')) {
 				failures.push('sitemap.xml: must not list quarantined slugs');
 			}
+			if (sitemapBody.includes(TRUSTEE_STEM_SAMPLE)) {
+				failures.push('sitemap.xml: must not list trustee-stem collision slug');
+			}
 			if (sitemapBody.includes('/categories/medical/')) {
 				failures.push('sitemap.xml: must not list thin category hubs');
 			}
@@ -199,6 +213,33 @@ async function main() {
 		}
 
 		logStep('step 2b: checking SEO indexation + titles');
+		const aboutPage = await fetchRoute('/about/');
+		if (aboutPage.status === 200) {
+			assertSeo(failures, '/about/', aboutPage.body, {
+				titleIncludes: 'גיא אבני עורך דין',
+				canonicalIncludes: '/about/',
+			});
+			for (const token of ABOUT_CLUSTER_TOKENS) {
+				if (!aboutPage.body.includes(token)) {
+					failures.push(`/about/: body missing cluster token "${token}"`);
+				}
+			}
+			if (!aboutPage.body.includes('did=1001533397')) {
+				failures.push('/about/: body missing Globes primary judgment source');
+			}
+		} else {
+			failures.push(`/about/: expected HTTP 200, got ${aboutPage.status}`);
+		}
+
+		const trusteeStem = await fetchRoute(TRUSTEE_STEM_SAMPLE);
+		if (trusteeStem.status === 200) {
+			assertSeo(failures, TRUSTEE_STEM_SAMPLE, trusteeStem.body, {
+				robotsIncludes: 'noindex',
+			});
+		} else {
+			failures.push(`${TRUSTEE_STEM_SAMPLE}: expected HTTP 200, got ${trusteeStem.status}`);
+		}
+
 		const blogIndex = await fetchRoute('/blog/');
 		if (blogIndex.status === 200) {
 			assertSeo(failures, '/blog/', blogIndex.body, {
