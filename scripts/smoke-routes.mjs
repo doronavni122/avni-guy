@@ -17,7 +17,7 @@ const ROUTES = [
 ];
 
 /** Indexed posts only — quarantined template slugs are omitted from sitemap. */
-const SITEMAP_MIN_BLOG_URLS = 109;
+const SITEMAP_MIN_BLOG_URLS = 108;
 const SITEMAP_FORBIDDEN = '/blog/guy-avni-';
 const LAYOUT_TITLE_SUFFIX = 'מאמרים משפטיים, שירותים וייעוץ | גיא אבני';
 const QUARANTINED_SAMPLE = '/blog/time-management-for-legal-work/';

@@ -671,3 +671,5 @@
 502. quarantine-trustee-stem-collision-post , src/lib/seo/indexation.ts task_graph.log
 
 503. assert-about-hub-cluster-tokens-in-smoke , scripts/smoke-routes.mjs task_graph.log
+
+504. lower-sitemap-floor-after-stem-quarantine , scripts/smoke-routes.mjs task_graph.log
