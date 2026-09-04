@@ -23,3 +23,7 @@ task_graph.log
 .env
 .env.*
 !.env.example
+!.env*.example
+
+# Keystatic local CMS storage
+.keystatic/

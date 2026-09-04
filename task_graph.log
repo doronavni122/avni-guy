@@ -676,3 +676,6 @@
 505. add-about-public-record-implementation-note , notes/sessions/impl_about-dominant-intent-public-record_2026-09-04.txt task_graph.log
 506. add-about-public-record-session-note , notes/sessions/session_about-dominant-intent-public-record_2026-09-04.txt task_graph.log
 507. add-overlay-prod-ship-session-note , notes/sessions/session_overlay-prod-ship_2026-09-04.txt task_graph.log
+508. add-gitignore-hook-state-keystatic-task-graph , .gitignore task_graph.log
+509. add-cursorignore-secrets-generated-dirs , .cursorignore task_graph.log
+510. add-vercelignore-keystatic-dir , .vercelignore task_graph.log
