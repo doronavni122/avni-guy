@@ -1,0 +1,61 @@
+date: 2026-09-04 , 22:30 , UTC+3
+kind: implementation-note
+scope: about-dominant-intent-public-record
+plan: none
+pr: https://github.com/doronavni122/avni-guy/pull/195
+merged_into: feature/overlay-agentic-workspace-template
+production: blocked_on https://github.com/doronavni122/avni-guy/pull/194
+ADR: none , cite SSOT.md
+
+## shipped
+/about/ is the entity-neighborhood information-superset (בראשית, נאמן, מוכר החלומות, civil judgments, indictment≠conviction) plus professional identity. Copy SSOT: src/lib/seo/public-record.mjs. Visible #public-record + FAQ + speakable + meta description must match SSOT. /blog/client-trust-roadmap/ quarantined (noindex, sitemap drop) for נאמן stem collision. MDX not edited.
+
+## commits
+d0b90e6c add-entity-hub-public-record-ssot
+ff570cdd wire-public-record-on-entity-hub
+f89d5279 quarantine-trustee-stem-collision-post
+2341fcdc assert-about-hub-cluster-tokens-in-smoke
+480efc3e lower-sitemap-floor-after-stem-quarantine
+task_graph: 500-504
+
+## files to read
+SSOT.md — repo/product SSOT; read first.
+src/lib/seo/public-record.mjs — sourced Hebrew copy, cluster tokens, forbidden phrases, assertPublicRecordCopy.
+src/lib/seo/public-record.ts — TS re-exports.
+src/app/about/page.tsx — entity hub; #public-record first ranking section; FAQ from PUBLIC_RECORD_FAQ.
+src/lib/seo/main-page-heroes.mjs — /about/ intro = PUBLIC_RECORD_HERO_INTRO.
+src/lib/seo/speakable-voice-blocks.ts — PUBLIC_RECORD_SPEAKABLE must equal visible copy.
+src/lib/seo/indexation.ts — QUARANTINED_BLOG_SLUGS includes client-trust-roadmap.
+scripts/assert-public-record.mjs — SSOT assert entry.
+scripts/smoke-routes.mjs — about cluster tokens + Globes did=1001533397; trustee noindex; SITEMAP_MIN_BLOG_URLS=108.
+task_graph.log — append-only OOST; last shipped feature line 504.
+
+## rules (.cursor/rules/)
+enforcement/atomic-change-loging.mdc — one change = one commit + one task_graph line.
+read-structure-first.mdc — structure before edits.
+ssot-repo-structure.mdc — site SEO lives here; report pipeline is serp-bar.
+implementation-notes-placement.mdc — no-plan briefs in notes/sessions/.
+unique-site-images.mdc — if imagery changes.
+after-implementation-build-dev.mdc — build:ci + smoke after code.
+
+## tools and status
+pnpm build:ci then pnpm run smoke:routes: PASS (Node v20.19.5 vs engines >=22.12 warning). Vercel preview on PR 195: pass. Live /about/ still pre-change until overlay #194 merges to main then prod deploy.
+
+## next plan suggestion
+Single follow-up after #194 is production: (1) IndexNow + GSC URL inspection Request indexing on https://avniguy.co.il/about/ (apex canonical; www is alternate); (2) confirm GSC Performance for גיא אבני / גיא אבני עורך דין starts attributing /about/ not /tags/israel-bar/; (3) guyavni.co.il 301 is not this repo; (4) offsite Medium/YouTube/guest/directory stay in serp-bar offsite-channels; LinkedIn/Instagram still deferred.
+
+## open issues
+- P0_prod: overlay #194 not merged; this copy is not on avniguy.co.il yet.
+- P1_index: last www /about/ crawl 2026-06-09; apex is canonical; request indexing after deploy.
+- P1_gsc_leak: name-query impressions historically on /tags/israel-bar/, /contact/, blogs — zero on /about/ and / as of 2026-06-01–2026-09-03.
+- P2_companion: guyavni.co.il still occupies navigational slot (#1/#2 on 2026-09-04 SERP).
+- P2_wikidata: Q140457357 404 last check — do not invent replacement.
+- P3_bar: no מומחה/מתמחה specialist claim; no result promise.
+
+## acceptance_manual
+- action: after prod deploy, view-source https://avniguy.co.il/about/ and find #public-record + Globes did=1001533397
+  expected: visible Hebrew cluster tokens; FAQ answers match PUBLIC_RECORD_FAQ; no מומחה as specialist claim.
+- action: GSC URL Inspection on https://avniguy.co.il/about/ → Request indexing
+  expected: coverage moves toward Indexed; brand queries eventually show /about/ in Performance (not guaranteed, 2-4 weeks).
+- action: GET /blog/client-trust-roadmap/ robots
+  expected: noindex; slug absent from sitemap.xml.
