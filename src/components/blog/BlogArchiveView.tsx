@@ -14,7 +14,7 @@ import {
 	paginateBlogPosts,
 } from '@/lib/blog/archive';
 import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
-import { buildPageMetadata } from '@/lib/metadata';
+import { BLOG_ARCHIVE_TITLE } from '@/lib/blog/archive-metadata';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
 import { SITE_URL } from '@/consts';
 import { getCategoryLabel } from '@/utils/taxonomy-labels';
@@ -25,17 +25,6 @@ import {
 } from '@/utils/structured-data';
 
 export const dynamic = 'force-static';
-
-const BLOG_OG_IMAGE = `${SITE_URL}/images/shared/guy-avni-avni-guy-law-firm-lawyer-og-law-fallback-photo-1.jpg`;
-export const metadata = buildPageMetadata({
-	title: 'מאמרים משפטיים מעשיים | גיא אבני עו״ד',
-	description:
-		'גיא אבני עו״ד: מאגר מאמרים משפטיים בעברית על חוזים, נדל״ן, לקוחות ותהליכים. קראו לפני שיחה, סמנו מאמרים והגיעו מוכנים לייעוץ.',
-	keyword: 'גיא אבני עו״ד',
-	path: '/blog/',
-	absoluteTitle: true,
-	image: BLOG_OG_IMAGE,
-});
 
 const ARCHIVE_SCOPE =
 	'ארכיון מאמרים משפטיים של גיא אבני, עו״ד: נדל״ן, מיסוי, חוזים, ליטיגציה ותהליכים. המאמרים מסודרים לפי תאריך עדכון; התוכן מידע כללי ואינו ייעוץ משפטי אישי.';
@@ -69,7 +58,7 @@ export async function BlogArchiveView({ page }: BlogArchiveViewProps) {
 		buildWebPageSchema({
 			'@id': `${SITE_URL}/blog/#webpage`,
 			url: safePage === 1 ? `${SITE_URL}/blog/` : `${SITE_URL}/blog/page/${safePage}/`,
-			name: 'מאמרים משפטיים מעשיים | גיא אבני עו״ד',
+			name: BLOG_ARCHIVE_TITLE,
 			description:
 				'ארכיון מאמרים משפטיים בעברית של גיא אבני, עו״ד: חוזים, נדל״ן, מיסוי ותהליכים.',
 			dateModified: archiveModified,
@@ -80,7 +69,7 @@ export async function BlogArchiveView({ page }: BlogArchiveViewProps) {
 
 	const hero = {
 		...MAIN_PAGE_HEROES['/blog/'],
-		h1: 'מאמרים משפטיים מעשיים | גיא אבני עו״ד',
+		h1: BLOG_ARCHIVE_TITLE,
 	};
 
 	return (

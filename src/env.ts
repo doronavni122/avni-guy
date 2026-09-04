@@ -93,6 +93,19 @@ export function warnProductionEnvGaps(): void {
 				{ bar },
 			);
 		}
+
+		for (const officeKey of [
+			'NEXT_PUBLIC_OFFICE_LOCALITY',
+			'NEXT_PUBLIC_OFFICE_STREET',
+			'NEXT_PUBLIC_OFFICE_PHONE',
+		] as const) {
+			const officeVal = process.env[officeKey]?.trim();
+			if (!officeVal) {
+				console.warn(
+					`[env] ${officeKey} is empty in production — contact NAP and Person address omit this field until a claimed value is set. Do not invent an address or phone.`,
+				);
+			}
+		}
 	} catch (err) {
 		console.error('[env] warnProductionEnvGaps failed', { err });
 	}

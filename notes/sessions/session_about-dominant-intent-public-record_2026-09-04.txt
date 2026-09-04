@@ -1,0 +1,44 @@
+date: 2026-09-04 , 22:31 , UTC+3
+kind: session-note
+scope: about-dominant-intent-public-record
+branch: feature/overlay-agentic-workspace-template @ e47fc681
+pr_this_work: https://github.com/doronavni122/avni-guy/pull/195 merged (merge commit) into overlay
+pr_to_main: https://github.com/doronavni122/avni-guy/pull/194 still OPEN — production unchanged until that lands
+
+## status_summary
+Dominant-intent document shipped on /about/: public-record SSOT + hub wire + trustee-stem quarantine + smoke. Verify: pnpm build:ci + smoke:routes PASS. Feature branch feature/about-dominant-intent-public-record deleted remote+local. Unrelated dirty files left uncommitted: package.json, .cursor/hooks/state/, .cursor/settings.json, scripts/tools/dev-local-cleanup.sh.
+
+## next_plan_suggestion
+After overlay #194 merges to main and Vercel production: IndexNow + GSC Request indexing for https://avniguy.co.il/about/; watch Performance for גיא אבני / גיא אבני עורך דין moving off /tags/israel-bar/ onto /about/. Do not mix serp-bar report HTML. guyavni.co.il 301 is out of this repo. Offsite channels stay in serp-bar. Combine possible into one ops plan: index-about-after-overlay-prod.
+
+## files_to_read
+- SSOT.md — repo/product SSOT; read first.
+- notes/sessions/impl_about-dominant-intent-public-record_2026-09-04.txt — what shipped, acceptance, open issues.
+- src/lib/seo/public-record.mjs — only place to edit sourced public-record copy.
+- src/app/about/page.tsx — hub layout; do not duplicate copy.
+- src/lib/seo/indexation.ts — quarantine list; do not edit MDX for client-trust-roadmap.
+- scripts/smoke-routes.mjs — about token + sitemap floor 108.
+- task_graph.log — append-only; next number 507.
+
+## rules_to_read
+- .cursor/rules/enforcement/atomic-change-loging.mdc — one change = one commit + one task_graph line.
+- .cursor/rules/read-structure-first.mdc — structure before edits.
+- .cursor/rules/ssot-repo-structure.mdc — avni-guy owns avniguy.co.il; serp-bar owns ranks/report.
+- .cursor/rules/implementation-notes-placement.mdc — no-plan notes in notes/sessions/.
+- .cursor/rules/after-implementation-build-dev.mdc — build:ci after code.
+
+## tools_and_status
+Repo avni-guy. Default branch main. Integration branch for this work: feature/overlay-agentic-workspace-template. gh authenticated. Vercel project avni-guy; prod deploy after #194. Rank measure: serp-bar https://serp-bar-kw-report.surge.sh/ . GSC MCP on serp-bar workspace. Bright Data SERP used 2026-09-04: guyavni #2/#1; avniguy home ~#8/#6; /about/ not page 1.
+
+## open_issues
+- Overlay #194 must merge before this copy is live.
+- www vs apex /about/ canonical split remains.
+- /tags/israel-bar/ still historically ate name-query impressions.
+- Wikidata Q140457357 was 404; do not invent.
+- LinkedIn/Instagram offsite still deferred (serp-bar channels-enabled).
+
+## acceptance_manual
+- action: merge/deploy #194 then open https://avniguy.co.il/about/#public-record
+  expected: Globes 1001533397 in body; professional identity still present; no specialist מומחה claim.
+- action: GSC inspect apex /about/ Request indexing
+  expected: Google recrawls past 2026-06-09 www snapshot.

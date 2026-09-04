@@ -1,7 +1,8 @@
 import type { MetadataRoute } from 'next';
 import { SITE_URL } from '@/consts';
-import { getArchiveDateModified, getBlogArchivePageCount } from '@/lib/blog/archive';
+import { getArchiveDateModified } from '@/lib/blog/archive';
 import { getPostsIndex } from '@/lib/content/posts';
+import { isQuarantinedBlogSlug, shouldIndexCategory } from '@/lib/seo/indexation';
 
 /**
  * Honest lastmod for static routes — bump only when that page’s content genuinely
@@ -11,13 +12,12 @@ import { getPostsIndex } from '@/lib/content/posts';
 const STATIC_PATH_LASTMOD: Record<string, string> = {
 	'/': '2026-07-09',
 	'/about/': '2026-07-13',
-	'/search/': '2026-07-01',
 	'/services/': '2026-07-13',
 	'/contact/': '2026-07-01',
 	'/categories/': '2026-07-13',
 	'/tags/': '2026-07-13',
 	'/editorial-policy/': '2026-07-14',
-	'/sheelot/': '2026-07-14',
+	'/sheelot/': '2026-09-02',
 	'/nedlan-lawyer-guy-avni/': '2026-07-14',
 	'/contracts-lawyer-guy-avni/': '2026-07-14',
 	'/media/': '2026-07-14',
@@ -44,7 +44,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	try {
 		const { posts, categories } = await getPostsIndex();
 		const blogArchiveModified = new Date(getArchiveDateModified(posts));
-		const totalBlogPages = getBlogArchivePageCount(posts.length);
 
 		const staticEntries: MetadataRoute.Sitemap = STATIC_PATHS.map((path) => ({
 			url: new URL(path, SITE_URL).toString(),
@@ -53,34 +52,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			priority: path === '/' ? 1 : 0.8,
 		}));
 
-		const blogPaginationEntries: MetadataRoute.Sitemap = Array.from(
-			{ length: Math.max(0, totalBlogPages - 1) },
-			(_, i) => {
-				const page = i + 2;
-				return {
-					url: new URL(`/blog/page/${page}/`, SITE_URL).toString(),
-					lastModified: blogArchiveModified,
-					changeFrequency: 'monthly' as const,
-					priority: 0.6,
-				};
-			},
-		);
+		const postEntries: MetadataRoute.Sitemap = posts
+			.filter((post) => !isQuarantinedBlogSlug(post.slug))
+			.map((post) => ({
+				url: new URL(`/blog/${post.slug}/`, SITE_URL).toString(),
+				lastModified: post.data.updatedDate ?? post.data.pubDate,
+				changeFrequency: 'monthly' as const,
+				priority: 0.7,
+			}));
 
-		const postEntries: MetadataRoute.Sitemap = posts.map((post) => ({
-			url: new URL(`/blog/${post.slug}/`, SITE_URL).toString(),
-			lastModified: post.data.updatedDate ?? post.data.pubDate,
-			changeFrequency: 'monthly',
-			priority: 0.7,
-		}));
+		const categoryEntries: MetadataRoute.Sitemap = categories
+			.filter((category) => {
+				const postCount = posts.filter((post) => post.data.category === category).length;
+				return shouldIndexCategory(category, postCount);
+			})
+			.map((category) => ({
+				url: new URL(`/categories/${category}/`, SITE_URL).toString(),
+				lastModified: blogArchiveModified,
+				changeFrequency: 'weekly' as const,
+				priority: 0.6,
+			}));
 
-		const categoryEntries: MetadataRoute.Sitemap = categories.map((category) => ({
-			url: new URL(`/categories/${category}/`, SITE_URL).toString(),
-			lastModified: blogArchiveModified,
-			changeFrequency: 'weekly',
-			priority: 0.6,
-		}));
-
-		return [...staticEntries, ...blogPaginationEntries, ...postEntries, ...categoryEntries];
+		return [...staticEntries, ...postEntries, ...categoryEntries];
 	} catch (err) {
 		console.error('[sitemap] generation failed', err);
 		throw err;

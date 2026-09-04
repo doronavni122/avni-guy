@@ -4,6 +4,7 @@ import { ArticleList } from '@/components/blog/ArticleList';
 import { SiteShell } from '@/components/layout/SiteShell';
 import { getCategories, getPostsIndex } from '@/lib/content/posts';
 import { buildPageMetadata } from '@/lib/metadata';
+import { shouldIndexCategory } from '@/lib/seo/indexation';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
 import { attachSpeakable, SPEAKABLE_VOICE_CLASS } from '@/lib/seo/speakable';
 import { getCategorySpeakableVoiceBlock } from '@/lib/seo/speakable-voice-blocks';
@@ -28,11 +29,22 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps) {
 	const { category } = await params;
 	const categoryHe = getCategoryLabel(category);
+	let indexable = true;
+	try {
+		const { posts } = await getPostsIndex();
+		const postCount = posts.filter((post) => post.data.category === category).length;
+		indexable = shouldIndexCategory(category, postCount);
+	} catch (err) {
+		console.error('[categories] generateMetadata indexation check failed', { category, err });
+		indexable = false;
+	}
 	return buildPageMetadata({
 		title: buildCategoryPageTitle(categoryHe),
 		description: buildCategoryMetaDescription(categoryHe),
 		keyword: 'אבני גיא',
 		path: `/categories/${category}/`,
+		absoluteTitle: true,
+		robots: { index: indexable, follow: true },
 	});
 }
 

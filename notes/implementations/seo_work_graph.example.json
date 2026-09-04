@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "updatedAt": null,
+  "selectionPolicy": "prefer never-audited, then lowest auditCount, then oldest lastAuditedAt; pick up to 5 main/next-main pages per run",
+  "pages": [
+    {
+      "path": "/",
+      "role": "main",
+      "priority": 1,
+      "auditCount": 0,
+      "lastAuditedAt": null,
+      "lastPipeline": null,
+      "notes": ""
+    },
+    {
+      "path": "/about",
+      "role": "main",
+      "priority": 2,
+      "auditCount": 0,
+      "lastAuditedAt": null,
+      "lastPipeline": null,
+      "notes": ""
+    },
+    {
+      "path": "/pricing",
+      "role": "main",
+      "priority": 3,
+      "auditCount": 0,
+      "lastAuditedAt": null,
+      "lastPipeline": null,
+      "notes": ""
+    },
+    {
+      "path": "/blog",
+      "role": "main",
+      "priority": 4,
+      "auditCount": 0,
+      "lastAuditedAt": null,
+      "lastPipeline": null,
+      "notes": ""
+    },
+    {
+      "path": "/contact",
+      "role": "main",
+      "priority": 5,
+      "auditCount": 0,
+      "lastAuditedAt": null,
+      "lastPipeline": null,
+      "notes": ""
+    }
+  ]
+}

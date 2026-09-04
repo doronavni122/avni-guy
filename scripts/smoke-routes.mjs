@@ -1,5 +1,6 @@
 import { spawn } from 'node:child_process';
 import http from 'node:http';
+import { assertPublicRecordCopy, buildPublicRecordIndexText } from '../src/lib/seo/public-record.mjs';
 
 const PORT = Number(process.env.SMOKE_PORT ?? 3099);
 const BASE = `http://127.0.0.1:${PORT}`;
@@ -15,8 +16,67 @@ const ROUTES = [
 	'/blog/tenant-rights-israel/',
 ];
 
-const SITEMAP_MIN_BLOG_URLS = 125;
+/** Indexed posts only — quarantined template slugs are omitted from sitemap. */
+const SITEMAP_MIN_BLOG_URLS = 108;
 const SITEMAP_FORBIDDEN = '/blog/guy-avni-';
+const LAYOUT_TITLE_SUFFIX = 'מאמרים משפטיים, שירותים וייעוץ | גיא אבני';
+const QUARANTINED_SAMPLE = '/blog/time-management-for-legal-work/';
+const TRUSTEE_STEM_SAMPLE = '/blog/client-trust-roadmap/';
+const ABOUT_CLUSTER_TOKENS = ['קבוצת בראשית', 'נאמן', 'מוכר החלומות', 'כתב אישום אינו הרשעה'];
+const THIN_CATEGORY_SAMPLE = '/categories/medical/';
+const INDEXABLE_CATEGORY_SAMPLE = '/categories/tax/';
+const MONEY_PAGE_SAMPLE = '/blog/purchase-tax-exemption-first-apartment/';
+const PAGER_SAMPLE = '/blog/page/2/';
+
+function extractTitle(html) {
+	const match = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
+	return match ? match[1].replace(/\s+/g, ' ').trim() : '';
+}
+
+function extractMetaContent(html, name) {
+	const re = new RegExp(
+		`<meta[^>]+(?:name|property)=["']${name}["'][^>]+content=["']([^"']+)["']|<meta[^>]+content=["']([^"']+)["'][^>]+(?:name|property)=["']${name}["']`,
+		'i',
+	);
+	const match = html.match(re);
+	return match ? (match[1] || match[2] || '').trim() : '';
+}
+
+function extractCanonical(html) {
+	const match =
+		html.match(/rel=["']canonical["'][^>]*href=["']([^"']+)["']/i) ||
+		html.match(/href=["']([^"']+)["'][^>]*rel=["']canonical["']/i);
+	return match ? match[1].trim() : '';
+}
+
+function assertSeo(failures, route, body, checks) {
+	try {
+		const title = extractTitle(body);
+		const robots = extractMetaContent(body, 'robots');
+		const canonical = extractCanonical(body);
+		if (checks.titleIncludes && !title.includes(checks.titleIncludes)) {
+			failures.push(`${route}: title missing "${checks.titleIncludes}" (got "${title}")`);
+		}
+		if (checks.titleExcludes && title.includes(checks.titleExcludes)) {
+			failures.push(`${route}: title still has layout suffix (got "${title}")`);
+		}
+		if (checks.robotsIncludes && !robots.toLowerCase().includes(checks.robotsIncludes)) {
+			failures.push(`${route}: robots expected "${checks.robotsIncludes}", got "${robots || 'MISSING'}"`);
+		}
+		if (checks.canonicalIncludes && !canonical.includes(checks.canonicalIncludes)) {
+			failures.push(`${route}: canonical expected "${checks.canonicalIncludes}", got "${canonical || 'MISSING'}"`);
+		}
+		if (checks.bodyIncludes && !body.includes(checks.bodyIncludes)) {
+			failures.push(`${route}: body missing "${checks.bodyIncludes}"`);
+		}
+		if (checks.bodyExcludes && body.includes(checks.bodyExcludes)) {
+			failures.push(`${route}: body still contains "${checks.bodyExcludes}"`);
+		}
+	} catch (err) {
+		console.error('[smoke-routes] assertSeo failed', { route, err });
+		failures.push(`${route}: assertSeo threw`);
+	}
+}
 
 function logStep(msg, extra) {
 	if (extra !== undefined) console.log(`[smoke-routes] ${msg}`, extra);
@@ -85,6 +145,14 @@ async function main() {
 	});
 
 	try {
+		try {
+			assertPublicRecordCopy(buildPublicRecordIndexText());
+			logStep('step 0b: public-record SSOT ok');
+		} catch (err) {
+			console.error('[smoke-routes] public-record SSOT failed', err);
+			process.exit(1);
+		}
+
 		await waitForServer();
 		logStep('step 1: server ready', { base: BASE });
 		const failures = [];
@@ -124,6 +192,133 @@ async function main() {
 			if (sitemapBody.includes(SITEMAP_FORBIDDEN)) {
 				failures.push(`sitemap.xml: contains deprecated ${SITEMAP_FORBIDDEN}`);
 			}
+			if (sitemapBody.includes('/search/')) {
+				failures.push('sitemap.xml: must not list /search/');
+			}
+			if (sitemapBody.includes('/blog/page/')) {
+				failures.push('sitemap.xml: must not list blog pagers');
+			}
+			if (sitemapBody.includes('/blog/time-management-for-legal-work/')) {
+				failures.push('sitemap.xml: must not list quarantined slugs');
+			}
+			if (sitemapBody.includes(TRUSTEE_STEM_SAMPLE)) {
+				failures.push('sitemap.xml: must not list trustee-stem collision slug');
+			}
+			if (sitemapBody.includes('/categories/medical/')) {
+				failures.push('sitemap.xml: must not list thin category hubs');
+			}
+			if (sitemapBody.includes('/categories/real-estate-law/')) {
+				failures.push('sitemap.xml: must not list overlap category real-estate-law');
+			}
+		}
+
+		logStep('step 2b: checking SEO indexation + titles');
+		const aboutPage = await fetchRoute('/about/');
+		if (aboutPage.status === 200) {
+			assertSeo(failures, '/about/', aboutPage.body, {
+				titleIncludes: 'גיא אבני עורך דין',
+				canonicalIncludes: '/about/',
+			});
+			for (const token of ABOUT_CLUSTER_TOKENS) {
+				if (!aboutPage.body.includes(token)) {
+					failures.push(`/about/: body missing cluster token "${token}"`);
+				}
+			}
+			if (!aboutPage.body.includes('did=1001533397')) {
+				failures.push('/about/: body missing Globes primary judgment source');
+			}
+		} else {
+			failures.push(`/about/: expected HTTP 200, got ${aboutPage.status}`);
+		}
+
+		const trusteeStem = await fetchRoute(TRUSTEE_STEM_SAMPLE);
+		if (trusteeStem.status === 200) {
+			assertSeo(failures, TRUSTEE_STEM_SAMPLE, trusteeStem.body, {
+				robotsIncludes: 'noindex',
+			});
+		} else {
+			failures.push(`${TRUSTEE_STEM_SAMPLE}: expected HTTP 200, got ${trusteeStem.status}`);
+		}
+
+		const blogIndex = await fetchRoute('/blog/');
+		if (blogIndex.status === 200) {
+			assertSeo(failures, '/blog/', blogIndex.body, {
+				titleIncludes: 'מאמרים משפטיים מעשיים',
+				titleExcludes: LAYOUT_TITLE_SUFFIX,
+				canonicalIncludes: '/blog/',
+			});
+		} else {
+			failures.push(`/blog/: expected HTTP 200, got ${blogIndex.status}`);
+		}
+
+		const searchPage = await fetchRoute('/search/');
+		if (searchPage.status === 200) {
+			assertSeo(failures, '/search/', searchPage.body, {
+				titleExcludes: LAYOUT_TITLE_SUFFIX,
+				robotsIncludes: 'noindex',
+			});
+		} else {
+			failures.push(`/search/: expected HTTP 200, got ${searchPage.status}`);
+		}
+
+		const pagerPage = await fetchRoute(PAGER_SAMPLE);
+		if (pagerPage.status === 200) {
+			assertSeo(failures, PAGER_SAMPLE, pagerPage.body, {
+				robotsIncludes: 'noindex',
+				canonicalIncludes: '/blog/',
+			});
+		} else {
+			failures.push(`${PAGER_SAMPLE}: expected HTTP 200, got ${pagerPage.status}`);
+		}
+
+		const quarantined = await fetchRoute(QUARANTINED_SAMPLE);
+		if (quarantined.status === 200) {
+			assertSeo(failures, QUARANTINED_SAMPLE, quarantined.body, {
+				robotsIncludes: 'noindex',
+				titleExcludes: LAYOUT_TITLE_SUFFIX,
+				bodyExcludes: 'מזהה נושא',
+			});
+		} else {
+			failures.push(`${QUARANTINED_SAMPLE}: expected HTTP 200, got ${quarantined.status}`);
+		}
+
+		const thinCat = await fetchRoute(THIN_CATEGORY_SAMPLE);
+		if (thinCat.status === 200) {
+			assertSeo(failures, THIN_CATEGORY_SAMPLE, thinCat.body, {
+				robotsIncludes: 'noindex',
+				titleExcludes: LAYOUT_TITLE_SUFFIX,
+			});
+		} else {
+			failures.push(`${THIN_CATEGORY_SAMPLE}: expected HTTP 200, got ${thinCat.status}`);
+		}
+
+		const taxCat = await fetchRoute(INDEXABLE_CATEGORY_SAMPLE);
+		if (taxCat.status === 200) {
+			assertSeo(failures, INDEXABLE_CATEGORY_SAMPLE, taxCat.body, {
+				titleExcludes: LAYOUT_TITLE_SUFFIX,
+			});
+		} else {
+			failures.push(`${INDEXABLE_CATEGORY_SAMPLE}: expected HTTP 200, got ${taxCat.status}`);
+		}
+
+		const moneyPage = await fetchRoute(MONEY_PAGE_SAMPLE);
+		if (moneyPage.status === 200) {
+			assertSeo(failures, MONEY_PAGE_SAMPLE, moneyPage.body, {
+				titleExcludes: LAYOUT_TITLE_SUFFIX,
+				bodyIncludes: 'יש פטור חלקי במדרגה הראשונה',
+			});
+		} else {
+			failures.push(`${MONEY_PAGE_SAMPLE}: expected HTTP 200, got ${moneyPage.status}`);
+		}
+
+		const guyAvni = await fetchRoute('/guy-avni/');
+		if (guyAvni.status === 200) {
+			assertSeo(failures, '/guy-avni/', guyAvni.body, {
+				titleExcludes: LAYOUT_TITLE_SUFFIX,
+				bodyIncludes: '"@type":"Person"',
+			});
+		} else {
+			failures.push(`/guy-avni/: expected HTTP 200, got ${guyAvni.status}`);
 		}
 
 		logStep('step 3: checking article images on sample route');

@@ -6,6 +6,9 @@ import { renderMdxContent } from '@/lib/content/mdx';
 import { getAllPosts, getPostBySlug } from '@/lib/content/posts';
 import { scoreRelatedPosts } from '@/lib/content/related-posts';
 import { buildPageMetadata } from '@/lib/metadata';
+import { articleDocumentTitle } from '@/lib/seo/article-document-title';
+import { isQuarantinedBlogSlug } from '@/lib/seo/indexation';
+import { resolveArticleKeyword } from '@/lib/seo/resolve-article-keyword';
 import { SITE_URL } from '@/consts';
 import { bodyForRender, resolveArticleFaq } from '@/lib/content/faq';
 import {
@@ -33,13 +36,17 @@ export async function generateMetadata({ params }: PageProps) {
 	const { slug } = await params;
 	const post = await getPostBySlug(slug);
 	if (!post) return {};
+	const topicKeyword = resolveArticleKeyword(post.data);
+	const quarantined = isQuarantinedBlogSlug(slug);
 	return buildPageMetadata({
-		title: post.data.metaTitle,
+		title: articleDocumentTitle(post.data.title),
 		description: post.data.metaDescription,
-		keyword: post.data.mainKeyword,
+		keyword: topicKeyword,
 		path: `/blog/${slug}/`,
 		type: 'article',
 		image: post.data.images[0]?.src,
+		absoluteTitle: true,
+		robots: { index: !quarantined, follow: true },
 	});
 }
 
@@ -60,8 +67,9 @@ export default async function BlogPostPage({ params }: PageProps) {
 	const canonicalUrl = new URL(`/blog/${slug}/`, SITE_URL).toString();
 
 	const faqItems = resolveArticleFaq(post.data, post.content);
+	const topicKeyword = resolveArticleKeyword(post.data);
 	const keywordTags = [
-		post.data.mainKeyword,
+		topicKeyword,
 		...(post.data.secondaryKeywords ?? []),
 		...(post.data.geoKeywords ?? []),
 	];
@@ -95,7 +103,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 		<BlogPostLayout
 			metaTitle={post.data.metaTitle}
 			metaDescription={post.data.metaDescription}
-			mainKeyword={post.data.mainKeyword}
+			mainKeyword={topicKeyword}
 			data={post.data}
 			slug={slug}
 			currentPath={`/blog/${slug}/`}

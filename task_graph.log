@@ -633,3 +633,45 @@
 468. mark-home-heroes-entity-role-split-merged-in-loop-state , notes/implementations/scope_loop_state.json task_graph.log
 469. add-instagram-youtube-footer-links , src/lib/nav/site-social.ts src/components/Footer.tsx task_graph.log
 470. add-social-profiles-to-person-sameas , src/lib/seo/schema-person.ts task_graph.log
+471. add-agentic-pipeline-commands , .commands/PIPLINE_suggest_and_implement.md .commands/PIPLINE_seo_p5.md .commands/TODO_pr_merge_cleanup.md task_graph.log
+472. add-template-commend-human-out , .commends/TODO_human_out.md task_graph.log
+473. add-template-commend-parallel-analysis , .commends/TODO_parallel_analysis.md task_graph.log
+474. add-template-commend-pr-merge-cleanup , .commends/TODO_pr_merge_cleanup.md task_graph.log
+475. add-pr-merge-cleanup-skill , .cursor/skills/pr-merge-cleanup/SKILL.md task_graph.log
+476. add-pr-merge-cleanup-agent , .cursor/agents/pr-merge-cleanup-runner.md task_graph.log
+477. add-pr-merge-cleanup-rule , .cursor/rules/pr-merge-cleanup.mdc task_graph.log
+478. add-seo-work-graph-example , notes/implementations/seo_work_graph.example.json task_graph.log
+479. add-check-sensitive-log-patterns-script , scripts/tools/check-sensitive-log-patterns.js task_graph.log
+480. add-install-git-hooks-script , scripts/tools/install-git-hooks.js task_graph.log
+481. add-validate-atomic-change-logging-script , scripts/tools/validate-atomic-change-logging.js task_graph.log
+482. move-blog-archive-metadata-to-page , src/app/blog/page.tsx src/components/blog/BlogArchiveView.tsx src/lib/blog/archive-metadata.ts task_graph.log
+483. add-metadata-robots-canonical-override , src/lib/metadata.ts task_graph.log
+484. set-article-absolute-title-once-brand , src/app/blog/[slug]/page.tsx src/app/search/page.tsx src/app/contact/page.tsx src/lib/seo/article-document-title.ts src/lib/seo/resolve-article-keyword.ts task_graph.log
+485. noindex-search-and-drop-from-sitemap , src/app/search/page.tsx src/app/sitemap.ts task_graph.log
+486. noindex-blog-pagers-canonical-to-index , src/app/blog/page/[page]/page.tsx src/app/sitemap.ts task_graph.log
+487. noindex-thin-and-overlap-category-hubs , src/lib/seo/indexation.ts src/app/categories/[category]/page.tsx src/app/sitemap.ts task_graph.log
+488. emit-person-schema-on-guy-avni , src/app/guy-avni/page.tsx task_graph.log
+489. wire-contact-nap-from-office-env , src/app/contact/page.tsx src/env.ts src/lib/seo/office-nap.ts .env.example .env.development.example task_graph.log
+490. quarantine-template-polluted-blog-slugs , src/lib/seo/indexation.ts src/app/blog/[slug]/page.tsx src/app/sitemap.ts task_graph.log
+491. kill-template-leftovers-on-polluted-posts , src/content/blog/time-management-for-legal-work.mdx src/content/blog/process-improvement-for-legal-teams.mdx src/content/blog task_graph.log
+492. hebrew-descriptive-alts-on-polluted-posts , src/content/blog/time-management-for-legal-work.mdx src/content/blog task_graph.log
+493. point-sheelot-answers-to-unique-articles , src/app/sheelot/page.tsx src/app/sitemap.ts task_graph.log
+494. add-money-page-lead-answers , src/content/blog/purchase-tax-exemption-first-apartment.mdx src/content/blog/second-apartment-purchase-tax-calculation.mdx src/content/blog/capital-gains-exemption-single-apartment-2026.mdx src/content/blog/tama38-vs-evacuation-reconstruction.mdx task_graph.log
+495. material-update-2026-q3-money-pages , src/content/blog/purchase-tax-exemption-first-apartment.mdx src/content/blog/second-apartment-purchase-tax-calculation.mdx src/content/blog/capital-gains-exemption-single-apartment-2026.mdx src/content/blog/tama38-vs-evacuation-reconstruction.mdx task_graph.log
+496. quote-safe-hebrew-alts-on-polluted-posts , src/content/blog/legal-retainer-eight-deliverables.mdx src/content/blog task_graph.log
+
+497. set-category-hub-absolute-title , src/app/categories/[category]/page.tsx task_graph.log
+498. add-seo-indexation-smoke-assertions , scripts/smoke-routes.mjs task_graph.log
+499. lower-sitemap-smoke-floor-for-quarantine , scripts/smoke-routes.mjs task_graph.log
+
+500. add-entity-hub-public-record-ssot , src/lib/seo/public-record.mjs src/lib/seo/public-record.ts scripts/assert-public-record.mjs task_graph.log
+
+501. wire-public-record-on-entity-hub , src/app/about/page.tsx src/lib/seo/main-page-heroes.mjs src/lib/seo/speakable-voice-blocks.ts src/lib/seo/public-record.ts task_graph.log
+
+502. quarantine-trustee-stem-collision-post , src/lib/seo/indexation.ts task_graph.log
+
+503. assert-about-hub-cluster-tokens-in-smoke , scripts/smoke-routes.mjs task_graph.log
+
+504. lower-sitemap-floor-after-stem-quarantine , scripts/smoke-routes.mjs task_graph.log
+505. add-about-public-record-implementation-note , notes/sessions/impl_about-dominant-intent-public-record_2026-09-04.txt task_graph.log
+506. add-about-public-record-session-note , notes/sessions/session_about-dominant-intent-public-record_2026-09-04.txt task_graph.log
