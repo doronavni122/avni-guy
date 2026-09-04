@@ -1,0 +1,45 @@
+date: 2026-09-04 , 22:45 , UTC+3
+kind: session-note
+scope: overlay-prod-ship
+branch: main @ b9fe448a
+pr_overlay: https://github.com/doronavni122/avni-guy/pull/194 MERGED (merge commit, not squash)
+pr_public_record_stacked: https://github.com/doronavni122/avni-guy/pull/195 already on main via overlay
+merge_commit: b9fe448a6665bf2610af06f28432b5f5ecb7ef0b
+overlay_branch: feature/overlay-agentic-workspace-template deleted remote+local
+unrelated_dirty_not_committed: package.json .cursor/hooks/state/ .cursor/settings.json scripts/tools/dev-local-cleanup.sh
+
+## status_summary
+Overlay #194 merged to main with merge commit (atomic task_graph 1:1 preserved). Public-record /about/ work (PR 195) is on main via that overlay merge. Production live: git-triggered deploy dpl_yiLSDMfpf6i3J1BAjJhtDaU8mjsG READY, aliases avniguy.co.il + www.avniguy.co.il, commit b9fe448a. Live https://avniguy.co.il/about/#public-record contains Globes did=1001533397. CLI vercel deploy --prod cancelled (uploaded dirty local tree + hung on optimize-images); did not alias-flip.
+
+## next_plan_suggestion
+index-about-after-overlay-prod — (1) GSC + IndexNow Request indexing https://avniguy.co.il/about/ (apex canonical); (2) watch Performance for גיא אבני / גיא אבני עורך דין moving off /tags/israel-bar/ onto /about/; (3) do not mix serp-bar report HTML; guyavni.co.il 301 stays out of this repo.
+
+## files_to_read
+- SSOT.md — repo/product SSOT; read first.
+- src/lib/seo/public-record.mjs — only place to edit sourced public-record copy.
+- src/app/about/page.tsx — hub layout; do not duplicate copy.
+- src/lib/seo/indexation.ts — quarantine list; do not edit MDX for client-trust-roadmap.
+- scripts/smoke-routes.mjs — about token + sitemap floor.
+- task_graph.log — append-only; last overlay-ship line 507.
+
+## rules_to_read
+- .cursor/rules/enforcement/atomic-change-loging.mdc — one change = one commit + one task_graph line.
+- .cursor/rules/read-structure-first.mdc — structure before edits.
+- .cursor/rules/ssot-repo-structure.mdc — avni-guy owns avniguy.co.il.
+- .cursor/rules/implementation-notes-placement.mdc — no-plan notes in notes/sessions/.
+- .cursor/rules/pr-merge-cleanup.mdc — merge --merge --delete-branch; never squash.
+
+## tools_and_status
+gh authenticated. Default branch main, not protected. Vercel CLI authenticated (doronavni122); project avni-guy. Prod via git integration on main push/merge. Rank measure: serp-bar https://serp-bar-kw-report.surge.sh/ . GSC MCP on serp-bar workspace.
+
+## open_issues
+- www vs apex /about/ canonical split remains.
+- guyavni.co.il still navigational competitor (301 out of this repo).
+- Wikidata Q140457357 was 404; do not invent.
+- /tags/israel-bar/ still historically ate name-query impressions — watch after GSC recrawl.
+
+## acceptance_manual
+- action: open https://avniguy.co.il/about/#public-record
+  expected: Globes did=1001533397 in body; professional identity still present; no specialist מומחה claim.
+- action: GSC inspect apex https://avniguy.co.il/about/ → Request indexing
+  expected: Google recrawls past 2026-06-09 www snapshot; brand queries move toward /about/.
