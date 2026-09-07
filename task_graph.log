@@ -711,3 +711,4 @@
 540. add-social-posts-publish-orchestrator , scripts/social-posts/publish/index.mjs scripts/social-posts/publish/publish.test.mjs task_graph.log
 541. wire-social-posts-cli-pipeline , scripts/tools/social-posts.mjs task_graph.log
 542. add-social-posts-npm-scripts , package.json task_graph.log
+543. add-social-posts-ci-unit-test-step , .github/workflows/ci.yml task_graph.log
