@@ -12,7 +12,7 @@
     "prebuild": "node scripts/optimize-images.mjs && node scripts/write-indexnow-key-file.mjs",
     "build": "next build",
     "postbuild": "node scripts/post-deploy-indexnow.mjs",
-    "build:ci": "pnpm run build && node scripts/check-performance-budget.mjs && pnpm run smoke:routes",
+    "build:ci": "pnpm run build && node scripts/check-performance-budget.mjs && pnpm run smoke:routes && pnpm test",
     "start": "next start",
     "smoke:routes": "node scripts/smoke-routes.mjs",
     "smoke:production": "node scripts/smoke-production.mjs",
@@ -25,7 +25,10 @@
     "hooks:install": "node scripts/tools/install-git-hooks.cjs",
     "atomic:validate-staged": "node scripts/tools/validate-atomic-change-logging.cjs --staged",
     "atomic:validate-range": "node scripts/tools/validate-atomic-change-logging.cjs --range",
-    "agent-framework:validate": "bash scripts/tools/validate-agent-framework.sh"
+    "agent-framework:validate": "bash scripts/tools/validate-agent-framework.sh",
+    "test": "node scripts/tools/run-social-posts-tests.mjs",
+    "test:social": "node scripts/tools/run-social-posts-tests.mjs",
+    "social:posts": "node scripts/tools/social-posts.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",

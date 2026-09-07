@@ -1,0 +1,7 @@
+date , 2026-09-07, 15:38, Asia/Jerusalem
+accepted_results: mocked X/IG/LinkedIn/YouTube tests; 429 retry once
+next plan suggestion: 027_social_facebook_ayrshare_s4 (done in same run)
+files to read: SSOT.md; scripts/social-posts/http.mjs; scripts/social-posts/publish/*.mjs
+rules: atomic-change-loging.mdc; security (no token logs)
+tools and status: native adapters injectable fetch; fail-continue
+open issues: live tokens not in repo

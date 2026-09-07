@@ -1,0 +1,7 @@
+date , 2026-09-07, 15:38, Asia/Jerusalem
+accepted_results: Facebook profile skip test; Ayrshare partial fail; Playwright missing-state skip
+next plan suggestion: 028_social_tests_ci_skillwire_s5 (done in same run)
+files to read: SSOT.md; scripts/social-posts/publish/facebook.mjs; ayrshare.mjs; playwright-fallback.mjs
+rules: atomic-change-loging.mdc
+tools and status: Page Graph or skip; Ayrshare optional; Playwright last resort
+open issues: live Facebook URL is a profile — needs Page token or storageState

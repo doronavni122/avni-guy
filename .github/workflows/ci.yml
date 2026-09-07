@@ -29,5 +29,5 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build and smoke tests
+      - name: Build, smoke, and unit tests
         run: pnpm run build:ci

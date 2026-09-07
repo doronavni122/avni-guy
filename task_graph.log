@@ -679,3 +679,48 @@
 508. add-gitignore-hook-state-keystatic-task-graph , .gitignore task_graph.log
 509. add-cursorignore-secrets-generated-dirs , .cursorignore task_graph.log
 510. add-vercelignore-keystatic-dir , .vercelignore task_graph.log
+511. add-social-posts-unattended-skill , .cursor/skills/social-posts/SKILL.md task_graph.log
+512. add-social-posts-scope-list , notes/TODO_checklist_full_scopes_2026-09-07.txt task_graph.log
+513. add-social-posts-scope-loop-state , notes/implementations/scope_dag.json notes/implementations/scope_loop_state.json task_graph.log
+514. add-social-cli-envelope-plan , .cursor/plans/024_social_cli_envelope_s1.plan.md task_graph.log
+515. add-social-posts-constants , scripts/social-posts/constants.mjs task_graph.log
+516. add-social-posts-jsonl-logger , scripts/social-posts/log.mjs scripts/social-posts/log.test.mjs task_graph.log
+517. add-social-posts-env-loader , scripts/social-posts/env.mjs scripts/social-posts/env.test.mjs task_graph.log
+518. add-social-posts-run-envelope , scripts/social-posts/run.mjs scripts/social-posts/run.test.mjs task_graph.log
+519. add-social-posts-cli-entrypoint , scripts/tools/social-posts.mjs task_graph.log
+520. add-social-posts-env-example-keys , .env.example task_graph.log
+521. add-social-posts-dev-env-example-keys , .env.development.example task_graph.log
+522. add-social-posts-logger-module , scripts/social-posts/log.mjs scripts/social-posts/log.test.mjs task_graph.log
+523. add-social-posts-env-module , scripts/social-posts/env.mjs scripts/social-posts/env.test.mjs task_graph.log
+524. add-social-posts-run-module , scripts/social-posts/run.mjs scripts/social-posts/run.test.mjs task_graph.log
+525. add-social-source-copy-plan , .cursor/plans/025_social_source_copy_s2.plan.md task_graph.log
+526. add-social-native-publish-plan , .cursor/plans/026_social_native_publish_s3.plan.md task_graph.log
+527. add-social-facebook-ayrshare-plan , .cursor/plans/027_social_facebook_ayrshare_s4.plan.md task_graph.log
+528. add-social-tests-ci-skillwire-plan , .cursor/plans/028_social_tests_ci_skillwire_s5.plan.md task_graph.log
+529. add-social-posts-source-resolver , scripts/social-posts/source.mjs scripts/social-posts/source.test.mjs task_graph.log
+530. add-social-posts-hebrew-copy , scripts/social-posts/copy.mjs scripts/social-posts/copy.test.mjs task_graph.log
+531. add-social-posts-media-prep , scripts/social-posts/media.mjs scripts/social-posts/media.test.mjs task_graph.log
+532. add-social-posts-http-helper , scripts/social-posts/http.mjs scripts/social-posts/http.test.mjs task_graph.log
+533. add-social-posts-x-publisher , scripts/social-posts/publish/x.mjs task_graph.log
+534. add-social-posts-instagram-publisher , scripts/social-posts/publish/instagram.mjs task_graph.log
+535. add-social-posts-linkedin-publisher , scripts/social-posts/publish/linkedin.mjs task_graph.log
+536. add-social-posts-youtube-publisher , scripts/social-posts/publish/youtube.mjs task_graph.log
+537. add-social-posts-facebook-publisher , scripts/social-posts/publish/facebook.mjs task_graph.log
+538. add-social-posts-ayrshare-publisher , scripts/social-posts/publish/ayrshare.mjs task_graph.log
+539. add-social-posts-playwright-fallback , scripts/social-posts/publish/playwright-fallback.mjs task_graph.log
+540. add-social-posts-publish-orchestrator , scripts/social-posts/publish/index.mjs scripts/social-posts/publish/publish.test.mjs task_graph.log
+541. wire-social-posts-cli-pipeline , scripts/tools/social-posts.mjs task_graph.log
+542. add-social-posts-npm-scripts , package.json task_graph.log
+543. add-social-posts-ci-unit-test-step , .github/workflows/ci.yml task_graph.log
+544. point-social-posts-skill-at-cli , .cursor/skills/social-posts/SKILL.md task_graph.log
+545. add-social-posts-dry-run-e2e-test , scripts/social-posts/cli.e2e.test.mjs task_graph.log
+546. mark-social-posts-scope-list-done , notes/TODO_checklist_full_scopes_2026-09-07.txt task_graph.log
+547. mark-social-posts-loop-state-done , notes/implementations/scope_loop_state.json task_graph.log
+548. append-social-posts-owner-checklist , notes/implementations/implementaion_progress_checklist.md task_graph.log
+549. add-social-cli-envelope-brief , notes/implementations/024_social_cli_envelope_s1_brief.txt task_graph.log
+550. add-social-source-copy-brief , notes/implementations/025_social_source_copy_s2_brief.txt task_graph.log
+551. add-social-native-publish-brief , notes/implementations/026_social_native_publish_s3_brief.txt task_graph.log
+552. add-social-facebook-ayrshare-brief , notes/implementations/027_social_facebook_ayrshare_s4_brief.txt task_graph.log
+553. add-social-tests-ci-skillwire-brief , notes/implementations/028_social_tests_ci_skillwire_s5_brief.txt task_graph.log
+554. add-social-posts-node24-test-runner , scripts/tools/run-social-posts-tests.mjs task_graph.log
+555. point-pnpm-test-at-node24-runner , package.json task_graph.log

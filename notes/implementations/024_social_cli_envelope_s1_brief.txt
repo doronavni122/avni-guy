@@ -1,0 +1,7 @@
+date , 2026-09-07, 15:38, Asia/Jerusalem
+accepted_results: pnpm test; node scripts/tools/social-posts.mjs --dry-run
+next plan suggestion: 025_social_source_copy_s2 (done in same run)
+files to read: SSOT.md (product); scripts/social-posts/run.mjs (envelope); scripts/tools/social-posts.mjs (CLI)
+rules: .cursor/rules/enforcement/atomic-change-loging.mdc; ssot-repo-structure.mdc; scripts-placement
+tools and status: JSONL logger + dry-run CLI + env example keys. Tests pass.
+open issues: live publish needs tokens in .env.local; ffmpeg missing locally
