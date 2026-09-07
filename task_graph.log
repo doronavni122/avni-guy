@@ -702,3 +702,4 @@
 531. add-social-posts-media-prep , scripts/social-posts/media.mjs scripts/social-posts/media.test.mjs task_graph.log
 532. add-social-posts-http-helper , scripts/social-posts/http.mjs scripts/social-posts/http.test.mjs task_graph.log
 533. add-social-posts-x-publisher , scripts/social-posts/publish/x.mjs task_graph.log
+534. add-social-posts-instagram-publisher , scripts/social-posts/publish/instagram.mjs task_graph.log
