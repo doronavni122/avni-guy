@@ -679,3 +679,4 @@
 508. add-gitignore-hook-state-keystatic-task-graph , .gitignore task_graph.log
 509. add-cursorignore-secrets-generated-dirs , .cursorignore task_graph.log
 510. add-vercelignore-keystatic-dir , .vercelignore task_graph.log
+511. add-social-posts-unattended-skill , .cursor/skills/social-posts/SKILL.md task_graph.log
