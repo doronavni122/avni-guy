@@ -722,3 +722,4 @@
 551. add-social-native-publish-brief , notes/implementations/026_social_native_publish_s3_brief.txt task_graph.log
 552. add-social-facebook-ayrshare-brief , notes/implementations/027_social_facebook_ayrshare_s4_brief.txt task_graph.log
 553. add-social-tests-ci-skillwire-brief , notes/implementations/028_social_tests_ci_skillwire_s5_brief.txt task_graph.log
+554. add-social-posts-node24-test-runner , scripts/tools/run-social-posts-tests.mjs task_graph.log
