@@ -718,3 +718,4 @@
 547. mark-social-posts-loop-state-done , notes/implementations/scope_loop_state.json task_graph.log
 548. append-social-posts-owner-checklist , notes/implementations/implementaion_progress_checklist.md task_graph.log
 549. add-social-cli-envelope-brief , notes/implementations/024_social_cli_envelope_s1_brief.txt task_graph.log
+550. add-social-source-copy-brief , notes/implementations/025_social_source_copy_s2_brief.txt task_graph.log

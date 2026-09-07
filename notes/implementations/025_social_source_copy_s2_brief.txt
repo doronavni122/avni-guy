@@ -1,0 +1,7 @@
+date , 2026-09-07, 15:38, Asia/Jerusalem
+accepted_results: source/copy/media unit tests; dry-run writes copy.json
+next plan suggestion: 026_social_native_publish_s3 (done in same run)
+files to read: SSOT.md; scripts/social-posts/source.mjs; scripts/social-posts/copy.mjs; src/lib/nav/site-social.ts
+rules: atomic-change-loging.mdc; unique-site-images.mdc; content-seo-quality.mdc
+tools and status: live+footer profiles, newest MDX, Hebrew copy limits, ffmpeg skip logged
+open issues: none for copy; YouTube Short still needs ffmpeg at live post time
