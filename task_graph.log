@@ -683,3 +683,4 @@
 512. add-social-posts-scope-list , notes/TODO_checklist_full_scopes_2026-09-07.txt task_graph.log
 513. add-social-posts-scope-loop-state , notes/implementations/scope_dag.json notes/implementations/scope_loop_state.json task_graph.log
 514. add-social-cli-envelope-plan , .cursor/plans/024_social_cli_envelope_s1.plan.md task_graph.log
+515. add-social-posts-constants , scripts/social-posts/constants.mjs task_graph.log
