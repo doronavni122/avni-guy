@@ -1,0 +1,39 @@
+date , 2026-09-07, 15:49, Asia/Jerusalem
+pr: https://github.com/doronavni122/avni-guy/pull/198
+merge: --merge (not squash) SHA 992c510a7a447dbdb906a6697b965219f5abe7de
+head_included: dd2fa2e6 point-pnpm-test-at-node24-runner (later than 1037d490)
+vercel: READY dpl_2oyS9fKZXMcsKbYKgJDsApmvhuQQ (not failed dpl_GvR2rYqdf4Co3YsbkJnKqhCjmrcE)
+branch_deleted: remote+local feature/social-posts-unattended-playbook
+
+cli: pnpm social:posts → node scripts/tools/social-posts.mjs
+how_to_run:
+  pnpm social:posts --dry-run
+  pnpm social:posts --slug tenant-rights-israel
+  pnpm social:posts --homepage
+  pnpm social:posts --url https://avniguy.co.il/blog/tenant-rights-israel/
+  default: newest src/content/blog/*.mdx by pubDate
+  live: tokens in .env.local AND SOCIAL_POSTS_DRY_RUN != 1
+  stdout: JSON {runDir,table}; artifacts $TMPDIR/avni-social-posts/<id>/run.jsonl
+networks: x instagram youtube linkedin facebook (scripts/social-posts/constants.mjs NETWORKS)
+footer_ssot: src/lib/nav/site-social.ts X/IG/YT; LinkedIn+Facebook from live sameAs
+dry_run: --dry-run OR SOCIAL_POSTS_DRY_RUN=1; writes per-network *-payload.json; no Graph/API
+tests: 28 pass / 23 suites via pnpm test | pnpm test:social
+node24: node --test <dir> MODULE_NOT_FOUND; runner scripts/tools/run-social-posts-tests.mjs collects *.test.mjs then node --test <files>
+ci: package.json build:ci ends with pnpm test; .github/workflows/ci.yml runs pnpm run build:ci
+env: keys in .env.example + .env.development.example; load .env.local via scripts/social-posts/env.mjs; NOT in src/env.ts (PERSON_* SEO only)
+facebook_profile_skip: live URL is profile; Graph needs FACEBOOK_PAGE_ID + FACEBOOK_PAGE_ACCESS_TOKEN; else skip unless PLAYWRIGHT_STATE_FACEBOOK
+ffmpeg: scripts/social-posts/media.mjs → short.mp4 1080x1920 20s from source.jpg; missing ffmpeg → youtube fail live (dry-run still ok)
+
+accepted_results:
+  action: pnpm test
+  expected: # tests 28 # pass 28
+  action: pnpm social:posts --dry-run
+  expected: table result=dry-run for 5 networks; no live posts
+  action: fill .env.local tokens then pnpm social:posts
+  expected: native publish per network; facebook skip if no Page token
+
+next plan suggestion: none — social-posts scopes DONE. Operator tokens + ffmpeg for live YT.
+files to read: SSOT.md (product); .cursor/skills/social-posts/SKILL.md (invoke CLI only); scripts/tools/social-posts.mjs (entrypoint); scripts/tools/run-social-posts-tests.mjs (Node 24); scripts/social-posts/publish/facebook.mjs (profile skip); package.json (social:posts test test:social build:ci)
+rules: .cursor/rules/enforcement/atomic-change-loging.mdc; after-implementation-build-dev.mdc; implementation-notes-placement.mdc; scripts-placement
+tools and status: skill → CLI; Node 24 test runner in CI; PR 198 merged 992c510a; Vercel preview Ready.
+open issues: OAuth bootstrap off-run; ffmpeg required for YouTube live short; Facebook Page conversion or PLAYWRIGHT_STATE_FACEBOOK
