@@ -689,3 +689,4 @@
 518. add-social-posts-run-envelope , scripts/social-posts/run.mjs scripts/social-posts/run.test.mjs task_graph.log
 519. add-social-posts-cli-entrypoint , scripts/tools/social-posts.mjs task_graph.log
 520. add-social-posts-env-example-keys , .env.example task_graph.log
+521. add-social-posts-dev-env-example-keys , .env.development.example task_graph.log
