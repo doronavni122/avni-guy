@@ -724,3 +724,5 @@
 553. add-social-tests-ci-skillwire-brief , notes/implementations/028_social_tests_ci_skillwire_s5_brief.txt task_graph.log
 554. add-social-posts-node24-test-runner , scripts/tools/run-social-posts-tests.mjs task_graph.log
 555. point-pnpm-test-at-node24-runner , package.json task_graph.log
+
+556. add-social-tests-ci-skillwire-s5-note , notes/implementations/028_social_tests_ci_skillwire_s5_note.txt task_graph.log
