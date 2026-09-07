@@ -26,8 +26,8 @@
     "atomic:validate-staged": "node scripts/tools/validate-atomic-change-logging.cjs --staged",
     "atomic:validate-range": "node scripts/tools/validate-atomic-change-logging.cjs --range",
     "agent-framework:validate": "bash scripts/tools/validate-agent-framework.sh",
-    "test": "node --test scripts/social-posts",
-    "test:social": "node --test scripts/social-posts",
+    "test": "node scripts/tools/run-social-posts-tests.mjs",
+    "test:social": "node scripts/tools/run-social-posts-tests.mjs",
     "social:posts": "node scripts/tools/social-posts.mjs"
   },
   "dependencies": {
