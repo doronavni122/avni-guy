@@ -712,3 +712,4 @@
 541. wire-social-posts-cli-pipeline , scripts/tools/social-posts.mjs task_graph.log
 542. add-social-posts-npm-scripts , package.json task_graph.log
 543. add-social-posts-ci-unit-test-step , .github/workflows/ci.yml task_graph.log
+544. point-social-posts-skill-at-cli , .cursor/skills/social-posts/SKILL.md task_graph.log
