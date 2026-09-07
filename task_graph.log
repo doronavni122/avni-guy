@@ -697,3 +697,4 @@
 526. add-social-native-publish-plan , .cursor/plans/026_social_native_publish_s3.plan.md task_graph.log
 527. add-social-facebook-ayrshare-plan , .cursor/plans/027_social_facebook_ayrshare_s4.plan.md task_graph.log
 528. add-social-tests-ci-skillwire-plan , .cursor/plans/028_social_tests_ci_skillwire_s5.plan.md task_graph.log
+529. add-social-posts-source-resolver , scripts/social-posts/source.mjs scripts/social-posts/source.test.mjs task_graph.log
