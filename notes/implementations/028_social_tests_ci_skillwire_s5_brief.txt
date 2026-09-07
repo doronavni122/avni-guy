@@ -1,0 +1,7 @@
+date , 2026-09-07, 15:38, Asia/Jerusalem
+accepted_results: pnpm test (28); pnpm social:posts --dry-run; tests in build:ci
+next plan suggestion: none — social-posts scopes DONE. Operator: fill .env.local tokens then pnpm social:posts
+files to read: SSOT.md; .cursor/skills/social-posts/SKILL.md; scripts/tools/social-posts.mjs; package.json
+rules: atomic-change-loging.mdc; after-implementation-build-dev.mdc
+tools and status: skill invokes CLI; node:test in CI
+open issues: OAuth bootstrap; ffmpeg for YouTube live; Facebook Page conversion
