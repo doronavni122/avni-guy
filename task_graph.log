@@ -707,3 +707,4 @@
 536. add-social-posts-youtube-publisher , scripts/social-posts/publish/youtube.mjs task_graph.log
 537. add-social-posts-facebook-publisher , scripts/social-posts/publish/facebook.mjs task_graph.log
 538. add-social-posts-ayrshare-publisher , scripts/social-posts/publish/ayrshare.mjs task_graph.log
+539. add-social-posts-playwright-fallback , scripts/social-posts/publish/playwright-fallback.mjs task_graph.log
