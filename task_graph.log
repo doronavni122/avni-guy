@@ -699,3 +699,4 @@
 528. add-social-tests-ci-skillwire-plan , .cursor/plans/028_social_tests_ci_skillwire_s5.plan.md task_graph.log
 529. add-social-posts-source-resolver , scripts/social-posts/source.mjs scripts/social-posts/source.test.mjs task_graph.log
 530. add-social-posts-hebrew-copy , scripts/social-posts/copy.mjs scripts/social-posts/copy.test.mjs task_graph.log
+531. add-social-posts-media-prep , scripts/social-posts/media.mjs scripts/social-posts/media.test.mjs task_graph.log
