@@ -703,3 +703,4 @@
 532. add-social-posts-http-helper , scripts/social-posts/http.mjs scripts/social-posts/http.test.mjs task_graph.log
 533. add-social-posts-x-publisher , scripts/social-posts/publish/x.mjs task_graph.log
 534. add-social-posts-instagram-publisher , scripts/social-posts/publish/instagram.mjs task_graph.log
+535. add-social-posts-linkedin-publisher , scripts/social-posts/publish/linkedin.mjs task_graph.log
