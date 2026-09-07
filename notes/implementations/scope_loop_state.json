@@ -1,13 +1,13 @@
 {
-  "scope_list_file": "notes/TODO_checklist_full_scopes_2026-07-14.txt",
-  "mode": "parallel",
-  "integration_branch": "main",
+  "scope_list_file": "notes/TODO_checklist_full_scopes_2026-09-07.txt",
+  "mode": "sequential",
+  "integration_branch": "feature/social-posts-unattended-playbook",
   "max_parallel_workers": 3,
   "isolation": "git_worktree_only",
   "primary_worktree": "/Users/doronavni/avni-guy",
   "started_at": "2026-07-14T14:05:00+00:00",
-  "updated_at": "2026-07-14T14:56:00+00:00",
-  "current_scope": null,
+  "updated_at": "2026-09-07T12:25:00+03:00",
+  "current_scope": "social-cli-envelope",
   "inner_iteration": 1,
   "max_inner_iterations": 3,
   "escalation_level": 0,
@@ -313,6 +313,46 @@
       "status": "DONE",
       "plan": null,
       "last_gate": "ops_runbook_agentic",
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "social-cli-envelope": {
+      "status": "IN_PROGRESS",
+      "plan": "024_social_cli_envelope_s1",
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "social-source-copy": {
+      "status": "PENDING",
+      "plan": "025_social_source_copy_s2",
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "social-native-publish": {
+      "status": "PENDING",
+      "plan": "026_social_native_publish_s3",
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "social-facebook-ayrshare-playwright": {
+      "status": "PENDING",
+      "plan": "027_social_facebook_ayrshare_s4",
+      "last_gate": null,
+      "last_failure": null,
+      "escalation_count": 0,
+      "rca_files": []
+    },
+    "social-tests-ci-skillwire": {
+      "status": "PENDING",
+      "plan": "028_social_tests_ci_skillwire_s5",
+      "last_gate": null,
       "last_failure": null,
       "escalation_count": 0,
       "rca_files": []
