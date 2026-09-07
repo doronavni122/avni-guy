@@ -680,3 +680,4 @@
 509. add-cursorignore-secrets-generated-dirs , .cursorignore task_graph.log
 510. add-vercelignore-keystatic-dir , .vercelignore task_graph.log
 511. add-social-posts-unattended-skill , .cursor/skills/social-posts/SKILL.md task_graph.log
+512. add-social-posts-scope-list , notes/TODO_checklist_full_scopes_2026-09-07.txt task_graph.log
