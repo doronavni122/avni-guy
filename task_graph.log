@@ -693,3 +693,4 @@
 522. add-social-posts-logger-module , scripts/social-posts/log.mjs scripts/social-posts/log.test.mjs task_graph.log
 523. add-social-posts-env-module , scripts/social-posts/env.mjs scripts/social-posts/env.test.mjs task_graph.log
 524. add-social-posts-run-module , scripts/social-posts/run.mjs scripts/social-posts/run.test.mjs task_graph.log
+525. add-social-source-copy-plan , .cursor/plans/025_social_source_copy_s2.plan.md task_graph.log
