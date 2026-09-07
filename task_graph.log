@@ -714,3 +714,4 @@
 543. add-social-posts-ci-unit-test-step , .github/workflows/ci.yml task_graph.log
 544. point-social-posts-skill-at-cli , .cursor/skills/social-posts/SKILL.md task_graph.log
 545. add-social-posts-dry-run-e2e-test , scripts/social-posts/cli.e2e.test.mjs task_graph.log
+546. mark-social-posts-scope-list-done , notes/TODO_checklist_full_scopes_2026-09-07.txt task_graph.log

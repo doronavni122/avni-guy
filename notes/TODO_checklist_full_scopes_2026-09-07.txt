@@ -5,28 +5,28 @@ Source: chat estimate + PIPLINE_suggest_and_implement.
 
 ## social-cli-envelope
 
-- [ ] CLI run envelope: $RUN_DIR JSONL logger dry-run npm script env example keys missing-creds continue
+- [x] CLI run envelope: $RUN_DIR JSONL logger dry-run npm script env example keys missing-creds continue
 
 ## social-source-copy
 
 Prerequisite: social-cli-envelope
 
-- [ ] Live profiles + newest MDX source + Hebrew per-network copy/media rules + ffmpeg skip
+- [x] Live profiles + newest MDX source + Hebrew per-network copy/media rules + ffmpeg skip
 
 ## social-native-publish
 
 Prerequisite: social-source-copy
 
-- [ ] Native X Instagram LinkedIn YouTube adapters mocked HTTP tests fail-continue 429 once
+- [x] Native X Instagram LinkedIn YouTube adapters mocked HTTP tests fail-continue 429 once
 
 ## social-facebook-ayrshare-playwright
 
 Prerequisite: social-source-copy
 
-- [ ] Facebook Page vs profile-skip Ayrshare shortcut native fallback Playwright storageState skip
+- [x] Facebook Page vs profile-skip Ayrshare shortcut native fallback Playwright storageState skip
 
 ## social-tests-ci-skillwire
 
 Prerequisite: social-native-publish social-facebook-ayrshare-playwright
 
-- [ ] SKILL.md invokes CLI pnpm test node:test wired into build:ci dry-run e2e coverage
+- [x] SKILL.md invokes CLI pnpm test node:test wired into build:ci dry-run e2e coverage
