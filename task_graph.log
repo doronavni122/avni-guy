@@ -691,3 +691,4 @@
 520. add-social-posts-env-example-keys , .env.example task_graph.log
 521. add-social-posts-dev-env-example-keys , .env.development.example task_graph.log
 522. add-social-posts-logger-module , scripts/social-posts/log.mjs scripts/social-posts/log.test.mjs task_graph.log
+523. add-social-posts-env-module , scripts/social-posts/env.mjs scripts/social-posts/env.test.mjs task_graph.log
