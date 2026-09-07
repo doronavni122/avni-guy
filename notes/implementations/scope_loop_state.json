@@ -6,8 +6,8 @@
   "isolation": "git_worktree_only",
   "primary_worktree": "/Users/doronavni/avni-guy",
   "started_at": "2026-07-14T14:05:00+00:00",
-  "updated_at": "2026-09-07T12:25:00+03:00",
-  "current_scope": "social-cli-envelope",
+  "updated_at": "2026-09-07T15:38:00+03:00",
+  "current_scope": null,
   "inner_iteration": 1,
   "max_inner_iterations": 3,
   "escalation_level": 0,
@@ -318,41 +318,41 @@
       "rca_files": []
     },
     "social-cli-envelope": {
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "plan": "024_social_cli_envelope_s1",
-      "last_gate": null,
+      "last_gate": "tests_pass_dry_run",
       "last_failure": null,
       "escalation_count": 0,
       "rca_files": []
     },
     "social-source-copy": {
-      "status": "PENDING",
+      "status": "DONE",
       "plan": "025_social_source_copy_s2",
-      "last_gate": null,
+      "last_gate": "tests_pass_dry_run",
       "last_failure": null,
       "escalation_count": 0,
       "rca_files": []
     },
     "social-native-publish": {
-      "status": "PENDING",
+      "status": "DONE",
       "plan": "026_social_native_publish_s3",
-      "last_gate": null,
+      "last_gate": "tests_pass_dry_run",
       "last_failure": null,
       "escalation_count": 0,
       "rca_files": []
     },
     "social-facebook-ayrshare-playwright": {
-      "status": "PENDING",
+      "status": "DONE",
       "plan": "027_social_facebook_ayrshare_s4",
-      "last_gate": null,
+      "last_gate": "tests_pass_dry_run",
       "last_failure": null,
       "escalation_count": 0,
       "rca_files": []
     },
     "social-tests-ci-skillwire": {
-      "status": "PENDING",
+      "status": "DONE",
       "plan": "028_social_tests_ci_skillwire_s5",
-      "last_gate": null,
+      "last_gate": "tests_pass_dry_run",
       "last_failure": null,
       "escalation_count": 0,
       "rca_files": []
