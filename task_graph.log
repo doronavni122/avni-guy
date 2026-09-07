@@ -684,3 +684,7 @@
 513. add-social-posts-scope-loop-state , notes/implementations/scope_dag.json notes/implementations/scope_loop_state.json task_graph.log
 514. add-social-cli-envelope-plan , .cursor/plans/024_social_cli_envelope_s1.plan.md task_graph.log
 515. add-social-posts-constants , scripts/social-posts/constants.mjs task_graph.log
+516. add-social-posts-jsonl-logger , scripts/social-posts/log.mjs scripts/social-posts/log.test.mjs task_graph.log
+517. add-social-posts-env-loader , scripts/social-posts/env.mjs scripts/social-posts/env.test.mjs task_graph.log
+518. add-social-posts-run-envelope , scripts/social-posts/run.mjs scripts/social-posts/run.test.mjs task_graph.log
+519. add-social-posts-cli-entrypoint , scripts/tools/social-posts.mjs task_graph.log
