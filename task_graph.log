@@ -705,3 +705,4 @@
 534. add-social-posts-instagram-publisher , scripts/social-posts/publish/instagram.mjs task_graph.log
 535. add-social-posts-linkedin-publisher , scripts/social-posts/publish/linkedin.mjs task_graph.log
 536. add-social-posts-youtube-publisher , scripts/social-posts/publish/youtube.mjs task_graph.log
+537. add-social-posts-facebook-publisher , scripts/social-posts/publish/facebook.mjs task_graph.log
