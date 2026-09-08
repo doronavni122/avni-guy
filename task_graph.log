@@ -741,3 +741,4 @@
 569. add-social-oauth-linkedin-connector , scripts/social-oauth/connectors/linkedin.mjs task_graph.log
 570. add-social-oauth-meta-connector , scripts/social-oauth/connectors/meta.mjs scripts/social-oauth/connectors/urls.test.mjs task_graph.log
 571. add-social-oauth-cli-run , scripts/social-oauth/run.mjs scripts/social-oauth/run.test.mjs scripts/tools/social-oauth.mjs task_graph.log
+572. add-social-oauth-pnpm-script , package.json task_graph.log
