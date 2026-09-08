@@ -743,3 +743,4 @@
 571. add-social-oauth-cli-run , scripts/social-oauth/run.mjs scripts/social-oauth/run.test.mjs scripts/tools/social-oauth.mjs task_graph.log
 572. add-social-oauth-pnpm-script , package.json task_graph.log
 573. collect-oauth-tests-in-pnpm-test , scripts/tools/run-social-posts-tests.mjs task_graph.log
+574. add-social-oauth-bootstrap-skill , .cursor/skills/social-oauth-bootstrap/SKILL.md task_graph.log
