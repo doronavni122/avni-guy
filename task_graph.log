@@ -726,3 +726,4 @@
 555. point-pnpm-test-at-node24-runner , package.json task_graph.log
 
 556. add-social-tests-ci-skillwire-s5-note , notes/implementations/028_social_tests_ci_skillwire_s5_note.txt task_graph.log
+557. add-social-oauth-pkce-s256 , scripts/social-oauth/pkce.mjs scripts/social-oauth/pkce.test.mjs task_graph.log
