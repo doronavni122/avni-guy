@@ -24,7 +24,7 @@ pnpm social:posts --homepage
 pnpm social:posts --url https://avniguy.co.il/blog/tenant-rights-israel/
 ```
 
-Default (no flags): newest `src/content/blog/*.mdx` by `pubDate`. Live post when tokens exist and `SOCIAL_POSTS_DRY_RUN` is not `1`. One-time OAuth/Playwright `storageState` is off-run.
+Default (no flags): newest `src/content/blog/*.mdx` by `pubDate`. Live post when tokens exist and `SOCIAL_POSTS_DRY_RUN` is not `1`. One-time OAuth bootstrap: skill `social-oauth-bootstrap` / `pnpm social:oauth` (headed persistent Chrome; owner Gmail login).
 
 Env keys: `.env.example` (local `.env.local`). Not in `src/env.ts`.
 

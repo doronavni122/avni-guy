@@ -746,3 +746,4 @@
 574. add-social-oauth-bootstrap-skill , .cursor/skills/social-oauth-bootstrap/SKILL.md task_graph.log
 575. add-oauth-loopback-env-example-keys , .env.example task_graph.log
 576. add-oauth-keys-to-dev-env-example , .env.development.example task_graph.log
+577. point-social-posts-skill-at-oauth-cli , .cursor/skills/social-posts/SKILL.md task_graph.log
