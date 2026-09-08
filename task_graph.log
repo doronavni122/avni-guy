@@ -739,3 +739,4 @@
 567. add-social-oauth-youtube-connector , scripts/social-oauth/connectors/youtube.mjs task_graph.log
 568. add-social-oauth-x-connector , scripts/social-oauth/connectors/x.mjs task_graph.log
 569. add-social-oauth-linkedin-connector , scripts/social-oauth/connectors/linkedin.mjs task_graph.log
+570. add-social-oauth-meta-connector , scripts/social-oauth/connectors/meta.mjs scripts/social-oauth/connectors/urls.test.mjs task_graph.log
