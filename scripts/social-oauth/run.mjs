@@ -81,9 +81,9 @@ export async function runSocialOauth(opts) {
 		browser = await openBrowser({ root, logger });
 		await waitForGmailLogin({ page: browser.page, logger });
 		if (loginOnly) {
-			logger.logStep('info', 'gmail-login', null, 'login-only; close the window when done browsing');
+			logger.logStep('info', 'gmail-login', null, 'login-only; leaving headed window open (Ctrl+C to stop)');
 			printOauthSummary(results, runDir, credsStatus(env));
-			return { ok: true, runDir, results, dry };
+			await new Promise(() => {});
 		}
 
 		const ctx = {
