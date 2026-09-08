@@ -728,3 +728,4 @@
 556. add-social-tests-ci-skillwire-s5-note , notes/implementations/028_social_tests_ci_skillwire_s5_note.txt task_graph.log
 557. add-social-oauth-pkce-s256 , scripts/social-oauth/pkce.mjs scripts/social-oauth/pkce.test.mjs task_graph.log
 558. add-social-oauth-constants , scripts/social-oauth/constants.mjs task_graph.log
+559. add-social-oauth-loopback-callback , scripts/social-oauth/loopback.mjs scripts/social-oauth/loopback.test.mjs task_graph.log
