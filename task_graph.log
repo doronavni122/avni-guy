@@ -732,3 +732,4 @@
 560. add-social-oauth-env-upsert , scripts/social-oauth/env-file.mjs scripts/social-oauth/env-file.test.mjs task_graph.log
 561. add-social-oauth-wait-helper , scripts/social-oauth/wait.mjs scripts/social-oauth/wait.test.mjs task_graph.log
 562. add-social-oauth-headed-chrome-session , scripts/social-oauth/session.mjs task_graph.log
+563. add-social-oauth-gmail-login-wait , scripts/social-oauth/gmail.mjs scripts/social-oauth/gmail.test.mjs task_graph.log
