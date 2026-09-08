@@ -92,6 +92,7 @@ export async function runSocialPosts(opts) {
 						fetchImpl: opts.fetchImpl,
 						sleep: opts.sleep,
 						missing,
+						root,
 					});
 					results.length = 0;
 					results.push(...published);
