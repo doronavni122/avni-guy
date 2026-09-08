@@ -748,3 +748,4 @@
 576. add-oauth-keys-to-dev-env-example , .env.development.example task_graph.log
 577. point-social-posts-skill-at-oauth-cli , .cursor/skills/social-posts/SKILL.md task_graph.log
 578. pass-root-into-social-publish-ctx , scripts/social-posts/run.mjs task_graph.log
+579. refresh-x-user-token-on-publish , scripts/social-posts/publish/x.mjs scripts/social-posts/publish/publish.test.mjs task_graph.log
