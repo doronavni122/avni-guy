@@ -734,3 +734,4 @@
 562. add-social-oauth-headed-chrome-session , scripts/social-oauth/session.mjs task_graph.log
 563. add-social-oauth-gmail-login-wait , scripts/social-oauth/gmail.mjs scripts/social-oauth/gmail.test.mjs task_graph.log
 564. add-social-oauth-token-http , scripts/social-oauth/http.mjs scripts/social-oauth/http.test.mjs task_graph.log
+565. add-social-oauth-client-bundle-wait , scripts/social-oauth/clients.mjs scripts/social-oauth/clients.test.mjs task_graph.log
