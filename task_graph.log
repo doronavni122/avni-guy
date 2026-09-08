@@ -744,3 +744,4 @@
 572. add-social-oauth-pnpm-script , package.json task_graph.log
 573. collect-oauth-tests-in-pnpm-test , scripts/tools/run-social-posts-tests.mjs task_graph.log
 574. add-social-oauth-bootstrap-skill , .cursor/skills/social-oauth-bootstrap/SKILL.md task_graph.log
+575. add-oauth-loopback-env-example-keys , .env.example task_graph.log
