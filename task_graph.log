@@ -737,3 +737,4 @@
 565. add-social-oauth-client-bundle-wait , scripts/social-oauth/clients.mjs scripts/social-oauth/clients.test.mjs task_graph.log
 566. add-social-oauth-authorize-capture , scripts/social-oauth/authorize.mjs task_graph.log
 567. add-social-oauth-youtube-connector , scripts/social-oauth/connectors/youtube.mjs task_graph.log
+568. add-social-oauth-x-connector , scripts/social-oauth/connectors/x.mjs task_graph.log
