@@ -9,7 +9,10 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
-const start = path.join(root, 'scripts/social-posts');
+const starts = [
+	path.join(root, 'scripts/social-posts'),
+	path.join(root, 'scripts/social-oauth'),
+];
 
 function collect(dir) {
 	const out = [];
@@ -25,9 +28,9 @@ function collect(dir) {
 	return out;
 }
 
-const files = collect(start);
+const files = starts.flatMap((start) => collect(start));
 if (!files.length) {
-	console.error('[run-social-posts-tests] no *.test.mjs under scripts/social-posts');
+	console.error('[run-social-posts-tests] no *.test.mjs under scripts/social-posts or scripts/social-oauth');
 	process.exit(1);
 }
 
