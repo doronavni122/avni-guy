@@ -28,7 +28,8 @@
     "agent-framework:validate": "bash scripts/tools/validate-agent-framework.sh",
     "test": "node scripts/tools/run-social-posts-tests.mjs",
     "test:social": "node scripts/tools/run-social-posts-tests.mjs",
-    "social:posts": "node scripts/tools/social-posts.mjs"
+    "social:posts": "node scripts/tools/social-posts.mjs",
+    "social:oauth": "node scripts/tools/social-oauth.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",

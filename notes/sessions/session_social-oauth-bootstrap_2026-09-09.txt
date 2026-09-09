@@ -1,0 +1,50 @@
+date , 2026-09-09, 22:17, Asia/Jerusalem
+kind: session-note
+scope: social-oauth-bootstrap
+branch: feature/social-oauth-bootstrap
+cli: pnpm social:oauth → node scripts/tools/social-oauth.mjs
+skill: .cursor/skills/social-oauth-bootstrap/SKILL.md
+login_in_progress: pnpm social:oauth --login headed persistent chrome; waiting Gmail inbox; do not close window
+unrelated_dirty_not_committed: .cursor/settings.json scripts/tools/dev-local-cleanup.sh
+
+## status_summary
+OAuth bootstrap CLI shipped: headed persistent Chrome (.playwright/social-oauth-profile), RFC8252 loopback http://127.0.0.1:8788/callback, PKCE S256, official token exchange, upsert .env.local (no secret logs). Connectors: youtube x linkedin meta. X publish refreshes 2h tokens via X_REFRESH_TOKEN. pnpm test 55 pass. Cursor IDE browser not used (isolated profile). No extra npm deps.
+
+## next_plan_suggestion
+social-oauth-browser-logins — continue in the SAME headed Chrome (persistent profile). (1) Finish Gmail inbox in the open window. (2) pnpm social:oauth (or --network youtube then x,linkedin,meta). (3) Operator creates developer apps if missing; register redirect http://127.0.0.1:8788/callback; drop client JSON to .playwright/oauth-clients/{youtube,x,linkedin,meta}.json or YouTube client_secret_*.json in ~/Downloads. (4) Facebook: create Page (Graph cannot post to personal profile); IG Professional linked to Page. (5) Confirm stdout table ok + creds present; then pnpm social:posts --dry-run. Do not start a second Chrome profile.
+
+## files_to_read
+- SSOT.md — product SSOT; read first.
+- .cursor/skills/social-oauth-bootstrap/SKILL.md — invoke CLI only; do not reimplement.
+- scripts/tools/social-oauth.mjs — CLI entry.
+- scripts/social-oauth/run.mjs — login keep-open; network order youtube x linkedin meta.
+- scripts/social-oauth/session.mjs — channel chrome persistent.
+- scripts/social-posts/publish/x.mjs — refreshXUserToken.
+- src/lib/nav/site-social.ts — footer X/IG/YT only.
+- .env.example — loopback port + FACEBOOK_APP_* LINKEDIN_CLIENT_* keys.
+- task_graph.log — append-only.
+
+## rules_to_read
+- .cursor/rules/enforcement/atomic-change-loging.mdc
+- .cursor/rules/ssot-repo-structure.mdc
+- .cursor/rules/implementation-notes-placement.mdc
+- .cursor/rules/pr-merge-cleanup.mdc — merge --merge --delete-branch; never squash.
+- .cursor/rules/owner-checklist-agent-edits.mdc
+
+## tools_and_status
+pnpm social:oauth --login running headed chrome; gmail-login prompt shown; session ok not yet. Tokens not in .env.local. ffmpeg still missing for live YouTube shorts.
+
+## open_issues
+- Gmail login not confirmed (browser logins next).
+- Developer portal apps may not exist yet; CAPTCHA/app-create is operator in headed window.
+- Facebook personal profile vs Page.
+- Instagram Professional + Page link.
+- ffmpeg missing locally.
+
+## accepted_results
+- action: sign into owner Gmail in the headed Chrome from pnpm social:oauth --login
+  expected: CLI log step gmail-login msg=session ok; window stays open
+- action: pnpm social:oauth
+  expected: JSON table per network ok; .env.local keys present (names only in logs)
+- action: pnpm social:posts --dry-run
+  expected: 5 networks result=dry-run

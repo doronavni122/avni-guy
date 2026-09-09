@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { createLogger } from '../log.mjs';
-import { publishX } from './x.mjs';
+import { publishX, refreshXUserToken } from './x.mjs';
 import { publishFacebook } from './facebook.mjs';
 import { publishWithPlaywright } from './playwright-fallback.mjs';
 import { publishAyrshare } from './ayrshare.mjs';
@@ -60,6 +60,26 @@ describe('publishX', () => {
 		assert.equal(r.ok, true);
 		assert.equal(r.url, 'https://x.com/AvniGuy11492/status/123');
 		assert.ok(i >= 2);
+	});
+
+	it('refreshes user token when refresh_token present', async () => {
+		const c = ctx({
+			env: {
+				X_USER_ACCESS_TOKEN: 'old',
+				X_REFRESH_TOKEN: 'ref',
+				X_CLIENT_ID: 'cid',
+			},
+		});
+		c.fetchImpl = async (url) => {
+			assert.match(String(url), /oauth2\/token/);
+			return new Response(
+				JSON.stringify({ access_token: 'new', refresh_token: 'ref2' }),
+				{ status: 200 },
+			);
+		};
+		const token = await refreshXUserToken(c);
+		assert.equal(token, 'new');
+		assert.equal(c.env.X_REFRESH_TOKEN, 'ref2');
 	});
 });
 

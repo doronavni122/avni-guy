@@ -726,3 +726,30 @@
 555. point-pnpm-test-at-node24-runner , package.json task_graph.log
 
 556. add-social-tests-ci-skillwire-s5-note , notes/implementations/028_social_tests_ci_skillwire_s5_note.txt task_graph.log
+557. add-social-oauth-pkce-s256 , scripts/social-oauth/pkce.mjs scripts/social-oauth/pkce.test.mjs task_graph.log
+558. add-social-oauth-constants , scripts/social-oauth/constants.mjs task_graph.log
+559. add-social-oauth-loopback-callback , scripts/social-oauth/loopback.mjs scripts/social-oauth/loopback.test.mjs task_graph.log
+560. add-social-oauth-env-upsert , scripts/social-oauth/env-file.mjs scripts/social-oauth/env-file.test.mjs task_graph.log
+561. add-social-oauth-wait-helper , scripts/social-oauth/wait.mjs scripts/social-oauth/wait.test.mjs task_graph.log
+562. add-social-oauth-headed-chrome-session , scripts/social-oauth/session.mjs task_graph.log
+563. add-social-oauth-gmail-login-wait , scripts/social-oauth/gmail.mjs scripts/social-oauth/gmail.test.mjs task_graph.log
+564. add-social-oauth-token-http , scripts/social-oauth/http.mjs scripts/social-oauth/http.test.mjs task_graph.log
+565. add-social-oauth-client-bundle-wait , scripts/social-oauth/clients.mjs scripts/social-oauth/clients.test.mjs task_graph.log
+566. add-social-oauth-authorize-capture , scripts/social-oauth/authorize.mjs task_graph.log
+567. add-social-oauth-youtube-connector , scripts/social-oauth/connectors/youtube.mjs task_graph.log
+568. add-social-oauth-x-connector , scripts/social-oauth/connectors/x.mjs task_graph.log
+569. add-social-oauth-linkedin-connector , scripts/social-oauth/connectors/linkedin.mjs task_graph.log
+570. add-social-oauth-meta-connector , scripts/social-oauth/connectors/meta.mjs scripts/social-oauth/connectors/urls.test.mjs task_graph.log
+571. add-social-oauth-cli-run , scripts/social-oauth/run.mjs scripts/social-oauth/run.test.mjs scripts/tools/social-oauth.mjs task_graph.log
+572. add-social-oauth-pnpm-script , package.json task_graph.log
+573. collect-oauth-tests-in-pnpm-test , scripts/tools/run-social-posts-tests.mjs task_graph.log
+574. add-social-oauth-bootstrap-skill , .cursor/skills/social-oauth-bootstrap/SKILL.md task_graph.log
+575. add-oauth-loopback-env-example-keys , .env.example task_graph.log
+576. add-oauth-keys-to-dev-env-example , .env.development.example task_graph.log
+577. point-social-posts-skill-at-oauth-cli , .cursor/skills/social-posts/SKILL.md task_graph.log
+578. pass-root-into-social-publish-ctx , scripts/social-posts/run.mjs task_graph.log
+579. refresh-x-user-token-on-publish , scripts/social-posts/publish/x.mjs scripts/social-posts/publish/publish.test.mjs task_graph.log
+580. keep-oauth-login-window-open , scripts/social-oauth/run.mjs task_graph.log
+581. append-oauth-browser-logins-checklist-item , notes/implementations/implementaion_progress_checklist.md task_graph.log
+582. add-social-oauth-session-note , notes/sessions/session_social-oauth-bootstrap_2026-09-09.txt task_graph.log
+583. add-social-oauth-implementation-note , notes/implementations/social_oauth_bootstrap_note.txt task_graph.log
