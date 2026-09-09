@@ -752,3 +752,4 @@
 580. keep-oauth-login-window-open , scripts/social-oauth/run.mjs task_graph.log
 581. append-oauth-browser-logins-checklist-item , notes/implementations/implementaion_progress_checklist.md task_graph.log
 582. add-social-oauth-session-note , notes/sessions/session_social-oauth-bootstrap_2026-09-09.txt task_graph.log
+583. add-social-oauth-implementation-note , notes/implementations/social_oauth_bootstrap_note.txt task_graph.log
