@@ -750,3 +750,4 @@
 578. pass-root-into-social-publish-ctx , scripts/social-posts/run.mjs task_graph.log
 579. refresh-x-user-token-on-publish , scripts/social-posts/publish/x.mjs scripts/social-posts/publish/publish.test.mjs task_graph.log
 580. keep-oauth-login-window-open , scripts/social-oauth/run.mjs task_graph.log
+581. append-oauth-browser-logins-checklist-item , notes/implementations/implementaion_progress_checklist.md task_graph.log
