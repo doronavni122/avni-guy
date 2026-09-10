@@ -265,6 +265,60 @@
         "/blog/contract-breach-statute-limitations-seven-years/",
         "/blog/small-claims-without-lawyer-why-lose/"
       ]
+    },
+    {
+      "nnnn": "0016",
+      "label": "subsequent_investor_judgment_trustee_damages",
+      "subject": "איך נקבע סכום פיצוי למשקיע אחרי פסק דין קודם נגד נאמן",
+      "slug": "subsequent-investor-judgment-trustee-damages",
+      "contentFile": "subsequent-investor-judgment-trustee-damages.mdx",
+      "category": "litigation",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-09-10",
+      "tags": ["litigation", "investor", "trust"],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/lawyer-trustee-investor-funds-duties/",
+        "/blog/default-judgment-medical-certificate-civil/",
+        "/blog/contract-breach-statute-limitations-seven-years/"
+      ]
+    },
+    {
+      "nnnn": "0017",
+      "label": "magistrate_court_joint_lawyer_founder_investor_suspicion",
+      "subject": "בית משפט השלום כשעורך דין ויזם נחשדים יחד בהונאת משקיעים",
+      "slug": "magistrate-court-joint-lawyer-founder-investor-suspicion",
+      "contentFile": "magistrate-court-joint-lawyer-founder-investor-suspicion.mdx",
+      "category": "litigation",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-09-10",
+      "tags": ["litigation", "investor", "magistrate-court"],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/lawyer-trustee-investor-funds-duties/",
+        "/blog/real-estate-venture-investor-due-diligence/",
+        "/blog/court-case-keywords-find-case-90-seconds/"
+      ]
+    },
+    {
+      "nnnn": "0018",
+      "label": "forty_four_million_investor_fraud_indictment",
+      "subject": "מה כתב אישום על הונאת 250 משקיעי נדלן בהיקף 44 מיליון שקל אומר למשקיע",
+      "slug": "forty-four-million-investor-fraud-indictment",
+      "contentFile": "forty-four-million-investor-fraud-indictment.mdx",
+      "category": "litigation",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-09-10",
+      "tags": ["litigation", "investor", "indictment"],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/lawyer-trustee-investor-funds-duties/",
+        "/blog/real-estate-venture-investor-due-diligence/",
+        "/blog/magistrate-court-joint-lawyer-founder-investor-suspicion/"
+      ]
     }
   ]
 }
