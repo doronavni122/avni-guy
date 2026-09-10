@@ -774,3 +774,5 @@
 599. add-forty-four-million-indictment-to-manifest , subject-manifest.json task_graph.log
 
 600. add-unique-macro-images-forty-four-million-indictment , public/images/blog/forty-four-million-investor-fraud-indictment-img-1-rusted-padlock-keyhole.jpg public/images/blog/forty-four-million-investor-fraud-indictment-img-2-stacked-coin-edges.jpg public/images/blog/forty-four-million-investor-fraud-indictment-img-3-red-wax-seal-ribbon.jpg task_graph.log
+
+601. publish-forty-four-million-investor-fraud-indictment , src/content/blog/forty-four-million-investor-fraud-indictment.mdx task_graph.log
