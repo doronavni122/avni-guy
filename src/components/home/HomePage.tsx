@@ -170,8 +170,8 @@ export function HomePage({
 					</li>
 					<li>
 						<strong className="text-foreground">קצב יציב:</strong> התקדמות עקבית בלי{' '}
-						<Link className={inlineLink} href="/blog/process-improvement-for-legal-teams/">
-							עומס החלטות מיותר
+						<Link className={inlineLink} href="/blog/real-estate-venture-investor-due-diligence/">
+							בדיקה לפני העברת כסף למיזם
 						</Link>
 						.
 					</li>
@@ -312,8 +312,8 @@ export function HomePage({
 							</p>
 							<p>
 								התוצאה תלויה בניסיון אישי וביכולת{' '}
-								<Link className={inlineLink} href="/blog/process-improvement-for-legal-teams/">
-									לתעדף נכון
+								<Link className={inlineLink} href="/blog/lawyer-trustee-investor-funds-duties/">
+									לבדוק נאמנות לפני שחרור
 								</Link>{' '}
 								בכל צומת.
 							</p>
@@ -362,8 +362,8 @@ export function HomePage({
 						שגרת ניהול סיכונים
 					</Link>{' '}
 					ו־{' '}
-					<Link className={inlineLink} href="/blog/client-trust-roadmap/">
-						מפת אמון לקוח
+					<Link className={inlineLink} href="/blog/forty-four-million-investor-fraud-indictment/">
+						כתב אישום על הונאת משקיעי נדלן
 					</Link>
 					. ליישום מותאם, עברו ל־{' '}
 					<Link className={inlineLink} href="/services/">

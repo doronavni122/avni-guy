@@ -263,9 +263,9 @@ function renderSectionBody(sectionId: string) {
 					<Link className={linkClass} href="/blog/client-onboarding-framework/">
 						מסגרת קליטת לקוח
 					</Link>
-					; לבניית אמון לאורך זמן, קראו{' '}
-					<Link className={linkClass} href="/blog/client-trust-roadmap/">
-						מפת אמון לקוח
+					; לפני הפקדת כסף אצל נאמן, קראו{' '}
+					<Link className={linkClass} href="/blog/lawyer-trustee-investor-funds-duties/">
+						חובות עורך דין כנאמן לכספי משקיעים
 					</Link>
 					. להתחלת מסלול:{' '}
 					<Link className={linkClass} href="/contact/">
