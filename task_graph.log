@@ -765,3 +765,4 @@
 592. add-bank-receipt-detail-to-trustee-article , src/content/blog/lawyer-trustee-investor-funds-duties.mdx task_graph.log
 
 593. add-subsequent-investor-judgment-to-manifest , subject-manifest.json task_graph.log
+594. add-unique-macro-images-subsequent-investor-judgment , public/images/blog/subsequent-investor-judgment-trustee-damages-img-1-brass-balance-scale.jpg public/images/blog/subsequent-investor-judgment-trustee-damages-img-2-ledger-ink-numbers.jpg public/images/blog/subsequent-investor-judgment-trustee-damages-img-3-stacked-envelopes-twine.jpg task_graph.log
