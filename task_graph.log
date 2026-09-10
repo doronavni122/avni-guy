@@ -755,3 +755,4 @@
 583. add-social-oauth-implementation-note , notes/implementations/social_oauth_bootstrap_note.txt task_graph.log
 
 584. add-serp-title-subjects-to-manifest , subject-manifest.json task_graph.log
+585. add-unique-macro-images-serp-title-articles , public/images/blog/lawyer-trustee-investor-funds-duties-img-1-wax-seal-parchment.jpg public/images/blog/real-estate-venture-investor-due-diligence-img-1-blueprint-ruler.jpg public/images/blog/default-judgment-medical-certificate-civil-img-1-court-gavel.jpg task_graph.log
