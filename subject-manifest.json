@@ -283,6 +283,24 @@
         "/blog/default-judgment-medical-certificate-civil/",
         "/blog/contract-breach-statute-limitations-seven-years/"
       ]
+    },
+    {
+      "nnnn": "0017",
+      "label": "magistrate_court_joint_lawyer_founder_investor_suspicion",
+      "subject": "בית משפט השלום כשעורך דין ויזם נחשדים יחד בהונאת משקיעים",
+      "slug": "magistrate-court-joint-lawyer-founder-investor-suspicion",
+      "contentFile": "magistrate-court-joint-lawyer-founder-investor-suspicion.mdx",
+      "category": "litigation",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-09-10",
+      "tags": ["litigation", "investor", "magistrate-court"],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/lawyer-trustee-investor-funds-duties/",
+        "/blog/real-estate-venture-investor-due-diligence/",
+        "/blog/court-case-keywords-find-case-90-seconds/"
+      ]
     }
   ]
 }
