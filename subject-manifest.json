@@ -301,6 +301,24 @@
         "/blog/real-estate-venture-investor-due-diligence/",
         "/blog/court-case-keywords-find-case-90-seconds/"
       ]
+    },
+    {
+      "nnnn": "0018",
+      "label": "forty_four_million_investor_fraud_indictment",
+      "subject": "מה כתב אישום על הונאת 250 משקיעי נדלן בהיקף 44 מיליון שקל אומר למשקיע",
+      "slug": "forty-four-million-investor-fraud-indictment",
+      "contentFile": "forty-four-million-investor-fraud-indictment.mdx",
+      "category": "litigation",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-09-10",
+      "tags": ["litigation", "investor", "indictment"],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/lawyer-trustee-investor-funds-duties/",
+        "/blog/real-estate-venture-investor-due-diligence/",
+        "/blog/magistrate-court-joint-lawyer-founder-investor-suspicion/"
+      ]
     }
   ]
 }
