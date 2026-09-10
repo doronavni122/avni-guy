@@ -786,3 +786,4 @@
 609. replace-litigation-hub-quarantined-pillar-links , src/lib/seo/category-hub-intros.ts task_graph.log
 610. seed-related-posts-from-internal-links , src/lib/content/related-posts.ts task_graph.log
 611. disable-runtime-entity-link-injection , src/lib/content/inject-entity-links.ts task_graph.log
+612. gate-blog-breadcrumbs-on-indexed-category , src/app/blog/[slug]/page.tsx task_graph.log

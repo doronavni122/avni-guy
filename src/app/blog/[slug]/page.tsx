@@ -7,9 +7,10 @@ import { getAllPosts, getPostBySlug } from '@/lib/content/posts';
 import { scoreRelatedPosts } from '@/lib/content/related-posts';
 import { buildPageMetadata } from '@/lib/metadata';
 import { articleDocumentTitle } from '@/lib/seo/article-document-title';
-import { isQuarantinedBlogSlug } from '@/lib/seo/indexation';
+import { isQuarantinedBlogSlug, shouldIndexCategory } from '@/lib/seo/indexation';
 import { resolveArticleKeyword } from '@/lib/seo/resolve-article-keyword';
 import { SITE_URL } from '@/consts';
+import { getCategoryLabel } from '@/utils/taxonomy-labels';
 import { bodyForRender, resolveArticleFaq } from '@/lib/content/faq';
 import {
 	buildBlogPostingSchema,
@@ -77,8 +78,19 @@ export default async function BlogPostPage({ params }: PageProps) {
 	const breadcrumbItems: BreadcrumbItem[] = [
 		{ name: 'דף הבית', path: '/' },
 		{ name: 'מאמרים', path: '/blog' },
-		{ name: post.data.title, path: `/blog/${slug}/` },
 	];
+	try {
+		const categoryCount = allPosts.filter((item) => item.data.category === post.data.category).length;
+		if (shouldIndexCategory(post.data.category, categoryCount)) {
+			breadcrumbItems.push({
+				name: getCategoryLabel(post.data.category),
+				path: `/categories/${post.data.category}/`,
+			});
+		}
+	} catch (err) {
+		console.error('[blog:slug] breadcrumb category gate failed', { slug, category: post.data.category, err });
+	}
+	breadcrumbItems.push({ name: post.data.title, path: `/blog/${slug}/` });
 
 	const jsonLd: Array<Record<string, unknown>> = [
 		buildBreadcrumbSchema(breadcrumbItems),
