@@ -789,3 +789,4 @@
 612. gate-blog-breadcrumbs-on-indexed-category , src/app/blog/[slug]/page.tsx task_graph.log
 613. lock-internal-links-scope-list-closeout , notes/TODO_checklist_full_scopes_2026-09-10.txt notes/implementations/scope_dag.json notes/implementations/scope_loop_state.json notes/implementations/029_seo_internal_links_cluster_i1_brief.txt .cursor/plans/029_seo_internal_links_cluster_i1.plan.md task_graph.log
 614. restore-scope-dag-and-append-internal-link-scopes , notes/implementations/scope_dag.json notes/implementations/scope_loop_state.json task_graph.log
+615. add-session-note-internal-links-sep-2026 , notes/sessions/session_internal-links-sep-2026_2026-09-10.txt task_graph.log

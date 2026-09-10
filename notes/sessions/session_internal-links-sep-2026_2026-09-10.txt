@@ -1,0 +1,54 @@
+date , 2026-09-10, 16:20, Asia/Jerusalem
+kind: session-note
+scope: internal-links-sep-2026
+plan: 029_seo_internal_links_cluster_i1
+branch: main @ 231a3174
+prod: READY dpl_76WXPXsuYFRuDW1WAZRcmQPYpVBq sha 231a3174
+strategy: tmp/internal-linking-strategy-sep-2026.txt Gate P PASS 0.97 (untracked)
+unrelated_dirty_not_committed: .cursor/settings.json scripts/tools/dev-local-cleanup.sh tmp/
+
+## status_summary
+Sep 2026 investor-cluster internal-link first+second pass shipped and live. Six scopes DONE. Stacked PRs merged with merge-commits (not squash) so task_graph 602-614 stay 1:1. #204 closed when #203 --delete-branch removed its base; replaced by #209. Git auto-deployed main to production; no extra CLI --prod needed.
+
+## next_plan_suggestion
+contracts-hub-quarantine-swap — drop quarantined non-compete from category-hub-intros.ts contracts pillarLinks; add TAG_LABELS.investor; optional related-posts tag>category when slug not in internalLinks.
+
+## files_to_read
+- SSOT.md — product SSOT; read first.
+- tmp/internal-linking-strategy-sep-2026.txt — locked tactics Gate P; not SSOT; do not commit unless asked.
+- .content-kit/standards/internal-linking.md — 1 homepage + TL;DR /contact/ + H2 internals.
+- src/lib/seo/indexation.ts — QUARANTINED_BLOG_SLUGS; NOINDEX_OVERLAP_CATEGORIES=real-estate-law.
+- src/lib/content/related-posts.ts — internalLinks slug +8; skip quarantine.
+- src/lib/content/inject-entity-links.ts — pass-through; AuthorBio keeps /about/.
+- src/app/blog/[slug]/page.tsx — breadcrumbs gated shouldIndexCategory.
+- src/lib/seo/category-hub-intros.ts — litigation/real-estate pillarLinks; contracts still has non-compete.
+- task_graph.log — append-only; next=615.
+
+## rules_to_read
+- .cursor/rules/enforcement/atomic-change-loging.mdc
+- .cursor/rules/ssot-repo-structure.mdc
+- .cursor/rules/implementation-notes-placement.mdc
+- .cursor/rules/unique-site-images.mdc
+- .cursor/rules/pr-merge-cleanup.mdc — stacked PRs: retarget next to main BEFORE deleting previous base; --merge not squash.
+- .cursor/rules/owner-checklist-agent-edits.mdc
+
+## tools_and_status
+pnpm build exit 0. pnpm dev :3001 blocked (other Next app). Smoked next start :3098 then prod curl. review-scope PASS. Vercel prod READY on HEAD.
+
+## open_issues
+- contracts hub still lists quarantined non-compete-clause-israel-enforceability.
+- TAG_LABELS missing slug investor (SSG warn).
+- pnpm run smoke:routes brand-check failed locally on :3099 while brand present on :3098/prod.
+- #204 CLOSED leftover; functional replacement #209 MERGED.
+
+## accepted_results
+- action: open https://avniguy.co.il/blog/real-estate-venture-investor-due-diligence/
+  expected: in-body links to 44M, magistrate, subsequent, trustee; crumb includes נדל״ן
+- action: open https://avniguy.co.il/blog/lawyer-trustee-investor-funds-duties/
+  expected: crumbs Home→מאמרים→title (no /categories/real-estate-law/); in-body link to 44M
+- action: open https://avniguy.co.il/blog/forty-four-million-investor-fraud-indictment/
+  expected: related widget magistrate, subsequent, trustee
+- action: open https://avniguy.co.il/
+  expected: no client-trust-roadmap / process-improvement-for-legal-teams / time-management-for-legal-work
+- action: open https://avniguy.co.il/categories/litigation/
+  expected: intro pillarLinks small-claims + 44M + magistrate + subsequent + due-diligence
