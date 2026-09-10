@@ -753,3 +753,13 @@
 581. append-oauth-browser-logins-checklist-item , notes/implementations/implementaion_progress_checklist.md task_graph.log
 582. add-social-oauth-session-note , notes/sessions/session_social-oauth-bootstrap_2026-09-09.txt task_graph.log
 583. add-social-oauth-implementation-note , notes/implementations/social_oauth_bootstrap_note.txt task_graph.log
+
+584. add-serp-title-subjects-to-manifest , subject-manifest.json task_graph.log
+585. add-unique-macro-images-serp-title-articles , public/images/blog/lawyer-trustee-investor-funds-duties-img-1-wax-seal-parchment.jpg public/images/blog/real-estate-venture-investor-due-diligence-img-1-blueprint-ruler.jpg public/images/blog/default-judgment-medical-certificate-civil-img-1-court-gavel.jpg task_graph.log
+586. publish-lawyer-trustee-investor-funds-duties , src/content/blog/lawyer-trustee-investor-funds-duties.mdx task_graph.log
+587. publish-real-estate-venture-investor-due-diligence , src/content/blog/real-estate-venture-investor-due-diligence.mdx task_graph.log
+588. publish-default-judgment-medical-certificate-civil , src/content/blog/default-judgment-medical-certificate-civil.mdx task_graph.log
+589. expand-lawyer-trustee-article-word-count , src/content/blog/lawyer-trustee-investor-funds-duties.mdx task_graph.log
+590. expand-real-estate-venture-due-diligence-word-count , src/content/blog/real-estate-venture-investor-due-diligence.mdx task_graph.log
+591. expand-default-judgment-medical-certificate-word-count , src/content/blog/default-judgment-medical-certificate-civil.mdx task_graph.log
+592. add-bank-receipt-detail-to-trustee-article , src/content/blog/lawyer-trustee-investor-funds-duties.mdx task_graph.log
