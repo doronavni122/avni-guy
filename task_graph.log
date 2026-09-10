@@ -768,3 +768,4 @@
 594. add-unique-macro-images-subsequent-investor-judgment , public/images/blog/subsequent-investor-judgment-trustee-damages-img-1-brass-balance-scale.jpg public/images/blog/subsequent-investor-judgment-trustee-damages-img-2-ledger-ink-numbers.jpg public/images/blog/subsequent-investor-judgment-trustee-damages-img-3-stacked-envelopes-twine.jpg task_graph.log
 595. publish-subsequent-investor-judgment-trustee-damages , src/content/blog/subsequent-investor-judgment-trustee-damages.mdx task_graph.log
 596. add-magistrate-court-article-to-manifest , subject-manifest.json task_graph.log
+597. add-unique-macro-images-magistrate-court-article , public/images/blog/magistrate-court-joint-lawyer-founder-investor-suspicion-img-1-wooden-gavel-grain.jpg public/images/blog/magistrate-court-joint-lawyer-founder-investor-suspicion-img-2-court-stamp-ink.jpg public/images/blog/magistrate-court-joint-lawyer-founder-investor-suspicion-img-3-document-binder-clip.jpg task_graph.log
