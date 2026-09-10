@@ -211,6 +211,60 @@
         "/blog/find-winning-lawyer-israel-bar-members/",
         "/categories/tax/"
       ]
+    },
+    {
+      "nnnn": "0013",
+      "label": "lawyer_trustee_investor_funds_duties",
+      "subject": "חובות עורך דין כנאמן לכספי משקיעים",
+      "slug": "lawyer-trustee-investor-funds-duties",
+      "contentFile": "lawyer-trustee-investor-funds-duties.mdx",
+      "category": "real-estate-law",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-09-10",
+      "tags": ["trust", "investor", "real-estate-law"],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/sale-law-guarantee-importance/",
+        "/blog/buying-from-contractor-checklist/",
+        "/blog/power-of-attorney-hidden-limitations/"
+      ]
+    },
+    {
+      "nnnn": "0014",
+      "label": "real_estate_venture_investor_due_diligence",
+      "subject": "איך בודקים מיזם נדלן לפני שמעבירים כסף",
+      "slug": "real-estate-venture-investor-due-diligence",
+      "contentFile": "real-estate-venture-investor-due-diligence.mdx",
+      "category": "real-estate",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-09-10",
+      "tags": ["investor", "due-diligence", "real-estate"],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/sale-law-guarantee-importance/",
+        "/blog/check-apartment-liens-before-purchase/",
+        "/blog/buying-from-contractor-checklist/"
+      ]
+    },
+    {
+      "nnnn": "0015",
+      "label": "default_judgment_medical_certificate_civil",
+      "subject": "פסק דין בהעדר הגנה כשנתבע לא מביא אישור מחלה",
+      "slug": "default-judgment-medical-certificate-civil",
+      "contentFile": "default-judgment-medical-certificate-civil.mdx",
+      "category": "litigation",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-09-10",
+      "tags": ["litigation", "civil-procedure", "default-judgment"],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/court-case-keywords-find-case-90-seconds/",
+        "/blog/contract-breach-statute-limitations-seven-years/",
+        "/blog/small-claims-without-lawyer-why-lose/"
+      ]
     }
   ]
 }
