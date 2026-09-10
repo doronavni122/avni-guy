@@ -17,6 +17,27 @@ export const CONSENT_WAIT_MS = 5 * 60 * 1000;
 
 export const OAUTH_NETWORKS = Object.freeze(['youtube', 'x', 'linkedin', 'meta']);
 
+/** Keys each connector writes to .env.local (skill social-oauth-bootstrap). Never log values. */
+export const OAUTH_WRITE_KEYS = Object.freeze({
+	youtube: Object.freeze(['YOUTUBE_CLIENT_ID', 'YOUTUBE_CLIENT_SECRET', 'YOUTUBE_REFRESH_TOKEN']),
+	x: Object.freeze(['X_CLIENT_ID', 'X_CLIENT_SECRET', 'X_USER_ACCESS_TOKEN', 'X_REFRESH_TOKEN']),
+	linkedin: Object.freeze([
+		'LINKEDIN_CLIENT_ID',
+		'LINKEDIN_CLIENT_SECRET',
+		'LINKEDIN_ACCESS_TOKEN',
+		'LINKEDIN_AUTHOR_URN',
+	]),
+	meta: Object.freeze([
+		'FACEBOOK_APP_ID',
+		'FACEBOOK_APP_SECRET',
+		'FACEBOOK_PAGE_ID',
+		'FACEBOOK_PAGE_ACCESS_TOKEN',
+		'IG_USER_ID',
+		'IG_ACCESS_TOKEN',
+		'PLAYWRIGHT_STATE_FACEBOOK',
+	]),
+});
+
 export const YOUTUBE_SCOPE = 'https://www.googleapis.com/auth/youtube.upload';
 export const X_SCOPES = 'tweet.read tweet.write users.read offline.access media.write';
 export const LINKEDIN_SCOPES = 'openid profile w_member_social';
