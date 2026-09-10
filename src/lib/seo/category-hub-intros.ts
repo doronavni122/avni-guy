@@ -10,6 +10,7 @@ const CATEGORY_HUBS: Record<string, CategoryHubIntro> = {
 		paragraph:
 			'קטגוריית נדל"ן במאמרי גיא אבני מרכזת ליווי בקנייה, מכירה, שכירות והתחדשות עירונית. כאן תמצאו הסברים על בדיקות לפני חתימה, חוק מכר מול יזם, מס רכישה ושבח, וזכויות דיירים בפרויקטים. המטרה היא לתת מפת דרכים ברורה לפני שמעבירים כסף או חותמים על זיכרון דברים, עם קישורים למדריכי ליבה בנושאי עסקה, מסמכים וסיכונים נפוצים.',
 		pillarLinks: [
+			{ href: '/blog/real-estate-venture-investor-due-diligence/', label: 'בדיקת מיזם נדלן לפני העברת כסף' },
 			{ href: '/blog/lawyer-required-apartment-purchase/', label: 'האם צריך עורך דין לקניית דירה' },
 			{ href: '/blog/buying-from-contractor-checklist/', label: 'צ\'קליסט קנייה מקבלן' },
 			{ href: '/blog/sale-law-guarantee-importance/', label: 'ערבות חוק מכר' },
@@ -33,10 +34,10 @@ const CATEGORY_HUBS: Record<string, CategoryHubIntro> = {
 			'קטגוריית ליטיגציה מכסה תביעות אזרחיות, גבייה, הוצל"פ, ליקויי צרכנות וסכסוכים מול גופים. המאמרים מסבירים מתי כדאי לשקול גישור, מה סף תביעה קטנה, איך להגיב לצו מניעה או הקפאת חשבון, ומה התיעוד שמחזק עמדה בבית משפט. גיא אבני עורך דין מדגיש הכנה מוקדמת, חישוב עלויות-תועלת וייצוג שמבוסס על ראיות ולא על סיסמה.',
 		pillarLinks: [
 			{ href: '/blog/small-claims-without-lawyer-why-lose/', label: 'תביעה קטנה בלי עורך דין' },
-			{ href: '/blog/debt-collection-claim-minimum-amount/', label: 'תביעת גבייה - סכום מינימלי' },
-			{ href: '/blog/enforcement-freeze-bank-account-release-48-hours/', label: 'שחרור הקפאת חשבון בהוצל"פ' },
-			{ href: '/blog/mediation-cheaper-than-lawsuit-why-not-offered/', label: 'גישור מול תביעה' },
-			{ href: '/blog/defamation-claim-without-damage-proof/', label: 'תביעת לשון הרע' },
+			{ href: '/blog/forty-four-million-investor-fraud-indictment/', label: 'כתב אישום הונאת משקיעי נדלן' },
+			{ href: '/blog/magistrate-court-joint-lawyer-founder-investor-suspicion/', label: 'בית משפט השלום בהונאת משקיעים' },
+			{ href: '/blog/subsequent-investor-judgment-trustee-damages/', label: 'פיצוי למשקיע אחרי פסק דין קודם' },
+			{ href: '/blog/real-estate-venture-investor-due-diligence/', label: 'בדיקת מיזם נדלן לפני העברת כסף' },
 		],
 	},
 	contracts: {

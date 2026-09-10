@@ -783,3 +783,4 @@
 606. add-contenttype-linkgoal-forty-four-million , src/content/blog/forty-four-million-investor-fraud-indictment.mdx task_graph.log
 607. add-contenttype-linkgoal-default-judgment , src/content/blog/default-judgment-medical-certificate-civil.mdx task_graph.log
 608. swap-homepage-quarantined-blog-links , src/components/home/HomePage.tsx src/components/home/HomeSeoContentSections.tsx src/lib/home/loadHomeData.ts task_graph.log
+609. replace-litigation-hub-quarantined-pillar-links , src/lib/seo/category-hub-intros.ts task_graph.log
