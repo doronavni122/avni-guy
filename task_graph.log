@@ -769,3 +769,4 @@
 595. publish-subsequent-investor-judgment-trustee-damages , src/content/blog/subsequent-investor-judgment-trustee-damages.mdx task_graph.log
 596. add-magistrate-court-article-to-manifest , subject-manifest.json task_graph.log
 597. add-unique-macro-images-magistrate-court-article , public/images/blog/magistrate-court-joint-lawyer-founder-investor-suspicion-img-1-wooden-gavel-grain.jpg public/images/blog/magistrate-court-joint-lawyer-founder-investor-suspicion-img-2-court-stamp-ink.jpg public/images/blog/magistrate-court-joint-lawyer-founder-investor-suspicion-img-3-document-binder-clip.jpg task_graph.log
+598. publish-magistrate-court-joint-suspicion-article , src/content/blog/magistrate-court-joint-lawyer-founder-investor-suspicion.mdx task_graph.log
