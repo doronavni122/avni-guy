@@ -142,7 +142,7 @@ export async function loadHomeData(): Promise<HomeData> {
 			{
 				title: 'קליטה חכמה של לקוח חדש',
 				summary: 'מסלול קצר לבניית ציפיות, אמון ותהליך עבודה נקי כבר מהפגישה הראשונה.',
-				slugs: ['client-onboarding-framework', 'client-trust-roadmap', 'communication-strategy-for-clients'],
+				slugs: ['client-onboarding-framework', 'communication-strategy-for-clients', 'service-quality-standards'],
 			},
 			{
 				title: 'ניהול סיכונים לעסק פעיל',
@@ -150,9 +150,13 @@ export async function loadHomeData(): Promise<HomeData> {
 				slugs: ['risk-management-routine', 'contract-review-flow', 'dispute-prevention-method'],
 			},
 			{
-				title: 'שיפור ביצועים בעבודה משפטית',
-				summary: 'שלושה מאמרים לבניית שגרה מקצועית מדויקת יותר, תחת עומס ותוך שמירה על איכות.',
-				slugs: ['process-improvement-for-legal-teams', 'time-management-for-legal-work', 'service-quality-standards'],
+				title: 'בדיקת מיזם נדלן לפני העברת כסף',
+				summary: 'שלושה מאמרים לפרוטוקול בדיקה, חובות נאמן, ומה כתב אישום אומר למשקיע הבודד.',
+				slugs: [
+					'real-estate-venture-investor-due-diligence',
+					'lawyer-trustee-investor-funds-duties',
+					'forty-four-million-investor-fraud-indictment',
+				],
 			},
 		];
 
