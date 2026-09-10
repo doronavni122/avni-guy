@@ -265,6 +265,24 @@
         "/blog/contract-breach-statute-limitations-seven-years/",
         "/blog/small-claims-without-lawyer-why-lose/"
       ]
+    },
+    {
+      "nnnn": "0016",
+      "label": "subsequent_investor_judgment_trustee_damages",
+      "subject": "איך נקבע סכום פיצוי למשקיע אחרי פסק דין קודם נגד נאמן",
+      "slug": "subsequent-investor-judgment-trustee-damages",
+      "contentFile": "subsequent-investor-judgment-trustee-damages.mdx",
+      "category": "litigation",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-09-10",
+      "tags": ["litigation", "investor", "trust"],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/lawyer-trustee-investor-funds-duties/",
+        "/blog/default-judgment-medical-certificate-civil/",
+        "/blog/contract-breach-statute-limitations-seven-years/"
+      ]
     }
   ]
 }
