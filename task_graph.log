@@ -766,3 +766,4 @@
 
 593. add-subsequent-investor-judgment-to-manifest , subject-manifest.json task_graph.log
 594. add-unique-macro-images-subsequent-investor-judgment , public/images/blog/subsequent-investor-judgment-trustee-damages-img-1-brass-balance-scale.jpg public/images/blog/subsequent-investor-judgment-trustee-damages-img-2-ledger-ink-numbers.jpg public/images/blog/subsequent-investor-judgment-trustee-damages-img-3-stacked-envelopes-twine.jpg task_graph.log
+595. publish-subsequent-investor-judgment-trustee-damages , src/content/blog/subsequent-investor-judgment-trustee-damages.mdx task_graph.log
