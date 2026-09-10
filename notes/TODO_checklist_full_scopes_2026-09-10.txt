@@ -1,0 +1,27 @@
+# Scope list — internal linking Sep 2026 (tmp/internal-linking-strategy-sep-2026.txt Gate P)
+
+## cluster-mdx-graph
+
+- [x] Reverse-link due-diligence + trustee down to 44M, magistrate, subsequent
+- [x] subsequent + magistrate sibling links; contentType/linkGoal on Sep 10 six
+
+## homepage-quarantine-swap
+
+- [x] Replace quarantined homepage blog links with due-diligence/trustee
+
+## category-hub-pillarlinks
+
+- [x] Litigation hub: drop quarantined pillarLinks; add investor cluster URLs
+- [x] Real-estate hub: add due-diligence
+
+## related-posts-seed
+
+- [x] scoreRelatedPosts prefers internalLinks[] slugs; skips quarantined
+
+## disable-entity-inject
+
+- [x] injectEntityLinks is pass-through; AuthorBio keeps /about/
+
+## breadcrumb-index-gate
+
+- [x] Blog breadcrumbs use indexed category hub, else Home > blog

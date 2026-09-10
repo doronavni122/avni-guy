@@ -1,6 +1,6 @@
 {
   "scope_list_file": "notes/TODO_checklist_full_scopes_2026-09-07.txt",
-  "generated_at": "2026-09-07T12:25:00+03:00",
+  "generated_at": "2026-09-10T08:32:00+00:00",
   "max_parallel_workers": 3,
   "scopes": {
     "home-h1-demote-non-entity": {
@@ -435,6 +435,63 @@
       "maps_owner_checklist": [
         "Unattended social posts from live SEO to claimed profiles"
       ]
+    },
+    "cluster-mdx-graph": {
+      "depends_on": [],
+      "exclusive_files": [
+        "src/content/blog/real-estate-venture-investor-due-diligence.mdx",
+        "src/content/blog/lawyer-trustee-investor-funds-duties.mdx",
+        "src/content/blog/subsequent-investor-judgment-trustee-damages.mdx",
+        "src/content/blog/magistrate-court-joint-lawyer-founder-investor-suspicion.mdx",
+        "src/content/blog/forty-four-million-investor-fraud-indictment.mdx",
+        "src/content/blog/default-judgment-medical-certificate-civil.mdx"
+      ],
+      "parallel_ok": true,
+      "maps_owner_checklist": []
+    },
+    "homepage-quarantine-swap": {
+      "depends_on": [],
+      "exclusive_files": [
+        "src/components/home/HomePage.tsx",
+        "src/components/home/HomeSeoContentSections.tsx",
+        "src/lib/home/loadHomeData.ts"
+      ],
+      "parallel_ok": true,
+      "maps_owner_checklist": []
+    },
+    "category-hub-pillarlinks": {
+      "depends_on": [],
+      "exclusive_files": [
+        "src/lib/seo/category-hub-intros.ts"
+      ],
+      "parallel_ok": true,
+      "maps_owner_checklist": []
+    },
+    "related-posts-seed": {
+      "depends_on": [
+        "cluster-mdx-graph"
+      ],
+      "exclusive_files": [
+        "src/lib/content/related-posts.ts"
+      ],
+      "parallel_ok": true,
+      "maps_owner_checklist": []
+    },
+    "disable-entity-inject": {
+      "depends_on": [],
+      "exclusive_files": [
+        "src/lib/content/inject-entity-links.ts"
+      ],
+      "parallel_ok": true,
+      "maps_owner_checklist": []
+    },
+    "breadcrumb-index-gate": {
+      "depends_on": [],
+      "exclusive_files": [
+        "src/app/blog/[slug]/page.tsx"
+      ],
+      "parallel_ok": true,
+      "maps_owner_checklist": []
     }
   }
 }

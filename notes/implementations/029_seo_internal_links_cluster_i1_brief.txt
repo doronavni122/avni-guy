@@ -1,0 +1,12 @@
+plan: 029_seo_internal_links_cluster_i1
+status: DONE
+gate: review-scope PASS
+build: pnpm build exit 0
+dev: port 3001 EADDRINUSE (other app PID 93958); smoked next start :3098
+smoke: homepage no QUARANTINED_BLOG_SLUGS; 44M related = magistrate subsequent trustee; trustee crumbs skip real-estate-law; litigation pillarLinks = small-claims 44M magistrate subsequent due-diligence
+kit: six Sep-10 posts each 1x / and 2x /contact/
+tasks: 602-612
+next: merge stacked PRs in order 602-612; optional contracts hub drop non-compete; TAG_LABELS missing investor
+files: src/content/blog/{real-estate-venture-investor-due-diligence,lawyer-trustee-investor-funds-duties,subsequent-investor-judgment-trustee-damages,magistrate-court-joint-lawyer-founder-investor-suspicion,forty-four-million-investor-fraud-indictment,default-judgment-medical-certificate-civil}.mdx src/components/home/HomePage.tsx src/components/home/HomeSeoContentSections.tsx src/lib/home/loadHomeData.ts src/lib/seo/category-hub-intros.ts src/lib/content/related-posts.ts src/lib/content/inject-entity-links.ts src/app/blog/[slug]/page.tsx
+rules: atomic-change-loging unique-site-images content-seo-quality ssot-repo-structure
+open: pnpm dev :3001 blocked; smoke:routes brand-check failed on :3099 (pre-existing vs gzip? brand present on :3098); contracts hub still lists quarantined non-compete
