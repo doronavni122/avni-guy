@@ -793,3 +793,4 @@
 
 616. add-oauth-write-keys-constant , scripts/social-oauth/constants.mjs task_graph.log
 617. add-session-note-social-oauth-lock , notes/sessions/session_social-oauth-lock_2026-09-10.txt task_graph.log
+618. add-todo-starter-onboarding-commend , .commends/TODO_starter.md task_graph.log
