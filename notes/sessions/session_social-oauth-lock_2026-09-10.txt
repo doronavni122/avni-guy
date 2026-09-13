@@ -1,0 +1,56 @@
+date , 2026-09-10, 19:28, Asia/Jerusalem
+kind: session-note
+scope: social-oauth-lock
+prior_session: notes/sessions/session_social-oauth-bootstrap_2026-09-09.txt
+prior_same_day: notes/sessions/session_internal-links-sep-2026_2026-09-10.txt (internal-links; unrelated)
+branch: feature/social-oauth-lock
+cli: pnpm social:oauth → node scripts/tools/social-oauth.mjs
+skill: .cursor/skills/social-oauth-bootstrap/SKILL.md
+profile: .playwright/social-oauth-profile (headed Playwright Chrome only; never Cursor IDE browser)
+redirect: http://127.0.0.1:8788/callback
+unrelated_dirty_not_committed: .cursor/settings.json scripts/tools/dev-local-cleanup.sh tmp/
+
+## status_summary
+2026-09-09 had OAuth CLI on main, no tokens, Gmail unconfirmed, ffmpeg missing. 2026-09-10 evening: owner signed into Gmail in headed Playwright Chrome (.playwright/social-oauth-profile). YouTube Data API v3 enabled on GCP adroit-sol-508213-r8 (My First Project). Consent: app avniguy-social, External, test user avniguy50@gmail.com, scope https://www.googleapis.com/auth/youtube.upload. Desktop OAuth client; youtube.json in .playwright/oauth-clients/. YouTube LOCKED in gitignored .env.local: YOUTUBE_CLIENT_ID YOUTUBE_CLIENT_SECRET YOUTUBE_REFRESH_TOKEN. X app avniguy-social id 33420689: OAuth 2.0 Read+Write, Native App PKCE, callback http://127.0.0.1:8788/callback, website https://avniguy.co.il; authorize @AvniGuy11492; x.json present. X LOCKED: X_CLIENT_ID X_CLIENT_SECRET X_USER_ACCESS_TOKEN X_REFRESH_TOKEN. pnpm social:posts --dry-run produced an X payload; no live publish. LinkedIn SKIPPED by owner. Meta BLOCKED: Facebook login wall in Playwright Chrome https://www.facebook.com/login.php?next=https://developers.facebook.com/apps/ email prefilled avniguy50@gmail.com; owner must type password IN that window not chat; 2FA not reached. Meta waiter subagent USER-ABORTED — do not auto-resume. Cursor IDE browser OAuth was a dead end (isolated profile, no sessions) — skill forbids it. Accidental PR split cancelled. Live .env.local keys (names only): EXA_API_KEY INDEXNOW_KEY YOUTUBE_CLIENT_ID YOUTUBE_CLIENT_SECRET YOUTUBE_REFRESH_TOKEN X_CLIENT_ID X_USER_ACCESS_TOKEN X_CLIENT_SECRET X_REFRESH_TOKEN. oauth-clients filenames: youtube.json x.json. No FACEBOOK_* IG_* PLAYWRIGHT_STATE_FACEBOOK LINKEDIN_* AYRSHARE.
+
+## next_plan_suggestion
+social-oauth-meta-lock — do not resume aborted Meta worker unless owner asks. Same Playwright profile only. After Facebook login in that window: pnpm social:oauth --network meta. Then pnpm social:posts --dry-run. Live pnpm social:posts only after owner ok. LinkedIn still skipped until owner says otherwise.
+
+## files_to_read
+- SSOT.md — product SSOT; read first.
+- .cursor/skills/social-oauth-bootstrap/SKILL.md — invoke CLI only; headed Playwright profile; no Cursor IDE browser; do not paste secrets.
+- scripts/tools/social-oauth.mjs — CLI entry.
+- scripts/social-oauth/run.mjs — login keep-open; network order youtube x linkedin meta.
+- scripts/social-oauth/session.mjs — channel chrome persistent.
+- scripts/social-posts/publish/x.mjs — refreshXUserToken (~2h).
+- notes/sessions/session_social-oauth-bootstrap_2026-09-09.txt — prior OAuth session.
+- .env.example — loopback port + FACEBOOK_APP_* LINKEDIN_CLIENT_* keys.
+- task_graph.log — append-only.
+
+## rules_to_read
+- .cursor/rules/enforcement/atomic-change-loging.mdc
+- .cursor/rules/ssot-repo-structure.mdc
+- .cursor/rules/implementation-notes-placement.mdc
+- .cursor/rules/handoff-and-scope-loop.mdc — session notes only when owner asks.
+- .cursor/rules/pr-merge-cleanup.mdc — merge --merge --delete-branch; never squash.
+
+## tools_and_status
+YouTube LOCKED. X LOCKED. LinkedIn SKIPPED. Meta BLOCKED at Facebook login (password in Playwright window). Meta waiter USER-ABORTED. Cursor IDE browser unused/forbidden for this flow. pnpm social:posts --dry-run ran (X payload); no live publish. ffmpeg live check: present on PATH (was missing 2026-09-09). Do not commit .env.local .playwright/oauth-clients/*.json or secrets.
+
+## open_issues
+- FACEBOOK_APP_ID FACEBOOK_APP_SECRET FACEBOOK_PAGE_ID FACEBOOK_PAGE_ACCESS_TOKEN IG_USER_ID IG_ACCESS_TOKEN PLAYWRIGHT_STATE_FACEBOOK missing.
+- Facebook Page + IG Professional not created/linked.
+- LINKEDIN_CLIENT_ID LINKEDIN_CLIENT_SECRET LINKEDIN_ACCESS_TOKEN LINKEDIN_AUTHOR_URN missing (owner skip).
+- AYRSHARE missing.
+- Live publish needs owner confirm.
+- Do not auto-resume Meta waiter.
+
+## accepted_results
+- action: owner types Facebook password in headed Playwright Chrome (profile .playwright/social-oauth-profile); complete 2FA there if prompted
+  expected: developers.facebook.com/apps reachable in that same window; no Cursor IDE browser
+- action: pnpm social:oauth --network meta
+  expected: JSON table meta ok; .env.local FACEBOOK_* IG_* PLAYWRIGHT_STATE_FACEBOOK present (names only in logs)
+- action: pnpm social:posts --dry-run
+  expected: payloads for locked networks; no live post
+- action: live pnpm social:posts
+  expected: only after owner explicit ok
