@@ -3,6 +3,7 @@ import { PageSection } from '@/components/layout/PageSection';
 import { SectionHeader } from '@/components/layout/SectionHeader';
 import { MainPageHero } from '@/components/seo/MainPageHero';
 import { AttorneyCredentialBlock } from '@/components/seo/AttorneyCredentialBlock';
+import { EntityByline } from '@/components/seo/EntityByline';
 import { SiteShell } from '@/components/layout/SiteShell';
 import { OptimizedImage } from '@/components/media/OptimizedImage';
 import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
@@ -249,7 +250,8 @@ export default function AboutPage() {
 		<SiteShell currentPath="/about/" extraJsonLd={jsonLd}>
 			<div className="flex flex-col">
 				<BreadcrumbNav items={breadcrumbItems} />
-				<MainPageHero hero={MAIN_PAGE_HEROES['/about/']} index="01" eyebrow="גיא אבני · עורך דין" />
+				<MainPageHero hero={MAIN_PAGE_HEROES['/about/']} index="01" eyebrow="אודות" />
+				<EntityByline lastUpdatedLabel="ספטמבר 2026" />
 				<div className="home-anchor-target">
 					<AttorneyCredentialBlock photoSrc={PERSON_PORTRAIT_IMAGE_PATH} photoPriority />
 				</div>
@@ -294,10 +296,14 @@ export default function AboutPage() {
 				</PageSection>
 
 				<PageSection id="entity">
-					<SectionHeader index={2} eyebrow="עמוד יישות" title="עמוד יישות - גיא אבני עורך דין" />
+					<SectionHeader index={2} eyebrow="עמוד יישות" title="מי זה גיא אבני ומה האתר" />
 					<div className="mt-6 flex max-w-3xl flex-col gap-4 text-pretty leading-relaxed text-muted-foreground">
 						<p>
-							אם הגעתם מחיפוש על &quot;גיא אבני&quot; או &quot;גיא אבני עורך דין&quot;, כאן תמצאו תשובה ישירה לפני שעוברים ל
+							אם הגעתם מחיפוש על &quot;גיא אבני&quot; או &quot;אודות&quot;, כאן התשובה הישירה לפני מעבר ל
+							<Link className="link-underline" href="/">
+								דף הבית
+							</Link>
+							,{' '}
 							<Link className="link-underline" href="/services/">
 								שירותים
 							</Link>
@@ -315,6 +321,13 @@ export default function AboutPage() {
 							עמוד זה הוא נקודת העוגן המקצועית באתר avniguy.co.il: מי זה גיא אבני, באילו תחומים הוא מלווה, איך
 							נראית פגישת מיקוד, ואיך להמשיך למאמרים או לשירותים בלי ליצור עמודי יישות דקים נפרדים. כל הסעיפים
 							כאן ניתנים לעיגון ישיר מהבית ומדפי האתר - אל היישות, אל תחומי הליווי ואל מסלול העבודה.
+						</p>
+						<p>
+							סטנדרטי הכתיבה והסקירה של האתר מפורטים ב
+							<Link className="link-underline" href="/editorial-policy/">
+								מדיניות העריכה
+							</Link>
+							. המאמרים והמדריכים הם מידע כללי בעברית; הם אינם ייעוץ משפטי אישי.
 						</p>
 					</div>
 				</PageSection>
