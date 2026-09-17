@@ -809,3 +809,5 @@
 626. add-about-aio-odot-h1-and-entity-copy , src/lib/seo/main-page-heroes.mjs src/app/about/page.tsx task_graph.log
 
 627. raise-about-sitemap-cornerstone-priority , src/app/sitemap.ts task_graph.log
+
+628. align-parashat-bereshit-facts-titles-to-spec , src/content/blog/parashat-bereshit-facts-2027-warning.mdx task_graph.log
