@@ -807,3 +807,5 @@
 624. append-parashat-bereshit-subjects-0019-0020 , subject-manifest.json task_graph.log
 
 626. add-about-aio-odot-h1-and-entity-copy , src/lib/seo/main-page-heroes.mjs src/app/about/page.tsx task_graph.log
+
+627. raise-about-sitemap-cornerstone-priority , src/app/sitemap.ts task_graph.log

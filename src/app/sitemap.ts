@@ -11,7 +11,7 @@ import { isQuarantinedBlogSlug, shouldIndexCategory } from '@/lib/seo/indexation
  */
 const STATIC_PATH_LASTMOD: Record<string, string> = {
 	'/': '2026-07-09',
-	'/about/': '2026-07-13',
+	'/about/': '2026-09-17',
 	'/services/': '2026-07-13',
 	'/contact/': '2026-07-01',
 	'/categories/': '2026-07-13',
@@ -27,6 +27,12 @@ const STATIC_PATH_LASTMOD: Record<string, string> = {
 const STATIC_PATHS = Object.keys(STATIC_PATH_LASTMOD).concat(['/blog/']);
 
 export const dynamic = 'force-static';
+
+function staticPriority(path: string): number {
+	if (path === '/') return 1;
+	if (path === '/about/') return 0.9;
+	return 0.8;
+}
 
 function staticLastModified(path: string, blogArchiveModified: Date): Date {
 	if (path === '/blog/') {
@@ -49,7 +55,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			url: new URL(path, SITE_URL).toString(),
 			lastModified: staticLastModified(path, blogArchiveModified),
 			changeFrequency: path === '/' ? 'weekly' : 'monthly',
-			priority: path === '/' ? 1 : 0.8,
+			priority: staticPriority(path),
 		}));
 
 		const postEntries: MetadataRoute.Sitemap = posts
