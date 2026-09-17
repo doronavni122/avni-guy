@@ -802,3 +802,5 @@
 623. add-parashat-bereshit-first-transgression-mdx , src/content/blog/parashat-bereshit-first-transgression-judgment.mdx task_graph.log
 
 624. assign-about-unique-portrait-and-office-images , src/components/seo/AttorneyCredentialBlock.tsx src/app/about/page.tsx task_graph.log
+
+625. upgrade-about-metadata-jsonld-cornerstone , src/app/about/page.tsx task_graph.log

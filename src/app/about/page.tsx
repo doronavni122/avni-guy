@@ -10,7 +10,6 @@ import {
 	PUBLIC_RECORD_DISCLAIMER,
 	PUBLIC_RECORD_FAQ,
 	PUBLIC_RECORD_LEAD,
-	PUBLIC_RECORD_META_DESCRIPTION,
 	PUBLIC_RECORD_PARAGRAPHS,
 	PUBLIC_RECORD_SOURCES,
 	PUBLIC_RECORD_TITLE,
@@ -37,12 +36,14 @@ import {
 export const dynamic = 'force-static';
 
 const ABOUT_OG_IMAGE = `${SITE_URL}${PERSON_PORTRAIT_IMAGE_PATH}`;
-const ABOUT_DATE_MODIFIED = '2026-09-04';
+const ABOUT_DATE_MODIFIED = '2026-09-17';
 
 export const metadata = buildPageMetadata({
-	title: 'גיא אבני עורך דין | משרד גיא אבני',
-	description: PUBLIC_RECORD_META_DESCRIPTION,
+	title: 'אודות גיא אבני עורך דין | משרד גיא אבני',
+	description:
+		'אודות גיא אבני עורך דין: עמוד היישות הרשמי באתר avniguy.co.il. תחומי ליווי, דרך עבודה, ורשומה ציבורית מפורסמת לפרשת בראשית עם מקורות.',
 	keyword: 'גיא אבני עורך דין',
+	keywords: ['גיא אבני עורך דין', 'גיא אבני', 'גיא אבני עו״ד', 'גיא אבני משרד עורכי דין'],
 	path: '/about/',
 	absoluteTitle: true,
 	image: ABOUT_OG_IMAGE,
@@ -207,23 +208,31 @@ const BRAND_FAQ = replaceEmDashDeep([
 export default function AboutPage() {
 	const breadcrumbItems = [
 		{ name: 'דף הבית', path: '/' },
-		{ name: 'גיא אבני עורך דין', path: '/about/' },
+		{ name: 'אודות', path: '/about/' },
 	];
 	const sameAs = readPersonSameAsUrls();
 	const jsonLd = [
 		buildBreadcrumbSchema(breadcrumbItems),
-		attachSpeakable(
-			buildWebPageSchema({
-				'@id': `${SITE_URL}/about/#webpage`,
-				url: `${SITE_URL}/about/`,
-				name: 'גיא אבני עורך דין | משרד גיא אבני',
-				description:
-					'עמוד היישות הרשמי של גיא אבני, עורך דין: רשומה ציבורית לפרשת בראשית, נדל״ן, מיסוי, חוזים וליטיגציה.',
-				dateModified: ABOUT_DATE_MODIFIED,
-				'@type': 'AboutPage',
-				mainEntity: { '@id': `${SITE_URL}/about/#person` },
-			}),
-		),
+		{
+			...attachSpeakable(
+				buildWebPageSchema({
+					'@id': `${SITE_URL}/about/#webpage`,
+					url: `${SITE_URL}/about/`,
+					name: 'אודות גיא אבני עורך דין | משרד גיא אבני',
+					description:
+						'עמוד האודות של גיא אבני, עורך דין: מי זה, מה האתר, תחומי ליווי, ומקורות לרשומה הציבורית.',
+					dateModified: ABOUT_DATE_MODIFIED,
+					'@type': 'AboutPage',
+					mainEntity: { '@id': `${SITE_URL}/about/#person` },
+				}),
+			),
+			about: { '@id': `${SITE_URL}/about/#person` },
+			primaryImageOfPage: {
+				'@type': 'ImageObject',
+				'@id': `${SITE_URL}/about/#person-image`,
+				url: ABOUT_OG_IMAGE,
+			},
+		},
 		buildPersonSchema({ sameAs: sameAs.length ? sameAs : undefined }),
 		buildFaqSchema([...BRAND_FAQ]),
 		buildHowToSchema({
