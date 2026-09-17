@@ -4,6 +4,7 @@ import { SectionHeader } from '@/components/layout/SectionHeader';
 import { MainPageHero } from '@/components/seo/MainPageHero';
 import { AttorneyCredentialBlock } from '@/components/seo/AttorneyCredentialBlock';
 import { SiteShell } from '@/components/layout/SiteShell';
+import { OptimizedImage } from '@/components/media/OptimizedImage';
 import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
 import {
 	PUBLIC_RECORD_DISCLAIMER,
@@ -19,7 +20,12 @@ import { ABOUT_SPEAKABLE_VOICE_BLOCKS } from '@/lib/seo/speakable-voice-blocks';
 import { buildPageMetadata } from '@/lib/metadata';
 import { replaceEmDashDeep } from '@/lib/content/sanitize-user-facing-text';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
-import { buildPersonSchema, readPersonSameAsUrls } from '@/lib/seo/schema-person';
+import {
+	PERSON_OFFICE_IMAGE_PATH,
+	PERSON_PORTRAIT_IMAGE_PATH,
+	buildPersonSchema,
+	readPersonSameAsUrls,
+} from '@/lib/seo/schema-person';
 import { SITE_URL } from '@/consts';
 import {
 	buildBreadcrumbSchema,
@@ -30,7 +36,7 @@ import {
 
 export const dynamic = 'force-static';
 
-const ABOUT_OG_IMAGE = `${SITE_URL}/images/shared/guy-avni-avni-guy-law-firm-lawyer-og-law-fallback-photo-1.jpg`;
+const ABOUT_OG_IMAGE = `${SITE_URL}${PERSON_PORTRAIT_IMAGE_PATH}`;
 const ABOUT_DATE_MODIFIED = '2026-09-04';
 
 export const metadata = buildPageMetadata({
@@ -235,9 +241,22 @@ export default function AboutPage() {
 			<div className="flex flex-col">
 				<BreadcrumbNav items={breadcrumbItems} />
 				<MainPageHero hero={MAIN_PAGE_HEROES['/about/']} index="01" eyebrow="גיא אבני · עורך דין" />
-				<div id="person" className="home-anchor-target">
-					<AttorneyCredentialBlock />
+				<div className="home-anchor-target">
+					<AttorneyCredentialBlock photoSrc={PERSON_PORTRAIT_IMAGE_PATH} photoPriority />
 				</div>
+				<figure className="mt-10 max-w-3xl">
+					<OptimizedImage
+						src={PERSON_OFFICE_IMAGE_PATH}
+						alt="גיא אבני עורך דין - חלל משרד"
+						title="משרד גיא אבני עורך דין"
+						width={1400}
+						height={900}
+						className="w-full border border-border object-cover"
+					/>
+					<figcaption className="mt-3 text-sm leading-relaxed text-muted-foreground">
+						חלל המשרד כפי שמוצג בעמוד האודות של אתר avniguy.co.il.
+					</figcaption>
+				</figure>
 
 				<PageSection id="public-record" className="mt-16">
 					<SectionHeader index={1} eyebrow="רשומה ציבורית" title={PUBLIC_RECORD_TITLE} />

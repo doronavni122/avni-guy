@@ -6,6 +6,12 @@ const ATTORNEY_NAME = 'גיא אבני';
 const ATTORNEY_TITLE = 'עורך דין';
 const ATTORNEY_PHOTO = '/images/shared/guy-avni-avni-guy-law-firm-lawyer-og-law-fallback-photo-1.jpg';
 
+type AttorneyCredentialBlockProps = {
+	/** Unique raster for this page slot. Omit to keep the shared default portrait. */
+	photoSrc?: string;
+	photoPriority?: boolean;
+};
+
 function readIsraelBarUrl(): string | undefined {
 	try {
 		const url = process.env.PERSON_ISRAEL_BAR_URL?.trim();
@@ -26,12 +32,13 @@ function readPublicEnv(key: string): string | undefined {
 	}
 }
 
-export function AttorneyCredentialBlock() {
+export function AttorneyCredentialBlock({ photoSrc, photoPriority }: AttorneyCredentialBlockProps = {}) {
 	const israelBarUrl = readIsraelBarUrl();
 	const officeLocality = readPublicEnv('NEXT_PUBLIC_OFFICE_LOCALITY') ?? 'ישראל';
 	const officePhone = readPublicEnv('NEXT_PUBLIC_OFFICE_PHONE');
 	const officeStreet = readPublicEnv('NEXT_PUBLIC_OFFICE_STREET');
 	const barLicenseId = readPublicEnv('NEXT_PUBLIC_BAR_LICENSE_ID');
+	const resolvedPhotoSrc = photoSrc ?? ATTORNEY_PHOTO;
 
 	return (
 		<section
@@ -40,11 +47,12 @@ export function AttorneyCredentialBlock() {
 			aria-labelledby="attorney-credential-title"
 		>
 			<OptimizedImage
-				src={ATTORNEY_PHOTO}
+				src={resolvedPhotoSrc}
 				alt={`${ATTORNEY_NAME} ${ATTORNEY_TITLE} - תמונת פרופיל מקצועית`}
 				title={`${ATTORNEY_NAME} ${ATTORNEY_TITLE}`}
 				width={160}
 				height={160}
+				priority={photoPriority}
 				className="mx-auto h-40 w-40 shrink-0 border border-border object-cover sm:mx-0"
 			/>
 			<div className="flex flex-col gap-3 text-right">
@@ -55,7 +63,7 @@ export function AttorneyCredentialBlock() {
 				<p className="text-pretty text-sm leading-relaxed text-muted-foreground">
 					עורך דין ישראלי, רישיון לשכת עורכי הדין
 					{barLicenseId ? ` (מס׳ רישיון ${barLicenseId})` : ''}. מלווה פרטיים ועסקים בנדל״ן, מיסוי מקרקעין,
-					חוזים וליטיגציה אזרחית. ניסיון מעשי בשטח, שקיפות בפגישת מיקוד, וסיכומים ברורים אחרי כל שיחה.
+					חוזים וליטיגציה אזרחית. ניסיון מעשי בשטח, שקיפות בפגישת מיקוד, וסיכומים קצרים אחרי כל שיחה.
 				</p>
 				<address className="not-italic text-sm leading-relaxed text-muted-foreground" id="office-nap">
 					{officeStreet ? <span className="block">{officeStreet}</span> : null}
