@@ -804,3 +804,4 @@
 624. assign-about-unique-portrait-and-office-images , src/components/seo/AttorneyCredentialBlock.tsx src/app/about/page.tsx task_graph.log
 
 625. upgrade-about-metadata-jsonld-cornerstone , src/app/about/page.tsx task_graph.log
+624. append-parashat-bereshit-subjects-0019-0020 , subject-manifest.json task_graph.log
