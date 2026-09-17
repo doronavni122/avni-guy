@@ -12,8 +12,9 @@ export const MAIN_PAGE_HEROES = {
 	},
 	"/about/": {
 		"path": "/about/",
-		"eyebrow": "גיא אבני עו״ד",
-		"h1": "גיא אבני עורך דין",
+		"eyebrow": "אודות",
+		"h1": "אודות גיא אבני עורך דין",
+		"subhead": "גיא אבני הוא עורך דין ישראלי. זה עמוד האודות של אתר avniguy.co.il: יישות המשרד, תחומי ליווי, ומסלול למאמרים וליצירת קשר.",
 		"keyword": "גיא אבני עורך דין",
 		"intro": PUBLIC_RECORD_HERO_INTRO
 	},

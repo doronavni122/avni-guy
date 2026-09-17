@@ -3,13 +3,14 @@ import { PageSection } from '@/components/layout/PageSection';
 import { SectionHeader } from '@/components/layout/SectionHeader';
 import { MainPageHero } from '@/components/seo/MainPageHero';
 import { AttorneyCredentialBlock } from '@/components/seo/AttorneyCredentialBlock';
+import { EntityByline } from '@/components/seo/EntityByline';
 import { SiteShell } from '@/components/layout/SiteShell';
+import { OptimizedImage } from '@/components/media/OptimizedImage';
 import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
 import {
 	PUBLIC_RECORD_DISCLAIMER,
 	PUBLIC_RECORD_FAQ,
 	PUBLIC_RECORD_LEAD,
-	PUBLIC_RECORD_META_DESCRIPTION,
 	PUBLIC_RECORD_PARAGRAPHS,
 	PUBLIC_RECORD_SOURCES,
 	PUBLIC_RECORD_TITLE,
@@ -19,7 +20,12 @@ import { ABOUT_SPEAKABLE_VOICE_BLOCKS } from '@/lib/seo/speakable-voice-blocks';
 import { buildPageMetadata } from '@/lib/metadata';
 import { replaceEmDashDeep } from '@/lib/content/sanitize-user-facing-text';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
-import { buildPersonSchema, readPersonSameAsUrls } from '@/lib/seo/schema-person';
+import {
+	PERSON_OFFICE_IMAGE_PATH,
+	PERSON_PORTRAIT_IMAGE_PATH,
+	buildPersonSchema,
+	readPersonSameAsUrls,
+} from '@/lib/seo/schema-person';
 import { SITE_URL } from '@/consts';
 import {
 	buildBreadcrumbSchema,
@@ -30,13 +36,15 @@ import {
 
 export const dynamic = 'force-static';
 
-const ABOUT_OG_IMAGE = `${SITE_URL}/images/shared/guy-avni-avni-guy-law-firm-lawyer-og-law-fallback-photo-1.jpg`;
-const ABOUT_DATE_MODIFIED = '2026-09-04';
+const ABOUT_OG_IMAGE = `${SITE_URL}${PERSON_PORTRAIT_IMAGE_PATH}`;
+const ABOUT_DATE_MODIFIED = '2026-09-17';
 
 export const metadata = buildPageMetadata({
-	title: 'גיא אבני עורך דין | משרד גיא אבני',
-	description: PUBLIC_RECORD_META_DESCRIPTION,
+	title: 'אודות גיא אבני עורך דין | משרד גיא אבני',
+	description:
+		'אודות גיא אבני עורך דין: עמוד היישות הרשמי באתר avniguy.co.il. תחומי ליווי, דרך עבודה, ורשומה ציבורית מפורסמת לפרשת בראשית עם מקורות.',
 	keyword: 'גיא אבני עורך דין',
+	keywords: ['גיא אבני עורך דין', 'גיא אבני', 'גיא אבני עו״ד', 'גיא אבני משרד עורכי דין'],
 	path: '/about/',
 	absoluteTitle: true,
 	image: ABOUT_OG_IMAGE,
@@ -201,23 +209,31 @@ const BRAND_FAQ = replaceEmDashDeep([
 export default function AboutPage() {
 	const breadcrumbItems = [
 		{ name: 'דף הבית', path: '/' },
-		{ name: 'גיא אבני עורך דין', path: '/about/' },
+		{ name: 'אודות', path: '/about/' },
 	];
 	const sameAs = readPersonSameAsUrls();
 	const jsonLd = [
 		buildBreadcrumbSchema(breadcrumbItems),
-		attachSpeakable(
-			buildWebPageSchema({
-				'@id': `${SITE_URL}/about/#webpage`,
-				url: `${SITE_URL}/about/`,
-				name: 'גיא אבני עורך דין | משרד גיא אבני',
-				description:
-					'עמוד היישות הרשמי של גיא אבני, עורך דין: רשומה ציבורית לפרשת בראשית, נדל״ן, מיסוי, חוזים וליטיגציה.',
-				dateModified: ABOUT_DATE_MODIFIED,
-				'@type': 'AboutPage',
-				mainEntity: { '@id': `${SITE_URL}/about/#person` },
-			}),
-		),
+		{
+			...attachSpeakable(
+				buildWebPageSchema({
+					'@id': `${SITE_URL}/about/#webpage`,
+					url: `${SITE_URL}/about/`,
+					name: 'אודות גיא אבני עורך דין | משרד גיא אבני',
+					description:
+						'עמוד האודות של גיא אבני, עורך דין: מי זה, מה האתר, תחומי ליווי, ומקורות לרשומה הציבורית.',
+					dateModified: ABOUT_DATE_MODIFIED,
+					'@type': 'AboutPage',
+					mainEntity: { '@id': `${SITE_URL}/about/#person` },
+				}),
+			),
+			about: { '@id': `${SITE_URL}/about/#person` },
+			primaryImageOfPage: {
+				'@type': 'ImageObject',
+				'@id': `${SITE_URL}/about/#person-image`,
+				url: ABOUT_OG_IMAGE,
+			},
+		},
 		buildPersonSchema({ sameAs: sameAs.length ? sameAs : undefined }),
 		buildFaqSchema([...BRAND_FAQ]),
 		buildHowToSchema({
@@ -234,10 +250,24 @@ export default function AboutPage() {
 		<SiteShell currentPath="/about/" extraJsonLd={jsonLd}>
 			<div className="flex flex-col">
 				<BreadcrumbNav items={breadcrumbItems} />
-				<MainPageHero hero={MAIN_PAGE_HEROES['/about/']} index="01" eyebrow="גיא אבני · עורך דין" />
-				<div id="person" className="home-anchor-target">
-					<AttorneyCredentialBlock />
+				<MainPageHero hero={MAIN_PAGE_HEROES['/about/']} index="01" eyebrow="אודות" />
+				<EntityByline lastUpdatedLabel="ספטמבר 2026" />
+				<div className="home-anchor-target">
+					<AttorneyCredentialBlock photoSrc={PERSON_PORTRAIT_IMAGE_PATH} photoPriority />
 				</div>
+				<figure className="mt-10 max-w-3xl">
+					<OptimizedImage
+						src={PERSON_OFFICE_IMAGE_PATH}
+						alt="גיא אבני עורך דין - חלל משרד"
+						title="משרד גיא אבני עורך דין"
+						width={1400}
+						height={900}
+						className="w-full border border-border object-cover"
+					/>
+					<figcaption className="mt-3 text-sm leading-relaxed text-muted-foreground">
+						חלל המשרד כפי שמוצג בעמוד האודות של אתר avniguy.co.il.
+					</figcaption>
+				</figure>
 
 				<PageSection id="public-record" className="mt-16">
 					<SectionHeader index={1} eyebrow="רשומה ציבורית" title={PUBLIC_RECORD_TITLE} />
@@ -266,10 +296,14 @@ export default function AboutPage() {
 				</PageSection>
 
 				<PageSection id="entity">
-					<SectionHeader index={2} eyebrow="עמוד יישות" title="עמוד יישות - גיא אבני עורך דין" />
+					<SectionHeader index={2} eyebrow="עמוד יישות" title="מי זה גיא אבני ומה האתר" />
 					<div className="mt-6 flex max-w-3xl flex-col gap-4 text-pretty leading-relaxed text-muted-foreground">
 						<p>
-							אם הגעתם מחיפוש על &quot;גיא אבני&quot; או &quot;גיא אבני עורך דין&quot;, כאן תמצאו תשובה ישירה לפני שעוברים ל
+							אם הגעתם מחיפוש על &quot;גיא אבני&quot; או &quot;אודות&quot;, כאן התשובה הישירה לפני מעבר ל
+							<Link className="link-underline" href="/">
+								דף הבית
+							</Link>
+							,{' '}
 							<Link className="link-underline" href="/services/">
 								שירותים
 							</Link>
@@ -287,6 +321,13 @@ export default function AboutPage() {
 							עמוד זה הוא נקודת העוגן המקצועית באתר avniguy.co.il: מי זה גיא אבני, באילו תחומים הוא מלווה, איך
 							נראית פגישת מיקוד, ואיך להמשיך למאמרים או לשירותים בלי ליצור עמודי יישות דקים נפרדים. כל הסעיפים
 							כאן ניתנים לעיגון ישיר מהבית ומדפי האתר - אל היישות, אל תחומי הליווי ואל מסלול העבודה.
+						</p>
+						<p>
+							סטנדרטי הכתיבה והסקירה של האתר מפורטים ב
+							<Link className="link-underline" href="/editorial-policy/">
+								מדיניות העריכה
+							</Link>
+							. המאמרים והמדריכים הם מידע כללי בעברית; הם אינם ייעוץ משפטי אישי.
 						</p>
 					</div>
 				</PageSection>

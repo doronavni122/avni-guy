@@ -90,7 +90,11 @@
       "category": "real-estate",
       "mainKeyword": "גיא אבני עורך דין",
       "date": "2026-06-29",
-      "tags": ["real-estate", "mortgage", "bank-refuses"],
+      "tags": [
+        "real-estate",
+        "mortgage",
+        "bank-refuses"
+      ],
       "internalLinkManifest": [
         "/",
         "/contact/",
@@ -108,7 +112,11 @@
       "category": "tax",
       "mainKeyword": "גיא אבני עורך דין",
       "date": "2026-06-29",
-      "tags": ["tax", "rental", "reporting"],
+      "tags": [
+        "tax",
+        "rental",
+        "reporting"
+      ],
       "internalLinkManifest": [
         "/",
         "/contact/",
@@ -126,7 +134,11 @@
       "category": "tax",
       "mainKeyword": "גיא אבני עורך דין",
       "date": "2026-06-29",
-      "tags": ["tax", "vat", "real-estate"],
+      "tags": [
+        "tax",
+        "vat",
+        "real-estate"
+      ],
       "internalLinkManifest": [
         "/",
         "/contact/",
@@ -144,7 +156,11 @@
       "category": "real-estate-law",
       "mainKeyword": "גיא אבני עורך דין",
       "date": "2026-06-29",
-      "tags": ["real-estate-law", "combination", "urban-renewal"],
+      "tags": [
+        "real-estate-law",
+        "combination",
+        "urban-renewal"
+      ],
       "internalLinkManifest": [
         "/",
         "/contact/",
@@ -162,7 +178,11 @@
       "category": "tax",
       "mainKeyword": "גיא אבני עורך דין",
       "date": "2026-06-29",
-      "tags": ["tax", "capital-gains", "inheritance"],
+      "tags": [
+        "tax",
+        "capital-gains",
+        "inheritance"
+      ],
       "internalLinkManifest": [
         "/",
         "/contact/",
@@ -180,7 +200,11 @@
       "category": "service",
       "mainKeyword": "גיא אבני עורך דין",
       "date": "2026-07-13",
-      "tags": ["lawyer", "israel-bar", "choosing"],
+      "tags": [
+        "lawyer",
+        "israel-bar",
+        "choosing"
+      ],
       "internalLinkManifest": [
         "/",
         "/contact/",
@@ -202,7 +226,11 @@
       "category": "service",
       "mainKeyword": "גיא אבני עורך דין",
       "date": "2026-07-13",
-      "tags": ["lawyer", "entity", "about"],
+      "tags": [
+        "lawyer",
+        "entity",
+        "about"
+      ],
       "internalLinkManifest": [
         "/",
         "/contact/",
@@ -221,7 +249,11 @@
       "category": "real-estate-law",
       "mainKeyword": "גיא אבני עורך דין",
       "date": "2026-09-10",
-      "tags": ["trust", "investor", "real-estate-law"],
+      "tags": [
+        "trust",
+        "investor",
+        "real-estate-law"
+      ],
       "internalLinkManifest": [
         "/",
         "/contact/",
@@ -239,7 +271,11 @@
       "category": "real-estate",
       "mainKeyword": "גיא אבני עורך דין",
       "date": "2026-09-10",
-      "tags": ["investor", "due-diligence", "real-estate"],
+      "tags": [
+        "investor",
+        "due-diligence",
+        "real-estate"
+      ],
       "internalLinkManifest": [
         "/",
         "/contact/",
@@ -257,7 +293,11 @@
       "category": "litigation",
       "mainKeyword": "גיא אבני עורך דין",
       "date": "2026-09-10",
-      "tags": ["litigation", "civil-procedure", "default-judgment"],
+      "tags": [
+        "litigation",
+        "civil-procedure",
+        "default-judgment"
+      ],
       "internalLinkManifest": [
         "/",
         "/contact/",
@@ -275,7 +315,11 @@
       "category": "litigation",
       "mainKeyword": "גיא אבני עורך דין",
       "date": "2026-09-10",
-      "tags": ["litigation", "investor", "trust"],
+      "tags": [
+        "litigation",
+        "investor",
+        "trust"
+      ],
       "internalLinkManifest": [
         "/",
         "/contact/",
@@ -293,7 +337,11 @@
       "category": "litigation",
       "mainKeyword": "גיא אבני עורך דין",
       "date": "2026-09-10",
-      "tags": ["litigation", "investor", "magistrate-court"],
+      "tags": [
+        "litigation",
+        "investor",
+        "magistrate-court"
+      ],
       "internalLinkManifest": [
         "/",
         "/contact/",
@@ -311,13 +359,62 @@
       "category": "litigation",
       "mainKeyword": "גיא אבני עורך דין",
       "date": "2026-09-10",
-      "tags": ["litigation", "investor", "indictment"],
+      "tags": [
+        "litigation",
+        "investor",
+        "indictment"
+      ],
       "internalLinkManifest": [
         "/",
         "/contact/",
         "/blog/lawyer-trustee-investor-funds-duties/",
         "/blog/real-estate-venture-investor-due-diligence/",
         "/blog/magistrate-court-joint-lawyer-founder-investor-suspicion/"
+      ]
+    },
+    {
+      "nnnn": "0019",
+      "label": "parashat_bereshit_facts_2027_warning",
+      "subject": "פרשת בראשית, כל העובדות, מה צפוי ב2027 וסכנת אזהרה חמורה",
+      "slug": "parashat-bereshit-facts-2027-warning",
+      "contentFile": "parashat-bereshit-facts-2027-warning.mdx",
+      "category": "litigation",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-09-17",
+      "tags": [
+        "litigation",
+        "torah",
+        "calendar"
+      ],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/legal-planning-basics/",
+        "/blog/risk-management-routine/",
+        "/blog/parashat-bereshit-first-transgression-judgment/"
+      ]
+    },
+    {
+      "nnnn": "0020",
+      "label": "parashat_bereshit_first_transgression_judgment",
+      "subject": "פרשת בראשית היא הפרה הראשונה, מה הקשר לעריכת דין, דיני חטאים ועתיד האנושות",
+      "slug": "parashat-bereshit-first-transgression-judgment",
+      "contentFile": "parashat-bereshit-first-transgression-judgment.mdx",
+      "category": "litigation",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-09-17",
+      "tags": [
+        "litigation",
+        "judgment",
+        "torah"
+      ],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/ethical-decision-making-guide/",
+        "/blog/dispute-prevention-method/",
+        "/blog/contract-breach-statute-limitations-seven-years/",
+        "/blog/parashat-bereshit-facts-2027-warning/"
       ]
     }
   ]

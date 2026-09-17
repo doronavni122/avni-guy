@@ -1,0 +1,75 @@
+date , 2026-09-17, Asia/Jerusalem
+kind: session-note
+scope: parashat-bereshit-cluster-articles + about-cornerstone
+branch: feature/parashat-bereshit-cluster-articles
+base: main
+prod_pre_merge: articles HTTP 404; /about/ HTTP 200 old title
+deploy: merge-to-main → Vercel git production (no CLI --prod)
+serp_bar: https://serp-bar-kw-report.surge.sh/ already live separately; NOT in this PR
+
+## what_shipped
+- MDX cluster: parashat-bereshit-facts-2027-warning ; parashat-bereshit-first-transgression-judgment
+- unique JPGs + webp/avif under public/images/blog/
+- About cornerstone: metadata/jsonld, unique portrait/office images, AIO אודות H1, sitemap priority
+- subject-manifest 0019-0020
+- in-body /contact/ embeds; titles aligned to spec
+
+## article_urls
+- https://avniguy.co.il/blog/parashat-bereshit-facts-2027-warning/
+  title: פרשת בראשית, כל העובדות, מה צפוי ב2027 וסכנת אזהרה חמורה
+  meta: גיא אבני | פרשת בראשית, כל העובדות, מה צפוי ב2027 וסכנת אזהרה חמורה | ישראל
+- https://avniguy.co.il/blog/parashat-bereshit-first-transgression-judgment/
+  title: פרשת בראשית היא הפרה הראשונה, מה הקשר לעריכת דין, דיני חטאים ועתיד האנושות
+  meta: גיא אבני | פרשת בראשית היא הפרה הראשונה, מה הקשר לעריכת דין, דיני חטאים ועתיד האנושות | ישראל
+
+## about_url
+- https://avniguy.co.il/about/
+  expected_title: אודות גיא אבני עורך דין | משרד גיא אבני
+  expected_h1: אודות גיא אבני עורך דין
+  pre_merge_live: HTTP 200 title=גיא אבני עורך דין | משרד גיא אבני h1=גיא אבני עורך דין (stale)
+
+## serp_bar_report_note
+Surge report live at https://serp-bar-kw-report.surge.sh/ — out of avni-guy merge target. Do not merge serp-bar.
+
+## files
+- src/content/blog/parashat-bereshit-facts-2027-warning.mdx
+- src/content/blog/parashat-bereshit-first-transgression-judgment.mdx
+- public/images/blog/parashat-bereshit-*
+- src/app/about/page.tsx
+- src/app/sitemap.ts
+- src/lib/seo/main-page-heroes.mjs
+- src/components/seo/AttorneyCredentialBlock.tsx
+- subject-manifest.json
+- task_graph.log 619-632
+
+## commits_task_graph
+range: 619-632
+first: 59f64c3 add-parashat-bereshit-facts-2027-warning-jpgs
+last_pre_note: 7ac36c4 embed-contact-in-parashat-bereshit-first-transgression-body
+merge_method: merge-commit (not squash) to keep task_graph 1:1
+
+## next_plan_suggestion
+verify-prod-200-h1 — curl both article URLs + /about/ after Vercel READY; submit sitemap if GSC lag.
+
+## files_to_read
+- src/content/blog/parashat-bereshit-facts-2027-warning.mdx
+- src/content/blog/parashat-bereshit-first-transgression-judgment.mdx
+- src/app/blog/[slug]/page.tsx
+- src/app/about/page.tsx
+- src/lib/seo/main-page-heroes.mjs
+- task_graph.log — next after 632
+
+## rules_to_read
+- .cursor/rules/enforcement/atomic-change-loging.mdc
+- .cursor/rules/ssot-repo-structure.mdc
+- .cursor/rules/unique-site-images.mdc
+- .cursor/rules/pr-merge-cleanup.mdc — --merge not squash
+- .cursor/skills/pr-merge-cleanup/SKILL.md
+
+## tools_and_status
+pre_merge curl: facts=404 first-transgression=404 about=200-stale. GitHub branch protection empty. Vercel via push to main.
+
+## open_issues
+- articles not live until production deploy completes
+- about H1/title not updated until same deploy
+- wait Vercel READY then re-verify HTTP 200 + H1 match

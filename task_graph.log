@@ -794,3 +794,28 @@
 616. add-oauth-write-keys-constant , scripts/social-oauth/constants.mjs task_graph.log
 617. add-session-note-social-oauth-lock , notes/sessions/session_social-oauth-lock_2026-09-10.txt task_graph.log
 618. add-todo-starter-onboarding-commend , .commends/TODO_starter.md task_graph.log
+
+619. add-parashat-bereshit-facts-2027-warning-jpgs , public/images/blog/parashat-bereshit-facts-2027-warning-img-1-ancient-parchment.jpg public/images/blog/parashat-bereshit-facts-2027-warning-img-2-calendar-pages.jpg public/images/blog/parashat-bereshit-facts-2027-warning-img-3-olive-bark.jpg task_graph.log
+620. add-parashat-bereshit-first-transgression-jpgs , public/images/blog/parashat-bereshit-first-transgression-judgment-img-1-fruit-skin.jpg public/images/blog/parashat-bereshit-first-transgression-judgment-img-2-stone-grain.jpg public/images/blog/parashat-bereshit-first-transgression-judgment-img-3-earth-soil.jpg task_graph.log
+621. optimize-parashat-bereshit-article-images , public/images/blog/parashat-bereshit-facts-2027-warning-img-1-ancient-parchment.webp public/images/blog/parashat-bereshit-facts-2027-warning-img-1-ancient-parchment.avif public/images/blog/parashat-bereshit-facts-2027-warning-img-2-calendar-pages.webp public/images/blog/parashat-bereshit-facts-2027-warning-img-2-calendar-pages.avif public/images/blog/parashat-bereshit-facts-2027-warning-img-3-olive-bark.webp public/images/blog/parashat-bereshit-facts-2027-warning-img-3-olive-bark.avif public/images/blog/parashat-bereshit-first-transgression-judgment-img-1-fruit-skin.webp public/images/blog/parashat-bereshit-first-transgression-judgment-img-1-fruit-skin.avif public/images/blog/parashat-bereshit-first-transgression-judgment-img-2-stone-grain.webp public/images/blog/parashat-bereshit-first-transgression-judgment-img-2-stone-grain.avif public/images/blog/parashat-bereshit-first-transgression-judgment-img-3-earth-soil.webp public/images/blog/parashat-bereshit-first-transgression-judgment-img-3-earth-soil.avif task_graph.log
+622. add-parashat-bereshit-facts-2027-warning-mdx , src/content/blog/parashat-bereshit-facts-2027-warning.mdx task_graph.log
+623. add-parashat-bereshit-first-transgression-mdx , src/content/blog/parashat-bereshit-first-transgression-judgment.mdx task_graph.log
+
+624. assign-about-unique-portrait-and-office-images , src/components/seo/AttorneyCredentialBlock.tsx src/app/about/page.tsx task_graph.log
+
+625. upgrade-about-metadata-jsonld-cornerstone , src/app/about/page.tsx task_graph.log
+624. append-parashat-bereshit-subjects-0019-0020 , subject-manifest.json task_graph.log
+
+626. add-about-aio-odot-h1-and-entity-copy , src/lib/seo/main-page-heroes.mjs src/app/about/page.tsx task_graph.log
+
+627. raise-about-sitemap-cornerstone-priority , src/app/sitemap.ts task_graph.log
+
+628. align-parashat-bereshit-facts-titles-to-spec , src/content/blog/parashat-bereshit-facts-2027-warning.mdx task_graph.log
+
+629. align-parashat-bereshit-first-transgression-titles-to-spec , src/content/blog/parashat-bereshit-first-transgression-judgment.mdx task_graph.log
+
+630. embed-contact-in-parashat-bereshit-facts-body , src/content/blog/parashat-bereshit-facts-2027-warning.mdx task_graph.log
+
+631. embed-contact-in-parashat-bereshit-first-transgression-body , src/content/blog/parashat-bereshit-first-transgression-judgment.mdx task_graph.log
+
+632. write-parashat-bereshit-cluster-session-note , notes/sessions/session_parashat-bereshit-cluster_2026-09-17.txt task_graph.log
