@@ -1,0 +1,5 @@
+plan: 042_operator_media_verified_only_o1
+scope: OPERATOR-media-verified-only
+status: DONE
+validate_true_outcome: PASS
+branch: feature/seo-aio-audit-remediation-2026-11-08

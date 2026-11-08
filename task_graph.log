@@ -900,3 +900,4 @@
 711. add-sitemap-lastmod-brief , notes/implementations/039_sitemap_lastmod_refresh_s1_brief.txt task_graph.log
 712. add-services-about-dedupe-brief , notes/implementations/040_services_about_dedupe_d1_brief.txt task_graph.log
 713. add-operator-gsc-brief , notes/implementations/041_operator_gsc_generative_o1_brief.txt task_graph.log
+714. add-operator-media-brief , notes/implementations/042_operator_media_verified_only_o1_brief.txt task_graph.log
