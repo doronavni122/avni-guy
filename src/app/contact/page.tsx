@@ -6,6 +6,7 @@ import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
 import { cn } from '@/lib/utils';
 import { SITE_CONTACT_EMAIL } from '@/consts';
 import { buildPageMetadata } from '@/lib/metadata';
+import { mainPageOgImageUrl } from '@/lib/seo/main-page-og';
 import { hasVisibleOfficeNap, readOfficeNap } from '@/lib/seo/office-nap';
 import { buildPersonSchema, readPersonSameAsUrls } from '@/lib/seo/schema-person';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
@@ -22,6 +23,7 @@ export const metadata = buildPageMetadata({
 	keyword: 'גיא אבני',
 	path: '/contact/',
 	absoluteTitle: true,
+	image: mainPageOgImageUrl('/contact/'),
 });
 
 export default function ContactPage() {

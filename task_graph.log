@@ -858,3 +858,4 @@
 669. add-unique-main-hub-og-image-assets , public/images/og task_graph.log
 670. add-main-page-og-url-map , src/lib/seo/main-page-og.ts task_graph.log
 671. wire-services-unique-og-image , src/app/services/page.tsx task_graph.log
+672. wire-contact-unique-og-image , src/app/contact/page.tsx task_graph.log
