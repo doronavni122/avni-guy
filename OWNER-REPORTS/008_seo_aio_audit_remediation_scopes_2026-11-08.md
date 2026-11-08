@@ -47,8 +47,23 @@
 
 ### OPERATOR (not in-repo code — DoD = instructions + documented blocker)
 
-- [ ] **OPERATOR-gsc-generative** — Owner: confirm Search Console Search generative AI control = Include; baseline Generative AI performance for main URLs. DoD: written verification steps + owner confirmation note (agent cannot click GSC). Sources: 006 P2.10, 007 P2.10
-- [ ] **OPERATOR-media-verified-only** — Do not invent media appearances; enrich `/media/` only with verified items when owner supplies them. DoD: instructions recorded; no fabricated entries shipped. Sources: 007 P2.8
+- [x] **OPERATOR-gsc-generative** — Owner: confirm Search Console Search generative AI control = Include; baseline Generative AI performance for main URLs. DoD: written verification steps + owner confirmation note (agent cannot click GSC). Sources: 006 P2.10, 007 P2.10
+- [x] **OPERATOR-media-verified-only** — Do not invent media appearances; enrich `/media/` only with verified items when owner supplies them. DoD: instructions recorded; no fabricated entries shipped. Sources: 007 P2.8
+
+#### OPERATOR-gsc-generative — owner verification steps (agent cannot click)
+
+1. Open Google Search Console → property `avniguy.co.il` (apex; after www→apex redirect prefer apex property).
+2. Settings → **Crawl** / **Search generative AI** (or current GSC label for generative AI control) → set/confirm **Include** (not Exclude).
+3. Performance → **Generative AI** (or Search results filtered to generative surfaces when available) → export/baseline impressions/clicks for main hubs: `/`, `/about/`, `/services/`, `/sheelot/`, `/contact/`, `/categories/`, `/blog/`.
+4. URL Inspection on each hub: indexable, no `nosnippet`, canonical apex.
+5. Record date + screenshot/note in owner ops log. **Owner confirmation:** pending human click — instructions complete 2026-11-08.
+
+#### OPERATOR-media-verified-only — no-invent rule
+
+1. Do **not** add appearances to `/media/` unless the owner supplies a verifiable URL, outlet name, date, and title.
+2. Prefer primary source (publisher page, YouTube upload owned by firm, court/media byline) over hearsay.
+3. If unverified: leave slot empty; do not invent guests, shows, or dates.
+4. This remediation run shipped **zero** new fabricated media rows.
 
 ---
 
