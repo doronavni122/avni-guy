@@ -11,6 +11,7 @@ import { MainPageHero } from '@/components/seo/MainPageHero';
 import type { HomeData } from '@/lib/home/loadHomeData';
 import { ABOUT_RANKING_INBOUND } from '@/lib/home/homeSeoSections';
 import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
+import { YmylDisclaimer } from '@/components/seo/YmylDisclaimer';
 import { cn } from '@/lib/utils';
 import { getCategoryLabel, getTagLabel } from '@/utils/taxonomy-labels';
 
@@ -462,6 +463,10 @@ export function HomePage({
 			</section>
 
 			<FaqAccordion items={faqItems} />
+
+			<div className="border-t border-border pt-6">
+				<YmylDisclaimer />
+			</div>
 
 			<figure className={cn(figureClass, 'home-anchor-target')} id="home-image-final">
 				<OptimizedImage
