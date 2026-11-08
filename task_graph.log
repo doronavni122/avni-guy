@@ -865,3 +865,4 @@
 676. wire-media-unique-og-image , src/app/media/page.tsx task_graph.log
 677. wire-editorial-unique-og-image , src/app/editorial-policy/page.tsx task_graph.log
 678. wire-guy-avni-unique-og-image , src/app/guy-avni/page.tsx task_graph.log
+679. wire-blog-archive-unique-og-image , src/lib/blog/archive-metadata.ts task_graph.log
