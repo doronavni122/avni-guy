@@ -1,0 +1,5 @@
+plan: 037_home_person_graph_p1
+scope: home-person-graph
+status: DONE
+validate_true_outcome: PASS
+branch: feature/seo-aio-audit-remediation-2026-11-08
