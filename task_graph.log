@@ -872,3 +872,4 @@
 683. add-ymyl-disclaimer-hubs-plan , .cursor/plans/035_ymyl_disclaimer_hubs_y1.plan.md task_graph.log
 684. add-ymyl-disclaimer-component , src/components/seo/YmylDisclaimer.tsx task_graph.log
 685. mount-ymyl-disclaimer-on-home , src/components/home/HomePage.tsx task_graph.log
+686. mount-ymyl-disclaimer-on-services , src/app/services/page.tsx task_graph.log
