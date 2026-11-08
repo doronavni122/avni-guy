@@ -845,3 +845,4 @@
 656. update-scope-loop-state-sameas-done , notes/implementations/scope_loop_state.json task_graph.log
 657. add-home-h2-destuff-plan , .cursor/plans/033_home_h2_destuff_misui_h1.plan.md task_graph.log
 658. destuff-home-section-h2-titles , src/components/home/HomePage.tsx task_graph.log
+659. destuff-home-seo-guide-h2-title , src/components/home/HomeSeoContentSections.tsx task_graph.log
