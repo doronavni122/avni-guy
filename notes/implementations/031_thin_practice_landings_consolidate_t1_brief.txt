@@ -1,0 +1,30 @@
+plan: 031_thin_practice_landings_consolidate_t1
+scope: thin-practice-landings
+status: DONE
+decision: consolidate_301_to_services
+next_plan_suggestion: 032_sameas_dual_domain_clarity_s1
+
+files_to_read:
+- vercel.json
+- src/app/nedlan-lawyer-guy-avni/page.tsx
+- src/app/contracts-lawyer-guy-avni/page.tsx
+- src/app/services/page.tsx
+- src/app/about/page.tsx
+- src/app/sitemap.ts
+
+rules:
+- .cursor/rules/ssot-repo-structure.mdc
+- .cursor/rules/enforcement/atomic-change-loging.mdc
+
+tools_and_status:
+- pnpm_build: PASS
+- pnpm_dev: PASS :3001
+- permanentRedirect_pages: yes
+- vercel_json_redirects: yes
+- sitemap_omits_thin: yes
+- practice_bridge_module: removed unused
+- validate_true: PASS conf>=0.99
+
+open_issues: none
+commits: 640-647
+validate_true_outcome: PASS

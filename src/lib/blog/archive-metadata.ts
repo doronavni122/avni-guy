@@ -1,7 +1,7 @@
-import { SITE_URL } from '@/consts';
 import { buildPageMetadata } from '@/lib/metadata';
+import { mainPageOgImageUrl } from '@/lib/seo/main-page-og';
 
-export const BLOG_OG_IMAGE = `${SITE_URL}/images/shared/guy-avni-avni-guy-law-firm-lawyer-og-law-fallback-photo-1.jpg`;
+export const BLOG_OG_IMAGE = mainPageOgImageUrl('/blog/');
 
 export const BLOG_ARCHIVE_TITLE = 'מאמרים משפטיים מעשיים | גיא אבני עו״ד';
 

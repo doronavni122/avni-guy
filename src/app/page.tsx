@@ -3,6 +3,7 @@ import { SiteShell } from '@/components/layout/SiteShell';
 import { SITE_URL } from '@/consts';
 import { loadHomeData } from '@/lib/home/loadHomeData';
 import { buildPageMetadata } from '@/lib/metadata';
+import { buildPersonSchema, readPersonSameAsUrls } from '@/lib/seo/schema-person';
 import {
 	buildFaqSchema,
 	buildHomeWebPageSchema,
@@ -13,7 +14,7 @@ import {
 export const dynamic = 'force-static';
 
 const HOME_OG_IMAGE = `${SITE_URL}/images/home/home-hero-legal-contract-super-macro-photo-0.jpg`;
-const HOME_DATE_MODIFIED = '2026-07-09';
+const HOME_DATE_MODIFIED = '2026-11-08';
 
 export const metadata = buildPageMetadata({
 	title: 'משרד גיא אבני · מאמרים, שירותים וייעוץ',
@@ -34,6 +35,7 @@ export default async function Home() {
 		url: new URL(`/blog/${post.id}/`, SITE_URL).toString(),
 	}));
 
+	const sameAs = readPersonSameAsUrls();
 	const jsonLd = [
 		buildHomeWebPageSchema({
 			name: 'משרד גיא אבני · מאמרים, שירותים וייעוץ',
@@ -41,10 +43,11 @@ export default async function Home() {
 				'עו״ד גיא אבני (גיא אבני עורך דין) מלווה פרטיים ועסקים. מאמרים, שירותים וייעוץ ראשון.',
 			dateModified: HOME_DATE_MODIFIED,
 		}),
+		buildPersonSchema({ sameAs: sameAs.length ? sameAs : undefined }),
 		buildFaqSchema(data.faqItems),
 		...(featuredListItems.length > 0 ? [buildItemListSchema(featuredListItems)] : []),
 		buildHowToSchema({
-			name: 'כך עובד התהליך כשמדברים עם גיא אבני עורך דין',
+			name: 'כך עובד התהליך בפגישת מיקוד ובליווי',
 			description: 'מסלול מודולרי: מטרה, מיפוי, תוכנית וביצוע.',
 			steps: data.processSteps.map((step) => ({ name: step.title, text: step.text })),
 		}),

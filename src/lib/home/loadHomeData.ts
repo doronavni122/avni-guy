@@ -182,7 +182,8 @@ export async function loadHomeData(): Promise<HomeData> {
 	const tocItems: TocItem[] = [
 		{ id: 'home-seo-content', label: 'מדריך תוכן מקצועי' },
 		{ id: 'process', label: 'איך התהליך עובד בפועל' },
-		{ id: 'authority', label: 'למה לעבוד עם גיא אבני' },
+		{ id: 'authority', label: 'מה מייחד את גישת הליווי' },
+		{ id: 'misui-framing', label: 'מיסוי מקרקעין לפני חתימה' },
 		{ id: 'audience', label: 'למי זה מתאים?' },
 		{ id: 'comparison', label: 'לטפל לבד או עם ליווי משפטי' },
 		{ id: 'long-form-content', label: 'מדריכי עומק' },

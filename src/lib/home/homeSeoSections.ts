@@ -37,7 +37,7 @@ export const ABOUT_RANKING_INBOUND = {
 export const HOME_SEO_SECTION_DEFS: HomeSeoSectionDef[] = [
 	{
 		id: 'seo-practice-areas',
-		title: 'באילו תחומים מלווה גיא אבני עורך דין?',
+		title: 'באילו תחומים מלווה המשרד בפועל?',
 		imageIndex: 1,
 		aboutFragment: ABOUT_SECTION_FRAGMENTS.practice,
 	},

@@ -3,6 +3,7 @@ import { PageSection } from '@/components/layout/PageSection';
 import { SectionHeader } from '@/components/layout/SectionHeader';
 import { MainPageHero } from '@/components/seo/MainPageHero';
 import { EntityByline } from '@/components/seo/EntityByline';
+import { YmylDisclaimer } from '@/components/seo/YmylDisclaimer';
 import { SiteShell } from '@/components/layout/SiteShell';
 import { getCategories, getPostsIndex } from '@/lib/content/posts';
 import { getCategoryLabel } from '@/utils/taxonomy-labels';
@@ -11,6 +12,7 @@ import { buildPageMetadata } from '@/lib/metadata';
 import { replaceEmDashDeep } from '@/lib/content/sanitize-user-facing-text';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
 import { SITE_URL } from '@/consts';
+import { mainPageOgImageUrl } from '@/lib/seo/main-page-og';
 import { getCategoryIndexBlurb } from '@/lib/seo/category-index-blurbs';
 import {
 	buildBreadcrumbSchema,
@@ -32,6 +34,7 @@ export const metadata = buildPageMetadata({
 	keyword: 'גיא אבני עורך דין',
 	path: '/categories/',
 	absoluteTitle: true,
+	image: mainPageOgImageUrl('/categories/'),
 });
 
 const CATEGORIES_FAQ = replaceEmDashDeep([
@@ -184,6 +187,9 @@ export default async function CategoriesIndexPage() {
 						))}
 					</div>
 				</PageSection>
+				<div className="mt-10 border-t border-border pt-6">
+					<YmylDisclaimer />
+				</div>
 			</div>
 		</SiteShell>
 	);

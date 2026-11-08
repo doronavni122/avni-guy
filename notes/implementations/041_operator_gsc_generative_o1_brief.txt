@@ -1,0 +1,5 @@
+plan: 041_operator_gsc_generative_o1
+scope: OPERATOR-gsc-generative
+status: DONE
+validate_true_outcome: PASS
+branch: feature/seo-aio-audit-remediation-2026-11-08

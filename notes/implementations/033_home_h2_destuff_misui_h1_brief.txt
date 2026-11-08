@@ -1,0 +1,15 @@
+plan: 033_home_h2_destuff_misui_h1
+scope: home-h2-destuff
+status: DONE
+verify: h2_count=12 brand_h2=0 misui_framing=present sheelot+tax_links=yes
+next_plan_suggestion: 034_unique_og_main_pages_o1
+files_to_read:
+- src/components/home/HomePage.tsx
+- src/lib/home/homeSeoSections.ts
+- src/lib/home/loadHomeData.ts
+tools_and_status:
+- pnpm_build: PASS
+- pnpm_dev: PASS
+- validate_true: PASS conf=0.99
+open_issues: none
+validate_true_outcome: PASS

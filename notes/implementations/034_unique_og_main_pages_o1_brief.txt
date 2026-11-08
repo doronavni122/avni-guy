@@ -1,0 +1,7 @@
+plan: 034_unique_og_main_pages_o1
+scope: unique-og-main-pages
+status: DONE
+hubs_wired: services contact categories tags sheelot media editorial guy-avni blog
+assets: public/images/og/*
+validate_true_outcome: PASS
+next_plan_suggestion: 035_ymyl_disclaimer_hubs_y1

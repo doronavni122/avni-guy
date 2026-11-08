@@ -11,6 +11,7 @@ import { MainPageHero } from '@/components/seo/MainPageHero';
 import type { HomeData } from '@/lib/home/loadHomeData';
 import { ABOUT_RANKING_INBOUND } from '@/lib/home/homeSeoSections';
 import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
+import { YmylDisclaimer } from '@/components/seo/YmylDisclaimer';
 import { cn } from '@/lib/utils';
 import { getCategoryLabel, getTagLabel } from '@/utils/taxonomy-labels';
 
@@ -140,7 +141,7 @@ export function HomePage({
 
 			{/* Process */}
 			<section id="process" className="home-anchor-target flex flex-col gap-6 text-right" aria-labelledby="process-title">
-				<HomeSectionHead id="process-title" index="01" title="כך עובד התהליך כשמדברים עם גיא אבני עורך דין" />
+				<HomeSectionHead id="process-title" index="01" title="כך עובד התהליך בפגישת מיקוד ובליווי" />
 				<div className="flex flex-wrap items-center gap-x-6 gap-y-2">
 					<span className={labelClass}>שיטה מודולרית</span>
 					<span className={labelClass}>מדידה ושיפור</span>
@@ -197,11 +198,50 @@ export function HomePage({
 				</figure>
 			</section>
 
+			{/* Misui / capital-gains framing — people-first, not H2 brand stuffing */}
+			<section
+				id="misui-framing"
+				className="home-anchor-target flex flex-col gap-6 text-right"
+				aria-labelledby="misui-framing-title"
+			>
+				<HomeSectionHead
+					id="misui-framing-title"
+					index="01ב"
+					title="מיסוי מקרקעין לפני חתימה: מס שבח ומס רכישה"
+				/>
+				<p className="max-w-3xl text-pretty leading-relaxed text-muted-foreground">
+					בעסקת דירה או מקרקעין, תמונת{' '}
+					<strong className="text-foreground">מיסוי מקרקעין</strong> מסודרת לפני חתימה חוסכת הפתעות אחריה: מס שבח
+					במכירה, מס רכישה בצד הקונה, ופטורים או דיווחים שצריך לתזמן. לא כל שאלה דורשת ייצוג מלא — לפעמים די בפגישת
+					מיקוד ובדיקת מסמכים. להעמקה נושאית:
+				</p>
+				<ul className="max-w-3xl list-disc space-y-2 pr-5 text-sm leading-relaxed text-muted-foreground">
+					<li>
+						<Link className={inlineLink} href="/categories/tax/">
+							קטגוריית מיסוי מקרקעין
+						</Link>{' '}
+						— מדריכים על מס שבח, מס רכישה ודיווחים.
+					</li>
+					<li>
+						<Link className={inlineLink} href="/sheelot/">
+							שאלות נפוצות בנדל״ן ומיסוי
+						</Link>{' '}
+						— תשובות קצרות עם קישורים למדריכים.
+					</li>
+					<li>
+						<Link className={inlineLink} href="/categories/real-estate/">
+							קטגוריית נדל״ן
+						</Link>{' '}
+						— תהליך עסקה ובדיקות לפני חתימה.
+					</li>
+				</ul>
+			</section>
+
 			<FeaturedArticlesGrid posts={featuredPosts} />
 
 			{/* Reading paths */}
 			<section id="reading-paths" className="home-anchor-target flex flex-col gap-6 text-right" aria-labelledby="reading-paths-title">
-				<HomeSectionHead id="reading-paths-title" index="02" title="מסלולי קריאה מומלצים מאתר גיא אבני" />
+				<HomeSectionHead id="reading-paths-title" index="02" title="מסלולי קריאה מומלצים לפי נושא" />
 				<div className="grid gap-px overflow-hidden rounded-sm border border-border bg-border lg:grid-cols-3">
 					{readingPaths.map((path) => (
 						<div key={path.title} className="flex flex-col gap-3 bg-card p-6 text-right sm:p-7">
@@ -231,7 +271,7 @@ export function HomePage({
 
 			{/* Authority */}
 			<section id="authority" className="home-anchor-target flex flex-col gap-6 text-right" aria-labelledby="authority-title">
-				<HomeSectionHead id="authority-title" index="03" title="למה לעבוד עם גיא אבני" />
+				<HomeSectionHead id="authority-title" index="03" title="מה מייחד את גישת הליווי כאן" />
 				<div className="grid gap-px overflow-hidden rounded-sm border border-border bg-border md:grid-cols-3">
 					{[
 						{ title: 'בהירות לפני הכול', text: 'כל החלטה מתורגמת לשפה עסקית ברורה: מה עושים עכשיו, מה מרוויחים ומה נמנע.' },
@@ -271,7 +311,7 @@ export function HomePage({
 
 			{/* Audience */}
 			<section id="audience" className="home-anchor-target flex flex-col gap-6 text-right" aria-labelledby="audience-title">
-				<HomeSectionHead id="audience-title" index="04" title="למי גיא אבני עו״ד מלווה בפועל?" />
+				<HomeSectionHead id="audience-title" index="04" title="למי מתאים הליווי בפועל?" />
 				<div className="grid gap-px overflow-hidden rounded-sm border border-border bg-border md:grid-cols-3">
 					{[
 						{ title: 'לקוחות פרטיים', text: 'כשצריך סדר, הסבר ברור ותוכנית מעשית לפני מהלך משמעותי.', href: '/services/', cta: 'פתרונות ללקוחות פרטיים' },
@@ -291,7 +331,7 @@ export function HomePage({
 
 			{/* Comparison */}
 			<section id="comparison" className="home-anchor-target flex flex-col gap-6 text-right" aria-labelledby="comparison-title">
-				<HomeSectionHead id="comparison-title" index="05" title="לבד מול ליווי משפטי - הפרספקטיבה של גיא אבני עו״ד" />
+				<HomeSectionHead id="comparison-title" index="05" title="לבד מול ליווי משפטי — מה משתנה בפועל" />
 				<div className="grid gap-px overflow-hidden rounded-sm border border-border bg-border md:grid-cols-2">
 					<div className="flex flex-col gap-3 bg-card p-6 text-right sm:p-8">
 						<h3 className="font-heading text-lg font-semibold text-foreground">טיפול עצמאי</h3>
@@ -346,7 +386,7 @@ export function HomePage({
 				className="home-anchor-target home-deferred-section flex flex-col gap-6 text-right"
 				aria-labelledby="long-form-content-title"
 			>
-				<HomeSectionHead id="long-form-content-title" index="06" title="מדריכי עומק של גיא אבני לקבלת החלטות טובה יותר" />
+				<HomeSectionHead id="long-form-content-title" index="06" title="מדריכי עומק לקבלת החלטות טובה יותר" />
 				<p className="max-w-4xl text-pretty leading-relaxed text-muted-foreground">
 					לפני מהלך משמעותי, כדאי לעצור ולהגדיר מטרה, מגבלות וסיכון שאי אפשר לקבל. שלושת אלה מונעים החלטות תחת לחץ ומאפשרים
 					תוכנית ברורה. להעמקה, קראו את{' '}
@@ -381,7 +421,7 @@ export function HomePage({
 
 			{/* Taxonomy */}
 			<section className="home-anchor-target flex flex-col gap-6 text-right" aria-labelledby="taxonomy-title" id="taxonomy-links">
-				<HomeSectionHead id="taxonomy-title" index="07" title="ניווט מהיר לפי נושאים סביב גיא אבני" />
+				<HomeSectionHead id="taxonomy-title" index="07" title="ניווט מהיר לפי נושאים וקטגוריות" />
 				<div className="grid gap-px overflow-hidden rounded-sm border border-border bg-border lg:grid-cols-2">
 					<div className="flex flex-col gap-4 bg-card p-6 text-right sm:p-7">
 						<div className="flex flex-col gap-1">
@@ -423,6 +463,10 @@ export function HomePage({
 			</section>
 
 			<FaqAccordion items={faqItems} />
+
+			<div className="border-t border-border pt-6">
+				<YmylDisclaimer />
+			</div>
 
 			<figure className={cn(figureClass, 'home-anchor-target')} id="home-image-final">
 				<OptimizedImage

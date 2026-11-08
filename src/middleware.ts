@@ -2,11 +2,15 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 const OLD_SLUG_PREFIX = 'guy-avni-';
+const APEX_HOST = 'avniguy.co.il';
+const WWW_HOST = 'www.avniguy.co.il';
 
 /**
- * Permanent-redirect legacy blog slugs that used the `guy-avni-` filename prefix.
+ * Edge redirects:
+ * 1) www → apex (308) so crawl signals stay on canonical host
+ * 2) legacy blog slugs with `guy-avni-` filename prefix → stripped slug
  *
- * Guards against redirect loops:
+ * Blog slug guards against redirect loops:
  * - only acts on single-segment /blog/<slug> paths
  * - skips when the slug does not carry the legacy prefix
  * - skips when stripping the prefix would yield an empty slug or a slug that
@@ -18,6 +22,23 @@ const OLD_SLUG_PREFIX = 'guy-avni-';
  * ERR_TOO_MANY_REDIRECTS in the live preview).
  */
 export function middleware(request: NextRequest) {
+	const hostHeader = request.headers.get('host') ?? '';
+	const hostname = hostHeader.split(':')[0]?.toLowerCase() ?? '';
+
+	if (hostname === WWW_HOST) {
+		const destination = request.nextUrl.clone();
+		destination.protocol = 'https:';
+		destination.hostname = APEX_HOST;
+		destination.port = '';
+		const status = process.env.NODE_ENV === 'production' ? 308 : 307;
+		console.info('[middleware] redirect www to apex', {
+			from: hostHeader,
+			to: destination.toString(),
+			status,
+		});
+		return NextResponse.redirect(destination, status);
+	}
+
 	const { pathname } = request.nextUrl;
 	const blogMatch = pathname.match(/^\/blog\/([^/]+)\/?$/);
 	if (!blogMatch) {
@@ -48,5 +69,11 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-	matcher: '/blog/:slug*',
+	matcher: [
+		/*
+		 * Match all paths except Next internals and static assets so www→apex
+		 * runs sitewide; blog slug logic still gates on pathname.
+		 */
+		'/((?!_next/static|_next/image|favicon.ico|.*\\..*).*)',
+	],
 };

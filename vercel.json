@@ -15,6 +15,26 @@
 			"has": [{ "type": "host", "value": "www.avniguy.co.il" }],
 			"destination": "https://avniguy.co.il/:path*",
 			"permanent": true
+		},
+		{
+			"source": "/nedlan-lawyer-guy-avni",
+			"destination": "/services/",
+			"permanent": true
+		},
+		{
+			"source": "/nedlan-lawyer-guy-avni/",
+			"destination": "/services/",
+			"permanent": true
+		},
+		{
+			"source": "/contracts-lawyer-guy-avni",
+			"destination": "/services/",
+			"permanent": true
+		},
+		{
+			"source": "/contracts-lawyer-guy-avni/",
+			"destination": "/services/",
+			"permanent": true
 		}
 	]
 }

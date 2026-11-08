@@ -1,0 +1,5 @@
+plan: 040_services_about_dedupe_d1
+scope: services-about-dedupe
+status: DONE
+validate_true_outcome: PASS
+branch: feature/seo-aio-audit-remediation-2026-11-08

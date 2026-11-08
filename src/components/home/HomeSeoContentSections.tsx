@@ -31,7 +31,7 @@ export function HomeSeoContentSections({ homeImages }: HomeSeoContentSectionsPro
 		>
 			<div className="flex flex-col gap-3">
 				<h2 id="home-seo-content-title" className="font-heading text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-					מדריך תוכן מקצועי - גיא אבני עורך דין
+					מדריך תוכן מקצועי לנושאים משפטיים נפוצים
 				</h2>
 				<p className="max-w-3xl text-pretty text-sm leading-relaxed text-muted-foreground sm:text-base">
 					עשרה נושאי ליבה בניסוח ברור, עם קישורים פנימיים למאמרים, קטגוריות ועמודי האתר - כדי להבין את המסלול לפני פנייה.

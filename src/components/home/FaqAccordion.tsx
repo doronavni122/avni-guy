@@ -20,7 +20,7 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
 					id="faq-title"
 					eyebrow="שאלות נפוצות / FAQ"
 					index={11}
-					title="שאלות נפוצות לפני שמדברים עם גיא אבני משרד עורכי דין"
+					title="שאלות נפוצות לפני פגישת מיקוד"
 					description="התשובות הבאות נועדו להסיר חסמים ראשוניים ולתת לכם ודאות לגבי הצעד הראשון."
 					badges={
 						<>

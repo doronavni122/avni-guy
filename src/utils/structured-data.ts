@@ -51,6 +51,12 @@ export const buildOrganizationSchema = () => {
 			name: 'גיא אבני',
 			url: absoluteUrl('/about/'),
 		},
+		employee: {
+			'@type': 'Person',
+			'@id': SITE_PERSON_ID,
+			name: 'גיא אבני',
+			url: absoluteUrl('/about/'),
+		},
 		areaServed: {
 			'@type': 'Country',
 			name: 'Israel',
@@ -181,6 +187,62 @@ export const buildItemListSchema = (items: ItemListEntry[]) => ({
 		url: item.url,
 	})),
 });
+
+export type ContactPageSchemaInput = {
+	name: string;
+	description: string;
+	dateModified: string;
+	email: string;
+	telephone?: string;
+	areaServedName?: string;
+};
+
+/** ContactPage + ContactPoint matching visible NAP (claimed fields only). */
+export function buildContactPageSchema(input: ContactPageSchemaInput): Record<string, unknown> {
+	try {
+		const contactPoint: Record<string, unknown> = {
+			'@type': 'ContactPoint',
+			contactType: 'customer service',
+			email: input.email,
+			availableLanguage: ['Hebrew', 'he'],
+			url: absoluteUrl('/contact/'),
+		};
+		if (input.telephone) {
+			contactPoint.telephone = input.telephone;
+		}
+		if (input.areaServedName) {
+			contactPoint.areaServed = {
+				'@type': 'Country',
+				name: input.areaServedName,
+			};
+		}
+		return {
+			'@context': 'https://schema.org',
+			'@type': 'ContactPage',
+			'@id': `${SITE_URL}/contact/#contactpage`,
+			url: absoluteUrl('/contact/'),
+			name: input.name,
+			description: input.description,
+			inLanguage: 'he',
+			isPartOf: { '@id': SITE_WEBSITE_ID },
+			about: { '@id': SITE_PERSON_ID },
+			mainEntity: { '@id': SITE_ORGANIZATION_ID },
+			dateModified: input.dateModified,
+			publisher: { '@id': SITE_ORGANIZATION_ID },
+			contactPoint,
+		};
+	} catch (err) {
+		console.error('[structured-data] buildContactPageSchema failed', { err });
+		return {
+			'@context': 'https://schema.org',
+			'@type': 'ContactPage',
+			'@id': `${SITE_URL}/contact/#contactpage`,
+			url: absoluteUrl('/contact/'),
+			name: input.name,
+			description: input.description,
+		};
+	}
+}
 
 export type HowToStepInput = { name: string; text: string };
 

@@ -3,6 +3,7 @@ import { PageSection } from '@/components/layout/PageSection';
 import { SectionHeader } from '@/components/layout/SectionHeader';
 import { MainPageHero } from '@/components/seo/MainPageHero';
 import { EntityByline } from '@/components/seo/EntityByline';
+import { YmylDisclaimer } from '@/components/seo/YmylDisclaimer';
 import { SiteShell } from '@/components/layout/SiteShell';
 import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
 import { attachSpeakable, SPEAKABLE_VOICE_CLASS } from '@/lib/seo/speakable';
@@ -11,6 +12,7 @@ import { buildPageMetadata } from '@/lib/metadata';
 import { replaceEmDashDeep } from '@/lib/content/sanitize-user-facing-text';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
 import { SITE_URL } from '@/consts';
+import { mainPageOgImageUrl } from '@/lib/seo/main-page-og';
 import {
 	buildBreadcrumbSchema,
 	buildFaqSchema,
@@ -21,7 +23,7 @@ import {
 
 export const dynamic = 'force-static';
 
-const SERVICES_OG_IMAGE = `${SITE_URL}/images/shared/guy-avni-avni-guy-law-firm-lawyer-og-law-fallback-photo-1.jpg`;
+const SERVICES_OG_IMAGE = mainPageOgImageUrl('/services/');
 const SERVICES_DATE_MODIFIED = '2026-07-14';
 
 export const metadata = buildPageMetadata({
@@ -103,17 +105,17 @@ const FANOUT_PRACTICE_MAP = [
 		title: 'נדל״ן ומיסוי',
 		body: 'קנייה, מכירה, מס שבח ומס רכישה - דרך קטגוריית המיסוי ומסלול נדל״ן באתר.',
 		links: [
-			{ href: '/nedlan-lawyer-guy-avni/', label: 'מסלול נדל״ן' },
-			{ href: '/categories/tax/', label: 'קטגוריית מיסוי' },
 			{ href: '/categories/real-estate/', label: 'קטגוריית נדל״ן' },
+			{ href: '/categories/tax/', label: 'קטגוריית מיסוי' },
+			{ href: '/blog/choose-real-estate-lawyer/', label: 'בחירת עורך דין מקרקעין' },
 		],
 	},
 	{
 		title: 'חוזים לפני חתימה',
 		body: 'בדיקת טיוטה, סימון סיכונים וביטול עסקה - בלי עמוד נפרד לכל סוג חוזה.',
 		links: [
-			{ href: '/contracts-lawyer-guy-avni/', label: 'מסלול חוזים' },
 			{ href: '/categories/contracts/', label: 'קטגוריית חוזים' },
+			{ href: '/about/#workflow', label: 'מסלול העבודה באודות' },
 		],
 	},
 	{
@@ -315,7 +317,8 @@ export default function ServicesPage() {
 						title="מפת מסלולים: נדל״ן, חוזים, ליטיגציה ועסקים"
 					/>
 					<p className="mt-4 max-w-3xl text-pretty text-sm leading-relaxed text-muted-foreground">
-						פיצול חיפוש לפי תחום מוביל לקטגוריות ולגשרי תרגול קיימים - לא לעמודי כוונה חדשים לכל מילת מפתח.
+						עמוד השירותים ממפה מסלולי עבודה ותהליך (מיקוד → מסמכים → מעקב). זהות היישות והרקע המקצועי נשארים
+						בעמוד האודות — כאן מתמקדים בנתיבים לקטגוריות ולמדריכים, בלי לשכפל רשימת תחומים.
 					</p>
 					<div className="mt-8 flex max-w-3xl flex-col gap-6">
 						{FANOUT_PRACTICE_MAP.map(({ title, body, links }) => (
@@ -398,6 +401,9 @@ export default function ServicesPage() {
 						</div>
 					</div>
 				</PageSection>
+				<div className="mt-10 border-t border-border pt-6">
+					<YmylDisclaimer />
+				</div>
 			</div>
 		</SiteShell>
 	);

@@ -22,6 +22,7 @@ const PERSON_IMAGE_PATH = PERSON_PORTRAIT_IMAGE_PATH;
 const SITE_ORGANIZATION_ID = `${SITE_URL}#organization`;
 const SITE_PERSON_IMAGE_ID = `${SITE_URL}/about/#person-image`;
 const SITE_OFFICE_IMAGE_ID = `${SITE_URL}/about/#office-image`;
+/** Same legal person/office conversion site (not a third-party org). Opt out: PERSON_OFFICE_SITE_URL=''. */
 const DEFAULT_OFFICE_SAMEAS = 'https://guyavni.co.il/';
 
 export type BrandImageRankPanelEntry = {

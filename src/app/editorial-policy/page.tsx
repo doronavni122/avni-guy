@@ -9,6 +9,7 @@ import { buildPageMetadata } from '@/lib/metadata';
 import { replaceEmDashDeep } from '@/lib/content/sanitize-user-facing-text';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
 import { SITE_URL } from '@/consts';
+import { mainPageOgImageUrl } from '@/lib/seo/main-page-og';
 import type { MainPageHero as MainPageHeroData } from '@/lib/seo/hero-rules';
 import {
 	buildBreadcrumbSchema,
@@ -19,7 +20,7 @@ import {
 export const dynamic = 'force-static';
 
 const PAGE_PATH = '/editorial-policy/';
-const PAGE_OG_IMAGE = `${SITE_URL}/images/shared/guy-avni-avni-guy-law-firm-lawyer-og-law-fallback-photo-1.jpg`;
+const PAGE_OG_IMAGE = mainPageOgImageUrl('/editorial-policy/');
 const PAGE_DATE_MODIFIED = '2026-07-14';
 
 const HERO: MainPageHeroData = {

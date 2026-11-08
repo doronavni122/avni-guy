@@ -1,0 +1,5 @@
+plan: 036_contact_schema_depth_c1
+scope: contact-schema-depth
+status: DONE
+validate_true_outcome: PASS
+branch: feature/seo-aio-audit-remediation-2026-11-08

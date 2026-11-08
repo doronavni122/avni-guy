@@ -7,6 +7,7 @@ import { buildPageMetadata } from '@/lib/metadata';
 import { replaceEmDashDeep } from '@/lib/content/sanitize-user-facing-text';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
 import { SITE_URL } from '@/consts';
+import { mainPageOgImageUrl } from '@/lib/seo/main-page-og';
 import type { MainPageHero as MainPageHeroData } from '@/lib/seo/hero-rules';
 import {
 	buildBreadcrumbSchema,
@@ -17,8 +18,8 @@ import {
 export const dynamic = 'force-static';
 
 const PAGE_PATH = '/sheelot/';
-const PAGE_OG_IMAGE = `${SITE_URL}/images/shared/guy-avni-avni-guy-law-firm-lawyer-og-law-fallback-photo-1.jpg`;
-const PAGE_DATE_MODIFIED = '2026-09-02';
+const PAGE_OG_IMAGE = mainPageOgImageUrl('/sheelot/');
+const PAGE_DATE_MODIFIED = '2026-11-08';
 
 const HERO: MainPageHeroData = {
 	path: PAGE_PATH,
@@ -51,58 +52,74 @@ const PAA_ITEMS = replaceEmDashDeep([
 	{
 		question: 'האם חובה עורך דין בקניית דירה?',
 		answer:
-			'אין חובה חוקית כללית, אבל בעסקת מקרקעין מומלץ בחום ליווי משפטי: בדיקת זכויות, שעבודים, תנאי חוזה ומסמכי מס לפני חתימה. טעות בשלב זה יקרה לתקן אחרי כן.',
+			'אין חובה חוקית כלל־ארצית לשכור עו״ד בכל רכישת דירה, אבל בעסקת מקרקעין הסיכון הוא על הכסף והרישום. בפרקטיקה בודקים לפני חתימה: נסח טאבו/זכויות, שעבודים והערות אזהרה, התאמת החוזה למצב בפועל, ולוחות דיווח מס. צעד עבודה: (1) אספו נסח ומסמכי מוכר, (2) סמנו סעיפים לא ברורים, (3) תאמו שיחת מיקוד לפני שמשלמים מקדמה משמעותית. טעות בשלב זה יקרה לתקן אחרי כן.',
 		href: '/blog/lawyer-required-apartment-purchase/',
 		linkLabel: 'מדריך: האם חובה עורך דין בקניית דירה',
+		citeHref: 'https://www.gov.il/he/departments/israel_tax_authority',
+		citeLabel: 'רשות המסים — מידע כללי',
 	},
 	{
 		question: 'מה לבדוק לפני רכישת דירה מקבלן?',
 		answer:
-			'בודקים זהות המוכר והיתרים, נספחים לחוזה, מועדי מסירה, ערבות חוק מכר, סנקציות על איחור, והתאמה לתקציב ולמשכנתא. כדאי לעבור על החוזה לפני חתימה, לא אחרי.',
+			'מול קבלן הסדר שונה מיד־שנייה: זהות היזם/המוכר, היתרים ותוכניות, נספחי מפרט, מועדי מסירה, ערבות לפי חוק המכר (דירות), סנקציות על איחור, והתאמה למשכנתא ולתקציב. צעדים: קראו את החוזה לפני חתימה (לא אחרי), השוו מפרט מול דירה לדוגמה, וודאו מה קורה אם יש עיכוב רישום. אל תסתמכו על מצג שיווקי במקום על הנספחים החתומים.',
 		href: '/blog/buying-from-contractor-checklist/',
 		linkLabel: 'רשימת בדיקה לרכישה מקבלן',
+		citeHref: 'https://www.nevo.co.il/law_html/law01/055_001.htm',
+		citeLabel: 'חוק המכר (דירות) — מקור לדיון (Nevo)',
 	},
 	{
 		question: 'מה זו ערבות חוק מכר ולמה היא חשובה?',
 		answer:
-			'ערבות חוק מכר נועדה להגן על רוכש דירה מקבלן כשמקדמים כספים לפני רישום או מסירה. בלי ערבות מתאימה הסיכון על הכסף גבוה יותר - יש לוודא סוג הערבות ותנאיה בחוזה.',
+			'ערבות לפי חוק המכר (דירות) נועדה להגן על רוכש שמקדם כספים לקבלן לפני רישום או מסירה. בלי ערבות מתאימה הסיכון על הכסף גבוה. בפרקטיקה: בדקו סוג הערבות, מי המוציא, מה מכוסה, ומתי היא פוקעת — והתאימו את לוח התשלומים לערבות בפועל, לא להבטחה בעל־פה.',
 		href: '/blog/sale-law-guarantee-importance/',
 		linkLabel: 'מהי ערבות חוק מכר',
+		citeHref: 'https://www.nevo.co.il/law_html/law01/055_001.htm',
+		citeLabel: 'חוק המכר (דירות)',
 	},
 	{
 		question: 'האם יש פטור ממס רכישה לדירה ראשונה?',
 		answer:
-			'לדירת מגורים יחידה קיימים מדרגות מס רכישה מוטבות (לעיתים מכונות פטור חלקי במדרגה הנמוכה), בכפוף לתנאי החוק והתקנות במועד העסקה. הסכום והמדרגות משתנים - בודקים לפי תאריך החוזה ומצב הנכסים שלכם.',
+			'לדירת מגורים יחידה חלות מדרגות מס רכישה מוטבות (לעיתים מכונות בשיח הציבורי «פטור» במדרגה הנמוכה), בכפוף להגדרות בחוק מיסוי מקרקעין ובתקנות במועד העסקה. הסכומים משתנים: בודקים לפי תאריך החוזה, סוג הזכות, ומצב הנכסים שלכם. מקור רשמי לעדכון מדרגות — רשות המסים. אל תסתמכו על טבלה ישנה מוואטסאפ.',
 		href: '/blog/purchase-tax-exemption-first-apartment/',
 		linkLabel: 'פטור ומדרגות מס רכישה לדירה ראשונה',
+		citeHref: 'https://www.gov.il/he/departments/topics/real_estate_taxation/govil-landing-page',
+		citeLabel: 'רשות המסים — מיסוי מקרקעין',
 	},
 	{
 		question: 'כמה מס שבח משלמים על מכירת דירה שנייה?',
 		answer:
-			'מס שבח על דירה שאינה דירת מגורים יחידה מחושב על הרווח (שבח) לפי כללי חישוב, פטורים והקלות רלוונטיים. אין אחוז קבוע לכולם - תלוי בעלות מתואמת, פחת, תקופת החזקה ופטורים אישיים.',
+			'מס שבח מחושב על השבח (הרווח) לפי כללי חוק מיסוי מקרקעין — לא כאחוז קבוע לכולם. משפיעים: עלות מתואמת, פחת, תקופת החזקה, פטורים/הקלות, ודיווח במועד. צעד עבודה לפני חתימת מכר: אספו רכישה מקורית + שיפורים מתועדים, בדקו אם יש פטור דירה יחידה או חישוב לינארי, ותכננו דיווח מול רשות המסים. מספר סופי נקבע לפי הנתונים שלכם — לא לפי כלל אצבע.',
 		href: '/blog/capital-gains-exemption-single-apartment-2026/',
 		linkLabel: 'מס שבח ופטור דירה יחידה 2026',
+		citeHref: 'https://www.gov.il/he/departments/topics/real_estate_taxation/govil-landing-page',
+		citeLabel: 'רשות המסים — מיסוי מקרקעין',
 	},
 	{
 		question: 'מה ההבדל בין תמא 38 לפינוי בינוי?',
 		answer:
-			'תמ״א 38 מתמקדת בחיזוק/תוספת בבניין קיים מול יזם. פינוי בינוי הוא מסלול רחב יותר של הריסה ובנייה מחדש, לרוב עם הסכמות דיירים וליווי תכנוני שונה. הזכויות, הסיכונים ולוחות הזמנים שונים בכל מסלול.',
+			'תמ״א 38 מתמקדת בחיזוק/תוספת בבניין קיים מול יזם; פינוי־בינוי הוא מסלול רחב יותר של הריסה ובנייה מחדש, לרוב עם הסכמות דיירים וליווי תכנוני שונה. הזכויות, הסיכונים, הערבויות ולוחות הזמנים שונים. לפני חתימה על הסכם דיירים: הבינו מה מקבלים בפועל (שטח, חניה, ערבויות), מה קורה אם הפרויקט נתקע, ומי נושא בעלויות ביניים.',
 		href: '/blog/tama38-vs-evacuation-reconstruction/',
 		linkLabel: 'תמ״א 38 מול פינוי בינוי',
+		citeHref: 'https://www.gov.il/he/departments/ministry_of_construction_and_housing',
+		citeLabel: 'משרד הבינוי והשיכון — מידע כללי',
 	},
 	{
 		question: 'מה כולל הסכם מכר דירה יד שנייה?',
 		answer:
-			'הסכם מכר יד שנייה כולל לרוב פרטי הצדדים והנכס, מחיר ותנאי תשלום, מועדי מסירה ורישום, מצגי המוכר, תנאים מתלים (כמו משכנתא), וסנקציות. חשוב ליישר את הנספחים עם נסח הטאבו והמצב בפועל.',
+			'הסכם מכר יד־שנייה כולל לרוב פרטי הצדדים והנכס, מחיר ותנאי תשלום, מועדי מסירה ורישום, מצגי מוכר, תנאים מתלים (למשל משכנתא), וסנקציות. בפרקטיקה חשוב ליישר נספחים עם נסח הטאבו והמצב בשטח (חריגות, שוכרים, מטלטלין). לפני חתימה: סמנו סעיפים שתלויים בצד שלישי, בדקו מועדי תשלום מול בנק, ואל תערבבו בין «מצג שיווקי» לבין התחייבות חוזית.',
 		href: '/blog/second-hand-apartment-sale-agreement/',
 		linkLabel: 'מה כולל הסכם מכר יד שנייה',
+		citeHref: 'https://www.gov.il/he/departments/land_registry_and_settlement_of_rights',
+		citeLabel: 'רשות הרישום והסדר זכויות מקרקעין',
 	},
 	{
 		question: 'איך בוחרים עורך דין מקרקעין טוב?',
 		answer:
-			'בודקים ניסיון בעסקאות דומות, שקיפות לגבי היקף השירות ושכר טרחה, זמינות לתשובות לפני חתימה, והסבר בשפה ברורה - לא הבטחת תוצאה. כדאי לקרוא מדריך בחירה באתר ואז לתאם שיחת מיקוד.',
+			'בודקים ניסיון בעסקאות דומות לשלכם, שקיפות לגבי היקף השירות ושכר טרחה, זמינות לתשובות לפני חתימה, והסבר בשפה ברורה — לא הבטחת תוצאה. צעד עבודה: קראו מדריך בחירה, הכינו 5 שאלות על סיכונים בעסקה, ותאמו שיחת מיקוד. אפשר גם לאמת רישוי בלשכת עורכי הדין לפני התקשרות.',
 		href: '/blog/choose-real-estate-lawyer/',
 		linkLabel: 'איך בוחרים עורך דין מקרקעין',
+		citeHref: 'https://www.israelbar.org.il/',
+		citeLabel: 'לשכת עורכי הדין בישראל',
 	},
 ]);
 
@@ -147,7 +164,7 @@ export default function SheelotPage() {
 
 				<PageSection className="mt-16">
 					<div className="flex max-w-3xl flex-col gap-10">
-						{PAA_ITEMS.map(({ question, answer, href, linkLabel }, index) => (
+						{PAA_ITEMS.map(({ question, answer, href, linkLabel, citeHref, citeLabel }, index) => (
 							<article key={question} className="border-b border-border pb-10 last:border-b-0">
 								<span className="font-mono text-xs text-muted-foreground">
 									{String(index + 1).padStart(2, '0')}
@@ -160,6 +177,15 @@ export default function SheelotPage() {
 									<Link className="link-underline" href={href}>
 										{linkLabel}
 									</Link>
+									{' · '}
+									<a
+										className="link-underline"
+										href={citeHref}
+										target="_blank"
+										rel="noopener noreferrer"
+									>
+										{citeLabel}
+									</a>
 								</p>
 							</article>
 						))}
