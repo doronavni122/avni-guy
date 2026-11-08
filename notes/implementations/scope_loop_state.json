@@ -4,7 +4,7 @@
   "integration_branch": "feature/seo-aio-audit-remediation-2026-11-08",
   "max_parallel_workers": 1,
   "started_at": "2026-11-08T18:52:00+02:00",
-  "current_scope": "sameas-dual-domain-clarity",
+  "current_scope": "home-h2-destuff",
   "inner_iteration": 1,
   "max_inner_iterations": 3,
   "escalation_level": 0,
@@ -33,15 +33,15 @@
       "rca_files": []
     },
     "sameas-dual-domain-clarity": {
-      "status": "IN_PROGRESS",
-      "plan": null,
-      "last_gate": null,
+      "status": "DONE",
+      "plan": "032_sameas_dual_domain_clarity_s1",
+      "last_gate": "assess_pass",
       "last_failure": null,
       "escalation_count": 0,
       "rca_files": []
     },
     "home-h2-destuff": {
-      "status": "PENDING",
+      "status": "IN_PROGRESS",
       "plan": null,
       "last_gate": null,
       "last_failure": null,
