@@ -888,3 +888,4 @@
 699. add-sitemap-lastmod-plan , .cursor/plans/039_sitemap_lastmod_refresh_s1.plan.md task_graph.log
 700. refresh-sitemap-hub-lastmod-dates , src/app/sitemap.ts task_graph.log
 701. add-services-about-dedupe-plan , .cursor/plans/040_services_about_dedupe_d1.plan.md task_graph.log
+702. soften-about-practice-identity-copy , src/app/about/page.tsx task_graph.log
