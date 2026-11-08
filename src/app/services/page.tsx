@@ -317,7 +317,8 @@ export default function ServicesPage() {
 						title="מפת מסלולים: נדל״ן, חוזים, ליטיגציה ועסקים"
 					/>
 					<p className="mt-4 max-w-3xl text-pretty text-sm leading-relaxed text-muted-foreground">
-						פיצול חיפוש לפי תחום מוביל לקטגוריות ולגשרי תרגול קיימים - לא לעמודי כוונה חדשים לכל מילת מפתח.
+						עמוד השירותים ממפה מסלולי עבודה ותהליך (מיקוד → מסמכים → מעקב). זהות היישות והרקע המקצועי נשארים
+						בעמוד האודות — כאן מתמקדים בנתיבים לקטגוריות ולמדריכים, בלי לשכפל רשימת תחומים.
 					</p>
 					<div className="mt-8 flex max-w-3xl flex-col gap-6">
 						{FANOUT_PRACTICE_MAP.map(({ title, body, links }) => (
