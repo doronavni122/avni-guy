@@ -876,3 +876,4 @@
 687. mount-ymyl-disclaimer-on-categories , src/app/categories/page.tsx task_graph.log
 688. mount-ymyl-disclaimer-on-contact , src/app/contact/page.tsx task_graph.log
 689. add-ymyl-disclaimer-hubs-brief , notes/implementations/035_ymyl_disclaimer_hubs_y1_brief.txt task_graph.log
+690. mark-ymyl-disclaimer-hubs-scope-done , OWNER-REPORTS/008_seo_aio_audit_remediation_scopes_2026-11-08.md task_graph.log
