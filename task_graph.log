@@ -893,3 +893,4 @@
 704. add-operator-gsc-generative-plan , .cursor/plans/041_operator_gsc_generative_o1.plan.md task_graph.log
 705. add-operator-media-verified-plan , .cursor/plans/042_operator_media_verified_only_o1.plan.md task_graph.log
 706. record-operator-dod-instructions-in-008 , OWNER-REPORTS/008_seo_aio_audit_remediation_scopes_2026-11-08.md task_graph.log
+707. mark-remaining-in-repo-scopes-done , OWNER-REPORTS/008_seo_aio_audit_remediation_scopes_2026-11-08.md task_graph.log
