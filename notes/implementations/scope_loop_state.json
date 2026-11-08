@@ -4,7 +4,7 @@
   "integration_branch": "feature/seo-aio-audit-remediation-2026-11-08",
   "max_parallel_workers": 1,
   "started_at": "2026-11-08T18:52:00+02:00",
-  "current_scope": "ymyl-disclaimer-hubs",
+  "current_scope": "contact-schema-depth",
   "inner_iteration": 1,
   "max_inner_iterations": 3,
   "escalation_level": 0,
@@ -57,15 +57,15 @@
       "rca_files": []
     },
     "ymyl-disclaimer-hubs": {
-      "status": "IN_PROGRESS",
-      "plan": null,
-      "last_gate": null,
+      "status": "DONE",
+      "plan": "035_ymyl_disclaimer_hubs_y1",
+      "last_gate": "assess_pass",
       "last_failure": null,
       "escalation_count": 0,
       "rca_files": []
     },
     "contact-schema-depth": {
-      "status": "PENDING",
+      "status": "IN_PROGRESS",
       "plan": null,
       "last_gate": null,
       "last_failure": null,
