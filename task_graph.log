@@ -883,3 +883,4 @@
 694. deepen-contact-page-faq-and-schema , src/app/contact/page.tsx task_graph.log
 695. add-home-person-graph-plan , .cursor/plans/037_home_person_graph_p1.plan.md task_graph.log
 696. wire-home-person-jsonld-node , src/app/page.tsx task_graph.log
+697. add-sheelot-answer-depth-plan , .cursor/plans/038_sheelot_answer_depth_s1.plan.md task_graph.log
