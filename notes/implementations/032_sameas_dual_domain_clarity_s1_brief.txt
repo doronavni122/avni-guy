@@ -1,0 +1,16 @@
+plan: 032_sameas_dual_domain_clarity_s1
+scope: sameas-dual-domain-clarity
+status: DONE
+decision: keep_guyavni_sameAs_same_person; footer_roles_clarified; duplicate_block_removed
+next_plan_suggestion: 033_home_h2_destuff_misui_h1
+
+files_to_read:
+- src/components/Footer.tsx
+- src/lib/seo/schema-person.ts
+
+tools_and_status:
+- validate_true: PASS conf>=0.96
+- build: deferred_batch_with_home (footer-only; next scope verifies)
+
+open_issues: none
+validate_true_outcome: PASS
