@@ -855,3 +855,4 @@
 666. mark-home-h2-destuff-scope-done , OWNER-REPORTS/008_seo_aio_audit_remediation_scopes_2026-11-08.md task_graph.log
 667. update-scope-loop-state-home-h2-done , notes/implementations/scope_loop_state.json task_graph.log
 668. add-unique-og-main-pages-plan , .cursor/plans/034_unique_og_main_pages_o1.plan.md task_graph.log
+669. add-unique-main-hub-og-image-assets , public/images/og task_graph.log
