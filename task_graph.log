@@ -857,3 +857,4 @@
 668. add-unique-og-main-pages-plan , .cursor/plans/034_unique_og_main_pages_o1.plan.md task_graph.log
 669. add-unique-main-hub-og-image-assets , public/images/og task_graph.log
 670. add-main-page-og-url-map , src/lib/seo/main-page-og.ts task_graph.log
+671. wire-services-unique-og-image , src/app/services/page.tsx task_graph.log
