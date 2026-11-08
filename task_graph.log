@@ -839,3 +839,4 @@
 650. update-scope-loop-state-thin-done , notes/implementations/scope_loop_state.json task_graph.log
 651. add-sameas-dual-domain-clarity-plan , .cursor/plans/032_sameas_dual_domain_clarity_s1.plan.md task_graph.log
 652. clarify-footer-dual-domain-same-person-copy , src/components/Footer.tsx task_graph.log
+653. document-office-sameas-same-person-intent , src/lib/seo/schema-person.ts task_graph.log
