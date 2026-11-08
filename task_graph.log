@@ -847,3 +847,4 @@
 658. destuff-home-section-h2-titles , src/components/home/HomePage.tsx task_graph.log
 659. destuff-home-seo-guide-h2-title , src/components/home/HomeSeoContentSections.tsx task_graph.log
 660. soften-home-seo-practice-h3-title , src/lib/home/homeSeoSections.ts task_graph.log
+661. destuff-featured-articles-h2-title , src/components/home/FeaturedArticlesGrid.tsx task_graph.log

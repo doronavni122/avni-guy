@@ -12,7 +12,7 @@ export function FeaturedArticlesGrid({ posts }: FeaturedArticlesGridProps) {
 			<div className="flex items-start justify-between gap-6 border-t border-border pt-5">
 				<div className="flex max-w-3xl flex-col gap-3">
 					<h2 id="featured-articles-title" className="font-heading text-2xl font-bold tracking-tight text-foreground text-balance sm:text-3xl">
-						מאמרים מומלצים של גיא אבני להתחלה בטוחה
+						מאמרים מומלצים להתחלה בטוחה
 					</h2>
 					<div className="flex flex-wrap items-center gap-x-6 gap-y-2">
 						<span className="swiss-label">תוכן נבחר</span>
