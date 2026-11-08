@@ -828,3 +828,4 @@
 639. update-scope-loop-state-www-done , notes/implementations/scope_loop_state.json notes/implementations/scope_dag.json task_graph.log
 640. add-thin-practice-landings-plan , .cursor/plans/031_thin_practice_landings_consolidate_t1.plan.md task_graph.log
 641. add-thin-practice-landing-vercel-redirects , vercel.json task_graph.log
+642. redirect-nedlan-practice-landing-to-services , src/app/nedlan-lawyer-guy-avni/page.tsx task_graph.log
