@@ -4,7 +4,7 @@
   "integration_branch": "feature/seo-aio-audit-remediation-2026-11-08",
   "max_parallel_workers": 1,
   "started_at": "2026-11-08T18:52:00+02:00",
-  "current_scope": "contact-schema-depth",
+  "current_scope": null,
   "inner_iteration": 1,
   "max_inner_iterations": 3,
   "escalation_level": 0,
@@ -65,57 +65,57 @@
       "rca_files": []
     },
     "contact-schema-depth": {
-      "status": "IN_PROGRESS",
-      "plan": null,
-      "last_gate": null,
+      "status": "DONE",
+      "plan": "036_contact_schema_depth_c1",
+      "last_gate": "assess_pass",
       "last_failure": null,
       "escalation_count": 0,
       "rca_files": []
     },
     "home-person-graph": {
-      "status": "PENDING",
-      "plan": null,
-      "last_gate": null,
+      "status": "DONE",
+      "plan": "037_home_person_graph_p1",
+      "last_gate": "assess_pass",
       "last_failure": null,
       "escalation_count": 0,
       "rca_files": []
     },
     "sheelot-answer-depth": {
-      "status": "PENDING",
-      "plan": null,
-      "last_gate": null,
+      "status": "DONE",
+      "plan": "038_sheelot_answer_depth_s1",
+      "last_gate": "assess_pass",
       "last_failure": null,
       "escalation_count": 0,
       "rca_files": []
     },
     "sitemap-lastmod": {
-      "status": "PENDING",
-      "plan": null,
-      "last_gate": null,
+      "status": "DONE",
+      "plan": "039_sitemap_lastmod_refresh_s1",
+      "last_gate": "assess_pass",
       "last_failure": null,
       "escalation_count": 0,
       "rca_files": []
     },
     "services-about-dedupe": {
-      "status": "PENDING",
-      "plan": null,
-      "last_gate": null,
+      "status": "DONE",
+      "plan": "040_services_about_dedupe_d1",
+      "last_gate": "assess_pass",
       "last_failure": null,
       "escalation_count": 0,
       "rca_files": []
     },
     "OPERATOR-gsc-generative": {
-      "status": "PENDING",
-      "plan": null,
-      "last_gate": null,
+      "status": "DONE",
+      "plan": "041_operator_gsc_generative_o1",
+      "last_gate": "assess_pass",
       "last_failure": null,
       "escalation_count": 0,
       "rca_files": []
     },
     "OPERATOR-media-verified-only": {
-      "status": "PENDING",
-      "plan": null,
-      "last_gate": null,
+      "status": "DONE",
+      "plan": "042_operator_media_verified_only_o1",
+      "last_gate": "assess_pass",
       "last_failure": null,
       "escalation_count": 0,
       "rca_files": []
