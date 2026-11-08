@@ -12,6 +12,7 @@ import { buildPageMetadata } from '@/lib/metadata';
 import { replaceEmDashDeep } from '@/lib/content/sanitize-user-facing-text';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
 import { SITE_URL } from '@/consts';
+import { mainPageOgImageUrl } from '@/lib/seo/main-page-og';
 import {
 	buildBreadcrumbSchema,
 	buildFaqSchema,
@@ -34,6 +35,7 @@ export const metadata = buildPageMetadata({
 	keyword: 'גיא אבני משרד עורכי דין',
 	path: '/tags/',
 	absoluteTitle: true,
+	image: mainPageOgImageUrl('/tags/'),
 });
 
 const TAGS_FAQ = replaceEmDashDeep([
