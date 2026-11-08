@@ -1,0 +1,28 @@
+plan: 030_www_apex_301_edge_redirect_w1
+scope: www-apex-301
+status: DONE
+next_plan_suggestion: 031_thin_practice_landings_consolidate_t1
+
+files_to_read:
+- src/middleware.ts
+- vercel.json
+- OWNER-REPORTS/008_seo_aio_audit_remediation_scopes_2026-11-08.md
+
+rules:
+- .cursor/rules/ssot-repo-structure.mdc
+- .cursor/rules/enforcement/atomic-change-loging.mdc
+
+tools_and_status:
+- vercel_api_PATCH_www_domain_redirect: DONE redirect=avniguy.co.il status=308
+- curl_www: 308 Location https://avniguy.co.il/
+- curl_apex: 200
+- pnpm_build: PASS (node 22)
+- pnpm_dev: PASS :3001
+- validate_true: PASS conf>=0.99
+
+open_issues:
+- none for DoD; domain redirect is platform state (re-apply via vercel api if removed)
+- smoke/e2e still may reference www base URL (follows redirect)
+
+commits: 633-634
+validate_true_outcome: PASS
