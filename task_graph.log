@@ -838,3 +838,4 @@
 649. mark-thin-practice-landings-scope-done , OWNER-REPORTS/008_seo_aio_audit_remediation_scopes_2026-11-08.md task_graph.log
 650. update-scope-loop-state-thin-done , notes/implementations/scope_loop_state.json task_graph.log
 651. add-sameas-dual-domain-clarity-plan , .cursor/plans/032_sameas_dual_domain_clarity_s1.plan.md task_graph.log
+652. clarify-footer-dual-domain-same-person-copy , src/components/Footer.tsx task_graph.log
