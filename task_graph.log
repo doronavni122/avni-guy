@@ -854,3 +854,4 @@
 665. add-home-h2-destuff-brief , notes/implementations/033_home_h2_destuff_misui_h1_brief.txt task_graph.log
 666. mark-home-h2-destuff-scope-done , OWNER-REPORTS/008_seo_aio_audit_remediation_scopes_2026-11-08.md task_graph.log
 667. update-scope-loop-state-home-h2-done , notes/implementations/scope_loop_state.json task_graph.log
+668. add-unique-og-main-pages-plan , .cursor/plans/034_unique_og_main_pages_o1.plan.md task_graph.log
