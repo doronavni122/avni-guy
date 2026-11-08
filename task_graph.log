@@ -894,3 +894,4 @@
 705. add-operator-media-verified-plan , .cursor/plans/042_operator_media_verified_only_o1.plan.md task_graph.log
 706. record-operator-dod-instructions-in-008 , OWNER-REPORTS/008_seo_aio_audit_remediation_scopes_2026-11-08.md task_graph.log
 707. mark-remaining-in-repo-scopes-done , OWNER-REPORTS/008_seo_aio_audit_remediation_scopes_2026-11-08.md task_graph.log
+708. add-contact-schema-depth-brief , notes/implementations/036_contact_schema_depth_c1_brief.txt task_graph.log
