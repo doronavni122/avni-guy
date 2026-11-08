@@ -103,17 +103,17 @@ const FANOUT_PRACTICE_MAP = [
 		title: 'נדל״ן ומיסוי',
 		body: 'קנייה, מכירה, מס שבח ומס רכישה - דרך קטגוריית המיסוי ומסלול נדל״ן באתר.',
 		links: [
-			{ href: '/nedlan-lawyer-guy-avni/', label: 'מסלול נדל״ן' },
-			{ href: '/categories/tax/', label: 'קטגוריית מיסוי' },
 			{ href: '/categories/real-estate/', label: 'קטגוריית נדל״ן' },
+			{ href: '/categories/tax/', label: 'קטגוריית מיסוי' },
+			{ href: '/blog/choose-real-estate-lawyer/', label: 'בחירת עורך דין מקרקעין' },
 		],
 	},
 	{
 		title: 'חוזים לפני חתימה',
 		body: 'בדיקת טיוטה, סימון סיכונים וביטול עסקה - בלי עמוד נפרד לכל סוג חוזה.',
 		links: [
-			{ href: '/contracts-lawyer-guy-avni/', label: 'מסלול חוזים' },
 			{ href: '/categories/contracts/', label: 'קטגוריית חוזים' },
+			{ href: '/about/#workflow', label: 'מסלול העבודה באודות' },
 		],
 	},
 	{

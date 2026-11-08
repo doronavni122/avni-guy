@@ -831,3 +831,4 @@
 642. redirect-nedlan-practice-landing-to-services , src/app/nedlan-lawyer-guy-avni/page.tsx task_graph.log
 643. redirect-contracts-practice-landing-to-services , src/app/contracts-lawyer-guy-avni/page.tsx task_graph.log
 644. remove-thin-landings-from-sitemap , src/app/sitemap.ts task_graph.log
+645. rewire-services-fanout-off-thin-landings , src/app/services/page.tsx task_graph.log
