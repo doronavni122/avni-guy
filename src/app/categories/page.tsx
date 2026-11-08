@@ -11,6 +11,7 @@ import { buildPageMetadata } from '@/lib/metadata';
 import { replaceEmDashDeep } from '@/lib/content/sanitize-user-facing-text';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
 import { SITE_URL } from '@/consts';
+import { mainPageOgImageUrl } from '@/lib/seo/main-page-og';
 import { getCategoryIndexBlurb } from '@/lib/seo/category-index-blurbs';
 import {
 	buildBreadcrumbSchema,
@@ -32,6 +33,7 @@ export const metadata = buildPageMetadata({
 	keyword: 'גיא אבני עורך דין',
 	path: '/categories/',
 	absoluteTitle: true,
+	image: mainPageOgImageUrl('/categories/'),
 });
 
 const CATEGORIES_FAQ = replaceEmDashDeep([
