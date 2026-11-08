@@ -833,3 +833,4 @@
 644. remove-thin-landings-from-sitemap , src/app/sitemap.ts task_graph.log
 645. rewire-services-fanout-off-thin-landings , src/app/services/page.tsx task_graph.log
 646. rewire-about-fanout-off-nedlan-landing , src/app/about/page.tsx task_graph.log
+647. remove-unused-practice-bridge-pages-module , src/lib/seo/practice-bridge-pages.ts task_graph.log
