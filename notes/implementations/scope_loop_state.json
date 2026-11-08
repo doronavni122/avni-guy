@@ -4,7 +4,7 @@
   "integration_branch": "feature/seo-aio-audit-remediation-2026-11-08",
   "max_parallel_workers": 1,
   "started_at": "2026-11-08T18:52:00+02:00",
-  "current_scope": "unique-og-main-pages",
+  "current_scope": "ymyl-disclaimer-hubs",
   "inner_iteration": 1,
   "max_inner_iterations": 3,
   "escalation_level": 0,
@@ -49,15 +49,15 @@
       "rca_files": []
     },
     "unique-og-main-pages": {
-      "status": "IN_PROGRESS",
-      "plan": null,
-      "last_gate": null,
+      "status": "DONE",
+      "plan": "034_unique_og_main_pages_o1",
+      "last_gate": "assess_pass",
       "last_failure": null,
       "escalation_count": 0,
       "rca_files": []
     },
     "ymyl-disclaimer-hubs": {
-      "status": "PENDING",
+      "status": "IN_PROGRESS",
       "plan": null,
       "last_gate": null,
       "last_failure": null,
