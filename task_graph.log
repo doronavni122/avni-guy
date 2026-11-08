@@ -870,3 +870,4 @@
 681. mark-unique-og-main-pages-scope-done , OWNER-REPORTS/008_seo_aio_audit_remediation_scopes_2026-11-08.md task_graph.log
 682. update-scope-loop-state-unique-og-done , notes/implementations/scope_loop_state.json task_graph.log
 683. add-ymyl-disclaimer-hubs-plan , .cursor/plans/035_ymyl_disclaimer_hubs_y1.plan.md task_graph.log
+684. add-ymyl-disclaimer-component , src/components/seo/YmylDisclaimer.tsx task_graph.log
