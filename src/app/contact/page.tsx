@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { buttonVariants } from '@/components/ui/button';
 import { MainPageHero } from '@/components/seo/MainPageHero';
+import { YmylDisclaimer } from '@/components/seo/YmylDisclaimer';
 import { SiteShell } from '@/components/layout/SiteShell';
 import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
 import { cn } from '@/lib/utils';
@@ -134,6 +135,9 @@ export default function ContactPage() {
 							<code className="rounded-sm bg-muted px-1">NEXT_PUBLIC_CONTACT_EMAIL</code>.
 						</p>
 					</aside>
+				</div>
+				<div className="mt-10 border-t border-border pt-6">
+					<YmylDisclaimer />
 				</div>
 			</div>
 		</SiteShell>
