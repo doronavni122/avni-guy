@@ -10,14 +10,14 @@ import { isQuarantinedBlogSlug, shouldIndexCategory } from '@/lib/seo/indexation
  * at build time for unchanging pages.
  */
 const STATIC_PATH_LASTMOD: Record<string, string> = {
-	'/': '2026-07-09',
+	'/': '2026-11-08',
 	'/about/': '2026-09-17',
-	'/services/': '2026-07-13',
-	'/contact/': '2026-07-01',
-	'/categories/': '2026-07-13',
+	'/services/': '2026-11-08',
+	'/contact/': '2026-11-08',
+	'/categories/': '2026-11-08',
 	'/tags/': '2026-07-13',
 	'/editorial-policy/': '2026-07-14',
-	'/sheelot/': '2026-09-02',
+	'/sheelot/': '2026-11-08',
 	'/media/': '2026-07-14',
 	'/guy-avni/': '2026-07-14',
 };
