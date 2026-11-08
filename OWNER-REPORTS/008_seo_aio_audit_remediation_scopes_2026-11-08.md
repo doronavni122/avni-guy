@@ -34,7 +34,7 @@
 
 ### P1
 
-- [ ] **unique-og-main-pages** — Unique OG/hero image per remaining main hub (stop shared `og-law-fallback-photo-1.jpg` on hubs). Respect `unique-site-images.mdc`. DoD: each live main page has distinct OG; optimize images. Sources: 006 P1.4
+- [x] **unique-og-main-pages** — Unique OG/hero image per remaining main hub (stop shared `og-law-fallback-photo-1.jpg` on hubs). Respect `unique-site-images.mdc`. DoD: each live main page has distinct OG; optimize images. Sources: 006 P1.4
 - [ ] **ymyl-disclaimer-hubs** — Add visible site-level YMYL “not personal advice” disclaimer to hubs missing it: home, services, categories, contact (visible body), and practice pages if kept. DoD: phrase visible in body on listed hubs. Sources: 006 P1.5, 007 P1.5
 - [ ] **contact-schema-depth** — Deepen contact prep content; add `ContactPage` + `ContactPoint` (phone/email/areaServed) matching visible NAP; add 2–4 prep FAQ Q→A. DoD: schema types present + match visible; FAQ visible. Sources: 006 P1.6, 007 P1.7
 - [ ] **home-person-graph** — Home JSON-LD: reference `https://avniguy.co.il/about/#person` from LegalService/`about`/`employee` so home→about entity graph is coherent. DoD: Person `@id` link present in home LD. Sources: 006 P1.7
