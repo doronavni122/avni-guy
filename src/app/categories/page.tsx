@@ -3,6 +3,7 @@ import { PageSection } from '@/components/layout/PageSection';
 import { SectionHeader } from '@/components/layout/SectionHeader';
 import { MainPageHero } from '@/components/seo/MainPageHero';
 import { EntityByline } from '@/components/seo/EntityByline';
+import { YmylDisclaimer } from '@/components/seo/YmylDisclaimer';
 import { SiteShell } from '@/components/layout/SiteShell';
 import { getCategories, getPostsIndex } from '@/lib/content/posts';
 import { getCategoryLabel } from '@/utils/taxonomy-labels';
@@ -186,6 +187,9 @@ export default async function CategoriesIndexPage() {
 						))}
 					</div>
 				</PageSection>
+				<div className="mt-10 border-t border-border pt-6">
+					<YmylDisclaimer />
+				</div>
 			</div>
 		</SiteShell>
 	);
