@@ -843,3 +843,4 @@
 654. add-sameas-dual-domain-brief , notes/implementations/032_sameas_dual_domain_clarity_s1_brief.txt task_graph.log
 655. mark-sameas-dual-domain-scope-done , OWNER-REPORTS/008_seo_aio_audit_remediation_scopes_2026-11-08.md notes/implementations/scope_loop_state.json task_graph.log
 656. update-scope-loop-state-sameas-done , notes/implementations/scope_loop_state.json task_graph.log
+657. add-home-h2-destuff-plan , .cursor/plans/033_home_h2_destuff_misui_h1.plan.md task_graph.log
