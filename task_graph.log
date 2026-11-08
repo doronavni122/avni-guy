@@ -866,3 +866,4 @@
 677. wire-editorial-unique-og-image , src/app/editorial-policy/page.tsx task_graph.log
 678. wire-guy-avni-unique-og-image , src/app/guy-avni/page.tsx task_graph.log
 679. wire-blog-archive-unique-og-image , src/lib/blog/archive-metadata.ts task_graph.log
+680. add-unique-og-main-pages-brief , notes/implementations/034_unique_og_main_pages_o1_brief.txt task_graph.log
