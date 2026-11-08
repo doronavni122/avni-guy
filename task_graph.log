@@ -829,3 +829,4 @@
 640. add-thin-practice-landings-plan , .cursor/plans/031_thin_practice_landings_consolidate_t1.plan.md task_graph.log
 641. add-thin-practice-landing-vercel-redirects , vercel.json task_graph.log
 642. redirect-nedlan-practice-landing-to-services , src/app/nedlan-lawyer-guy-avni/page.tsx task_graph.log
+643. redirect-contracts-practice-landing-to-services , src/app/contracts-lawyer-guy-avni/page.tsx task_graph.log
