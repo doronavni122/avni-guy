@@ -878,3 +878,4 @@
 689. add-ymyl-disclaimer-hubs-brief , notes/implementations/035_ymyl_disclaimer_hubs_y1_brief.txt task_graph.log
 690. mark-ymyl-disclaimer-hubs-scope-done , OWNER-REPORTS/008_seo_aio_audit_remediation_scopes_2026-11-08.md task_graph.log
 691. update-scope-loop-state-ymyl-done , notes/implementations/scope_loop_state.json task_graph.log
+692. add-contact-schema-depth-plan , .cursor/plans/036_contact_schema_depth_c1.plan.md task_graph.log
