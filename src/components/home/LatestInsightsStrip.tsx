@@ -12,7 +12,7 @@ export function LatestInsightsStrip({ posts }: LatestInsightsStripProps) {
 			<div className="flex items-start justify-between gap-6 border-t border-border pt-5">
 				<div className="flex max-w-3xl flex-col gap-3">
 					<h2 id="latest-insights-title" className="font-heading text-2xl font-bold tracking-tight text-foreground text-balance sm:text-3xl">
-						תובנות אחרונות מגיא אבני עורך דין - עדכונים מהמשרד
+						תובנות אחרונות ועדכונים מהמשרד
 					</h2>
 					<span className="swiss-label">חדש באתר</span>
 					<p className="text-sm text-muted-foreground">שלושה עדכונים חדשים שיעזרו לכם לשמור על בהירות ותנועה קדימה.</p>
