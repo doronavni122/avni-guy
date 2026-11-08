@@ -881,3 +881,4 @@
 692. add-contact-schema-depth-plan , .cursor/plans/036_contact_schema_depth_c1.plan.md task_graph.log
 693. add-contact-page-schema-builder , src/utils/structured-data.ts task_graph.log
 694. deepen-contact-page-faq-and-schema , src/app/contact/page.tsx task_graph.log
+695. add-home-person-graph-plan , .cursor/plans/037_home_person_graph_p1.plan.md task_graph.log
