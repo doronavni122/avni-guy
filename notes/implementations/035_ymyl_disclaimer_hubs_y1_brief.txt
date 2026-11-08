@@ -1,0 +1,7 @@
+plan: 035_ymyl_disclaimer_hubs_y1
+scope: ymyl-disclaimer-hubs
+status: DONE
+hubs: home services categories contact
+component: src/components/seo/YmylDisclaimer.tsx
+validate_true_outcome: PASS
+next_plan_suggestion: 036_contact_schema_depth_c1

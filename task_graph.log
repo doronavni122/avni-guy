@@ -875,3 +875,4 @@
 686. mount-ymyl-disclaimer-on-services , src/app/services/page.tsx task_graph.log
 687. mount-ymyl-disclaimer-on-categories , src/app/categories/page.tsx task_graph.log
 688. mount-ymyl-disclaimer-on-contact , src/app/contact/page.tsx task_graph.log
+689. add-ymyl-disclaimer-hubs-brief , notes/implementations/035_ymyl_disclaimer_hubs_y1_brief.txt task_graph.log
