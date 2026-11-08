@@ -820,3 +820,4 @@
 
 632. write-parashat-bereshit-cluster-session-note , notes/sessions/session_parashat-bereshit-cluster_2026-09-17.txt task_graph.log
 633. add-www-apex-host-middleware-redirect , src/middleware.ts task_graph.log
+634. add-www-apex-301-plan , .cursor/plans/030_www_apex_301_edge_redirect_w1.plan.md task_graph.log
