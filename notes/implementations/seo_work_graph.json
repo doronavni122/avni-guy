@@ -115,46 +115,46 @@
       "path": "/tags/",
       "role": "main",
       "priority": 13,
-      "auditCount": 0,
-      "lastAuditedAt": null,
-      "lastPipeline": null,
-      "notes": "Selected for seo-p5. In MAIN_PAGE_HEROES; absent from 2026-11-08 page table."
+      "auditCount": 1,
+      "lastAuditedAt": "2026-11-21",
+      "lastPipeline": "seo-p5-2026-11",
+      "notes": "Audited seo-p5. FAQ count, contact link, YMYL disclaimer."
     },
     {
       "path": "/categories/real-estate/",
       "role": "next-main",
       "priority": 14,
-      "auditCount": 0,
-      "lastAuditedAt": null,
-      "lastPipeline": null,
-      "notes": "Selected for seo-p5. 31 posts, indexable."
+      "auditCount": 1,
+      "lastAuditedAt": "2026-11-21",
+      "lastPipeline": "seo-p5-2026-11",
+      "notes": "Audited seo-p5 with tax, litigation, contracts. Template fixes plus unique OG."
     },
     {
       "path": "/categories/tax/",
       "role": "next-main",
       "priority": 15,
-      "auditCount": 0,
-      "lastAuditedAt": null,
-      "lastPipeline": null,
-      "notes": "Selected for seo-p5. 20 posts, indexable."
+      "auditCount": 1,
+      "lastAuditedAt": "2026-11-21",
+      "lastPipeline": "seo-p5-2026-11",
+      "notes": "Audited seo-p5. Unique calculator OG."
     },
     {
       "path": "/categories/litigation/",
       "role": "next-main",
       "priority": 16,
-      "auditCount": 0,
-      "lastAuditedAt": null,
-      "lastPipeline": null,
-      "notes": "Selected for seo-p5. 20 posts, indexable."
+      "auditCount": 1,
+      "lastAuditedAt": "2026-11-21",
+      "lastPipeline": "seo-p5-2026-11",
+      "notes": "Audited seo-p5. Unique gavel OG."
     },
     {
       "path": "/categories/contracts/",
       "role": "next-main",
       "priority": 17,
-      "auditCount": 0,
-      "lastAuditedAt": null,
-      "lastPipeline": null,
-      "notes": "Selected for seo-p5. 10 posts, indexable."
+      "auditCount": 1,
+      "lastAuditedAt": "2026-11-21",
+      "lastPipeline": "seo-p5-2026-11",
+      "notes": "Audited seo-p5. Unique pen OG."
     },
     {
       "path": "/categories/service/",
