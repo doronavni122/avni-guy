@@ -59,7 +59,7 @@ CONFIDENCE_GATE: PASS
 
 ## Scopes
 
-- [ ] tags-faq-count
+- [x] tags-faq-count
   - Bind the "כמה תגיות" FAQ answer (visible + FAQPage schema) to getTags().length.
 
 - [ ] tags-contact-link

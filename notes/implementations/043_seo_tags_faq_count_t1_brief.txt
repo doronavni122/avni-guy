@@ -1,0 +1,6 @@
+plan: 043_seo_tags_faq_count_t1
+scope: tags-faq-count
+status: DONE
+files: src/app/tags/page.tsx
+behavior: buildTagsFaq(tagCount) feeds visible FAQ and FAQPage schema
+verify: pending build

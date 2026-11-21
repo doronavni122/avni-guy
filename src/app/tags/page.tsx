@@ -38,26 +38,37 @@ export const metadata = buildPageMetadata({
 	image: mainPageOgImageUrl('/tags/'),
 });
 
-const TAGS_FAQ = replaceEmDashDeep([
-	{
-		question: 'מה ההבדל בין תגית לקטגוריה?',
-		answer:
-			'קטגוריה היא תחום רחב (נדל״ן, חוזים). תגית מצמצמת למצב ספציפי (זכויות רוכש, פטור מס). התחילו מתגית כשיודעים את המילה המדויקת.',
-	},
-	{
-		question: 'כמה תגיות יש באתר?',
-		answer:
-			'מאות תגיות בעברית, כל אחת מקשרת למאמרים שעוסקים באותו מושג או מצב. עמוד זה מרכז את כולן לניווט מהיר.',
-	},
-	{
-		question: 'מתי לפנות לעורך דין אחרי קריאה?',
-		answer:
-			'כשיש סיכון מיידי, מועד קריטי, או שאלה שלא נענית במאמר. התוכן באתר אינו ייעוץ משפטי אישי.',
-	},
-]);
+function buildTagsFaq(tagCount: number) {
+	try {
+		if (!Number.isInteger(tagCount) || tagCount < 0) {
+			console.error('[tags] buildTagsFaq invalid count', { tagCount });
+			throw new Error('invalid tag count');
+		}
+		return replaceEmDashDeep([
+			{
+				question: 'מה ההבדל בין תגית לקטגוריה?',
+				answer:
+					'קטגוריה היא תחום רחב (נדל״ן, חוזים). תגית מצמצמת למצב ספציפי (זכויות רוכש, פטור מס). התחילו מתגית כשיודעים את המילה המדויקת.',
+			},
+			{
+				question: 'כמה תגיות יש באתר?',
+				answer: `באתר ${tagCount} תגיות בשימוש במאמרים, כל אחת מקשרת למאמרים שעוסקים באותו מושג או מצב. עמוד זה מרכז את כולן לניווט מהיר.`,
+			},
+			{
+				question: 'מתי לפנות לעורך דין אחרי קריאה?',
+				answer:
+					'כשיש סיכון מיידי, מועד קריטי, או שאלה שלא נענית במאמר. התוכן באתר אינו ייעוץ משפטי אישי.',
+			},
+		]);
+	} catch (err) {
+		console.error('[tags] buildTagsFaq failed', { tagCount, err });
+		throw err;
+	}
+}
 
 export default async function TagsIndexPage() {
 	const tags = await getTags();
+	const tagsFaq = buildTagsFaq(tags.length);
 	const { posts } = await getPostsIndex();
 
 	const countByTag = new Map<string, number>();
@@ -87,7 +98,7 @@ export default async function TagsIndexPage() {
 			dateModified: TAGS_DATE_MODIFIED,
 		}),
 		buildItemListSchema(listItems),
-		buildFaqSchema([...TAGS_FAQ]),
+		buildFaqSchema([...tagsFaq]),
 	];
 
 	const hero = {
@@ -130,7 +141,7 @@ export default async function TagsIndexPage() {
 				<PageSection className="mt-12">
 					<SectionHeader index={2} eyebrow="שאלות נפוצות" title="שאלות על התגיות" />
 					<div className="mt-8 flex max-w-3xl flex-col gap-6">
-						{TAGS_FAQ.map(({ question, answer }) => (
+						{tagsFaq.map(({ question, answer }) => (
 							<div key={question} className="border-b border-border pb-6 last:border-b-0">
 								<h3 className="font-heading text-lg font-semibold text-foreground">{question}</h3>
 								<p className="mt-3 text-pretty text-sm leading-relaxed text-muted-foreground">{answer}</p>
