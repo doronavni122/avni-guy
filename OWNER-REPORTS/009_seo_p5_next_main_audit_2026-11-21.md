@@ -62,7 +62,7 @@ CONFIDENCE_GATE: PASS
 - [x] tags-faq-count
   - Bind the "כמה תגיות" FAQ answer (visible + FAQPage schema) to getTags().length.
 
-- [ ] tags-contact-link
+- [x] tags-contact-link
   - Add a visible link to /contact/ on /tags/.
 
 - [ ] tags-ymyl

@@ -123,7 +123,11 @@ export default async function TagsIndexPage() {
 					<Link className="link-underline" href="/categories/">
 						קטגוריה רחבה
 					</Link>{' '}
-					רק אם צריך הקשר נוסף.
+					רק אם צריך הקשר נוסף. כשנשארת שאלה על התיק,{' '}
+					<Link className="link-underline" href="/contact/">
+						תיאום שיחה
+					</Link>
+					.
 				</p>
 
 				<PageSection className="mt-12">

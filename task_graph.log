@@ -905,3 +905,4 @@
 716. create-seo-work-graph , notes/implementations/seo_work_graph.json task_graph.log
 717. add-seo-p5-next-main-audit , OWNER-REPORTS/009_seo_p5_next_main_audit_2026-11-21.md task_graph.log
 718. bind-tags-faq-to-live-count , src/app/tags/page.tsx .cursor/plans/043_seo_tags_faq_count_t1.plan.md notes/implementations/043_seo_tags_faq_count_t1_brief.txt OWNER-REPORTS/009_seo_p5_next_main_audit_2026-11-21.md task_graph.log
+719. link-tags-index-to-contact , src/app/tags/page.tsx .cursor/plans/044_seo_tags_contact_link_t1.plan.md notes/implementations/044_seo_tags_contact_link_t1_brief.txt OWNER-REPORTS/009_seo_p5_next_main_audit_2026-11-21.md task_graph.log
