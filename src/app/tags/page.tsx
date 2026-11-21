@@ -3,6 +3,7 @@ import { PageSection } from '@/components/layout/PageSection';
 import { SectionHeader } from '@/components/layout/SectionHeader';
 import { MainPageHero } from '@/components/seo/MainPageHero';
 import { EntityByline } from '@/components/seo/EntityByline';
+import { YmylDisclaimer } from '@/components/seo/YmylDisclaimer';
 import { SiteShell } from '@/components/layout/SiteShell';
 import { TagsCloudGrouped } from '@/components/tags/TagsCloudGrouped';
 import { getPostsIndex, getTags } from '@/lib/content/posts';
@@ -153,6 +154,9 @@ export default async function TagsIndexPage() {
 						))}
 					</div>
 				</PageSection>
+				<div className="mt-10 border-t border-border pt-6">
+					<YmylDisclaimer />
+				</div>
 			</div>
 		</SiteShell>
 	);

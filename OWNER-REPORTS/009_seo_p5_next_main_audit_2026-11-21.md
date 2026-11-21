@@ -65,7 +65,7 @@ CONFIDENCE_GATE: PASS
 - [x] tags-contact-link
   - Add a visible link to /contact/ on /tags/.
 
-- [ ] tags-ymyl
+- [x] tags-ymyl
   - Render YmylDisclaimer on /tags/.
 
 - [ ] category-datemodified
