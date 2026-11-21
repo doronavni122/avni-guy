@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArticleList } from '@/components/blog/ArticleList';
 import { SiteShell } from '@/components/layout/SiteShell';
+import { getArchiveDateModified } from '@/lib/blog/archive';
 import { getCategories, getPostsIndex } from '@/lib/content/posts';
 import { buildPageMetadata } from '@/lib/metadata';
 import { shouldIndexCategory } from '@/lib/seo/indexation';
@@ -65,12 +66,22 @@ export default async function CategoryPage({ params }: PageProps) {
 	];
 	const pageTitle = buildCategoryPageTitle(categoryHe);
 	const pageDescription = buildCategoryMetaDescription(categoryHe);
+	let dateModified = '2026-07-14';
+	try {
+		if (posts.length > 0) {
+			dateModified = getArchiveDateModified(posts);
+		} else {
+			console.error('[categories] dateModified fallback, no posts', { category });
+		}
+	} catch (err) {
+		console.error('[categories] dateModified failed', { category, err });
+	}
 	const webPageNode = buildWebPageSchema({
 		'@id': `${SITE_URL}/categories/${category}/#webpage`,
 		url: `${SITE_URL}/categories/${category}/`,
 		name: pageTitle,
 		description: speakableBlock?.answer ?? pageDescription,
-		dateModified: '2026-07-14',
+		dateModified,
 		'@type': 'CollectionPage',
 	});
 	const jsonLd = [

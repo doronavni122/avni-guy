@@ -68,7 +68,7 @@ CONFIDENCE_GATE: PASS
 - [x] tags-ymyl
   - Render YmylDisclaimer on /tags/.
 
-- [ ] category-datemodified
+- [x] category-datemodified
   - Set CollectionPage dateModified from getArchiveDateModified of that category's posts.
 
 - [ ] category-breadcrumb-slash
