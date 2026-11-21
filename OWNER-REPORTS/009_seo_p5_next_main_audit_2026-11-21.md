@@ -71,7 +71,7 @@ CONFIDENCE_GATE: PASS
 - [x] category-datemodified
   - Set CollectionPage dateModified from getArchiveDateModified of that category's posts.
 
-- [ ] category-breadcrumb-slash
+- [x] category-breadcrumb-slash
   - Use path /categories/ on the category breadcrumb.
 
 - [ ] category-ymyl

@@ -61,7 +61,7 @@ export default async function CategoryPage({ params }: PageProps) {
 	const speakableBlock = getCategorySpeakableVoiceBlock(category);
 	const breadcrumbItems = [
 		{ name: 'דף הבית', path: '/' },
-		{ name: 'קטגוריות', path: '/categories' },
+		{ name: 'קטגוריות', path: '/categories/' },
 		{ name: categoryHe, path: `/categories/${category}/` },
 	];
 	const pageTitle = buildCategoryPageTitle(categoryHe);
