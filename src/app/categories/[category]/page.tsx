@@ -12,7 +12,7 @@ import { attachSpeakable, SPEAKABLE_VOICE_CLASS } from '@/lib/seo/speakable';
 import { getCategorySpeakableVoiceBlock } from '@/lib/seo/speakable-voice-blocks';
 import { getCategoryHubIntro } from '@/lib/seo/category-hub-intros';
 import { SITE_URL } from '@/consts';
-import { buildBreadcrumbSchema, buildWebPageSchema } from '@/utils/structured-data';
+import { buildBreadcrumbSchema, buildItemListSchema, buildWebPageSchema } from '@/utils/structured-data';
 import {
 	buildCategoryMetaDescription,
 	buildCategoryPageTitle,
@@ -102,9 +102,20 @@ export default async function CategoryPage({ params }: PageProps) {
 		dateModified,
 		'@type': 'CollectionPage',
 	});
+	let listItems: Array<{ name: string; url: string }> = [];
+	try {
+		listItems = posts.map((post) => ({
+			name: post.data.title,
+			url: new URL(`/blog/${post.slug}/`, SITE_URL).toString(),
+		}));
+	} catch (err) {
+		console.error('[categories] item list failed', { category, err });
+		listItems = [];
+	}
 	const jsonLd = [
 		buildBreadcrumbSchema(breadcrumbItems),
 		speakableBlock ? attachSpeakable(webPageNode) : webPageNode,
+		...(listItems.length > 0 ? [buildItemListSchema(listItems)] : []),
 	];
 
 	return (

@@ -1,0 +1,6 @@
+plan: 050_seo_category_itemlist_c1
+scope: category-itemlist
+status: DONE
+files: src/app/categories/[category]/page.tsx
+behavior: ItemList urls are /blog/{slug}/ for posts rendered in ArticleList
+verify: pending build

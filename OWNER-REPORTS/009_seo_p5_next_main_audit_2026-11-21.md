@@ -80,7 +80,7 @@ CONFIDENCE_GATE: PASS
 - [x] category-tag-links
   - Render links to the tags used by that category's posts so the meta description is true.
 
-- [ ] category-itemlist
+- [x] category-itemlist
   - Emit ItemList JSON-LD for the articles the page lists.
 
 - [ ] category-og
