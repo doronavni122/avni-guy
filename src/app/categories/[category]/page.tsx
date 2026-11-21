@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArticleList } from '@/components/blog/ArticleList';
 import { SiteShell } from '@/components/layout/SiteShell';
+import { YmylDisclaimer } from '@/components/seo/YmylDisclaimer';
 import { getArchiveDateModified } from '@/lib/blog/archive';
 import { getCategories, getPostsIndex } from '@/lib/content/posts';
 import { buildPageMetadata } from '@/lib/metadata';
@@ -129,6 +130,9 @@ export default async function CategoryPage({ params }: PageProps) {
 					</div>
 					<ArticleList posts={posts} excerpt="description" />
 				</section>
+				<div className="mt-10 border-t border-border pt-6">
+					<YmylDisclaimer />
+				</div>
 			</div>
 		</SiteShell>
 	);

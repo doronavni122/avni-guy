@@ -74,7 +74,7 @@ CONFIDENCE_GATE: PASS
 - [x] category-breadcrumb-slash
   - Use path /categories/ on the category breadcrumb.
 
-- [ ] category-ymyl
+- [x] category-ymyl
   - Render YmylDisclaimer on category hubs.
 
 - [ ] category-tag-links

@@ -1,0 +1,6 @@
+plan: 048_seo_category_ymyl_disclaimer_c1
+scope: category-ymyl
+status: DONE
+files: src/app/categories/[category]/page.tsx
+behavior: YmylDisclaimer under the article list
+verify: pending build
