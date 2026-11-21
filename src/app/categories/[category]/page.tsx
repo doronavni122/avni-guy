@@ -17,6 +17,7 @@ import {
 	buildCategoryMetaDescription,
 	buildCategoryPageTitle,
 	getCategoryLabel,
+	getTagLabel,
 } from '@/utils/taxonomy-labels';
 
 export const dynamic = 'force-static';
@@ -54,6 +55,22 @@ export default async function CategoryPage({ params }: PageProps) {
 	const { category } = await params;
 	const { posts: allPosts, categories } = await getPostsIndex();
 	const posts = allPosts.filter((post) => post.data.category === category);
+	let relatedTags: Array<{ slug: string; label: string }> = [];
+	try {
+		const counts = new Map<string, number>();
+		for (const post of posts) {
+			for (const tag of post.data.tags) {
+				counts.set(tag, (counts.get(tag) ?? 0) + 1);
+			}
+		}
+		relatedTags = [...counts.entries()]
+			.sort((left, right) => right[1] - left[1] || left[0].localeCompare(right[0]))
+			.slice(0, 8)
+			.map(([slug]) => ({ slug, label: getTagLabel(slug) }));
+	} catch (err) {
+		console.error('[categories] related tags failed', { category, err });
+		relatedTags = [];
+	}
 	if (posts.length === 0) {
 		if (!categories.includes(category)) notFound();
 	}
@@ -122,6 +139,19 @@ export default async function CategoryPage({ params }: PageProps) {
 						))}
 						.
 					</p>
+					{relatedTags.length > 0 ? (
+						<p className="max-w-4xl text-pretty text-sm leading-relaxed text-muted-foreground">
+							תגיות במאמרים אלה:{' '}
+							{relatedTags.map((tag, index) => (
+								<span key={tag.slug}>
+									{index > 0 ? ' · ' : null}
+									<Link className="link-underline" href={`/tags/${tag.slug}/`}>
+										{tag.label}
+									</Link>
+								</span>
+							))}
+						</p>
+					) : null}
 				</header>
 				<section className="mt-12">
 					<div className="flex items-end justify-between border-b border-border pb-3">

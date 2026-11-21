@@ -77,7 +77,7 @@ CONFIDENCE_GATE: PASS
 - [x] category-ymyl
   - Render YmylDisclaimer on category hubs.
 
-- [ ] category-tag-links
+- [x] category-tag-links
   - Render links to the tags used by that category's posts so the meta description is true.
 
 - [ ] category-itemlist

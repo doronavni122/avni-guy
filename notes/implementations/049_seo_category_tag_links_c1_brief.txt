@@ -1,0 +1,6 @@
+plan: 049_seo_category_tag_links_c1
+scope: category-tag-links
+status: DONE
+files: src/app/categories/[category]/page.tsx
+behavior: up to 8 tags by frequency, linked to /tags/{slug}/
+verify: pending build
