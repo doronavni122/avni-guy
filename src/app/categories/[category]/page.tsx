@@ -11,6 +11,7 @@ import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
 import { attachSpeakable, SPEAKABLE_VOICE_CLASS } from '@/lib/seo/speakable';
 import { getCategorySpeakableVoiceBlock } from '@/lib/seo/speakable-voice-blocks';
 import { getCategoryHubIntro } from '@/lib/seo/category-hub-intros';
+import { categoryOgImageUrl } from '@/lib/seo/category-og';
 import { SITE_URL } from '@/consts';
 import { buildBreadcrumbSchema, buildItemListSchema, buildWebPageSchema } from '@/utils/structured-data';
 import {
@@ -41,6 +42,7 @@ export async function generateMetadata({ params }: PageProps) {
 		console.error('[categories] generateMetadata indexation check failed', { category, err });
 		indexable = false;
 	}
+	const image = categoryOgImageUrl(category);
 	return buildPageMetadata({
 		title: buildCategoryPageTitle(categoryHe),
 		description: buildCategoryMetaDescription(categoryHe),
@@ -48,6 +50,7 @@ export async function generateMetadata({ params }: PageProps) {
 		path: `/categories/${category}/`,
 		absoluteTitle: true,
 		robots: { index: indexable, follow: true },
+		...(image ? { image } : {}),
 	});
 }
 

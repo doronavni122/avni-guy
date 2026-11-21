@@ -83,5 +83,5 @@ CONFIDENCE_GATE: PASS
 - [x] category-itemlist
   - Emit ItemList JSON-LD for the articles the page lists.
 
-- [ ] category-og
+- [x] category-og
   - Give /categories/real-estate/, /categories/tax/, /categories/litigation/, and /categories/contracts/ each a unique OG image. Keep source URL and license off the visible page.
