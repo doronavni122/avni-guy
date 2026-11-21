@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArticleList } from '@/components/blog/ArticleList';
 import { SiteShell } from '@/components/layout/SiteShell';
+import { YmylDisclaimer } from '@/components/seo/YmylDisclaimer';
+import { getArchiveDateModified } from '@/lib/blog/archive';
 import { getCategories, getPostsIndex } from '@/lib/content/posts';
 import { buildPageMetadata } from '@/lib/metadata';
 import { shouldIndexCategory } from '@/lib/seo/indexation';
@@ -9,12 +11,14 @@ import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
 import { attachSpeakable, SPEAKABLE_VOICE_CLASS } from '@/lib/seo/speakable';
 import { getCategorySpeakableVoiceBlock } from '@/lib/seo/speakable-voice-blocks';
 import { getCategoryHubIntro } from '@/lib/seo/category-hub-intros';
+import { categoryOgImageUrl } from '@/lib/seo/category-og';
 import { SITE_URL } from '@/consts';
-import { buildBreadcrumbSchema, buildWebPageSchema } from '@/utils/structured-data';
+import { buildBreadcrumbSchema, buildItemListSchema, buildWebPageSchema } from '@/utils/structured-data';
 import {
 	buildCategoryMetaDescription,
 	buildCategoryPageTitle,
 	getCategoryLabel,
+	getTagLabel,
 } from '@/utils/taxonomy-labels';
 
 export const dynamic = 'force-static';
@@ -38,6 +42,7 @@ export async function generateMetadata({ params }: PageProps) {
 		console.error('[categories] generateMetadata indexation check failed', { category, err });
 		indexable = false;
 	}
+	const image = categoryOgImageUrl(category);
 	return buildPageMetadata({
 		title: buildCategoryPageTitle(categoryHe),
 		description: buildCategoryMetaDescription(categoryHe),
@@ -45,6 +50,7 @@ export async function generateMetadata({ params }: PageProps) {
 		path: `/categories/${category}/`,
 		absoluteTitle: true,
 		robots: { index: indexable, follow: true },
+		...(image ? { image } : {}),
 	});
 }
 
@@ -52,6 +58,22 @@ export default async function CategoryPage({ params }: PageProps) {
 	const { category } = await params;
 	const { posts: allPosts, categories } = await getPostsIndex();
 	const posts = allPosts.filter((post) => post.data.category === category);
+	let relatedTags: Array<{ slug: string; label: string }> = [];
+	try {
+		const counts = new Map<string, number>();
+		for (const post of posts) {
+			for (const tag of post.data.tags) {
+				counts.set(tag, (counts.get(tag) ?? 0) + 1);
+			}
+		}
+		relatedTags = [...counts.entries()]
+			.sort((left, right) => right[1] - left[1] || left[0].localeCompare(right[0]))
+			.slice(0, 8)
+			.map(([slug]) => ({ slug, label: getTagLabel(slug) }));
+	} catch (err) {
+		console.error('[categories] related tags failed', { category, err });
+		relatedTags = [];
+	}
 	if (posts.length === 0) {
 		if (!categories.includes(category)) notFound();
 	}
@@ -60,22 +82,43 @@ export default async function CategoryPage({ params }: PageProps) {
 	const speakableBlock = getCategorySpeakableVoiceBlock(category);
 	const breadcrumbItems = [
 		{ name: 'דף הבית', path: '/' },
-		{ name: 'קטגוריות', path: '/categories' },
+		{ name: 'קטגוריות', path: '/categories/' },
 		{ name: categoryHe, path: `/categories/${category}/` },
 	];
 	const pageTitle = buildCategoryPageTitle(categoryHe);
 	const pageDescription = buildCategoryMetaDescription(categoryHe);
+	let dateModified = '2026-07-14';
+	try {
+		if (posts.length > 0) {
+			dateModified = getArchiveDateModified(posts);
+		} else {
+			console.error('[categories] dateModified fallback, no posts', { category });
+		}
+	} catch (err) {
+		console.error('[categories] dateModified failed', { category, err });
+	}
 	const webPageNode = buildWebPageSchema({
 		'@id': `${SITE_URL}/categories/${category}/#webpage`,
 		url: `${SITE_URL}/categories/${category}/`,
 		name: pageTitle,
 		description: speakableBlock?.answer ?? pageDescription,
-		dateModified: '2026-07-14',
+		dateModified,
 		'@type': 'CollectionPage',
 	});
+	let listItems: Array<{ name: string; url: string }> = [];
+	try {
+		listItems = posts.map((post) => ({
+			name: post.data.title,
+			url: new URL(`/blog/${post.slug}/`, SITE_URL).toString(),
+		}));
+	} catch (err) {
+		console.error('[categories] item list failed', { category, err });
+		listItems = [];
+	}
 	const jsonLd = [
 		buildBreadcrumbSchema(breadcrumbItems),
 		speakableBlock ? attachSpeakable(webPageNode) : webPageNode,
+		...(listItems.length > 0 ? [buildItemListSchema(listItems)] : []),
 	];
 
 	return (
@@ -110,6 +153,19 @@ export default async function CategoryPage({ params }: PageProps) {
 						))}
 						.
 					</p>
+					{relatedTags.length > 0 ? (
+						<p className="max-w-4xl text-pretty text-sm leading-relaxed text-muted-foreground">
+							תגיות במאמרים אלה:{' '}
+							{relatedTags.map((tag, index) => (
+								<span key={tag.slug}>
+									{index > 0 ? ' · ' : null}
+									<Link className="link-underline" href={`/tags/${tag.slug}/`}>
+										{tag.label}
+									</Link>
+								</span>
+							))}
+						</p>
+					) : null}
 				</header>
 				<section className="mt-12">
 					<div className="flex items-end justify-between border-b border-border pb-3">
@@ -118,6 +174,9 @@ export default async function CategoryPage({ params }: PageProps) {
 					</div>
 					<ArticleList posts={posts} excerpt="description" />
 				</section>
+				<div className="mt-10 border-t border-border pt-6">
+					<YmylDisclaimer />
+				</div>
 			</div>
 		</SiteShell>
 	);

@@ -1,0 +1,6 @@
+plan: 047_seo_category_breadcrumb_slash_c1
+scope: category-breadcrumb-slash
+status: DONE
+files: src/app/categories/[category]/page.tsx
+behavior: breadcrumb path /categories/
+verify: pending build

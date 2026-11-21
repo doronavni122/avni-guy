@@ -1,0 +1,6 @@
+plan: 046_seo_category_datemodified_c1
+scope: category-datemodified
+status: DONE
+files: src/app/categories/[category]/page.tsx
+behavior: dateModified = getArchiveDateModified(category posts); fallback 2026-07-14 only when empty
+verify: pending build

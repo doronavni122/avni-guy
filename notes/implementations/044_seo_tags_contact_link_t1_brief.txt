@@ -1,0 +1,6 @@
+plan: 044_seo_tags_contact_link_t1
+scope: tags-contact-link
+status: DONE
+files: src/app/tags/page.tsx
+behavior: intro links to /contact/ as תיאום שיחה
+verify: pending build

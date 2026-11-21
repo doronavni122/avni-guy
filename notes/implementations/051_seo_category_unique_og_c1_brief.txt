@@ -1,0 +1,6 @@
+plan: 051_seo_category_unique_og_c1
+scope: category-og
+status: DONE
+files: src/lib/seo/category-og.ts src/app/categories/[category]/page.tsx public/images/og/og-category-*-macro.jpg
+behavior: categoryOgImageUrl returns a unique absolute OG URL for real-estate, tax, litigation, contracts
+verify: pending build

@@ -1,0 +1,223 @@
+{
+  "version": 1,
+  "updatedAt": "2026-11-21",
+  "selectionPolicy": "prefer never-audited, then lowest auditCount, then oldest lastAuditedAt; pick up to 5 main/next-main pages per run",
+  "pages": [
+    {
+      "path": "/",
+      "role": "main",
+      "priority": 1,
+      "auditCount": 1,
+      "lastAuditedAt": "2026-11-08",
+      "lastPipeline": "seo-aio-2026-11-08",
+      "notes": "Seeded from OWNER-REPORTS/006 live main-page audit."
+    },
+    {
+      "path": "/about/",
+      "role": "main",
+      "priority": 2,
+      "auditCount": 1,
+      "lastAuditedAt": "2026-11-08",
+      "lastPipeline": "seo-aio-2026-11-08",
+      "notes": ""
+    },
+    {
+      "path": "/services/",
+      "role": "main",
+      "priority": 3,
+      "auditCount": 1,
+      "lastAuditedAt": "2026-11-08",
+      "lastPipeline": "seo-aio-2026-11-08",
+      "notes": "Example graph listed /pricing; live nav main is /services/."
+    },
+    {
+      "path": "/blog/",
+      "role": "main",
+      "priority": 4,
+      "auditCount": 1,
+      "lastAuditedAt": "2026-11-08",
+      "lastPipeline": "seo-aio-2026-11-08",
+      "notes": ""
+    },
+    {
+      "path": "/contact/",
+      "role": "main",
+      "priority": 5,
+      "auditCount": 1,
+      "lastAuditedAt": "2026-11-08",
+      "lastPipeline": "seo-aio-2026-11-08",
+      "notes": ""
+    },
+    {
+      "path": "/categories/",
+      "role": "main",
+      "priority": 6,
+      "auditCount": 1,
+      "lastAuditedAt": "2026-11-08",
+      "lastPipeline": "seo-aio-2026-11-08",
+      "notes": ""
+    },
+    {
+      "path": "/guy-avni/",
+      "role": "main",
+      "priority": 7,
+      "auditCount": 1,
+      "lastAuditedAt": "2026-11-08",
+      "lastPipeline": "seo-aio-2026-11-08",
+      "notes": ""
+    },
+    {
+      "path": "/sheelot/",
+      "role": "main",
+      "priority": 8,
+      "auditCount": 1,
+      "lastAuditedAt": "2026-11-08",
+      "lastPipeline": "seo-aio-2026-11-08",
+      "notes": ""
+    },
+    {
+      "path": "/media/",
+      "role": "main",
+      "priority": 9,
+      "auditCount": 1,
+      "lastAuditedAt": "2026-11-08",
+      "lastPipeline": "seo-aio-2026-11-08",
+      "notes": ""
+    },
+    {
+      "path": "/editorial-policy/",
+      "role": "main",
+      "priority": 10,
+      "auditCount": 1,
+      "lastAuditedAt": "2026-11-08",
+      "lastPipeline": "seo-aio-2026-11-08",
+      "notes": ""
+    },
+    {
+      "path": "/nedlan-lawyer-guy-avni/",
+      "role": "next-main",
+      "priority": 11,
+      "auditCount": 1,
+      "lastAuditedAt": "2026-11-08",
+      "lastPipeline": "seo-aio-2026-11-08",
+      "notes": "Thin landing consolidated in remediation 031."
+    },
+    {
+      "path": "/contracts-lawyer-guy-avni/",
+      "role": "next-main",
+      "priority": 12,
+      "auditCount": 1,
+      "lastAuditedAt": "2026-11-08",
+      "lastPipeline": "seo-aio-2026-11-08",
+      "notes": "Thin landing consolidated in remediation 031."
+    },
+    {
+      "path": "/tags/",
+      "role": "main",
+      "priority": 13,
+      "auditCount": 1,
+      "lastAuditedAt": "2026-11-21",
+      "lastPipeline": "seo-p5-2026-11",
+      "notes": "Audited seo-p5. FAQ count, contact link, YMYL disclaimer."
+    },
+    {
+      "path": "/categories/real-estate/",
+      "role": "next-main",
+      "priority": 14,
+      "auditCount": 1,
+      "lastAuditedAt": "2026-11-21",
+      "lastPipeline": "seo-p5-2026-11",
+      "notes": "Audited seo-p5 with tax, litigation, contracts. Template fixes plus unique OG."
+    },
+    {
+      "path": "/categories/tax/",
+      "role": "next-main",
+      "priority": 15,
+      "auditCount": 1,
+      "lastAuditedAt": "2026-11-21",
+      "lastPipeline": "seo-p5-2026-11",
+      "notes": "Audited seo-p5. Unique calculator OG."
+    },
+    {
+      "path": "/categories/litigation/",
+      "role": "next-main",
+      "priority": 16,
+      "auditCount": 1,
+      "lastAuditedAt": "2026-11-21",
+      "lastPipeline": "seo-p5-2026-11",
+      "notes": "Audited seo-p5. Unique gavel OG."
+    },
+    {
+      "path": "/categories/contracts/",
+      "role": "next-main",
+      "priority": 17,
+      "auditCount": 1,
+      "lastAuditedAt": "2026-11-21",
+      "lastPipeline": "seo-p5-2026-11",
+      "notes": "Audited seo-p5. Unique pen OG."
+    },
+    {
+      "path": "/categories/service/",
+      "role": "next-main",
+      "priority": 18,
+      "auditCount": 0,
+      "lastAuditedAt": null,
+      "lastPipeline": null,
+      "notes": "Discovered indexable hub, not selected this run."
+    },
+    {
+      "path": "/categories/business/",
+      "role": "next-main",
+      "priority": 19,
+      "auditCount": 0,
+      "lastAuditedAt": null,
+      "lastPipeline": null,
+      "notes": "Discovered indexable hub, not selected this run."
+    },
+    {
+      "path": "/categories/strategy/",
+      "role": "next-main",
+      "priority": 20,
+      "auditCount": 0,
+      "lastAuditedAt": null,
+      "lastPipeline": null,
+      "notes": "Discovered indexable hub, not selected this run."
+    },
+    {
+      "path": "/categories/documents/",
+      "role": "next-main",
+      "priority": 21,
+      "auditCount": 0,
+      "lastAuditedAt": null,
+      "lastPipeline": null,
+      "notes": "Discovered indexable hub, not selected this run."
+    },
+    {
+      "path": "/categories/operations/",
+      "role": "next-main",
+      "priority": 22,
+      "auditCount": 0,
+      "lastAuditedAt": null,
+      "lastPipeline": null,
+      "notes": "Discovered indexable hub, not selected this run."
+    },
+    {
+      "path": "/categories/communication/",
+      "role": "next-main",
+      "priority": 23,
+      "auditCount": 0,
+      "lastAuditedAt": null,
+      "lastPipeline": null,
+      "notes": "Discovered indexable hub, not selected this run."
+    },
+    {
+      "path": "/search/",
+      "role": "utility",
+      "priority": 40,
+      "auditCount": 0,
+      "lastAuditedAt": null,
+      "lastPipeline": null,
+      "notes": "noindex,follow. Not a main page."
+    }
+  ]
+}

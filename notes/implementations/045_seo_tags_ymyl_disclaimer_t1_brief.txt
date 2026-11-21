@@ -1,0 +1,6 @@
+plan: 045_seo_tags_ymyl_disclaimer_t1
+scope: tags-ymyl
+status: DONE
+files: src/app/tags/page.tsx
+behavior: YmylDisclaimer rendered under the tags FAQ
+verify: pending build
