@@ -1,6 +1,6 @@
 import { SITE_CONTACT_EMAIL, SITE_TITLE, SITE_URL } from '../consts';
 import { buildArticleSchema } from '@/lib/seo/schema-article';
-import { readOfficeNap } from '@/lib/seo/office-nap';
+import { hasVisibleOfficeNap, readOfficeNap } from '@/lib/seo/office-nap';
 import { readPersonSameAsUrls, SITE_PERSON_ID } from '@/lib/seo/schema-person';
 
 /** Stable JSON-LD @id for the law firm entity (LegalService). */
@@ -30,6 +30,7 @@ function absoluteUrl(pathOrUrl: string): string {
 export const buildOrganizationSchema = () => {
 	const sameAs = readPersonSameAsUrls();
 	const nap = readOfficeNap();
+	const hasNap = hasVisibleOfficeNap(nap);
 	const contactPoint: Record<string, unknown> = {
 		'@type': 'ContactPoint',
 		contactType: 'customer service',
@@ -41,7 +42,8 @@ export const buildOrganizationSchema = () => {
 	}
 	const schema: Record<string, unknown> = {
 		'@context': 'https://schema.org',
-		'@type': 'LegalService',
+		// LocalBusiness only when claimed office NAP exists — never imply a storefront without address/phone.
+		'@type': hasNap ? (['LegalService', 'LocalBusiness'] as const) : 'LegalService',
 		'@id': SITE_ORGANIZATION_ID,
 		name: 'גיא אבני משרד עורכי דין',
 		url: SITE_URL,
