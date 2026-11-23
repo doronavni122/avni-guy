@@ -19,7 +19,7 @@ Close all audit findings F01–F13 (P0→P2). Leave NAP values and earned media 
 - [x] F08 search WebPage
 - [x] F09 media ItemList owned channels
 - [x] F12 always include category crumb on articles
-- [ ] verify build+dev+live JSON-LD spot-check
+- [x] verify build+dev+live JSON-LD spot-check
 - [ ] PR merge cleanup deploy
 
 ## non-goals

@@ -1,0 +1,5 @@
+next_plan_suggestion: none-schema-gaps-closed; optional owner NAP env then re-spot Organization address/telephone on prod
+files_to_read: OWNER-REPORTS/010_seo_schema_jsonld_audit_2026-11-23.md ; .cursor/plans/052_seo_schema_jsonld_gaps_s1.plan.md ; src/utils/structured-data.ts ; src/lib/seo/schema-article.ts ; src/lib/seo/schema-person.ts ; src/components/layout/SiteShell.tsx ; src/app/tags/[tag]/page.tsx
+rules: .cursor/rules/ssot-repo-structure.mdc ; .cursor/rules/enforcement/atomic-change-loging.mdc ; .cursor/rules/unique-site-images.mdc ; .content-kit/standards/structured-data.md
+tools_and_status: build:ci PASS (451 pages, 55 tests); next start :3011 JSON-LD smoke PASS for home/article/tag/archive-p2/search/media/contact
+open_issues: B01 BLOCKED inventing NEXT_PUBLIC_OFFICE_* NAP values; B02 empty media appearances intentional; B03 ADR/ dir absent in repo
