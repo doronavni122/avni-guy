@@ -957,3 +957,4 @@
 768. unify-credential-block-office-nap-reader , src/components/seo/AttorneyCredentialBlock.tsx task_graph.log
 769. update-seo-audit-b01-b02-b03-status , OWNER-REPORTS/010_seo_schema_jsonld_audit_2026-11-23.md task_graph.log
 770. write-aeo-geo-findings-011 , OWNER-REPORTS/011_aeo_geo_ai_appearances_2026-11-23.md task_graph.log
+771. add-aeo-geo-plan-053 , .cursor/plans/053_aeo_geo_ai_appearances_a1.plan.md task_graph.log
