@@ -58,7 +58,7 @@ export const metadata = buildPageMetadata({
 export default function ContactPage() {
 	const breadcrumbItems = [
 		{ name: 'דף הבית', path: '/' },
-		{ name: 'יצירת קשר', path: '/contact' },
+		{ name: 'יצירת קשר', path: '/contact/' },
 	];
 	const officeNap = readOfficeNap();
 	const sameAs = readPersonSameAsUrls();

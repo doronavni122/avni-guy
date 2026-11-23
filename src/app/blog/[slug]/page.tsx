@@ -77,7 +77,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
 	const breadcrumbItems: BreadcrumbItem[] = [
 		{ name: 'דף הבית', path: '/' },
-		{ name: 'מאמרים', path: '/blog' },
+		{ name: 'מאמרים', path: '/blog/' },
 	];
 	try {
 		const categoryCount = allPosts.filter((item) => item.data.category === post.data.category).length;

@@ -106,15 +106,32 @@ export const buildBlogPostingSchema = (input: BlogPostingSchemaInput) => buildAr
 
 export type BreadcrumbItem = { name: string; path: string };
 
+/** Normalize path for trailingSlash:true (root stays `/`). */
+export function normalizeBreadcrumbPath(path: string): string {
+	try {
+		if (!path || path === '/') {
+			return '/';
+		}
+		const withLeading = path.startsWith('/') ? path : `/${path}`;
+		return withLeading.endsWith('/') ? withLeading : `${withLeading}/`;
+	} catch (err) {
+		console.error('[structured-data] normalizeBreadcrumbPath failed', { path, err });
+		return path || '/';
+	}
+}
+
 export const buildBreadcrumbSchema = (items: BreadcrumbItem[]) => ({
 	'@context': 'https://schema.org',
 	'@type': 'BreadcrumbList',
-	itemListElement: items.map((item, index) => ({
-		'@type': 'ListItem',
-		position: index + 1,
-		name: item.name,
-		item: new URL(item.path, SITE_URL).toString(),
-	})),
+	itemListElement: items.map((item, index) => {
+		const path = normalizeBreadcrumbPath(item.path);
+		return {
+			'@type': 'ListItem',
+			position: index + 1,
+			name: item.name,
+			item: new URL(path, SITE_URL).toString(),
+		};
+	}),
 });
 
 export const buildFaqSchema = (items: Array<{ question: string; answer: string }>) => ({

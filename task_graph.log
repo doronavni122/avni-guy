@@ -939,3 +939,4 @@
 750. publish-yield-apartment-vs-commercial-lease-decision , src/content/blog/yield-apartment-vs-commercial-lease-decision.mdx public/images/blog/yield-apartment-vs-commercial-lease-decision-* task_graph.log
 751. add-seo-schema-jsonld-audit-010 , OWNER-REPORTS/010_seo_schema_jsonld_audit_2026-11-23.md task_graph.log
 752. add-seo-schema-jsonld-gaps-plan-052 , .cursor/plans/052_seo_schema_jsonld_gaps_s1.plan.md task_graph.log
+753. normalize-breadcrumb-trailing-slash-schema , src/utils/structured-data.ts src/app/blog/[slug]/page.tsx src/app/contact/page.tsx task_graph.log
