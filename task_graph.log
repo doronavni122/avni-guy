@@ -964,3 +964,4 @@
 775. deepen-home-faq-answers-with-steps , src/lib/home/loadHomeData.ts task_graph.log
 776. add-article-speakable-lead-matching-dom , src/lib/seo/article-speakable-lead.ts src/components/layout/BlogPostLayout.tsx src/app/blog/[slug]/page.tsx task_graph.log
 777. add-aeo-citability-rule-and-checker , .cursor/rules/content-seo-quality.mdc scripts/check-aeo-citability.mjs task_graph.log
+778. add-regenerate-llms-full-script-and-hook , scripts/regenerate-llms-full.mjs scripts/publish-draft-to-content.mjs public/llms-full.txt task_graph.log

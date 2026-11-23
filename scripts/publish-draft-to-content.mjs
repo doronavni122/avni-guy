@@ -247,6 +247,15 @@ function main() {
 	for (const subject of subjects) {
 		publishSubject(subject, profile);
 	}
+
+	const regen = spawnSync(process.execPath, [path.join(ROOT, 'scripts/regenerate-llms-full.mjs')], {
+		cwd: ROOT,
+		encoding: 'utf8',
+	});
+	if (regen.status !== 0) {
+		fail('llms-full', regen.stderr || regen.stdout || `exit ${regen.status}`);
+	}
+	logStep('llms-full', 'regenerated public/llms-full.txt after publish');
 }
 
 main();
