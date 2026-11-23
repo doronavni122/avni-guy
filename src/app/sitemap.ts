@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 import { SITE_URL } from '@/consts';
 import { getArchiveDateModified } from '@/lib/blog/archive';
 import { getPostsIndex } from '@/lib/content/posts';
-import { isQuarantinedBlogSlug, shouldIndexCategory } from '@/lib/seo/indexation';
+import { isQuarantinedBlogSlug, shouldIndexCategory, shouldIndexTag } from '@/lib/seo/indexation';
 
 /**
  * Honest lastmod for static routes — bump only when that page’s content genuinely
@@ -46,7 +46,7 @@ function staticLastModified(path: string, blogArchiveModified: Date): Date {
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	try {
-		const { posts, categories } = await getPostsIndex();
+		const { posts, categories, tags } = await getPostsIndex();
 		const blogArchiveModified = new Date(getArchiveDateModified(posts));
 
 		const staticEntries: MetadataRoute.Sitemap = STATIC_PATHS.map((path) => ({
@@ -77,7 +77,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 				priority: 0.6,
 			}));
 
-		return [...staticEntries, ...postEntries, ...categoryEntries];
+		const tagEntries: MetadataRoute.Sitemap = tags
+			.filter((tag) => {
+				const postCount = posts.filter((post) => post.data.tags.includes(tag)).length;
+				return shouldIndexTag(tag, postCount);
+			})
+			.map((tag) => ({
+				url: new URL(`/tags/${tag}/`, SITE_URL).toString(),
+				lastModified: blogArchiveModified,
+				changeFrequency: 'weekly' as const,
+				priority: 0.5,
+			}));
+
+		return [...staticEntries, ...postEntries, ...categoryEntries, ...tagEntries];
 	} catch (err) {
 		console.error('[sitemap] generation failed', err);
 		throw err;
