@@ -949,3 +949,4 @@
 760. add-search-webpage-jsonld , src/app/search/page.tsx task_graph.log
 761. add-media-owned-channels-itemlist , src/app/media/page.tsx task_graph.log
 762. mark-seo-schema-audit-findings-done , OWNER-REPORTS/010_seo_schema_jsonld_audit_2026-11-23.md task_graph.log
+763. checkoff-schema-plan-implemented-todos , .cursor/plans/052_seo_schema_jsonld_gaps_s1.plan.md task_graph.log
