@@ -930,3 +930,10 @@
 741. publish-foreign-resident-apartment-investment-israel , src/content/blog/foreign-resident-apartment-investment-israel.mdx public/images/blog/foreign-resident-apartment-investment-israel-* task_graph.log
 742. publish-buy-land-plot-for-development-checks , src/content/blog/buy-land-plot-for-development-checks.mdx public/images/blog/buy-land-plot-for-development-checks-* task_graph.log
 743. publish-sale-law-buyer-guarantees-educational , src/content/blog/sale-law-buyer-guarantees-educational.mdx public/images/blog/sale-law-buyer-guarantees-educational-* task_graph.log
+744. add-manifest-subjects-0036-0039 , subject-manifest.json task_graph.log
+745. add-research-reinforce-cluster-0036-0039 , reserch/0036_bank_guarantee_vs_sale_law_policy_buyer.md reserch/0037_tabu_warning_note_before_signing_purchase.md reserch/0038_pinui_binui_tenant_questions_before_developer.md reserch/0039_yield_apartment_vs_commercial_lease_decision.md task_graph.log
+746. add-article-drafts-reinforce-cluster-0036-0039 , reserch-based-articles/0036_bank_guarantee_vs_sale_law_policy_buyer.md reserch-based-articles/0037_tabu_warning_note_before_signing_purchase.md reserch-based-articles/0038_pinui_binui_tenant_questions_before_developer.md reserch-based-articles/0039_yield_apartment_vs_commercial_lease_decision.md task_graph.log
+747. publish-bank-guarantee-vs-sale-law-policy-buyer , src/content/blog/bank-guarantee-vs-sale-law-policy-buyer.mdx public/images/blog/bank-guarantee-vs-sale-law-policy-buyer-* task_graph.log
+748. publish-tabu-warning-note-before-signing-purchase , src/content/blog/tabu-warning-note-before-signing-purchase.mdx public/images/blog/tabu-warning-note-before-signing-purchase-* task_graph.log
+749. publish-pinui-binui-tenant-questions-before-developer , src/content/blog/pinui-binui-tenant-questions-before-developer.mdx public/images/blog/pinui-binui-tenant-questions-before-developer-* task_graph.log
+750. publish-yield-apartment-vs-commercial-lease-decision , src/content/blog/yield-apartment-vs-commercial-lease-decision.mdx public/images/blog/yield-apartment-vs-commercial-lease-decision-* task_graph.log
