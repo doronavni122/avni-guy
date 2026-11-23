@@ -970,3 +970,4 @@
 781. add-nonthin-tag-urls-to-sitemap , src/lib/seo/indexation.ts src/app/sitemap.ts task_graph.log
 782. close-mcp-citation-bait-plan-004 , .cursor/plans/004_mcp_citation_bait_agent_n1.plan.md task_graph.log
 783. update-aeo-findings-and-plan-status , OWNER-REPORTS/011_aeo_geo_ai_appearances_2026-11-23.md .cursor/plans/053_aeo_geo_ai_appearances_a1.plan.md task_graph.log
+784. write-053-aeo-plan-brief , notes/implementations/053_aeo_geo_ai_appearances_a1_brief.txt task_graph.log
