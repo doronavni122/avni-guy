@@ -962,3 +962,4 @@
 773. redirect-feed-xml-to-rss , vercel.json task_graph.log
 774. add-blog-byline-author-updated-stamp , src/components/layout/BlogPostLayout.tsx task_graph.log
 775. deepen-home-faq-answers-with-steps , src/lib/home/loadHomeData.ts task_graph.log
+776. add-article-speakable-lead-matching-dom , src/lib/seo/article-speakable-lead.ts src/components/layout/BlogPostLayout.tsx src/app/blog/[slug]/page.tsx task_graph.log
