@@ -916,3 +916,4 @@
 727. record-seo-p5-audit-counts , notes/implementations/seo_work_graph.json task_graph.log
 728. add-manifest-subjects-0021-0035 , subject-manifest.json task_graph.log
 729. publish-checklist-before-transfer-trustee-or-venture , src/content/blog/checklist-before-transfer-trustee-or-venture.mdx public/images/blog/checklist-before-transfer-trustee-or-venture-* task_graph.log
+730. publish-evaluate-developer-real-estate-company , src/content/blog/evaluate-developer-real-estate-company.mdx public/images/blog/evaluate-developer-real-estate-company-* task_graph.log
