@@ -202,6 +202,33 @@ export function assertClaimedPersonSameAsEdges(sameAs: string[]): string[] {
 	return missing;
 }
 
+/**
+ * Minimal Person node so author/about `@id` refs resolve in-page
+ * when a full Person schema is not already in the graph.
+ */
+export function buildLeanPersonSchema(): Record<string, unknown> {
+	try {
+		return {
+			'@context': 'https://schema.org',
+			'@type': 'Person',
+			'@id': SITE_PERSON_ID,
+			name: 'גיא אבני',
+			jobTitle: 'עורך דין',
+			url: absoluteUrl('/about/'),
+			worksFor: { '@id': SITE_ORGANIZATION_ID },
+		};
+	} catch (err) {
+		console.error('[schema-person] buildLeanPersonSchema failed', { err });
+		return {
+			'@context': 'https://schema.org',
+			'@type': 'Person',
+			'@id': SITE_PERSON_ID,
+			name: 'גיא אבני',
+			url: absoluteUrl('/about/'),
+		};
+	}
+}
+
 export const buildPersonSchema = (options: PersonSchemaOptions = {}) => {
 	const schema: Record<string, unknown> = {
 		'@context': 'https://schema.org',
