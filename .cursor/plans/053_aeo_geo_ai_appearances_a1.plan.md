@@ -21,8 +21,8 @@ Close all code-doable AEO/GEO/AI-appearance findings F03–F17. Leave NAP values
 - [x] F15 mark plan 004 todos done
 - [x] F11 verify IndexNow path; Bingbot not blocked
 - [x] F01/F02/F19 leave BLOCKED with evidence in 011
-- [ ] verify build:ci + smoke + JSON-LD/Speakable/llms
-- [ ] PR merge cleanup + production READY
+- [x] verify build:ci + smoke + JSON-LD/Speakable/llms
+- [x] PR merge cleanup + production READY (#220, dpl READY sha 40144cd)
 
 ## non-goals
 - inventing NAP / Bar / LinkedIn / Wikidata
