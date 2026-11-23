@@ -946,3 +946,4 @@
 757. inject-lean-person-when-missing-graph , src/components/layout/SiteShell.tsx src/lib/seo/schema-person.ts task_graph.log
 758. emit-article-faq-schema-when-visible , src/app/blog/[slug]/page.tsx task_graph.log
 759. add-tag-hub-collectionpage-itemlist , src/app/tags/[tag]/page.tsx task_graph.log
+760. add-search-webpage-jsonld , src/app/search/page.tsx task_graph.log

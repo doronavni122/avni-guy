@@ -1,12 +1,15 @@
 import { Suspense } from 'react';
 import Link from 'next/link';
 import { SiteShell } from '@/components/layout/SiteShell';
+import { SITE_URL } from '@/consts';
 import { buildPageMetadata } from '@/lib/metadata';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
-import { buildBreadcrumbSchema } from '@/utils/structured-data';
+import { buildBreadcrumbSchema, buildWebPageSchema } from '@/utils/structured-data';
 import { SearchResults } from '@/components/search/SearchResults';
 
 export const dynamic = 'force-static';
+
+const SEARCH_DATE_MODIFIED = '2026-11-23';
 
 export const metadata = buildPageMetadata({
 	title: 'חיפוש באתר | גיא אבני',
@@ -22,7 +25,16 @@ export default function SearchPage() {
 		{ name: 'דף הבית', path: '/' },
 		{ name: 'חיפוש', path: '/search/' },
 	];
-	const jsonLd = buildBreadcrumbSchema(breadcrumbItems);
+	const jsonLd = [
+		buildBreadcrumbSchema(breadcrumbItems),
+		buildWebPageSchema({
+			'@id': `${SITE_URL}/search/#webpage`,
+			url: `${SITE_URL}/search/`,
+			name: 'חיפוש באתר | גיא אבני',
+			description: 'חיפוש מאמרים ותוכן משפטי באתר avniguy.co.il.',
+			dateModified: SEARCH_DATE_MODIFIED,
+		}),
+	];
 
 	return (
 		<SiteShell currentPath="/search/" extraJsonLd={jsonLd}>
