@@ -35,6 +35,16 @@
 			"source": "/contracts-lawyer-guy-avni/",
 			"destination": "/services/",
 			"permanent": true
+		},
+		{
+			"source": "/feed.xml",
+			"destination": "/rss.xml",
+			"permanent": true
+		},
+		{
+			"source": "/feed.xml/",
+			"destination": "/rss.xml",
+			"permanent": true
 		}
 	]
 }

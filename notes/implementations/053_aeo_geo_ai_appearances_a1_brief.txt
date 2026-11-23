@@ -1,0 +1,5 @@
+next_plan_suggestion: none-code-aeo-closed; owner NAP/sameAs env + GSC Include ops when values real
+files_to_read: OWNER-REPORTS/011_aeo_geo_ai_appearances_2026-11-23.md .cursor/plans/053_aeo_geo_ai_appearances_a1.plan.md src/lib/seo/article-speakable-lead.ts scripts/regenerate-llms-full.mjs scripts/check-aeo-citability.mjs
+rules: .cursor/rules/content-seo-quality.mdc .cursor/rules/unique-site-images.mdc .cursor/rules/enforcement/atomic-change-loging.mdc
+tools_and_status: build:ci PASS (55 tests); IndexNow path exists; kit standards lock-drift → project checker used
+open_issues: F01/F02 NAP+sameAs values BLOCKED owner; F19 GSC Include BLOCKED owner; reviewedBy unused; INDEXNOW_KEY may be empty on prod (warn only)

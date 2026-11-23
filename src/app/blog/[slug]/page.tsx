@@ -12,6 +12,8 @@ import { resolveArticleKeyword } from '@/lib/seo/resolve-article-keyword';
 import { SITE_URL } from '@/consts';
 import { getCategoryLabel } from '@/utils/taxonomy-labels';
 import { bodyForRender, resolveArticleFaq } from '@/lib/content/faq';
+import { extractArticleSpeakableLead } from '@/lib/seo/article-speakable-lead';
+import { attachSpeakable } from '@/lib/seo/speakable';
 import {
 	buildBlogPostingSchema,
 	buildBreadcrumbSchema,
@@ -68,6 +70,10 @@ export default async function BlogPostPage({ params }: PageProps) {
 	const canonicalUrl = new URL(`/blog/${slug}/`, SITE_URL).toString();
 
 	const faqItems = resolveArticleFaq(post.data, post.content);
+	const speakableLead = extractArticleSpeakableLead(
+		post.content,
+		post.data.description || post.data.metaDescription || '',
+	);
 	const topicKeyword = resolveArticleKeyword(post.data);
 	const keywordTags = [
 		topicKeyword,
@@ -91,8 +97,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 	}
 	breadcrumbItems.push({ name: post.data.title, path: `/blog/${slug}/` });
 
-	const jsonLd: Array<Record<string, unknown>> = [
-		buildBreadcrumbSchema(breadcrumbItems),
+	const blogPosting = attachSpeakable(
 		buildBlogPostingSchema({
 			headline: post.data.title,
 			description: post.data.metaDescription ?? post.data.description,
@@ -105,6 +110,11 @@ export default async function BlogPostPage({ params }: PageProps) {
 			authorName: 'גיא אבני',
 			authorUrl: new URL('/about/', SITE_URL).toString(),
 		}),
+	);
+
+	const jsonLd: Array<Record<string, unknown>> = [
+		buildBreadcrumbSchema(breadcrumbItems),
+		blogPosting,
 	];
 	if (faqItems.length >= 1) {
 		jsonLd.push(buildFaqSchema(faqItems));
@@ -122,6 +132,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 			breadcrumbItems={breadcrumbItems}
 			relatedPosts={relatedPosts}
 			faqItems={faqItems}
+			speakableLead={speakableLead || undefined}
 		>
 			{content}
 		</BlogPostLayout>

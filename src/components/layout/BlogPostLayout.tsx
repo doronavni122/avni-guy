@@ -12,6 +12,7 @@ import type { BlogFaqItem } from '@/lib/content/schema';
 import { AuthorBio } from '@/components/blog/AuthorBio';
 import { ArticleFaq } from '@/components/blog/ArticleFaq';
 import { RelatedArticles } from '@/components/blog/RelatedArticles';
+import { SPEAKABLE_VOICE_CLASS } from '@/lib/seo/speakable';
 
 type BlogPostLayoutProps = {
 	metaTitle: string;
@@ -24,6 +25,8 @@ type BlogPostLayoutProps = {
 	breadcrumbItems: BreadcrumbItem[];
 	relatedPosts?: BlogPost[];
 	faqItems?: BlogFaqItem[];
+	/** Visible Hebrew lead matching BlogPosting.speakable cssSelector. */
+	speakableLead?: string;
 	children: ReactNode;
 };
 
@@ -35,6 +38,7 @@ export function BlogPostLayout({
 	breadcrumbItems,
 	relatedPosts = [],
 	faqItems = [],
+	speakableLead,
 	children,
 }: BlogPostLayoutProps) {
 	const { title, pubDate, updatedDate, category, tags } = data;
@@ -54,13 +58,17 @@ export function BlogPostLayout({
 					</h1>
 					<div className="flex flex-wrap items-center justify-end gap-x-4 gap-y-1 border-y border-border py-3 text-sm text-muted-foreground">
 						<span className="swiss-index">
-							<FormattedDate date={pubDate} />
+							מאת{' '}
+							<Link href="/about/" className="text-foreground no-underline hover:text-primary hover:underline">
+								גיא אבני
+							</Link>
 						</span>
-						{updatedDate ? (
-							<span className="swiss-index">
-								עודכן: <FormattedDate date={updatedDate} />
-							</span>
-						) : null}
+						<span className="swiss-index">
+							פורסם: <FormattedDate date={pubDate} />
+						</span>
+						<span className="swiss-index">
+							עודכן: <FormattedDate date={updatedDate ?? pubDate} />
+						</span>
 					</div>
 					<div className="flex flex-wrap items-center justify-end gap-2">
 						<Link
@@ -80,6 +88,15 @@ export function BlogPostLayout({
 						))}
 					</div>
 				</header>
+
+				{speakableLead ? (
+					<p
+						id="article-speakable-lead"
+						className={`${SPEAKABLE_VOICE_CLASS} mt-10 max-w-3xl text-pretty text-right text-base leading-relaxed text-foreground`}
+					>
+						{speakableLead}
+					</p>
+				) : null}
 
 				<div className="mt-12 prose-legal [&_a]:underline-offset-2 [&_a]:hover:underline">{children}</div>
 
