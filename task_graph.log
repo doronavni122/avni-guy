@@ -944,3 +944,4 @@
 755. wire-organization-nap-and-inlanguage-he-il , src/utils/structured-data.ts src/lib/seo/schema-person.ts task_graph.log
 756. unique-blog-archive-collectionpage-id , src/components/blog/BlogArchiveView.tsx task_graph.log
 757. inject-lean-person-when-missing-graph , src/components/layout/SiteShell.tsx src/lib/seo/schema-person.ts task_graph.log
+758. emit-article-faq-schema-when-visible , src/app/blog/[slug]/page.tsx task_graph.log

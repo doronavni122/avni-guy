@@ -7,7 +7,7 @@ import { getAllPosts, getPostBySlug } from '@/lib/content/posts';
 import { scoreRelatedPosts } from '@/lib/content/related-posts';
 import { buildPageMetadata } from '@/lib/metadata';
 import { articleDocumentTitle } from '@/lib/seo/article-document-title';
-import { isQuarantinedBlogSlug, shouldIndexCategory } from '@/lib/seo/indexation';
+import { isQuarantinedBlogSlug } from '@/lib/seo/indexation';
 import { resolveArticleKeyword } from '@/lib/seo/resolve-article-keyword';
 import { SITE_URL } from '@/consts';
 import { getCategoryLabel } from '@/utils/taxonomy-labels';
@@ -80,15 +80,14 @@ export default async function BlogPostPage({ params }: PageProps) {
 		{ name: 'מאמרים', path: '/blog/' },
 	];
 	try {
-		const categoryCount = allPosts.filter((item) => item.data.category === post.data.category).length;
-		if (shouldIndexCategory(post.data.category, categoryCount)) {
+		if (post.data.category) {
 			breadcrumbItems.push({
 				name: getCategoryLabel(post.data.category),
 				path: `/categories/${post.data.category}/`,
 			});
 		}
 	} catch (err) {
-		console.error('[blog:slug] breadcrumb category gate failed', { slug, category: post.data.category, err });
+		console.error('[blog:slug] breadcrumb category append failed', { slug, category: post.data.category, err });
 	}
 	breadcrumbItems.push({ name: post.data.title, path: `/blog/${slug}/` });
 
@@ -107,7 +106,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 			authorUrl: new URL('/about/', SITE_URL).toString(),
 		}),
 	];
-	if (faqItems.length >= 4) {
+	if (faqItems.length >= 1) {
 		jsonLd.push(buildFaqSchema(faqItems));
 	}
 
