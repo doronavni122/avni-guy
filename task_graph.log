@@ -961,3 +961,4 @@
 772. allow-applebot-extended-bingbot-robots , public/robots.txt task_graph.log
 773. redirect-feed-xml-to-rss , vercel.json task_graph.log
 774. add-blog-byline-author-updated-stamp , src/components/layout/BlogPostLayout.tsx task_graph.log
+775. deepen-home-faq-answers-with-steps , src/lib/home/loadHomeData.ts task_graph.log
