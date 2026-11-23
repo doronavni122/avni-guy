@@ -10,23 +10,23 @@ consensus: Google AIO = classic SEO (index/snippet/GSC Include ops + answer-firs
 |----|-----|---------|--------|-------------------|
 | F01 | P0 | Entity NAP/sameAs values | BLOCKED owner | Wiring+empty prod keys+warnProductionEnvGaps exist (010 B01, #218/#219). No street/phone/locality in published content. Do not invent. |
 | F02 | P0 | sameAs Bar/LinkedIn/Wikidata | BLOCKED owner | Env keys empty; generic Bar portal rejected in schema-person. |
-| F03 | P0 | Primary-source + נכון ל־ citability rule | OPEN→code | sources.md weak; only ~8 posts say נכון ל; 44 lack מקורות. Enforce in kit/validator or project script; cheap cite fixes on recent only. |
-| F04 | P0 | Answer-first / definition-led opening | OPEN→code | Kit has TL;DR; check-article soft on missing TL;DR; strengthen invariant HE definition + TL;DR. |
-| F05 | P1 | FAQ coverage gaps | OPEN→code | 69 faq FM; 59 neither faq nor H2; cluster 0021–0039 already have faq. Add quality FAQ to non-quarantined substantial posts. |
-| F06 | P1 | Article Speakable | OPEN→code | Hubs have Speakable; blog posts do not. Mirror hub: visible lead + attachSpeakable on BlogPosting. |
-| F07 | P1 | Visible review/update stamp | PARTIAL | Layout shows עודכן when updatedDate set; add always-stamp + author→/about/ in byline. reviewedBy BLOCKED (no real reviewer). |
-| F08 | P1 | Home FAQ thin answers | OPEN→code | loadHomeData faqItems commodity-short; lengthen with steps/links. |
-| F09 | P1 | llms-full.txt noise | OPEN→code | File polluted with quarantine/template scrapings; need clean regen from MDX + hook publish. |
-| F10 | P1 | geoKeywords unused | OPEN→code | Schema supports; 0 posts use. Fill ישראל (or true locality) on local-intent recent only — no spam. |
-| F11 | P1 | Bing/IndexNow | DONE verify | scripts/post-deploy-indexnow.mjs + api/indexnow + layout msvalidate. Add Bingbot Allow in robots. INDEXNOW_KEY empty prod = ops warn exists. |
-| F12 | P1 | robots Applebot-Extended / agents | OPEN→code | Missing Applebot-Extended, Bingbot, Applebot; policy already Allow for OAI/Claude/Perplexity. |
-| F13 | P1 | /feed.xml alias | OPEN→code | rss.xml 200; feed.xml 404 (006). Trivial vercel redirect. |
-| F14 | P1 | Author byline → /about/ | PARTIAL | AuthorBio links /about/; header byline lacks author name link. |
-| F15 | P1 | Plan 004 mcp citation bait | OPEN→close | llms.txt documents search/mcp/agent-card; mark plan todos done. |
-| F16 | P1 | Content-kit GEO citability note | OPEN→code | Prefer project rule/script if kit.lock managed drift; small standards patch only with sync approve. |
-| F17 | P2 | Tag URLs in sitemap | OPEN→if time | sitemap omits /tags/{tag}/; add when postCount ≥ thin threshold. |
-| F18 | P2 | Speakable more hubs | SKIP unless time | categories/services/about already. |
-| F19 | ops | GSC Include generative | BLOCKED owner | Operator-only; leave checklist note — do not claim. See plan 041. |
+| F03 | P0 | Primary-source + נכון ל־ citability rule | DONE code | `scripts/check-aeo-citability.mjs` + content-seo-quality AEO note. Kit standards skipped (lock drift blocked). |
+| F04 | P0 | Answer-first / definition-led opening | DONE code | Same checker enforces TL;DR + lead length; Speakable lead surfaces quotable HE. |
+| F05 | P1 | FAQ coverage gaps | DONE code | +24 quality faq FM on non-quarantined posts (93 total with faq). Cluster 0021–0039 already had faq. |
+| F06 | P1 | Article Speakable | DONE code | extractArticleSpeakableLead + visible `.speakable-voice` + BlogPosting.speakable. |
+| F07 | P1 | Visible review/update stamp | DONE code | Always עודכן + מאת→/about/. reviewedBy BLOCKED (no real reviewer). |
+| F08 | P1 | Home FAQ thin answers | DONE code | loadHomeData answers lengthened with steps/paths. |
+| F09 | P1 | llms-full.txt noise | DONE code | regenerate-llms-full.mjs (skip quarantine) + publish hook; file regenerated. |
+| F10 | P1 | geoKeywords unused | DONE code | geoKeywords: ישראל on 15 local-intent posts. |
+| F11 | P1 | Bing/IndexNow | DONE verify | Existing IndexNow path; Bingbot Allow added. INDEXNOW_KEY empty prod = ops warn. |
+| F12 | P1 | robots Applebot-Extended / agents | DONE code | Applebot, Applebot-Extended, Bingbot Allow. |
+| F13 | P1 | /feed.xml alias | DONE code | vercel permanent redirect → /rss.xml. |
+| F14 | P1 | Author byline → /about/ | DONE code | Header byline link + AuthorBio. |
+| F15 | P1 | Plan 004 mcp citation bait | DONE | Plan todos marked [x]; llms/agent-card verified. |
+| F16 | P1 | Content-kit GEO citability note | DONE project | Project rule+script (kit managed standards reverted — lock drift). |
+| F17 | P2 | Tag URLs in sitemap | DONE code | Non-thin tags (≥4 posts) via shouldIndexTag. |
+| F18 | P2 | Speakable more hubs | SKIP | categories/services/about already. |
+| F19 | ops | GSC Include generative | BLOCKED owner | Operator-only — do not claim. See plan 041. |
 
 ## Non-goals / DO NOT
 - Invent NAP, Bar listing, LinkedIn, Wikidata, media
