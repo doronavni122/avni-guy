@@ -930,3 +930,4 @@
 741. publish-foreign-resident-apartment-investment-israel , src/content/blog/foreign-resident-apartment-investment-israel.mdx public/images/blog/foreign-resident-apartment-investment-israel-* task_graph.log
 742. publish-buy-land-plot-for-development-checks , src/content/blog/buy-land-plot-for-development-checks.mdx public/images/blog/buy-land-plot-for-development-checks-* task_graph.log
 743. publish-sale-law-buyer-guarantees-educational , src/content/blog/sale-law-buyer-guarantees-educational.mdx public/images/blog/sale-law-buyer-guarantees-educational-* task_graph.log
+744. add-manifest-subjects-0036-0039 , subject-manifest.json task_graph.log

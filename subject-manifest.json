@@ -746,6 +746,94 @@
         "/blog/sale-law-contractor-obligations/",
         "/blog/buying-from-contractor-checklist/"
       ]
+    },
+    {
+      "nnnn": "0036",
+      "label": "bank_guarantee_vs_sale_law_policy_buyer",
+      "subject": "ערבות בנקאית מול פוליסת חוק המכר לרוכש דירה",
+      "slug": "bank-guarantee-vs-sale-law-policy-buyer",
+      "contentFile": "bank-guarantee-vs-sale-law-policy-buyer.mdx",
+      "category": "sale-law",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-11-23",
+      "tags": [
+        "sale-law",
+        "guarantees",
+        "bank-guarantee"
+      ],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/sale-law-buyer-guarantees-educational/",
+        "/blog/closed-bank-accompaniment-real-estate-project/",
+        "/blog/buying-from-contractor-checklist/"
+      ]
+    },
+    {
+      "nnnn": "0037",
+      "label": "tabu_warning_note_before_signing_purchase",
+      "subject": "נסח טאבו והערת אזהרה לפני חתימה על רכישה",
+      "slug": "tabu-warning-note-before-signing-purchase",
+      "contentFile": "tabu-warning-note-before-signing-purchase.mdx",
+      "category": "deal-structure",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-11-23",
+      "tags": [
+        "tabu",
+        "warning-note",
+        "deal-structure"
+      ],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/professional-real-estate-deal-anatomy-israel/",
+        "/blog/professional-accompaniment-real-estate-deal/",
+        "/blog/checklist-before-transfer-trustee-or-venture/"
+      ]
+    },
+    {
+      "nnnn": "0038",
+      "label": "pinui_binui_tenant_questions_before_developer",
+      "subject": "שאלות דיירים לפני חתימה עם יזם בפינוי בינוי",
+      "slug": "pinui-binui-tenant-questions-before-developer",
+      "contentFile": "pinui-binui-tenant-questions-before-developer.mdx",
+      "category": "urban-renewal",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-11-23",
+      "tags": [
+        "urban-renewal",
+        "tenants",
+        "pinui-binui"
+      ],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/urban-renewal-tenants-roadmap-governance/",
+        "/blog/evaluate-developer-real-estate-company/",
+        "/blog/sale-law-buyer-guarantees-educational/"
+      ]
+    },
+    {
+      "nnnn": "0039",
+      "label": "yield_apartment_vs_commercial_lease_decision",
+      "subject": "דירת השקעה מול נכס מסחרי מניב: עץ החלטה",
+      "slug": "yield-apartment-vs-commercial-lease-decision",
+      "contentFile": "yield-apartment-vs-commercial-lease-decision.mdx",
+      "category": "onboarding",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-11-23",
+      "tags": [
+        "investing",
+        "commercial",
+        "yield"
+      ],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/real-estate-investing-beginners-israel/",
+        "/blog/commercial-lease-literacy-israel/",
+        "/blog/read-israel-housing-market-literacy/"
+      ]
     }
   ]
 }
