@@ -54,13 +54,17 @@ export function BlogPostLayout({
 					</h1>
 					<div className="flex flex-wrap items-center justify-end gap-x-4 gap-y-1 border-y border-border py-3 text-sm text-muted-foreground">
 						<span className="swiss-index">
-							<FormattedDate date={pubDate} />
+							מאת{' '}
+							<Link href="/about/" className="text-foreground no-underline hover:text-primary hover:underline">
+								גיא אבני
+							</Link>
 						</span>
-						{updatedDate ? (
-							<span className="swiss-index">
-								עודכן: <FormattedDate date={updatedDate} />
-							</span>
-						) : null}
+						<span className="swiss-index">
+							פורסם: <FormattedDate date={pubDate} />
+						</span>
+						<span className="swiss-index">
+							עודכן: <FormattedDate date={updatedDate ?? pubDate} />
+						</span>
 					</div>
 					<div className="flex flex-wrap items-center justify-end gap-2">
 						<Link
