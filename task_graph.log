@@ -954,3 +954,4 @@
 765. gate-localbusiness-type-on-claimed-nap , src/utils/structured-data.ts task_graph.log
 766. wire-website-creator-person-at-id , src/utils/structured-data.ts task_graph.log
 767. unify-person-schema-office-nap-reader , src/lib/seo/schema-person.ts task_graph.log
+768. unify-credential-block-office-nap-reader , src/components/seo/AttorneyCredentialBlock.tsx task_graph.log
