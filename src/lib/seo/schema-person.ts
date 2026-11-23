@@ -1,6 +1,7 @@
 import { SITE_URL } from '@/consts';
 import { PERSON_SAMEAS_ENV_KEYS, warnProductionEnvGaps } from '@/env';
 import { SITE_SOCIAL_LINKS } from '@/lib/nav/site-social';
+import { readOfficeNap } from '@/lib/seo/office-nap';
 
 /** Stable JSON-LD @id for the person entity (canonical entity home). */
 export const SITE_PERSON_ID = `${SITE_URL}/about/#person`;
@@ -265,18 +266,16 @@ export const buildPersonSchema = (options: PersonSchemaOptions = {}) => {
 		};
 	}
 
-	const officeLocality = process.env.NEXT_PUBLIC_OFFICE_LOCALITY?.trim();
-	const officeStreet = process.env.NEXT_PUBLIC_OFFICE_STREET?.trim();
-	const officePhone = process.env.NEXT_PUBLIC_OFFICE_PHONE?.trim();
-	if (officeLocality || officeStreet || officePhone) {
+	const nap = readOfficeNap();
+	if (nap.locality || nap.street || nap.phone) {
 		schema.address = {
 			'@type': 'PostalAddress',
-			...(officeStreet ? { streetAddress: officeStreet } : {}),
+			...(nap.street ? { streetAddress: nap.street } : {}),
 			addressCountry: 'IL',
-			...(officeLocality ? { addressLocality: officeLocality } : {}),
+			...(nap.locality ? { addressLocality: nap.locality } : {}),
 		};
-		if (officePhone) {
-			schema.telephone = officePhone;
+		if (nap.phone) {
+			schema.telephone = nap.phone;
 		}
 	}
 

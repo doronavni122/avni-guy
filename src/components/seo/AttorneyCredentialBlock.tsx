@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { OptimizedImage } from '@/components/media/OptimizedImage';
 import { SITE_CONTACT_EMAIL } from '@/consts';
+import { readOfficeNap } from '@/lib/seo/office-nap';
 
 const ATTORNEY_NAME = 'גיא אבני';
 const ATTORNEY_TITLE = 'עורך דין';
@@ -34,9 +35,10 @@ function readPublicEnv(key: string): string | undefined {
 
 export function AttorneyCredentialBlock({ photoSrc, photoPriority }: AttorneyCredentialBlockProps = {}) {
 	const israelBarUrl = readIsraelBarUrl();
-	const officeLocality = readPublicEnv('NEXT_PUBLIC_OFFICE_LOCALITY') ?? 'ישראל';
-	const officePhone = readPublicEnv('NEXT_PUBLIC_OFFICE_PHONE');
-	const officeStreet = readPublicEnv('NEXT_PUBLIC_OFFICE_STREET');
+	const officeNap = readOfficeNap();
+	const officeLocality = officeNap.locality ?? 'ישראל';
+	const officePhone = officeNap.phone;
+	const officeStreet = officeNap.street;
 	const barLicenseId = readPublicEnv('NEXT_PUBLIC_BAR_LICENSE_ID');
 	const resolvedPhotoSrc = photoSrc ?? ATTORNEY_PHOTO;
 
