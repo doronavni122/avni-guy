@@ -1,5 +1,6 @@
 import { SITE_CONTACT_EMAIL, SITE_TITLE, SITE_URL } from '../consts';
 import { buildArticleSchema } from '@/lib/seo/schema-article';
+import { readOfficeNap } from '@/lib/seo/office-nap';
 import { readPersonSameAsUrls, SITE_PERSON_ID } from '@/lib/seo/schema-person';
 
 /** Stable JSON-LD @id for the law firm entity (LegalService). */
@@ -28,23 +29,28 @@ function absoluteUrl(pathOrUrl: string): string {
 
 export const buildOrganizationSchema = () => {
 	const sameAs = readPersonSameAsUrls();
-	return {
+	const nap = readOfficeNap();
+	const contactPoint: Record<string, unknown> = {
+		'@type': 'ContactPoint',
+		contactType: 'customer service',
+		email: SITE_CONTACT_EMAIL,
+		availableLanguage: ['Hebrew', 'he'],
+	};
+	if (nap.phone) {
+		contactPoint.telephone = nap.phone;
+	}
+	const schema: Record<string, unknown> = {
 		'@context': 'https://schema.org',
 		'@type': 'LegalService',
 		'@id': SITE_ORGANIZATION_ID,
 		name: 'גיא אבני משרד עורכי דין',
 		url: SITE_URL,
-		inLanguage: 'he',
+		inLanguage: 'he-IL',
 		logo: {
 			'@type': 'ImageObject',
 			url: absoluteUrl(BRAND_LOGO_PATH),
 		},
-		contactPoint: {
-			'@type': 'ContactPoint',
-			contactType: 'customer service',
-			email: SITE_CONTACT_EMAIL,
-			availableLanguage: ['Hebrew'],
-		},
+		contactPoint,
 		founder: {
 			'@type': 'Person',
 			'@id': SITE_PERSON_ID,
@@ -64,6 +70,18 @@ export const buildOrganizationSchema = () => {
 		knowsAbout: ['דיני נדל״ן', 'מיסוי מקרקעין', 'חוזים', 'ליטיגציה אזרחית', 'ייעוץ משפטי לעסקים'],
 		...(sameAs.length ? { sameAs } : {}),
 	};
+	if (nap.phone) {
+		schema.telephone = nap.phone;
+	}
+	if (nap.locality || nap.street) {
+		schema.address = {
+			'@type': 'PostalAddress',
+			addressCountry: 'IL',
+			...(nap.street ? { streetAddress: nap.street } : {}),
+			...(nap.locality ? { addressLocality: nap.locality } : {}),
+		};
+	}
+	return schema;
 };
 
 export const buildWebSiteJsonLd = () => ({
@@ -72,7 +90,7 @@ export const buildWebSiteJsonLd = () => ({
 	'@id': SITE_WEBSITE_ID,
 	name: SITE_TITLE,
 	url: SITE_URL,
-	inLanguage: 'he',
+	inLanguage: 'he-IL',
 	publisher: { '@id': SITE_ORGANIZATION_ID },
 	creator: {
 		'@type': 'Person',
@@ -106,15 +124,32 @@ export const buildBlogPostingSchema = (input: BlogPostingSchemaInput) => buildAr
 
 export type BreadcrumbItem = { name: string; path: string };
 
+/** Normalize path for trailingSlash:true (root stays `/`). */
+export function normalizeBreadcrumbPath(path: string): string {
+	try {
+		if (!path || path === '/') {
+			return '/';
+		}
+		const withLeading = path.startsWith('/') ? path : `/${path}`;
+		return withLeading.endsWith('/') ? withLeading : `${withLeading}/`;
+	} catch (err) {
+		console.error('[structured-data] normalizeBreadcrumbPath failed', { path, err });
+		return path || '/';
+	}
+}
+
 export const buildBreadcrumbSchema = (items: BreadcrumbItem[]) => ({
 	'@context': 'https://schema.org',
 	'@type': 'BreadcrumbList',
-	itemListElement: items.map((item, index) => ({
-		'@type': 'ListItem',
-		position: index + 1,
-		name: item.name,
-		item: new URL(item.path, SITE_URL).toString(),
-	})),
+	itemListElement: items.map((item, index) => {
+		const path = normalizeBreadcrumbPath(item.path);
+		return {
+			'@type': 'ListItem',
+			position: index + 1,
+			name: item.name,
+			item: new URL(path, SITE_URL).toString(),
+		};
+	}),
 });
 
 export const buildFaqSchema = (items: Array<{ question: string; answer: string }>) => ({
@@ -147,7 +182,7 @@ export const buildWebPageSchema = (input: WebPageSchemaInput) => ({
 	url: input.url,
 	name: input.name,
 	description: input.description,
-	inLanguage: 'he',
+	inLanguage: 'he-IL',
 	isPartOf: { '@id': SITE_WEBSITE_ID },
 	about: { '@id': SITE_ORGANIZATION_ID },
 	publisher: { '@id': SITE_ORGANIZATION_ID },
@@ -168,7 +203,7 @@ export const buildHomeWebPageSchema = (input: HomeWebPageSchemaInput) => ({
 	url: SITE_URL,
 	name: input.name,
 	description: input.description,
-	inLanguage: 'he',
+	inLanguage: 'he-IL',
 	isPartOf: { '@id': SITE_WEBSITE_ID },
 	about: { '@id': SITE_PERSON_ID },
 	mainEntity: { '@id': SITE_PERSON_ID },
@@ -223,7 +258,7 @@ export function buildContactPageSchema(input: ContactPageSchemaInput): Record<st
 			url: absoluteUrl('/contact/'),
 			name: input.name,
 			description: input.description,
-			inLanguage: 'he',
+			inLanguage: 'he-IL',
 			isPartOf: { '@id': SITE_WEBSITE_ID },
 			about: { '@id': SITE_PERSON_ID },
 			mainEntity: { '@id': SITE_ORGANIZATION_ID },
@@ -251,7 +286,7 @@ export const buildHowToSchema = (input: { name: string; description: string; ste
 	'@type': 'HowTo',
 	name: input.name,
 	description: input.description,
-	inLanguage: 'he',
+	inLanguage: 'he-IL',
 	step: input.steps.map((step, index) => ({
 		'@type': 'HowToStep',
 		position: index + 1,

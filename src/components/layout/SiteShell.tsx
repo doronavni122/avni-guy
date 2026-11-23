@@ -3,8 +3,13 @@ import { Analytics } from '@vercel/analytics/react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { buildJsonLdGraph, buildOrganizationSchema, buildWebSiteJsonLd } from '@/utils/structured-data';
+import { buildLeanPersonSchema, SITE_PERSON_ID } from '@/lib/seo/schema-person';
 import { cn } from '@/lib/utils';
+import {
+	buildJsonLdGraph,
+	buildOrganizationSchema,
+	buildWebSiteJsonLd,
+} from '@/utils/structured-data';
 
 type SiteShellProps = {
 	children: ReactNode;
@@ -12,11 +17,22 @@ type SiteShellProps = {
 	extraJsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
 };
 
+function graphHasPersonId(nodes: Record<string, unknown>[]): boolean {
+	try {
+		return nodes.some((node) => node['@id'] === SITE_PERSON_ID);
+	} catch (err) {
+		console.error('[SiteShell] graphHasPersonId failed', { err });
+		return false;
+	}
+}
+
 export function SiteShell({ children, currentPath, extraJsonLd }: SiteShellProps) {
+	const extras = extraJsonLd ? (Array.isArray(extraJsonLd) ? extraJsonLd : [extraJsonLd]) : [];
 	const nodes = [
 		buildOrganizationSchema(),
 		buildWebSiteJsonLd(),
-		...(extraJsonLd ? (Array.isArray(extraJsonLd) ? extraJsonLd : [extraJsonLd]) : []),
+		...(graphHasPersonId(extras) ? [] : [buildLeanPersonSchema()]),
+		...extras,
 	];
 	const jsonLdGraph = buildJsonLdGraph(nodes);
 

@@ -14,6 +14,7 @@ import type { MainPageHero as MainPageHeroData } from '@/lib/seo/hero-rules';
 import {
 	buildBreadcrumbSchema,
 	buildFaqSchema,
+	buildItemListSchema,
 	buildWebPageSchema,
 } from '@/utils/structured-data';
 
@@ -107,6 +108,10 @@ export default function MediaAppearancesPage() {
 		{ name: 'מדיה והופעות', path: PAGE_PATH },
 	];
 
+	const ownedListItems = OWNED_CHANNELS.map((channel) => ({
+		name: channel.title,
+		url: new URL(channel.href, SITE_URL).toString(),
+	}));
 	const jsonLd = [
 		buildBreadcrumbSchema(breadcrumbItems),
 		buildWebPageSchema({
@@ -118,6 +123,7 @@ export default function MediaAppearancesPage() {
 			dateModified: PAGE_DATE_MODIFIED,
 			'@type': 'WebPage',
 		}),
+		...(ownedListItems.length > 0 ? [buildItemListSchema(ownedListItems)] : []),
 		buildFaqSchema([...MEDIA_FAQ]),
 	];
 

@@ -53,11 +53,13 @@ export async function BlogArchiveView({ page }: BlogArchiveViewProps) {
 		url: new URL(`/blog/${post.slug}/`, SITE_URL).toString(),
 	}));
 
+	const archiveUrl =
+		safePage === 1 ? `${SITE_URL}/blog/` : `${SITE_URL}/blog/page/${safePage}/`;
 	const jsonLd = [
 		buildBreadcrumbSchema(breadcrumbItems),
 		buildWebPageSchema({
-			'@id': `${SITE_URL}/blog/#webpage`,
-			url: safePage === 1 ? `${SITE_URL}/blog/` : `${SITE_URL}/blog/page/${safePage}/`,
+			'@id': `${archiveUrl}#webpage`,
+			url: archiveUrl,
 			name: BLOG_ARCHIVE_TITLE,
 			description:
 				'ארכיון מאמרים משפטיים בעברית של גיא אבני, עו״ד: חוזים, נדל״ן, מיסוי ותהליכים.',

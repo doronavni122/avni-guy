@@ -80,7 +80,7 @@ function buildPersonPortraitImageObject(): Record<string, unknown> {
 		name: PERSON_BRAND_IMAGE_ALT,
 		caption: PERSON_BRAND_IMAGE_ALT,
 		description: PERSON_BRAND_IMAGE_ALT,
-		inLanguage: 'he',
+		inLanguage: 'he-IL',
 		representativeOfPage: true,
 	};
 }
@@ -95,7 +95,7 @@ function buildOfficeImageObject(): Record<string, unknown> {
 		name: PERSON_BRAND_IMAGE_ALT,
 		caption: PERSON_BRAND_IMAGE_ALT,
 		description: PERSON_BRAND_IMAGE_ALT,
-		inLanguage: 'he',
+		inLanguage: 'he-IL',
 	};
 }
 
@@ -200,6 +200,33 @@ export function assertClaimedPersonSameAsEdges(sameAs: string[]): string[] {
 		console.error('[schema-person] assertClaimedPersonSameAsEdges failed', { err });
 	}
 	return missing;
+}
+
+/**
+ * Minimal Person node so author/about `@id` refs resolve in-page
+ * when a full Person schema is not already in the graph.
+ */
+export function buildLeanPersonSchema(): Record<string, unknown> {
+	try {
+		return {
+			'@context': 'https://schema.org',
+			'@type': 'Person',
+			'@id': SITE_PERSON_ID,
+			name: 'גיא אבני',
+			jobTitle: 'עורך דין',
+			url: absoluteUrl('/about/'),
+			worksFor: { '@id': SITE_ORGANIZATION_ID },
+		};
+	} catch (err) {
+		console.error('[schema-person] buildLeanPersonSchema failed', { err });
+		return {
+			'@context': 'https://schema.org',
+			'@type': 'Person',
+			'@id': SITE_PERSON_ID,
+			name: 'גיא אבני',
+			url: absoluteUrl('/about/'),
+		};
+	}
 }
 
 export const buildPersonSchema = (options: PersonSchemaOptions = {}) => {
