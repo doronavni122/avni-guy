@@ -947,3 +947,4 @@
 758. emit-article-faq-schema-when-visible , src/app/blog/[slug]/page.tsx task_graph.log
 759. add-tag-hub-collectionpage-itemlist , src/app/tags/[tag]/page.tsx task_graph.log
 760. add-search-webpage-jsonld , src/app/search/page.tsx task_graph.log
+761. add-media-owned-channels-itemlist , src/app/media/page.tsx task_graph.log
