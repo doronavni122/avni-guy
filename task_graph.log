@@ -948,3 +948,4 @@
 759. add-tag-hub-collectionpage-itemlist , src/app/tags/[tag]/page.tsx task_graph.log
 760. add-search-webpage-jsonld , src/app/search/page.tsx task_graph.log
 761. add-media-owned-channels-itemlist , src/app/media/page.tsx task_graph.log
+762. mark-seo-schema-audit-findings-done , OWNER-REPORTS/010_seo_schema_jsonld_audit_2026-11-23.md task_graph.log
