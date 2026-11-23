@@ -13,5 +13,6 @@ Same bar for every subject and stack. Subject changes topics only.
 - Publish: `node scripts/publish-draft-to-content.mjs [NNNN]` — no raw copy / batch bypass
 - Titles: draft `seo.title` = topic only; live `metaTitle` carries brand suffix (not H1)
 - Validators: `node .content-kit/validators/check-research.mjs` and `check-article.mjs`
+- AEO/GEO citability (project): answer-first HE definition in first screen; TL;DR (`בקצרה` / TL;DR) with 3–6 bullets; FAQ visible or `faq:` FM; primary .gov.il / regulator / Bar cites; dated `נכון ל־` when figures change; no success-rate / "מומחה" inflation (Bar-safe). Check: `node scripts/check-aeo-citability.mjs [file.mdx…]`
 
 Standards: `.content-kit/standards/`. Profile: `content-pipeline.profile.json`.
