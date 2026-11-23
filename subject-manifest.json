@@ -1,5 +1,5 @@
 {
-  "date": "2026-06-25",
+  "date": "2026-11-23",
   "subjects": [
     {
       "nnnn": "0001",
@@ -415,6 +415,336 @@
         "/blog/dispute-prevention-method/",
         "/blog/contract-breach-statute-limitations-seven-years/",
         "/blog/parashat-bereshit-facts-2027-warning/"
+      ]
+    },
+    {
+      "nnnn": "0021",
+      "label": "checklist_before_transfer_trustee_or_venture",
+      "subject": "צ׳קליסט לפני העברת כסף לנאמן או למיזם נדל״ן",
+      "slug": "checklist-before-transfer-trustee-or-venture",
+      "contentFile": "checklist-before-transfer-trustee-or-venture.mdx",
+      "category": "investor-protection",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-11-23",
+      "tags": [
+        "trustee",
+        "investor",
+        "checklist"
+      ],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/lawyer-trustee-investor-funds-duties/",
+        "/blog/real-estate-venture-investor-due-diligence/",
+        "/blog/document-readiness-guide/"
+      ]
+    },
+    {
+      "nnnn": "0022",
+      "label": "evaluate_developer_real_estate_company",
+      "subject": "איך בודקים יזם וחברת נדל״ן לפני עסקה",
+      "slug": "evaluate-developer-real-estate-company",
+      "contentFile": "evaluate-developer-real-estate-company.mdx",
+      "category": "investor-protection",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-11-23",
+      "tags": [
+        "developer",
+        "due-diligence",
+        "company"
+      ],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/companies-registry-phone-call-four-questions/",
+        "/blog/buying-from-contractor-checklist/",
+        "/blog/real-estate-venture-investor-due-diligence/"
+      ]
+    },
+    {
+      "nnnn": "0023",
+      "label": "closed_bank_accompaniment_real_estate_project",
+      "subject": "ליווי בנקאי סגור לפרויקט נדל״ן",
+      "slug": "closed-bank-accompaniment-real-estate-project",
+      "contentFile": "closed-bank-accompaniment-real-estate-project.mdx",
+      "category": "real-estate-finance",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-11-23",
+      "tags": [
+        "bank",
+        "accompaniment",
+        "project"
+      ],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/bank-financing-private-home-construction/",
+        "/blog/sale-law-guarantee-importance/",
+        "/blog/buying-from-contractor-checklist/"
+      ]
+    },
+    {
+      "nnnn": "0024",
+      "label": "overseas_real_estate_investment_israelis_basics",
+      "subject": "השקעת נדל״ן בחו״ל לישראלים — בדיקות משפטיות ומסמכים בסיסיות",
+      "slug": "overseas-real-estate-investment-israelis-basics",
+      "contentFile": "overseas-real-estate-investment-israelis-basics.mdx",
+      "category": "overseas-real-estate",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-11-23",
+      "tags": [
+        "overseas",
+        "investment",
+        "documents"
+      ],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/legal-planning-basics/",
+        "/blog/document-readiness-guide/",
+        "/blog/risk-management-routine/"
+      ]
+    },
+    {
+      "nnnn": "0025",
+      "label": "professional_accompaniment_real_estate_deal",
+      "subject": "איך עובדים עם ליווי מקצועי לעסקת נדל״ן",
+      "slug": "professional-accompaniment-real-estate-deal",
+      "contentFile": "professional-accompaniment-real-estate-deal.mdx",
+      "category": "process",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-11-23",
+      "tags": [
+        "accompaniment",
+        "process",
+        "deal"
+      ],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/client-onboarding-framework/",
+        "/blog/contract-review-flow/",
+        "/blog/lawyer-required-apartment-purchase/"
+      ]
+    },
+    {
+      "nnnn": "0026",
+      "label": "professional_real_estate_deal_anatomy_israel",
+      "subject": "מבנה עסקת נדל״ן מקצועית בישראל",
+      "slug": "professional-real-estate-deal-anatomy-israel",
+      "contentFile": "professional-real-estate-deal-anatomy-israel.mdx",
+      "category": "deal-structure",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-11-23",
+      "tags": [
+        "deal",
+        "anatomy",
+        "structure"
+      ],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/second-hand-apartment-sale-agreement/",
+        "/blog/apartment-buyer-required-documents/",
+        "/blog/tabu-rights-registration/"
+      ]
+    },
+    {
+      "nnnn": "0027",
+      "label": "purchase_group_advantages_risks_checks",
+      "subject": "קבוצת רכישה — יתרונות סיכונים ומה בודקים",
+      "slug": "purchase-group-advantages-risks-checks",
+      "contentFile": "purchase-group-advantages-risks-checks.mdx",
+      "category": "purchase-group",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-11-23",
+      "tags": [
+        "purchase-group",
+        "risks",
+        "organizer"
+      ],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/business-partnership-types-israel-protection/",
+        "/blog/combination-agreement-risks/",
+        "/blog/real-estate-venture-investor-due-diligence/"
+      ]
+    },
+    {
+      "nnnn": "0028",
+      "label": "read_israel_housing_market_literacy",
+      "subject": "איך לקרוא את שוק הדיור בישראל",
+      "slug": "read-israel-housing-market-literacy",
+      "contentFile": "read-israel-housing-market-literacy.mdx",
+      "category": "market-literacy",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-11-23",
+      "tags": [
+        "housing",
+        "market",
+        "literacy"
+      ],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/legal-planning-basics/",
+        "/blog/risk-management-routine/",
+        "/blog/israel-real-estate-delay-delivery-research/"
+      ]
+    },
+    {
+      "nnnn": "0029",
+      "label": "form_real_estate_company_spv_for_deal",
+      "subject": "הקמת חברת נדל״ן / SPV לעסקה",
+      "slug": "form-real-estate-company-spv-for-deal",
+      "contentFile": "form-real-estate-company-spv-for-deal.mdx",
+      "category": "corporate",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-11-23",
+      "tags": [
+        "company",
+        "spv",
+        "structure"
+      ],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/companies-registry-phone-call-four-questions/",
+        "/blog/business-partnership-types-israel-protection/",
+        "/blog/business-legal-habits/"
+      ]
+    },
+    {
+      "nnnn": "0030",
+      "label": "real_estate_investing_beginners_israel",
+      "subject": "השקעות נדל״ן למתחילים בישראל",
+      "slug": "real-estate-investing-beginners-israel",
+      "contentFile": "real-estate-investing-beginners-israel.mdx",
+      "category": "onboarding",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-11-23",
+      "tags": [
+        "beginners",
+        "investment",
+        "decision-tree"
+      ],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/legal-planning-basics/",
+        "/blog/document-readiness-guide/",
+        "/blog/lawyer-required-apartment-purchase/"
+      ]
+    },
+    {
+      "nnnn": "0031",
+      "label": "urban_renewal_tenants_roadmap_governance",
+      "subject": "התחדשות עירונית לדיירים — מארגון ועד בחירת יזם",
+      "slug": "urban-renewal-tenants-roadmap-governance",
+      "contentFile": "urban-renewal-tenants-roadmap-governance.mdx",
+      "category": "urban-renewal",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-11-23",
+      "tags": [
+        "urban-renewal",
+        "tenants",
+        "governance"
+      ],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/urban-renewal-tenant-rights/",
+        "/blog/evacuation-reconstruction-project-duration/",
+        "/blog/building-committee-legal-duties/"
+      ]
+    },
+    {
+      "nnnn": "0032",
+      "label": "commercial_lease_literacy_israel",
+      "subject": "חוזה שכירות מסחרית / נכס מניב מסחרי",
+      "slug": "commercial-lease-literacy-israel",
+      "contentFile": "commercial-lease-literacy-israel.mdx",
+      "category": "commercial",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-11-23",
+      "tags": [
+        "commercial",
+        "lease",
+        "literacy"
+      ],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/israeli-lease-contract-traps/",
+        "/blog/landlord-security-deposit-return/",
+        "/blog/contract-review-flow/"
+      ]
+    },
+    {
+      "nnnn": "0033",
+      "label": "foreign_resident_apartment_investment_israel",
+      "subject": "השקעת תושב חוץ בדירה בישראל",
+      "slug": "foreign-resident-apartment-investment-israel",
+      "contentFile": "foreign-resident-apartment-investment-israel.mdx",
+      "category": "foreign-resident",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-11-23",
+      "tags": [
+        "foreign-resident",
+        "tax",
+        "poa"
+      ],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/purchase-tax-exemption-first-apartment/",
+        "/blog/tabu-rights-registration/",
+        "/blog/apartment-buyer-required-documents/"
+      ]
+    },
+    {
+      "nnnn": "0034",
+      "label": "buy_land_plot_for_development_checks",
+      "subject": "רכישת קרקע/מגרש ליזמות",
+      "slug": "buy-land-plot-for-development-checks",
+      "contentFile": "buy-land-plot-for-development-checks.mdx",
+      "category": "land",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-11-23",
+      "tags": [
+        "land",
+        "zoning",
+        "betterment"
+      ],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/betterment-levy-land-plot-when/",
+        "/blog/building-permit-shorten-lawyer-five-months/",
+        "/blog/tabu-vs-land-registry/"
+      ]
+    },
+    {
+      "nnnn": "0035",
+      "label": "sale_law_buyer_guarantees_educational",
+      "subject": "הבטחת השקעות רוכשי דירות — ערבויות חוק המכר",
+      "slug": "sale-law-buyer-guarantees-educational",
+      "contentFile": "sale-law-buyer-guarantees-educational.mdx",
+      "category": "sale-law",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-11-23",
+      "tags": [
+        "sale-law",
+        "guarantees",
+        "buyers"
+      ],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/sale-law-guarantee-importance/",
+        "/blog/sale-law-contractor-obligations/",
+        "/blog/buying-from-contractor-checklist/"
       ]
     }
   ]
