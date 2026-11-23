@@ -952,3 +952,4 @@
 763. checkoff-schema-plan-implemented-todos , .cursor/plans/052_seo_schema_jsonld_gaps_s1.plan.md task_graph.log
 764. add-schema-gaps-plan-brief-and-verify-checkoff , notes/implementations/052_seo_schema_jsonld_gaps_s1_brief.txt .cursor/plans/052_seo_schema_jsonld_gaps_s1.plan.md task_graph.log
 765. gate-localbusiness-type-on-claimed-nap , src/utils/structured-data.ts task_graph.log
+766. wire-website-creator-person-at-id , src/utils/structured-data.ts task_graph.log

@@ -96,6 +96,7 @@ export const buildWebSiteJsonLd = () => ({
 	publisher: { '@id': SITE_ORGANIZATION_ID },
 	creator: {
 		'@type': 'Person',
+		'@id': SITE_PERSON_ID,
 		name: 'גיא אבני',
 		url: absoluteUrl('/about/'),
 	},
