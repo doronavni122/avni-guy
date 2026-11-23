@@ -2,10 +2,12 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { ArticleList } from '@/components/blog/ArticleList';
 import { SiteShell } from '@/components/layout/SiteShell';
+import { getArchiveDateModified } from '@/lib/blog/archive';
 import { getPostsIndex, getTags } from '@/lib/content/posts';
 import { buildPageMetadata } from '@/lib/metadata';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
-import { buildBreadcrumbSchema } from '@/utils/structured-data';
+import { SITE_URL } from '@/consts';
+import { buildBreadcrumbSchema, buildItemListSchema, buildWebPageSchema } from '@/utils/structured-data';
 import { buildTagMetaDescription, buildTagPageTitle, getTagLabel } from '@/utils/taxonomy-labels';
 
 export const dynamic = 'force-static';
@@ -45,7 +47,40 @@ export default async function TagPage({ params }: PageProps) {
 		{ name: 'תגיות', path: '/tags/' },
 		{ name: tagHe, path: `/tags/${tag}/` },
 	];
-	const jsonLd = buildBreadcrumbSchema(breadcrumbItems);
+	const pageTitle = buildTagPageTitle(tagHe);
+	const pageDescription = buildTagMetaDescription(tagHe);
+	let dateModified = '2026-07-14';
+	try {
+		if (posts.length > 0) {
+			dateModified = getArchiveDateModified(posts);
+		} else {
+			console.error('[tags:tag] dateModified fallback, no posts', { tag });
+		}
+	} catch (err) {
+		console.error('[tags:tag] dateModified failed', { tag, err });
+	}
+	let listItems: Array<{ name: string; url: string }> = [];
+	try {
+		listItems = posts.map((post) => ({
+			name: post.data.title,
+			url: new URL(`/blog/${post.slug}/`, SITE_URL).toString(),
+		}));
+	} catch (err) {
+		console.error('[tags:tag] item list failed', { tag, err });
+		listItems = [];
+	}
+	const jsonLd = [
+		buildBreadcrumbSchema(breadcrumbItems),
+		buildWebPageSchema({
+			'@id': `${SITE_URL}/tags/${tag}/#webpage`,
+			url: `${SITE_URL}/tags/${tag}/`,
+			name: pageTitle,
+			description: pageDescription,
+			dateModified,
+			'@type': 'CollectionPage',
+		}),
+		...(listItems.length > 0 ? [buildItemListSchema(listItems)] : []),
+	];
 
 	return (
 		<SiteShell currentPath={`/tags/${tag}/`} extraJsonLd={jsonLd}>
