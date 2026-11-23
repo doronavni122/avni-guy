@@ -931,3 +931,4 @@
 742. publish-buy-land-plot-for-development-checks , src/content/blog/buy-land-plot-for-development-checks.mdx public/images/blog/buy-land-plot-for-development-checks-* task_graph.log
 743. publish-sale-law-buyer-guarantees-educational , src/content/blog/sale-law-buyer-guarantees-educational.mdx public/images/blog/sale-law-buyer-guarantees-educational-* task_graph.log
 744. add-manifest-subjects-0036-0039 , subject-manifest.json task_graph.log
+745. add-research-reinforce-cluster-0036-0039 , reserch/0036_bank_guarantee_vs_sale_law_policy_buyer.md reserch/0037_tabu_warning_note_before_signing_purchase.md reserch/0038_pinui_binui_tenant_questions_before_developer.md reserch/0039_yield_apartment_vs_commercial_lease_decision.md task_graph.log
