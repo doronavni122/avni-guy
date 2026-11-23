@@ -80,7 +80,7 @@ function buildPersonPortraitImageObject(): Record<string, unknown> {
 		name: PERSON_BRAND_IMAGE_ALT,
 		caption: PERSON_BRAND_IMAGE_ALT,
 		description: PERSON_BRAND_IMAGE_ALT,
-		inLanguage: 'he',
+		inLanguage: 'he-IL',
 		representativeOfPage: true,
 	};
 }
@@ -95,7 +95,7 @@ function buildOfficeImageObject(): Record<string, unknown> {
 		name: PERSON_BRAND_IMAGE_ALT,
 		caption: PERSON_BRAND_IMAGE_ALT,
 		description: PERSON_BRAND_IMAGE_ALT,
-		inLanguage: 'he',
+		inLanguage: 'he-IL',
 	};
 }
 
