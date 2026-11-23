@@ -65,6 +65,7 @@ evidence: call-site typos cause slash drift
 fix: normalize non-root paths to end with `/`
 
 ## out_of_scope_blocked
-B01 BLOCKED: inventing NEXT_PUBLIC_OFFICE_* NAP values — owner/env only
-B02: inventing media appearances — empty list intentional
-B03: ADR/ folder missing in repo — no formal SEO ADR ids; plan uses content/seo pillar from kit+SSOT
+B01 BLOCKED owner: no published street/phone/locality in repo, /contact/, MDX, or live avniguy (email-only). guyavni.co.il unreachable (HTTP 000). Prod Vercel already has empty NEXT_PUBLIC_OFFICE_LOCALITY / NEXT_PUBLIC_OFFICE_STREET / NEXT_PUBLIC_OFFICE_PHONE; wiring + production warnProductionEnvGaps OK. Owner must supply real values for those three keys.
+B02 DONE intentional: DOCUMENTED_APPEARANCES=[] — no earned media URLs on site; owned-channels ItemList already emitted; do not invent.
+B03 SKIP: ADR/ absent — no formal SEO ADR invented; plan pillar from kit+SSOT only.
+
