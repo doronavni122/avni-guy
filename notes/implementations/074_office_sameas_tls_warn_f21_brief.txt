@@ -1,0 +1,6 @@
+next_plan_suggestion: none_owner_tls_or_empty_optout
+files_to_read: .cursor/plans/074_office_sameas_tls_warn_f21.plan.md src/env.ts src/lib/seo/schema-person.ts
+rules: env-validation atomic-change-loging
+tools_status: wiring_done warn_on_unset_default task_813
+open_issues: BLOCKED_OWNER live_guyavni_TLS_or_PERSON_OFFICE_SITE_URL_empty_optout
+scope_status: OPERATOR_WIRING_DONE_VALUES_BLOCKED

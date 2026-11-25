@@ -1,0 +1,7 @@
+next_plan_suggestion: none_012_wave_closed
+files_to_read: .cursor/plans/073_org_logo_unique_raster_f03.plan.md src/lib/seo/brand-image-dimensions.ts
+rules: unique-site-images atomic-change-loging
+tools_status: build_pass live_curl_logo_url_ok task_812
+open_issues: none
+scope_status: DONE
+reopen_reason: prior_logo_reused_og_fallback; fixed_unique_organization-logo-raster-photo-4
