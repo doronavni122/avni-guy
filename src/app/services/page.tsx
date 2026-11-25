@@ -17,6 +17,7 @@ import {
 	buildBreadcrumbSchema,
 	buildFaqSchema,
 	buildItemListSchema,
+	buildOfferCatalogSchema,
 	buildWebPageSchema,
 } from '@/utils/structured-data';
 
@@ -216,6 +217,16 @@ export default function ServicesPage() {
 			}),
 		),
 		buildItemListSchema(itemListEntries),
+		buildOfferCatalogSchema({
+			name: 'קטלוג שירותים — משרד גיא אבני',
+			description: DIRECT_ANSWER,
+			url: `${SITE_URL}/services/`,
+			items: SERVICES.map((service) => ({
+				name: service.title,
+				description: service.text,
+				url: `${SITE_URL}/services/#${encodeURIComponent(service.title)}`,
+			})),
+		}),
 		buildFaqSchema([...SERVICES_FAQ]),
 		// HowTo JSON-LD removed: Google HowTo rich results deprecated 2023; journey HTML remains (F12).
 	];

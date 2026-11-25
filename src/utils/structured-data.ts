@@ -286,6 +286,51 @@ export function buildContactPageSchema(input: ContactPageSchemaInput): Record<st
 	}
 }
 
+export type OfferCatalogItemInput = {
+	name: string;
+	description: string;
+	url: string;
+};
+
+/**
+ * OfferCatalog of Service offers — no prices (never invent commercial terms) (F23).
+ */
+export function buildOfferCatalogSchema(input: {
+	name: string;
+	description: string;
+	url: string;
+	items: OfferCatalogItemInput[];
+}): Record<string, unknown> {
+	try {
+		return {
+			'@context': 'https://schema.org',
+			'@type': 'OfferCatalog',
+			name: input.name,
+			description: input.description,
+			url: input.url,
+			itemListElement: input.items.map((item, index) => ({
+				'@type': 'Offer',
+				position: index + 1,
+				itemOffered: {
+					'@type': 'Service',
+					name: item.name,
+					description: item.description,
+					url: item.url,
+					provider: { '@id': SITE_ORGANIZATION_ID },
+				},
+			})),
+		};
+	} catch (err) {
+		console.error('[structured-data] buildOfferCatalogSchema failed', { err });
+		return {
+			'@context': 'https://schema.org',
+			'@type': 'OfferCatalog',
+			name: input.name,
+			url: input.url,
+		};
+	}
+}
+
 export type HowToStepInput = { name: string; text: string };
 
 export const buildHowToSchema = (input: { name: string; description: string; steps: HowToStepInput[] }) => ({
