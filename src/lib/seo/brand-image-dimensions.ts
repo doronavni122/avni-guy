@@ -1,9 +1,10 @@
 /** Known raster dimensions for JSON-LD ImageObject (pixels). */
+/** Unique Organization.logo placement — not OG fallback / credential photo (unique-site-images). */
 export const BRAND_ORG_LOGO_RASTER_PATH =
-	'/images/shared/guy-avni-avni-guy-law-firm-lawyer-og-law-fallback-photo-1.jpg';
+	'/images/shared/guy-avni-avni-guy-law-firm-lawyer-organization-logo-raster-photo-4.jpg';
 
 export const IMAGE_OBJECT_DIMENSIONS: Record<string, { width: number; height: number }> = {
-	[BRAND_ORG_LOGO_RASTER_PATH]: { width: 1200, height: 800 },
+	[BRAND_ORG_LOGO_RASTER_PATH]: { width: 1200, height: 1200 },
 	'/images/shared/guy-avni-avni-guy-law-firm-lawyer-brand-portrait-photo-2.jpg': { width: 1024, height: 1024 },
 	'/images/shared/guy-avni-avni-guy-law-firm-lawyer-office-interior-photo-3.jpg': { width: 1400, height: 900 },
 };
