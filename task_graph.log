@@ -980,3 +980,4 @@
 791. home-breadcrumb-jsonld-f09 , src/app/page.tsx .cursor/plans/057_home_breadcrumb_jsonld_f09.plan.md task_graph.log
 792. home-speakable-spec-f10 , src/app/page.tsx src/components/home/HomePage.tsx src/lib/seo/speakable-voice-blocks.ts .cursor/plans/058_home_speakable_spec_f10.plan.md task_graph.log
 793. answer-hubs-speakable-f11 , src/lib/seo/speakable-voice-blocks.ts src/components/seo/SpeakableVoiceSection.tsx src/app/contact/page.tsx src/app/sheelot/page.tsx src/app/media/page.tsx src/app/tags/page.tsx src/app/editorial-policy/page.tsx src/app/guy-avni/page.tsx src/components/blog/BlogArchiveView.tsx .cursor/plans/059_answer_hubs_speakable_f11.plan.md task_graph.log
+794. about-profilepage-jsonld-f08 , src/utils/structured-data.ts src/app/about/page.tsx .cursor/plans/060_about_profilepage_jsonld_f08.plan.md task_graph.log

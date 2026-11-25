@@ -1,4 +1,8 @@
 import { SITE_CONTACT_EMAIL, SITE_TITLE, SITE_URL } from '../consts';
+import {
+	BRAND_ORG_LOGO_RASTER_PATH,
+	imageObjectWithDimensions,
+} from '@/lib/seo/brand-image-dimensions';
 import { buildArticleSchema } from '@/lib/seo/schema-article';
 import { hasVisibleOfficeNap, readOfficeNap } from '@/lib/seo/office-nap';
 import { readPersonSameAsUrls, SITE_PERSON_ID } from '@/lib/seo/schema-person';
@@ -12,8 +16,6 @@ export const SITE_WEBSITE_ID = `${SITE_URL}#website`;
 /** Stable JSON-LD @id for the homepage WebPage entity. */
 export const SITE_HOME_WEBPAGE_ID = `${SITE_URL}#webpage`;
 
-const BRAND_LOGO_PATH = '/images/branding/guy-avni-avni-guy-law-firm-lawyer-brand-logo.svg';
-
 function absoluteUrl(pathOrUrl: string): string {
 	try {
 		if (pathOrUrl.startsWith('http://') || pathOrUrl.startsWith('https://')) {
@@ -23,7 +25,7 @@ function absoluteUrl(pathOrUrl: string): string {
 		return new URL(p, SITE_URL).toString();
 	} catch (err) {
 		console.error('[structured-data] absoluteUrl failed', { pathOrUrl, err });
-		return new URL(BRAND_LOGO_PATH, SITE_URL).toString();
+		return new URL(BRAND_ORG_LOGO_RASTER_PATH, SITE_URL).toString();
 	}
 }
 
@@ -48,10 +50,11 @@ export const buildOrganizationSchema = () => {
 		name: 'גיא אבני משרד עורכי דין',
 		url: SITE_URL,
 		inLanguage: 'he-IL',
-		logo: {
-			'@type': 'ImageObject',
-			url: absoluteUrl(BRAND_LOGO_PATH),
-		},
+		// Raster logo for KG/crawlability; SVG brand mark stays UI-only (F03).
+		logo: imageObjectWithDimensions(absoluteUrl(BRAND_ORG_LOGO_RASTER_PATH), {
+			name: 'גיא אבני משרד עורכי דין',
+			caption: 'לוגו משרד גיא אבני (רסטר לזיהוי ארגון)',
+		}),
 		contactPoint,
 		founder: {
 			'@type': 'Person',
@@ -167,7 +170,7 @@ export type WebPageSchemaInput = {
 	name: string;
 	description: string;
 	dateModified: string;
-	'@type'?: 'WebPage' | 'CollectionPage' | 'AboutPage';
+	'@type'?: 'WebPage' | 'CollectionPage' | 'AboutPage' | 'ProfilePage';
 	mainEntity?: { '@id': string };
 };
 

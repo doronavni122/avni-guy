@@ -223,7 +223,8 @@ export default function AboutPage() {
 					description:
 						'עמוד האודות של גיא אבני, עורך דין: מי זה, מה האתר, תחומי ליווי, ומקורות לרשומה הציבורית.',
 					dateModified: ABOUT_DATE_MODIFIED,
-					'@type': 'AboutPage',
+					// ProfilePage per Search Central profile markup; mainEntity = Person (F08).
+					'@type': 'ProfilePage',
 					mainEntity: { '@id': `${SITE_URL}/about/#person` },
 				}),
 			),
