@@ -153,6 +153,12 @@ export const buildBreadcrumbSchema = (items: BreadcrumbItem[]) => ({
 	}),
 });
 
+/**
+ * FAQPage JSON-LD policy (F13 / YMYL commercial reality):
+ * - Keep for Bing + entity understanding on hubs/articles that already show matching FAQ HTML.
+ * - Not intended as Google-only FAQ rich-result theater (often ineligible for commercial YMYL).
+ * - Callers must only pass Q&A that is visible on the same page.
+ */
 export const buildFaqSchema = (items: Array<{ question: string; answer: string }>) => ({
 	'@context': 'https://schema.org',
 	'@type': 'FAQPage',
