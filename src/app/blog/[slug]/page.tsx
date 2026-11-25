@@ -109,6 +109,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 			imageUrls: post.data.images.map((item) => item.src),
 			authorName: 'גיא אבני',
 			authorUrl: new URL('/about/', SITE_URL).toString(),
+			citations: post.data.citations,
 		}),
 	);
 

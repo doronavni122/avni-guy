@@ -24,7 +24,7 @@ function buildArticleImageObjects(imageUrls: string[]): Record<string, unknown>[
 }
 
 export function buildArticleSchema(input: ArticleSchemaInput): Record<string, unknown> {
-	return {
+	const schema: Record<string, unknown> = {
 		'@context': 'https://schema.org',
 		'@type': 'BlogPosting',
 		'@id': input.canonicalUrl,
@@ -52,4 +52,13 @@ export function buildArticleSchema(input: ArticleSchemaInput): Record<string, un
 			url: input.canonicalUrl,
 		},
 	};
+
+	if (input.citations?.length) {
+		schema.citation = input.citations.map((url) => ({
+			'@type': 'CreativeWork',
+			url,
+		}));
+	}
+
+	return schema;
 }

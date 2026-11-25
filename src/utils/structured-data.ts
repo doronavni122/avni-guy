@@ -117,6 +117,8 @@ export type BlogPostingSchemaInput = {
 	imageUrls: string[];
 	authorName: string;
 	authorUrl: string;
+	/** Primary-law/gov citation URLs from article metadata only — never invent (F06). */
+	citations?: string[];
 };
 
 export const buildBlogPostingSchema = (input: BlogPostingSchemaInput) => buildArticleSchema(input);
