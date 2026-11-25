@@ -23,7 +23,7 @@ import {
 export const dynamic = 'force-static';
 
 const mailtoHref = `mailto:${SITE_CONTACT_EMAIL}?subject=${encodeURIComponent('פנייה מהאתר')}`;
-const CONTACT_DATE_MODIFIED = '2026-11-08';
+const CONTACT_DATE_MODIFIED = '2026-11-25';
 
 const CONTACT_FAQ = [
 	{

@@ -36,7 +36,7 @@ import {
 export const dynamic = 'force-static';
 
 const ABOUT_OG_IMAGE = `${SITE_URL}${PERSON_PORTRAIT_IMAGE_PATH}`;
-const ABOUT_DATE_MODIFIED = '2026-09-17';
+const ABOUT_DATE_MODIFIED = '2026-11-25';
 
 export const metadata = buildPageMetadata({
 	title: 'אודות גיא אבני עורך דין | משרד גיא אבני',

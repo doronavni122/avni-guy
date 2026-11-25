@@ -24,7 +24,7 @@ export const dynamic = 'force-static';
 
 const PAGE_PATH = '/editorial-policy/';
 const PAGE_OG_IMAGE = mainPageOgImageUrl('/editorial-policy/');
-const PAGE_DATE_MODIFIED = '2026-07-14';
+const PAGE_DATE_MODIFIED = '2026-11-25';
 
 const HERO: MainPageHeroData = {
 	path: PAGE_PATH,

@@ -22,7 +22,7 @@ export const dynamic = 'force-static';
 
 const PAGE_PATH = '/sheelot/';
 const PAGE_OG_IMAGE = mainPageOgImageUrl('/sheelot/');
-const PAGE_DATE_MODIFIED = '2026-11-08';
+const PAGE_DATE_MODIFIED = '2026-11-25';
 
 const HERO: MainPageHeroData = {
 	path: PAGE_PATH,

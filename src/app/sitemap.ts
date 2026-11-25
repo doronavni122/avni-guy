@@ -10,16 +10,17 @@ import { isQuarantinedBlogSlug, shouldIndexCategory, shouldIndexTag } from '@/li
  * at build time for unchanging pages.
  */
 const STATIC_PATH_LASTMOD: Record<string, string> = {
-	'/': '2026-11-08',
-	'/about/': '2026-09-17',
-	'/services/': '2026-11-08',
-	'/contact/': '2026-11-08',
+	// Bumped 2026-11-25 with SEO/AIO 012 remediation (speakable/schema/entity) — F25.
+	'/': '2026-11-25',
+	'/about/': '2026-11-25',
+	'/services/': '2026-11-25',
+	'/contact/': '2026-11-25',
 	'/categories/': '2026-11-08',
-	'/tags/': '2026-07-13',
-	'/editorial-policy/': '2026-07-14',
-	'/sheelot/': '2026-11-08',
-	'/media/': '2026-07-14',
-	'/guy-avni/': '2026-07-14',
+	'/tags/': '2026-11-25',
+	'/editorial-policy/': '2026-11-25',
+	'/sheelot/': '2026-11-25',
+	'/media/': '2026-11-25',
+	'/guy-avni/': '2026-11-25',
 };
 
 const STATIC_PATHS = Object.keys(STATIC_PATH_LASTMOD).concat(['/blog/']);

@@ -25,7 +25,7 @@ export const dynamic = 'force-static';
 
 const PAGE_PATH = '/guy-avni/';
 const PAGE_OG_IMAGE = mainPageOgImageUrl('/guy-avni/');
-const PAGE_DATE_MODIFIED = '2026-07-14';
+const PAGE_DATE_MODIFIED = '2026-11-25';
 
 const HERO: MainPageHeroData = {
 	path: PAGE_PATH,

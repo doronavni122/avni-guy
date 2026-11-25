@@ -24,7 +24,7 @@ import {
 export const dynamic = 'force-static';
 
 const SERVICES_OG_IMAGE = mainPageOgImageUrl('/services/');
-const SERVICES_DATE_MODIFIED = '2026-07-14';
+const SERVICES_DATE_MODIFIED = '2026-11-25';
 
 export const metadata = buildPageMetadata({
 	title: 'גיא אבני | שירותים - ייעוץ, ליווי ותכנון משפטי',

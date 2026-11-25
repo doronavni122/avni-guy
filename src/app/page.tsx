@@ -15,7 +15,7 @@ import {
 export const dynamic = 'force-static';
 
 const HOME_OG_IMAGE = `${SITE_URL}/images/home/home-hero-legal-contract-super-macro-photo-0.jpg`;
-const HOME_DATE_MODIFIED = '2026-11-08';
+const HOME_DATE_MODIFIED = '2026-11-25';
 
 export const metadata = buildPageMetadata({
 	title: 'משרד גיא אבני · מאמרים, שירותים וייעוץ',

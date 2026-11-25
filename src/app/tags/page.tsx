@@ -27,7 +27,7 @@ import { getTagLabel } from '@/utils/taxonomy-labels';
 
 export const dynamic = 'force-static';
 
-const TAGS_DATE_MODIFIED = '2026-07-13';
+const TAGS_DATE_MODIFIED = '2026-11-25';
 
 const DIRECT_ANSWER =
 	'תגיות באתר גיא אבני מקבצות מאמרים לפי מצב צר - זכויות רוכש, ציות, חוזים ועוד. בחרו תגית, קראו מאמר אחד, והמשיכו לקטגוריה רחבה או ליצירת קשר.';
