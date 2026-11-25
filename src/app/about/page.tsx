@@ -30,7 +30,6 @@ import { SITE_URL } from '@/consts';
 import {
 	buildBreadcrumbSchema,
 	buildFaqSchema,
-	buildHowToSchema,
 	buildWebPageSchema,
 } from '@/utils/structured-data';
 
@@ -237,14 +236,7 @@ export default function AboutPage() {
 		},
 		buildPersonSchema({ sameAs: sameAs.length ? sameAs : undefined }),
 		buildFaqSchema([...BRAND_FAQ]),
-		buildHowToSchema({
-			name: 'איך מתחילים לעבוד עם גיא אבני עורך דין',
-			description: 'מסלול מיקוד, תמונת סיכונים וליווי מסודר.',
-			steps: WORKFLOW_STEPS.map((step, index) => ({
-				name: `שלב ${index + 1}`,
-				text: step,
-			})),
-		}),
+		// HowTo JSON-LD removed: Google HowTo rich results deprecated 2023; workflow HTML remains (F12).
 	];
 
 	return (

@@ -9,7 +9,6 @@ import {
 	buildBreadcrumbSchema,
 	buildFaqSchema,
 	buildHomeWebPageSchema,
-	buildHowToSchema,
 	buildItemListSchema,
 } from '@/utils/structured-data';
 
@@ -50,13 +49,10 @@ export default async function Home() {
 			}),
 		),
 		buildPersonSchema({ sameAs: sameAs.length ? sameAs : undefined }),
+		// FAQ kept for Bing/entity understanding — not Google HowTo/FAQ theater (F12/F13).
 		buildFaqSchema(data.faqItems),
 		...(featuredListItems.length > 0 ? [buildItemListSchema(featuredListItems)] : []),
-		buildHowToSchema({
-			name: 'כך עובד התהליך בפגישת מיקוד ובליווי',
-			description: 'מסלול מודולרי: מטרה, מיפוי, תוכנית וביצוע.',
-			steps: data.processSteps.map((step) => ({ name: step.title, text: step.text })),
-		}),
+		// HowTo JSON-LD removed: Google HowTo rich results deprecated 2023; process HTML remains (F12).
 	];
 
 	return (

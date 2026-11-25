@@ -988,3 +988,4 @@
 799. blogposting-inline-author-f04 , src/lib/seo/schema-article.ts .cursor/plans/065_blogposting_inline_author_f04.plan.md task_graph.log
 800. blogposting-citation-schema-f06 , src/lib/seo/schema-article.ts src/lib/content/schema.ts src/utils/structured-data.ts src/app/blog/[slug]/page.tsx .cursor/plans/066_blogposting_citation_schema_f06.plan.md task_graph.log
 801. article-robots-og-freshness-f18 , src/lib/metadata.ts src/app/blog/[slug]/page.tsx .cursor/plans/067_article_robots_og_freshness_f18.plan.md task_graph.log
+802. trim-deprecated-howto-jsonld-f12 , src/app/page.tsx src/app/about/page.tsx src/app/services/page.tsx .cursor/plans/068_trim_deprecated_howto_jsonld_f12.plan.md task_graph.log

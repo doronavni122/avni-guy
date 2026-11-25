@@ -16,7 +16,6 @@ import { mainPageOgImageUrl } from '@/lib/seo/main-page-og';
 import {
 	buildBreadcrumbSchema,
 	buildFaqSchema,
-	buildHowToSchema,
 	buildItemListSchema,
 	buildWebPageSchema,
 } from '@/utils/structured-data';
@@ -218,11 +217,7 @@ export default function ServicesPage() {
 		),
 		buildItemListSchema(itemListEntries),
 		buildFaqSchema([...SERVICES_FAQ]),
-		buildHowToSchema({
-			name: 'איך עובד ליווי משפטי עם גיא אבני',
-			description: 'מסלול מיקוד, תכנון, ליווי ומעקב.',
-			steps: [...SERVICE_JOURNEY_STEPS],
-		}),
+		// HowTo JSON-LD removed: Google HowTo rich results deprecated 2023; journey HTML remains (F12).
 	];
 
 	return (
