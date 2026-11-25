@@ -5,6 +5,7 @@ import { loadHomeData } from '@/lib/home/loadHomeData';
 import { buildPageMetadata } from '@/lib/metadata';
 import { buildPersonSchema, readPersonSameAsUrls } from '@/lib/seo/schema-person';
 import {
+	buildBreadcrumbSchema,
 	buildFaqSchema,
 	buildHomeWebPageSchema,
 	buildHowToSchema,
@@ -36,7 +37,9 @@ export default async function Home() {
 	}));
 
 	const sameAs = readPersonSameAsUrls();
+	const homeBreadcrumbItems = [{ name: 'דף הבית', path: '/' }];
 	const jsonLd = [
+		buildBreadcrumbSchema(homeBreadcrumbItems),
 		buildHomeWebPageSchema({
 			name: 'משרד גיא אבני · מאמרים, שירותים וייעוץ',
 			description:
