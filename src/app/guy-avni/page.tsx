@@ -12,6 +12,9 @@ import { SITE_URL } from '@/consts';
 import { mainPageOgImageUrl } from '@/lib/seo/main-page-og';
 import { buildPersonSchema, readPersonSameAsUrls, SITE_PERSON_ID } from '@/lib/seo/schema-person';
 import type { MainPageHero as MainPageHeroData } from '@/lib/seo/hero-rules';
+import { SpeakableVoiceSection } from '@/components/seo/SpeakableVoiceSection';
+import { attachSpeakable } from '@/lib/seo/speakable';
+import { GUY_AVNI_SPEAKABLE_VOICE_BLOCKS } from '@/lib/seo/speakable-voice-blocks';
 import {
 	buildBreadcrumbSchema,
 	buildFaqSchema,
@@ -113,16 +116,18 @@ export default function GuyAvniBridgePage() {
 		jsonLd = [
 			buildBreadcrumbSchema(breadcrumbItems),
 			buildPersonSchema({ sameAs: sameAs.length ? sameAs : undefined }),
-			buildWebPageSchema({
-				'@id': `${SITE_URL}${PAGE_PATH}#webpage`,
-				url: `${SITE_URL}${PAGE_PATH}`,
-				name: 'Guy Avni | גיא אבני עורך דין',
-				description:
-					'כרטיס תעתיק לטיני לגיא אבני עורך דין: זהות, תחומי ליווי וקישור לעמוד היישות /about/.',
-				dateModified: PAGE_DATE_MODIFIED,
-				'@type': 'WebPage',
-				mainEntity: { '@id': SITE_PERSON_ID },
-			}),
+			attachSpeakable(
+				buildWebPageSchema({
+					'@id': `${SITE_URL}${PAGE_PATH}#webpage`,
+					url: `${SITE_URL}${PAGE_PATH}`,
+					name: 'Guy Avni | גיא אבני עורך דין',
+					description:
+						'כרטיס תעתיק לטיני לגיא אבני עורך דין: זהות, תחומי ליווי וקישור לעמוד היישות /about/.',
+					dateModified: PAGE_DATE_MODIFIED,
+					'@type': 'WebPage',
+					mainEntity: { '@id': SITE_PERSON_ID },
+				}),
+			),
 			buildFaqSchema([...BRIDGE_FAQ]),
 		];
 
@@ -133,6 +138,7 @@ export default function GuyAvniBridgePage() {
 					<MainPageHero hero={HERO} index="11" eyebrow="Guy Avni · גיא אבני" />
 					<EntityByline lastUpdatedLabel="יולי 2026" />
 					<AttorneyCredentialBlock />
+					<SpeakableVoiceSection blocks={GUY_AVNI_SPEAKABLE_VOICE_BLOCKS} />
 
 					<PageSection className="mt-16">
 						<SectionHeader index={1} eyebrow="גשר תעתיק" title="למה קיים כרטיס /guy-avni/" />

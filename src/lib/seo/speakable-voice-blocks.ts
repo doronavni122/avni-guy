@@ -123,3 +123,67 @@ export function getCategorySpeakableVoiceBlock(category: string): SpeakableVoice
 		return null;
 	}
 }
+
+/** Answer hubs lacking dedicated speakable surfaces (F11). */
+export const CONTACT_SPEAKABLE_VOICE_BLOCKS: SpeakableVoiceBlock[] = [
+	{
+		id: 'contact-how',
+		question: 'איך יוצרים קשר עם גיא אבני?',
+		answer:
+			'יוצרים קשר בדוא״ל דרך עמוד יצירת הקשר לתיאום שיחת מיקוד. כדאי לציין נושא קצר, מטרה ודחיפות.',
+	},
+];
+
+export const SHEELOT_SPEAKABLE_VOICE_BLOCKS: SpeakableVoiceBlock[] = [
+	{
+		id: 'sheelot-what',
+		question: 'מה יש בעמוד השאלות הנפוצות?',
+		answer:
+			'עמוד השאלות מרכז תשובות קצרות בעברית על נדל״ן, מיסוי, חוזים ובחירת עורך דין - מידע כללי בלבד.',
+	},
+];
+
+export const MEDIA_SPEAKABLE_VOICE_BLOCKS: SpeakableVoiceBlock[] = [
+	{
+		id: 'media-what',
+		question: 'מה כולל עמוד המדיה של גיא אבני?',
+		answer:
+			'עמוד המדיה מרכז ערוצים בבעלות המשרד והופעות חיצוניות מתועדות בלבד - בלי כתובות מדומיינות.',
+	},
+];
+
+export const TAGS_SPEAKABLE_VOICE_BLOCKS: SpeakableVoiceBlock[] = [
+	{
+		id: 'tags-what',
+		question: 'למה משמשות תגיות באתר?',
+		answer:
+			'תגיות מצמצמות לנושא צר במאמרים המשפטיים, כדי למצוא מדריך ממוקד לפני מעבר לקטגוריה או ליצירת קשר.',
+	},
+];
+
+export const EDITORIAL_SPEAKABLE_VOICE_BLOCKS: SpeakableVoiceBlock[] = [
+	{
+		id: 'editorial-what',
+		question: 'מהי מדיניות העריכה באתר?',
+		answer:
+			'מדיניות העריכה מתארת איך נכתבים ונבדקים מאמרים משפטיים באתר, ומבהירה שהתוכן אינו ייעוץ משפטי אישי.',
+	},
+];
+
+export const GUY_AVNI_SPEAKABLE_VOICE_BLOCKS: SpeakableVoiceBlock[] = [
+	{
+		id: 'guy-avni-who',
+		question: 'מי זה Guy Avni?',
+		answer:
+			'Guy Avni הוא התעתיק הלטיני של גיא אבני, עורך דין ישראלי. עמוד היישות המלא נמצא ב־/about/.',
+	},
+];
+
+export const BLOG_SPEAKABLE_VOICE_BLOCKS: SpeakableVoiceBlock[] = [
+	{
+		id: 'blog-what',
+		question: 'מה יש בארכיון המאמרים?',
+		answer:
+			'ארכיון המאמרים של גיא אבני כולל מדריכים בעברית על נדל״ן, מיסוי, חוזים וליטיגציה - מידע כללי שאינו ייעוץ אישי.',
+	},
+];
