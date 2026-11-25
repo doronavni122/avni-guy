@@ -1,0 +1,6 @@
+next_plan_suggestion: none_wave_complete
+files_to_read: OWNER-REPORTS/013_seo_aio_012_remediation_scopes_2026-11-25.md notes/implementations/scope_loop_state.json
+rules: .cursor/rules/ssot-repo-structure.mdc enforcement/atomic-change-loging.mdc owner-checklist-agent-edits.mdc
+tools_status: build_ok; hub STATIC_PATH_LASTMOD 2026-11-25; OPERATOR runbooks recorded
+open_issues: OPERATOR values still empty until owner sets env/GSC; citations optional frontmatter unused until articles claim URLs
+wave: plans 057-072; branch feature/seo-aio-012-gaps-2026-11-25

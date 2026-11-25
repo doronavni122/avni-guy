@@ -1,0 +1,6 @@
+next_plan_suggestion: 058_home_speakable_spec_f10
+files_to_read: src/app/page.tsx src/utils/structured-data.ts
+rules: .cursor/rules/ssot-repo-structure.mdc enforcement/atomic-change-loging.mdc
+tools_status: build_ok; home BreadcrumbList in extraJsonLd
+open_issues: none
+scope: home-breadcrumb-jsonld DONE F09
