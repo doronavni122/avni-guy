@@ -1001,3 +1001,4 @@
 812. unique-org-logo-raster-f03-reopen , public/images/shared/guy-avni-avni-guy-law-firm-lawyer-organization-logo-raster-photo-4.jpg public/images/shared/guy-avni-avni-guy-law-firm-lawyer-organization-logo-raster-photo-4.webp public/images/shared/guy-avni-avni-guy-law-firm-lawyer-organization-logo-raster-photo-4.avif src/lib/seo/brand-image-dimensions.ts .cursor/plans/073_org_logo_unique_raster_f03.plan.md task_graph.log
 813. warn-office-sameas-tls-optout-f21 , src/env.ts .cursor/plans/074_office_sameas_tls_warn_f21.plan.md task_graph.log
 814. add-073-074-briefs-and-verify-state , notes/implementations/073_org_logo_unique_raster_f03_brief.txt notes/implementations/074_office_sameas_tls_warn_f21_brief.txt notes/implementations/scope_loop_state.json OWNER-REPORTS/013_seo_aio_012_remediation_scopes_2026-11-25.md task_graph.log
+815. add-subject-manifest-0040-0041-longtails , subject-manifest.json task_graph.log
