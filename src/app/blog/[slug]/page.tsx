@@ -41,6 +41,8 @@ export async function generateMetadata({ params }: PageProps) {
 	if (!post) return {};
 	const topicKeyword = resolveArticleKeyword(post.data);
 	const quarantined = isQuarantinedBlogSlug(slug);
+	const publishedTime = post.data.pubDate.toISOString();
+	const modifiedTime = (post.data.updatedDate ?? post.data.pubDate).toISOString();
 	return buildPageMetadata({
 		title: articleDocumentTitle(post.data.title),
 		description: post.data.metaDescription,
@@ -49,7 +51,15 @@ export async function generateMetadata({ params }: PageProps) {
 		type: 'article',
 		image: post.data.images[0]?.src,
 		absoluteTitle: true,
-		robots: { index: !quarantined, follow: true },
+		publishedTime,
+		modifiedTime,
+		robots: {
+			index: !quarantined,
+			follow: true,
+			'max-image-preview': 'large',
+			'max-snippet': -1,
+			'max-video-preview': -1,
+		},
 	});
 }
 
