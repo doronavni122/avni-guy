@@ -3,8 +3,6 @@ import { imageObjectWithDimensions } from '@/lib/seo/brand-image-dimensions';
 import { SITE_PERSON_ID } from '@/lib/seo/schema-person';
 import type { BlogPostingSchemaInput } from '@/utils/structured-data';
 
-export const PERSON_REF = { '@id': SITE_PERSON_ID } as const;
-
 const SITE_ORGANIZATION_ID = `${SITE_URL}#organization`;
 
 export type ArticleSchemaInput = BlogPostingSchemaInput;
