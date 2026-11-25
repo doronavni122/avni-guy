@@ -8,9 +8,12 @@ import { SiteShell } from '@/components/layout/SiteShell';
 import { buildPageMetadata } from '@/lib/metadata';
 import { replaceEmDashDeep } from '@/lib/content/sanitize-user-facing-text';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
+import { SpeakableVoiceSection } from '@/components/seo/SpeakableVoiceSection';
 import { SITE_URL } from '@/consts';
 import { mainPageOgImageUrl } from '@/lib/seo/main-page-og';
 import type { MainPageHero as MainPageHeroData } from '@/lib/seo/hero-rules';
+import { attachSpeakable } from '@/lib/seo/speakable';
+import { MEDIA_SPEAKABLE_VOICE_BLOCKS } from '@/lib/seo/speakable-voice-blocks';
 import {
 	buildBreadcrumbSchema,
 	buildFaqSchema,
@@ -22,7 +25,7 @@ export const dynamic = 'force-static';
 
 const PAGE_PATH = '/media/';
 const PAGE_OG_IMAGE = mainPageOgImageUrl('/media/');
-const PAGE_DATE_MODIFIED = '2026-07-14';
+const PAGE_DATE_MODIFIED = '2026-11-25';
 
 const HERO: MainPageHeroData = {
 	path: PAGE_PATH,
@@ -114,15 +117,17 @@ export default function MediaAppearancesPage() {
 	}));
 	const jsonLd = [
 		buildBreadcrumbSchema(breadcrumbItems),
-		buildWebPageSchema({
-			'@id': `${SITE_URL}${PAGE_PATH}#webpage`,
-			url: `${SITE_URL}${PAGE_PATH}`,
-			name: 'גיא אבני | מדיה והופעות',
-			description:
-				'מרכז מדיה והופעות של גיא אבני עורך דין: ערוצים בבעלות המשרד והופעות מתועדות בלבד.',
-			dateModified: PAGE_DATE_MODIFIED,
-			'@type': 'WebPage',
-		}),
+		attachSpeakable(
+			buildWebPageSchema({
+				'@id': `${SITE_URL}${PAGE_PATH}#webpage`,
+				url: `${SITE_URL}${PAGE_PATH}`,
+				name: 'גיא אבני | מדיה והופעות',
+				description:
+					'מרכז מדיה והופעות של גיא אבני עורך דין: ערוצים בבעלות המשרד והופעות מתועדות בלבד.',
+				dateModified: PAGE_DATE_MODIFIED,
+				'@type': 'WebPage',
+			}),
+		),
 		...(ownedListItems.length > 0 ? [buildItemListSchema(ownedListItems)] : []),
 		buildFaqSchema([...MEDIA_FAQ]),
 	];
@@ -134,6 +139,7 @@ export default function MediaAppearancesPage() {
 				<MainPageHero hero={HERO} index="10" eyebrow="מדיה והופעות" />
 				<EntityByline lastUpdatedLabel="יולי 2026" />
 				<AttorneyCredentialBlock />
+				<SpeakableVoiceSection blocks={MEDIA_SPEAKABLE_VOICE_BLOCKS} />
 
 				<PageSection className="mt-16">
 					<SectionHeader index={1} eyebrow="מטרה" title="למה יש עמוד מדיה נפרד" />

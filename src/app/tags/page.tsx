@@ -12,8 +12,11 @@ import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
 import { buildPageMetadata } from '@/lib/metadata';
 import { replaceEmDashDeep } from '@/lib/content/sanitize-user-facing-text';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
+import { SpeakableVoiceSection } from '@/components/seo/SpeakableVoiceSection';
 import { SITE_URL } from '@/consts';
 import { mainPageOgImageUrl } from '@/lib/seo/main-page-og';
+import { attachSpeakable } from '@/lib/seo/speakable';
+import { TAGS_SPEAKABLE_VOICE_BLOCKS } from '@/lib/seo/speakable-voice-blocks';
 import {
 	buildBreadcrumbSchema,
 	buildFaqSchema,
@@ -24,7 +27,7 @@ import { getTagLabel } from '@/utils/taxonomy-labels';
 
 export const dynamic = 'force-static';
 
-const TAGS_DATE_MODIFIED = '2026-07-13';
+const TAGS_DATE_MODIFIED = '2026-11-25';
 
 const DIRECT_ANSWER =
 	'תגיות באתר גיא אבני מקבצות מאמרים לפי מצב צר - זכויות רוכש, ציות, חוזים ועוד. בחרו תגית, קראו מאמר אחד, והמשיכו לקטגוריה רחבה או ליצירת קשר.';
@@ -91,13 +94,15 @@ export default async function TagsIndexPage() {
 
 	const jsonLd = [
 		buildBreadcrumbSchema(breadcrumbItems),
-		buildWebPageSchema({
-			'@id': `${SITE_URL}/tags/#webpage`,
-			url: `${SITE_URL}/tags/`,
-			name: 'תגיות לנושאים ממוקדים | גיא אבני משרד עורכי דין',
-			description: DIRECT_ANSWER,
-			dateModified: TAGS_DATE_MODIFIED,
-		}),
+		attachSpeakable(
+			buildWebPageSchema({
+				'@id': `${SITE_URL}/tags/#webpage`,
+				url: `${SITE_URL}/tags/`,
+				name: 'תגיות לנושאים ממוקדים | גיא אבני משרד עורכי דין',
+				description: DIRECT_ANSWER,
+				dateModified: TAGS_DATE_MODIFIED,
+			}),
+		),
 		buildItemListSchema(listItems),
 		buildFaqSchema([...tagsFaq]),
 	];
@@ -118,6 +123,7 @@ export default async function TagsIndexPage() {
 				<BreadcrumbNav items={breadcrumbItems} />
 				<MainPageHero hero={hero} index="05" eyebrow="תגיות" />
 				<EntityByline lastUpdatedLabel="יולי 2026" />
+				<SpeakableVoiceSection blocks={TAGS_SPEAKABLE_VOICE_BLOCKS} />
 
 				<p className="mt-8 max-w-3xl text-pretty text-right leading-relaxed text-muted-foreground">
 					תגית צרה מצמצמת רעש: פתחו נושא אחד, השוו ל־{' '}

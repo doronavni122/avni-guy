@@ -16,15 +16,15 @@ import { mainPageOgImageUrl } from '@/lib/seo/main-page-og';
 import {
 	buildBreadcrumbSchema,
 	buildFaqSchema,
-	buildHowToSchema,
 	buildItemListSchema,
+	buildOfferCatalogSchema,
 	buildWebPageSchema,
 } from '@/utils/structured-data';
 
 export const dynamic = 'force-static';
 
 const SERVICES_OG_IMAGE = mainPageOgImageUrl('/services/');
-const SERVICES_DATE_MODIFIED = '2026-07-14';
+const SERVICES_DATE_MODIFIED = '2026-11-25';
 
 export const metadata = buildPageMetadata({
 	title: 'גיא אבני | שירותים - ייעוץ, ליווי ותכנון משפטי',
@@ -217,12 +217,18 @@ export default function ServicesPage() {
 			}),
 		),
 		buildItemListSchema(itemListEntries),
-		buildFaqSchema([...SERVICES_FAQ]),
-		buildHowToSchema({
-			name: 'איך עובד ליווי משפטי עם גיא אבני',
-			description: 'מסלול מיקוד, תכנון, ליווי ומעקב.',
-			steps: [...SERVICE_JOURNEY_STEPS],
+		buildOfferCatalogSchema({
+			name: 'קטלוג שירותים — משרד גיא אבני',
+			description: DIRECT_ANSWER,
+			url: `${SITE_URL}/services/`,
+			items: SERVICES.map((service) => ({
+				name: service.title,
+				description: service.text,
+				url: `${SITE_URL}/services/#${encodeURIComponent(service.title)}`,
+			})),
 		}),
+		buildFaqSchema([...SERVICES_FAQ]),
+		// HowTo JSON-LD removed: Google HowTo rich results deprecated 2023; journey HTML remains (F12).
 	];
 
 	return (

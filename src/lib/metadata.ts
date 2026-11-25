@@ -17,9 +17,12 @@ export type PageMetaInput = {
 	/** Skip root layout title.template suffix (hub pages with self-contained titles). */
 	absoluteTitle?: boolean;
 	/** Override robots. Default index,follow. */
-	robots?: { index: boolean; follow: boolean };
+	robots?: Metadata['robots'];
 	/** When set, used as canonical instead of `path` (e.g. pagers → /blog/). */
 	canonicalPath?: string;
+	/** ISO dates for OG article:* times (F18/F19). */
+	publishedTime?: string;
+	modifiedTime?: string;
 };
 
 export function buildPageMetadata(input: PageMetaInput): Metadata {
@@ -35,28 +38,46 @@ export function buildPageMetadata(input: PageMetaInput): Metadata {
 		const canonical = new URL(canonicalPath, SITE_URL).toString();
 		const ogUrl = new URL(sanitized.path, SITE_URL).toString();
 		const ogImage = sanitized.image ?? FALLBACK_OG_IMAGE;
+		const ogType = sanitized.type ?? 'website';
+		const openGraph: Metadata['openGraph'] = {
+			type: ogType,
+			locale: 'he_IL',
+			url: ogUrl,
+			title: sanitized.title,
+			description: sanitized.description,
+			siteName: SITE_TITLE,
+			images: [{ url: ogImage }],
+			...(ogType === 'article' && sanitized.publishedTime
+				? { publishedTime: sanitized.publishedTime }
+				: {}),
+			...(ogType === 'article' && sanitized.modifiedTime
+				? { modifiedTime: sanitized.modifiedTime }
+				: {}),
+		};
+		const defaultRobots: Metadata['robots'] =
+			ogType === 'article'
+				? {
+						index: true,
+						follow: true,
+						'max-image-preview': 'large',
+						'max-snippet': -1,
+						'max-video-preview': -1,
+					}
+				: { index: true, follow: true };
 		return {
 			title: sanitized.absoluteTitle ? { absolute: sanitized.title } : sanitized.title,
 			description: sanitized.description,
 			keywords: sanitized.keywords ?? [sanitized.keyword],
 			authors: [{ name: 'גיא אבני' }],
 			alternates: { canonical },
-			openGraph: {
-				type: sanitized.type ?? 'website',
-				locale: 'he_IL',
-				url: ogUrl,
-				title: sanitized.title,
-				description: sanitized.description,
-				siteName: SITE_TITLE,
-				images: [{ url: ogImage }],
-			},
+			openGraph,
 			twitter: {
 				card: 'summary_large_image',
 				title: sanitized.title,
 				description: sanitized.description,
 				images: [ogImage],
 			},
-			robots: sanitized.robots ?? { index: true, follow: true },
+			robots: sanitized.robots ?? defaultRobots,
 		};
 	} catch (err) {
 		console.error('[metadata] buildPageMetadata failed', { input, err });

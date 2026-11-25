@@ -40,6 +40,11 @@ export const blogFrontmatterSchema = z.object({
 			}),
 		)
 		.min(3),
+	/**
+	 * Optional primary-law / gov citation URLs for BlogPosting.citation (F06).
+	 * Only claimed real URLs — never invent.
+	 */
+	citations: z.array(z.string().url()).max(12).optional(),
 });
 
 export type BlogFrontmatter = z.infer<typeof blogFrontmatterSchema>;

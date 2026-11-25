@@ -1,4 +1,8 @@
 import { SITE_CONTACT_EMAIL, SITE_TITLE, SITE_URL } from '../consts';
+import {
+	BRAND_ORG_LOGO_RASTER_PATH,
+	imageObjectWithDimensions,
+} from '@/lib/seo/brand-image-dimensions';
 import { buildArticleSchema } from '@/lib/seo/schema-article';
 import { hasVisibleOfficeNap, readOfficeNap } from '@/lib/seo/office-nap';
 import { readPersonSameAsUrls, SITE_PERSON_ID } from '@/lib/seo/schema-person';
@@ -12,8 +16,6 @@ export const SITE_WEBSITE_ID = `${SITE_URL}#website`;
 /** Stable JSON-LD @id for the homepage WebPage entity. */
 export const SITE_HOME_WEBPAGE_ID = `${SITE_URL}#webpage`;
 
-const BRAND_LOGO_PATH = '/images/branding/guy-avni-avni-guy-law-firm-lawyer-brand-logo.svg';
-
 function absoluteUrl(pathOrUrl: string): string {
 	try {
 		if (pathOrUrl.startsWith('http://') || pathOrUrl.startsWith('https://')) {
@@ -23,7 +25,7 @@ function absoluteUrl(pathOrUrl: string): string {
 		return new URL(p, SITE_URL).toString();
 	} catch (err) {
 		console.error('[structured-data] absoluteUrl failed', { pathOrUrl, err });
-		return new URL(BRAND_LOGO_PATH, SITE_URL).toString();
+		return new URL(BRAND_ORG_LOGO_RASTER_PATH, SITE_URL).toString();
 	}
 }
 
@@ -48,10 +50,11 @@ export const buildOrganizationSchema = () => {
 		name: 'גיא אבני משרד עורכי דין',
 		url: SITE_URL,
 		inLanguage: 'he-IL',
-		logo: {
-			'@type': 'ImageObject',
-			url: absoluteUrl(BRAND_LOGO_PATH),
-		},
+		// Raster logo for KG/crawlability; SVG brand mark stays UI-only (F03).
+		logo: imageObjectWithDimensions(absoluteUrl(BRAND_ORG_LOGO_RASTER_PATH), {
+			name: 'גיא אבני משרד עורכי דין',
+			caption: 'לוגו משרד גיא אבני (רסטר לזיהוי ארגון)',
+		}),
 		contactPoint,
 		founder: {
 			'@type': 'Person',
@@ -100,14 +103,7 @@ export const buildWebSiteJsonLd = () => ({
 		name: 'גיא אבני',
 		url: absoluteUrl('/about/'),
 	},
-	potentialAction: {
-		'@type': 'SearchAction',
-		target: {
-			'@type': 'EntryPoint',
-			urlTemplate: `${SITE_URL}/search/?q={search_term_string}`,
-		},
-		'query-input': 'required name=search_term_string',
-	},
+	// No SearchAction: /search/ is noindex — sitelinks searchbox points at a non-indexable surface (F14).
 });
 
 export type BlogPostingSchemaInput = {
@@ -121,6 +117,8 @@ export type BlogPostingSchemaInput = {
 	imageUrls: string[];
 	authorName: string;
 	authorUrl: string;
+	/** Primary-law/gov citation URLs from article metadata only — never invent (F06). */
+	citations?: string[];
 };
 
 export const buildBlogPostingSchema = (input: BlogPostingSchemaInput) => buildArticleSchema(input);
@@ -155,6 +153,12 @@ export const buildBreadcrumbSchema = (items: BreadcrumbItem[]) => ({
 	}),
 });
 
+/**
+ * FAQPage JSON-LD policy (F13 / YMYL commercial reality):
+ * - Keep for Bing + entity understanding on hubs/articles that already show matching FAQ HTML.
+ * - Not intended as Google-only FAQ rich-result theater (often ineligible for commercial YMYL).
+ * - Callers must only pass Q&A that is visible on the same page.
+ */
 export const buildFaqSchema = (items: Array<{ question: string; answer: string }>) => ({
 	'@context': 'https://schema.org',
 	'@type': 'FAQPage',
@@ -174,7 +178,7 @@ export type WebPageSchemaInput = {
 	name: string;
 	description: string;
 	dateModified: string;
-	'@type'?: 'WebPage' | 'CollectionPage' | 'AboutPage';
+	'@type'?: 'WebPage' | 'CollectionPage' | 'AboutPage' | 'ProfilePage';
 	mainEntity?: { '@id': string };
 };
 
@@ -278,6 +282,51 @@ export function buildContactPageSchema(input: ContactPageSchemaInput): Record<st
 			url: absoluteUrl('/contact/'),
 			name: input.name,
 			description: input.description,
+		};
+	}
+}
+
+export type OfferCatalogItemInput = {
+	name: string;
+	description: string;
+	url: string;
+};
+
+/**
+ * OfferCatalog of Service offers — no prices (never invent commercial terms) (F23).
+ */
+export function buildOfferCatalogSchema(input: {
+	name: string;
+	description: string;
+	url: string;
+	items: OfferCatalogItemInput[];
+}): Record<string, unknown> {
+	try {
+		return {
+			'@context': 'https://schema.org',
+			'@type': 'OfferCatalog',
+			name: input.name,
+			description: input.description,
+			url: input.url,
+			itemListElement: input.items.map((item, index) => ({
+				'@type': 'Offer',
+				position: index + 1,
+				itemOffered: {
+					'@type': 'Service',
+					name: item.name,
+					description: item.description,
+					url: item.url,
+					provider: { '@id': SITE_ORGANIZATION_ID },
+				},
+			})),
+		};
+	} catch (err) {
+		console.error('[structured-data] buildOfferCatalogSchema failed', { err });
+		return {
+			'@context': 'https://schema.org',
+			'@type': 'OfferCatalog',
+			name: input.name,
+			url: input.url,
 		};
 	}
 }

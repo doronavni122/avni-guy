@@ -30,14 +30,13 @@ import { SITE_URL } from '@/consts';
 import {
 	buildBreadcrumbSchema,
 	buildFaqSchema,
-	buildHowToSchema,
 	buildWebPageSchema,
 } from '@/utils/structured-data';
 
 export const dynamic = 'force-static';
 
 const ABOUT_OG_IMAGE = `${SITE_URL}${PERSON_PORTRAIT_IMAGE_PATH}`;
-const ABOUT_DATE_MODIFIED = '2026-09-17';
+const ABOUT_DATE_MODIFIED = '2026-11-25';
 
 export const metadata = buildPageMetadata({
 	title: 'אודות גיא אבני עורך דין | משרד גיא אבני',
@@ -223,7 +222,8 @@ export default function AboutPage() {
 					description:
 						'עמוד האודות של גיא אבני, עורך דין: מי זה, מה האתר, תחומי ליווי, ומקורות לרשומה הציבורית.',
 					dateModified: ABOUT_DATE_MODIFIED,
-					'@type': 'AboutPage',
+					// ProfilePage per Search Central profile markup; mainEntity = Person (F08).
+					'@type': 'ProfilePage',
 					mainEntity: { '@id': `${SITE_URL}/about/#person` },
 				}),
 			),
@@ -236,14 +236,7 @@ export default function AboutPage() {
 		},
 		buildPersonSchema({ sameAs: sameAs.length ? sameAs : undefined }),
 		buildFaqSchema([...BRAND_FAQ]),
-		buildHowToSchema({
-			name: 'איך מתחילים לעבוד עם גיא אבני עורך דין',
-			description: 'מסלול מיקוד, תמונת סיכונים וליווי מסודר.',
-			steps: WORKFLOW_STEPS.map((step, index) => ({
-				name: `שלב ${index + 1}`,
-				text: step,
-			})),
-		}),
+		// HowTo JSON-LD removed: Google HowTo rich results deprecated 2023; workflow HTML remains (F12).
 	];
 
 	return (

@@ -972,3 +972,31 @@
 783. update-aeo-findings-and-plan-status , OWNER-REPORTS/011_aeo_geo_ai_appearances_2026-11-23.md .cursor/plans/053_aeo_geo_ai_appearances_a1.plan.md task_graph.log
 784. write-053-aeo-plan-brief , notes/implementations/053_aeo_geo_ai_appearances_a1_brief.txt task_graph.log
 785. mark-053-plan-verify-deploy-done , .cursor/plans/053_aeo_geo_ai_appearances_a1.plan.md task_graph.log
+786. init-seo-aio-012-scope-loop , OWNER-REPORTS/013_seo_aio_012_remediation_scopes_2026-11-25.md notes/implementations/scope_dag.json notes/implementations/scope_loop_state.json task_graph.log
+787. rss-channel-language-he-il , src/app/rss.xml/route.ts task_graph.log
+788. well-known-agent-card-route , src/app/.well-known/agent-card.json/route.ts .cursor/plans/055_well_known_agent_card_f16.plan.md task_graph.log
+789. remove-website-searchaction-noindex-target , src/utils/structured-data.ts .cursor/plans/056_website_searchaction_align_f14.plan.md task_graph.log
+790. flip-f15-indexnow-skip-and-restore-true-scopes , OWNER-REPORTS/013_seo_aio_012_remediation_scopes_2026-11-25.md notes/implementations/scope_loop_state.json task_graph.log
+791. home-breadcrumb-jsonld-f09 , src/app/page.tsx .cursor/plans/057_home_breadcrumb_jsonld_f09.plan.md task_graph.log
+792. home-speakable-spec-f10 , src/app/page.tsx src/components/home/HomePage.tsx src/lib/seo/speakable-voice-blocks.ts .cursor/plans/058_home_speakable_spec_f10.plan.md task_graph.log
+793. answer-hubs-speakable-f11 , src/lib/seo/speakable-voice-blocks.ts src/components/seo/SpeakableVoiceSection.tsx src/app/contact/page.tsx src/app/sheelot/page.tsx src/app/media/page.tsx src/app/tags/page.tsx src/app/editorial-policy/page.tsx src/app/guy-avni/page.tsx src/components/blog/BlogArchiveView.tsx .cursor/plans/059_answer_hubs_speakable_f11.plan.md task_graph.log
+794. about-profilepage-jsonld-f08 , src/utils/structured-data.ts src/app/about/page.tsx .cursor/plans/060_about_profilepage_jsonld_f08.plan.md task_graph.log
+795. org-logo-raster-jsonld-f03 , src/lib/seo/brand-image-dimensions.ts src/utils/structured-data.ts .cursor/plans/061_org_logo_raster_jsonld_f03.plan.md task_graph.log
+796. imageobject-width-height-f17 , src/lib/seo/schema-person.ts .cursor/plans/062_imageobject_width_height_f17.plan.md task_graph.log
+797. person-attorney-schema-type-f24 , src/lib/seo/schema-person.ts .cursor/plans/063_person_attorney_schema_type_f24.plan.md task_graph.log
+798. article-multi-aspect-imageobject-f05 , src/lib/seo/schema-article.ts .cursor/plans/064_article_multi_aspect_imageobject_f05.plan.md task_graph.log
+799. blogposting-inline-author-f04 , src/lib/seo/schema-article.ts .cursor/plans/065_blogposting_inline_author_f04.plan.md task_graph.log
+800. blogposting-citation-schema-f06 , src/lib/seo/schema-article.ts src/lib/content/schema.ts src/utils/structured-data.ts src/app/blog/[slug]/page.tsx .cursor/plans/066_blogposting_citation_schema_f06.plan.md task_graph.log
+801. article-robots-og-freshness-f18 , src/lib/metadata.ts src/app/blog/[slug]/page.tsx .cursor/plans/067_article_robots_og_freshness_f18.plan.md task_graph.log
+802. trim-deprecated-howto-jsonld-f12 , src/app/page.tsx src/app/about/page.tsx src/app/services/page.tsx .cursor/plans/068_trim_deprecated_howto_jsonld_f12.plan.md task_graph.log
+803. faq-jsonld-policy-align-f13 , src/utils/structured-data.ts .cursor/plans/069_faq_jsonld_policy_align_f13.plan.md task_graph.log
+804. services-offer-catalog-jsonld-f23 , src/utils/structured-data.ts src/app/services/page.tsx .cursor/plans/070_services_offer_catalog_jsonld_f23.plan.md task_graph.log
+805. guy-about-entity-consolidation-f22 , src/app/guy-avni/page.tsx .cursor/plans/071_guy_about_entity_consolidation_f22.plan.md task_graph.log
+806. sitemap-hub-lastmod-refresh-f25 , src/app/sitemap.ts src/app/page.tsx src/app/about/page.tsx src/app/services/page.tsx src/app/contact/page.tsx src/app/sheelot/page.tsx src/app/media/page.tsx src/app/tags/page.tsx src/app/editorial-policy/page.tsx src/app/guy-avni/page.tsx .cursor/plans/072_sitemap_hub_lastmod_refresh_f25.plan.md task_graph.log
+807. mark-012-scopes-complete-operator-runbooks , OWNER-REPORTS/013_seo_aio_012_remediation_scopes_2026-11-25.md task_graph.log
+808. update-scope-loop-state-012-complete , notes/implementations/scope_loop_state.json task_graph.log
+809. remove-unused-person-ref-export , src/lib/seo/schema-article.ts task_graph.log
+810. add-012-wave-implementation-briefs , notes/implementations/057_home_breadcrumb_jsonld_f09_brief.txt notes/implementations/072_sitemap_hub_lastmod_refresh_f25_brief.txt notes/implementations/058_home_speakable_spec_f10_brief.txt notes/implementations/059_answer_hubs_speakable_f11_brief.txt notes/implementations/060_about_profilepage_jsonld_f08_brief.txt notes/implementations/061_org_logo_raster_jsonld_f03_brief.txt notes/implementations/062_imageobject_width_height_f17_brief.txt notes/implementations/063_person_attorney_schema_type_f24_brief.txt notes/implementations/064_article_multi_aspect_imageobject_f05_brief.txt notes/implementations/065_blogposting_inline_author_f04_brief.txt notes/implementations/066_blogposting_citation_schema_f06_brief.txt notes/implementations/067_article_robots_og_freshness_f18_brief.txt notes/implementations/068_trim_deprecated_howto_jsonld_f12_brief.txt notes/implementations/069_faq_jsonld_policy_align_f13_brief.txt notes/implementations/070_services_offer_catalog_jsonld_f23_brief.txt notes/implementations/071_guy_about_entity_consolidation_f22_brief.txt task_graph.log
+811. owner-checklist-seo-aio-012-locked , notes/implementations/implementaion_progress_checklist.md task_graph.log
+812. unique-org-logo-raster-f03-reopen , public/images/shared/guy-avni-avni-guy-law-firm-lawyer-organization-logo-raster-photo-4.jpg public/images/shared/guy-avni-avni-guy-law-firm-lawyer-organization-logo-raster-photo-4.webp public/images/shared/guy-avni-avni-guy-law-firm-lawyer-organization-logo-raster-photo-4.avif src/lib/seo/brand-image-dimensions.ts .cursor/plans/073_org_logo_unique_raster_f03.plan.md task_graph.log
+813. warn-office-sameas-tls-optout-f21 , src/env.ts .cursor/plans/074_office_sameas_tls_warn_f21.plan.md task_graph.log

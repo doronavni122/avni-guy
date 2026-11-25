@@ -16,7 +16,10 @@ import {
 import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
 import { BLOG_ARCHIVE_TITLE } from '@/lib/blog/archive-metadata';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
+import { SpeakableVoiceSection } from '@/components/seo/SpeakableVoiceSection';
 import { SITE_URL } from '@/consts';
+import { attachSpeakable } from '@/lib/seo/speakable';
+import { BLOG_SPEAKABLE_VOICE_BLOCKS } from '@/lib/seo/speakable-voice-blocks';
 import { getCategoryLabel } from '@/utils/taxonomy-labels';
 import {
 	buildBreadcrumbSchema,
@@ -57,15 +60,17 @@ export async function BlogArchiveView({ page }: BlogArchiveViewProps) {
 		safePage === 1 ? `${SITE_URL}/blog/` : `${SITE_URL}/blog/page/${safePage}/`;
 	const jsonLd = [
 		buildBreadcrumbSchema(breadcrumbItems),
-		buildWebPageSchema({
-			'@id': `${archiveUrl}#webpage`,
-			url: archiveUrl,
-			name: BLOG_ARCHIVE_TITLE,
-			description:
-				'ארכיון מאמרים משפטיים בעברית של גיא אבני, עו״ד: חוזים, נדל״ן, מיסוי ותהליכים.',
-			dateModified: archiveModified,
-			'@type': 'CollectionPage',
-		}),
+		attachSpeakable(
+			buildWebPageSchema({
+				'@id': `${archiveUrl}#webpage`,
+				url: archiveUrl,
+				name: BLOG_ARCHIVE_TITLE,
+				description:
+					'ארכיון מאמרים משפטיים בעברית של גיא אבני, עו״ד: חוזים, נדל״ן, מיסוי ותהליכים.',
+				dateModified: archiveModified,
+				'@type': 'CollectionPage',
+			}),
+		),
 		...(listItems.length ? [buildItemListSchema(listItems)] : []),
 	];
 
@@ -83,6 +88,7 @@ export async function BlogArchiveView({ page }: BlogArchiveViewProps) {
 					{ARCHIVE_SCOPE}
 				</p>
 				<EntityByline lastUpdatedLabel="יולי 2026" />
+				{safePage === 1 ? <SpeakableVoiceSection blocks={BLOG_SPEAKABLE_VOICE_BLOCKS} /> : null}
 
 				<PageSection className="mt-12">
 					<SectionHeader

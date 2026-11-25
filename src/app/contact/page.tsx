@@ -11,6 +11,9 @@ import { mainPageOgImageUrl } from '@/lib/seo/main-page-og';
 import { hasVisibleOfficeNap, readOfficeNap } from '@/lib/seo/office-nap';
 import { buildPersonSchema, readPersonSameAsUrls } from '@/lib/seo/schema-person';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
+import { SpeakableVoiceSection } from '@/components/seo/SpeakableVoiceSection';
+import { attachSpeakable } from '@/lib/seo/speakable';
+import { CONTACT_SPEAKABLE_VOICE_BLOCKS } from '@/lib/seo/speakable-voice-blocks';
 import {
 	buildBreadcrumbSchema,
 	buildContactPageSchema,
@@ -20,7 +23,7 @@ import {
 export const dynamic = 'force-static';
 
 const mailtoHref = `mailto:${SITE_CONTACT_EMAIL}?subject=${encodeURIComponent('פנייה מהאתר')}`;
-const CONTACT_DATE_MODIFIED = '2026-11-08';
+const CONTACT_DATE_MODIFIED = '2026-11-25';
 
 const CONTACT_FAQ = [
 	{
@@ -65,15 +68,17 @@ export default function ContactPage() {
 	const jsonLd = [
 		buildBreadcrumbSchema(breadcrumbItems),
 		buildPersonSchema({ sameAs: sameAs.length ? sameAs : undefined }),
-		buildContactPageSchema({
-			name: 'יצירת קשר — תיאום שיחה',
-			description:
-				'תיאום פגישת מיקוד בדוא״ל: מה להכין, מה צפוי בשיחה הראשונה, ופרטי קשר גלויים בדף.',
-			dateModified: CONTACT_DATE_MODIFIED,
-			email: SITE_CONTACT_EMAIL,
-			telephone: officeNap.phone,
-			areaServedName: 'Israel',
-		}),
+		attachSpeakable(
+			buildContactPageSchema({
+				name: 'יצירת קשר — תיאום שיחה',
+				description:
+					'תיאום פגישת מיקוד בדוא״ל: מה להכין, מה צפוי בשיחה הראשונה, ופרטי קשר גלויים בדף.',
+				dateModified: CONTACT_DATE_MODIFIED,
+				email: SITE_CONTACT_EMAIL,
+				telephone: officeNap.phone,
+				areaServedName: 'Israel',
+			}),
+		),
 		buildFaqSchema(CONTACT_FAQ.map((item) => ({ question: item.question, answer: item.answer }))),
 	];
 
@@ -82,6 +87,7 @@ export default function ContactPage() {
 			<div className="flex flex-col">
 				<BreadcrumbNav items={breadcrumbItems} />
 				<MainPageHero hero={MAIN_PAGE_HEROES['/contact/']} index="07" eyebrow="יצירת קשר / Contact" />
+				<SpeakableVoiceSection blocks={CONTACT_SPEAKABLE_VOICE_BLOCKS} />
 
 				<div className="mt-16 grid gap-px border border-border bg-border lg:grid-cols-12">
 					<div className="flex flex-col gap-6 bg-background p-8 text-right lg:col-span-7 lg:p-10">

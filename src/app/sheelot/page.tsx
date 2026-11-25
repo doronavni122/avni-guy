@@ -6,9 +6,12 @@ import { SiteShell } from '@/components/layout/SiteShell';
 import { buildPageMetadata } from '@/lib/metadata';
 import { replaceEmDashDeep } from '@/lib/content/sanitize-user-facing-text';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
+import { SpeakableVoiceSection } from '@/components/seo/SpeakableVoiceSection';
 import { SITE_URL } from '@/consts';
 import { mainPageOgImageUrl } from '@/lib/seo/main-page-og';
 import type { MainPageHero as MainPageHeroData } from '@/lib/seo/hero-rules';
+import { attachSpeakable } from '@/lib/seo/speakable';
+import { SHEELOT_SPEAKABLE_VOICE_BLOCKS } from '@/lib/seo/speakable-voice-blocks';
 import {
 	buildBreadcrumbSchema,
 	buildFaqSchema,
@@ -19,7 +22,7 @@ export const dynamic = 'force-static';
 
 const PAGE_PATH = '/sheelot/';
 const PAGE_OG_IMAGE = mainPageOgImageUrl('/sheelot/');
-const PAGE_DATE_MODIFIED = '2026-11-08';
+const PAGE_DATE_MODIFIED = '2026-11-25';
 
 const HERO: MainPageHeroData = {
 	path: PAGE_PATH,
@@ -131,15 +134,17 @@ export default function SheelotPage() {
 
 	const jsonLd = [
 		buildBreadcrumbSchema(breadcrumbItems),
-		buildWebPageSchema({
-			'@id': `${SITE_URL}${PAGE_PATH}#webpage`,
-			url: `${SITE_URL}${PAGE_PATH}`,
-			name: 'גיא אבני | שאלות נפוצות - נדל״ן, מיסוי ומקרקעין',
-			description:
-				'שאלות ותשובות בעברית על קניית דירה, מסים, חוזים ובחירת עורך דין מקרקעין.',
-			dateModified: PAGE_DATE_MODIFIED,
-			'@type': 'WebPage',
-		}),
+		attachSpeakable(
+			buildWebPageSchema({
+				'@id': `${SITE_URL}${PAGE_PATH}#webpage`,
+				url: `${SITE_URL}${PAGE_PATH}`,
+				name: 'גיא אבני | שאלות נפוצות - נדל״ן, מיסוי ומקרקעין',
+				description:
+					'שאלות ותשובות בעברית על קניית דירה, מסים, חוזים ובחירת עורך דין מקרקעין.',
+				dateModified: PAGE_DATE_MODIFIED,
+				'@type': 'WebPage',
+			}),
+		),
 		buildFaqSchema([...PAA_ITEMS]),
 	];
 
@@ -149,6 +154,7 @@ export default function SheelotPage() {
 				<BreadcrumbNav items={breadcrumbItems} />
 				<MainPageHero hero={HERO} index="09" eyebrow="שאלות נפוצות" />
 				<EntityByline lastUpdatedLabel="יולי 2026" />
+				<SpeakableVoiceSection blocks={SHEELOT_SPEAKABLE_VOICE_BLOCKS} />
 
 				<p className="mt-6 max-w-3xl text-pretty text-sm leading-relaxed text-muted-foreground">
 					המידע בעמוד זה כללי בלבד ואינו מחליף ייעוץ משפטי אישי. לתיאום שיחת מיקוד:{' '}

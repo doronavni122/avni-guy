@@ -1,0 +1,6 @@
+next_plan_suggestion: see_scope_loop_state
+files_to_read: .cursor/plans/063_person_attorney_schema_type_f24.plan.md OWNER-REPORTS/013_seo_aio_012_remediation_scopes_2026-11-25.md
+rules: ssot-repo-structure atomic-change-loging
+tools_status: implemented_committed
+open_issues: none_for_scope
+scope_status: DONE

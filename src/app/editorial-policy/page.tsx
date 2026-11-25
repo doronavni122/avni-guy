@@ -8,9 +8,12 @@ import { SiteShell } from '@/components/layout/SiteShell';
 import { buildPageMetadata } from '@/lib/metadata';
 import { replaceEmDashDeep } from '@/lib/content/sanitize-user-facing-text';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
+import { SpeakableVoiceSection } from '@/components/seo/SpeakableVoiceSection';
 import { SITE_URL } from '@/consts';
 import { mainPageOgImageUrl } from '@/lib/seo/main-page-og';
 import type { MainPageHero as MainPageHeroData } from '@/lib/seo/hero-rules';
+import { attachSpeakable } from '@/lib/seo/speakable';
+import { EDITORIAL_SPEAKABLE_VOICE_BLOCKS } from '@/lib/seo/speakable-voice-blocks';
 import {
 	buildBreadcrumbSchema,
 	buildFaqSchema,
@@ -21,7 +24,7 @@ export const dynamic = 'force-static';
 
 const PAGE_PATH = '/editorial-policy/';
 const PAGE_OG_IMAGE = mainPageOgImageUrl('/editorial-policy/');
-const PAGE_DATE_MODIFIED = '2026-07-14';
+const PAGE_DATE_MODIFIED = '2026-11-25';
 
 const HERO: MainPageHeroData = {
 	path: PAGE_PATH,
@@ -116,15 +119,17 @@ export default function EditorialPolicyPage() {
 
 	const jsonLd = [
 		buildBreadcrumbSchema(breadcrumbItems),
-		buildWebPageSchema({
-			'@id': `${SITE_URL}${PAGE_PATH}#webpage`,
-			url: `${SITE_URL}${PAGE_PATH}`,
-			name: 'גיא אבני | מדיניות עריכה ומתודולוגיה',
-			description:
-				'מתודולוגיית כתיבה וסקירה, שיוך ללשכת עורכי הדין, והבהרה שהתוכן אינו ייעוץ משפטי אישי.',
-			dateModified: PAGE_DATE_MODIFIED,
-			'@type': 'WebPage',
-		}),
+		attachSpeakable(
+			buildWebPageSchema({
+				'@id': `${SITE_URL}${PAGE_PATH}#webpage`,
+				url: `${SITE_URL}${PAGE_PATH}`,
+				name: 'גיא אבני | מדיניות עריכה ומתודולוגיה',
+				description:
+					'מתודולוגיית כתיבה וסקירה, שיוך ללשכת עורכי הדין, והבהרה שהתוכן אינו ייעוץ משפטי אישי.',
+				dateModified: PAGE_DATE_MODIFIED,
+				'@type': 'WebPage',
+			}),
+		),
 		buildFaqSchema([...EDITORIAL_FAQ]),
 	];
 
@@ -135,6 +140,7 @@ export default function EditorialPolicyPage() {
 				<MainPageHero hero={HERO} index="08" eyebrow="מדיניות עריכה" />
 				<EntityByline lastUpdatedLabel="יולי 2026" />
 				<AttorneyCredentialBlock />
+				<SpeakableVoiceSection blocks={EDITORIAL_SPEAKABLE_VOICE_BLOCKS} />
 
 				<PageSection className="mt-16">
 					<SectionHeader index={1} eyebrow="מטרה" title="למה יש עמוד מדיניות עריכה" />
