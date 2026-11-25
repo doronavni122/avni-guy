@@ -197,7 +197,7 @@ export async function GET() {
 <title>${escapeXml(SITE_TITLE)}</title>
 <description>${escapeXml(SITE_DESCRIPTION)}</description>
 <link>${SITE_URL}/</link>
-<language>he</language>
+<language>he-IL</language>
 ${items}
 </channel>
 </rss>`;
