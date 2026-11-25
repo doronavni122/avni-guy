@@ -1,6 +1,7 @@
 import { SITE_URL } from '@/consts';
 import { PERSON_SAMEAS_ENV_KEYS, warnProductionEnvGaps } from '@/env';
 import { SITE_SOCIAL_LINKS } from '@/lib/nav/site-social';
+import { imageObjectWithDimensions } from '@/lib/seo/brand-image-dimensions';
 import { readOfficeNap } from '@/lib/seo/office-nap';
 
 /** Stable JSON-LD @id for the person entity (canonical entity home). */
@@ -73,31 +74,27 @@ function absoluteUrl(pathOrUrl: string): string {
 
 function buildPersonPortraitImageObject(): Record<string, unknown> {
 	const url = absoluteUrl(PERSON_PORTRAIT_IMAGE_PATH);
-	return {
-		'@type': 'ImageObject',
+	return imageObjectWithDimensions(url, {
 		'@id': SITE_PERSON_IMAGE_ID,
-		url,
 		contentUrl: url,
 		name: PERSON_BRAND_IMAGE_ALT,
 		caption: PERSON_BRAND_IMAGE_ALT,
 		description: PERSON_BRAND_IMAGE_ALT,
 		inLanguage: 'he-IL',
 		representativeOfPage: true,
-	};
+	});
 }
 
 function buildOfficeImageObject(): Record<string, unknown> {
 	const url = absoluteUrl(PERSON_OFFICE_IMAGE_PATH);
-	return {
-		'@type': 'ImageObject',
+	return imageObjectWithDimensions(url, {
 		'@id': SITE_OFFICE_IMAGE_ID,
-		url,
 		contentUrl: url,
 		name: PERSON_BRAND_IMAGE_ALT,
 		caption: PERSON_BRAND_IMAGE_ALT,
 		description: PERSON_BRAND_IMAGE_ALT,
 		inLanguage: 'he-IL',
-	};
+	});
 }
 
 function isPlaceholderSameAsUrl(url: string): boolean {
@@ -207,11 +204,14 @@ export function assertClaimedPersonSameAsEdges(sameAs: string[]): string[] {
  * Minimal Person node so author/about `@id` refs resolve in-page
  * when a full Person schema is not already in the graph.
  */
+/** Dual-type Person+Attorney — claimed attorney identity only (F24). */
+const PERSON_ATTORNEY_TYPE = ['Person', 'Attorney'] as const;
+
 export function buildLeanPersonSchema(): Record<string, unknown> {
 	try {
 		return {
 			'@context': 'https://schema.org',
-			'@type': 'Person',
+			'@type': [...PERSON_ATTORNEY_TYPE],
 			'@id': SITE_PERSON_ID,
 			name: 'גיא אבני',
 			jobTitle: 'עורך דין',
@@ -222,7 +222,7 @@ export function buildLeanPersonSchema(): Record<string, unknown> {
 		console.error('[schema-person] buildLeanPersonSchema failed', { err });
 		return {
 			'@context': 'https://schema.org',
-			'@type': 'Person',
+			'@type': [...PERSON_ATTORNEY_TYPE],
 			'@id': SITE_PERSON_ID,
 			name: 'גיא אבני',
 			url: absoluteUrl('/about/'),
@@ -233,7 +233,7 @@ export function buildLeanPersonSchema(): Record<string, unknown> {
 export const buildPersonSchema = (options: PersonSchemaOptions = {}) => {
 	const schema: Record<string, unknown> = {
 		'@context': 'https://schema.org',
-		'@type': 'Person',
+		'@type': [...PERSON_ATTORNEY_TYPE],
 		'@id': SITE_PERSON_ID,
 		name: 'גיא אבני',
 		jobTitle: 'עורך דין',
