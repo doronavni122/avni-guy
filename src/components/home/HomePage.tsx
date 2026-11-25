@@ -11,6 +11,8 @@ import { MainPageHero } from '@/components/seo/MainPageHero';
 import type { HomeData } from '@/lib/home/loadHomeData';
 import { ABOUT_RANKING_INBOUND } from '@/lib/home/homeSeoSections';
 import { MAIN_PAGE_HEROES } from '@/lib/seo/main-page-heroes';
+import { SPEAKABLE_VOICE_CLASS } from '@/lib/seo/speakable';
+import { HOME_SPEAKABLE_VOICE_BLOCKS } from '@/lib/seo/speakable-voice-blocks';
 import { YmylDisclaimer } from '@/components/seo/YmylDisclaimer';
 import { cn } from '@/lib/utils';
 import { getCategoryLabel, getTagLabel } from '@/utils/taxonomy-labels';
@@ -106,6 +108,16 @@ export function HomePage({
 					<Link className={cn(inlineLink, 'text-sm')} href={ABOUT_RANKING_INBOUND.practice}>
 						תחומי ליווי של גיא אבני עורך דין
 					</Link>
+				</div>
+				<div id="speakable" className="mt-4 flex max-w-3xl flex-col gap-4" aria-label="תשובות קוליות קצרות">
+					{HOME_SPEAKABLE_VOICE_BLOCKS.map(({ id, question, answer }) => (
+						<div key={id} id={`speakable-${id}`}>
+							<p className="text-sm font-semibold text-foreground">{question}</p>
+							<p className={`${SPEAKABLE_VOICE_CLASS} mt-1 text-pretty text-sm leading-relaxed text-muted-foreground`}>
+								{answer}
+							</p>
+						</div>
+					))}
 				</div>
 				<figure className={cn(figureClass, 'mt-2')}>
 					<OptimizedImage

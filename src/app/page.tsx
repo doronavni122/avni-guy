@@ -4,6 +4,7 @@ import { SITE_URL } from '@/consts';
 import { loadHomeData } from '@/lib/home/loadHomeData';
 import { buildPageMetadata } from '@/lib/metadata';
 import { buildPersonSchema, readPersonSameAsUrls } from '@/lib/seo/schema-person';
+import { attachSpeakable } from '@/lib/seo/speakable';
 import {
 	buildBreadcrumbSchema,
 	buildFaqSchema,
@@ -40,12 +41,14 @@ export default async function Home() {
 	const homeBreadcrumbItems = [{ name: 'דף הבית', path: '/' }];
 	const jsonLd = [
 		buildBreadcrumbSchema(homeBreadcrumbItems),
-		buildHomeWebPageSchema({
-			name: 'משרד גיא אבני · מאמרים, שירותים וייעוץ',
-			description:
-				'עו״ד גיא אבני (גיא אבני עורך דין) מלווה פרטיים ועסקים. מאמרים, שירותים וייעוץ ראשון.',
-			dateModified: HOME_DATE_MODIFIED,
-		}),
+		attachSpeakable(
+			buildHomeWebPageSchema({
+				name: 'משרד גיא אבני · מאמרים, שירותים וייעוץ',
+				description:
+					'עו״ד גיא אבני (גיא אבני עורך דין) מלווה פרטיים ועסקים. מאמרים, שירותים וייעוץ ראשון.',
+				dateModified: HOME_DATE_MODIFIED,
+			}),
+		),
 		buildPersonSchema({ sameAs: sameAs.length ? sameAs : undefined }),
 		buildFaqSchema(data.faqItems),
 		...(featuredListItems.length > 0 ? [buildItemListSchema(featuredListItems)] : []),

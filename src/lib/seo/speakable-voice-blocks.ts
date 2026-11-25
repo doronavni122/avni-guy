@@ -11,6 +11,22 @@ export type SpeakableVoiceBlock = {
 	answer: string;
 };
 
+/** Homepage brand surface — short TTS-friendly answers (must match visible DOM). */
+export const HOME_SPEAKABLE_VOICE_BLOCKS: SpeakableVoiceBlock[] = [
+	{
+		id: 'home-who',
+		question: 'מי זה גיא אבני?',
+		answer:
+			'גיא אבני הוא עורך דין ישראלי. האתר מציע מאמרים משפטיים בעברית, שירותים לפרטיים ולעסקים, ומסלול לפגישת ייעוץ ראשונה.',
+	},
+	{
+		id: 'home-start',
+		question: 'איך מתחילים באתר גיא אבני?',
+		answer:
+			'מומלץ לקרוא מאמר רלוונטי או את עמוד השירותים, ואז ליצור קשר דרך עמוד יצירת הקשר לתיאום פגישת מיקוד.',
+	},
+];
+
 /** Entity/home brand surface — short TTS-friendly answers. */
 export const ABOUT_SPEAKABLE_VOICE_BLOCKS: SpeakableVoiceBlock[] = [
 	{

@@ -978,3 +978,4 @@
 789. remove-website-searchaction-noindex-target , src/utils/structured-data.ts .cursor/plans/056_website_searchaction_align_f14.plan.md task_graph.log
 790. flip-f15-indexnow-skip-and-restore-true-scopes , OWNER-REPORTS/013_seo_aio_012_remediation_scopes_2026-11-25.md notes/implementations/scope_loop_state.json task_graph.log
 791. home-breadcrumb-jsonld-f09 , src/app/page.tsx .cursor/plans/057_home_breadcrumb_jsonld_f09.plan.md task_graph.log
+792. home-speakable-spec-f10 , src/app/page.tsx src/components/home/HomePage.tsx src/lib/seo/speakable-voice-blocks.ts .cursor/plans/058_home_speakable_spec_f10.plan.md task_graph.log
