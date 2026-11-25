@@ -100,14 +100,7 @@ export const buildWebSiteJsonLd = () => ({
 		name: 'גיא אבני',
 		url: absoluteUrl('/about/'),
 	},
-	potentialAction: {
-		'@type': 'SearchAction',
-		target: {
-			'@type': 'EntryPoint',
-			urlTemplate: `${SITE_URL}/search/?q={search_term_string}`,
-		},
-		'query-input': 'required name=search_term_string',
-	},
+	// No SearchAction: /search/ is noindex — sitelinks searchbox points at a non-indexable surface (F14).
 });
 
 export type BlogPostingSchemaInput = {

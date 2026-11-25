@@ -975,3 +975,4 @@
 786. init-seo-aio-012-scope-loop , OWNER-REPORTS/013_seo_aio_012_remediation_scopes_2026-11-25.md notes/implementations/scope_dag.json notes/implementations/scope_loop_state.json task_graph.log
 787. rss-channel-language-he-il , src/app/rss.xml/route.ts task_graph.log
 788. well-known-agent-card-route , src/app/.well-known/agent-card.json/route.ts .cursor/plans/055_well_known_agent_card_f16.plan.md task_graph.log
+789. remove-website-searchaction-noindex-target , src/utils/structured-data.ts .cursor/plans/056_website_searchaction_align_f14.plan.md task_graph.log
