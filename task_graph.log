@@ -972,3 +972,4 @@
 783. update-aeo-findings-and-plan-status , OWNER-REPORTS/011_aeo_geo_ai_appearances_2026-11-23.md .cursor/plans/053_aeo_geo_ai_appearances_a1.plan.md task_graph.log
 784. write-053-aeo-plan-brief , notes/implementations/053_aeo_geo_ai_appearances_a1_brief.txt task_graph.log
 785. mark-053-plan-verify-deploy-done , .cursor/plans/053_aeo_geo_ai_appearances_a1.plan.md task_graph.log
+786. init-seo-aio-012-scope-loop , OWNER-REPORTS/013_seo_aio_012_remediation_scopes_2026-11-25.md notes/implementations/scope_dag.json notes/implementations/scope_loop_state.json task_graph.log

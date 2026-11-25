@@ -1,113 +1,147 @@
 {
-  "scope_list_file": "OWNER-REPORTS/008_seo_aio_audit_remediation_scopes_2026-11-08.md",
-  "generated_at": "2026-11-08T18:52:00+02:00",
+  "scope_list_file": "OWNER-REPORTS/013_seo_aio_012_remediation_scopes_2026-11-25.md",
+  "generated_at": "2026-11-25T18:55:00+00:00",
   "max_parallel_workers": 1,
+  "mode": "sequential",
   "scopes": {
-    "www-apex-301": {
+    "org-logo-raster-jsonld": {
       "depends_on": [],
-      "exclusive_files": ["vercel.json"],
+      "exclusive_files": ["src/utils/structured-data.ts", "public/images/branding/"],
       "parallel_ok": false,
-      "priority": "P0",
-      "kind": "IN_REPO",
       "maps_owner_checklist": []
     },
-    "thin-practice-landings": {
+    "imageobject-width-height": {
+      "depends_on": ["org-logo-raster-jsonld"],
+      "exclusive_files": ["src/lib/seo/schema-person.ts", "src/utils/structured-data.ts"],
+      "parallel_ok": false,
+      "maps_owner_checklist": []
+    },
+    "article-multi-aspect-imageobject": {
       "depends_on": [],
+      "exclusive_files": ["src/lib/seo/schema-article.ts"],
+      "parallel_ok": false,
+      "maps_owner_checklist": []
+    },
+    "blogposting-citation-schema": {
+      "depends_on": ["article-multi-aspect-imageobject"],
+      "exclusive_files": ["src/lib/seo/schema-article.ts", "src/lib/content/schema.ts"],
+      "parallel_ok": false,
+      "maps_owner_checklist": []
+    },
+    "about-profilepage-jsonld": {
+      "depends_on": [],
+      "exclusive_files": ["src/app/about/page.tsx", "src/utils/structured-data.ts"],
+      "parallel_ok": false,
+      "maps_owner_checklist": []
+    },
+    "home-breadcrumb-jsonld": {
+      "depends_on": [],
+      "exclusive_files": ["src/app/page.tsx"],
+      "parallel_ok": false,
+      "maps_owner_checklist": []
+    },
+    "home-speakable-spec": {
+      "depends_on": ["home-breadcrumb-jsonld"],
+      "exclusive_files": ["src/app/page.tsx", "src/components/home/", "src/lib/seo/speakable.ts"],
+      "parallel_ok": false,
+      "maps_owner_checklist": []
+    },
+    "answer-hubs-speakable": {
+      "depends_on": ["home-speakable-spec"],
       "exclusive_files": [
-        "src/app/nedlan-lawyer-guy-avni/",
-        "src/app/contracts-lawyer-guy-avni/"
+        "src/app/contact/page.tsx",
+        "src/app/sheelot/page.tsx",
+        "src/app/media/page.tsx",
+        "src/app/tags/",
+        "src/app/editorial-policy/page.tsx",
+        "src/app/guy-avni/page.tsx",
+        "src/app/blog/page.tsx"
       ],
       "parallel_ok": false,
-      "priority": "P0",
-      "kind": "IN_REPO",
       "maps_owner_checklist": []
     },
-    "sameas-dual-domain-clarity": {
+    "trim-deprecated-howto-jsonld": {
       "depends_on": [],
-      "exclusive_files": ["src/lib/seo/", "src/components/"],
+      "exclusive_files": ["src/app/page.tsx", "src/app/about/page.tsx", "src/app/services/page.tsx"],
       "parallel_ok": false,
-      "priority": "P0",
-      "kind": "IN_REPO",
       "maps_owner_checklist": []
     },
-    "home-h2-destuff": {
+    "faq-jsonld-policy-align": {
+      "depends_on": ["trim-deprecated-howto-jsonld"],
+      "exclusive_files": ["src/utils/structured-data.ts", "src/app/"],
+      "parallel_ok": false,
+      "maps_owner_checklist": []
+    },
+    "website-searchaction-align": {
       "depends_on": [],
-      "exclusive_files": ["src/app/page.tsx", "src/lib/home/"],
+      "exclusive_files": ["src/utils/structured-data.ts"],
       "parallel_ok": false,
-      "priority": "P0",
-      "kind": "IN_REPO",
       "maps_owner_checklist": []
     },
-    "unique-og-main-pages": {
-      "depends_on": ["thin-practice-landings"],
-      "exclusive_files": ["public/images/", "src/lib/seo/"],
-      "parallel_ok": false,
-      "priority": "P1",
-      "kind": "IN_REPO",
-      "maps_owner_checklist": []
-    },
-    "ymyl-disclaimer-hubs": {
-      "depends_on": ["thin-practice-landings"],
-      "exclusive_files": ["src/app/", "src/components/"],
-      "parallel_ok": false,
-      "priority": "P1",
-      "kind": "IN_REPO",
-      "maps_owner_checklist": []
-    },
-    "contact-schema-depth": {
+    "well-known-agent-card": {
       "depends_on": [],
-      "exclusive_files": ["src/app/contact/"],
-      "parallel_ok": false,
-      "priority": "P1",
-      "kind": "IN_REPO",
+      "exclusive_files": ["public/.well-known/", "src/app/.well-known/", "vercel.json"],
+      "parallel_ok": true,
       "maps_owner_checklist": []
     },
-    "home-person-graph": {
-      "depends_on": ["home-h2-destuff"],
-      "exclusive_files": ["src/app/page.tsx", "src/lib/seo/", "src/lib/home/"],
-      "parallel_ok": false,
-      "priority": "P1",
-      "kind": "IN_REPO",
-      "maps_owner_checklist": []
-    },
-    "sheelot-answer-depth": {
+    "article-robots-og-freshness": {
       "depends_on": [],
-      "exclusive_files": ["src/app/sheelot/"],
+      "exclusive_files": ["src/lib/metadata.ts", "src/app/blog/[slug]/page.tsx"],
       "parallel_ok": false,
-      "priority": "P1",
-      "kind": "IN_REPO",
       "maps_owner_checklist": []
     },
-    "sitemap-lastmod": {
-      "depends_on": ["thin-practice-landings", "home-h2-destuff", "sheelot-answer-depth", "contact-schema-depth"],
-      "exclusive_files": ["src/app/sitemap.ts", "src/lib/"],
-      "parallel_ok": false,
-      "priority": "P2",
-      "kind": "IN_REPO",
+    "rss-language-he-il": {
+      "depends_on": [],
+      "exclusive_files": ["src/app/rss.xml/route.ts"],
+      "parallel_ok": true,
       "maps_owner_checklist": []
     },
-    "services-about-dedupe": {
-      "depends_on": ["thin-practice-landings"],
-      "exclusive_files": ["src/app/services/", "src/app/about/"],
+    "services-offer-catalog-jsonld": {
+      "depends_on": ["trim-deprecated-howto-jsonld"],
+      "exclusive_files": ["src/app/services/page.tsx", "src/utils/structured-data.ts"],
       "parallel_ok": false,
-      "priority": "P2",
-      "kind": "IN_REPO",
+      "maps_owner_checklist": []
+    },
+    "person-attorney-schema-type": {
+      "depends_on": ["imageobject-width-height"],
+      "exclusive_files": ["src/lib/seo/schema-person.ts"],
+      "parallel_ok": false,
+      "maps_owner_checklist": []
+    },
+    "OPERATOR-nap-localbusiness": {
+      "depends_on": [],
+      "exclusive_files": ["OWNER-REPORTS/013_seo_aio_012_remediation_scopes_2026-11-25.md"],
+      "parallel_ok": true,
+      "maps_owner_checklist": []
+    },
+    "OPERATOR-israel-bar-sameas": {
+      "depends_on": [],
+      "exclusive_files": ["OWNER-REPORTS/013_seo_aio_012_remediation_scopes_2026-11-25.md"],
+      "parallel_ok": true,
+      "maps_owner_checklist": []
+    },
+    "OPERATOR-reviewedby-identity": {
+      "depends_on": [],
+      "exclusive_files": ["OWNER-REPORTS/013_seo_aio_012_remediation_scopes_2026-11-25.md"],
+      "parallel_ok": true,
+      "maps_owner_checklist": []
+    },
+    "OPERATOR-indexnow-key": {
+      "depends_on": [],
+      "exclusive_files": ["OWNER-REPORTS/013_seo_aio_012_remediation_scopes_2026-11-25.md"],
+      "parallel_ok": true,
+      "maps_owner_checklist": []
+    },
+    "OPERATOR-guyavni-sameas-tls": {
+      "depends_on": [],
+      "exclusive_files": ["OWNER-REPORTS/013_seo_aio_012_remediation_scopes_2026-11-25.md"],
+      "parallel_ok": true,
       "maps_owner_checklist": []
     },
     "OPERATOR-gsc-generative": {
       "depends_on": [],
-      "exclusive_files": [],
+      "exclusive_files": ["OWNER-REPORTS/013_seo_aio_012_remediation_scopes_2026-11-25.md"],
       "parallel_ok": true,
-      "priority": "OPERATOR",
-      "kind": "OPERATOR",
-      "maps_owner_checklist": []
-    },
-    "OPERATOR-media-verified-only": {
-      "depends_on": [],
-      "exclusive_files": [],
-      "parallel_ok": true,
-      "priority": "OPERATOR",
-      "kind": "OPERATOR",
       "maps_owner_checklist": []
     }
   }

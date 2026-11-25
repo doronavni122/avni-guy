@@ -1,9 +1,9 @@
 {
-  "scope_list_file": "OWNER-REPORTS/008_seo_aio_audit_remediation_scopes_2026-11-08.md",
+  "scope_list_file": "OWNER-REPORTS/013_seo_aio_012_remediation_scopes_2026-11-25.md",
   "mode": "sequential",
-  "integration_branch": "feature/seo-aio-audit-remediation-2026-11-08",
+  "integration_branch": "feature/seo-aio-012-gaps-2026-11-25",
   "max_parallel_workers": 1,
-  "started_at": "2026-11-08T18:52:00+02:00",
+  "started_at": "2026-11-25T20:55:00+02:00",
   "current_scope": null,
   "inner_iteration": 1,
   "max_inner_iterations": 3,
@@ -11,114 +11,40 @@
   "file_claims": {},
   "workers": {},
   "audits": {
-    "006": "OWNER-REPORTS/006_seo_aio_live_main_pages_audit_2026-11-08.md",
-    "007": "OWNER-REPORTS/007_seo_aio_content_keywords_main_pages_2026-11-08.md"
+    "012": "OWNER-REPORTS/012_seo_aio_technical_gaps_2026-11-25.tmo",
+    "013": "OWNER-REPORTS/013_seo_aio_012_remediation_scopes_2026-11-25.md"
   },
   "mandatory_closeout": ".commends/TODO_validate_true.md",
+  "next_plan_number": 54,
+  "validate_true": {
+    "completed_at": "2026-11-25T20:55:00+02:00",
+    "confirmed_true_implementable": 16,
+    "operator_blocked": 6,
+    "skipped_myth": 3,
+    "dropped_below_conf": 3
+  },
   "scopes": {
-    "www-apex-301": {
-      "status": "DONE",
-      "plan": "030_www_apex_301_edge_redirect_w1",
-      "last_gate": "assess_pass",
-      "last_failure": null,
-      "escalation_count": 0,
-      "rca_files": []
-    },
-    "thin-practice-landings": {
-      "status": "DONE",
-      "plan": "031_thin_practice_landings_consolidate_t1",
-      "last_gate": "assess_pass",
-      "last_failure": null,
-      "escalation_count": 0,
-      "rca_files": []
-    },
-    "sameas-dual-domain-clarity": {
-      "status": "DONE",
-      "plan": "032_sameas_dual_domain_clarity_s1",
-      "last_gate": "assess_pass",
-      "last_failure": null,
-      "escalation_count": 0,
-      "rca_files": []
-    },
-    "home-h2-destuff": {
-      "status": "DONE",
-      "plan": "033_home_h2_destuff_misui_h1",
-      "last_gate": "assess_pass",
-      "last_failure": null,
-      "escalation_count": 0,
-      "rca_files": []
-    },
-    "unique-og-main-pages": {
-      "status": "DONE",
-      "plan": "034_unique_og_main_pages_o1",
-      "last_gate": "assess_pass",
-      "last_failure": null,
-      "escalation_count": 0,
-      "rca_files": []
-    },
-    "ymyl-disclaimer-hubs": {
-      "status": "DONE",
-      "plan": "035_ymyl_disclaimer_hubs_y1",
-      "last_gate": "assess_pass",
-      "last_failure": null,
-      "escalation_count": 0,
-      "rca_files": []
-    },
-    "contact-schema-depth": {
-      "status": "DONE",
-      "plan": "036_contact_schema_depth_c1",
-      "last_gate": "assess_pass",
-      "last_failure": null,
-      "escalation_count": 0,
-      "rca_files": []
-    },
-    "home-person-graph": {
-      "status": "DONE",
-      "plan": "037_home_person_graph_p1",
-      "last_gate": "assess_pass",
-      "last_failure": null,
-      "escalation_count": 0,
-      "rca_files": []
-    },
-    "sheelot-answer-depth": {
-      "status": "DONE",
-      "plan": "038_sheelot_answer_depth_s1",
-      "last_gate": "assess_pass",
-      "last_failure": null,
-      "escalation_count": 0,
-      "rca_files": []
-    },
-    "sitemap-lastmod": {
-      "status": "DONE",
-      "plan": "039_sitemap_lastmod_refresh_s1",
-      "last_gate": "assess_pass",
-      "last_failure": null,
-      "escalation_count": 0,
-      "rca_files": []
-    },
-    "services-about-dedupe": {
-      "status": "DONE",
-      "plan": "040_services_about_dedupe_d1",
-      "last_gate": "assess_pass",
-      "last_failure": null,
-      "escalation_count": 0,
-      "rca_files": []
-    },
-    "OPERATOR-gsc-generative": {
-      "status": "DONE",
-      "plan": "041_operator_gsc_generative_o1",
-      "last_gate": "assess_pass",
-      "last_failure": null,
-      "escalation_count": 0,
-      "rca_files": []
-    },
-    "OPERATOR-media-verified-only": {
-      "status": "DONE",
-      "plan": "042_operator_media_verified_only_o1",
-      "last_gate": "assess_pass",
-      "last_failure": null,
-      "escalation_count": 0,
-      "rca_files": []
-    }
+    "org-logo-raster-jsonld": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
+    "imageobject-width-height": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
+    "article-multi-aspect-imageobject": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
+    "blogposting-citation-schema": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
+    "about-profilepage-jsonld": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
+    "home-breadcrumb-jsonld": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
+    "home-speakable-spec": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
+    "answer-hubs-speakable": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
+    "trim-deprecated-howto-jsonld": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
+    "faq-jsonld-policy-align": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
+    "website-searchaction-align": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
+    "well-known-agent-card": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
+    "article-robots-og-freshness": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
+    "rss-language-he-il": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
+    "services-offer-catalog-jsonld": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
+    "person-attorney-schema-type": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
+    "OPERATOR-nap-localbusiness": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
+    "OPERATOR-israel-bar-sameas": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
+    "OPERATOR-reviewedby-identity": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
+    "OPERATOR-indexnow-key": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
+    "OPERATOR-guyavni-sameas-tls": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] },
+    "OPERATOR-gsc-generative": { "status": "PENDING", "plan": null, "last_gate": null, "last_failure": null, "escalation_count": 0, "rca_files": [] }
   }
 }
