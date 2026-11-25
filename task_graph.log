@@ -994,3 +994,4 @@
 805. guy-about-entity-consolidation-f22 , src/app/guy-avni/page.tsx .cursor/plans/071_guy_about_entity_consolidation_f22.plan.md task_graph.log
 806. sitemap-hub-lastmod-refresh-f25 , src/app/sitemap.ts src/app/page.tsx src/app/about/page.tsx src/app/services/page.tsx src/app/contact/page.tsx src/app/sheelot/page.tsx src/app/media/page.tsx src/app/tags/page.tsx src/app/editorial-policy/page.tsx src/app/guy-avni/page.tsx .cursor/plans/072_sitemap_hub_lastmod_refresh_f25.plan.md task_graph.log
 807. mark-012-scopes-complete-operator-runbooks , OWNER-REPORTS/013_seo_aio_012_remediation_scopes_2026-11-25.md task_graph.log
+808. update-scope-loop-state-012-complete , notes/implementations/scope_loop_state.json task_graph.log
