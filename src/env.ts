@@ -106,6 +106,14 @@ export function warnProductionEnvGaps(): void {
 				);
 			}
 		}
+
+		// F21: default office sameAs is guyavni.co.il when unset; empty string = opt-out.
+		const officeSite = process.env.PERSON_OFFICE_SITE_URL;
+		if (officeSite === undefined) {
+			console.warn(
+				'[env] PERSON_OFFICE_SITE_URL unset in production — Person.sameAs defaults to https://guyavni.co.il/. If that host has TLS/hosting issues, set PERSON_OFFICE_SITE_URL= (empty) to opt out, or repair TLS. Do not invent an alternate office URL.',
+			);
+		}
 	} catch (err) {
 		console.error('[env] warnProductionEnvGaps failed', { err });
 	}
