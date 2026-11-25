@@ -984,3 +984,4 @@
 795. org-logo-raster-jsonld-f03 , src/lib/seo/brand-image-dimensions.ts src/utils/structured-data.ts .cursor/plans/061_org_logo_raster_jsonld_f03.plan.md task_graph.log
 796. imageobject-width-height-f17 , src/lib/seo/schema-person.ts .cursor/plans/062_imageobject_width_height_f17.plan.md task_graph.log
 797. person-attorney-schema-type-f24 , src/lib/seo/schema-person.ts .cursor/plans/063_person_attorney_schema_type_f24.plan.md task_graph.log
+798. article-multi-aspect-imageobject-f05 , src/lib/seo/schema-article.ts .cursor/plans/064_article_multi_aspect_imageobject_f05.plan.md task_graph.log
