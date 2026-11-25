@@ -51,35 +51,35 @@
 
 ## Scopes (IN_REPO)
 
-- [ ] **org-logo-raster-jsonld** — Replace SVG-only Organization.logo with crawlable high-res raster ImageObject (+ width/height). Sources: F03 (+ F17 org half). DoD: logo ImageObject uses raster URL with width+height; SVG may remain visible UI.
-- [ ] **imageobject-width-height** — Person (and remaining Org) ImageObjects emit width/height pixels. Sources: F17. DoD: live Person/Org ImageObjects include numeric width+height.
-- [ ] **article-multi-aspect-imageobject** — BlogPosting.image as multi-aspect ImageObject set (1x1, 4x3, 16x9) per Google Article docs. Sources: F05. DoD: schema emits ImageObject array with aspect variants (or documented single-aspect fallback with dimensions).
-- [ ] **blogposting-inline-author** — BlogPosting.author includes inline author.name + author.url (not @id-only) per Google Article author markup. Sources: F04. DoD: BlogPosting.author node has name+url (may still @id).
-- [ ] **blogposting-citation-schema** — Emit schema.org `citation` for primary-law/gov outbound sources when article metadata provides them. Sources: F06. DoD: articles with known primary cites include citation in BlogPosting; no invented URLs.
-- [ ] **about-profilepage-jsonld** — `/about/` emits ProfilePage (or WebPage subtype) with mainEntity Person per Search Central ProfilePage guidance. Sources: F08. DoD: about JSON-LD uses ProfilePage + mainEntity Person @id.
-- [ ] **home-breadcrumb-jsonld** — Home JSON-LD includes BreadcrumbList consistent with other hubs. Sources: F09. DoD: home @graph includes BreadcrumbList.
-- [ ] **home-speakable-spec** — Home gains visible `.speakable-voice` + SpeakableSpecification. Sources: F10. DoD: home HTML has speakable node; JSON-LD has SpeakableSpecification.
-- [ ] **answer-hubs-speakable** — Add SpeakableSpecification (+ voice nodes) to answer hubs: /contact/ /sheelot/ /media/ /tags/ /editorial-policy/ /guy-avni/ /blog/. Sources: F11. DoD: each listed hub emits speakable when FAQ/answer intent present.
-- [ ] **trim-deprecated-howto-jsonld** — Remove or gate HowTo JSON-LD on /, /about/, /services/ (Google HowTo rich results deprecated 2023); keep answer HTML. Sources: F12. DoD: no HowTo in those pages’ JSON-LD (or gated behind explicit non-Google flag with comment).
-- [ ] **faq-jsonld-policy-align** — Align FAQPage emission with YMYL commercial reality: keep for Bing/entity understanding OR trim sitewide emission to hubs that need it; document decision in code comment. Sources: F13. DoD: intentional policy in code; no FAQ theater for Google-only rich results.
+- [x] **org-logo-raster-jsonld** — Replace SVG-only Organization.logo with crawlable high-res raster ImageObject (+ width/height). Sources: F03 (+ F17 org half). DoD: logo ImageObject uses raster URL with width+height; SVG may remain visible UI.
+- [x] **imageobject-width-height** — Person (and remaining Org) ImageObjects emit width/height pixels. Sources: F17. DoD: live Person/Org ImageObjects include numeric width+height.
+- [x] **article-multi-aspect-imageobject** — BlogPosting.image as multi-aspect ImageObject set (1x1, 4x3, 16x9) per Google Article docs. Sources: F05. DoD: schema emits ImageObject array with aspect variants (or documented single-aspect fallback with dimensions).
+- [x] **blogposting-inline-author** — BlogPosting.author includes inline author.name + author.url (not @id-only) per Google Article author markup. Sources: F04. DoD: BlogPosting.author node has name+url (may still @id).
+- [x] **blogposting-citation-schema** — Emit schema.org `citation` for primary-law/gov outbound sources when article metadata provides them. Sources: F06. DoD: articles with known primary cites include citation in BlogPosting; no invented URLs.
+- [x] **about-profilepage-jsonld** — `/about/` emits ProfilePage (or WebPage subtype) with mainEntity Person per Search Central ProfilePage guidance. Sources: F08. DoD: about JSON-LD uses ProfilePage + mainEntity Person @id.
+- [x] **home-breadcrumb-jsonld** — Home JSON-LD includes BreadcrumbList consistent with other hubs. Sources: F09. DoD: home @graph includes BreadcrumbList.
+- [x] **home-speakable-spec** — Home gains visible `.speakable-voice` + SpeakableSpecification. Sources: F10. DoD: home HTML has speakable node; JSON-LD has SpeakableSpecification.
+- [x] **answer-hubs-speakable** — Add SpeakableSpecification (+ voice nodes) to answer hubs: /contact/ /sheelot/ /media/ /tags/ /editorial-policy/ /guy-avni/ /blog/. Sources: F11. DoD: each listed hub emits speakable when FAQ/answer intent present.
+- [x] **trim-deprecated-howto-jsonld** — Remove or gate HowTo JSON-LD on /, /about/, /services/ (Google HowTo rich results deprecated 2023); keep answer HTML. Sources: F12. DoD: no HowTo in those pages’ JSON-LD (or gated behind explicit non-Google flag with comment).
+- [x] **faq-jsonld-policy-align** — Align FAQPage emission with YMYL commercial reality: keep for Bing/entity understanding OR trim sitewide emission to hubs that need it; document decision in code comment. Sources: F13. DoD: intentional policy in code; no FAQ theater for Google-only rich results.
 - [x] **website-searchaction-align** — Fix WebSite SearchAction targeting noindex `/search/` (remove potentialAction or point at indexable surface). Sources: F14. DoD: either no SearchAction or target is indexable; search page robots unchanged unless product chooses index. (plan 056; task 789)
 - [x] **well-known-agent-card** — Serve agent card at `/.well-known/agent-card.json` (alias or route) matching `/agent-card.json`. Sources: F16. DoD: curl `/.well-known/agent-card.json` → 200 same body as `/agent-card.json`. (plan 055; task 788)
-- [ ] **article-robots-og-freshness** — Articles: robots `max-image-preview:large` (+ related snippet directives as appropriate); OG `article:published_time` / `article:modified_time`. Sources: F18 F19. DoD: live article HTML includes both.
+- [x] **article-robots-og-freshness** — Articles: robots `max-image-preview:large` (+ related snippet directives as appropriate); OG `article:published_time` / `article:modified_time`. Sources: F18 F19. DoD: live article HTML includes both.
 - [x] **rss-language-he-il** — RSS channel language `he-IL` to match site/JSON-LD BCP47. Sources: F20. DoD: rss.xml `<language>he-IL</language>`. (plan 054; task 787)
-- [ ] **services-offer-catalog-jsonld** — `/services/` adds OfferCatalog and/or typed Service nodes for practice offerings. Sources: F23. DoD: services JSON-LD includes OfferCatalog or Service @types matching visible offerings (no invented prices).
-- [ ] **person-attorney-schema-type** — Person uses schema.org Attorney (or Person+Attorney dual-type) where attorney identity is claimed. Sources: F24. DoD: Person @type includes Attorney; no false credentials.
-- [ ] **guy-about-entity-consolidation** — Reduce entity dilution between indexable `/guy-avni/` and `/about/` Person signals (canonical, noindex bridge, or clearer mainEntity). Sources: F22. DoD: one primary entity profile for KG/AI; bridge page does not compete as duplicate Person hub.
-- [ ] **sitemap-hub-lastmod-refresh** — Refresh sitemap lastmod on top hubs so they reflect current editorial freshness. Sources: F25. DoD: hub lastmod dates bump when content actually changes (not stale static stamps).
+- [x] **services-offer-catalog-jsonld** — `/services/` adds OfferCatalog and/or typed Service nodes for practice offerings. Sources: F23. DoD: services JSON-LD includes OfferCatalog or Service @types matching visible offerings (no invented prices).
+- [x] **person-attorney-schema-type** — Person uses schema.org Attorney (or Person+Attorney dual-type) where attorney identity is claimed. Sources: F24. DoD: Person @type includes Attorney; no false credentials.
+- [x] **guy-about-entity-consolidation** — Reduce entity dilution between indexable `/guy-avni/` and `/about/` Person signals (canonical, noindex bridge, or clearer mainEntity). Sources: F22. DoD: one primary entity profile for KG/AI; bridge page does not compete as duplicate Person hub.
+- [x] **sitemap-hub-lastmod-refresh** — Refresh sitemap lastmod on top hubs so they reflect current editorial freshness. Sources: F25. DoD: hub lastmod dates bump when content actually changes (not stale static stamps).
 
 ---
 
 ## OPERATOR (blocked — document only; do not invent NAP/phone/Bar/media)
 
-- [ ] **OPERATOR-nap-localbusiness** — Owner must set claimed `NEXT_PUBLIC_OFFICE_*` NAP before LocalBusiness dual-type + telephone/PostalAddress. Sources: F01 F30. DoD: runbook steps recorded; no invented phone/address shipped.
-- [ ] **OPERATOR-israel-bar-sameas** — Owner supplies individual Israel Bar listing URL via `PERSON_ISRAEL_BAR_URL`. Sources: F02. DoD: instructions only; empty env stays omit.
-- [ ] **OPERATOR-reviewedby-identity** — reviewedBy only after real human reviewer identity exists. Sources: F07. DoD: blocker recorded; no fake reviewer.
-- [ ] **OPERATOR-guyavni-sameas-tls** — Fix guyavni.co.il TLS or set `PERSON_OFFICE_SITE_URL=''` opt-out. Sources: F21. DoD: instructions recorded; agent does not invent replacement URL.
-- [ ] **OPERATOR-gsc-generative** — Owner confirms GSC Search generative AI = Include + baselines apex. Sources: F28. DoD: verification steps (cannot click GSC).
+- [x] **OPERATOR-nap-localbusiness** — Owner must set claimed `NEXT_PUBLIC_OFFICE_*` NAP before LocalBusiness dual-type + telephone/PostalAddress. Sources: F01 F30. DoD: runbook steps recorded; no invented phone/address shipped. RUNBOOK: (1) Confirm real office street/locality/phone. (2) Set `NEXT_PUBLIC_OFFICE_STREET`, `NEXT_PUBLIC_OFFICE_LOCALITY`, `NEXT_PUBLIC_OFFICE_PHONE` in Vercel Production + Preview + local `.env.local` (see `.env.example`). (3) Redeploy. (4) Verify LegalService gains LocalBusiness dual-type + address/telephone in live JSON-LD. Agent will not invent NAP.
+- [x] **OPERATOR-israel-bar-sameas** — Owner supplies individual Israel Bar listing URL via `PERSON_ISRAEL_BAR_URL`. Sources: F02. DoD: instructions only; empty env stays omit. RUNBOOK: (1) Locate personal Israel Bar member listing URL (not portal home). (2) Set `PERSON_ISRAEL_BAR_URL` on Vercel + local. (3) Redeploy; confirm Person.sameAs + memberOf emit. Leave empty to omit.
+- [x] **OPERATOR-reviewedby-identity** — reviewedBy only after real human reviewer identity exists. Sources: F07. DoD: blocker recorded; no fake reviewer. RUNBOOK: Do not ship `reviewedBy` until a named human reviewer (Person with name+url) exists and reviews articles. No placeholder reviewers.
+- [x] **OPERATOR-guyavni-sameas-tls** — Fix guyavni.co.il TLS or set `PERSON_OFFICE_SITE_URL=''` opt-out. Sources: F21. DoD: instructions recorded; agent does not invent replacement URL. RUNBOOK: (A) Repair TLS/hosting on guyavni.co.il so HTTPS works, OR (B) set `PERSON_OFFICE_SITE_URL=` empty string on Vercel to opt out of default sameAs. Do not invent alternate office URLs.
+- [x] **OPERATOR-gsc-generative** — Owner confirms GSC Search generative AI = Include + baselines apex. Sources: F28. DoD: verification steps (cannot click GSC). RUNBOOK: In Google Search Console → Settings → Search generative AI / AI features: set property to Include (or equivalent). Confirm apex `avniguy.co.il` baselines. Agent cannot click GSC.
 
 ---
 
@@ -97,5 +97,5 @@
 Follow `.cursor/skills/scope-list-implementation-loop/SKILL.md`.  
 State: `notes/implementations/scope_loop_state.json`  
 DAG: `notes/implementations/scope_dag.json`  
-Next plan numbers start at **054**.  
+Next plan numbers start at **073** (057–072 used this wave).  
 Branch: `feature/seo-aio-012-gaps-2026-11-25` (do not commit on `main`).
