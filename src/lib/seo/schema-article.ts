@@ -38,7 +38,13 @@ export function buildArticleSchema(input: ArticleSchemaInput): Record<string, un
 		url: input.canonicalUrl,
 		image: buildArticleImageObjects(input.imageUrls),
 		isAccessibleForFree: true,
-		author: PERSON_REF,
+		// Inline name+url required by Google Article author markup; @id retained (F04).
+		author: {
+			'@type': 'Person',
+			'@id': SITE_PERSON_ID,
+			name: input.authorName,
+			url: input.authorUrl,
+		},
 		publisher: { '@id': SITE_ORGANIZATION_ID },
 		mainEntityOfPage: {
 			'@type': 'WebPage',
