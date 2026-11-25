@@ -51,7 +51,7 @@
 
 ## Scopes (IN_REPO)
 
-- [x] **org-logo-raster-jsonld** — Replace SVG-only Organization.logo with crawlable high-res raster ImageObject (+ width/height). Sources: F03 (+ F17 org half). DoD: logo ImageObject uses raster URL with width+height; SVG may remain visible UI.
+- [x] **org-logo-raster-jsonld** — Replace SVG-only Organization.logo with crawlable high-res raster ImageObject (+ width/height). Sources: F03 (+ F17 org half). DoD: logo ImageObject uses raster URL with width+height; SVG may remain visible UI. (reopened+fixed 2026-11-25: unique `organization-logo-raster-photo-4` — not OG fallback; plan 073 task 812)
 - [x] **imageobject-width-height** — Person (and remaining Org) ImageObjects emit width/height pixels. Sources: F17. DoD: live Person/Org ImageObjects include numeric width+height.
 - [x] **article-multi-aspect-imageobject** — BlogPosting.image as multi-aspect ImageObject set (1x1, 4x3, 16x9) per Google Article docs. Sources: F05. DoD: schema emits ImageObject array with aspect variants (or documented single-aspect fallback with dimensions).
 - [x] **blogposting-inline-author** — BlogPosting.author includes inline author.name + author.url (not @id-only) per Google Article author markup. Sources: F04. DoD: BlogPosting.author node has name+url (may still @id).

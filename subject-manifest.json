@@ -834,6 +834,52 @@
         "/blog/commercial-lease-literacy-israel/",
         "/blog/read-israel-housing-market-literacy/"
       ]
+    },
+    {
+      "nnnn": "0040",
+      "label": "sibling_real_estate_joint_ownership_agreement",
+      "subject": "הסכם שיתוף במקרקעין בין אחים",
+      "slug": "sibling-real-estate-joint-ownership-agreement",
+      "contentFile": "sibling-real-estate-joint-ownership-agreement.mdx",
+      "category": "real-estate-law",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-11-25",
+      "tags": [
+        "contracts",
+        "joint-ownership",
+        "siblings",
+        "real-estate"
+      ],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/inheritance-order-apartment-israel/",
+        "/blog/tabu-rights-registration/",
+        "/blog/divorce-apartment-sale-tax-rules/"
+      ]
+    },
+    {
+      "nnnn": "0041",
+      "label": "purchase_tax_returning_resident_apartment_israel",
+      "subject": "מס רכישה לתושב חוזר דירה בישראל",
+      "slug": "purchase-tax-returning-resident-apartment-israel",
+      "contentFile": "purchase-tax-returning-resident-apartment-israel.mdx",
+      "category": "tax",
+      "mainKeyword": "גיא אבני עורך דין",
+      "date": "2026-11-25",
+      "tags": [
+        "purchase-tax",
+        "returning-resident",
+        "tax",
+        "real-estate"
+      ],
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/purchase-tax-exemption-first-apartment/",
+        "/blog/second-apartment-purchase-tax-calculation/",
+        "/blog/foreign-resident-apartment-investment-israel/"
+      ]
     }
   ]
 }
