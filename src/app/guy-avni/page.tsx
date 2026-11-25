@@ -10,7 +10,7 @@ import { replaceEmDashDeep } from '@/lib/content/sanitize-user-facing-text';
 import { BreadcrumbNav } from '@/components/navigation/BreadcrumbNav';
 import { SITE_URL } from '@/consts';
 import { mainPageOgImageUrl } from '@/lib/seo/main-page-og';
-import { buildPersonSchema, readPersonSameAsUrls, SITE_PERSON_ID } from '@/lib/seo/schema-person';
+import { buildLeanPersonSchema, SITE_PERSON_ID } from '@/lib/seo/schema-person';
 import type { MainPageHero as MainPageHeroData } from '@/lib/seo/hero-rules';
 import { SpeakableVoiceSection } from '@/components/seo/SpeakableVoiceSection';
 import { attachSpeakable } from '@/lib/seo/speakable';
@@ -111,11 +111,11 @@ export default function GuyAvniBridgePage() {
 			{ name: 'דף הבית', path: '/' },
 			{ name: 'Guy Avni', path: PAGE_PATH },
 		];
-		const sameAs = readPersonSameAsUrls();
-
+		// Entity consolidation (F22): full Person hub lives on /about/ only.
+		// Bridge page resolves mainEntity via lean Person @id — no competing full Person graph.
 		jsonLd = [
 			buildBreadcrumbSchema(breadcrumbItems),
-			buildPersonSchema({ sameAs: sameAs.length ? sameAs : undefined }),
+			buildLeanPersonSchema(),
 			attachSpeakable(
 				buildWebPageSchema({
 					'@id': `${SITE_URL}${PAGE_PATH}#webpage`,
