@@ -1,0 +1,75 @@
+PIPELINE: content-seo-pipeline Phase0
+DATE: 2026-11-26
+LANG: he-IL
+RULE: no named defendant; no named press brand-as-case; no particular criminal-file identifiers; generic legal/media literacy only
+NEXT: Phase1 full domain studies under reserch/NNNN_*.md then Gate R1
+
+ARTICLE: 0042
+LABEL: plea_bargain_conviction_vs_trial_literacy
+SUBJECT: הסדר טיעון מול הרשעה אחרי משפט הוכחות
+SLUG: plea-bargain-conviction-vs-trial-literacy
+CONTENT_FILE: plea-bargain-conviction-vs-trial-literacy.mdx
+PRIMARY_KW_HE: הסדר טיעון
+PRIMARY_KW_EN: plea bargain Israel
+SECONDARY_KW: הרשעה על פי הודאה | כתב אישום מתוקן | הסדר טיעון פתוח | גזירת דין אחרי הודאה | פרקליטות מיסוי וכלכלה הליך
+VULN_MAP: Headline omits plea bargain / admission; sentence still a prosecution request under open plea
+ANGLE: Educational reader guide to what a plea-based conviction means procedurally versus a conviction after a full evidence trial; open vs closed plea; court not bound; sentencing hearing still ahead
+OUTLINE: בקצרה | מהו הסדר טיעון לפי פרקליטות המדינה | הרשעה על פי הודאה לעומת הוכחות | הסדר פתוח סגור וטווח ענישה | מה הכותרת חייבת לשקף לקורא | שאלות נפוצות | מקורות gov.il וכל-זכות
+INTERNAL_LINKS: / | /contact/ | /blog/forty-four-million-investor-fraud-indictment/ | /blog/default-judgment-medical-certificate-civil/ | /blog/magistrate-court-joint-lawyer-founder-investor-suspicion/
+CATEGORY: legal-literacy
+
+ARTICLE: 0043
+LABEL: criminal_headline_theft_vs_aiding_accuracy
+SUBJECT: דיוק בכותרות פליליות גניבה מול סיוע
+SLUG: criminal-headline-theft-vs-aiding-accuracy
+CONTENT_FILE: criminal-headline-theft-vs-aiding-accuracy.mdx
+PRIMARY_KW_HE: סיוע לעבירה
+PRIMARY_KW_EN: aiding and abetting offense Israel
+SECONDARY_KW: גניבה בידי מורשה | קבלת דבר במרמה בנסיבות מחמירות | דיוק בכותרת עיתונאית | הבחנה בין עבירות | תקנון האתיקה כותרות
+VULN_MAP: Headline collapses direct theft vs aiding into undifferentiated stealing-millions framing
+ANGLE: Plain-language distinction between principal theft offenses and aiding/assistance liability; why amount and role in a headline change legal meaning for readers and search snippets
+OUTLINE: בקצרה | מהי גניבה בידי מורשה | מהו סיוע לעבירה בחוק העונשין | למה איחוד סכומים בכותרת מטעה | איך לקרוא פירוט עבירות בגוף הידיעה | שאלות נפוצות | מקורות נבו חוק העונשין ותקנון האתיקה סעיף 3
+INTERNAL_LINKS: / | /contact/ | /blog/lawyer-trustee-investor-funds-duties/ | /blog/real-estate-venture-investor-due-diligence/ | /blog/subsequent-investor-judgment-trustee-damages/
+CATEGORY: legal-literacy
+
+ARTICLE: 0044
+LABEL: press_ethics_right_of_reply_criminal_reporting
+SUBJECT: זכות תגובה וחובת דיוק בדיווח פלילי
+SLUG: press-ethics-right-of-reply-criminal-reporting
+CONTENT_FILE: press-ethics-right-of-reply-criminal-reporting.mdx
+PRIMARY_KW_HE: זכות תגובה עיתונות
+PRIMARY_KW_EN: right of reply press ethics Israel
+SECONDARY_KW: תקנון האתיקה של העיתונות | מועצת העיתונות | הגינות בדיווח | תיקון טעויות עיתונאיות | סיקור הליכים פליליים
+VULN_MAP: Missing fair defense response in public text; headline accuracy vs ethics §3 and §9b
+ANGLE: Explain Press Council duties on accuracy including headlines, fair response, corrections; how readers should check whether a crime story includes response and updates
+OUTLINE: בקצרה | סעיפי דיוק וכותרות | חובת פנייה לתגובה | תיקון השמטות | סיקור פלילי וחזקת חפות | רשימת בדיקה לקורא | שאלות נפוצות | מקור presscouncil.co.il/takanon
+INTERNAL_LINKS: / | /contact/ | /blog/forty-four-million-investor-fraud-indictment/ | /about/ | /services/
+CATEGORY: media-literacy
+
+ARTICLE: 0045
+LABEL: presumption_of_innocence_co_defendants_reporting
+SUBJECT: חזקת החפות כשיש כמה נאשמים באותה פרשה
+SLUG: presumption-of-innocence-co-defendants-reporting
+CONTENT_FILE: presumption-of-innocence-co-defendants-reporting.mdx
+PRIMARY_KW_HE: חזקת החפות
+PRIMARY_KW_EN: presumption of innocence co-defendants
+SECONDARY_KW: נאשם שכפר באשמה | תיק הוכחות | הרשעה חלקית בפרשה | דיווח על שותפים לכאורה | אתיקה עיתונאית סעיף 13
+VULN_MAP: Dek frames transfers to named partners as settled fact without co-defendant denial/trial status; name collision / incomplete multi-defendant picture
+ANGLE: Generic guide: when one defendant pleads and another goes to trial, how responsible reporting and reader literacy keep presumption of innocence for the non-convicted; avoid treating indictment narrative as proven against all named parties
+OUTLINE: בקצרה | חזקת החפות כעיקרון | מה קורה כשאחד מודה ואחר כופר | איך לזהות סטטוס דיוני לכל נאשם | סיכוני כותרת משותפת | שאלות נפוצות | מקורות תקנון סעיף 13 ונוהל פלילי כללי
+INTERNAL_LINKS: / | /contact/ | /blog/magistrate-court-joint-lawyer-founder-investor-suspicion/ | /blog/forty-four-million-investor-fraud-indictment/ | /blog/real-estate-venture-investor-due-diligence/
+CATEGORY: legal-literacy
+
+ARTICLE: 0046
+LABEL: reading_pending_sentence_in_crime_news
+SUBJECT: איך לקרוא דיווח פלילי כשעונש עדיין לא נגזר
+SLUG: reading-pending-sentence-in-crime-news
+CONTENT_FILE: reading-pending-sentence-in-crime-news.mdx
+PRIMARY_KW_HE: טיעונים לעונש
+PRIMARY_KW_EN: sentencing arguments after conviction Israel
+SECONDARY_KW: הפרקליטות תבקש עונש | מאסר על תנאי וקנס | גזר דין טרם ניתן | הסדר טיעון פתוח | הבנת כותרת פלילית
+VULN_MAP: Body says prosecution will request up to four years; headline omits that sentence is not imposed
+ANGLE: Teach readers the difference between conviction event, prosecution sentence request, defense mitigation arguments, and final judgment; common misreads of "up to X years" in news
+OUTLINE: בקצרה | הרשעה אינה גזר דין | בקשת תביעה מול עמדת הגנה | בית המשפט אינו כבול להסדר | איך לסמן סטטוס בעת קריאה | שאלות נפוצות | מקורות gov.il הסדרי טיעון
+INTERNAL_LINKS: / | /contact/ | /blog/default-judgment-medical-certificate-civil/ | /blog/subsequent-investor-judgment-trustee-damages/ | /blog/lawyer-trustee-investor-funds-duties/
+CATEGORY: legal-literacy
