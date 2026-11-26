@@ -1038,3 +1038,4 @@
 845. add-stub-mdx-images-0044 , src/content/blog/press-ethics-right-of-reply-criminal-reporting.mdx task_graph.log
 846. add-stub-mdx-images-0045 , src/content/blog/presumption-of-innocence-co-defendants-reporting.mdx task_graph.log
 847. add-stub-mdx-images-0046 , src/content/blog/reading-pending-sentence-in-crime-news.mdx task_graph.log
+848. publish-article-0042-plea-bargain , src/content/blog/plea-bargain-conviction-vs-trial-literacy.mdx public/llms-full.txt task_graph.log
