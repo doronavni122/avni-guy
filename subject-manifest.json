@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-23",
+  "date": "2026-11-26",
   "subjects": [
     {
       "nnnn": "0001",
@@ -880,6 +880,126 @@
         "/blog/second-apartment-purchase-tax-calculation/",
         "/blog/foreign-resident-apartment-investment-israel/"
       ]
+    },
+    {
+      "nnnn": "0042",
+      "label": "plea_bargain_conviction_vs_trial_literacy",
+      "subject": "הסדר טיעון מול הרשעה אחרי משפט הוכחות",
+      "slug": "plea-bargain-conviction-vs-trial-literacy",
+      "contentFile": "plea-bargain-conviction-vs-trial-literacy.mdx",
+      "category": "legal-literacy",
+      "mainKeyword": "הסדר טיעון",
+      "date": "2026-11-26",
+      "tags": [
+        "plea-bargain",
+        "criminal-procedure",
+        "media-literacy"
+      ],
+      "phase0Plan": "reserch/PHASE0_0042_0046_article_plans.txt",
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/forty-four-million-investor-fraud-indictment/",
+        "/blog/default-judgment-medical-certificate-civil/",
+        "/blog/magistrate-court-joint-lawyer-founder-investor-suspicion/"
+      ],
+      "phase0PlanOwnerMirror": "OWNER-REPORTS/014_article_seo_phase0_plans.txt"
+    },
+    {
+      "nnnn": "0043",
+      "label": "criminal_headline_theft_vs_aiding_accuracy",
+      "subject": "דיוק בכותרות פליליות גניבה מול סיוע",
+      "slug": "criminal-headline-theft-vs-aiding-accuracy",
+      "contentFile": "criminal-headline-theft-vs-aiding-accuracy.mdx",
+      "category": "legal-literacy",
+      "mainKeyword": "סיוע לעבירה",
+      "date": "2026-11-26",
+      "tags": [
+        "criminal-headlines",
+        "aiding",
+        "media-literacy"
+      ],
+      "phase0Plan": "reserch/PHASE0_0042_0046_article_plans.txt",
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/lawyer-trustee-investor-funds-duties/",
+        "/blog/real-estate-venture-investor-due-diligence/",
+        "/blog/subsequent-investor-judgment-trustee-damages/"
+      ],
+      "phase0PlanOwnerMirror": "OWNER-REPORTS/014_article_seo_phase0_plans.txt"
+    },
+    {
+      "nnnn": "0044",
+      "label": "press_ethics_right_of_reply_criminal_reporting",
+      "subject": "זכות תגובה וחובת דיוק בדיווח פלילי",
+      "slug": "press-ethics-right-of-reply-criminal-reporting",
+      "contentFile": "press-ethics-right-of-reply-criminal-reporting.mdx",
+      "category": "media-literacy",
+      "mainKeyword": "זכות תגובה עיתונות",
+      "date": "2026-11-26",
+      "tags": [
+        "press-ethics",
+        "right-of-reply",
+        "criminal-reporting"
+      ],
+      "phase0Plan": "reserch/PHASE0_0042_0046_article_plans.txt",
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/forty-four-million-investor-fraud-indictment/",
+        "/about/",
+        "/services/"
+      ],
+      "phase0PlanOwnerMirror": "OWNER-REPORTS/014_article_seo_phase0_plans.txt"
+    },
+    {
+      "nnnn": "0045",
+      "label": "presumption_of_innocence_co_defendants_reporting",
+      "subject": "חזקת החפות כשיש כמה נאשמים באותה פרשה",
+      "slug": "presumption-of-innocence-co-defendants-reporting",
+      "contentFile": "presumption-of-innocence-co-defendants-reporting.mdx",
+      "category": "legal-literacy",
+      "mainKeyword": "חזקת החפות",
+      "date": "2026-11-26",
+      "tags": [
+        "presumption-of-innocence",
+        "co-defendants",
+        "media-literacy"
+      ],
+      "phase0Plan": "reserch/PHASE0_0042_0046_article_plans.txt",
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/magistrate-court-joint-lawyer-founder-investor-suspicion/",
+        "/blog/forty-four-million-investor-fraud-indictment/",
+        "/blog/real-estate-venture-investor-due-diligence/"
+      ],
+      "phase0PlanOwnerMirror": "OWNER-REPORTS/014_article_seo_phase0_plans.txt"
+    },
+    {
+      "nnnn": "0046",
+      "label": "reading_pending_sentence_in_crime_news",
+      "subject": "איך לקרוא דיווח פלילי כשעונש עדיין לא נגזר",
+      "slug": "reading-pending-sentence-in-crime-news",
+      "contentFile": "reading-pending-sentence-in-crime-news.mdx",
+      "category": "legal-literacy",
+      "mainKeyword": "טיעונים לעונש",
+      "date": "2026-11-26",
+      "tags": [
+        "sentencing",
+        "crime-news-literacy",
+        "plea-bargain"
+      ],
+      "phase0Plan": "reserch/PHASE0_0042_0046_article_plans.txt",
+      "internalLinkManifest": [
+        "/",
+        "/contact/",
+        "/blog/default-judgment-medical-certificate-civil/",
+        "/blog/subsequent-investor-judgment-trustee-damages/",
+        "/blog/lawyer-trustee-investor-funds-duties/"
+      ],
+      "phase0PlanOwnerMirror": "OWNER-REPORTS/014_article_seo_phase0_plans.txt"
     }
   ]
 }

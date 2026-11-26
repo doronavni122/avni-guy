@@ -13,9 +13,10 @@ const BLOG = path.join(ROOT, 'src/content/blog');
 
 const PRIMARY_HOST =
 	/\.(gov\.il|justice\.gov\.il|boi\.org\.il|israelbar\.org\.il|knesset\.gov\.il|court\.gov\.il)/i;
-const TLDR_RE = /^##\s*(?:בקצרה|TL;DR)\b/m;
+// Hebrew headings: avoid \\b (ASCII word-boundary fails after Hebrew letters).
+const TLDR_RE = /^##\s*(?:בקצרה|TL;DR)(?=\s|$)/mu;
 const FAQ_FM_RE = /^faq:\s*$/m;
-const FAQ_H2_RE = /^##\s+שאלות נפוצות\b/m;
+const FAQ_H2_RE = /^##\s+שאלות נפוצות(?=\s|$)/mu;
 const NACHON_RE = /נכון\s*ל[־\-–]?\s*\S+/u;
 const MEKOROT_RE = /מקורות/;
 const BAR_UNSAFE = /שיעור\s*הצלחה|מומחה\s+מס['׳']?\s*1|מובטח\s+לנצח/u;
