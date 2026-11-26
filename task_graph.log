@@ -1049,3 +1049,4 @@
 856. fix-mainkeyword-brand-0045-presumption , src/content/blog/presumption-of-innocence-co-defendants-reporting.mdx task_graph.log
 857. fix-mainkeyword-brand-0046-pending-sentence , src/content/blog/reading-pending-sentence-in-crime-news.mdx task_graph.log
 858. fix-aeo-tldr-hebrew-word-boundary , scripts/check-aeo-citability.mjs task_graph.log
+859. add-freshness-marker-body-0042-plea-bargain , src/content/blog/plea-bargain-conviction-vs-trial-literacy.mdx task_graph.log
