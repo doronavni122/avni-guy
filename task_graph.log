@@ -1013,3 +1013,4 @@
 824. mirror-phase0-plans-014-owner-report , OWNER-REPORTS/014_article_seo_phase0_plans.txt task_graph.log
 825. register-subjects-0042-0046-media-legal-literacy , subject-manifest.json task_graph.log
 826. enrich-ownerrpt-014-peer-comparison-proof , OWNER-REPORTS/014_article_fact_legal_vulnerabilities.txt OWNER-REPORTS/014_article_fact_legal_vulnerabilities_PROOF.txt task_graph.log
+827. enrich-ownerrpt-014-primary-law-standards-proof , OWNER-REPORTS/014_article_fact_legal_vulnerabilities_PROOF.txt task_graph.log
