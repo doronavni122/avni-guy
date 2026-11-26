@@ -1039,3 +1039,4 @@
 846. add-stub-mdx-images-0045 , src/content/blog/presumption-of-innocence-co-defendants-reporting.mdx task_graph.log
 847. add-stub-mdx-images-0046 , src/content/blog/reading-pending-sentence-in-crime-news.mdx task_graph.log
 848. publish-article-0042-plea-bargain , src/content/blog/plea-bargain-conviction-vs-trial-literacy.mdx public/llms-full.txt task_graph.log
+849. publish-article-0043-theft-vs-aiding , src/content/blog/criminal-headline-theft-vs-aiding-accuracy.mdx public/llms-full.txt task_graph.log
