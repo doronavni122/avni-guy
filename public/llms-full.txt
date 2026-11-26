@@ -81,6 +81,14 @@ URL: https://avniguy.co.il/blog/presumption-of-innocence-co-defendants-reporting
 
 ---
 
+## איך לקרוא דיווח פלילי כשעונש עדיין לא נגזר
+
+URL: https://avniguy.co.il/blog/reading-pending-sentence-in-crime-news/
+
+הרשעה קובעת אשמה; גזר דין קובע עונש. ביניהם מתקיימים טיעונים לעונש. בקשת תביעה כמו עד X שנות מאסר אינה עונש שכבר הוטל. בהסדר טיעון פתוח הצדדים עדיין מתווכחים על העונש, ובית המשפט אינו כבול להסדר. סמנו סטטוס בעת קריאה: הרשעה בלבד, בקשה, או גזר שפורסם.
+
+---
+
 ## מס רכישה לתושב חוזר דירה בישראל
 
 URL: https://avniguy.co.il/blog/purchase-tax-returning-resident-apartment-israel/

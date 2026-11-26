@@ -1042,3 +1042,4 @@
 849. publish-article-0043-theft-vs-aiding , src/content/blog/criminal-headline-theft-vs-aiding-accuracy.mdx public/llms-full.txt task_graph.log
 850. publish-article-0044-press-ethics-reply , src/content/blog/press-ethics-right-of-reply-criminal-reporting.mdx public/llms-full.txt task_graph.log
 851. publish-article-0045-presumption-innocence , src/content/blog/presumption-of-innocence-co-defendants-reporting.mdx public/llms-full.txt task_graph.log
+852. publish-article-0046-pending-sentence , src/content/blog/reading-pending-sentence-in-crime-news.mdx public/llms-full.txt task_graph.log
