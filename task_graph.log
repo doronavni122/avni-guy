@@ -1015,3 +1015,4 @@
 826. enrich-ownerrpt-014-peer-comparison-proof , OWNER-REPORTS/014_article_fact_legal_vulnerabilities.txt OWNER-REPORTS/014_article_fact_legal_vulnerabilities_PROOF.txt task_graph.log
 827. enrich-ownerrpt-014-primary-law-standards-proof , OWNER-REPORTS/014_article_fact_legal_vulnerabilities_PROOF.txt task_graph.log
 828. add-phase0-primary-law-sources-0042-0046 , OWNER-REPORTS/014_article_seo_phase0_plans.txt reserch/PHASE0_0042_0046_article_plans.txt task_graph.log
+829. research-0044-press-ethics-right-of-reply , reserch/0044_press_ethics_right_of_reply_criminal_reporting.md task_graph.log
