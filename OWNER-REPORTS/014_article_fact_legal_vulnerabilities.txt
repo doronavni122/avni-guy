@@ -1,0 +1,10 @@
+Headline states conviction for undifferentiated theft of millions while omitting that the conviction followed a guilty plea under a plea bargain, which the article body itself discloses
+Headline collapses distinct roles of direct theft about ILS 7M and aiding theft about ILS 30M into a single theft-of-millions framing
+Public free-view HTML and NewsArticle schema articleBody omit the defense-counsel response that same-day Globes and Maariv published for the same court outcome
+Dek presents transfer of investor funds to named partners as settled narrative fact without peer-reported context that a named co-defendant denied guilt and remains for trial
+Article is paywalled with schema isAccessibleForFree false so non-subscribers receive only title dek and one short body paragraph without fuller procedural context
+Public TheMarker text does not disambiguate the named investment group from a similarly named urban-renewal firm unlike same-day Globes coverage
+Body states sentence is not yet imposed and prosecution will request up to four years under an open plea while the headline omits open-sentencing and plea structure
+Public TheMarker offense list omits forgery and tax-omission offenses reported in same-day Globes and Maariv coverage of the same conviction
+Headline accuracy gap leaves material plea-bargain context only in the body contrary to Press Council ethics section 3 accuracy duties that expressly include headlines
+Public text lacks fair presentation of the subject's response contrary to Press Council ethics section 9b response duty for reputation-affecting publications

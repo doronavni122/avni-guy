@@ -1008,3 +1008,4 @@
 819. publish-article-0040-sibling-joint-ownership , src/content/blog/sibling-real-estate-joint-ownership-agreement.mdx task_graph.log
 820. publish-article-0041-returning-resident-purchase-tax , src/content/blog/purchase-tax-returning-resident-apartment-israel.mdx task_graph.log
 821. regenerate-llms-full-after-0040-0041 , public/llms-full.txt task_graph.log
+822. add-ownerrpt-014-themarker-fact-legal-vulns , OWNER-REPORTS/014_article_fact_legal_vulnerabilities.txt OWNER-REPORTS/014_article_fact_legal_vulnerabilities_PROOF.txt task_graph.log
