@@ -1053,3 +1053,4 @@
 860. add-freshness-marker-body-0044-press-ethics , src/content/blog/press-ethics-right-of-reply-criminal-reporting.mdx task_graph.log
 861. fix-publish-mainkeyword-brand-enum , scripts/publish-draft-to-content.mjs task_graph.log
 862. fix-publish-script-mainkeyword-brand-enum , scripts/publish-draft-to-content.mjs task_graph.log
+863. add-taxonomy-labels-0042-0046-media-legal , src/utils/taxonomy-labels.ts task_graph.log
