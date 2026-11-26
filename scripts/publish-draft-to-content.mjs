@@ -169,7 +169,8 @@ function mapDraftToSiteFrontmatter({ seo, subject, faq, images, profile }) {
 		description: seo.description,
 		metaTitle: `${profile.brand} | ${subject.subject} | ישראל`,
 		metaDescription: seo.description,
-		mainKeyword: subject.mainKeyword || profile.brand,
+		// Site Zod enum requires brand SITE_KEYWORDS entry; topic KW stays in secondaryKeywords.
+		mainKeyword: 'גיא אבני עורך דין',
 		secondaryKeywords: (seo.keywords ?? []).slice(0, 6),
 		pubDate,
 		category: subject.category,

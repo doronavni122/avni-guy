@@ -1051,3 +1051,4 @@
 858. fix-aeo-tldr-hebrew-word-boundary , scripts/check-aeo-citability.mjs task_graph.log
 859. add-freshness-marker-body-0042-plea-bargain , src/content/blog/plea-bargain-conviction-vs-trial-literacy.mdx task_graph.log
 860. add-freshness-marker-body-0044-press-ethics , src/content/blog/press-ethics-right-of-reply-criminal-reporting.mdx task_graph.log
+861. fix-publish-mainkeyword-brand-enum , scripts/publish-draft-to-content.mjs task_graph.log
