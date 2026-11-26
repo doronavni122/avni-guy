@@ -1048,3 +1048,4 @@
 855. fix-mainkeyword-brand-0044-press-ethics , src/content/blog/press-ethics-right-of-reply-criminal-reporting.mdx task_graph.log
 856. fix-mainkeyword-brand-0045-presumption , src/content/blog/presumption-of-innocence-co-defendants-reporting.mdx task_graph.log
 857. fix-mainkeyword-brand-0046-pending-sentence , src/content/blog/reading-pending-sentence-in-crime-news.mdx task_graph.log
+858. fix-aeo-tldr-hebrew-word-boundary , scripts/check-aeo-citability.mjs task_graph.log
