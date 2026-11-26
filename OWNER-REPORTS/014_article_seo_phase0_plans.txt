@@ -73,3 +73,16 @@ ANGLE: Teach readers the difference between conviction event, prosecution senten
 OUTLINE: בקצרה | הרשעה אינה גזר דין | בקשת תביעה מול עמדת הגנה | בית המשפט אינו כבול להסדר | איך לסמן סטטוס בעת קריאה | שאלות נפוצות | מקורות gov.il הסדרי טיעון
 INTERNAL_LINKS: / | /contact/ | /blog/default-judgment-medical-certificate-civil/ | /blog/subsequent-investor-judgment-trustee-damages/ | /blog/lawyer-trustee-investor-funds-duties/
 CATEGORY: legal-literacy
+
+
+PRIMARY_LAW_SOURCES_FOR_PHASE1:
+- https://presscouncil.co.il/takanon/
+- https://www.itonaim.org.il/wp-content/uploads/2022/09/תקנון-האתיקה-המקצועית-של-העיתונות.pdf
+- https://www.gov.il/BlobFolder/dynamiccollectorresultitem/08-001-00/he/s-a-guidelines_008.1.pdf
+- https://www.gov.il/he/pages/plea-bargaining
+- https://he.wikisource.org/wiki/חוק_סדר_הדין_הפלילי
+- https://he.wikisource.org/wiki/חוק_העונשין
+- https://he.wikisource.org/wiki/חוק_איסור_לשון_הרע
+- https://www.ipso.co.uk/editors-code-of-practice/
+- https://spjethics.org/code/
+- https://www.reutersagency.com/en/about/standards-values/
